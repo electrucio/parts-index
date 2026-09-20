@@ -1,0 +1,22 @@
+version = 1
+
+# Licence of each part of the repository (https://reuse.software). Files are not given individual
+# headers: LTspice symbol files (.asy) cannot carry comments.
+
+[[annotations]]
+path = ["src/**", "scripts/**", "web/**", "docker/**", "tests/**", ".githooks/**", ".github/**", "pyproject.toml", ".gitignore"]
+SPDX-FileCopyrightText = "2026 The parts-index contributors"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = ["components/**", "circuits/**"]
+SPDX-FileCopyrightText = "2026 The parts-index contributors"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = ["data/**", "docs/**", "*.md", "NOTICE", "REUSE.toml"]
+SPDX-FileCopyrightText = "2026 The parts-index contributors"
+SPDX-License-Identifier = "CC-BY-4.0"
+
+# Third-party model files keep their own licence; one annotation per source is added here when
+# a redistributable source is imported into data/models/files/<source>/.

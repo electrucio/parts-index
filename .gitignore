@@ -1,0 +1,39 @@
+# Everything that cannot be redistributed (vendor SPICE models, datasheet PDFs,
+# scraped corpora, OCR output, caches, legacy code awaiting clean-up) lives here.
+# It is the default DATA_ROOT. Never `git add -f` anything under it.
+private_uncommitted/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# Web
+node_modules/
+web/dist/
+web/public/data/
+
+# Simulator output
+*.raw
+*.op.raw
+*.log
+*.net.bak
+
+# Secrets and local config
+.env
+.env.*
+config.toml
+*_key.txt
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
