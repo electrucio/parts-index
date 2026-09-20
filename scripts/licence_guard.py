@@ -21,6 +21,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 MAX_BYTES = 1_000_000
+MAX_BYTES_DATA = 5_000_000          # ledgers and exports under data/ are plain CSV and may be larger
 
 PRIVATE_DIR = "private_uncommitted/"
 BLOCKED_SUFFIXES = {
@@ -43,6 +44,10 @@ CONTENT_PATTERNS = [
     ("personal e-mail address", re.compile(r"[A-Za-z0-9._%+-]+@" + r"(?:gmail|hotmail|outlook|yahoo)\.")),
     ("API-key shaped string", re.compile(r"\bsk-" + r"[A-Za-z0-9_-]{24,}")),
 ]
+
+
+# Public URLs are third-party facts, not our paths or names: they are blanked before the content checks.
+PUBLIC_URL = re.compile(r"https?://[^\s,\"'<>]+")
 
 
 def local_patterns() -> list[tuple[str, re.Pattern]]:
@@ -81,13 +86,15 @@ def check(path: str) -> list[str]:
     if not p.is_file():
         return problems
     size = p.stat().st_size
-    if size > MAX_BYTES:
-        problems.append(f"{path}: {size / 1e6:.1f} MB is over the {MAX_BYTES // 1_000_000} MB limit")
+    limit = MAX_BYTES_DATA if path.startswith("data/") else MAX_BYTES
+    if size > limit:
+        problems.append(f"{path}: {size / 1e6:.1f} MB is over the {limit // 1_000_000} MB limit")
         return problems
     try:
         text = p.read_text(encoding="utf-8")
     except (UnicodeDecodeError, OSError):
         return problems
+    text = PUBLIC_URL.sub(lambda m: " " * len(m.group()), text)
     for label, pattern in CONTENT_PATTERNS + local_patterns():
         m = pattern.search(text)
         if m:

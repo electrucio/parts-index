@@ -1,0 +1,448 @@
+# Registry of schematic/reference sources. status: proposed | active | paused | blocked | excluded
+# Add a site here (status: proposed) to have it crawled; its progress is in state/<id>.csv and STATUS.md.
+aion:
+  kind: site
+  title: Aion FX
+  home_url: https://aionfx.com/
+  status: active
+amb:
+  kind: site
+  title: AMB Laboratories
+  home_url: https://www.amb.org/audio/
+  status: active
+  crawl:
+    start:
+    - https://www.amb.org/audio/
+    allow: ^/audio/
+    max: 400
+ampgarage_threads:
+  kind: forum
+  title: Amp Garage
+  home_url: https://ampgarage.com/
+  status: excluded
+  blocked_reason: user forums are out of scope
+bartola:
+  kind: site
+  title: Bartola Valves
+  home_url: https://www.bartola.co.uk/valves/
+  status: active
+  crawl:
+    start:
+    - https://www.bartola.co.uk/valves/
+    allow: ^/valves/
+    max: 500
+    cdn: i\d\.wp\.com
+books:
+  kind: book
+  title: Books, linked to their public pages
+  home_url: ''
+  status: active
+diyaudioheaven:
+  kind: site
+  title: DIY-Audio-Heaven
+  home_url: https://diyaudioheaven.wordpress.com/
+  status: active
+  crawl:
+    start:
+    - https://diyaudioheaven.wordpress.com/
+    allow: ^/
+    max: 400
+    cdn: files\.wordpress\.com|i\d\.wp\.com
+djerickson:
+  kind: site
+  title: Dave Erickson
+  home_url: https://www.djerickson.com/
+  status: active
+  crawl:
+    start:
+    - https://www.djerickson.com/
+    allow: ^/
+    max: 400
+drtube:
+  kind: factory
+  title: Dr. Tube
+  home_url: https://www.drtube.com/
+  status: active
+el34world:
+  kind: factory
+  title: EL34 World — schematics
+  home_url: https://el34world.com/schematics.htm
+  status: active
+electronics_illustrated:
+  kind: magazine
+  title: Electronics Illustrated
+  home_url: https://www.worldradiohistory.com/
+  status: active
+electronics_world_us:
+  kind: magazine
+  title: Electronics World
+  home_url: https://www.worldradiohistory.com/
+  status: active
+electrosmash:
+  kind: site
+  title: ElectroSmash (MAS Effects mirror / Wayback)
+  home_url: https://electrosmash.mas-effects.com/
+  status: active
+elektor:
+  kind: magazine
+  title: Elektor (English edition)
+  home_url: https://archive.org/details/ElektorMagazine
+  status: active
+elementary_electronics:
+  kind: magazine
+  title: Elementary Electronics
+  home_url: https://www.worldradiohistory.com/
+  status: active
+elmchan:
+  kind: site
+  title: ELM by ChaN — Electronic Handiworks
+  home_url: https://elm-chan.org/he_e.html
+  status: active
+  crawl:
+    start:
+    - https://elm-chan.org/he_e.html
+    allow: ^/(works|docs|he_|junk)
+    max: 400
+esp:
+  kind: site
+  title: Elliott Sound Products
+  home_url: https://sound-au.com/
+  status: active
+eti_uk:
+  kind: magazine
+  title: Electronics Today International
+  home_url: https://www.worldradiohistory.com/
+  status: active
+everyday_electronics:
+  kind: magazine
+  title: Everyday Electronics
+  home_url: https://www.worldradiohistory.com/
+  status: active
+expanon:
+  kind: site
+  title: Experimentalists Anonymous
+  home_url: https://www.experimentalistsanonymous.com/
+  status: active
+firstwatt:
+  kind: site
+  title: First Watt
+  home_url: https://www.firstwatt.com/
+  status: active
+ggg:
+  kind: site
+  title: General Guitar Gadgets
+  home_url: https://generalguitargadgets.com/
+  status: active
+groupdiy_threads:
+  kind: forum
+  title: GroupDIY
+  home_url: https://groupdiy.com/
+  status: excluded
+  blocked_reason: user forums are out of scope
+hands_on_electronics:
+  kind: magazine
+  title: Hands-On Electronics
+  home_url: https://www.worldradiohistory.com/
+  status: active
+hobbyist_specials:
+  kind: magazine
+  title: Hobbyist specials
+  home_url: https://www.worldradiohistory.com/
+  status: active
+keithsnook:
+  kind: site
+  title: Keith Snook — Wireless World articles
+  home_url: https://keith-snook.info/
+  status: active
+kerrywong:
+  kind: site
+  title: Kerry D. Wong
+  home_url: https://www.kerrywong.com/
+  status: blocked
+  blocked_reason: unreachable from the crawler on 2026-09-20; retry later
+  crawl:
+    start:
+    - https://www.kerrywong.com/
+    allow: ^/(20\d\d/|blog/)
+    max: 500
+limpkin:
+  kind: site
+  title: Limpkin's blog
+  home_url: https://www.limpkin.fr/
+  status: active
+  crawl:
+    start:
+    - https://www.limpkin.fr/
+    allow: ^/
+    max: 250
+ludens:
+  kind: site
+  title: Ludens — Manfred Mornhinweg
+  home_url: https://www.ludens.cl/Electron/Electron.html
+  status: active
+  crawl:
+    start:
+    - https://www.ludens.cl/Electron/Electron.html
+    allow: ^/Electron/
+    max: 400
+modern_electronics:
+  kind: magazine
+  title: Modern Electronics
+  home_url: https://www.worldradiohistory.com/
+  status: active
+neurochrome:
+  kind: site
+  title: Neurochrome
+  home_url: https://neurochrome.com/
+  status: active
+  crawl:
+    start:
+    - https://neurochrome.com/
+    allow: ^/(products|pages|blogs|collections)/
+    max: 250
+    cdn: cdn\.shopify\.com|neurochrome\.com
+passdiy:
+  kind: site
+  title: Pass DIY
+  home_url: https://www.passdiy.com/
+  status: active
+passlabs:
+  kind: site
+  title: Pass Labs
+  home_url: https://www.passlabs.com/
+  status: active
+paulvdiy:
+  kind: site
+  title: Paul's DIY electronics blog
+  home_url: https://www.paulvdiyblogs.net/
+  status: active
+  crawl:
+    start:
+    - https://www.paulvdiyblogs.net/
+    allow: ^/(20\d\d/|p/)
+    max: 300
+    cdn: blogger\.googleusercontent\.com|bp\.blogspot\.com
+pedalpcb:
+  kind: site
+  title: PedalPCB
+  home_url: https://www.pedalpcb.com/
+  status: active
+phonoclone:
+  kind: site
+  title: RJM Audio — Phonoclone
+  home_url: https://phonoclone.com/
+  status: active
+  crawl:
+    start:
+    - https://phonoclone.com/
+    allow: ^/
+    max: 300
+pisotones:
+  kind: site
+  title: Pisotones
+  home_url: https://www.pisotones.com/
+  status: active
+  crawl:
+    start:
+    - https://www.pisotones.com/
+    allow: ^/
+    max: 500
+pmillett:
+  kind: site
+  title: Pete Millett
+  home_url: http://www.pmillett.com/
+  status: active
+  crawl:
+    start:
+    - http://www.pmillett.com/
+    allow: ^/
+    deny: (?i)books|tubebooks|/file_downloads/|\.zip$
+    max: 400
+popular_electronics:
+  kind: magazine
+  title: Popular Electronics
+  home_url: https://www.worldradiohistory.com/
+  status: active
+practical_electronics:
+  kind: magazine
+  title: Practical Electronics
+  home_url: https://www.worldradiohistory.com/
+  status: active
+practical_wireless:
+  kind: magazine
+  title: Practical Wireless
+  home_url: https://www.worldradiohistory.com/
+  status: active
+qrplabs:
+  kind: site
+  title: QRP Labs
+  home_url: https://qrp-labs.com/
+  status: active
+  crawl:
+    start:
+    - https://qrp-labs.com/
+    allow: ^/
+    max: 400
+radio_constructor:
+  kind: magazine
+  title: The Radio Constructor
+  home_url: https://www.worldradiohistory.com/
+  status: active
+radio_electronics:
+  kind: magazine
+  title: Radio-Electronics
+  home_url: https://www.worldradiohistory.com/
+  status: active
+radio_tv_experimenter:
+  kind: magazine
+  title: Radio-TV Experimenter
+  home_url: https://www.worldradiohistory.com/
+  status: active
+redcircuits:
+  kind: site
+  title: RED Free Circuit Designs
+  home_url: https://www.redcircuits.com/
+  status: active
+  crawl:
+    start:
+    - https://www.redcircuits.com/
+    allow: ^/[A-Za-z_]+\d*\.htm
+    max: 400
+schematicheaven:
+  kind: factory
+  title: Schematic Heaven (mirror)
+  home_url: https://schematicheaven.net/
+  status: active
+schematics_unlimited:
+  kind: factory
+  title: Schematics Unlimited
+  home_url: https://www.schematicsunlimited.com/
+  status: excluded
+  blocked_reason: every file is behind a CAPTCHA; never bypass it
+schmitzbits:
+  kind: site
+  title: René Schmitz — Synth DIY
+  home_url: https://www.schmitzbits.de/synth.html
+  status: active
+  crawl:
+    start:
+    - https://www.schmitzbits.de/synth.html
+    - https://www.schmitzbits.de/
+    allow: ^/
+    max: 300
+semimuseum:
+  kind: reference
+  title: Transistor Museum — semiconductormuseum.com
+  home_url: https://www.semiconductormuseum.com/
+  status: active
+  crawl:
+    start:
+    - https://www.semiconductormuseum.com/
+    allow: ^/
+    max: 1500
+    figures: false
+sjostrom:
+  kind: site
+  title: Sjöström Audio
+  home_url: https://sjostromaudio.com/pages/
+  status: active
+  crawl:
+    start:
+    - https://sjostromaudio.com/pages/
+    allow: ^/pages/
+    max: 500
+sm0vpo:
+  kind: site
+  title: Harry's Homebrew — SM0VPO
+  home_url: https://www.sm0vpo.com/
+  status: active
+  crawl:
+    start:
+    - https://www.sm0vpo.com/
+    allow: ^/
+    max: 600
+synfo:
+  kind: factory
+  title: synfo.nl — service notes
+  home_url: https://www.synfo.nl/pages/servicemanuals.html
+  status: active
+techlib:
+  kind: site
+  title: Techlib — Charles Wenzel
+  home_url: https://techlib.com/
+  status: active
+  crawl:
+    start:
+    - https://techlib.com/
+    allow: ^/
+    max: 500
+thetubestore:
+  kind: factory
+  title: The Tube Store — schematics
+  home_url: https://www.thetubestore.com/
+  status: active
+tonepad:
+  kind: site
+  title: Tonepad
+  home_url: https://www.tonepad.com/
+  status: active
+tubecad:
+  kind: site
+  title: Tube CAD Journal
+  home_url: https://www.tubecad.com/
+  status: active
+  crawl:
+    start:
+    - https://www.tubecad.com/
+    allow: ^/(20\d\d|articles|index)
+    max: 800
+valvewizard:
+  kind: site
+  title: The Valve Wizard
+  home_url: https://www.valvewizard.co.uk/
+  status: active
+  crawl:
+    start:
+    - https://www.valvewizard.co.uk/
+    allow: ^/
+    max: 300
+vintagefender:
+  kind: factory
+  title: Vintage Fender Amp Repair — library
+  home_url: https://www.vintagefenderamprepair.com/
+  status: active
+vk3ye:
+  kind: site
+  title: VK3YE — Peter Parker
+  home_url: https://www.vk3ye.com/
+  status: active
+  crawl:
+    start:
+    - https://www.vk3ye.com/
+    allow: ^/
+    max: 300
+wireless_world:
+  kind: magazine
+  title: Wireless World
+  home_url: https://www.worldradiohistory.com/
+  status: active
+xdevs:
+  kind: site
+  title: xDevs
+  home_url: https://xdevs.com/
+  status: active
+  crawl:
+    start:
+    - https://xdevs.com/
+    allow: ^/(article|fix|review|guide|teardown)/
+    max: 400
+yusynth:
+  kind: site
+  title: YuSynth — Yves Usson
+  home_url: https://yusynth.net/Modular/index_en.html
+  status: active
+  crawl:
+    start:
+    - https://yusynth.net/Modular/index_en.html
+    allow: ^/Modular/
+    max: 400

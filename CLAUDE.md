@@ -42,10 +42,21 @@ part number, "where is it used, where are its SPICE models and datasheets, and h
 ```
 git config core.hooksPath .githooks     # once per clone
 python3 scripts/licence_guard.py --all  # what CI runs
+uv sync && uv run pytest                # or: PYTHONPATH=src python3 -m pytest
+uv run pidx status                      # what is processed and what comes next; --write refreshes STATUS.md
 ```
 
-Python ≥ 3.11. Tooling (`uv`, tests, the `pidx` CLI, the web app) arrives with the corresponding commits;
-this file is updated as each lands.
+Python ≥ 3.11. The web app and the remaining `pidx` commands arrive with the corresponding commits; this file
+is updated as each lands.
+
+## Where things stand
+
+Read [STATUS.md](STATUS.md) first: one row per source with items downloaded, OCR'd, indexed and link-checked,
+and the next action. It is generated from `data/schematics/sources.yaml` (the registry) and
+`data/schematics/state/<source>.csv` (one ledger row per URL). To add a site, add a registry entry with
+`status: proposed`; to reprocess, bump a stage version. Never edit ledgers by hand to force a rerun.
+`python -m parts_index.schematics.seed` rebuilds the ledgers from the pre-monorepo pipeline outputs (maintainer
+only; used until the pipeline stages are ported and write the ledgers themselves).
 
 ## Without the private corpus you can still
 
