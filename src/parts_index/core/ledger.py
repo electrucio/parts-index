@@ -38,12 +38,12 @@ SCHEMATIC_FIELDS = (
     "linkcheck_at", "link_ok", "skip_reason",
 )
 
-# pillar 2: a model file or product page of a model source
-MODEL_STAGES = ("fetch", "index", "verify")
-MODEL_VERSIONED = ("index", "verify")
+# pillar 2: a model file of a model source, or the attempt to find the model of one part at that source.
+# Verification is per part and candidate, not per file: its state lives in data/verification/.
+MODEL_STAGES = ("fetch", "index")
+MODEL_VERSIONED = ("index",)
 MODEL_FIELDS = (
-    "key", "url", "part", "status", "bytes", "sha256", "fetch_at",
-    "n_defs", "index_at", "index_v", "verify_at", "verify_v", "skip_reason",
+    "key", "url", "part", "status", "bytes", "sha256", "fetch_at", "n_defs", "index_at", "index_v", "skip_reason",
 )
 
 
