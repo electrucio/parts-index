@@ -8,20 +8,20 @@ A stage is never repeated for an item unless its input or the stage version chan
 
 ## Schematic and reference sources
 
-62 sources · 52,974 items · 52,087 downloaded · 18,563 OCR'd · 37,075 indexed · 360 link-checked · 887 skipped
+62 sources · 58,064 items · 57,160 downloaded · 50,115 OCR'd · 57,160 indexed · 1,583 link-checked · 904 skipped
 
 | Source | Kind | Status | Items | Downloaded | OCR'd | Indexed | Link-checked | Skipped | Last activity | Next |
 |---|---|---|--:|--:|--:|--:|--:|--:|---|---|
-| books | book | active | 78 | 78 | 78 | 78 | 24 | 0 | 2026-09-20 | link-check 54 |
-| drtube | factory | active | 145 | 145 | 0 | 145 | 0 | 0 | 2026-09-20 | OCR 142 |
-| el34world | factory | active | 4,402 | 4,391 | 4,382 | 4,391 | 0 | 11 | 2026-09-20 | OCR 9 |
+| books | book | active | 50 | 50 | 50 | 50 | 34 | 0 | 2026-09-20 | link-check 16 |
+| drtube | factory | active | 145 | 145 | 145 | 145 | 0 | 0 | 2026-09-20 | link-check 145 |
+| el34world | factory | active | 4,402 | 4,391 | 4,384 | 4,391 | 0 | 11 | 2026-09-20 | OCR 7 |
 | schematicheaven | factory | active | 1,728 | 1,722 | 1,722 | 1,722 | 0 | 6 | 2026-09-20 | link-check 1722 |
 | synfo | factory | active | 679 | 622 | 622 | 622 | 0 | 57 | 2026-09-20 | link-check 622 |
-| thetubestore | factory | active | 151 | 151 | 0 | 151 | 0 | 0 | 2026-09-20 | OCR 93 |
+| thetubestore | factory | active | 151 | 151 | 95 | 151 | 0 | 0 | 2026-09-20 | link-check 151 |
 | vintagefender | factory | active | 254 | 254 | 254 | 254 | 0 | 0 | 2026-09-20 | link-check 254 |
 | electronics_illustrated | magazine | active | 73 | 73 | 73 | 73 | 0 | 0 | 2026-09-20 | link-check 73 |
 | electronics_world_us | magazine | active | 80 | 80 | 80 | 80 | 0 | 0 | 2026-09-20 | link-check 80 |
-| elektor | magazine | active | 571 | 571 | 321 | 571 | 336 | 0 | 2026-09-20 | link-check 235 |
+| elektor | magazine | active | 1,659 | 1,659 | 365 | 1,659 | 1,549 | 0 | 2026-09-20 | link-check 110 |
 | elementary_electronics | magazine | active | 72 | 72 | 72 | 72 | 0 | 0 | 2026-09-20 | link-check 72 |
 | eti_uk | magazine | active | 367 | 367 | 367 | 367 | 0 | 0 | 2026-09-20 | link-check 367 |
 | everyday_electronics | magazine | active | 443 | 443 | 443 | 443 | 0 | 0 | 2026-09-20 | link-check 443 |
@@ -35,41 +35,41 @@ A stage is never repeated for an item unless its input or the stage version chan
 | radio_electronics | magazine | active | 556 | 556 | 556 | 556 | 0 | 0 | 2026-09-20 | link-check 556 |
 | radio_tv_experimenter | magazine | active | 44 | 44 | 44 | 44 | 0 | 0 | 2026-09-20 | link-check 44 |
 | wireless_world | magazine | active | 1,295 | 1,295 | 1,295 | 1,295 | 0 | 0 | 2026-09-20 | link-check 1295 |
-| semimuseum | reference | active | 748 | 747 | 0 | 0 | 0 | 1 | 2026-09-20 | OCR 50 |
+| semimuseum | reference | active | 748 | 747 | 50 | 747 | 0 | 1 | 2026-09-20 | link-check 747 |
 | aion | site | active | 279 | 279 | 278 | 279 | 0 | 0 | 2026-09-20 | link-check 279 |
-| amb | site | active | 144 | 144 | 0 | 144 | 0 | 0 | 2026-09-20 | OCR 110 |
-| bartola | site | active | 1,847 | 1,828 | 0 | 1,235 | 0 | 19 | 2026-09-20 | OCR 1314 |
-| diyaudioheaven | site | active | 3,004 | 3,001 | 0 | 1,147 | 0 | 3 | 2026-09-20 | OCR 2825 |
-| djerickson | site | active | 2,165 | 2,013 | 0 | 916 | 0 | 152 | 2026-09-20 | OCR 1604 |
+| amb | site | active | 144 | 144 | 111 | 144 | 0 | 0 | 2026-09-20 | link-check 144 |
+| bartola | site | active | 1,847 | 1,828 | 1,309 | 1,828 | 0 | 19 | 2026-09-20 | link-check 1828 |
+| diyaudioheaven | site | active | 3,748 | 3,745 | 3,522 | 3,745 | 0 | 3 | 2026-09-20 | link-check 3745 |
+| djerickson | site | active | 2,165 | 2,013 | 1,662 | 2,013 | 0 | 152 | 2026-09-20 | link-check 2013 |
 | electrosmash | site | active | 798 | 710 | 669 | 710 | 0 | 88 | 2026-09-20 | link-check 710 |
-| elmchan | site | active | 1,169 | 1,119 | 0 | 872 | 0 | 50 | 2026-09-20 | OCR 986 |
+| elmchan | site | active | 1,169 | 1,119 | 944 | 1,119 | 0 | 50 | 2026-09-20 | OCR 5 |
 | esp | site | active | 3,643 | 3,532 | 3,104 | 3,532 | 0 | 111 | 2026-09-20 | link-check 3532 |
 | expanon | site | active | 882 | 881 | 881 | 881 | 0 | 1 | 2026-09-20 | link-check 881 |
 | firstwatt | site | active | 102 | 101 | 101 | 101 | 0 | 1 | 2026-09-20 | link-check 101 |
 | ggg | site | active | 644 | 640 | 549 | 640 | 0 | 4 | 2026-09-20 | link-check 640 |
 | keithsnook | site | active | 154 | 152 | 152 | 152 | 0 | 2 | 2026-09-20 | link-check 152 |
-| limpkin | site | active | 1,079 | 1,078 | 0 | 1,078 | 0 | 1 | 2026-09-20 | OCR 828 |
-| ludens | site | active | 855 | 842 | 0 | 842 | 0 | 13 | 2026-09-20 | OCR 758 |
-| neurochrome | site | active | 1,004 | 980 | 0 | 980 | 0 | 24 | 2026-09-20 | OCR 809 |
+| limpkin | site | active | 1,079 | 1,078 | 828 | 1,078 | 0 | 1 | 2026-09-20 | OCR 15 |
+| ludens | site | active | 855 | 842 | 758 | 842 | 0 | 13 | 2026-09-20 | link-check 842 |
+| neurochrome | site | active | 1,004 | 980 | 809 | 980 | 0 | 24 | 2026-09-20 | link-check 980 |
 | passdiy | site | active | 654 | 646 | 594 | 646 | 0 | 8 | 2026-09-20 | link-check 646 |
 | passlabs | site | active | 165 | 158 | 93 | 158 | 0 | 7 | 2026-09-20 | link-check 158 |
-| paulvdiy | site | active | 1,664 | 1,664 | 0 | 1,039 | 0 | 0 | 2026-09-20 | OCR 1364 |
+| paulvdiy | site | active | 1,664 | 1,664 | 1,364 | 1,664 | 0 | 0 | 2026-09-20 | link-check 1664 |
 | pedalpcb | site | active | 556 | 553 | 553 | 553 | 0 | 3 | 2026-09-20 | link-check 553 |
-| phonoclone | site | active | 160 | 155 | 0 | 155 | 0 | 5 | 2026-09-20 | OCR 120 |
-| pisotones | site | active | 3,259 | 3,204 | 0 | 1,233 | 0 | 55 | 2026-09-20 | OCR 2993 |
-| pmillett | site | active | 1,413 | 1,410 | 0 | 660 | 0 | 3 | 2026-09-20 | OCR 1286 |
-| qrplabs | site | active | 2,323 | 2,312 | 0 | 744 | 0 | 11 | 2026-09-20 | OCR 1915 |
-| redcircuits | site | active | 452 | 450 | 0 | 0 | 0 | 2 | 2026-09-20 | OCR 258 |
-| schmitzbits | site | active | 119 | 119 | 0 | 119 | 0 | 0 | 2026-09-20 | OCR 68 |
-| sjostrom | site | active | 849 | 792 | 0 | 792 | 0 | 57 | 2026-09-20 | OCR 374 |
-| sm0vpo | site | active | 3,011 | 2,996 | 0 | 1,133 | 0 | 15 | 2026-09-20 | OCR 2176 |
-| techlib | site | active | 1,566 | 1,535 | 0 | 887 | 0 | 31 | 2026-09-20 | OCR 1324 |
+| phonoclone | site | active | 160 | 155 | 122 | 155 | 0 | 5 | 2026-09-20 | link-check 155 |
+| pisotones | site | active | 4,080 | 4,017 | 3,799 | 4,017 | 0 | 63 | 2026-09-20 | link-check 4017 |
+| pmillett | site | active | 1,413 | 1,410 | 1,285 | 1,410 | 0 | 3 | 2026-09-20 | link-check 1410 |
+| qrplabs | site | active | 2,964 | 2,947 | 2,670 | 2,947 | 0 | 17 | 2026-09-20 | link-check 2947 |
+| redcircuits | site | active | 452 | 450 | 257 | 450 | 0 | 2 | 2026-09-20 | OCR 1 |
+| schmitzbits | site | active | 119 | 119 | 68 | 119 | 0 | 0 | 2026-09-20 | link-check 119 |
+| sjostrom | site | active | 849 | 792 | 374 | 792 | 0 | 57 | 2026-09-20 | link-check 792 |
+| sm0vpo | site | active | 3,759 | 3,744 | 3,553 | 3,744 | 0 | 15 | 2026-09-20 | OCR 44 |
+| techlib | site | active | 1,566 | 1,535 | 1,389 | 1,535 | 0 | 31 | 2026-09-20 | OCR 1 |
 | tonepad | site | active | 153 | 118 | 53 | 118 | 0 | 35 | 2026-09-20 | link-check 118 |
-| tubecad | site | active | 2,712 | 2,686 | 0 | 1,036 | 0 | 26 | 2026-09-20 | OCR 2550 |
-| valvewizard | site | active | 376 | 374 | 0 | 374 | 0 | 2 | 2026-09-20 | OCR 266 |
-| vk3ye | site | active | 424 | 422 | 0 | 422 | 0 | 2 | 2026-09-20 | OCR 240 |
-| xdevs | site | active | 1,508 | 1,495 | 0 | 546 | 0 | 13 | 2026-09-20 | OCR 1450 |
-| yusynth | site | active | 927 | 860 | 0 | 860 | 0 | 67 | 2026-09-20 | OCR 692 |
+| tubecad | site | active | 3,391 | 3,365 | 3,251 | 3,365 | 0 | 26 | 2026-09-20 | link-check 3365 |
+| valvewizard | site | active | 376 | 374 | 299 | 374 | 0 | 2 | 2026-09-20 | OCR 1 |
+| vk3ye | site | active | 424 | 422 | 240 | 422 | 0 | 2 | 2026-09-20 | link-check 422 |
+| xdevs | site | active | 1,905 | 1,889 | 1,865 | 1,889 | 0 | 16 | 2026-09-20 | link-check 1889 |
+| yusynth | site | active | 927 | 860 | 765 | 860 | 0 | 67 | 2026-09-20 | link-check 860 |
 | kerrywong | site | blocked | 1 | 0 | 0 | 0 | 0 | 1 |  | blocked: unreachable from the crawler on 2026-09-20; retry later |
 | schematics_unlimited | factory | excluded | 0 | 0 | 0 | 0 | 0 | 0 |  | excluded: every file is behind a CAPTCHA; never bypass it |
 | ampgarage_threads | forum | excluded | 0 | 0 | 0 | 0 | 0 | 0 |  | excluded: user forums are out of scope |
@@ -79,7 +79,7 @@ OCR'd counts only items that need OCR (scans and images); HTML pages and born-di
 
 ## SPICE model sources
 
-66 sources · 12,643 files downloaded · 11,913 with indexed definitions (554,742 definitions) · part look-ups: 840 not available, 970 not tried yet
+71 sources · 12,751 files downloaded · 12,041 with indexed definitions (585,437 definitions) · part look-ups: 840 not available, 970 not tried yet
 
 Registry: `data/models/sources/<id>.yaml`. Ledgers: `data/models/state/<id>.csv`, one row per downloaded file
 (URL + sha256) and one per part looked up at that vendor. A file without indexed definitions is usually a
@@ -89,25 +89,31 @@ is marked `redistributable: true`.
 | Source | Status | Fetch | Files | Indexed | Definitions | Parts not available | Parts not tried | Licence | Last activity | Next |
 |---|---|---|--:|--:|--:|--:|--:|---|---|---|
 | onsemi | active | adapter | 4,742 | 4,739 | 33,890 | 172 | 165 | unreviewed | 2026-09-20 | fetch 165 parts |
-| diodes-inc | active | adapter | 4,158 | 4,155 | 14,988 | 0 | 255 | unreviewed | 2026-09-20 | fetch 255 parts |
-| kicad-spice-library | active | manual | 2,083 | 1,985 | 154,152 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
+| diodes-inc | active | adapter | 4,159 | 4,156 | 35,003 | 0 | 255 | unreviewed | 2026-09-20 | fetch 255 parts |
+| kicad-spice-library | active | manual | 2,083 | 2,027 | 154,194 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | ti | active | adapter | 451 | 444 | 9,169 | 321 | 8 | unreviewed | 2026-09-20 | fetch 8 parts |
 | cordell | active | manual | 187 | 4 | 1,170 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
-| ltwiki | active | manual | 136 | 35 | 192,464 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
+| ltwiki | active | manual | 136 | 35 | 192,519 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | duncanamps | active | manual | 131 | 91 | 1,535 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | nexperia | active | adapter | 124 | 124 | 300 | 263 | 100 | unreviewed | 2026-09-20 | fetch 100 parts |
 | spiceypedals | active | manual | 112 | 49 | 309 | 0 | 0 | MIT | 2026-09-20 | up to date |
-| infineon | active | adapter | 104 | 104 | 47,833 | 42 | 12 | unreviewed | 2026-09-20 | fetch 12 parts |
-| wurth | active | manual | 67 | 63 | 11,818 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
+| infineon | active | adapter | 104 | 104 | 47,835 | 42 | 12 | unreviewed | 2026-09-20 | fetch 12 parts |
+| wurth | active | manual | 67 | 63 | 11,821 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | central-semi | active | manual | 50 | 50 | 52 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | germaniumbjts | active | manual | 50 | 5 | 6 | 0 | 0 | MIT | 2026-09-20 | up to date |
 | loosweb-relay | active | manual | 37 | 2 | 6 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | tedyapo-led-modeling | active | manual | 32 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-14 | up to date |
 | electrucio | active | manual | 28 | 14 | 299 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | murata | active | manual | 25 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-14 | up to date |
+| diyaudio | active | manual | 21 | 16 | 98 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
+| groups-io | active | manual | 21 | 8 | 70 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
+| stmicro | active | manual | 18 | 17 | 36 | 0 | 62 | unreviewed | 2026-09-20 | fetch 62 parts |
+| adi | link_only | manual | 15 | 15 | 116 | 0 | 139 | unreviewed | 2026-09-20 | manual: link only |
+| rohm | link_only | manual | 15 | 15 | 58 | 0 | 41 | unreviewed | 2026-09-20 | manual: link only |
 | ltspice-guitar-pedals | active | manual | 14 | 1 | 6 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
-| stmicro | active | manual | 14 | 14 | 28 | 0 | 62 | unreviewed | 2026-09-20 | fetch 62 parts |
+| nisshinbo | link_only | manual | 12 | 12 | 76 | 0 | 6 | unreviewed | 2026-09-20 | manual: link only |
 | linear-systems | active | manual | 11 | 5 | 8 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
+| toshiba | link_only | manual | 9 | 7 | 8 | 0 | 34 | unreviewed | 2026-09-20 | manual: link only |
 | audio-effects-ltspice | active | manual | 7 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-14 | up to date |
 | germanium-apm | active | manual | 7 | 2 | 41 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | pnp-fuzz-simulation | active | manual | 7 | 0 | 0 | 0 | 0 | GPL-2.0-only | 2026-09-14 | up to date |
@@ -118,39 +124,38 @@ is marked `redistributable: true`.
 | interfet | active | manual | 5 | 1 | 898 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | koren | active | manual | 5 | 1 | 106 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | ayumi | active | manual | 4 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-14 | up to date |
+| diystompboxes | active | manual | 3 | 3 | 12 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
+| microchip | link_only | manual | 3 | 3 | 16 | 0 | 61 | unreviewed | 2026-09-20 | manual: link only |
 | reefman | active | manual | 3 | 1 | 241 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | z101-led-spice-model | active | manual | 3 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-14 | up to date |
+| coilcraft | pending_manual | manual | 2 | 2 | 10,068 | 0 | 0 | unreviewed | 2026-09-20 | manual download |
 | exicon | active | manual | 2 | 2 | 8 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | gist-chanmix51 | active | manual | 2 | 2 | 144 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | hagtech | active | manual | 2 | 1 | 1 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | qspice | active | manual | 2 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | suusi-tubes | active | manual | 2 | 2 | 800 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | andyc | active | manual | 1 | 1 | 2 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
-| bordodynov | active | manual | 1 | 1 | 84,211 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
+| bordodynov | active | manual | 1 | 1 | 84,257 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | cohen-helie | active | manual | 1 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-14 | up to date |
 | dempwolf | active | manual | 1 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-14 | up to date |
 | distorque-audio | active | manual | 1 | 1 | 1 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
+| electrosmash | active | manual | 1 | 1 | 2 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
+| freestompboxes | active | manual | 1 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | microcap12 | active | manual | 1 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | onsemi-ic | active | adapter | 1 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-14 | up to date |
 | preamp-org | active | manual | 1 | 1 | 1 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | tamivox | active | manual | 1 | 1 | 1 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
 | thatcorp | active | manual | 1 | 1 | 235 | 0 | 0 | unreviewed | 2026-09-20 | up to date |
-| adi | link_only | manual | 0 | 0 | 0 | 0 | 139 | unreviewed |  | manual: link only |
 | advanced-photonix | pending_manual | manual | 0 | 0 | 0 | 0 | 0 | unreviewed |  | manual download |
 | aos | link_only | manual | 0 | 0 | 0 | 0 | 24 | unreviewed |  | manual: link only |
 | broadcom | link_only | manual | 0 | 0 | 0 | 0 | 9 | unreviewed |  | manual: link only |
-| coilcraft | pending_manual | manual | 0 | 0 | 0 | 0 | 0 | unreviewed |  | manual download |
 | community-index | pending_manual | manual | 0 | 0 | 0 | 0 | 0 | unreviewed |  | manual download |
 | immler | active | manual | 0 | 0 | 0 | 0 | 0 | unreviewed |  | write manifest |
 | kemet | pending_manual | manual | 0 | 0 | 0 | 0 | 0 | unreviewed |  | manual download |
 | littelfuse | link_only | manual | 0 | 0 | 0 | 0 | 17 | unreviewed |  | manual: link only |
-| microchip | link_only | manual | 0 | 0 | 0 | 0 | 61 | unreviewed |  | manual: link only |
 | mps | link_only | manual | 0 | 0 | 0 | 0 | 2 | unreviewed |  | manual: link only |
-| nisshinbo | link_only | manual | 0 | 0 | 0 | 0 | 6 | unreviewed |  | manual: link only |
 | panasonic | pending_manual | manual | 0 | 0 | 0 | 0 | 0 | unreviewed |  | manual download |
 | renesas | link_only | manual | 0 | 0 | 0 | 0 | 6 | unreviewed |  | manual: link only |
 | richtek | link_only | manual | 0 | 0 | 0 | 0 | 8 | unreviewed |  | manual: link only |
-| rohm | link_only | manual | 0 | 0 | 0 | 0 | 41 | unreviewed |  | manual: link only |
 | torex | link_only | manual | 0 | 0 | 0 | 0 | 15 | unreviewed |  | manual: link only |
-| toshiba | link_only | manual | 0 | 0 | 0 | 0 | 34 | unreviewed |  | manual: link only |
 | vishay | active | adapter | 0 | 0 | 0 | 42 | 6 | unreviewed | 2026-09-19 | write manifest |
