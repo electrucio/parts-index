@@ -19,7 +19,7 @@ from pathlib import Path
 
 import yaml
 
-from parts_index.core.config import PUBLIC_DATA, data_root
+from parts_index.core.config import PUBLIC_DATA, corpus as corpus_dir, corpus_db, data_root, staging
 from parts_index.core.ledger import Ledger
 
 STATE = PUBLIC_DATA / "schematics" / "state"
@@ -149,13 +149,12 @@ def seed_source(db: sqlite3.Connection, corpus: Path, source: str) -> Ledger:
 
 def main() -> int:
     root = data_root()
-    corpus = root / "corpus"
-    dbfile = corpus / "db/schematics.sqlite"
+    corpus, dbfile = corpus_dir(), corpus_db()
     if not dbfile.exists():
         print(f"no index at {dbfile.relative_to(root)} under the data root: nothing to seed", file=sys.stderr)
         return 1
     db = sqlite3.connect(f"file:{dbfile}?mode=ro", uri=True)
-    registry = build_registry(db, legacy_sites(root / "staging"), corpus)
+    registry = build_registry(db, legacy_sites(staging()), corpus)
     if REGISTRY.exists():
         print(f"{REGISTRY.relative_to(PUBLIC_DATA.parent)} exists: left alone")
     else:

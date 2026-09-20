@@ -22,7 +22,7 @@ from pathlib import Path
 
 import yaml
 
-from parts_index.core.config import PUBLIC_DATA, data_root
+from parts_index.core.config import PUBLIC_DATA, spice_index, spice_root, staging
 from parts_index.core.ledger import MODEL_FIELDS, MODEL_STAGES, MODEL_VERSIONED, Ledger
 
 OUT = PUBLIC_DATA / "models"
@@ -123,9 +123,8 @@ def seed_source(folder: Path, defs: Counter, index_day: str, links: list[dict]) 
 
 
 def main() -> int:
-    root = data_root()
-    sources, index = root / "spice/sources", root / "spice/index.jsonl"
-    links_csv = root / "staging/spice-library/research/model-search/model_links.csv"
+    sources, index = spice_root() / "sources", spice_index()
+    links_csv = staging("spice-library/research/model-search/model_links.csv")
     if not sources.exists():
         print("no spice/sources under the data root: nothing to seed", file=sys.stderr)
         return 1

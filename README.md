@@ -7,8 +7,10 @@ trusted, where the datasheets are, what a part number means, and which real circ
 This project collects those answers per part number (for example `2N2222`, `TL072`, `12AX7`), with an
 emphasis on audio and analog electronics.
 
-> **Status: early.** The code and data are being migrated from two private working repositories.
-> [STATUS.md](STATUS.md) (coming with the first data commits) records what has been processed so far.
+> **Status: early.** The code and data are being migrated from two private working repositories, so the
+> command line and the website are still arriving piece by piece. [STATUS.md](STATUS.md) records what has
+> been processed: today 57,160 documents from 62 sources, and 12,751 model files from 71 vendors and
+> collections.
 
 ## What it contains
 
@@ -32,11 +34,13 @@ only when their licence allows it. If something listed here should not be, see [
 src/parts_index/   Python package and the `pidx` command line tool
 components/        extra LTspice components (original work, MIT)
 circuits/          reference circuits used to compare models
-data/              the public dataset: registries, processing ledgers, links, verification results (CC BY 4.0)
-web/               the static website (Vite + TypeScript)
-docs/              conventions, data model, maintainer runbook
-private_uncommitted/   local only, git-ignored: downloaded models, datasheets, corpora, OCR output
+data/              the public dataset (CC BY 4.0): source registries, processing ledgers, the part
+                   dictionary, and — as the migration proceeds — the index itself and model recipes
+private_uncommitted/   local only, git-ignored: downloaded documents, OCR text, vendor model files,
+                   datasheet PDFs. `pidx paths` prints what is public and what is not.
 ```
+
+The website (`web/`) and the documentation (`docs/`) are not in the repository yet.
 
 ## Contributing
 

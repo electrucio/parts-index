@@ -5,14 +5,26 @@ part number, "where is it used, where are its SPICE models and datasheets, and h
 
 ## Map
 
-- `src/parts_index/core/` shared code: config, polite HTTP, manifests, OCR page IO, processing ledger,
-  LLM client, and `parts/` (the part-number extractor, single source of truth).
-- `src/parts_index/schematics/` pillar 1: crawl → download → OCR → index → link-check → export.
-- `src/parts_index/models/`, `datasheets/` pillar 2: fetch, index, curate and link SPICE models and datasheets.
-- `src/parts_index/bench/` pillar 3: simulate models (ngspice is the reference engine) and score them against datasheet rows.
-- `components/`, `circuits/` pillar 4: original LTspice components with `.asy` symbols, and reference circuits.
-- `data/` the public dataset. `web/` the site. `docs/` conventions and the maintainer runbook.
-- `private_uncommitted/` local, git-ignored data root. `staging/` inside it holds the old code still to be ported.
+The migration from the two old repositories is in progress; **(todo)** marks what is planned but not here
+yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths` are always current.
+
+- `src/parts_index/core/` shared code: `config` (every location in the project — see rule 4), `http`
+  (the one polite client), `ledger` (what has been processed), `pagesio` (OCR page records), `adfilter`,
+  and `parts/` (the part-number extractor, single source of truth). **(todo)** `links`, `table`, `llm`.
+- `src/parts_index/schematics/` pillar 1. Today `seed` only (it imports the old pipeline's state).
+  **(todo)** crawl → download → ocr → index → linkcheck → export.
+- `src/parts_index/models/` pillar 2. Today `seed` only. **(todo)** fetch, index, curate, promote,
+  and `datasheets/`.
+- **(todo)** `src/parts_index/bench/` pillar 3: simulate models (ngspice is the reference engine) and
+  score them against datasheet rows. `src/parts_index/web/`: build the site data from `data/`.
+- `components/`, `circuits/` pillar 4: original LTspice components with `.asy` symbols, and reference
+  circuits. The `.net` files reference model files that only exist in the private data root, so they do
+  not run from a clean clone yet.
+- `data/` the public dataset: registries, ledgers, the part dictionary. **(todo)** the exported index,
+  model recipes, licence notes, verification results.
+- **(todo)** `web/` the site, `docs/` conventions and the maintainer runbook.
+- `private_uncommitted/` local, git-ignored data root. `staging/` inside it holds the old code still to
+  be ported; port from there, never edit the old repositories.
 
 ## Hard rules
 
@@ -22,16 +34,19 @@ part number, "where is it used, where are its SPICE models and datasheets, and h
 2. **Forbidding redistribution does not forbid indexing.** Every model is indexed and linked to its source.
    For non-redistributable sources publish measured results, not a dump of the `.model` parameters.
 3. **Never bypass** a CAPTCHA, login, paywall or click-through licence. Respect robots.txt and per-host
-   delays (use `core.http`). User forums are out of scope. A blocked source is recorded as blocked, with
-   the human-facing URL.
+   delays (use `core.http`). A blocked source is recorded as blocked, with the human-facing URL, because
+   a link a person can follow is still worth publishing. User forums are out of scope **as schematic
+   sources** (noise, and arguable terms); a SPICE model posted on one is still a model.
 4. **Precision over recall.** A wrong link is worse than no link. When a part read is doubtful, drop it.
    Every extractor fix comes with a test case.
 5. **Never reprocess what is done.** Every pipeline stage goes through `core.ledger`: an item is skipped
    when its stamp matches (input sha256, stage version). Reprocess by bumping the stage version, not by
    deleting state. New site or vendor = new registry entry, then run that source only.
 6. **Nothing under `private_uncommitted/` is ever added to git**, and nothing public may depend on a local
-   absolute path, a personal e-mail address or a secret. Paths come from `core.config`; credentials live
-   outside the repository tree. `scripts/licence_guard.py` enforces this in the pre-commit hook and in CI.
+   absolute path, a personal e-mail address or a secret. **Every location in the project is named in
+   `core.config` and nowhere else** — no other module joins a path (`tests/core/test_config.py` fails if one
+   does, and `pidx paths` prints the map). Credentials live outside the repository tree.
+   `scripts/licence_guard.py` enforces the rest in the pre-commit hook and in CI.
 7. **Move first, refactor later.** When porting from `private_uncommitted/staging/`, copy behaviour exactly
    and prove it with a golden test before cleaning up.
 8. Everything public is in **English**.
@@ -44,10 +59,10 @@ git config core.hooksPath .githooks     # once per clone
 python3 scripts/licence_guard.py --all  # what CI runs
 uv sync && uv run pytest                # or: PYTHONPATH=src python3 -m pytest
 uv run pidx status                      # what is processed and what comes next; --write refreshes STATUS.md
+uv run pidx paths                       # every location, public or private, and whether it is here
 ```
 
-Python ≥ 3.11. The web app and the remaining `pidx` commands arrive with the corresponding commits; this file
-is updated as each lands.
+Python ≥ 3.11. `pidx --help` lists what exists today; the map above marks the rest **(todo)**.
 
 ## Where things stand
 

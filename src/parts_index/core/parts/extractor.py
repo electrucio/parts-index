@@ -19,7 +19,7 @@ import sys
 from collections import namedtuple
 from pathlib import Path
 
-from parts_index.core.config import PUBLIC_DATA, data_root
+from parts_index.core.config import PUBLIC_DATA, staging
 
 HERE = PUBLIC_DATA / "parts"
 
@@ -338,7 +338,7 @@ def snapshot():
     """spice-library dictionary -> known_parts.csv + rejected_tokens.txt (library parts and aliases, parts an LLM pass judged real / not real)."""
     import json
     rows, rejected = {}, set()
-    SPICE = data_root() / "staging/spice-library"          # until the model library is ported
+    SPICE = staging("spice-library")                       # until the model library is ported
     lib = json.load(open(SPICE / "catalog/library.json"))
     for p in lib["parts"]:
         rows[norm(p["part"])] = (p["part"], p["kind"], "library")

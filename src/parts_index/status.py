@@ -13,7 +13,9 @@ from parts_index.core.ledger import Ledger, today
 
 SCHEMATICS = PUBLIC_DATA / "schematics"
 MODELS = PUBLIC_DATA / "models"
-STAGE_VERB = {"download": "download", "ocr": "OCR", "index": "index", "linkcheck": "link-check"}
+# How each stage is named in the "Next" column. A stage with no entry falls back to its own name,
+# so adding a stage to core.ledger never breaks this report.
+STAGE_VERB = {"ocr": "OCR", "linkcheck": "link-check"}
 
 
 def last_activity(led: Ledger) -> str:
@@ -30,7 +32,7 @@ def next_action(entry: dict, led: Ledger | None) -> str:
     for stage in led.stages:
         n = len(led.pending(stage))
         if n:
-            return f"{STAGE_VERB[stage]} {n}"
+            return f"{STAGE_VERB.get(stage, stage)} {n}"
     return "up to date"
 
 
