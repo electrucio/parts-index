@@ -8,7 +8,7 @@ A stage is never repeated for an item unless its input or the stage version chan
 
 ## Schematic and reference sources
 
-62 sources · 58,064 items · 57,160 downloaded · 50,115 OCR'd · 57,160 indexed · 1,583 link-checked · 904 skipped
+68 sources · 58,064 items · 57,160 downloaded · 50,115 OCR'd · 57,160 indexed · 1,583 link-checked · 904 skipped
 
 | Source | Kind | Status | Items | Downloaded | OCR'd | Indexed | Link-checked | Skipped | Last activity | Next |
 |---|---|---|--:|--:|--:|--:|--:|--:|---|---|
@@ -36,6 +36,7 @@ A stage is never repeated for an item unless its input or the stage version chan
 | radio_tv_experimenter | magazine | active | 44 | 44 | 44 | 44 | 0 | 0 | 2026-09-20 | link-check 44 |
 | wireless_world | magazine | active | 1,295 | 1,295 | 1,295 | 1,295 | 0 | 0 | 2026-09-20 | link-check 1295 |
 | semimuseum | reference | active | 748 | 747 | 50 | 747 | 0 | 1 | 2026-09-20 | link-check 747 |
+| sm0vpo | reference | active | 3,759 | 3,744 | 3,553 | 3,744 | 0 | 15 | 2026-09-20 | OCR 44 |
 | aion | site | active | 279 | 279 | 278 | 279 | 0 | 0 | 2026-09-20 | link-check 279 |
 | amb | site | active | 144 | 144 | 111 | 144 | 0 | 0 | 2026-09-20 | link-check 144 |
 | bartola | site | active | 1,847 | 1,828 | 1,309 | 1,828 | 0 | 19 | 2026-09-20 | link-check 1828 |
@@ -62,7 +63,6 @@ A stage is never repeated for an item unless its input or the stage version chan
 | redcircuits | site | active | 452 | 450 | 257 | 450 | 0 | 2 | 2026-09-20 | OCR 1 |
 | schmitzbits | site | active | 119 | 119 | 68 | 119 | 0 | 0 | 2026-09-20 | link-check 119 |
 | sjostrom | site | active | 849 | 792 | 374 | 792 | 0 | 57 | 2026-09-20 | link-check 792 |
-| sm0vpo | site | active | 3,759 | 3,744 | 3,553 | 3,744 | 0 | 15 | 2026-09-20 | OCR 44 |
 | techlib | site | active | 1,566 | 1,535 | 1,389 | 1,535 | 0 | 31 | 2026-09-20 | OCR 1 |
 | tonepad | site | active | 153 | 118 | 53 | 118 | 0 | 35 | 2026-09-20 | link-check 118 |
 | tubecad | site | active | 3,391 | 3,365 | 3,251 | 3,365 | 0 | 26 | 2026-09-20 | link-check 3365 |
@@ -70,7 +70,13 @@ A stage is never repeated for an item unless its input or the stage version chan
 | vk3ye | site | active | 424 | 422 | 240 | 422 | 0 | 2 | 2026-09-20 | link-check 422 |
 | xdevs | site | active | 1,905 | 1,889 | 1,865 | 1,889 | 0 | 16 | 2026-09-20 | link-check 1889 |
 | yusynth | site | active | 927 | 860 | 765 | 860 | 0 | 67 | 2026-09-20 | link-check 860 |
-| kerrywong | site | blocked | 1 | 0 | 0 | 0 | 0 | 1 |  | blocked: unreachable from the crawler on 2026-09-20; retry later |
+| amz-muzique | site | proposed | 0 | 0 | 0 | 0 | 0 | 0 |  | proposed |
+| geofex | site | proposed | 0 | 0 | 0 | 0 | 0 | 0 |  | proposed |
+| gyraf | site | proposed | 0 | 0 | 0 | 0 | 0 | 0 |  | proposed |
+| madbean | site | proposed | 0 | 0 | 0 | 0 | 0 | 0 |  | proposed |
+| mfos | site | proposed | 0 | 0 | 0 | 0 | 0 | 0 |  | proposed |
+| runoffgroove | site | proposed | 0 | 0 | 0 | 0 | 0 | 0 |  | proposed |
+| kerrywong | site | blocked | 1 | 0 | 0 | 0 | 0 | 1 |  | blocked: the domain does not answer from this server; retry from elsewhere |
 | schematics_unlimited | factory | excluded | 0 | 0 | 0 | 0 | 0 | 0 |  | excluded: every file is behind a CAPTCHA; never bypass it |
 | ampgarage_threads | forum | excluded | 0 | 0 | 0 | 0 | 0 | 0 |  | excluded: user forums are out of scope |
 | groupdiy_threads | forum | excluded | 0 | 0 | 0 | 0 | 0 | 0 |  | excluded: user forums are out of scope |

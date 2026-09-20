@@ -21,6 +21,13 @@ ampgarage_threads:
   home_url: https://ampgarage.com/
   status: excluded
   blocked_reason: user forums are out of scope
+amz-muzique:
+  kind: site
+  title: AMZ / Muzique (Jack Orman)
+  home_url: https://www.muzique.com/
+  status: proposed
+  notes: 'pedal design: buffers, boosters, clipping, MOSFET stages. Proposed: set status to active and run `pidx schematics
+    run --source amz-muzique`.'
 bartola:
   kind: site
   title: Bartola Valves
@@ -37,6 +44,9 @@ books:
   title: Books, linked to their public pages
   home_url: ''
   status: active
+  notes: '50 of 78 are indexed: 23 link to a page of a public PDF, 11 to the archive.org page, 16 to its search inside. The
+    other 28 keep their OCR but are not indexed, because their only URL is a publisher''s landing page, which the reader cannot
+    check on the spot.'
 diyaudioheaven:
   kind: site
   title: DIY-Audio-Heaven
@@ -48,6 +58,9 @@ diyaudioheaven:
     allow: ^/
     max: 400
     cdn: files\.wordpress\.com|i\d\.wp\.com
+    complete: false
+  notes: Crawl stopped part-way on 2026-09-20 (many measurements and graphs, few schematics). Re-running resumes where it
+    left off.
 djerickson:
   kind: site
   title: Dave Erickson
@@ -88,6 +101,8 @@ elektor:
   title: Elektor (English edition)
   home_url: https://archive.org/details/ElektorMagazine
   status: active
+  notes: '1974-1989 and 2004-2015 come from the archive.org item ElektorMagazine, 1990-2003 from the separate Elektor_Uk_*
+    items. 2022-2024 has no public copy anywhere: the one real gap.'
 elementary_electronics:
   kind: magazine
   title: Elementary Electronics
@@ -128,6 +143,12 @@ firstwatt:
   title: First Watt
   home_url: https://www.firstwatt.com/
   status: active
+geofex:
+  kind: site
+  title: Geofex — The Technology of… (R. G. Keen)
+  home_url: http://www.geofex.com/article_folders/tstech/tsxtech.htm
+  status: proposed
+  notes: 'analysis of classic pedal circuits. Proposed: set status to active and run `pidx schematics run --source geofex`.'
 ggg:
   kind: site
   title: General Guitar Gadgets
@@ -139,6 +160,13 @@ groupdiy_threads:
   home_url: https://groupdiy.com/
   status: excluded
   blocked_reason: user forums are out of scope
+gyraf:
+  kind: site
+  title: Gyraf Audio DIY
+  home_url: https://www.gyraf.dk/gy_pd/gyraf_diy.html
+  status: proposed
+  notes: 'studio processors: GSSL and G1176 compressors, Pultec-style EQs. Proposed: set status to active and run `pidx schematics
+    run --source gyraf`.'
 hands_on_electronics:
   kind: magazine
   title: Hands-On Electronics
@@ -159,7 +187,7 @@ kerrywong:
   title: Kerry D. Wong
   home_url: https://www.kerrywong.com/
   status: blocked
-  blocked_reason: unreachable from the crawler on 2026-09-20; retry later
+  blocked_reason: the domain does not answer from this server; retry from elsewhere
   crawl:
     start:
     - https://www.kerrywong.com/
@@ -185,6 +213,19 @@ ludens:
     - https://www.ludens.cl/Electron/Electron.html
     allow: ^/Electron/
     max: 400
+madbean:
+  kind: site
+  title: MadBean Pedals
+  home_url: https://www.madbeanpedals.com
+  status: proposed
+  notes: 'PCB projects with full documentation: schematic, BOM, layout. Proposed: set status to active and run `pidx schematics
+    run --source madbean`.'
+mfos:
+  kind: site
+  title: Music From Outer Space (Ray Wilson)
+  home_url: https://musicfromouterspace.com/
+  status: proposed
+  notes: 'analogue synth modules: VCO, VCF, VCA. Proposed: set status to active and run `pidx schematics run --source mfos`.'
 modern_electronics:
   kind: magazine
   title: Modern Electronics
@@ -247,6 +288,8 @@ pisotones:
     - https://www.pisotones.com/
     allow: ^/
     max: 500
+    complete: false
+  notes: Crawl stopped part-way on 2026-09-20 (large site). Re-running resumes where it left off.
 pmillett:
   kind: site
   title: Pete Millett
@@ -283,6 +326,8 @@ qrplabs:
     - https://qrp-labs.com/
     allow: ^/
     max: 400
+    complete: false
+  notes: Crawl stopped part-way on 2026-09-20 (large site, mostly RF). Re-running resumes where it left off.
 radio_constructor:
   kind: magazine
   title: The Radio Constructor
@@ -308,11 +353,19 @@ redcircuits:
     - https://www.redcircuits.com/
     allow: ^/[A-Za-z_]+\d*\.htm
     max: 400
+runoffgroove:
+  kind: site
+  title: Runoffgroove
+  home_url: https://www.runoffgroove.com
+  status: proposed
+  notes: 'original JFET amp-emulation designs (Fetzer Valve, Thor). Proposed: set status to active and run `pidx schematics
+    run --source runoffgroove`.'
 schematicheaven:
   kind: factory
   title: Schematic Heaven (mirror)
   home_url: https://schematicheaven.net/
   status: active
+  notes: '6 of 1,728 files fail: one 404, five do not serve a real PDF.'
 schematics_unlimited:
   kind: factory
   title: Schematics Unlimited
@@ -352,7 +405,7 @@ sjostrom:
     allow: ^/pages/
     max: 500
 sm0vpo:
-  kind: site
+  kind: reference
   title: Harry's Homebrew — SM0VPO
   home_url: https://www.sm0vpo.com/
   status: active
@@ -361,11 +414,16 @@ sm0vpo:
     - https://www.sm0vpo.com/
     allow: ^/
     max: 600
+    complete: false
+  notes: 'Crawl stopped part-way on 2026-09-20 (large site). Re-running resumes where it left off. Most of its pages are third-party
+    datasheets it hosts, so it is a reference source: shown apart, never counted as a schematic. 44 of its PDFs are truncated
+    at source.'
 synfo:
   kind: factory
   title: synfo.nl — service notes
   home_url: https://www.synfo.nl/pages/servicemanuals.html
   status: active
+  notes: 56 links in its index return 404.
 techlib:
   kind: site
   title: Techlib — Charles Wenzel
@@ -396,6 +454,9 @@ tubecad:
     - https://www.tubecad.com/
     allow: ^/(20\d\d|articles|index)
     max: 800
+    complete: false
+  notes: Crawl stopped part-way on 2026-09-20 (about 37 files per page; the whole site is several days at one request every
+    3 s). Re-running resumes where it left off.
 valvewizard:
   kind: site
   title: The Valve Wizard
@@ -436,6 +497,9 @@ xdevs:
     - https://xdevs.com/
     allow: ^/(article|fix|review|guide|teardown)/
     max: 400
+    complete: false
+  notes: Crawl stopped part-way on 2026-09-20 (very long articles with many photographs). Re-running resumes where it left
+    off.
 yusynth:
   kind: site
   title: YuSynth — Yves Usson
