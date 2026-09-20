@@ -1,0 +1,21 @@
+Version 4
+SymbolType CELL
+LINE Normal 16 16 16 32
+LINE Normal 16 96 16 112
+RECTANGLE Normal 4 32 28 96
+LINE Normal -8 100 0 100
+LINE Normal 0 100 40 28
+TEXT 34 92 Left 0 -t
+WINDOW 0 48 40 Left 2
+WINDOW 3 48 72 Left 2
+SYMATTR Value Ta=25
+SYMATTR Prefix X
+SYMATTR SpiceModel B57236S0100
+SYMATTR ModelFile ntc.sub
+SYMATTR Description TDK/EPCOS S236 inrush limiter, 10 ohm 3.5 A. Pins A B
+PIN 16 16 NONE 8
+PINATTR PinName A
+PINATTR SpiceOrder 1
+PIN 16 112 NONE 8
+PINATTR PinName B
+PINATTR SpiceOrder 2

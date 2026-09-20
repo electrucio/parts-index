@@ -1,0 +1,19 @@
+* fuzz face 2N5088 bordodynov-2.lib
+.include "models/bjt/2N5088/bordodynov-2.lib"
+.include "components/potentiometer/potentiometer.sub"
+V1 vcc 0 9
+Vin in 0 SIN(0 {amp} 1k)
+C1 in b1 2.2u
+Q1 c1 b1 0 2N5088_F
+R1 vcc c1 33k
+Q2 c2 c1 e2 2N5088_F
+R2 c2 tap 470
+R3 tap vcc 8.2k
+Rf e2 b1 100k
+Xfuzz 0 fw e2 pot_lin R=1k rot={fuzz}
+Cfz fw 0 20u
+C3 tap o1 10n
+Xvol 0 out o1 pot_log R=500k rot=1
+RL out 0 1Meg
+.param amp=0.1 fuzz=1
+.tran 0 30m 10m 5u

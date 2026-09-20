@@ -1,0 +1,89 @@
+* choke.sub -- power-supply filter chokes (DC reactors) with DC-current saturation
+*
+* Subckts
+*     choke          A B       gapped-core filter choke: DCR, inductance falling with
+*                              current, self-capacitance, core loss
+*     presets CH_<Hammond part>, pins A B (see README.md, "Provenance")
+*
+* Parameters (SI)
+*     L      incremental inductance at the rated DC current (what makers publish:
+*            Hammond measures "at rated D.C. current")                [H]  (5)
+*     Idc    rated DC current                                          [A]  (0.2)
+*     S      swing: inductance at zero current / L                          (1.3)
+*     Rdc    DC resistance                                            [ohm] (65)
+*     Cp     self-capacitance across the terminals (self-resonance) [F]  (100p)
+*     Qc     core Q at fq (core loss as a resistor across the inductance) (20)
+*     fq     frequency for Qc (the ripple frequency, 120 Hz = 2 x 60)  [Hz] (120)
+*
+* Equations. The inductance is flux-controlled:
+*     i(lambda) = Ia*sinh(lambda/lams),  lambda = integral of the inductor voltage
+* which gives the closed-form incremental inductance vs current
+*     L(i) = L0/sqrt(1 + (i/Ia)^2),   L0 = S*L,   Ia = Idc/sqrt(S^2 - 1),   lams = Ia*L0
+* so L(0) = S*L, L(Idc) = L exactly, and above Idc the inductance falls towards
+* L0*Ia/|i| (flux grows only logarithmically: soft saturation). The argument of sinh is
+* continued linearly beyond +-40 (C1-continuous) so no overflow can occur. The flux
+* integrator bleeds with tau = 1e5 s (L0/1e5 ohm in series at DC), so .op is defined.
+*     core loss: Rc = Qc*2*pi*fq*L across the inductance;  SRF ~ 1/(2 pi sqrt(L(i)*Cp))
+*
+* Limits: one smooth saturation law (real gapped chokes are flatter below the knee
+* and fall faster above it; S is an estimate unless measured), no hysteresis, no
+* frequency dependence of L (AC swing), Cp lumped, DCR at 20 C. See README.md.
+*
+* Design: Claude / Electrucio, 2026-09-14, for parts-index. Flux-integrator
+* construction as in components/output-transformer. Original text.
+*
+.subckt choke A B params: L=5 Idc=0.2 S=1.3 Rdc=65 Cp=100p Qc=20 fq=120
+.param Sc = max(S, 1.001)
+.param L0 = Sc*L
+.param Ia = Idc/sqrt(Sc*Sc - 1)
+.param lams = Ia*L0
+Rw A 1 {max(Rdc, 1m)}
+* inductance between 1 and B: flux integrator, current law
+Gint 0 phi 1 B 1
+Cint phi 0 1
+Rint phi 0 100k
+.func ish(x) {sinh(limit(x, -40, 40)) + cosh(40)*(x - limit(x, -40, 40))}
+Bl 1 B I = Ia*ish(V(phi)/lams)
+Rc 1 B {Qc*2*pi*fq*L}
+Cs A B {max(Cp, 1f)}
+.ends choke
+
+* ---- Presets ------------------------------------------------------------------------
+* Hammond Mfg. sheets https://www.hammfg.com/files/parts/pdf/<PART>.pdf (fetched
+* 2026-09-14): L at rated DC current, rated DC current, DCR. Estimates (README): S, Qc,
+* and Cp except for the 159ZJ (from its published self-resonant frequency).
+* Each preset takes S, Qc, Cp as parameters.
+*
+* 159R: 6 H @ 200 mA, 150 ohm, 500 V DC
+.subckt CH_159R A B params: S=1.3 Qc=20 Cp=100p
+X1 A B choke L=6 Idc=200m Rdc=150 S={S} Qc={Qc} Cp={Cp}
+.ends CH_159R
+* 159S: 4 H @ 225 mA, 60.60 ohm, 500 V DC
+.subckt CH_159S A B params: S=1.3 Qc=20 Cp=100p
+X1 A B choke L=4 Idc=225m Rdc=60.60 S={S} Qc={Qc} Cp={Cp}
+.ends CH_159S
+* 159T: 2.5 H @ 300 mA, 40.17 ohm, 500 V DC
+.subckt CH_159T A B params: S=1.3 Qc=20 Cp=100p
+X1 A B choke L=2.5 Idc=300m Rdc=40.17 S={S} Qc={Qc} Cp={Cp}
+.ends CH_159T
+* 159V: 1.5 H @ 500 mA, 27 ohm, 500 V DC
+.subckt CH_159V A B params: S=1.3 Qc=20 Cp=100p
+X1 A B choke L=1.5 Idc=500m Rdc=27 S={S} Qc={Qc} Cp={Cp}
+.ends CH_159V
+* 159ZJ: 10 mH @ 5 A, 160 mohm, self-resonance 302.9 kHz (Cp = 1/((2 pi f)^2 L) = 27.6 pF);
+* solid-state supply choke
+.subckt CH_159ZJ A B params: S=1.3 Qc=20 Cp=27.6p
+X1 A B choke L=10m Idc=5 Rdc=0.160 S={S} Qc={Qc} Cp={Cp}
+.ends CH_159ZJ
+* 193H: 5 H @ 200 mA, 65.0 ohm, 600 V DC (enclosed)
+.subckt CH_193H A B params: S=1.3 Qc=20 Cp=100p
+X1 A B choke L=5 Idc=200m Rdc=65.0 S={S} Qc={Qc} Cp={Cp}
+.ends CH_193H
+* 193J: 10 H @ 200 mA, 79.0 ohm, 600 V DC
+.subckt CH_193J A B params: S=1.3 Qc=20 Cp=100p
+X1 A B choke L=10 Idc=200m Rdc=79.0 S={S} Qc={Qc} Cp={Cp}
+.ends CH_193J
+* 193M: 10 H @ 300 mA, 63.0 ohm, 800 V DC
+.subckt CH_193M A B params: S=1.3 Qc=20 Cp=100p
+X1 A B choke L=10 Idc=300m Rdc=63.0 S={S} Qc={Qc} Cp={Cp}
+.ends CH_193M

@@ -1,0 +1,34 @@
+Version 4
+SymbolType CELL
+LINE Normal 32 112 32 88
+CIRCLE Normal 29 85 35 91
+LINE Normal 64 16 64 40
+LINE Normal 64 40 54 40
+TEXT 68 24 Left 0 T2
+TEXT 38 104 Left 0 COM
+LINE Normal 0 16 0 40
+LINE Normal 0 40 10 40
+TEXT -4 24 Right 0 T1
+LINE Normal 32 88 8 44
+LINE Normal -16 64 20 64 1
+LINE Normal -32 64 -16 64
+TEXT -28 56 Left 0 ctrl
+WINDOW 0 96 32 Left 2
+WINDOW 3 96 96 Left 2
+SYMATTR Value Ron=10m
+SYMATTR Prefix X
+SYMATTR SpiceModel sw_spdt_vc
+SYMATTR ModelFile switch.sub
+SYMATTR Description Switch SPDT, position = V(CTRL) 0..1
+PIN 0 16 NONE 8
+PINATTR PinName T1
+PINATTR SpiceOrder 1
+PIN 32 112 NONE 8
+PINATTR PinName COM
+PINATTR SpiceOrder 2
+PIN 64 16 NONE 8
+PINATTR PinName T2
+PINATTR SpiceOrder 3
+PIN -32 64 NONE 8
+PINATTR PinName CTRL
+PINATTR SpiceOrder 4

@@ -1,0 +1,46 @@
+Version 4
+SymbolType CELL
+LINE Normal 16 16 16 24
+LINE Normal 16 104 16 112
+RECTANGLE Normal 4 24 28 104
+LINE Normal 64 64 30 64
+LINE Normal 30 64 40 58
+LINE Normal 30 64 40 70
+TEXT 16 64 Center 0 B
+TEXT -4 20 Right 0 CW
+LINE Normal 112 16 112 24
+LINE Normal 112 104 112 112
+RECTANGLE Normal 100 24 124 104
+LINE Normal 160 64 126 64
+LINE Normal 126 64 136 58
+LINE Normal 126 64 136 70
+TEXT 112 64 Center 0 B
+TEXT 92 20 Right 0 CW
+LINE Normal 48 64 48 136 1
+LINE Normal 48 136 144 136 1
+LINE Normal 144 136 144 64 1
+WINDOW 0 168 16 Left 2
+WINDOW 3 168 104 Left 2
+SYMATTR Value R=100k rot=0.5
+SYMATTR Prefix X
+SYMATTR SpiceModel pot_dual_lin
+SYMATTR ModelFile potentiometer.sub
+SYMATTR Description Dual-gang potentiometer, linear (B), one rotation
+PIN 16 112 NONE 8
+PINATTR PinName CCW1
+PINATTR SpiceOrder 1
+PIN 64 64 NONE 8
+PINATTR PinName W1
+PINATTR SpiceOrder 2
+PIN 16 16 NONE 8
+PINATTR PinName CW1
+PINATTR SpiceOrder 3
+PIN 112 112 NONE 8
+PINATTR PinName CCW2
+PINATTR SpiceOrder 4
+PIN 160 64 NONE 8
+PINATTR PinName W2
+PINATTR SpiceOrder 5
+PIN 112 16 NONE 8
+PINATTR PinName CW2
+PINATTR SpiceOrder 6

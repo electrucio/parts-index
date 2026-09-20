@@ -1,0 +1,96 @@
+* ecap.sub -- aluminium electrolytic capacitors for LTspice: supply filter and
+* coupling/bypass capacitors of valve and solid-state amps and pedals
+*
+* Pins
+*     ecap, presets   P N     positive, negative (polarised)
+*
+* Parameters of ecap (defaults: Nichicon UVR 47 uF 450 V, README "Provenance")
+*     C      capacitance at 120 Hz, F                                     47u
+*     Vr     rated voltage, V                                             450
+*     tand   loss tangent at 120 Hz, 20 C (datasheet maximum)            0.25
+*     Rs     electrolyte/contact resistance = ESR at high frequency, ohm  2.47
+*     ESL    series inductance, H                                         20n
+*     Ilk    DC leakage at Vr, A                                          946u
+*     kDA    dielectric-absorption capacitance, fraction of C            0.03
+*     Temp   temperature, C (scales Rs)                                    20
+*     kT     activation temperature of Rs, K                             1926
+*
+* Model
+*     P -- ESL -- Rs(Temp) -- node e -- [C0 || oxide-loss ladder || DA ladder || leakage] -- N
+* ESR(f) = Rs + (oxide loss): tand at 120 Hz = w C ESR (Nichicon), split between Rs
+* and a constant-loss dielectric term D0 = tand - w120 C Rs, realised by four series
+* R-C branches with time constants 10 us .. 10 ms (one per decade; each Ck = D0/0.682 C,
+* since a one-per-decade ladder has a loss tangent 0.682 Ck/C). C0 is set so the
+* capacitance at 120 Hz is C. The ESR therefore falls with frequency from the 120 Hz
+* value to Rs (Cornell Dubilier application guide p.6).
+* Dielectric absorption: three branches, 1 s, 10 s, 100 s, each kDA C/3.
+* Leakage: I = Ilk (exp(4.6 V/Vr) - 1)/(exp(4.6) - 1) for V > 0 (10 % of Ilk at Vr/2).
+* Rs(Temp) = Rs exp(kT (1/(Temp+273.15) - 1/293.15)).
+*
+* No A-devices. Not modelled: reverse bias (not valid below 0 V), the capacitance
+* change with temperature, ripple self-heating, ageing (ESR rise, capacitance loss),
+* the time dependence of leakage (reforming), surge voltage.
+*
+* Design: Claude / Electrucio, 2026-09-14, for parts-index.
+*
+
+.subckt ecap P N params: C=47u Vr=450 tand=0.25 Rs=2.47 ESL=20n Ilk=946u kDA=0.03 Temp=20
++ kT=1926
+.param w120 = 2*pi*120
+.param D0 = max(tand - w120*C*Rs, 1e-4)
+.param Ck = D0/0.682*C
+* capacitance of the four loss branches at 120 Hz
+.param Cl120 = Ck*(1/(1 + (w120*1e-5)**2) + 1/(1 + (w120*1e-4)**2) + 1/(1 + (w120*1e-3)**2)
++   + 1/(1 + (w120*1e-2)**2))
+.param Cda = kDA*C/3
+.param Cda120 = Cda*(1/(1 + (w120*1)**2) + 1/(1 + (w120*10)**2) + 1/(1 + (w120*100)**2))
+* C is the series-equivalent capacitance Cs of an LCR meter at 120 Hz; the parallel
+* capacitance of a lossy dielectric is Cs/(1 + D0^2)
+.param C0 = C/(1 + D0*D0) - Cl120 - Cda120
+.param RsT = Rs*exp(kT*(1/(Temp + 273.15) - 1/293.15))
+L1 P l {ESL} Rser=0
+R1 l e {RsT}
+C0 e N {C0}
+* oxide loss ladder
+R11 e n11 {1e-5/Ck}
+C11 n11 N {Ck}
+R12 e n12 {1e-4/Ck}
+C12 n12 N {Ck}
+R13 e n13 {1e-3/Ck}
+C13 n13 N {Ck}
+R14 e n14 {1e-2/Ck}
+C14 n14 N {Ck}
+* dielectric absorption
+R21 e n21 {1/Cda}
+C21 n21 N {Cda}
+R22 e n22 {10/Cda}
+C22 n22 N {Cda}
+R23 e n23 {100/Cda}
+C23 n23 N {Cda}
+* leakage
+Bl e N I = {Ilk}*(exp(4.6*max(V(e,N), 0)/{Vr}) - 1)/(exp(4.6) - 1)
+Rl e N 1T
+.ends ecap
+
+* ---------------------------------------------------------------- presets
+* Nichicon UPW (low impedance, 105 C): tan d and Z at 100 kHz from the UPW catalogue
+* (CAT.8100N) p.1-2; Rs from Z(100 kHz) with ESL 20 nH; Ilk = the 1-minute limit.
+.subckt UPW1V102MHD P N params: Temp=20
+X1 P N ecap C=1000u Vr=35 tand=0.12 Rs=27.9m ESL=20n Ilk=1050u Temp={Temp}
+.ends UPW1V102MHD
+.subckt UPW1H471MHD P N params: Temp=20
+X1 P N ecap C=470u Vr=50 tand=0.10 Rs=59.3m ESL=20n Ilk=705u Temp={Temp}
+.ends UPW1H471MHD
+* Nichicon UVR (general purpose, 85 C) 47 uF 450 V: tan d, Ilk from the UVR catalogue;
+* Rs = 0.35 x ESR(120 Hz): the ESR(20 kHz)/ESR(120 Hz) ratio of CDE 381LX 450 V parts.
+.subckt UVR2W470MHD P N params: Temp=20
+X1 P N ecap C=47u Vr=450 tand=0.25 Rs=2.47 ESL=20n Ilk=946u Temp={Temp}
+.ends UVR2W470MHD
+* Cornell Dubilier 381LX snap-in, 450 V: ESR at 120 Hz and 20 kHz (381LX/383LX
+* catalogue p.10); Ilk = 3 sqrt(CV) uA (5 minutes).
+.subckt 381LX101M450H022 P N params: Temp=20
+X1 P N ecap C=100u Vr=450 tand=0.150 Rs=0.702 ESL=20n Ilk=636u Temp={Temp}
+.ends 381LX101M450H022
+.subckt 381LX471M450A052 P N params: Temp=20
+X1 P N ecap C=470u Vr=450 tand=0.1251 Rs=0.1215 ESL=20n Ilk=1379u Temp={Temp}
+.ends 381LX471M450A052

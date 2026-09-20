@@ -1,0 +1,96 @@
+* ldr.sub -- CdS light-dependent resistors (LDR, photocell) for LTspice
+*
+* Pins
+*     ldr, GL55xx presets   A B L    cell terminals A, B; light input L: V(L) = lux
+*     ldr_cell              A B L    the physics core (light in units of Eref); also used,
+*                                    copied verbatim, by components/vactrol/vactrol.sub
+*
+* Parameters of ldr (defaults: GL5528 class, README "Provenance")
+*     R10     resistance at 10 lux, light adapted (GL55 test condition)     14.14k
+*     gamma   lg(R10/R100): R = R10*(E/10 lux)^-gamma                      0.6
+*     Rdark   ultimate dark resistance (thermal-generation floor)          10Meg
+*     tau     recombination time scale                                      21.09m
+*     ka      attack factor: conductance rises at ka x the natural rate     0.8336
+*     kLH     light-history ratio R(light adapted)/R(dark adapted)          1.2
+*     hist    light-history state at t=0: 0 dark adapted, 1 light adapted   1
+*     thist   light-history time constant, s                                3600
+*     Eadapt  illuminance (lux) of half light adaptation                    300
+*     Cc      cell capacitance                                              0
+*     Rs      series (contact) resistance                                   1m
+*
+* Model. Photo-carrier balance in the CdS film: with n the carrier density normalised
+* to its value at the reference light Eref and e = E/Eref,
+*     dn/dt = [ (e + eth) - n^(1/gamma) ] / tau        generation - recombination
+* so at rest n = (e + eth)^gamma and R = Rs + Rref/n: the datasheet power law.
+* eth (thermal generation) is the dark floor, Rdark = Rs + Rref*eth^-gamma.
+* Recombination of order 1/gamma > 1 makes the cell fast when bright and slow when dark;
+* after the light goes off R rises as a power of time, slower and slower, as the
+* datasheet decay curves do. The state is u = ln n (defined for any n > 0):
+*     du/dt = k/tau * exp((1/gamma - 1) u) * [ (e + eth) exp(-u/gamma) - 1 ]
+* k = ka while the conductance rises (attack) and 1 while it falls (decay): the
+* attack/decay asymmetry. Light-history memory: a slow state h (0 dark adapted,
+* 1 light adapted, time constant thist) scales Rref by (1 + (kLH-1) h)/(1 + (kLH-1) href),
+* href being the adaptation of the datasheet condition Rref refers to.
+*
+* No A-devices: B-sources and capacitors only (limit()/max() are LTspice functions).
+* Not modelled: temperature coefficient, spectral response, voltage rating, ageing,
+* noise, the level dependence of kLH (catalogue table) beyond a single ratio.
+*
+* Design: Claude / Electrucio, 2026-09-14, for parts-index. Structure inspired by
+* the "light state" node of Bordodynov's Vtl5c2 / NSL-32SR3 models
+* (sources/bordodynov/extracted/lib/sub/) and J.C. Maillet's measured NSL-32SR3
+* (sources/viva-analog); the carrier-balance equation replaces their diode/RC network.
+* No text copied.
+*
+
+* >>> ldr_cell (master copy; components/vactrol/vactrol.sub carries it verbatim)
+* A B = cell, L = light in units of Eref (e = V(L)/Eref)
+.subckt ldr_cell A B L params: Rref=14.14k Eref=10 gamma=0.6 Rs=1m Rdark=10Meg
++ tau=21.09m ka=0.8336 kLH=1 href=0 hist=0 thist=3600 Eadapt=300 Cc=0
+.param g = limit(gamma, 0.05, 0.99)
+.param q1 = 1/g - 1
+.param eth = ((Rdark - Rs)/Rref)**(-1/g)
+.param mref = 1 + (kLH - 1)*href
+RL L 0 1G
+* u = ln(n) on a 1 F capacitor; imb = normalised generation/recombination imbalance
+* (only its sign is used, to select the attack factor)
+* (internal node names must not collide with the ports A B L: SPICE is case-blind)
+Cu u 0 1
+Ru u 0 1T
+Bb imb 0 V = (max(V(L), 0)/{Eref} + {eth})*exp(-limit(V(u), -60, 60)/{g}) - 1
+Bu 0 u I = (1 + ({ka} - 1)*(0.5 + 0.5*tanh(100*limit(V(imb), -1, 1))))/{tau}
++   * ((max(V(L), 0)/{Eref} + {eth})*exp(-limit(V(u), -60, 60)) - exp({q1}*limit(V(u), -60, 60)))
+* light history h (slow), pinned to hist at the operating point
+Ch h 0 1
+Rh h 0 1T
+Bh 0 h I = (max(V(L), 0)/(max(V(L), 0) + {Eadapt}) - V(h))/{thist}
++   + 1e3*({hist} - V(h))*exp(-time/1u)
+* the cell
+Bc A B I = V(A, B)/({Rs} + {Rref}*(1 + ({kLH} - 1)*V(h))/{mref}*exp(-limit(V(u), -60, 60)))
+Ccell A B {max(Cc, 1e-18)}
+.ends ldr_cell
+* <<< ldr_cell
+
+* ---------------------------------------------------------------- bare LDR, light in lux
+.subckt ldr A B L params: R10=14.14k gamma=0.6 Rdark=10Meg tau=21.09m ka=0.8336 kLH=1.2
++ hist=1 thist=3600 Eadapt=300 Cc=0 Rs=1m
+X1 A B L ldr_cell Rref={R10} Eref=10 gamma={gamma} Rs={Rs} Rdark={Rdark} tau={tau}
++ ka={ka} kLH={kLH} href=1 hist={hist} thist={thist} Eadapt={Eadapt} Cc={Cc}
+.ends ldr
+
+* ---------------------------------------------------------------- presets
+* GL55-series CdS cells (GL55 manual p.1 types, p.2 table; README). R10 = geometric
+* middle of the 10 lux range; Rdark = 10 x the 10-second dark resistance (estimate);
+* tau, ka fitted to the rise (20/30 ms) and decay (30 ms) times of the table.
+.subckt GL5516 A B L params: hist=1
+X1 A B L ldr R10=7.071k gamma=0.5 Rdark=5Meg tau=17.45m ka=0.4329 hist={hist}
+.ends GL5516
+.subckt GL5528 A B L params: hist=1
+X1 A B L ldr R10=14.14k gamma=0.6 Rdark=10Meg tau=21.09m ka=0.8336 hist={hist}
+.ends GL5528
+.subckt GL5537_1 A B L params: hist=1
+X1 A B L ldr R10=24.49k gamma=0.6 Rdark=20Meg tau=21.09m ka=0.8332 hist={hist}
+.ends GL5537_1
+.subckt GL5539 A B L params: hist=1
+X1 A B L ldr R10=70.71k gamma=0.8 Rdark=50Meg tau=26.38m ka=1.176 hist={hist}
+.ends GL5539

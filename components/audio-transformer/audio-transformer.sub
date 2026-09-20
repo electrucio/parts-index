@@ -1,0 +1,251 @@
+* audio-transformer.sub -- microphone input and valve interstage transformers for LTspice
+*
+* Subckts (pins in SpiceOrder)
+*     atx_ct    P1 PC P2 S1 SC S2   the general one: centre-tapped primary and secondary
+*     atx       P1 P2 S1 S2         one primary, one secondary (input, SE interstage)
+*     atx_sct   P1 P2 S1 SC S2      centre-tapped secondary (SE -> PP phase splitter)
+*     presets   XF_<part>_<conn>, see README.md "Provenance"
+*   Polarity: S1 is in phase with P1: V(S1,S2) = +n*V(P1,P2) at mid band.
+*   PC / SC are the centre taps (each half has half the turns and half the DCR).
+*   No pin is tied to ground inside; S2 (or SC) has 1 Gohm to ground so a floating
+*   secondary still has a DC path.
+*
+* Parameters (SI)
+*     n      turns ratio, whole secondary / whole primary               (10)
+*     Lp     primary inductance, whole primary, secondary open          [H]   (5)
+*     Llk    leakage inductance referred to the whole primary, secondary shorted [H] (100u)
+*     Rp     primary DCR P1-P2                                          [ohm] (20)
+*     Rs     secondary DCR S1-S2                                        [ohm] (2k)
+*     Cp     effective capacitance across P1-P2                         [F]   (0)
+*     Cs     effective capacitance across S1-S2 (winding + shield + wiring) [F] (100p)
+*     Rc     core-loss resistance across the whole primary; 0 = Qc*2*pi*1k*Lp
+*     Qc     core Q at 1 kHz used when Rc = 0                                  (10)
+*     sat    1 = flux saturation on, 0 = linear core                           (0)
+*     Vsat   primary rms voltage at which the core reaches its knee at fsat [V] (1)
+*     fsat   frequency of that rating                                   [Hz]  (20)
+*     ksat   knee flux / design peak flux                                      (1.25)
+*     Idc    DC primary current the (gapped) core is biased with        [A]   (0)
+*     Lsr    Lp / incremental inductance deep in saturation                    (100)
+*     wk     width of the saturation knee, fraction of the knee flux           (0.05)
+*
+* Equations (same structure as components/output-transformer):
+*   every winding k is an ideal winding of relative turns N_k (whole primary 1, each
+*   primary half 0.5, secondary halves n/2) in series with its DCR and its share of the
+*   leakage (all of it on the primary, Llk/2 per half). Each winding forces V = N_k V(c)
+*   and injects N_k I_k into the core node c. On c: Rc || magnetising branch
+*       i_m = g(lambda),  lambda = integral V(c) dt  (lossy integrator, tau = 1000 s)
+*       g(l) = l/Lp + sat*[s(l - Lk) - s(-l - Lk)]*Lsr/Lp,  s(x) = w ln(1 + e^(x/w))
+*       Lk   = ksat*[sqrt(2)*Vsat/(2 pi fsat) + Lp*Idc],      w = wk*Lk
+*   Low corner with source Rg and load RL (secondary): f = R'/(2 pi Lp),
+*       R' = (Rg + Rp) || (RL + Rs)/n^2
+*   High end: Llk with Cs*n^2 (and Cp) form a second-order low-pass.
+*
+* Limits: constant permeability below the knee (real Lp rises with level: datasheet
+* figures at different levels disagree, see README), no hysteresis (no low-level
+* distortion), core loss as a fixed resistor, capacitances lumped at the terminals, no
+* shield or common-mode (CMRR) capacitances, no interwinding capacitance. See README.md.
+*
+* Design: Claude / Electrucio, 2026-09-14, for parts-index. Structure (ideal
+* windings on a core node, softplus saturation) reused from
+* components/output-transformer/output-transformer.sub. Original text.
+*
+.subckt atx_ct P1 PC P2 S1 SC S2 params: n=10 Lp=5 Llk=100u Rp=20 Rs=2k Cp=0
++ Cs=100p Rc=0 Qc=10 sat=0 Vsat=1 fsat=20 ksat=1.25 Idc=0 Lsr=100 wk=0.05
+.param Rc_ = if(Rc > 0, Rc, Qc*2*pi*1k*Lp)
+.param Lk = ksat*(sqrt(2)*Vsat/(2*pi*fsat) + Lp*abs(Idc))
+XA P1 PC c atx_w N=0.5 R={Rp/2} L={Llk/2}
+XB PC P2 c atx_w N=0.5 R={Rp/2} L={Llk/2}
+XC S1 SC c atx_w N={n/2} R={Rs/2} L=0
+XD SC S2 c atx_w N={n/2} R={Rs/2} L=0
+Cp P1 P2 {if(Cp > 0, Cp, 1e-18)}
+Cs S1 S2 {if(Cs > 0, Cs, 1e-18)}
+Rgnd SC 0 1G
+Rcore c 0 {Rc_}
+Gint 0 phi c 0 1
+Cint phi 0 1
+Rint phi 0 1k
+.param w = wk*Lk
+.func sp(x) {max(x, 0) + w*ln(1 + exp(-abs(x)/w))}
+Bm c 0 I = V(phi)/Lp + sat*(sp(V(phi) - Lk) - sp(-V(phi) - Lk))*Lsr/Lp
+.ends atx_ct
+
+* one ideal winding of N turns (relative) on core node C, with DCR R and leakage L
+.subckt atx_w A B C params: N=1 R=1 L=0
+Rw A 1 {max(R, 1m)}
+Lw 1 2 {max(L, 1n)} Rser=0
+Vs 2 3 0
+Ew 3 B C 0 {N}
+Fw 0 C Vs {N}
+.ends atx_w
+
+.subckt atx P1 P2 S1 S2 params: n=10 Lp=5 Llk=100u Rp=20 Rs=2k Cp=0 Cs=100p
++ Rc=0 Qc=10 sat=0 Vsat=1 fsat=20 ksat=1.25 Idc=0 Lsr=100 wk=0.05
+X1 P1 pc P2 S1 sc S2 atx_ct n={n} Lp={Lp} Llk={Llk} Rp={Rp} Rs={Rs} Cp={Cp} Cs={Cs}
++ Rc={Rc} Qc={Qc} sat={sat} Vsat={Vsat} fsat={fsat} ksat={ksat} Idc={Idc} Lsr={Lsr}
++ wk={wk}
+Rg2 S2 0 1G
+.ends atx
+
+.subckt atx_sct P1 P2 S1 SC S2 params: n=2 Lp=40 Llk=10m Rp=500 Rs=1k Cp=0
++ Cs=100p Rc=0 Qc=10 sat=0 Vsat=100 fsat=30 ksat=1.25 Idc=0 Lsr=100 wk=0.05
+X1 P1 pc P2 S1 SC S2 atx_ct n={n} Lp={Lp} Llk={Llk} Rp={Rp} Rs={Rs} Cp={Cp} Cs={Cs}
++ Rc={Rc} Qc={Qc} sat={sat} Vsat={Vsat} fsat={fsat} ksat={ksat} Idc={Idc} Lsr={Lsr}
++ wk={wk}
+.ends atx_sct
+
+* ==== PRESETS (generated by make_symbols.py from xf_presets.py; edit there) ====
+* Each preset takes sat (0 = linear core, the default); see xf_presets.py and
+* README.md "Provenance" for the source of every number.
+*
+* Jensen JT-115K-E mic input 1:10  [https://www.jensen-transformers.com/wp-content/uploads/2014/08/jt-115K-e1.pdf]
+*   n: ds 1:10.00 (1:9.95..1:10.05)
+*   Rp: ds 19.7 (RED-BRN)
+*   Rs: ds 2465 (YEL-ORG)
+*   Lp: fit: -0.26 dB at 20 Hz (test circuit 1)
+*   Llk: fit: -0.13 dB at 20 kHz and -3 dB at 90 kHz
+*   Cs: fit: with Llk
+*   Rc: fit: Zi 1.40 k at 1 kHz
+*   Cp: 0: the 475 pF primary-to-shield is common-mode
+*   Vsat: ds: max 20 Hz input level -2.5 dBu at 1 % THD (typ)
+*   Idc: -
+*   ksat: fit_sat.py: 1 % THD at the ds point
+.subckt XF_JT115KE P1 P2 S1 S2 params: sat=0 ksat=1.193
+X1 P1 P2 S1 S2 atx n=10 Lp=4.835 Llk=3.573m Rp=19.7 Rs=2.465k Cp=0 Cs=6.293p Rc=14.59k
++ Idc=0 Vsat=580.9m fsat=20 sat={sat} ksat={ksat}
+.ends XF_JT115KE
+
+* Lundahl LL1660PP Alt M'' PP-PP interstage 2.25+2.25:2+2  [https://www.lundahltransformers.com/wp-content/uploads/datasheets/1660.pdf]
+*   n: ds Alt M'' 2.25+2.25 : 2+2
+*   Rp: der (sections, see drawing)
+*   Rs: der (sections, see drawing)
+*   Lp: ds
+*   Llk: not published (0)
+*   Cp: der: +-1 dB at 25 kHz, Rsrc 15k
+*   Cs: 0 (lumped into Cp)
+*   Rc: default Qc = 10 (est)
+*   Vsat: ds max output 520 V rms at 30 Hz / n
+*   Idc: -
+*   ksat: 1.25 est (output-transformer calibration)
+.subckt XF_LL1660_M P1 PC P2 S1 SC S2 params: sat=0 ksat=1.25
+X1 P1 PC P2 S1 SC S2 atx_ct n=0.888889 Lp=290 Llk=0 Rp=1.25k Rs=1.11k Cp=216p Cs=0 Rc=0
++ Idc=0 Vsat=585 fsat=30 sat={sat} ksat={ksat}
+.ends XF_LL1660_M
+
+* Lundahl LL1660PP Alt N PP line output 2.25+2.25:1  [https://www.lundahltransformers.com/wp-content/uploads/datasheets/1660.pdf]
+*   n: ds Alt N 2.25+2.25 : 1
+*   Rp: der (sections, see drawing)
+*   Rs: der (sections, see drawing)
+*   Lp: ds
+*   Llk: not published (0)
+*   Cp: der: +-1 dB at 30 kHz, Rsrc 15k
+*   Cs: 0 (lumped into Cp)
+*   Rc: default Qc = 10 (est)
+*   Vsat: ds max output 130 V rms at 30 Hz / n
+*   Idc: -
+*   ksat: 1.25 est (output-transformer calibration)
+.subckt XF_LL1660_N P1 PC P2 S1 SC S2 params: sat=0 ksat=1.25
+X1 P1 PC P2 S1 SC S2 atx_ct n=0.222222 Lp=290 Llk=0 Rp=1.25k Rs=68.108 Cp=180p Cs=0 Rc=0
++ Idc=0 Vsat=585 fsat=30 sat={sat} ksat={ksat}
+.ends XF_LL1660_N
+
+* Lundahl LL1660/18mA Alt Q SE line output 4.5:1  [https://www.lundahltransformers.com/wp-content/uploads/datasheets/1660.pdf]
+*   n: ds Alt Q 4.5 : 1
+*   Rp: der (sections, see drawing)
+*   Rs: der (sections, see drawing)
+*   Lp: ds
+*   Llk: not published (0)
+*   Cp: der: +-1 dB at 35 kHz, Rsrc 3k
+*   Cs: 0 (lumped into Cp)
+*   Rc: default Qc = 10 (est)
+*   Vsat: ds max output 57 V rms at 30 Hz / n
+*   Idc: ds (0.9 T bias)
+*   ksat: 1.25 est (output-transformer calibration)
+.subckt XF_LL1660_Q P1 P2 S1 S2 params: sat=0 ksat=1.25
+X1 P1 P2 S1 S2 atx n=0.222222 Lp=100 Llk=0 Rp=1.25k Rs=68.108 Cp=771.3p Cs=0 Rc=0
++ Idc=16m Vsat=256.5 fsat=30 sat={sat} ksat={ksat}
+.ends XF_LL1660_Q
+
+* Lundahl LL1660/10mA Alt S SE-SE interstage 4:4.5  [https://www.lundahltransformers.com/wp-content/uploads/datasheets/1660.pdf]
+*   n: ds Alt S 4 : 4.5
+*   Rp: der (sections, see drawing)
+*   Rs: der (sections, see drawing)
+*   Lp: ds
+*   Llk: not published (0)
+*   Cp: der: +-1 dB at 40 kHz, Rsrc 14k
+*   Cs: 0 (lumped into Cp)
+*   Rc: default Qc = 10 (est)
+*   Vsat: ds max output 250 V rms at 30 Hz / n
+*   Idc: ds (0.9 T bias)
+*   ksat: 1.25 est (output-transformer calibration)
+.subckt XF_LL1660_S P1 P2 S1 S2 params: sat=0 ksat=1.25
+X1 P1 P2 S1 S2 atx n=1.125 Lp=130 Llk=0 Rp=1.11k Rs=1.25k Cp=144.6p Cs=0 Rc=0 Idc=10m
++ Vsat=222.2 fsat=30 sat={sat} ksat={ksat}
+.ends XF_LL1660_S
+
+* Lundahl LL1660/10mA Alt T SE-SE interstage 2:4.5  [https://www.lundahltransformers.com/wp-content/uploads/datasheets/1660.pdf]
+*   n: ds Alt T 2 : 4.5
+*   Rp: der (sections, see drawing)
+*   Rs: der (sections, see drawing)
+*   Lp: ds
+*   Llk: not published (0)
+*   Cp: der: +-1 dB at 30 kHz, Rsrc 3.5k
+*   Cs: 0 (lumped into Cp)
+*   Rc: default Qc = 10 (est)
+*   Vsat: ds max output 250 V rms at 30 Hz / n
+*   Idc: ds (0.9 T bias)
+*   ksat: 1.25 est (output-transformer calibration)
+.subckt XF_LL1660_T P1 P2 S1 S2 params: sat=0 ksat=1.25
+X1 P1 P2 S1 S2 atx n=2.25 Lp=33 Llk=0 Rp=277.5 Rs=1.25k Cp=771.3p Cs=0 Rc=0 Idc=20m
++ Vsat=111.1 fsat=30 sat={sat} ksat={ksat}
+.ends XF_LL1660_T
+
+* Lundahl LL1660/10mA Alt V SE-PP phase splitter 2.25:2+2  [https://www.lundahltransformers.com/wp-content/uploads/datasheets/1660.pdf]
+*   n: ds Alt V 2.25 : 2+2
+*   Rp: der (sections, see drawing)
+*   Rs: der (sections, see drawing)
+*   Lp: ds
+*   Llk: not published (0)
+*   Cp: der: +-1 dB at 30 kHz, Rsrc 3.5k
+*   Cs: 0 (lumped into Cp)
+*   Rc: default Qc = 10 (est)
+*   Vsat: ds max output 220 V rms at 30 Hz / n
+*   Idc: ds (0.9 T bias)
+*   ksat: 1.25 est (output-transformer calibration)
+.subckt XF_LL1660_V P1 P2 S1 SC S2 params: sat=0 ksat=1.25
+X1 P1 P2 S1 SC S2 atx_sct n=1.77778 Lp=42 Llk=0 Rp=312.5 Rs=1.11k Cp=771.3p Cs=0 Rc=0
++ Idc=18m Vsat=123.8 fsat=30 sat={sat} ksat={ksat}
+.ends XF_LL1660_V
+
+* Lundahl LL1538 mic input 1:5 (primaries parallel)  [https://www.lundahltransformers.com/wp-content/uploads/datasheets/1538_8xl.pdf]
+*   Rs: ds 880 (secondary 5-6)
+*   Llk: est (Q 0.707 at 200 kHz)
+*   Cs: est (with Llk)
+*   Rc: default Qc = 10 (est)
+*   Cp: 0
+*   Idc: -
+*   Vsat: ds 1 % THD at +10 dBu (2.5 V), 50 Hz, primaries parallel
+*   n: ds 1:5
+*   Rp: der 44 || 44
+*   Lp: der: -0.3 dB at 10 Hz, 200 ohm, no termination
+*   ksat: fit_sat.py: 1 % THD at the ds point
+.subckt XF_LL1538_5 P1 P2 S1 S2 params: sat=0 ksat=1.108
+X1 P1 P2 S1 S2 atx n=5 Lp=13.21 Llk=144.7u Rp=22 Rs=880 Cp=0 Cs=175p Rc=0 Idc=0 Vsat=2.5
++ fsat=50 sat={sat} ksat={ksat}
+.ends XF_LL1538_5
+
+* Lundahl LL1538 mic input 1:2.5 (primaries series)  [https://www.lundahltransformers.com/wp-content/uploads/datasheets/1538_8xl.pdf]
+*   Rs: ds 880 (secondary 5-6)
+*   Llk: est: 4 x the 1:5 value (N^2)
+*   Cs: est (with Llk)
+*   Rc: default Qc = 10 (est)
+*   Cp: 0
+*   Idc: -
+*   Vsat: der: 2 x the 1:5 value (twice the turns)
+*   n: ds 1:2.5
+*   Rp: der 44 + 44
+*   Lp: der: 4 x the 1:5 value (N^2)
+*   ksat: fit_sat.py: 1 % THD at the ds point
+.subckt XF_LL1538_25 P1 P2 S1 S2 params: sat=0 ksat=1.108
+X1 P1 P2 S1 S2 atx n=2.5 Lp=52.85 Llk=578.9u Rp=88 Rs=880 Cp=0 Cs=175p Rc=0 Idc=0 Vsat=5
++ fsat=50 sat={sat} ksat={ksat}
+.ends XF_LL1538_25

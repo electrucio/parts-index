@@ -1,0 +1,42 @@
+* vu.sub -- VU meter (standard volume indicator) for LTspice: ballistics of the
+* moving-coil meter with its full-wave rectifier, for level metering in mixers,
+* tape machines, compressors and meter-driver circuits
+*
+* Pins
+*     vu_meter   P N DEFL   input (+, -), deflection output: V(DEFL) = 1 at 0 VU
+*
+* Parameters (defaults: IEC 60268-17 / ANSI C16.5-1942, README "Provenance")
+*     Vref   RMS sine voltage at 1 kHz that reads 0 VU                  1.228
+*     Rin    input impedance of the indicator (meter + attenuator)      7.5k
+*     fn     natural frequency of the movement, Hz                      2.1505
+*     zeta   damping ratio                                              0.8127
+*
+* Model. The coil current is the full-wave rectified input, |v|/Rin; the pointer
+* deflection x follows a second-order movement driven by it:
+*     x'' + 2 zeta wn x' + wn^2 x = wn^2 u,   u = |v|/(Vref 2 sqrt(2)/pi)
+* so a steady 0 VU sine gives x = 1 (its rectified mean is 0.9003 of its RMS). zeta
+* sets the overshoot (1.25 %, the middle of the standard's 1-1.5 %:
+* zeta = -ln(os)/sqrt(pi^2 + ln(os)^2)), and wn the rise to 99 % of the reading in
+* 0.300 s (wn t99 = 4.0536 for that zeta). VU reading = 20 log10(V(DEFL)).
+*
+* No A-devices. Not modelled: the non-linearity of the meter rectifier at low level
+* (copper-oxide or diode knee: real meters read low below about -10 VU), the scale
+* non-linearity of the printed dial, pointer friction, the attenuator's frequency
+* response, the reactive part of the meter impedance.
+*
+* Design: Claude / Electrucio, 2026-09-14, for parts-index.
+*
+
+.subckt vu_meter P N DEFL params: Vref=1.228 Rin=7.5k fn=2.1505 zeta=0.8127
+.param wn = 2*pi*fn
+Rin P N {Rin}
+Bu u 0 V = abs(V(P,N))/({Vref}*0.9003163)
+* pointer position x and velocity v on 1 F capacitors
+Cx x 0 1
+Rx x 0 1T
+Bx 0 x I = V(v)
+Cv v 0 1
+Rv v 0 1T
+Bv 0 v I = {wn*wn}*(V(u) - V(x)) - {2*zeta*wn}*V(v)
+Bd DEFL 0 V = V(x)
+.ends vu_meter

@@ -1,0 +1,238 @@
+* switch.sub -- mechanical switches for LTspice: toggles, footswitches, on-off-on,
+* rotary selectors, switched jacks
+*
+* Pins follow the lug numbering (lugs 1-2-3 of a changeover pole = throw 1, common,
+* throw 2; a 3PDT footswitch is lugs 1..9 with 2, 5, 8 the commons):
+*     sw_spst            A B                                   pos: 0 open, 1 closed
+*     sw_spdt            T1 COM T2                             pos: 0 COM-T1, 1 COM-T2
+*     sw_dpdt            A1 AC A2 B1 BC B2                     pos: 0 x1, 1 x2
+*     sw_3pdt            A1 AC A2 B1 BC B2 C1 CC C2            pos: 0 (2-1 5-4 8-7), 1 (2-3 5-6 8-9)
+*     sw_spdt_ctr        T1 COM T2                             on-off-on, pos: 0 T1, 1 off, 2 T2
+*     sw_dpdt_ctr        A1 AC A2 B1 BC B2                     on-off-on DPDT
+*     sw_rot1p3/4/6/12   COM P1 .. PN                          pos: 1..N, npos = end stop
+*     jack_mono_sw       T S TN PT PS                          switched mono jack (tip normal)
+*     jack_trs           T R S PT PR PS                        stereo jack; mono plug shorts R-S
+*     sw_spdt_vc, sw_dpdt_vc, sw_3pdt_vc   + CTRL              position = V(CTRL), 0..1
+* Jacks: T/R/S/TN are the jack lugs, PT/PR/PS the plug (cable) side. plug: 0 no plug,
+* 1 mono plug, 2 stereo plug (jack_trs). A mono plug's sleeve bridges the ring spring
+* to the sleeve: the battery switch of a pedal.
+*
+* Parameters common to all
+*     pos    position (rounded, clamped to the valid range)
+*     pos2   position after the move at tsw; -1 = the other position (toggle; for
+*            on-off-on the opposite side, for a jack plug in <-> out)
+*     tsw    time of the move (default 1e9: never, static switch)
+*     tmove  duration of the move (lever / actuator transit)
+*     Ron    contact resistance
+*     Roff   open-contact (insulation) resistance
+*     rotary: npos (end stop, <= N) and mbb (0 non-shorting / break-before-make,
+*     1 shorting / make-before-break)
+*
+* Model: a position node p(t) = pos until tsw, then a linear move to pos2 in tmove.
+* Each contact is a voltage-controlled switch that is closed while p is inside its
+* window: throw k of a selector is closed for |p - k| < 0.25 (0.6 if mbb=1), so between
+* positions nothing is closed (break-before-make): the gap that pops a true bypass.
+* No A-devices; B-sources and SW only.
+*
+* Not modelled: contact bounce, contact capacitance and crosstalk, wiper noise,
+* the plug touching the tip spring on its way in.
+*
+* Design: Claude / Electrucio, 2026-09-14, for parts-index. Idea of
+* parameter-selected switches from H. Sennewald's Pote.lib (sources/ltwiki/.../sub:
+* sw_3_to_1, 1P3T, dpdt); no text copied.
+*
+
+* ---------------------------------------------------------------- building blocks
+* position node: p0 until tsw, linear to p1 over tmove
+.subckt sw_pos P params: p0=0 p1=0 tsw=1e9 tmove=2m
+Bp P 0 V = {p0} + ({p1} - {p0})*limit((time - {tsw})/{tmove}, 0, 1)
+.ends sw_pos
+
+* one contact A-B, closed while lo < V(P) < hi
+.subckt sw_c P A B params: lo=-0.25 hi=0.25 Ron=10m Roff=1G
+Bc c 0 V = min(V(P) - {lo}, {hi} - V(P))
+S1 A B c 0 SWC
+.model SWC SW(Ron={Ron} Roff={Roff} Vt=0 Vh=0)
+.ends sw_c
+
+* ---------------------------------------------------------------- toggles
+.subckt sw_spst A B params: pos=1 pos2=-1 tsw=1e9 tmove=2m Ron=10m Roff=1G
+.param p0 = limit(round(pos), 0, 1)
+.param p1 = if(pos2 < 0, 1 - p0, limit(round(pos2), 0, 1))
+X0 p sw_pos p0={p0} p1={p1} tsw={tsw} tmove={tmove}
+X1 p A B sw_c lo=0.75 hi=1.25 Ron={Ron} Roff={Roff}
+.ends sw_spst
+
+.subckt sw_spdt T1 COM T2 params: pos=0 pos2=-1 tsw=1e9 tmove=2m Ron=10m Roff=1G
+.param p0 = limit(round(pos), 0, 1)
+.param p1 = if(pos2 < 0, 1 - p0, limit(round(pos2), 0, 1))
+X0 p sw_pos p0={p0} p1={p1} tsw={tsw} tmove={tmove}
+X1 p COM T1 sw_c lo=-0.25 hi=0.25 Ron={Ron} Roff={Roff}
+X2 p COM T2 sw_c lo=0.75 hi=1.25 Ron={Ron} Roff={Roff}
+.ends sw_spdt
+
+.subckt sw_dpdt A1 AC A2 B1 BC B2 params: pos=0 pos2=-1 tsw=1e9 tmove=2m Ron=10m Roff=1G
+.param p0 = limit(round(pos), 0, 1)
+.param p1 = if(pos2 < 0, 1 - p0, limit(round(pos2), 0, 1))
+X0 p sw_pos p0={p0} p1={p1} tsw={tsw} tmove={tmove}
+X1 p AC A1 sw_c lo=-0.25 hi=0.25 Ron={Ron} Roff={Roff}
+X2 p AC A2 sw_c lo=0.75 hi=1.25 Ron={Ron} Roff={Roff}
+X3 p BC B1 sw_c lo=-0.25 hi=0.25 Ron={Ron} Roff={Roff}
+X4 p BC B2 sw_c lo=0.75 hi=1.25 Ron={Ron} Roff={Roff}
+.ends sw_dpdt
+
+* on-off-on: pos 0 = T1, 1 = centre off, 2 = T2
+.subckt sw_spdt_ctr T1 COM T2 params: pos=0 pos2=-1 tsw=1e9 tmove=2m Ron=10m Roff=1G
+.param p0 = limit(round(pos), 0, 2)
+.param p1 = if(pos2 < 0, 2 - p0, limit(round(pos2), 0, 2))
+X0 p sw_pos p0={p0} p1={p1} tsw={tsw} tmove={tmove}
+X1 p COM T1 sw_c lo=-0.25 hi=0.25 Ron={Ron} Roff={Roff}
+X2 p COM T2 sw_c lo=1.75 hi=2.25 Ron={Ron} Roff={Roff}
+.ends sw_spdt_ctr
+
+.subckt sw_dpdt_ctr A1 AC A2 B1 BC B2 params: pos=0 pos2=-1 tsw=1e9 tmove=2m Ron=10m
++ Roff=1G
+.param p0 = limit(round(pos), 0, 2)
+.param p1 = if(pos2 < 0, 2 - p0, limit(round(pos2), 0, 2))
+X0 p sw_pos p0={p0} p1={p1} tsw={tsw} tmove={tmove}
+X1 p AC A1 sw_c lo=-0.25 hi=0.25 Ron={Ron} Roff={Roff}
+X2 p AC A2 sw_c lo=1.75 hi=2.25 Ron={Ron} Roff={Roff}
+X3 p BC B1 sw_c lo=-0.25 hi=0.25 Ron={Ron} Roff={Roff}
+X4 p BC B2 sw_c lo=1.75 hi=2.25 Ron={Ron} Roff={Roff}
+.ends sw_dpdt_ctr
+
+* ---------------------------------------------------------------- 3PDT footswitch
+* lugs 1..9; 2, 5, 8 are the commons (Aion FX 3PDT datasheet p.1: "2-1, 5-4, 8-7 ON /
+* 2-3, 5-6, 8-9 ON"). Latching: each stomp toggles; use pos2/tsw or sw_3pdt_vc.
+.subckt sw_3pdt A1 AC A2 B1 BC B2 C1 CC C2 params: pos=0 pos2=-1 tsw=1e9 tmove=2m
++ Ron=30m Roff=100Meg
+.param p0 = limit(round(pos), 0, 1)
+.param p1 = if(pos2 < 0, 1 - p0, limit(round(pos2), 0, 1))
+X0 p sw_pos p0={p0} p1={p1} tsw={tsw} tmove={tmove}
+X1 p AC A1 sw_c lo=-0.25 hi=0.25 Ron={Ron} Roff={Roff}
+X2 p AC A2 sw_c lo=0.75 hi=1.25 Ron={Ron} Roff={Roff}
+X3 p BC B1 sw_c lo=-0.25 hi=0.25 Ron={Ron} Roff={Roff}
+X4 p BC B2 sw_c lo=0.75 hi=1.25 Ron={Ron} Roff={Roff}
+X5 p CC C1 sw_c lo=-0.25 hi=0.25 Ron={Ron} Roff={Roff}
+X6 p CC C2 sw_c lo=0.75 hi=1.25 Ron={Ron} Roff={Roff}
+.ends sw_3pdt
+
+* ---------------------------------------------------------------- position from a node
+* p = V(CTRL): 0 and 1 are the two positions, anything between is in transit (open)
+.subckt sw_spdt_vc T1 COM T2 CTRL params: Ron=10m Roff=1G
+Rc CTRL 0 1G
+Bp p 0 V = limit(V(CTRL), -1, 2)
+X1 p COM T1 sw_c lo=-0.25 hi=0.25 Ron={Ron} Roff={Roff}
+X2 p COM T2 sw_c lo=0.75 hi=1.25 Ron={Ron} Roff={Roff}
+.ends sw_spdt_vc
+
+.subckt sw_dpdt_vc A1 AC A2 B1 BC B2 CTRL params: Ron=10m Roff=1G
+Rc CTRL 0 1G
+Bp p 0 V = limit(V(CTRL), -1, 2)
+X1 p AC A1 sw_c lo=-0.25 hi=0.25 Ron={Ron} Roff={Roff}
+X2 p AC A2 sw_c lo=0.75 hi=1.25 Ron={Ron} Roff={Roff}
+X3 p BC B1 sw_c lo=-0.25 hi=0.25 Ron={Ron} Roff={Roff}
+X4 p BC B2 sw_c lo=0.75 hi=1.25 Ron={Ron} Roff={Roff}
+.ends sw_dpdt_vc
+
+.subckt sw_3pdt_vc A1 AC A2 B1 BC B2 C1 CC C2 CTRL params: Ron=30m Roff=100Meg
+Rc CTRL 0 1G
+Bp p 0 V = limit(V(CTRL), -1, 2)
+X1 p AC A1 sw_c lo=-0.25 hi=0.25 Ron={Ron} Roff={Roff}
+X2 p AC A2 sw_c lo=0.75 hi=1.25 Ron={Ron} Roff={Roff}
+X3 p BC B1 sw_c lo=-0.25 hi=0.25 Ron={Ron} Roff={Roff}
+X4 p BC B2 sw_c lo=0.75 hi=1.25 Ron={Ron} Roff={Roff}
+X5 p CC C1 sw_c lo=-0.25 hi=0.25 Ron={Ron} Roff={Roff}
+X6 p CC C2 sw_c lo=0.75 hi=1.25 Ron={Ron} Roff={Roff}
+.ends sw_3pdt_vc
+
+* ---------------------------------------------------------------- rotary, 1 pole
+* position k closes COM-Pk; pos is rounded and clamped to 1..npos (the end stop);
+* a move from pos to pos2 sweeps through the positions in between
+.subckt sw_rot1p3 COM P1 P2 P3 params: pos=1 pos2=-1 npos=3 mbb=0 tsw=1e9 tmove=2m
++ Ron=20m Roff=1G
+.param nmax = limit(round(npos), 1, 3)
+.param p0 = limit(round(pos), 1, nmax)
+.param p1 = if(pos2 < 0, p0, limit(round(pos2), 1, nmax))
+.param w = if(mbb > 0.5, 0.6, 0.25)
+X0 p sw_pos p0={p0} p1={p1} tsw={tsw} tmove={tmove}
+X1 p COM P1 sw_c lo={1 - w} hi={1 + w} Ron={Ron} Roff={Roff}
+X2 p COM P2 sw_c lo={2 - w} hi={2 + w} Ron={Ron} Roff={Roff}
+X3 p COM P3 sw_c lo={3 - w} hi={3 + w} Ron={Ron} Roff={Roff}
+.ends sw_rot1p3
+
+.subckt sw_rot1p4 COM P1 P2 P3 P4 params: pos=1 pos2=-1 npos=4 mbb=0 tsw=1e9 tmove=2m
++ Ron=20m Roff=1G
+.param nmax = limit(round(npos), 1, 4)
+.param p0 = limit(round(pos), 1, nmax)
+.param p1 = if(pos2 < 0, p0, limit(round(pos2), 1, nmax))
+.param w = if(mbb > 0.5, 0.6, 0.25)
+X0 p sw_pos p0={p0} p1={p1} tsw={tsw} tmove={tmove}
+X1 p COM P1 sw_c lo={1 - w} hi={1 + w} Ron={Ron} Roff={Roff}
+X2 p COM P2 sw_c lo={2 - w} hi={2 + w} Ron={Ron} Roff={Roff}
+X3 p COM P3 sw_c lo={3 - w} hi={3 + w} Ron={Ron} Roff={Roff}
+X4 p COM P4 sw_c lo={4 - w} hi={4 + w} Ron={Ron} Roff={Roff}
+.ends sw_rot1p4
+
+.subckt sw_rot1p6 COM P1 P2 P3 P4 P5 P6 params: pos=1 pos2=-1 npos=6 mbb=0 tsw=1e9
++ tmove=2m Ron=20m Roff=1G
+.param nmax = limit(round(npos), 1, 6)
+.param p0 = limit(round(pos), 1, nmax)
+.param p1 = if(pos2 < 0, p0, limit(round(pos2), 1, nmax))
+.param w = if(mbb > 0.5, 0.6, 0.25)
+X0 p sw_pos p0={p0} p1={p1} tsw={tsw} tmove={tmove}
+X1 p COM P1 sw_c lo={1 - w} hi={1 + w} Ron={Ron} Roff={Roff}
+X2 p COM P2 sw_c lo={2 - w} hi={2 + w} Ron={Ron} Roff={Roff}
+X3 p COM P3 sw_c lo={3 - w} hi={3 + w} Ron={Ron} Roff={Roff}
+X4 p COM P4 sw_c lo={4 - w} hi={4 + w} Ron={Ron} Roff={Roff}
+X5 p COM P5 sw_c lo={5 - w} hi={5 + w} Ron={Ron} Roff={Roff}
+X6 p COM P6 sw_c lo={6 - w} hi={6 + w} Ron={Ron} Roff={Roff}
+.ends sw_rot1p6
+
+.subckt sw_rot1p12 COM P1 P2 P3 P4 P5 P6 P7 P8 P9 P10 P11 P12 params: pos=1 pos2=-1
++ npos=12 mbb=0 tsw=1e9 tmove=2m Ron=20m Roff=1G
+.param nmax = limit(round(npos), 1, 12)
+.param p0 = limit(round(pos), 1, nmax)
+.param p1 = if(pos2 < 0, p0, limit(round(pos2), 1, nmax))
+.param w = if(mbb > 0.5, 0.6, 0.25)
+X0 p sw_pos p0={p0} p1={p1} tsw={tsw} tmove={tmove}
+X1 p COM P1 sw_c lo={1 - w} hi={1 + w} Ron={Ron} Roff={Roff}
+X2 p COM P2 sw_c lo={2 - w} hi={2 + w} Ron={Ron} Roff={Roff}
+X3 p COM P3 sw_c lo={3 - w} hi={3 + w} Ron={Ron} Roff={Roff}
+X4 p COM P4 sw_c lo={4 - w} hi={4 + w} Ron={Ron} Roff={Roff}
+X5 p COM P5 sw_c lo={5 - w} hi={5 + w} Ron={Ron} Roff={Roff}
+X6 p COM P6 sw_c lo={6 - w} hi={6 + w} Ron={Ron} Roff={Roff}
+X7 p COM P7 sw_c lo={7 - w} hi={7 + w} Ron={Ron} Roff={Roff}
+X8 p COM P8 sw_c lo={8 - w} hi={8 + w} Ron={Ron} Roff={Roff}
+X9 p COM P9 sw_c lo={9 - w} hi={9 + w} Ron={Ron} Roff={Roff}
+X10 p COM P10 sw_c lo={10 - w} hi={10 + w} Ron={Ron} Roff={Roff}
+X11 p COM P11 sw_c lo={11 - w} hi={11 + w} Ron={Ron} Roff={Roff}
+X12 p COM P12 sw_c lo={12 - w} hi={12 + w} Ron={Ron} Roff={Roff}
+.ends sw_rot1p12
+
+* ---------------------------------------------------------------- jacks
+* switched mono jack (tip normal, e.g. Switchcraft 12A-type): no plug -> T-TN closed;
+* plug in -> T-TN open, plug tip on T, plug sleeve on S. Insertion order along p:
+* sleeve makes at 0.25, the tip spring lifts off TN at 0.6, the tip makes at 0.75.
+.subckt jack_mono_sw T S TN PT PS params: plug=1 plug2=-1 tsw=1e9 tmove=50m Ron=30m
++ Roff=10G
+.param p0 = limit(round(plug), 0, 1)
+.param p1 = if(plug2 < 0, 1 - p0, limit(round(plug2), 0, 1))
+X0 p sw_pos p0={p0} p1={p1} tsw={tsw} tmove={tmove}
+X1 p T TN sw_c lo=-1 hi=0.6 Ron={Ron} Roff={Roff}
+X2 p PS S sw_c lo=0.25 hi=2 Ron={Ron} Roff={Roff}
+X3 p PT T sw_c lo=0.75 hi=2 Ron={Ron} Roff={Roff}
+.ends jack_mono_sw
+
+* stereo (TRS) jack: plug 0 none, 1 mono (TS) plug, 2 stereo (TRS) plug. A mono plug's
+* long sleeve touches the ring spring too: R-PS-S, the pedal battery switch.
+.subckt jack_trs T R S PT PR PS params: plug=1 plug2=-1 tsw=1e9 tmove=50m Ron=30m
++ Roff=10G
+.param p0 = limit(round(plug), 0, 2)
+.param p1 = if(plug2 < 0, if(p0 > 0, 0, 1), limit(round(plug2), 0, 2))
+X0 p sw_pos p0={p0} p1={p1} tsw={tsw} tmove={tmove}
+X1 p PS S sw_c lo=0.25 hi=3 Ron={Ron} Roff={Roff}
+X2 p PT T sw_c lo=0.75 hi=3 Ron={Ron} Roff={Roff}
+X3 p PS R sw_c lo=0.6 hi=1.5 Ron={Ron} Roff={Roff}
+X4 p PR R sw_c lo=1.5 hi=3 Ron={Ron} Roff={Roff}
+.ends jack_trs

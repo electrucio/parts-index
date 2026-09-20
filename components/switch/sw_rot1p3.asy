@@ -1,0 +1,36 @@
+Version 4
+SymbolType CELL
+LINE Normal 0 16 0 36
+CIRCLE Normal -3 36 3 42
+TEXT 0 8 Center 0 1
+LINE Normal 32 16 32 36
+CIRCLE Normal 29 36 35 42
+TEXT 32 8 Center 0 2
+LINE Normal 64 16 64 36
+CIRCLE Normal 61 36 67 42
+TEXT 64 8 Center 0 3
+LINE Normal 32 112 32 88
+CIRCLE Normal 29 85 35 91
+LINE Normal 32 88 2 44
+LINE Normal 2 44 8 50
+LINE Normal 2 44 10 44
+TEXT 40 104 Left 0 COM
+WINDOW 0 96 32 Left 2
+WINDOW 3 96 96 Left 2
+SYMATTR Value pos=1
+SYMATTR Prefix X
+SYMATTR SpiceModel sw_rot1p3
+SYMATTR ModelFile switch.sub
+SYMATTR Description Rotary switch 1 pole 3 positions, pos 1..3
+PIN 32 112 NONE 8
+PINATTR PinName COM
+PINATTR SpiceOrder 1
+PIN 0 16 NONE 8
+PINATTR PinName P1
+PINATTR SpiceOrder 2
+PIN 32 16 NONE 8
+PINATTR PinName P2
+PINATTR SpiceOrder 3
+PIN 64 16 NONE 8
+PINATTR PinName P3
+PINATTR SpiceOrder 4

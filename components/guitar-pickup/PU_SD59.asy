@@ -1,0 +1,32 @@
+Version 4
+SymbolType CELL
+RECTANGLE Normal 16 40 80 88
+CIRCLE Normal 22 60 30 68
+CIRCLE Normal 32 60 40 68
+CIRCLE Normal 42 60 50 68
+CIRCLE Normal 52 60 60 68
+CIRCLE Normal 62 60 70 68
+CIRCLE Normal 72 60 80 68
+LINE Normal 80 48 96 48
+LINE Normal 96 48 96 32
+LINE Normal 80 80 96 80
+LINE Normal 96 80 96 96
+LINE Normal 0 64 16 64
+TEXT 84 24 Left 0 +
+TEXT 2 56 Left 0 emf
+WINDOW 0 16 0 Left 2
+WINDOW 3 16 120 Left 2
+SYMATTR Value kx=0.5
+SYMATTR Prefix X
+SYMATTR SpiceModel PU_SD59
+SYMATTR ModelFile guitar-pickup.sub
+SYMATTR Description Seymour Duncan '59 humbucker (PAF type) pickup (L 5 H, R 7.6k). Pins OUT GND EMF
+PIN 96 32 NONE 8
+PINATTR PinName OUT
+PINATTR SpiceOrder 1
+PIN 96 96 NONE 8
+PINATTR PinName GND
+PINATTR SpiceOrder 2
+PIN 0 64 NONE 8
+PINATTR PinName EMF
+PINATTR SpiceOrder 3

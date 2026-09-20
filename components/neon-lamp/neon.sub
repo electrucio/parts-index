@@ -1,0 +1,78 @@
+* neon.sub -- NE-2 type neon glow lamps for LTspice: relaxation oscillators (neon
+* tremolo/LFO of old amps), indicators, voltage references
+*
+* Pins
+*     neon, presets   A K     electrodes (the NE-2 is symmetric: either polarity glows)
+*
+* Parameters of neon (defaults: NE-2 = CML A1A, README "Provenance")
+*     Vb     breakdown (striking) voltage, V                            75
+*     Ve     counter-EMF of the glow (maintaining voltage at I -> 0), V  55
+*     Ri     dynamic internal resistance in the normal glow, ohm       5.5k
+*     Imin   minimum glow current; below it the glow goes out          100u
+*     tion   ionization time constant                                    5u
+*     toff   de-ionization (extinction) time constant                   20u
+*     Cp     shunt capacitance                                          0.5p
+*     Roff   dark leakage resistance                                    100G
+*
+* Model. GE's equivalent circuit of a glowing lamp: a counter-EMF Ve in series with a
+* dynamic resistance Ri (GE Glow Lamp Manual 1965, ch.1, Fig. 1.5: A1A 55 V 5500 ohm),
+*     I = s (|V| - Ve)/Ri sign(V)   for |V| > Ve,   0 otherwise,
+* gated by a glow state s (0 dark, 1 glowing) with hysteresis:
+*     ds/dt = on(|V| > Vb) (1 - s)/tion - off(|V| < Vx) s/toff,   Vx = Ve + Ri Imin
+* Between Vx and Vb, s keeps its value (memory): a dark lamp stays dark up to Vb, a
+* lit lamp stays lit down to the extinguishing voltage Vx. The negative-resistance
+* part of the static curve (between the Townsend region and the normal glow) is not
+* a static branch here: the lamp crosses it during the strike, in ~tion, as the
+* voltage collapses from Vb towards Ve while the current rises.
+*
+* No A-devices. Not modelled: the recovery of the breakdown voltage after extinction
+* (de-ionization, up to 50 ms, GE), the dark effect (Vb higher in darkness), the
+* -50 mV/C temperature coefficient of the maintaining voltage (Miller), abnormal glow
+* above the rated current, ageing (Vb rises), light output.
+*
+* Design: Claude / Electrucio, 2026-09-14, for parts-index.
+*
+
+.subckt neon A K params: Vb=75 Ve=55 Ri=5.5k Imin=100u tion=5u toff=20u Cp=0.5p Roff=100G
+.param Vx = Ve + Ri*Imin
+* mode m (bistable, 0 dark / 1 discharge): set when |V| > Vb; latched as soon as it
+* passes 0.05, before any current flows (the glow is gated by m > 0.5 below), so the
+* current cannot pull V back under Vb and stall the strike: once started it
+* completes, as the avalanche of a real lamp does. Reset when the lamp is lit
+* (s > 0.5) but carries less than Imin: a lamp starved below Imin goes out instead
+* of dimming (the negative-resistance branch of the real characteristic).
+Bon on 0 V = 0.5*(1 + tanh((abs(V(A,K)) - {Vb})/0.05))
+Brs rs 0 V = 0.5*(1 + tanh((V(s) - 0.5)/0.01))
++   *0.5*(1 + tanh(({Imin} - V(s)*max(abs(V(A,K)) - {Ve}, 0)/{Ri})/(0.02*{Imin})))
+Btm tm 0 V = 1 - (1 - V(on))*(1 - 0.5*(1 + tanh((V(m) - 0.05)/0.005))*(1 - V(rs)))
+Cm m 0 1
+Rm m 0 1T
+Bm 0 m I = (V(tm) - V(m))/{tion/20}
+* glow state s, 0..1, follows the LATCHED mode (m > 0.5) with tion (rising) or toff
+* (falling): a mode on its way up carries no current, so the strike cannot stall
+Bl lt 0 V = 0.5*(1 + tanh((V(m) - 0.5)/0.01))
+Cs s 0 1
+Rs s 0 1T
+Bs 0 s I = (V(lt) - V(s))*(0.5*(1 + tanh((V(lt) - V(s))/0.01))/{tion}
++   + 0.5*(1 - tanh((V(lt) - V(s))/0.01))/{toff})
+* the discharge
+Bg A K I = limit(V(s), 0, 1)*(max(V(A,K) - {Ve}, 0) - max(-V(A,K) - {Ve}, 0))/{Ri}
+Rk A K {Roff}
+Cpk A K {max(Cp, 1e-18)}
+.ends neon
+
+* ---------------------------------------------------------------- presets
+* NE-2 (CML A1A): Ve, Ri = GE Fig. 1.5 (A1A); Vb = 75 V (typical: CML max 90 VDC,
+* 65 VAC; README). Design current 0.6 mA (CML).
+.subckt NE2 A K
+X1 A K neon Vb=75 Ve=55 Ri=5.5k
+.ends NE2
+* NE-2E (CML A9A): Ve, Ri = GE Fig. 1.5 (A9A); Vb as NE-2 (CML: same 90 VDC max).
+.subckt NE2E A K
+X1 A K neon Vb=75 Ve=55.5 Ri=4k
+.ends NE2E
+* NE-2H (CML C2A, high brightness): Vb = 110 V (CML max 135 VDC, 95 VAC); Ve, Ri are
+* estimates (about 65 V at the 1.9 mA design current). README.
+.subckt NE2H A K
+X1 A K neon Vb=110 Ve=60 Ri=2.5k
+.ends NE2H

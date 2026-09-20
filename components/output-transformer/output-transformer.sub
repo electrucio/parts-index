@@ -1,0 +1,297 @@
+* output-transformer.sub -- tube amplifier output transformers for LTspice
+*
+* Subckts (formal pin names; the symbols show S+ S- B+ for SP SN BP)
+*     ot_pp         P1 CT P2 SP SN                push-pull, one secondary
+*     ot_pp_ul      P1 G1 CT G2 P2 SP SN          push-pull, ultra-linear screen taps
+*     ot_pp_tap     P1 CT P2 COM S1 S2 S3         push-pull, tapped secondary (e.g. 4/8/16)
+*     ot_pp_ul_tap  P1 G1 CT G2 P2 COM S1 S2 S3   push-pull, UL taps + tapped secondary
+*     ot_se         P BP SP SN                    single-ended, one secondary
+*     ot_se_tap     P BP COM S1 S2 S3             single-ended, tapped secondary
+*   P1, P2 plates; CT centre tap (B+); G1, G2 screen (UL) taps; P plate and BP (B+)
+*   of an SE primary. Polarity: SP (or S3, the top tap) is in phase with P1 (or P):
+*   V(SP,SN) = +n*V(P1,P2). Swap SP/SN (or the plates) to flip feedback polarity.
+*
+* Parameters (SI; defaults are a 20 W 6k6 guitar OT, all sensible on their own)
+*     Za     primary impedance, plate-to-plate (PP) or plate-to-B+ (SE)   [ohm]
+*     Zs     secondary impedance (ot_pp, ot_se)                          [ohm]
+*     Z1..Z3 tap impedances, COM to S1/S2/S3, Z1 < Z2 < Z3 (tap variants)  [ohm]
+*     P      rated power; with fsat it sets the saturation flux          [W]
+*     ul     UL tap: fraction of each half-primary's turns from CT to G    (0.4 = "40 %")
+*     Lp     primary inductance, whole primary, secondary open           [H]
+*     flow   if > 0 overrides Lp: -3 dB low corner with a source Rs = Za and
+*            load Zs:  Lp = (Za/2)/(2 pi flow)                           [Hz]
+*     Llk    leakage inductance, whole primary, secondary shorted        [H]
+*     fhigh  if > 0 overrides Llk: -3 dB high corner (L only, Rs = Za):
+*            Llk = 2 Za/(2 pi fhigh)                                     [Hz]
+*     Cw     effective primary winding capacitance, across P1-P2 (P-BP)  [F]
+*     Rpri   primary DC resistance P1-P2 (P-BP)                          [ohm]
+*     rbal   fraction of Rpri in the P1-CT half (PP halves differ)       (0.5)
+*     Rsec   secondary DC resistance SP-SN (ot_pp, ot_se)                [ohm]
+*     R1..R3 DC resistance COM-S1, COM-S2, COM-S3 (tap variants)         [ohm]
+*     Rc     core-loss resistance across the whole primary; 0 = Qc*2*pi*1k*Lp
+*     Qc     core Q at 1 kHz used when Rc = 0                            (3)
+*     sat    1 = flux saturation on, 0 = linear core
+*     fsat   lowest frequency at which rated power P passes unsaturated  [Hz]
+*     ksat   knee flux / design peak flux (AC at P and fsat, + DC Lp*Idc)  (1.25)
+*     Idc    rated DC primary current (SE gapped core; 0 for PP)          [A]
+*     Lsr    Lp / incremental inductance deep in saturation              (100)
+*     wk     width of the saturation knee, fraction of the knee flux     (0.05)
+*
+* Equations. Every winding k is an ideal winding of relative turns N_k (whole
+* primary = 1, each half 0.5, secondary tap n = sqrt(Z/Za)) in series with its DC
+* resistance and its share of the leakage (all leakage is referred to the primary,
+* half in each plate half). Each winding forces V = N_k*V(c) and injects N_k*I_k
+* into the core node c, so the core node carries the net ampere-turns referred to the
+* whole primary. On the core node:
+*     Rc (core loss) || magnetising branch  i_m = g(lambda),  lambda = integral V(c) dt
+*     g(l) = l/Lp + sat*[s(l - Lk) - s(-l - Lk)]/(Lp/Lsr),   s(x) = w ln(1 + e^(x/w))
+*     Lk   = ksat*[sqrt(2 P Za)/(2 pi fsat) + Lp*Idc],        w = wk*Lk
+* i.e. constant Lp below the knee flux Lk, incremental Lp/(1+Lsr) well above it,
+* with a smooth (softplus) knee. The bracket is the design peak flux: AC flux at rated
+* power and fsat plus, for a gapped SE core, the DC bias flux Lp*Idc at rated current;
+* the knee sits ksat times above it (see README for the calibration). The
+* integrator is lossy with tau = 1000 s (a 1 mohm*Lp/H resistor in series with Lp),
+* so .op is well defined and the DC flux follows the DC current.
+*     -3 dB points with Rs = Za, RL = Zs (no Cw):  flow = (Za/2)/(2 pi Lp),
+*     fhigh = 2 Za/(2 pi Llk); Cw adds the Llk-Cw resonance above fhigh.
+*
+* Limits: one core for all windings (no separate half-to-half leakage), constant
+* permeability below the knee (real Lp rises with flux: datasheet Lp at 1 kHz, 1 V is
+* a lower bound), no hysteresis loop (no remanence, no low-level hysteresis
+* distortion), no interwinding (primary-secondary) capacitance, core loss as a fixed
+* resistor. See README.md.
+*
+* Design: Claude / Electrucio, 2026-09-14, for parts-index. Ideal-winding-on-a-
+* core-node idea from Winding_LCR in sources/ltwiki/extracted/lib/lib/sub/Transformers.lib;
+* UL tap as a split half-primary from Koren's PAT-4006 model
+* (sources/koren/extracted/Tubemods/Tube.lib). Original text.
+*
+.subckt ot_pp_ul_tap P1 G1 CT G2 P2 COM S1 S2 S3 params: Za=6600 Z1=4 Z2=8 Z3=16
++ P=20 ul=0.4 Lp=25 flow=0 Llk=12m fhigh=0 Cw=300p Rpri=300 rbal=0.5
++ R1=0.3 R2=0.5 R3=0.8 Rc=0 Qc=3 sat=1 fsat=70 ksat=1.25 Idc=0 Lsr=100 wk=0.05
+.param Lp_ = if(flow > 0, Za/(4*pi*flow), Lp)
+.param Llk_ = if(fhigh > 0, Za/(pi*fhigh), Llk)
+.param Rc_ = if(Rc > 0, Rc, Qc*2*pi*1k*Lp_)
+.param u = limit(ul, 0, 0.95)
+.param Rh1 = Rpri*limit(rbal, 0.01, 0.99)
+.param Rh2 = Rpri - Rh1
+.param n1 = sqrt(Z1/Za)
+.param n2 = sqrt(Z2/Za)
+.param n3 = sqrt(Z3/Za)
+.param Lk = ksat*(sqrt(2*P*Za)/(2*pi*fsat) + Lp_*abs(Idc))
+* primary: P1 -(plate)- G1 -(screen)- CT -(screen)- G2 -(plate)- P2
+XA P1 G1 c ot_w N={0.5*(1 - u)} R={Rh1*(1 - u)} L={Llk_/2*(1 - u)}
+XB G1 CT c ot_w N={0.5*u} R={Rh1*u} L={Llk_/2*u}
+XC CT G2 c ot_w N={0.5*u} R={Rh2*u} L={Llk_/2*u}
+XD G2 P2 c ot_w N={0.5*(1 - u)} R={Rh2*(1 - u)} L={Llk_/2*(1 - u)}
+* secondary: COM - S1 - S2 - S3, S3 in phase with P1
+XS1 S1 COM c ot_w N={n1} R={R1} L=0
+XS2 S2 S1 c ot_w N={n2 - n1} R={R2 - R1} L=0
+XS3 S3 S2 c ot_w N={n3 - n2} R={R3 - R2} L=0
+Cw P1 P2 {Cw}
+Rgnd COM 0 1G
+* core: loss, magnetising branch with flux saturation
+Rcore c 0 {Rc_}
+Gint 0 phi c 0 1
+Cint phi 0 1
+Rint phi 0 1k
+.param w = wk*Lk
+.func sp(x) {max(x, 0) + w*ln(1 + exp(-abs(x)/w))}
+Bm c 0 I = V(phi)/Lp_ + sat*(sp(V(phi) - Lk) - sp(-V(phi) - Lk))*Lsr/Lp_
+.ends ot_pp_ul_tap
+
+* one ideal winding of N turns (relative) on core node C, with DCR R and leakage L
+.subckt ot_w A B C params: N=1 R=1 L=0
+Rw A 1 {max(R, 1m)}
+Lw 1 2 {max(L, 1n)} Rser=0
+Vs 2 3 0
+Ew 3 B C 0 {N}
+Fw 0 C Vs {N}
+.ends ot_w
+
+.subckt ot_pp P1 CT P2 SP SN params: Za=6600 Zs=8 P=20 Lp=25 flow=0 Llk=12m
++ fhigh=0 Cw=300p Rpri=300 rbal=0.5 Rsec=0.5 Rc=0 Qc=3 sat=1 fsat=70 ksat=1.25
++ Idc=0 Lsr=100 wk=0.05
+X1 P1 g1 CT g2 P2 SN s1 s2 SP ot_pp_ul_tap Za={Za} Z1={Zs/4} Z2={Zs/2} Z3={Zs}
++ P={P} ul=0 Lp={Lp} flow={flow} Llk={Llk} fhigh={fhigh} Cw={Cw} Rpri={Rpri}
++ rbal={rbal} R1={Rsec/2} R2={Rsec*0.7071} R3={Rsec} Rc={Rc} Qc={Qc} sat={sat}
++ fsat={fsat} ksat={ksat} Idc={Idc} Lsr={Lsr} wk={wk}
+.ends ot_pp
+
+.subckt ot_pp_ul P1 G1 CT G2 P2 SP SN params: Za=6600 Zs=8 P=20 ul=0.4 Lp=25
++ flow=0 Llk=12m fhigh=0 Cw=300p Rpri=300 rbal=0.5 Rsec=0.5 Rc=0 Qc=3 sat=1
++ fsat=70 ksat=1.25 Idc=0 Lsr=100 wk=0.05
+X1 P1 G1 CT G2 P2 SN s1 s2 SP ot_pp_ul_tap Za={Za} Z1={Zs/4} Z2={Zs/2} Z3={Zs}
++ P={P} ul={ul} Lp={Lp} flow={flow} Llk={Llk} fhigh={fhigh} Cw={Cw} Rpri={Rpri}
++ rbal={rbal} R1={Rsec/2} R2={Rsec*0.7071} R3={Rsec} Rc={Rc} Qc={Qc} sat={sat}
++ fsat={fsat} ksat={ksat} Idc={Idc} Lsr={Lsr} wk={wk}
+.ends ot_pp_ul
+
+.subckt ot_pp_tap P1 CT P2 COM S1 S2 S3 params: Za=6600 Z1=4 Z2=8 Z3=16 P=20
++ Lp=25 flow=0 Llk=12m fhigh=0 Cw=300p Rpri=300 rbal=0.5 R1=0.3 R2=0.5 R3=0.8
++ Rc=0 Qc=3 sat=1 fsat=70 ksat=1.25 Idc=0 Lsr=100 wk=0.05
+X1 P1 g1 CT g2 P2 COM S1 S2 S3 ot_pp_ul_tap Za={Za} Z1={Z1} Z2={Z2} Z3={Z3}
++ P={P} ul=0 Lp={Lp} flow={flow} Llk={Llk} fhigh={fhigh} Cw={Cw} Rpri={Rpri}
++ rbal={rbal} R1={R1} R2={R2} R3={R3} Rc={Rc} Qc={Qc} sat={sat}
++ fsat={fsat} ksat={ksat} Idc={Idc} Lsr={Lsr} wk={wk}
+.ends ot_pp_tap
+
+* Single-ended: the primary P-BP is the whole winding (the internal centre point is
+* unused); Idc is the rated standing current the gapped core is designed for.
+.subckt ot_se P BP SP SN params: Za=5000 Zs=8 P=5 Lp=15 flow=0 Llk=20m fhigh=0
++ Cw=300p Rpri=250 Rsec=0.5 Rc=0 Qc=3 sat=1 fsat=70 ksat=1.25 Idc=50m Lsr=100
++ wk=0.05
+X1 P g1 ct g2 BP SN s1 s2 SP ot_pp_ul_tap Za={Za} Z1={Zs/4} Z2={Zs/2} Z3={Zs}
++ P={P} ul=0 Lp={Lp} flow={flow} Llk={Llk} fhigh={fhigh} Cw={Cw} Rpri={Rpri}
++ rbal=0.5 R1={Rsec/2} R2={Rsec*0.7071} R3={Rsec} Rc={Rc} Qc={Qc} sat={sat}
++ fsat={fsat} ksat={ksat} Idc={Idc} Lsr={Lsr} wk={wk}
+.ends ot_se
+
+.subckt ot_se_tap P BP COM S1 S2 S3 params: Za=5000 Z1=4 Z2=8 Z3=16 P=5 Lp=15
++ flow=0 Llk=20m fhigh=0 Cw=300p Rpri=250 R1=0.3 R2=0.5 R3=0.8 Rc=0 Qc=3 sat=1
++ fsat=70 ksat=1.25 Idc=50m Lsr=100 wk=0.05
+X1 P g1 ct g2 BP COM S1 S2 S3 ot_pp_ul_tap Za={Za} Z1={Z1} Z2={Z2} Z3={Z3}
++ P={P} ul=0 Lp={Lp} flow={flow} Llk={Llk} fhigh={fhigh} Cw={Cw} Rpri={Rpri}
++ rbal=0.5 R1={R1} R2={R2} R3={R3} Rc={Rc} Qc={Qc} sat={sat}
++ fsat={fsat} ksat={ksat} Idc={Idc} Lsr={Lsr} wk={wk}
+.ends ot_se_tap
+
+* ==== PRESETS (generated by make_symbols.py from ot_presets.py; edit there) ====
+* Hammond Mfg. replacement / catalogue output transformers. Sheet numbers and
+* their sources: ot_presets.py and README.md "Provenance". Sheets:
+* https://www.hammfg.com/files/parts/pdf/<PART>.pdf (fetched 2026-09-14).
+* Lp here = sheet L corrected for Cw (the sheet's L is an apparent value at 1 kHz
+* or 60 Hz); Cw and some Llk fitted to the sheet's response graph (fit_presets.py).
+* Each preset takes sat, fsat, ksat, Qc as parameters (defaults shown).
+*
+* Fender 5E3 Deluxe, Princeton (Fender 50246)  [Hammond 1760E]
+.subckt OT_1760E P1 CT P2 COM S1 S2 S3 params: sat=1 fsat=70 ksat=1.25 Qc=3
+X1 P1 CT P2 COM S1 S2 S3 ot_pp_tap Za=8500 Z1=4 Z2=8 Z3=16 P=15 Lp=19.918 Llk=42.1m
++ Cw=99p Rpri=313.6 rbal=492.3m R1=410m R2=540m R3=830m fsat={fsat} sat={sat}
++ ksat={ksat} Qc={Qc}
+.ends OT_1760E
+
+* Fender Deluxe / Deluxe Reverb (125A1A, 022640, 041318)  [Hammond 1760H]
+.subckt OT_1760H P1 CT P2 COM S1 S2 S3 params: sat=1 fsat=70 ksat=1.25 Qc=3
+X1 P1 CT P2 COM S1 S2 S3 ot_pp_tap Za=6600 Z1=4 Z2=8 Z3=16 P=20 Lp=23.032 Llk=12.3m
++ Cw=118p Rpri=347.8 rbal=500m R1=686m R2=803m R3=1.157 fsat={fsat} sat={sat}
++ ksat={ksat} Qc={Qc}
+.ends OT_1760H
+
+* Fender Pro / Bandmaster / Tremolux (125A6A, 022848, 125A7A)  [Hammond 1760J]
+.subckt OT_1760J P1 CT P2 COM S1 S2 S3 params: sat=1 fsat=70 ksat=1.25 Qc=3
+X1 P1 CT P2 COM S1 S2 S3 ot_pp_tap Za=4000 Z1=4 Z2=8 Z3=16 P=40 Lp=19.204 Llk=35.93m
++ Cw=20p Rpri=185 rbal=500m R1=356m R2=502m R3=910m fsat={fsat} sat={sat} ksat={ksat}
++ Qc={Qc}
+.ends OT_1760J
+
+* Fender Bassman 5F6A / AA864 / AB165 (022871, 125A13A)  [Hammond 1760L]
+.subckt OT_1760L P1 CT P2 COM S1 S2 S3 params: sat=1 fsat=70 ksat=1.25 Qc=3
+X1 P1 CT P2 COM S1 S2 S3 ot_pp_tap Za=4200 Z1=4 Z2=8 Z3=16 P=50 Lp=5.636 Llk=3.506m
++ Cw=66p Rpri=97.52 rbal=476.6m R1=238m R2=405m R3=578m fsat={fsat} sat={sat}
++ ksat={ksat} Qc={Qc}
+.ends OT_1760L
+
+* Fender Twin Reverb / Showman / Bassman 100 (125A29A, 022689)  [Hammond 1760W]
+.subckt OT_1760W P1 CT P2 COM S1 S2 S3 params: sat=1 fsat=70 ksat=1.25 Qc=3
+X1 P1 CT P2 COM S1 S2 S3 ot_pp_tap Za=2000 Z1=4 Z2=8 Z3=16 P=100 Lp=4.5337 Llk=1.28m
++ Cw=20p Rpri=27.68 rbal=478.3m R1=110m R2=175m R3=279m fsat={fsat} sat={sat}
++ ksat={ksat} Qc={Qc}
+.ends OT_1760W
+
+* Marshall JMP / JCM800 50 W (P-TM050)  [Hammond 1750N]
+.subckt OT_1750N P1 CT P2 COM S1 S2 S3 params: sat=1 fsat=70 ksat=1.25 Qc=3
+X1 P1 CT P2 COM S1 S2 S3 ot_pp_tap Za=3200 Z1=4 Z2=8 Z3=16 P=50 Lp=13.61 Llk=13.41m
++ Cw=477p Rpri=84.88 rbal=491.8m R1=770m R2=1.0889 R3=1.54 fsat={fsat} sat={sat}
++ ksat={ksat} Qc={Qc}
+.ends OT_1750N
+
+* Marshall JMP / JCM800 100 W (P-TM0100)  [Hammond 1750U]
+.subckt OT_1750U P1 CT P2 COM S1 S2 S3 params: sat=1 fsat=70 ksat=1.25 Qc=3
+X1 P1 CT P2 COM S1 S2 S3 ot_pp_tap Za=1700 Z1=4 Z2=8 Z3=16 P=100 Lp=8.7886 Llk=7.97m
++ Cw=20p Rpri=31.92 rbal=481.2m R1=160m R2=226.3m R3=320m fsat={fsat} sat={sat}
++ ksat={ksat} Qc={Qc}
+.ends OT_1750U
+
+* Marshall JTM45 (P-TM450)  [Hammond 1750Q]
+.subckt OT_1750Q P1 CT P2 COM S1 S2 S3 params: sat=1 fsat=70 ksat=1.25 Qc=3
+X1 P1 CT P2 COM S1 S2 S3 ot_pp_tap Za=7371 Z1=4 Z2=8 Z3=16 P=50 Lp=22.625 Llk=19.87m
++ Cw=453p Rpri=84.88 rbal=491.8m R1=290m R2=410.1m R3=580m fsat={fsat} sat={sat}
++ ksat={ksat} Qc={Qc}
+.ends OT_1750Q
+
+* Vox AC15 vintage (P-TVO15)  [Hammond 1750Y]
+.subckt OT_1750Y P1 CT P2 SP SN params: sat=1 fsat=70 ksat=1.25 Qc=3
+X1 P1 CT P2 SP SN ot_pp Za=6200 Zs=8 P=15 Lp=13.044 Llk=14.04m Cw=207p Rpri=289
++ rbal=500m Rsec=480m fsat={fsat} sat={sat} ksat={ksat} Qc={Qc}
+.ends OT_1750Y
+
+* Vox AC30 vintage (P-TVO30V), 16-ohm tap  [Hammond 1750V]
+.subckt OT_1750V P1 CT P2 SP SN params: sat=1 fsat=70 ksat=1.25 Qc=3
+X1 P1 CT P2 SP SN ot_pp Za=4000 Zs=16 P=30 Lp=6.0953 Llk=5.14m Cw=135p Rpri=140.67
++ rbal=500.2m Rsec=720m fsat={fsat} sat={sat} ksat={ksat} Qc={Qc}
+.ends OT_1750V
+
+* Vox AC30 vintage (P-TVO30V), 8-ohm tap  [Hammond 1750V]
+.subckt OT_1750V_8 P1 CT P2 SP SN params: sat=1 fsat=70 ksat=1.25 Qc=3
+X1 P1 CT P2 SP SN ot_pp Za=4000 Zs=8 P=30 Lp=6.0953 Llk=5.14m Cw=135p Rpri=140.67
++ rbal=500.2m Rsec=509.1m fsat={fsat} sat={sat} ksat={ksat} Qc={Qc}
+.ends OT_1750V_8
+
+* hi-fi UL 25 W (6V6, 6L6GC, EL34)  [Hammond 1650F]
+.subckt OT_1650F P1 G1 CT G2 P2 SP SN params: sat=1 fsat=30 ksat=1.25 Qc=3
+X1 P1 G1 CT G2 P2 SP SN ot_pp_ul Za=7600 Zs=8 P=25 ul=400m Lp=1134.1 Llk=38.8m Cw=32p
++ Rpri=210 rbal=500m Rsec=245m fsat={fsat} sat={sat} ksat={ksat} Qc={Qc}
+.ends OT_1650F
+
+* hi-fi UL 40 W (6L6GC, EL34)  [Hammond 1650H]
+.subckt OT_1650H P1 G1 CT G2 P2 SP SN params: sat=1 fsat=30 ksat=1.25 Qc=3
+X1 P1 G1 CT G2 P2 SP SN ot_pp_ul Za=6600 Zs=8 P=40 ul=400m Lp=969.2 Llk=35.2m Cw=80p
++ Rpri=145 rbal=531m Rsec=216m fsat={fsat} sat={sat} ksat={ksat} Qc={Qc}
+.ends OT_1650H
+
+* hi-fi UL 60 W (EL34, 6550, KT88)  [Hammond 1650N]
+.subckt OT_1650N P1 G1 CT G2 P2 SP SN params: sat=1 fsat=30 ksat=1.25 Qc=3
+X1 P1 G1 CT G2 P2 SP SN ot_pp_ul Za=4300 Zs=8 P=60 ul=400m Lp=530.62 Llk=17.9m Cw=133p
++ Rpri=82.5 rbal=500m Rsec=300m fsat={fsat} sat={sat} ksat={ksat} Qc={Qc}
+.ends OT_1650N
+
+* hi-fi UL 100 W (6550, KT88)  [Hammond 1650R]
+.subckt OT_1650R P1 G1 CT G2 P2 SP SN params: sat=1 fsat=30 ksat=1.25 Qc=3
+X1 P1 G1 CT G2 P2 SP SN ot_pp_ul Za=5000 Zs=8 P=100 ul=400m Lp=1257.4 Llk=26.6m Cw=99p
++ Rpri=101.21 rbal=539.4m Rsec=360m fsat={fsat} sat={sat} ksat={ksat} Qc={Qc}
+.ends OT_1650R
+
+* hi-fi UL 120 W (4 x 6550 / KT88)  [Hammond 1650T]
+.subckt OT_1650T P1 G1 CT G2 P2 SP SN params: sat=1 fsat=30 ksat=1.25 Qc=3
+X1 P1 G1 CT G2 P2 SP SN ot_pp_ul Za=1900 Zs=8 P=120 ul=400m Lp=490.78 Llk=5.96m
++ Cw=151p Rpri=47.1 rbal=500m Rsec=295m fsat={fsat} sat={sat} ksat={ksat} Qc={Qc}
+.ends OT_1650T
+
+* Fender Champ 5F1 / AA764, Princeton, Vibro Champ (125A35A, 022905), 8 k tap  [Hammond 1760C]
+.subckt OT_1760C P BP COM S1 S2 S3 params: sat=1 fsat=70 ksat=1.25 Qc=3
+X1 P BP COM S1 S2 S3 ot_se_tap Za=8000 Z1=3.2 Z2=8 Z3=16 P=5 Lp=17.648 Llk=6.03m
++ Cw=334p Rpri=359.9 rbal=500m R1=278m R2=624m R3=1.491 Idc=40m fsat={fsat} sat={sat}
++ ksat={ksat} Qc={Qc}
+.ends OT_1760C
+
+* as OT_1760C, 5 k tap  [Hammond 1760C]
+.subckt OT_1760C_5K P BP COM S1 S2 S3 params: sat=1 fsat=70 ksat=1.25 Qc=3
+X1 P BP COM S1 S2 S3 ot_se_tap Za=5000 Z1=3.2 Z2=8 Z3=16 P=5 Lp=12.076 Llk=3.77m
++ Cw=534p Rpri=272.08 rbal=500m R1=278m R2=624m R3=1.491 Idc=40m fsat={fsat} sat={sat}
++ ksat={ksat} Qc={Qc}
+.ends OT_1760C_5K
+
+* universal SE 15 W; lugs GRN/YEL/WHT = 8/16/32 ohm at 10 k  [Hammond 125ESE]
+.subckt OT_125ESE P BP COM S1 S2 S3 params: sat=1 fsat=100 ksat=1.25 Qc=3
+X1 P BP COM S1 S2 S3 ot_se_tap Za=10000 Z1=8 Z2=16 Z3=32 P=15 Lp=5.2068 Llk=16.8m
++ Cw=200p Rpri=103 rbal=500m R1=225m R2=297m R3=412m Idc=80m fsat={fsat} sat={sat}
++ ksat={ksat} Qc={Qc}
+.ends OT_125ESE
+
+* universal SE 8 W; lugs GRN/YEL/WHT = 8/16/32 ohm at 10 k  [Hammond 125CSE]
+.subckt OT_125CSE P BP COM S1 S2 S3 params: sat=1 fsat=100 ksat=1.25 Qc=3
+X1 P BP COM S1 S2 S3 ot_se_tap Za=10000 Z1=8 Z2=16 Z3=32 P=8 Lp=8.6465 Llk=16.5m
++ Cw=200p Rpri=200 rbal=500m R1=312m R2=428m R3=595m Idc=60m fsat={fsat} sat={sat}
++ ksat={ksat} Qc={Qc}
+.ends OT_125CSE

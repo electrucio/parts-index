@@ -1,0 +1,246 @@
+* spring_reverb.sub -- spring reverb tanks (Accutronics / Belton "Type 1/4/8/9"), functional
+*
+* Pins (both RCA jacks of the tank):  IP IN  input coil (+, -)    OP ON  output coil (+, -)
+*   For a "grounded" connector (5th type-code character A/B/C) tie that jack's (-) pin to the
+*   amplifier ground; an "insulated" one may float. The model has no chassis node.
+*
+* Generic subckt spring_tank, parameters (defaults = Accutronics 4AB3C1B, the Fender Twin
+* Reverb tank). Provenance of every number: README.md.
+*   Zin   input coil |Z| at 1 kHz, ohm             Rin   input coil DC resistance, ohm
+*   turns input coil turns (drive in ampere-turns)  ATnom nominal drive, A-T rms (3.5)
+*   ATsat core saturation, A-T rms (25)
+*   Zout  output coil |Z| at 1 kHz, ohm            Rout  output coil DC resistance, ohm
+*   T1 T2 T3  first-arrival delay of each spring path, s (T3=0: two paths)
+*   RT60  decay time to -60 dB at 1 kHz, s          Vnom  output EMF, V rms, nominal drive
+*   fhp flp   transducer band limits, Hz (2 poles each)
+*   fdamp     loop low-pass (HF decays faster), Hz
+*   disp      1 = dispersion on (8 allpass sections per path at fap, Qap), 0 = plain comb
+*
+* Model
+*   Input coil: Rin + Lin in series, Lin = sqrt(Zin^2 - Rin^2)/(2 pi 1 kHz). The coil current
+*   times the turns is the torque drive (A-T), soft-saturating at ATsat (tanh), normalised to
+*   ATnom and band-limited (HP fhp, LP flp).
+*   Each spring path p: first arrival after Tp, then a reflection every 2 Tp (the wave goes
+*   back and forth between the transducers, Accutronics "Theory of operation"):
+*       y_p(t) = x(t - Tp) + g_p * F[y_p](t - 2Tp)
+*   F = loop low-pass (fdamp) + allpass chain (dispersion), g_p from RT60 at 1 kHz:
+*       g_p |F(1 kHz)| = 10^(-3 * 2 Tp / RT60)
+*   The loop delay is shortened by the low-frequency group delay of F, so the echoes stay at
+*   Tp, 3Tp, 5Tp... at low frequency; higher frequencies are delayed more on every pass
+*   (the spring "chirp", qualitative). Output EMF = kemf * mean(y_p), with kemf chosen so the
+*   frequency-averaged output at nominal drive is Vnom rms; it drives Rout + Lout.
+*
+* Not modelled: the exact dispersion law of a helical spring and its modes above ~4-5 kHz,
+* spring-to-spring coupling, microphonics and hum pick-up, output coil capacitance, the
+* transducers' motional impedance (the springs do not load the input coil), temperature.
+*
+* Design: Claude / Electrucio, 2026-09-14, for parts-index.
+*
+.subckt spring_tank IP IN OP ON
++ params: Zin=8 Rin=0.81 turns=124 Zout=2250 Rout=200 T1=34m T2=41m T3=0 RT60=3.375
++ Vnom=2.2m ATnom=3.5 ATsat=25 fhp=100 flp=5k fdamp=4k fap=4k Qap=2 disp=1
+.param Lin={sqrt(Zin**2-Rin**2)/(2*pi*1k)}
+.param Lout={sqrt(Zout**2-Rout**2)/(2*pi*1k)}
+.param w3={if(T3>0,1,0)} T3e={if(T3>0,T3,30m)} npath={2+w3}
+.param hd={1/sqrt(1+(1k/fdamp)**2)}
+.param tapd={disp*8*2/(Qap*2*pi*fap)} tlp={1/(2*pi*fdamp)}
+.param ge1={10**(-6*T1/RT60)} ge2={10**(-6*T2/RT60)} ge3={10**(-6*T3e/RT60)}
+.param g1={ge1/hd} g2={ge2/hd} g3={ge3/hd}
+.param kemf={Vnom*npath/sqrt(1/(1-ge1**2)+1/(1-ge2**2)+w3/(1-ge3**2))}
+.param Cap=10n Lap={1/((2*pi*fap)**2*Cap)} Rap={2*pi*fap*Lap/Qap}
+.param ATpk={ATsat*sqrt(2)}
+* input coil and drive (A-T, soft saturation, normalised to nominal)
+Vsi IP i1 0
+Rci i1 i2 {Rin}
+Lci i2 IN {Lin}
+Bf f 0 V={ATpk/ATnom}*tanh({turns}*I(Vsi)/{ATpk})
+* transducer band limits: 2 x HP at fhp, 2 x LP at flp
+Ch1 f h1 {1/(2*pi*fhp*1k)}
+Rh1 h1 0 1k
+Bh1 h1b 0 V=V(h1)
+Ch2 h1b h2 {1/(2*pi*fhp*1k)}
+Rh2 h2 0 1k
+Bh2 h2b 0 V=V(h2)
+Rl1 h2b l1 1k
+Cl1 l1 0 {1/(2*pi*flp*1k)}
+Bl1 l1b 0 V=V(l1)
+Rl2 l1b u 1k
+Cl2 u 0 {1/(2*pi*flp*1k)}
+* spring path 1
+By1 y1 0 V=delay(V(u),{T1},{T1*1.01})+{g1}*delay(V(z1),{2*T1-tapd-tlp},{2*T1})
+Rd1 y1 q1_0 1k
+Cd1 q1_0 0 {tlp/1k}
+Bb1_1 b1_1 0 V=V(q1_0)
+Ra1_1 b1_1 m1_1 {Rap}
+La1_1 m1_1 c1_1 {Lap}
+Ca1_1 c1_1 0 {Cap}
+Bq1_1 q1_1 0 V=V(b1_1)-2*{disp}*(V(b1_1)-V(m1_1))
+Bb1_2 b1_2 0 V=V(q1_1)
+Ra1_2 b1_2 m1_2 {Rap}
+La1_2 m1_2 c1_2 {Lap}
+Ca1_2 c1_2 0 {Cap}
+Bq1_2 q1_2 0 V=V(b1_2)-2*{disp}*(V(b1_2)-V(m1_2))
+Bb1_3 b1_3 0 V=V(q1_2)
+Ra1_3 b1_3 m1_3 {Rap}
+La1_3 m1_3 c1_3 {Lap}
+Ca1_3 c1_3 0 {Cap}
+Bq1_3 q1_3 0 V=V(b1_3)-2*{disp}*(V(b1_3)-V(m1_3))
+Bb1_4 b1_4 0 V=V(q1_3)
+Ra1_4 b1_4 m1_4 {Rap}
+La1_4 m1_4 c1_4 {Lap}
+Ca1_4 c1_4 0 {Cap}
+Bq1_4 q1_4 0 V=V(b1_4)-2*{disp}*(V(b1_4)-V(m1_4))
+Bb1_5 b1_5 0 V=V(q1_4)
+Ra1_5 b1_5 m1_5 {Rap}
+La1_5 m1_5 c1_5 {Lap}
+Ca1_5 c1_5 0 {Cap}
+Bq1_5 q1_5 0 V=V(b1_5)-2*{disp}*(V(b1_5)-V(m1_5))
+Bb1_6 b1_6 0 V=V(q1_5)
+Ra1_6 b1_6 m1_6 {Rap}
+La1_6 m1_6 c1_6 {Lap}
+Ca1_6 c1_6 0 {Cap}
+Bq1_6 q1_6 0 V=V(b1_6)-2*{disp}*(V(b1_6)-V(m1_6))
+Bb1_7 b1_7 0 V=V(q1_6)
+Ra1_7 b1_7 m1_7 {Rap}
+La1_7 m1_7 c1_7 {Lap}
+Ca1_7 c1_7 0 {Cap}
+Bq1_7 q1_7 0 V=V(b1_7)-2*{disp}*(V(b1_7)-V(m1_7))
+Bb1_8 b1_8 0 V=V(q1_7)
+Ra1_8 b1_8 m1_8 {Rap}
+La1_8 m1_8 c1_8 {Lap}
+Ca1_8 c1_8 0 {Cap}
+Bq1_8 q1_8 0 V=V(b1_8)-2*{disp}*(V(b1_8)-V(m1_8))
+Bz1 z1 0 V=V(q1_8)
+* spring path 2
+By2 y2 0 V=delay(V(u),{T2},{T2*1.01})+{g2}*delay(V(z2),{2*T2-tapd-tlp},{2*T2})
+Rd2 y2 q2_0 1k
+Cd2 q2_0 0 {tlp/1k}
+Bb2_1 b2_1 0 V=V(q2_0)
+Ra2_1 b2_1 m2_1 {Rap}
+La2_1 m2_1 c2_1 {Lap}
+Ca2_1 c2_1 0 {Cap}
+Bq2_1 q2_1 0 V=V(b2_1)-2*{disp}*(V(b2_1)-V(m2_1))
+Bb2_2 b2_2 0 V=V(q2_1)
+Ra2_2 b2_2 m2_2 {Rap}
+La2_2 m2_2 c2_2 {Lap}
+Ca2_2 c2_2 0 {Cap}
+Bq2_2 q2_2 0 V=V(b2_2)-2*{disp}*(V(b2_2)-V(m2_2))
+Bb2_3 b2_3 0 V=V(q2_2)
+Ra2_3 b2_3 m2_3 {Rap}
+La2_3 m2_3 c2_3 {Lap}
+Ca2_3 c2_3 0 {Cap}
+Bq2_3 q2_3 0 V=V(b2_3)-2*{disp}*(V(b2_3)-V(m2_3))
+Bb2_4 b2_4 0 V=V(q2_3)
+Ra2_4 b2_4 m2_4 {Rap}
+La2_4 m2_4 c2_4 {Lap}
+Ca2_4 c2_4 0 {Cap}
+Bq2_4 q2_4 0 V=V(b2_4)-2*{disp}*(V(b2_4)-V(m2_4))
+Bb2_5 b2_5 0 V=V(q2_4)
+Ra2_5 b2_5 m2_5 {Rap}
+La2_5 m2_5 c2_5 {Lap}
+Ca2_5 c2_5 0 {Cap}
+Bq2_5 q2_5 0 V=V(b2_5)-2*{disp}*(V(b2_5)-V(m2_5))
+Bb2_6 b2_6 0 V=V(q2_5)
+Ra2_6 b2_6 m2_6 {Rap}
+La2_6 m2_6 c2_6 {Lap}
+Ca2_6 c2_6 0 {Cap}
+Bq2_6 q2_6 0 V=V(b2_6)-2*{disp}*(V(b2_6)-V(m2_6))
+Bb2_7 b2_7 0 V=V(q2_6)
+Ra2_7 b2_7 m2_7 {Rap}
+La2_7 m2_7 c2_7 {Lap}
+Ca2_7 c2_7 0 {Cap}
+Bq2_7 q2_7 0 V=V(b2_7)-2*{disp}*(V(b2_7)-V(m2_7))
+Bb2_8 b2_8 0 V=V(q2_7)
+Ra2_8 b2_8 m2_8 {Rap}
+La2_8 m2_8 c2_8 {Lap}
+Ca2_8 c2_8 0 {Cap}
+Bq2_8 q2_8 0 V=V(b2_8)-2*{disp}*(V(b2_8)-V(m2_8))
+Bz2 z2 0 V=V(q2_8)
+* spring path 3
+By3 y3 0 V=delay(V(u),{T3e},{T3e*1.01})+{g3}*delay(V(z3),{2*T3e-tapd-tlp},{2*T3e})
+Rd3 y3 q3_0 1k
+Cd3 q3_0 0 {tlp/1k}
+Bb3_1 b3_1 0 V=V(q3_0)
+Ra3_1 b3_1 m3_1 {Rap}
+La3_1 m3_1 c3_1 {Lap}
+Ca3_1 c3_1 0 {Cap}
+Bq3_1 q3_1 0 V=V(b3_1)-2*{disp}*(V(b3_1)-V(m3_1))
+Bb3_2 b3_2 0 V=V(q3_1)
+Ra3_2 b3_2 m3_2 {Rap}
+La3_2 m3_2 c3_2 {Lap}
+Ca3_2 c3_2 0 {Cap}
+Bq3_2 q3_2 0 V=V(b3_2)-2*{disp}*(V(b3_2)-V(m3_2))
+Bb3_3 b3_3 0 V=V(q3_2)
+Ra3_3 b3_3 m3_3 {Rap}
+La3_3 m3_3 c3_3 {Lap}
+Ca3_3 c3_3 0 {Cap}
+Bq3_3 q3_3 0 V=V(b3_3)-2*{disp}*(V(b3_3)-V(m3_3))
+Bb3_4 b3_4 0 V=V(q3_3)
+Ra3_4 b3_4 m3_4 {Rap}
+La3_4 m3_4 c3_4 {Lap}
+Ca3_4 c3_4 0 {Cap}
+Bq3_4 q3_4 0 V=V(b3_4)-2*{disp}*(V(b3_4)-V(m3_4))
+Bb3_5 b3_5 0 V=V(q3_4)
+Ra3_5 b3_5 m3_5 {Rap}
+La3_5 m3_5 c3_5 {Lap}
+Ca3_5 c3_5 0 {Cap}
+Bq3_5 q3_5 0 V=V(b3_5)-2*{disp}*(V(b3_5)-V(m3_5))
+Bb3_6 b3_6 0 V=V(q3_5)
+Ra3_6 b3_6 m3_6 {Rap}
+La3_6 m3_6 c3_6 {Lap}
+Ca3_6 c3_6 0 {Cap}
+Bq3_6 q3_6 0 V=V(b3_6)-2*{disp}*(V(b3_6)-V(m3_6))
+Bb3_7 b3_7 0 V=V(q3_6)
+Ra3_7 b3_7 m3_7 {Rap}
+La3_7 m3_7 c3_7 {Lap}
+Ca3_7 c3_7 0 {Cap}
+Bq3_7 q3_7 0 V=V(b3_7)-2*{disp}*(V(b3_7)-V(m3_7))
+Bb3_8 b3_8 0 V=V(q3_7)
+Ra3_8 b3_8 m3_8 {Rap}
+La3_8 m3_8 c3_8 {Lap}
+Ca3_8 c3_8 0 {Cap}
+Bq3_8 q3_8 0 V=V(b3_8)-2*{disp}*(V(b3_8)-V(m3_8))
+Bz3 z3 0 V=V(q3_8)
+* output EMF behind the output coil
+Be e 0 V={kemf/npath}*(V(y1)+V(y2)+{w3}*V(y3))
+Bo OP o1 V=V(e)
+Rco o1 o2 {Rout}
+Lco o2 ON {Lout}
+Rli IN 0 1G
+Rlo ON 0 1G
+.ends spring_tank
+
+* ------------------------------------------------------------ presets (type codes)
+* Accutronics / Belton 7-character code: type, input Z, output Z, decay, connectors,
+* locking, mounting. Only the first four change the electrical model; e.g. 4AB3C1C (the
+* '63 Fender Reverb reissue tank) is electrically ACC_4AB3C1B. Values: README.md.
+* Type 4 (2 paths, 16.75 in): Fender Twin / Deluxe Reverb tank, 8 ohm in, 2250 out, long
+.subckt ACC_4AB3C1B IP IN OP ON
+X1 IP IN OP ON spring_tank Zin=8 Rin=0.81 turns=124 Zout=2250 Rout=200 T1=34m T2=41m T3=0
++ RT60=3.375 Vnom=2.2m
+.ends ACC_4AB3C1B
+* Type 4, 1475 ohm in (valve drive through a plate resistor / small transformer), long
+.subckt ACC_4FB3A1A IP IN OP ON
+X1 IP IN OP ON spring_tank Zin=1475 Rin=200 turns=1700 Zout=2250 Rout=200 T1=34m T2=41m
++ T3=0 RT60=3.375 Vnom=2.2m
+.ends ACC_4FB3A1A
+* Type 4, 600 ohm in, medium decay (the code Accutronics uses as its example, 4EB2C1B)
+.subckt ACC_4EB2C1B IP IN OP ON
+X1 IP IN OP ON spring_tank Zin=600 Rin=58 turns=1100 Zout=2250 Rout=200 T1=34m T2=41m
++ T3=0 RT60=2.375 Vnom=2.2m
+.ends ACC_4EB2C1B
+* Type 8 (3 springs, 9.25 in), 10 ohm in, 2575 out, medium. Delays: estimate (README)
+.subckt ACC_8AB2A1B IP IN OP ON
+X1 IP IN OP ON spring_tank Zin=10 Rin=0.81 turns=124 Zout=2575 Rout=200 T1=18.2m T2=20.4m
++ T3=22.6m RT60=2.375 Vnom=2.35m
+.ends ACC_8AB2A1B
+* Type 8, 800 ohm in, medium: Fender Blues Junior tank
+.subckt ACC_8EB2C1B IP IN OP ON
+X1 IP IN OP ON spring_tank Zin=800 Rin=58 turns=1100 Zout=2575 Rout=200 T1=18.2m T2=20.4m
++ T3=22.6m RT60=2.375 Vnom=2.35m
+.ends ACC_8EB2C1B
+* Type 9 (6 springs in 3 paths, 16.75 in), 10 ohm in, 2575 out, medium
+.subckt ACC_9AB2C1B IP IN OP ON
+X1 IP IN OP ON spring_tank Zin=10 Rin=0.81 turns=124 Zout=2575 Rout=200 T1=33m T2=37m
++ T3=41m RT60=2.375 Vnom=2.35m
+.ends ACC_9AB2C1B

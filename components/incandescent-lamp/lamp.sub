@@ -1,0 +1,96 @@
+* lamp.sub -- small incandescent (tungsten-filament) lamps for LTspice:
+* amplitude stabilisers (Wien-bridge oscillators), lamp/LDR optos, tremolos, pilots
+*
+* Pins
+*     lamp, presets   A B     the filament (non-polar)
+*
+* Parameters of lamp (defaults: #327, README "Provenance")
+*     Vr   rated (design) voltage, V                                  28
+*     Ir   rated current at Vr, A                                    40m
+*     Rc   cold resistance at Ta, ohm (measured)                      65
+*     fc   fraction of the rated power lost by conduction to the     0.0166
+*          leads at the rated point (the rest is radiated)
+*     Ta   ambient temperature, C                                     25
+*     kC   heat-capacity multiplier (1 = straight-wire estimate)      1
+*     T0   filament temperature forced at t = 0, K (0 = operating    0
+*          point); e.g. to start an oscillator with a warm lamp
+*
+* Model. The filament temperature T (kelvin, node t) obeys
+*     Cth(T) dT/dt = V^2/R(T) - Gc (T - Ta) - A sigma (eps(T) T^4 - eps(Ta) Ta^4)
+*     R(T) = Rc rho(T)/rho(Ta)
+* rho: resistivity of tungsten, White & Minges 1997 polynomial (100-3600 K);
+* cp: heat capacity of tungsten, White & Minges (300-3400 K); both as quoted by
+* Tolias, arXiv:1703.06302. eps: total hemispherical emissivity, 0.0992 at 1000 K
+* (Verret & Ramanathan 1978), taken proportional to T (assumption).
+* Calibration from the rating: Th solves rho(Th)/rho(Ta) = (Vr/Ir)/Rc (Newton, in
+* .param); Gc = fc Vr Ir/(Th - Ta); A = (1-fc) Vr Ir/(sigma (eps(Th) Th^4 - ...)).
+* Heat capacity: a straight round wire with resistance Vr/Ir at Th and radiating
+* area A has diameter d = (4 rho(Th) A/(pi^2 Vr/Ir))^(1/3) and volume A d/4, so
+* Cth(T) = kC A d/4 * 19250 kg/m3 * cp(T)/0.18384 kg/mol.
+* The cold/hot ratio (about 10), the I ~ V^0.55 law and the tens-of-ms thermal time
+* constant at rated power follow from these; they are checked by the bench.
+*
+* No A-devices. Not modelled: coil self-shadowing (use kC), gas-filled lamps
+* (convection), the tungsten-halogen cycle, light output (see README), end-of-life,
+* resistance change of the leads, the inductance of the coil.
+*
+* Design: Claude / Electrucio, 2026-09-14, for parts-index.
+*
+
+.subckt lamp A B params: Vr=28 Ir=40m Rc=65 fc=0.0166 Ta=25 kC=1 T0=0
+* tungsten resistivity (micro-ohm cm) and its derivative, heat capacity J/(mol K),
+* emissivity
+.func rw(T) {-0.9680 + 1.9274e-2*T + 7.8260e-6*T*T - 1.8517e-9*T**3 + 2.0790e-13*T**4}
+.func drw(T) {1.9274e-2 + 1.5652e-5*T - 5.5551e-9*T*T + 8.316e-13*T**3}
+.func cw(T) {21.868372 + 8.068661e-3*T - 3.756196e-6*T*T + 1.075862e-9*T**3 + 1.406637e4/(T*T)}
+.func ew(T) {9.92e-5*T}
+.param TK = Ta + 273.15
+.param kr = Vr/Ir/Rc
+* filament temperature at the rating (Newton on rho(T)/rho(Ta) = kr)
+.param T0n = TK*kr**0.8333
+.param T1 = T0n - (rw(T0n) - kr*rw(TK))/drw(T0n)
+.param T2 = T1 - (rw(T1) - kr*rw(TK))/drw(T1)
+.param T3 = T2 - (rw(T2) - kr*rw(TK))/drw(T2)
+.param T4 = T3 - (rw(T3) - kr*rw(TK))/drw(T3)
+.param Th = T4 - (rw(T4) - kr*rw(TK))/drw(T4)
+.param Pr = Vr*Ir
+.param Gc = fc*Pr/(Th - TK)
+.param Ar = (1 - fc)*Pr/(5.670374e-8*(ew(Th)*Th**4 - ew(TK)*TK**4))
+.param dw = (4*rw(Th)*1e-8*Ar/(pi*pi*Vr/Ir))**(1/3.)
+.param kv = kC*Ar*dw/4*19250/0.18384
+.param kT0 = if(T0 > 0, 1e3, 0)
+* thermal node: V(t) = filament temperature in kelvin
+Ct t 0 1
+Vta ta 0 {TK}
+Rt t ta 1T
+Bt 0 t I = (V(A,B)**2/({Rc}*rw(limit(V(t), 100, 3600))/rw({TK}))
++   - {Gc}*(V(t) - {TK}) - {Ar}*5.670374e-8*(ew(limit(V(t), 100, 3600))*limit(V(t), 100, 3600)**4
++   - ew({TK})*{TK}**4)) / ({kv}*cw(limit(V(t), 250, 3600)))
++   + {kT0}*({T0} - V(t))*exp(-time/1u)
+* the filament
+Bf A B I = V(A,B)/({Rc}*rw(limit(V(t), 100, 3600))/rw({TK}))
+.ends lamp
+
+* ---------------------------------------------------------------- presets
+* #327: 28 V 40 mA T-1 3/4 midget flanged (JKL lamps #327 page); Rc = 65 ohm
+* measured by R. Elliott (sound-au.com/articles/sinewave.htm, sect. 4.2); fc fitted
+* to his 0.5 V / 4.5 mA point (fit_lamp.py).
+.subckt LAMP_327 A B params: T0=0
+X1 A B lamp Vr=28 Ir=40m Rc=65 fc=0.0166 T0={T0}
+.ends LAMP_327
+* #47: 6.3 V 150 mA T-3 1/4 bayonet pilot lamp, 0.5 MSCP (miniaturebulb.com #47 page);
+* no published cold value: Rc for the same filament temperature as the #327, fc as
+* the #327. Estimates: its efficacy (6.3 lm/0.945 W = 6.7 lm/W against 3.8 for the
+* #327) says its filament is hotter, so the real Rc is probably lower. README.
+.subckt LAMP_47 A B params: T0=0
+X1 A B lamp Vr=6.3 Ir=150m Rc=3.9 fc=0.0166 T0={T0}
+.ends LAMP_47
+* 12 V 40 mA grain-of-wheat: rating only; Rc and fc as for the #47 (estimates).
+.subckt LAMP_12V40 A B params: T0=0
+X1 A B lamp Vr=12 Ir=40m Rc=27.86 fc=0.0166 T0={T0}
+.ends LAMP_12V40
+* 6 V 60 mA lamp of sound-au project 179: Rc = 10 ohm ("about 10 ohms"); fc fitted
+* to its operating point 0.5 V / 30 ohm (fit_lamp.py).
+.subckt LAMP_6V60 A B params: T0=0
+X1 A B lamp Vr=6 Ir=60m Rc=10 fc=0.0621 T0={T0}
+.ends LAMP_6V60

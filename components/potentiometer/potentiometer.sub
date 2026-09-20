@@ -1,0 +1,170 @@
+* potentiometer.sub -- rotary/slide potentiometers for LTspice
+*
+* Pins, in the lug order printed on pot datasheets:
+*     CCW  lug 1, the end the wiper reaches at rot=0 (fully anticlockwise)
+*     W    lug 2, wiper
+*     CW   lug 3, the end the wiper reaches at rot=1
+*
+* Parameters
+*     R     total resistance CCW-CW                      (default 100k)
+*     rot   rotation, 0 (CCW) .. 1 (CW); clamped          (default 0.5)
+*           a dial marked 0..10 at setting d is rot=d/10
+*     L     taper: fraction of R between CCW and W at mid-rotation
+*           (log/revlog only). 0.10 = IEC "10A"/MIL -20 dB, 0.15 = "15A"/JIS
+*           audio; check the maker's curve for a particular pot
+*     seg   0 = smooth exponential law, 1 = two straight segments meeting at
+*           (0.5, L), how many carbon "audio" pots are actually made
+*     Rend  residual resistance at each end of the track           (default 1)
+*     Rw    wiper contact resistance, in series with W              (default 1m)
+*
+* Taper law f(rot) = R(CCW-W)/R:
+*     lin     f = rot
+*     log     f = (a^rot - 1)/(a - 1), a = (1/L - 1)^2, so f(0.5) = L      "A"
+*     revlog  f = 1 - log(1 - rot)                                         "C"
+*     seg=1   f = 2*L*rot (rot<0.5), L + 2*(1-L)*(rot-0.5) (rot>=0.5)
+* R(CCW-W) = R*f + Rend, R(W-CW) = R*(1-f) + Rend.
+*
+* Subckts
+*     pot_lin, pot_log, pot_revlog                     CCW W CW
+*     pot_pts                                          CCW W CW
+*                                                      any taper given as points:
+*                                                      f10, f50, f90 = fraction of R
+*                                                      between CCW and W at 10/50/90 %
+*                                                      rotation (read off the maker's
+*                                                      chart or measured), linear
+*                                                      between (0,0) and (1,1)
+*     pot_sym                                          CCW W CW
+*                                                      symmetric taper around the
+*                                                      centre, f(0.5)=0.5; Lq = f(0.25).
+*                                                      Lq<0.25: S-curve (slow at both
+*                                                      ends); Lq>0.25: fast at the ends,
+*                                                      flat in the middle. Makers call
+*                                                      these "W", "S", "MN"... with no
+*                                                      common meaning: set Lq from the chart
+*     pot_dual_lin, pot_dual_log, pot_dual_revlog      CCW1 W1 CW1 CCW2 W2 CW2
+*                                                      (ganged: one rot; section 2
+*                                                      may be off by drot in rotation
+*                                                      and dR relative in resistance,
+*                                                      the gang tracking error)
+*     pot_log_tap                                      CCW W CW TAP
+*                                                      fixed tap at rotation `tap`
+*                                                      (loudness taps, Fender/
+*                                                      Gibson tapped volume pots)
+*     pot_lin_vc, pot_log_vc, pot_revlog_vc            CCW W CW CTRL
+*                                                      rotation from a node:
+*                                                      rot = V(CTRL) (volts, 0..1),
+*                                                      for sweeps in .tran (wah, fades)
+*
+* Design: Claude / Electrucio, 2026-09-14, for parts-index. Taper maths is the
+* standard exponential through (0,0),(0.5,L),(1,1) also used by IEC 60393 style
+* libraries (see sources/ltwiki/.../R-poti.lib, credited for the idea of L and S).
+*
+.subckt pot_lin CCW W CW params: R=100k rot=0.5 Rend=1 Rw=1m
+.param r0 = limit(rot, 0, 1)
+R1 CCW wi {R*r0 + Rend}
+R2 wi CW {R*(1 - r0) + Rend}
+Rwiper wi W {Rw}
+.ends pot_lin
+
+.subckt pot_log CCW W CW params: R=100k rot=0.5 L=0.1 seg=0 Rend=1 Rw=1m
+.param r0 = limit(rot, 0, 1)
+.param Lc = limit(L, 1e-3, 0.999)
+.param a = (1/Lc - 1)**2
+.param fexp = if(abs(Lc - 0.5) < 1e-6, r0, (a**r0 - 1)/(a - 1))
+.param fseg = if(r0 < 0.5, 2*Lc*r0, Lc + 2*(1 - Lc)*(r0 - 0.5))
+.param f = if(seg > 0.5, fseg, fexp)
+R1 CCW wi {R*f + Rend}
+R2 wi CW {R*(1 - f) + Rend}
+Rwiper wi W {Rw}
+.ends pot_log
+
+.subckt pot_revlog CCW W CW params: R=100k rot=0.5 L=0.1 seg=0 Rend=1 Rw=1m
+.param r0 = 1 - limit(rot, 0, 1)
+.param Lc = limit(L, 1e-3, 0.999)
+.param a = (1/Lc - 1)**2
+.param fexp = if(abs(Lc - 0.5) < 1e-6, r0, (a**r0 - 1)/(a - 1))
+.param fseg = if(r0 < 0.5, 2*Lc*r0, Lc + 2*(1 - Lc)*(r0 - 0.5))
+.param f = 1 - if(seg > 0.5, fseg, fexp)
+R1 CCW wi {R*f + Rend}
+R2 wi CW {R*(1 - f) + Rend}
+Rwiper wi W {Rw}
+.ends pot_revlog
+
+.subckt pot_pts CCW W CW params: R=100k rot=0.5 f10=0.02 f50=0.15 f90=0.6 Rend=1 Rw=1m
+.param r0 = limit(rot, 0, 1)
+.param f = table(r0, 0, 0, 0.1, f10, 0.5, f50, 0.9, f90, 1, 1)
+R1 CCW wi {R*f + Rend}
+R2 wi CW {R*(1 - f) + Rend}
+Rwiper wi W {Rw}
+.ends pot_pts
+
+.subckt pot_sym CCW W CW params: R=100k rot=0.5 Lq=0.1 Rend=1 Rw=1m
+.param r0 = limit(rot, 0, 1)
+* each half is the exponential law through (0,0),(0.5,Lh),(1,1) scaled into
+* [0,0.5] and mirrored; Lh = 2*Lq so that f(0.25) = Lq
+.param Lh = limit(2*Lq, 1e-3, 0.999)
+.param a = (1/Lh - 1)**2
+.func g(x) {if(abs(Lh - 0.5) < 1e-6, x, (a**x - 1)/(a - 1))}
+.param f = if(r0 < 0.5, 0.5*g(2*r0), 1 - 0.5*g(2*(1 - r0)))
+R1 CCW wi {R*f + Rend}
+R2 wi CW {R*(1 - f) + Rend}
+Rwiper wi W {Rw}
+.ends pot_sym
+
+.subckt pot_dual_lin CCW1 W1 CW1 CCW2 W2 CW2 params: R=100k rot=0.5 Rend=1 Rw=1m drot=0 dR=0
+X1 CCW1 W1 CW1 pot_lin R={R} rot={rot} Rend={Rend} Rw={Rw}
+X2 CCW2 W2 CW2 pot_lin R={R*(1+dR)} rot={rot+drot} Rend={Rend} Rw={Rw}
+.ends pot_dual_lin
+
+.subckt pot_dual_log CCW1 W1 CW1 CCW2 W2 CW2 params: R=100k rot=0.5 L=0.1 seg=0 Rend=1 Rw=1m drot=0 dR=0
+X1 CCW1 W1 CW1 pot_log R={R} rot={rot} L={L} seg={seg} Rend={Rend} Rw={Rw}
+X2 CCW2 W2 CW2 pot_log R={R*(1+dR)} rot={rot+drot} L={L} seg={seg} Rend={Rend} Rw={Rw}
+.ends pot_dual_log
+
+.subckt pot_dual_revlog CCW1 W1 CW1 CCW2 W2 CW2 params: R=100k rot=0.5 L=0.1 seg=0 Rend=1 Rw=1m drot=0 dR=0
+X1 CCW1 W1 CW1 pot_revlog R={R} rot={rot} L={L} seg={seg} Rend={Rend} Rw={Rw}
+X2 CCW2 W2 CW2 pot_revlog R={R*(1+dR)} rot={rot+drot} L={L} seg={seg} Rend={Rend} Rw={Rw}
+.ends pot_dual_revlog
+
+* Tapped log pot. The tap is a fixed point of the track at rotation `tap`; the
+* wiper is on one side of it or the other, so five resistors are used and the
+* two that don't exist for the current rotation are left at 1 Tohm.
+.subckt pot_log_tap CCW W CW TAP params: R=1Meg rot=0.5 L=0.1 seg=0 tap=0.5 Rend=1
+.param r0 = limit(rot, 0, 1)
+.param Lc = limit(L, 1e-3, 0.999)
+.param a = (1/Lc - 1)**2
+.func ff(x) {if(seg > 0.5, if(x < 0.5, 2*Lc*x, Lc + 2*(1 - Lc)*(x - 0.5)),
++        if(abs(Lc - 0.5) < 1e-6, x, (a**x - 1)/(a - 1)))}
+.param fw = ff(r0)
+.param ft = ff(limit(tap, 0, 1))
+.param below = if(r0 < limit(tap, 0, 1), 1, 0)
+R1 CCW W   {if(below, R*fw + Rend, 1T)}
+R2 W TAP   {if(below, R*(ft - fw) + Rend, R*(fw - ft) + Rend)}
+R3 TAP CW  {if(below, R*(1 - ft) + Rend, 1T)}
+R4 CCW TAP {if(below, 1T, R*ft + Rend)}
+R5 W CW    {if(below, 1T, R*(1 - fw) + Rend)}
+.ends pot_log_tap
+
+* Voltage-controlled versions: rot follows V(CTRL) (clamped 0..1), for sweeps in
+* .tran. Behavioural current sources, so the resistance can change during a run.
+.subckt pot_lin_vc CCW W CW CTRL params: R=100k Rend=1
+B1 CCW W I = V(CCW,W) / (R*limit(V(CTRL),0,1) + Rend)
+B2 W CW I = V(W,CW) / (R*(1 - limit(V(CTRL),0,1)) + Rend)
+Rc CTRL 0 1G
+.ends pot_lin_vc
+
+.subckt pot_log_vc CCW W CW CTRL params: R=100k L=0.1 Rend=1
+.param Lc = limit(L, 1e-3, 0.499)
+.param a = (1/Lc - 1)**2
+B1 CCW W I = V(CCW,W) / (R*(a**limit(V(CTRL),0,1) - 1)/(a - 1) + Rend)
+B2 W CW I = V(W,CW) / (R*(1 - (a**limit(V(CTRL),0,1) - 1)/(a - 1)) + Rend)
+Rc CTRL 0 1G
+.ends pot_log_vc
+
+.subckt pot_revlog_vc CCW W CW CTRL params: R=100k L=0.1 Rend=1
+.param Lc = limit(L, 1e-3, 0.499)
+.param a = (1/Lc - 1)**2
+B1 CCW W I = V(CCW,W) / (R*(1 - (a**(1 - limit(V(CTRL),0,1)) - 1)/(a - 1)) + Rend)
+B2 W CW I = V(W,CW) / (R*(a**(1 - limit(V(CTRL),0,1)) - 1)/(a - 1) + Rend)
+Rc CTRL 0 1G
+.ends pot_revlog_vc

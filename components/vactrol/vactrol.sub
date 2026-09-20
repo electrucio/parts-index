@@ -1,0 +1,99 @@
+* vactrol.sub -- LED/LDR analog optocouplers (vactrols) for LTspice
+*
+* Pins (physical order: LED end, then cell end)
+*     vactrol, presets   A K C1 C2     LED anode, LED cathode, cell, cell
+*
+* Parameters of vactrol (defaults: VTL5C1, README "Provenance")
+*     Rref    cell resistance at 1 mA LED current minus Rs, dark adapted  19.85k
+*     gamma   CdS recombination exponent (decay shape)                    0.8299
+*     m       LED/coupling exponent: light ~ (I/1 mA)^m;                   1.987
+*             statically R - Rs ~ I^-(m*gamma)
+*     Rs      series part of the cell resistance (flattens the curve)    154.7
+*     Rdark   ultimate dark resistance                                    500Meg
+*     tau     recombination time scale                                    3.896m
+*     ka      attack factor                                               0.1394
+*     kLH     light-history ratio R(light adapted)/R(dark adapted)        1.5
+*     hist    light-history state at t=0 (0 dark adapted = datasheet)    0
+*     thist   light-history time constant, s                              3600
+*     Iadapt  LED current of half light adaptation                        4m
+*     Cc      cell capacitance                                            5p
+*     Is N RsLED Cj BV   LED diode                                        PerkinElmer fit
+*
+* Model: LED (diode) -> light e = (I_LED/1 mA)^m -> ldr_cell (the CdS carrier balance of
+* components/ldr/ldr.sub, copied verbatim below) with Eref = 1. See ldr.sub for the
+* equations. m > 1: LED efficiency rising with current at low current, plus the
+* superlinear coupling seen in every vactrol datasheet (slope R(0.5 mA)/R(5 mA) > 10).
+*
+* No A-devices. Not modelled: temperature coefficient (1 %/C Xvive, 0.7 %/C Silonex),
+* the 0.5 pF LED-to-cell coupling, unit-to-unit spread (datasheets: 25 % tracking),
+* cell voltage/power limits.
+*
+* Design: Claude / Electrucio, 2026-09-14, for parts-index.
+*
+
+* >>> ldr_cell (master copy; components/vactrol/vactrol.sub carries it verbatim)
+* A B = cell, L = light in units of Eref (e = V(L)/Eref)
+.subckt ldr_cell A B L params: Rref=14.14k Eref=10 gamma=0.6 Rs=1m Rdark=10Meg
++ tau=21.09m ka=0.8336 kLH=1 href=0 hist=0 thist=3600 Eadapt=300 Cc=0
+.param g = limit(gamma, 0.05, 0.99)
+.param q1 = 1/g - 1
+.param eth = ((Rdark - Rs)/Rref)**(-1/g)
+.param mref = 1 + (kLH - 1)*href
+RL L 0 1G
+* u = ln(n) on a 1 F capacitor; imb = normalised generation/recombination imbalance
+* (only its sign is used, to select the attack factor)
+* (internal node names must not collide with the ports A B L: SPICE is case-blind)
+Cu u 0 1
+Ru u 0 1T
+Bb imb 0 V = (max(V(L), 0)/{Eref} + {eth})*exp(-limit(V(u), -60, 60)/{g}) - 1
+Bu 0 u I = (1 + ({ka} - 1)*(0.5 + 0.5*tanh(100*limit(V(imb), -1, 1))))/{tau}
++   * ((max(V(L), 0)/{Eref} + {eth})*exp(-limit(V(u), -60, 60)) - exp({q1}*limit(V(u), -60, 60)))
+* light history h (slow), pinned to hist at the operating point
+Ch h 0 1
+Rh h 0 1T
+Bh 0 h I = (max(V(L), 0)/(max(V(L), 0) + {Eadapt}) - V(h))/{thist}
++   + 1e3*({hist} - V(h))*exp(-time/1u)
+* the cell
+Bc A B I = V(A, B)/({Rs} + {Rref}*(1 + ({kLH} - 1)*V(h))/{mref}*exp(-limit(V(u), -60, 60)))
+Ccell A B {max(Cc, 1e-18)}
+.ends ldr_cell
+* <<< ldr_cell
+
+* ---------------------------------------------------------------- generic vactrol
+.subckt vactrol A K C1 C2 params: Rref=19.85k gamma=0.8299 m=1.987 Rs=154.7
++ Rdark=500Meg tau=3.896m ka=0.1394 kLH=1.5 hist=0 thist=3600 Iadapt=4m Cc=5p
++ Is=4.463e-20 N=1.539 RsLED=1.62 Cj=20p BV=3
+D1 A n1 LEDV
+.model LEDV D(Is={Is} N={N} Rs={RsLED} Cjo={Cj} BV={BV} IBV=10u)
+Vs n1 K 0
+Bl lt 0 V = (max(I(Vs), 0)/1m)**{m}
+Rlt lt 0 1G
+X1 C1 C2 lt ldr_cell Rref={Rref} Eref=1 gamma={gamma} Rs={Rs} Rdark={Rdark} tau={tau}
++ ka={ka} kLH={kLH} href=0 hist={hist} thist={thist} Eadapt={(Iadapt/1m)**m} Cc={Cc}
+.ends vactrol
+
+* ---------------------------------------------------------------- presets
+* PerkinElmer VTL5C (type 1, 3, 4 material), fitted to the datasheet table and curves;
+* LED: PerkinElmer input characteristics. Xvive VTL5C6 (type 0) fitted to the Xvive
+* table; LED: Xvive curve. Silonex NSL-32SR2 fitted to its curve and times; LED
+* estimated from the Xvive curve (Silonex gives only VF max). README "Provenance".
+.subckt VTL5C1 A K C1 C2 params: hist=0
+X1 A K C1 C2 vactrol Rref=19.85k gamma=0.8299 m=1.987 Rs=154.7 Rdark=500Meg tau=3.896m
++ ka=0.1394 kLH=1.5 hist={hist}
+.ends VTL5C1
+.subckt VTL5C3 A K C1 C2 params: hist=0
+X1 A K C1 C2 vactrol Rref=30.58k gamma=0.6476 m=1.249 Rs=1m Rdark=32.09Meg tau=7.635m
++ ka=0.4896 kLH=1.2 hist={hist}
+.ends VTL5C3
+.subckt VTL5C4 A K C1 C2 params: hist=0
+X1 A K C1 C2 vactrol Rref=1.135k gamma=0.7499 m=1.700 Rs=64.7 Rdark=22.67G tau=46.48m
++ ka=0.3236 kLH=1.7 hist={hist}
+.ends VTL5C4
+.subckt VTL5C6 A K C1 C2 params: hist=0
+X1 A K C1 C2 vactrol Rref=30k gamma=0.5259 m=1.902 Rs=1m Rdark=100Meg tau=1.917m
++ ka=0.034 kLH=1.2 hist={hist} Is=5.097e-11 N=3.923 RsLED=1m BV=3.8
+.ends VTL5C6
+.subckt NSL32SR2 A K C1 C2 params: hist=0
+X1 A K C1 C2 vactrol Rref=236.0 gamma=0.4477 m=1.9385 Rs=23.3 Rdark=50Meg tau=56.73u
++ ka=2.046e-4 kLH=1.2 hist={hist} Is=5.097e-11 N=3.923 RsLED=1m BV=4
+.ends NSL32SR2

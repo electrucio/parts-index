@@ -1,0 +1,39 @@
+Version 4
+SymbolType CELL
+LINE Normal 0 16 0 48
+LINE Normal 0 72 0 112
+LINE Normal -16 48 16 48
+LINE Normal -16 48 0 72
+LINE Normal 16 48 0 72
+LINE Normal -16 72 16 72
+LINE Normal 24 52 60 52
+LINE Normal 60 52 52 48
+LINE Normal 60 52 52 56
+LINE Normal 24 68 60 68
+LINE Normal 60 68 52 64
+LINE Normal 60 68 52 72
+LINE Normal 96 16 96 32
+LINE Normal 96 96 96 112
+RECTANGLE Normal 84 32 108 96
+RECTANGLE Normal -32 24 124 104 1
+TEXT -4 24 Right 0 A
+TEXT -4 108 Right 0 K
+WINDOW 0 136 32 Left 2
+WINDOW 3 136 96 Left 2
+SYMATTR Value hist=0
+SYMATTR Prefix X
+SYMATTR SpiceModel VTL5C4
+SYMATTR ModelFile vactrol.sub
+SYMATTR Description PerkinElmer VTL5C4 (type 4: low on-resistance, long decay) vactrol. Pins A K C1 C2
+PIN 0 16 NONE 8
+PINATTR PinName A
+PINATTR SpiceOrder 1
+PIN 0 112 NONE 8
+PINATTR PinName K
+PINATTR SpiceOrder 2
+PIN 96 16 NONE 8
+PINATTR PinName C1
+PINATTR SpiceOrder 3
+PIN 96 112 NONE 8
+PINATTR PinName C2
+PINATTR SpiceOrder 4

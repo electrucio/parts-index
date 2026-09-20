@@ -1,0 +1,42 @@
+Version 4
+SymbolType CELL
+RECTANGLE Normal 16 16 80 112
+LINE Normal 0 96 16 96
+LINE Normal 80 96 96 96
+LINE Normal 16 96 80 96 2
+LINE Normal 0 32 16 32
+LINE Normal 80 32 96 32
+LINE Normal 16 32 40 32 2
+LINE Normal 40 32 48 40
+LINE Normal 48 40 56 32
+LINE Normal 56 32 80 32
+TEXT -4 24 Right 0 PT
+TEXT -4 104 Right 0 PS
+TEXT 100 24 Left 0 T
+TEXT 100 104 Left 0 S
+LINE Normal 80 64 96 64
+LINE Normal 48 64 80 64
+LINE Normal 48 64 48 44
+TEXT 100 56 Left 0 TN
+WINDOW 0 128 32 Left 2
+WINDOW 3 128 96 Left 2
+SYMATTR Value plug=1
+SYMATTR Prefix X
+SYMATTR SpiceModel jack_mono_sw
+SYMATTR ModelFile switch.sub
+SYMATTR Description Switched mono jack (tip normal TN), plug 0/1
+PIN 96 32 NONE 8
+PINATTR PinName T
+PINATTR SpiceOrder 1
+PIN 96 96 NONE 8
+PINATTR PinName S
+PINATTR SpiceOrder 2
+PIN 96 64 NONE 8
+PINATTR PinName TN
+PINATTR SpiceOrder 3
+PIN 0 32 NONE 8
+PINATTR PinName PT
+PINATTR SpiceOrder 4
+PIN 0 96 NONE 8
+PINATTR PinName PS
+PINATTR SpiceOrder 5

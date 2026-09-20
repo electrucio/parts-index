@@ -1,0 +1,200 @@
+* speaker.sub -- loudspeaker electrical impedance from Thiele-Small parameters
+*
+* Subckt
+*     speaker   P N      voice coil + motional impedance (+ optional closed box)
+*     presets SPK_<model>_<ohms>, pins P N (see README.md, "Provenance")
+*   P is the terminal that moves the cone outwards with a positive voltage.
+*
+* Parameters (SI; maker T/S data, free air)
+*     Re     voice-coil DC resistance                              [ohm] (6.4)
+*     Fs     free-air resonance                                    [Hz]  (80)
+*     Qms    mechanical Q                                                 (5)
+*     Qes    electrical Q                                                 (1)
+*     Le     voice-coil inductance at 1 kHz = Im{Z_coil(1 kHz)}/omega, as makers
+*            quote "Le @ 1 kHz"                                    [H]   (0.7m)
+*     n      semi-inductor exponent: the voice-coil impedance is K*(j*omega)^n
+*            (n = 1: pure inductor; eddy losses make n < 1)              (0.7)
+*     Vb     closed-box volume, 0 = free air / infinite baffle     [m^3] (0)
+*     Vas    compliance-equivalent volume (needed only when Vb > 0) [m^3] (30m)
+*
+* Equations (electrical analogue; Leach-type lossy voice coil)
+*     Z = Re + Zcoil + Zmot
+*     Zcoil ~ K*(j w)^n, scaled so that Im{Zcoil(2 pi 1 kHz)} = 2 pi 1 kHz * Le exactly
+*     Zmot = Res || j w Lces || 1/(j w Cmes)
+*        Res  = Re*Qms/Qes           (the peak at Fs is Re + Res = Re*(1 + Qms/Qes)
+*                                     plus the small coil term at Fs)
+*        Lces = Re/(2 pi Fs Qes),   Cmes = Qes/(2 pi Fs Re)
+*     closed box: the air spring stiffens the suspension, Lces -> Lces/(1 + Vas/Vb), so
+*        Fc = Fs*sqrt(1 + Vas/Vb) and Qms, Qes scale by the same factor
+*     Zcoil: series cells R_k || L_k with time constants tau_k = L_k/R_k log-spaced 2 per
+*     decade from 1/(2 pi 2 MHz) to 1/(2 pi 0.2 Hz), R_k = A*tau_k^-n (a constant-phase
+*     approximation of (j w)^n); the infinite tails beyond are summed exactly: the cells
+*     above 2 MHz are inductive at audio -> one series L, those below 0.2 Hz resistive ->
+*     one more R||L cell. A comes from the whole sum at 1 kHz. Every cell is a short at
+*     DC, so R(DC) = Re.
+*
+* Limits: small-signal (no voice-coil heating / power compression, no Bl(x), Cms(x)
+* non-linearity), piston model below cone break-up (no cone resonances in the
+* impedance above ~2 kHz), no open-back cabinet or baffle loading, closed box without
+* box losses. See README.md.
+*
+* Design: Claude / Electrucio, 2026-09-14, for parts-index. Parallel-RLC motional
+* impedance is the textbook Thiele-Small analogue; the lossy voice coil follows
+* W. M. Leach Jr., "Loudspeaker voice-coil inductance losses", JAES 50(6), 2002.
+* Inspiration: sources/tamivox/raw/speaker-graphs.txt (RLC-RL network),
+* sources/ltwiki/extracted/lib/lib/sub/speaker.lib (Munro VINT30, T/S-derived Jensen
+* and Eminence networks). Original text.
+*
+.subckt speaker P N params: Re=6.4 Fs=80 Qms=5 Qes=1 Le=0.7m n=0.7 Vb=0 Vas=30m
+.param nn = limit(n, 0.05, 0.999)
+.param Lec = max(Le, 1n)
+.param w0 = 2*pi*1k
+.param dl = ln(10)/2
+.param t0 = 1/(2*pi*2Meg)
+.param tb = t0*exp(15*dl)
+.param r1 = exp(-dl*(1 - nn))
+.param q1 = exp(-dl*nn)
+* tau of cell k, and Im{cell k} at w0 for A = 1
+.func tk(k) {t0*exp(k*dl)}
+.func ci(k) {tk(k)**(-nn)*w0*tk(k)/(1 + (w0*tk(k))**2)}
+.param S1 = ci(0)+ci(1)+ci(2)+ci(3)+ci(4)+ci(5)+ci(6)+ci(7)+ci(8)+ci(9)+ci(10)
++ +ci(11)+ci(12)+ci(13)+ci(14) + w0*t0**(1 - nn)*r1/(1 - r1)
++ + tb**(-nn)/(1 - q1)*w0*tb/(1 + (w0*tb)**2)
+.param A = w0*Lec/S1
+.param Ltop = A*t0**(1 - nn)*r1/(1 - r1)
+.param Rbot = A*tb**(-nn)/(1 - q1)
+.func Rk(k) {A*tk(k)**(-nn)}
+.func Lk(k) {A*tk(k)**(1 - nn)}
+.param Res = Re*Qms/Qes
+.param Lces = Re/(2*pi*Fs*Qes)
+.param Cmes = Qes/(2*pi*Fs*Re)
+R0 P ct {max(Re, 1m)}
+* lossy voice-coil inductance: top tail, 15 cells R||L, bottom tail cell
+Ltop ct c0 {Ltop} Rser=0
+R1 c0 c1 {Rk(0)}
+L1 c0 c1 {Lk(0)} Rser=0
+R2 c1 c2 {Rk(1)}
+L2 c1 c2 {Lk(1)} Rser=0
+R3 c2 c3 {Rk(2)}
+L3 c2 c3 {Lk(2)} Rser=0
+R4 c3 c4 {Rk(3)}
+L4 c3 c4 {Lk(3)} Rser=0
+R5 c4 c5 {Rk(4)}
+L5 c4 c5 {Lk(4)} Rser=0
+R6 c5 c6 {Rk(5)}
+L6 c5 c6 {Lk(5)} Rser=0
+R7 c6 c7 {Rk(6)}
+L7 c6 c7 {Lk(6)} Rser=0
+R8 c7 c8 {Rk(7)}
+L8 c7 c8 {Lk(7)} Rser=0
+R9 c8 c9 {Rk(8)}
+L9 c8 c9 {Lk(8)} Rser=0
+R10 c9 c10 {Rk(9)}
+L10 c9 c10 {Lk(9)} Rser=0
+R11 c10 c11 {Rk(10)}
+L11 c10 c11 {Lk(10)} Rser=0
+R12 c11 c12 {Rk(11)}
+L12 c11 c12 {Lk(11)} Rser=0
+R13 c12 c13 {Rk(12)}
+L13 c12 c13 {Lk(12)} Rser=0
+R14 c13 c14 {Rk(13)}
+L14 c13 c14 {Lk(13)} Rser=0
+R15 c14 c15 {Rk(14)}
+L15 c14 c15 {Lk(14)} Rser=0
+R16 c15 m {Rbot}
+L16 c15 m {Rbot*tb} Rser=0
+* motional impedance; a closed box adds the air spring (Lces*Vb/Vas) in parallel with
+* the suspension, i.e. one inductor Lces/(1 + Vas/Vb)
+Rms m N {Res}
+Lms m N {Lces/(1 + if(Vb > 0, Vas/Vb, 0))} Rser=0
+Cms m N {Cmes}
+.ends speaker
+
+* ==== PRESETS (generated by make_symbols.py from spk_presets.py; edit there) ====
+* Each preset takes Vb (closed box, 0 = free air) and n; see spk_presets.py and
+* README.md "Provenance" for the source of every number.
+*
+* Jensen P10R_4: https://www.jensentone.com/specification-sheet/36
+.subckt SPK_P10R_4 P N params: Vb=0 n=0.7
+X1 P N speaker Re=3.6 Fs=99 Qms=23.8 Qes=1.45 Le=350u n={n} Vb={Vb} Vas=29m
+.ends SPK_P10R_4
+
+* Jensen P10R_8: https://www.jensentone.com/specification-sheet/36
+.subckt SPK_P10R_8 P N params: Vb=0 n=0.7
+X1 P N speaker Re=6.68 Fs=97 Qms=14.83 Qes=1.82 Le=540u n={n} Vb={Vb} Vas=27.4m
+.ends SPK_P10R_8
+
+* Jensen P10R_16: https://www.jensentone.com/specification-sheet/36
+.subckt SPK_P10R_16 P N params: Vb=0 n=0.7
+X1 P N speaker Re=12.3 Fs=99 Qms=23.4 Qes=1.94 Le=750u n={n} Vb={Vb} Vas=29.5m
+.ends SPK_P10R_16
+
+* Jensen P12Q_8: https://www.jensentone.com/specification-sheet/40  (Qes 2.46 from the spec sheet (consistent with its Qts 2.03); the product page's 3.33 is not)
+.subckt SPK_P12Q_8 P N params: Vb=0 n=0.7
+X1 P N speaker Re=5.6 Fs=90.5 Qms=11.57 Qes=2.46 Le=670u n={n} Vb={Vb} Vas=39.5m
+.ends SPK_P12Q_8
+
+* Jensen P12Q_16: https://www.jensentone.com/specification-sheet/40
+.subckt SPK_P12Q_16 P N params: Vb=0 n=0.7
+X1 P N speaker Re=12.45 Fs=90 Qms=12.68 Qes=2.81 Le=600u n={n} Vb={Vb} Vas=41.2m
+.ends SPK_P12Q_16
+
+* Jensen P12Q_32: https://www.jensentone.com/specification-sheet/40
+.subckt SPK_P12Q_32 P N params: Vb=0 n=0.7
+X1 P N speaker Re=25.2 Fs=85.6 Qms=10.94 Qes=3.33 Le=1.59m n={n} Vb={Vb} Vas=46.6m
+.ends SPK_P12Q_32
+
+* Jensen C12N_8: https://www.jensentone.com/specification-sheet/16
+.subckt SPK_C12N_8 P N params: Vb=0 n=0.7
+X1 P N speaker Re=6.05 Fs=113 Qms=7.52 Qes=1.18 Le=900u n={n} Vb={Vb} Vas=22.6m
+.ends SPK_C12N_8
+
+* Jensen C12N_16: https://www.jensentone.com/specification-sheet/16  (the sheet's 4-ohm column (Re 6.5) is inconsistent and not used)
+.subckt SPK_C12N_16 P N params: Vb=0 n=0.7
+X1 P N speaker Re=12.5 Fs=110 Qms=6.84 Qes=1.25 Le=1.55m n={n} Vb={Vb} Vas=28m
+.ends SPK_C12N_16
+
+* Eminence LEGEND1258_8: https://eminence.com/products/legend_1258
+.subckt SPK_LEGEND1258_8 P N params: Vb=0 n=0.7
+X1 P N speaker Re=7.44 Fs=94 Qms=6.15 Qes=1.18 Le=700u n={n} Vb={Vb} Vas=32.5m
+.ends SPK_LEGEND1258_8
+
+* Celestion V30_8: https://celestion.com/productpdf.php?id=888  (Vintage 30; Munro's VINT30 network resonates at 71.2 Hz)
+.subckt SPK_V30_8 P N params: Vb=0 n=0.7 Vas=30m
+X1 P N speaker Re=7.3 Fs=75 Qms=1.398 Qes=0.8385 Le=700u n={n} Vb={Vb} Vas={Vas}
+.ends SPK_V30_8
+
+* Celestion V30_16: https://celestion.com/productpdf.php?id=888  (Vintage 30; Munro's VINT30 network resonates at 71.2 Hz)
+.subckt SPK_V30_16 P N params: Vb=0 n=0.7 Vas=30m
+X1 P N speaker Re=12.9 Fs=75 Qms=1.398 Qes=0.8385 Le=1.237m n={n} Vb={Vb} Vas={Vas}
+.ends SPK_V30_16
+
+* Celestion G12M_8: https://celestion.com/productpdf.php?id=899  (G12M Greenback; Munro's G12M network resonates at 75.0 Hz)
+.subckt SPK_G12M_8 P N params: Vb=0 n=0.7 Vas=30m
+X1 P N speaker Re=6.7 Fs=75 Qms=1.273 Qes=0.7955 Le=700u n={n} Vb={Vb} Vas={Vas}
+.ends SPK_G12M_8
+
+* Celestion G12M_16: https://celestion.com/productpdf.php?id=899  (G12M Greenback; Munro's G12M network resonates at 75.0 Hz)
+.subckt SPK_G12M_16 P N params: Vb=0 n=0.7 Vas=30m
+X1 P N speaker Re=13.1 Fs=75 Qms=1.273 Qes=0.7955 Le=1.369m n={n} Vb={Vb} Vas={Vas}
+.ends SPK_G12M_16
+
+* Celestion G12H_8: https://celestion.com/productpdf.php?id=900  (G12H Anniversary (Q from Munro's G12H-100, the closest measured G12H); Munro's G12H100 network resonates at 81.6 Hz)
+.subckt SPK_G12H_8 P N params: Vb=0 n=0.7 Vas=30m
+X1 P N speaker Re=6.7 Fs=85 Qms=1.267 Qes=0.6335 Le=700u n={n} Vb={Vb} Vas={Vas}
+.ends SPK_G12H_8
+
+* Celestion G12H_16: https://celestion.com/productpdf.php?id=900  (G12H Anniversary (Q from Munro's G12H-100, the closest measured G12H); Munro's G12H100 network resonates at 81.6 Hz)
+.subckt SPK_G12H_16 P N params: Vb=0 n=0.7 Vas=30m
+X1 P N speaker Re=13.1 Fs=85 Qms=1.267 Qes=0.6335 Le=1.369m n={n} Vb={Vb} Vas={Vas}
+.ends SPK_G12H_16
+
+* Celestion G12T75_8: https://celestion.com/productpdf.php?id=898  (G12T-75; Munro's G12T75 network resonates at 81.6 Hz)
+.subckt SPK_G12T75_8 P N params: Vb=0 n=0.7 Vas=30m
+X1 P N speaker Re=6.77 Fs=85 Qms=1.462 Qes=0.731 Le=700u n={n} Vb={Vb} Vas={Vas}
+.ends SPK_G12T75_8
+
+* Celestion G12T75_16: https://celestion.com/productpdf.php?id=898  (G12T-75; Munro's G12T75 network resonates at 81.6 Hz)
+.subckt SPK_G12T75_16 P N params: Vb=0 n=0.7 Vas=30m
+X1 P N speaker Re=12.9 Fs=85 Qms=1.462 Qes=0.731 Le=1.334m n={n} Vb={Vb} Vas={Vas}
+.ends SPK_G12T75_16

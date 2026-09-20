@@ -1,0 +1,247 @@
+* relay.sub -- electromechanical relays for LTspice (behavioural: B-sources + SW)
+*
+* Pins, coil first, then each pole as COM NC NO (NC = closed with the coil off/reset):
+*     relay_spst          CP CN COM NO                              1 Form A (SPST-NO)
+*     relay_spdt          CP CN COM NC NO                           1 Form C
+*     relay_dpdt          CP CN COM1 NC1 NO1 COM2 NC2 NO2           2 Form C
+*     relay_latch_dpdt    CP CN COM1 NC1 NO1 COM2 NC2 NO2           single-coil latching:
+*                                                                   CP>CN sets, CN>CP resets
+*     relay_latch2_dpdt   SP SN RP RN COM1 NC1 NO1 COM2 NC2 NO2     dual-coil latching:
+*                                                                   S coil sets, R coil resets
+*
+* Parameters of the monostable relays (defaults: a generic small signal relay)
+*     Vnom  rated coil voltage                                        12
+*     R     coil resistance (datasheet, 20..23 C)                     288
+*     L     coil inductance, armature released (open gap);            0 -> 1.6m*R
+*           0 = use the time constant L/R = 1.6 ms of the Omron G5V-2
+*     Lc    coil inductance, armature operated (closed gap);          0 -> 1.4*L
+*           0 = 1.4*L, the median Lc/L of the G5V-2 coil table
+*     pu    pick-up (must-operate) voltage, fraction of Vnom          0.65
+*     do    drop-out (must-release) voltage, fraction of Vnom         0.2
+*     Top   operate time at Vnom: coil switched on -> NO closed       4m
+*     Trel  release time with no coil suppression:                    2m
+*           coil switched off -> NC closed
+*     Ron   contact resistance                                        50m
+*     Roff  open-contact (insulation) resistance                      1G
+*     pol   0 = non-polarised, operates with either polarity;         0
+*           1 = polarised, only I(CP->CN) > 0 operates
+*     xnc   fraction of the armature travel at which NC breaks        0.15
+*     xno   fraction of the armature travel at which NO makes         0.85
+*           xnc < xno: break-before-make; xno < xnc: make-before-break
+*     Cp    winding capacitance across the coil                       20p
+*     Rp    shunt across the coil (core loss, insulation)             1Meg
+* Latching relays: pset / prst (set / reset voltage, fraction of Vnom) replace pu / do,
+* Top / Trel are the set / reset times at Vnom, and state0 = 0 (reset) or 1 (set) is the
+* position at the operating point, since a latching relay remembers it without current.
+*
+* Model
+*   Coil: R in series with an inductor whose flux linkage lam is a state:
+*       d(lam)/dt = v_L,   i = lam / Lx,   Lx = L + (Lc - L)*x
+*   x is the armature position (0 released .. 1 operated), so the inductance rises as
+*   the gap closes and the current dips while the armature moves, as in a real coil.
+*   Magnetic pull follows the flux, not the current: the armature operates when
+*   lam > L*pu*Inom (open gap) and releases when lam < Lc*do*Inom (closed gap), with
+*   Inom = Vnom/R. At rest these are the datasheet current thresholds; while the gap
+*   closes the current dips but the flux, and the pull, do not, which keeps the snap
+*   action (a current threshold would stall the armature half way at slow drive).
+*   |lam| is used for a non-polarised relay.
+*   Memory: a bistable state m (a smooth double well, B-source + C) is driven to 1
+*   when the operate condition holds and to 0 when the release condition holds;
+*   between the two it keeps its value (hysteresis).
+*   Latching: driven to 1 when lam > L*pset*Inom, to 0 when lam < -Lc*prst*Inom.
+*   Armature: x follows m at constant speed, 0 -> 1 in Tmon, 1 -> 0 in Tmoff.
+*   Contacts: voltage-controlled switches on x: NC is on for x < xnc, NO for x > xno.
+*   Timing: the current reaches pick-up after ti = (L/R)*ln(1/(1 - pu)) at Vnom, so
+*       Tmon = (Top - ti)/xno,  Tmoff = Trel/(1 - xnc)
+*   A flyback diode keeps the current up after switch-off: the armature only starts
+*   back when i has decayed (tau = Lc/R) to the drop-out current. That is why a diode
+*   lengthens the release time, and the model gets it from the circuit, not from a table.
+*   An open coil with no suppression rings on Cp || Rp: the inductive kick.
+*
+* No A-devices (digital): everything is B-sources, capacitors and SW switches, so it
+* ports to ngspice/QSpice (they need limit() replaced by min/max).
+*
+* Not modelled: contact bounce, arcing, contact capacitance, coil heating (R +0.4 %/K),
+* ambient-temperature shift of pick-up, AC coils, mutual coupling of the two coils of
+* the dual-coil latching relay (they act on one armature but are not magnetically coupled
+* here), magnetic latching force vs. pulse energy (a too-short pulse either sets or not;
+* the minimum set pulse comes out of ti and the travel time).
+*
+* Design: Claude / Electrucio, 2026-09-14, for parts-index. Ideas from
+* R. Loos's Relay_2A2B (sources/loosweb-relay: Von/Voff hysteresis, break-before-make
+* from travel), H. Sennewald's RLY_SPDT0 (sources/ltwiki/.../sub/relay.lib: current-
+* sensing coil, SW contacts). No text copied; the flux-linkage coil and the bistable
+* state are new here.
+*
+
+* ---------------------------------------------------------------- building blocks
+* coil: CP CN = terminals, X = armature position (in); out, in volts:
+* US = lam/(L*Inom)  (= i/Inom with the armature released)
+* UR = lam/(Lc*Inom) (= i/Inom with the armature operated)
+.subckt relay_coil CP CN X US UR params: R=288 L=0.47 Lc=0.66 Inom=41.7m Cp=20p Rp=1Meg
+Rc CP n1 {R}
+* flux linkage in mWb-turn on a 1 F capacitor: V(lam) = 1000*lam
+B1 n1 CN I = V(lam) / (1000*({L} + ({Lc} - {L})*limit(V(X), 0, 1)))
+G1 0 lam n1 CN 1000
+Clam lam 0 1
+Rlam lam 0 1Meg
+Cw CP CN {Cp}
+Rw CP CN {Rp}
+BS US 0 V = V(lam) / (1000*{L}*{Inom})
+BR UR 0 V = V(lam) / (1000*{Lc}*{Inom})
+.ends relay_coil
+
+* armature: US/UR = operate/release drives (in), X = position (out). Set when
+* V(US) > Uset, reset when V(UR) < Urst, hold in between. state0 = position chosen
+* at the operating point when neither condition holds.
+.subckt relay_arm US UR X params: Uset=0.65 Urst=0.2 Tmon=3m Tmoff=2m state0=0
+Rus US 0 1G
+Rur UR 0 1G
+* sigmoids 4e-3 wide, centred 4e-3 inside the inactive side: the bistable flips when
+* the drive reaches ~0.12 of its full value, i.e. within 1e-4 of Uset / Urst
+Bs s 0 V = 0.5 + 0.5*tanh((V(US) - {Uset} - 0.004)/0.004)
+Br r 0 V = 0.5 + 0.5*tanh(({Urst} - 0.004 - V(UR))/0.004)
+* m: 1 uF node, flips in ~10 us; 0.3*(hold - m) is the double well; the exp() term
+* only exists at t = 0 (operating point) and picks state0 when nothing drives the coil
+Cm m 0 1u
+Rm m 0 1G
+Bm 0 m I = 0.1*( V(s)*(1 - V(m)) - V(r)*V(m)
++   + 0.3*(0.5 + 0.5*tanh(8*(V(m) - 0.5)) - V(m))
++   + 10*(1 - V(s))*(1 - V(r))*({state0} - V(m))*exp(-time/1u) )
+* x: constant-speed travel towards a sharpened m (0 or 1): the armature does not
+* creep while m hesitates near a threshold, it waits for the flip (spring preload)
+Bt tg 0 V = 0.5 + 0.5*tanh((V(m) - 0.5)/0.05)
+Cx X 0 1u
+Rx X 0 1G
+Bx 0 X I = 1u*( max(tanh((V(tg) - V(X))/0.02), 0)/{Tmon}
++   + min(tanh((V(tg) - V(X))/0.02), 0)/{Tmoff} )
+.ends relay_arm
+
+* monostable coil + armature: CP CN coil, X position out
+.subckt relay_mono CP CN X params: Vnom=12 R=288 L=0 Lc=0 pu=0.65 do=0.2
++ Top=4m Trel=2m pol=0 xnc=0.15 xno=0.85 Cp=20p Rp=1Meg
+.param Lo = if(L > 0, L, 1.6m*R)
+.param Lcl = if(Lc > 0, Lc, 1.4*Lo)
+.param ti = Lo/R*ln(1/(1 - limit(pu, 0.01, 0.99)))
+.param Tmon = max(Top - ti, 0.2*Top)/xno
+.param Tmoff = Trel/(1 - xnc)
+Xc CP CN X us ur relay_coil R={R} L={Lo} Lc={Lcl} Inom={Vnom/R} Cp={Cp} Rp={Rp}
+Bs ues 0 V = {pol}*V(us) + (1 - {pol})*sqrt(V(us)*V(us) + 1e-6)
+Br uer 0 V = {pol}*V(ur) + (1 - {pol})*sqrt(V(ur)*V(ur) + 1e-6)
+Xa ues uer X relay_arm Uset={pu} Urst={do} Tmon={Tmon} Tmoff={Tmoff} state0=0
+.ends relay_mono
+
+* one changeover pole on the position X
+.subckt relay_pole X COM NC NO params: Ron=50m Roff=1G xnc=0.15 xno=0.85
+S1 COM NO X 0 RNO
+S2 COM NC 0 X RNC
+.model RNO SW(Ron={Ron} Roff={Roff} Vt={xno - 0.01} Vh=0.01)
+.model RNC SW(Ron={Ron} Roff={Roff} Vt={-xnc - 0.01} Vh=0.01)
+.ends relay_pole
+
+* ---------------------------------------------------------------- monostable relays
+.subckt relay_spst CP CN COM NO params: Vnom=12 R=288 L=0 Lc=0 pu=0.65 do=0.2
++ Top=4m Trel=2m Ron=50m Roff=1G pol=0 xno=0.85 Cp=20p Rp=1Meg
+X1 CP CN x relay_mono Vnom={Vnom} R={R} L={L} Lc={Lc} pu={pu} do={do} Top={Top}
++ Trel={Trel} pol={pol} xnc=0.15 xno={xno} Cp={Cp} Rp={Rp}
+S1 COM NO x 0 RNO
+.model RNO SW(Ron={Ron} Roff={Roff} Vt={xno - 0.01} Vh=0.01)
+.ends relay_spst
+
+.subckt relay_spdt CP CN COM NC NO params: Vnom=12 R=288 L=0 Lc=0 pu=0.65 do=0.2
++ Top=4m Trel=2m Ron=50m Roff=1G pol=0 xnc=0.15 xno=0.85 Cp=20p Rp=1Meg
+X1 CP CN x relay_mono Vnom={Vnom} R={R} L={L} Lc={Lc} pu={pu} do={do} Top={Top}
++ Trel={Trel} pol={pol} xnc={xnc} xno={xno} Cp={Cp} Rp={Rp}
+X2 x COM NC NO relay_pole Ron={Ron} Roff={Roff} xnc={xnc} xno={xno}
+.ends relay_spdt
+
+.subckt relay_dpdt CP CN COM1 NC1 NO1 COM2 NC2 NO2 params: Vnom=12 R=288 L=0 Lc=0
++ pu=0.65 do=0.2 Top=4m Trel=2m Ron=50m Roff=1G pol=0 xnc=0.15 xno=0.85 Cp=20p Rp=1Meg
+X1 CP CN x relay_mono Vnom={Vnom} R={R} L={L} Lc={Lc} pu={pu} do={do} Top={Top}
++ Trel={Trel} pol={pol} xnc={xnc} xno={xno} Cp={Cp} Rp={Rp}
+X2 x COM1 NC1 NO1 relay_pole Ron={Ron} Roff={Roff} xnc={xnc} xno={xno}
+X3 x COM2 NC2 NO2 relay_pole Ron={Ron} Roff={Roff} xnc={xnc} xno={xno}
+.ends relay_dpdt
+
+* ---------------------------------------------------------------- latching relays
+.subckt relay_latch_dpdt CP CN COM1 NC1 NO1 COM2 NC2 NO2 params: Vnom=5 R=250 L=0 Lc=0
++ pset=0.6 prst=0.6 Top=3m Trel=3m state0=0 Ron=50m Roff=1G xnc=0.15 xno=0.85
++ Cp=20p Rp=1Meg
+.param Lo = if(L > 0, L, 1.6m*R)
+.param Lcl = if(Lc > 0, Lc, 1.4*Lo)
+.param Tmon = max(Top - Lo/R*ln(1/(1 - limit(pset, 0.01, 0.99))), 0.2*Top)/xno
+.param Tmoff = max(Trel - Lcl/R*ln(1/(1 - limit(prst, 0.01, 0.99))), 0.2*Trel)/(1 - xnc)
+Xc CP CN x us ur relay_coil R={R} L={Lo} Lc={Lcl} Inom={Vnom/R} Cp={Cp} Rp={Rp}
+Xa us ur x relay_arm Uset={pset} Urst={-prst} Tmon={Tmon} Tmoff={Tmoff} state0={state0}
+X2 x COM1 NC1 NO1 relay_pole Ron={Ron} Roff={Roff} xnc={xnc} xno={xno}
+X3 x COM2 NC2 NO2 relay_pole Ron={Ron} Roff={Roff} xnc={xnc} xno={xno}
+.ends relay_latch_dpdt
+
+* the two coils act on one armature with opposite sense: drive = lam(S) - lam(R)
+.subckt relay_latch2_dpdt SP SN RP RN COM1 NC1 NO1 COM2 NC2 NO2 params: Vnom=5 R=125
++ L=0 Lc=0 pset=0.6 prst=0.6 Top=3m Trel=3m state0=0 Ron=50m Roff=1G xnc=0.15
++ xno=0.85 Cp=20p Rp=1Meg
+.param Lo = if(L > 0, L, 1.6m*R)
+.param Lcl = if(Lc > 0, Lc, 1.4*Lo)
+.param Tmon = max(Top - Lo/R*ln(1/(1 - limit(pset, 0.01, 0.99))), 0.2*Top)/xno
+.param Tmoff = max(Trel - Lcl/R*ln(1/(1 - limit(prst, 0.01, 0.99))), 0.2*Trel)/(1 - xnc)
+Xs SP SN x ss sr relay_coil R={R} L={Lo} Lc={Lcl} Inom={Vnom/R} Cp={Cp} Rp={Rp}
+Xr RP RN x rs rr relay_coil R={R} L={Lo} Lc={Lcl} Inom={Vnom/R} Cp={Cp} Rp={Rp}
+Bs ues 0 V = V(ss) - V(rs)
+Br uer 0 V = V(sr) - V(rr)
+Xa ues uer x relay_arm Uset={pset} Urst={-prst} Tmon={Tmon} Tmoff={Tmoff} state0={state0}
+X2 x COM1 NC1 NO1 relay_pole Ron={Ron} Roff={Roff} xnc={xnc} xno={xno}
+X3 x COM2 NC2 NO2 relay_pole Ron={Ron} Roff={Roff} xnc={xnc} xno={xno}
+.ends relay_latch2_dpdt
+
+* ---------------------------------------------------------------- presets
+* Numbers and pages: README.md "Provenance". pu/do are the typical values read off the
+* makers' distribution/durability graphs where they publish them, else the guaranteed
+* limits. L of the TQ2 is fitted to its operate-time-vs-voltage graph; G5V-2 L/Lc are
+* Omron's published reference values; G6K and Finder L are estimates (README).
+*
+* Panasonic TQ2 (polarised, 2 Form C, 140 mW), ASCTB14E 2019-11
+.subckt TQ2_5V CP CN COM1 NC1 NO1 COM2 NC2 NO2
+X1 CP CN COM1 NC1 NO1 COM2 NC2 NO2 relay_dpdt Vnom=5 R=178 L=0.25 Lc=0.35 pu=0.64
++ do=0.22 Top=2.2m Trel=1m Ron=30m pol=1
+.ends TQ2_5V
+.subckt TQ2_12V CP CN COM1 NC1 NO1 COM2 NC2 NO2
+X1 CP CN COM1 NC1 NO1 COM2 NC2 NO2 relay_dpdt Vnom=12 R=1028 L=1.44 Lc=2.0 pu=0.64
++ do=0.22 Top=2.2m Trel=1m Ron=30m pol=1
+.ends TQ2_12V
+* Panasonic TQ2-L2 (2-coil latching, 200 mW per coil)
+.subckt TQ2_L2_5V SP SN RP RN COM1 NC1 NO1 COM2 NC2 NO2 params: state0=0
+X1 SP SN RP RN COM1 NC1 NO1 COM2 NC2 NO2 relay_latch2_dpdt Vnom=5 R=125 L=0.175
++ Lc=0.245 pset=0.57 prst=0.57 Top=2m Trel=2m state0={state0} Ron=30m
+.ends TQ2_L2_5V
+* Omron G5V-2 (non-polarised, 2 Form C, 500 mW)
+.subckt G5V_2_DC5 CP CN COM1 NC1 NO1 COM2 NC2 NO2
+X1 CP CN COM1 NC1 NO1 COM2 NC2 NO2 relay_dpdt Vnom=5 R=50 L=0.09 Lc=0.11 pu=0.6
++ do=0.2 Top=3.5m Trel=0.6m Ron=30m pol=0
+.ends G5V_2_DC5
+.subckt G5V_2_DC12 CP CN COM1 NC1 NO1 COM2 NC2 NO2
+X1 CP CN COM1 NC1 NO1 COM2 NC2 NO2 relay_dpdt Vnom=12 R=288 L=0.47 Lc=0.74 pu=0.6
++ do=0.2 Top=3.5m Trel=0.6m Ron=30m pol=0
+.ends G5V_2_DC12
+.subckt G5V_2_DC24 CP CN COM1 NC1 NO1 COM2 NC2 NO2
+X1 CP CN COM1 NC1 NO1 COM2 NC2 NO2 relay_dpdt Vnom=24 R=1152 L=1.98 Lc=2.68 pu=0.6
++ do=0.2 Top=3.5m Trel=0.6m Ron=30m pol=0
+.ends G5V_2_DC24
+* Omron G6K-2 (2 Form C, 100 mW, SMD)
+.subckt G6K_2_DC5 CP CN COM1 NC1 NO1 COM2 NC2 NO2
+X1 CP CN COM1 NC1 NO1 COM2 NC2 NO2 relay_dpdt Vnom=5 R=237 L=0.2 Lc=0.28 pu=0.68
++ do=0.22 Top=1.5m Trel=1.5m Ron=50m pol=1
+.ends G6K_2_DC5
+.subckt G6K_2_DC12 CP CN COM1 NC1 NO1 COM2 NC2 NO2
+X1 CP CN COM1 NC1 NO1 COM2 NC2 NO2 relay_dpdt Vnom=12 R=1315 L=1.12 Lc=1.57 pu=0.68
++ do=0.22 Top=1.5m Trel=1.5m Ron=50m pol=1
+.ends G6K_2_DC12
+* Finder 40.52 (2 CO 8 A power relay, 650 mW DC coil), catalogue S40EN VIII-2026
+.subckt F40_52_12V CP CN COM1 NC1 NO1 COM2 NC2 NO2
+X1 CP CN COM1 NC1 NO1 COM2 NC2 NO2 relay_dpdt Vnom=12 R=220 L=0.7 Lc=0.98 pu=0.73
++ do=0.1 Top=7m Trel=3m Ron=20m pol=0
+.ends F40_52_12V
+.subckt F40_52_24V CP CN COM1 NC1 NO1 COM2 NC2 NO2
+X1 CP CN COM1 NC1 NO1 COM2 NC2 NO2 relay_dpdt Vnom=24 R=900 L=2.9 Lc=4.0 pu=0.73
++ do=0.1 Top=7m Trel=3m Ron=20m pol=0
+.ends F40_52_24V

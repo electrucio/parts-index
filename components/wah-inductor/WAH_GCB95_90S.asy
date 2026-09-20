@@ -1,0 +1,23 @@
+Version 4
+SymbolType CELL
+LINE Normal 16 16 16 32
+LINE Normal 16 96 16 112
+ARC Normal 0 32 32 48 16 48 16 32
+ARC Normal 0 48 32 64 16 64 16 48
+ARC Normal 0 64 32 80 16 80 16 64
+ARC Normal 0 80 32 96 16 96 16 80
+LINE Normal 40 32 40 96
+LINE Normal 44 32 44 96
+WINDOW 0 52 40 Left 2
+WINDOW 3 52 72 Left 2
+SYMATTR Value Qc=0 Cp=0
+SYMATTR Prefix X
+SYMATTR SpiceModel WAH_GCB95_90S
+SYMATTR ModelFile wah-inductor.sub
+SYMATTR Description Dunlop Cry Baby GCB-95 (late 90s-early 00s, black cylinder) (690 mH, 14.6 ohm). Pins A B
+PIN 16 16 NONE 8
+PINATTR PinName A
+PINATTR SpiceOrder 1
+PIN 16 112 NONE 8
+PINATTR PinName B
+PINATTR SpiceOrder 2

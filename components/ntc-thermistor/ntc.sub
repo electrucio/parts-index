@@ -1,0 +1,62 @@
+* ntc.sub -- NTC thermistors with self-heating for LTspice: inrush-current limiters
+* (tube-amp and power-amp mains inputs) and small NTCs (bias compensation, sensing)
+*
+* Pins
+*     ntc, presets   A B     the thermistor (non-polar)
+*
+* Parameters of ntc (defaults: Ametherm SL10 10003, README "Provenance")
+*     R25    zero-power resistance at 25 C, ohm                          10
+*     B      B value B25/100, K (beta)                                  3058
+*     D      curvature of ln R vs 1/T, K^2 (0 = pure beta model)          0
+*     dth    dissipation constant (still air), W/K                      11m
+*     Cth    heat capacity, J/K (thermal time constant = Cth/dth)       0.33
+*     Ta     ambient temperature, C                                      25
+*     Rs     series (lead) resistance, ohm                               1m
+*
+* Model. Body temperature T (kelvin, node t) with a first-order thermal circuit:
+*     Cth dT/dt = V^2/R(T) - dth (T - Ta)
+*     R(T) = Rs + R25 exp(B x + D x (x - x100)),  x = 1/T - 1/298.15,
+*                                                 x100 = 1/373.15 - 1/298.15
+* D bends the curve without changing B25/100 (the D term is zero at 25 and 100 C);
+* it is fitted to a manufacturer's R/T table where one exists.
+*
+* No A-devices. Not modelled: tolerance spread (R25 +-5..20 %), the dependence of
+* the dissipation constant on temperature, mounting and air flow (datasheet values are
+* in still air), ageing, the maximum energy/capacitance ratings (the bench reports the
+* energy), a thermistor's own capacitance and inductance.
+*
+* Design: Claude / Electrucio, 2026-09-14, for parts-index.
+*
+
+.subckt ntc A B params: R25=10 B=3058 D=0 dth=11m Cth=0.33 Ta=25 Rs=1m
+.param TK = Ta + 273.15
+.param x100 = 1/373.15 - 1/298.15
+* thermal circuit: V(t) = body temperature in kelvin
+Vta ta 0 {TK}
+Rth t ta {1/dth}
+Ct t 0 {Cth}
+Bp 0 t I = V(A,B)**2/({Rs} + {R25}*exp({B}*(1/limit(V(t), 150, 700) - 1/298.15)
++   + {D}*(1/limit(V(t), 150, 700) - 1/298.15)*(1/limit(V(t), 150, 700) - 1/298.15 - {x100})))
+* the thermistor
+Bn A B I = V(A,B)/({Rs} + {R25}*exp({B}*(1/limit(V(t), 150, 700) - 1/298.15)
++   + {D}*(1/limit(V(t), 150, 700) - 1/298.15)*(1/limit(V(t), 150, 700) - 1/298.15 - {x100})))
+.ends ntc
+
+* ---------------------------------------------------------------- presets
+* Ametherm SL10 10003: 10 ohm, 3 A inrush limiter (ametherm.com/datasheets/sl1010003.html);
+* material C, beta 3058 K (Ametherm R/T page); 11 mW/C; thermal time constant printed
+* "30 mw/s", read as 30 s (README).
+.subckt SL10_10003 A B params: Ta=25
+X1 A B ntc R25=10 B=3058 dth=11m Cth=0.33 Ta={Ta}
+.ends SL10_10003
+* TDK (EPCOS) B57236S0100M0 (S236, 10 ohm, 3.5 A): 10 mW/K, 700 mJ/K (70 s) (S236
+* datasheet 2021-04-22, p.2); B fitted to Rmin = 0.180 ohm at Imax = 3.5 A (p.4).
+.subckt B57236S0100 A B params: Ta=25
+X1 A B ntc R25=10 B=2817 dth=10m Cth=0.7 Ta={Ta}
+.ends B57236S0100
+* TDK (EPCOS) B57164K0103 (K164, 10 kohm, R/T characteristic 2904, B25/100 = 4300 K):
+* 7.5 mW/K, 150 mJ/K (20 s) (K164 datasheet March 2013, p.2-3); D fitted to the 2904
+* table (p.9).
+.subckt B57164K0103 A B params: Ta=25
+X1 A B ntc R25=10k B=4300 D=-1.939e5 dth=7.5m Cth=0.15 Ta={Ta}
+.ends B57164K0103

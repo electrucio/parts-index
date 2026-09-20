@@ -1,0 +1,221 @@
+* mains-transformer.sub -- mains (power) transformers for tube and solid-state amps
+*
+* Subckts (formal pin names)
+*     pt_tube      P1 P2 HV1 BIAS HVCT HV2 H1 HCT H2          tube amp: HV centre-tapped
+*                                                             secondary with a bias tap
+*                                                             (BIAS sits Vb above HVCT on
+*                                                             the HV1 half), heater with CT
+*     pt_tube_aux  P1 P2 HV1 BIAS HVCT HV2 H1 HCT H2 A1 A2    + an auxiliary winding (5 V
+*                                                             rectifier heater, 2nd heater)
+*     pt_ss        P1 P2 SA1 SA2 SB1 SB2                      solid state: two equal
+*                                                             secondaries
+*     pt_ss_ct     P1 P2 S1 SCT S2                            the same, series-connected
+*                                                             (SA2 = SB1 = SCT)
+*   In-phase ends (dots): P1, HV1, H1, A1, SA1, SB1, S1.
+*
+* Parameters (SI). Winding voltages are RMS NO-LOAD voltages at rated primary voltage
+* (they set the turns ratios; makers publish them as "N.L.V."); currents are the rated
+* winding currents as the maker states them (DC mA for an HV CT winding).
+*     Vp        rated primary voltage                                  [V]  (120)
+*     fline     frequency at which Iex is specified                     [Hz] (60)
+*     fmin      lowest rated mains frequency (sets the design flux)     [Hz] (50)
+*     Vhv, Ihv  HV winding end to end (HV1-HV2), rating                 [V, A]
+*     Vb, Ib    bias tap: HVCT-BIAS voltage, rating (Vb = 0: no tap)    [V, A]
+*     Vh, Ih    heater end to end (H1-H2), rating                       [V, A]
+*     Va, Ia    auxiliary winding (pt_tube_aux)                         [V, A]
+*     Vs, Is    each secondary of pt_ss / pt_ss_ct                      [V, A]
+*     Iex       no-load primary current at Vp, fline (magnetising + core loss) [A rms]
+*     Pfe       core loss at Vp; 0 = 3 % of VA (pt_tube*) or 1 % (pt_ss*)     [W]
+*     reg       full-load regulation (V_NL - V_FL)/V_FL used for any DC resistance
+*               left at 0: that winding gets R = (reg/2)*V/I (half the drop in the
+*               winding, half in the primary)
+*     Rp, Rhv, Rh, Ra, Rs1, Rs2   DC resistances (0 = from reg)          [ohm]
+*     hbal      fraction of Rhv in the HVCT-HV1 half                     (0.5)
+*     Rb        DCR of HVCT-BIAS (0 = pro rata of the HV1 half)          [ohm]
+*     xlk       leakage reactance per unit of each winding's own rating: winding k
+*               gets L_k = (xlk/2)*V_k/(I_k*2*pi*fline)   (E-I 0.01, toroid 0.0025)
+*     sat, ksat, Lsr, wk   flux saturation (1, 1.25, 1000, 0.02)
+*
+* Equations. Primary = ideal winding N = 1; secondary k: N_k = V_k/Vp. Each winding:
+* DCR + leakage + ideal winding on a core node (V = N*V(c), injects N*I). Core node,
+* referred to the primary:
+*     Rc = Vp^2/Pfe  ||  magnetising branch i = g(lambda), lambda = integral V(c) dt
+*     Im = sqrt(Iex^2 - (Pfe/Vp)^2),  Lm = Vp/(2 pi fline Im)
+*     g(l) = l/Lm + sat*[s(l - Lk) - s(-l - Lk)]*Lsr/Lm,  s(x) = w ln(1 + e^(x/w))
+*     Lk = ksat*sqrt(2)*Vp/(2 pi fmin),  w = wk*Lk
+* At rated voltage and frequency the core is below the knee (no-load current = Iex).
+* Over-voltage, a 60 Hz part on 50 Hz, DC on the mains, or switch-on at a zero
+* crossing (inrush: flux up to 2x) saturate it; deep in saturation the inductance is
+* Lm/(1+Lsr), so inrush is limited mainly by Rp, as in real transformers.
+*
+* Starting a .tran: SINE(0 {Vpk} {fline}) starts at 0 V = switch-on at a zero crossing
+* (worst-case inrush; the flux offset then decays through Rp, slowly for a toroid).
+* For a quick steady state use a soft start, e.g.
+*     B1 p1 0 V = Vpk*sin(2*pi*fline*time)*min(time/50m, 1)
+* Never start the source at its peak without 'uic': .op would put DC on the primary.
+*
+* Limits: one core (no leakage between individual secondaries); magnetising current
+* near-sinusoidal at rated voltage (real small transformers already run slightly
+* saturated, so their no-load current is peaky); no hysteresis, no interwinding or
+* shield capacitance, DCR at 20 C (no heating). See README.md.
+*
+* Design: Claude / Electrucio, 2026-09-14, for parts-index. Winding-on-a-core-node
+* construction as in components/output-transformer (idea from Winding_LCR,
+* sources/ltwiki/extracted/lib/lib/sub/Transformers.lib); measured-parameter approach
+* (DCR, ratio, L) as in sources/loosweb-relay/raw/downloads/xfrm1p1s.lib. Original text.
+*
+* ---- building blocks --------------------------------------------------------------
+.subckt mt_w A B C params: N=1 R=1 L=1u
+Rw A 1 {max(R, 1m)}
+Lw 1 2 {max(L, 1n)} Rser=0
+Vs 2 3 0
+Ew 3 B C 0 {N}
+Fw 0 C Vs {N}
+.ends mt_w
+
+.subckt mt_core C params: Lm=2 Rc=10k Lk=1 wk=0.02 Lsr=1000 sat=1
+Rcore C 0 {Rc}
+Gint 0 phi C 0 1
+Cint phi 0 1
+* lossy integrator, tau = 1e5 s: .op defined; adds Lm/1e5 ohm in series with Lm at DC
+Rint phi 0 100k
+.param w = wk*Lk
+.func sp(x) {max(x, 0) + w*ln(1 + exp(-abs(x)/w))}
+Bm C 0 I = V(phi)/Lm + sat*(sp(V(phi) - Lk) - sp(-V(phi) - Lk))*Lsr/Lm
+.ends mt_core
+
+* ---- tube amp power transformer -------------------------------------------------------
+.subckt pt_tube_aux P1 P2 HV1 BIAS HVCT HV2 H1 HCT H2 A1 A2 params: Vp=120 fline=60
++ fmin=50 Vhv=600 Ihv=0.1 Vb=50 Ib=10m Vh=6.8 Ih=3 Va=5.3 Ia=3 Iex=0.1 Pfe=0
++ reg=0.08 xlk=0.01 Rp=0 Rhv=0 hbal=0.5 Rb=0 Rh=0 Ra=0 sat=1 ksat=1.25 Lsr=1000
++ wk=0.02
+.param VAt = Vhv*Ihv + Vb*Ib + Vh*Ih + Va*Ia
+.param w0 = 2*pi*fline
+.param Pfe_ = if(Pfe > 0, Pfe, 0.03*VAt)
+.param Im = sqrt(max(Iex*Iex - (Pfe_/Vp)**2, 0.01*Iex*Iex))
+.param Rp_ = if(Rp > 0, Rp, reg/2*Vp*Vp/VAt)
+.param Rhv_ = if(Rhv > 0, Rhv, reg/2*Vhv/Ihv)
+.param Rh_ = if(Rh > 0, Rh, reg/2*Vh/Ih)
+.param Ra_ = if(Ra > 0, Ra, reg/2*Va/Ia)
+.param Rhv1 = Rhv_*limit(hbal, 0.01, 0.99)
+.param Rhv2 = Rhv_ - Rhv1
+.param vbt = limit(Vb, 0, 0.99*Vhv/2)
+.param Rbt = if(Rb > 0, min(Rb, 0.99*Rhv1), Rhv1*vbt/(Vhv/2))
+.param Lpt = xlk/2*Vp*Vp/VAt/w0
+.param Lhv = xlk/2*Vhv/Ihv/w0
+.param Lht = xlk/2*Vh/Ih/w0
+.param Lat = xlk/2*Va/Ia/w0
+XP P1 P2 c mt_w N=1 R={Rp_} L={Lpt}
+* HV: HV2 -> HVCT -> BIAS -> HV1 (HV1 in phase with P1)
+XH2 HVCT HV2 c mt_w N={Vhv/2/Vp} R={Rhv2} L={Lhv/2}
+XB BIAS HVCT c mt_w N={vbt/Vp} R={Rbt} L={Lhv/2*vbt/(Vhv/2)}
+XH1 HV1 BIAS c mt_w N={(Vhv/2 - vbt)/Vp} R={Rhv1 - Rbt} L={Lhv/2*(1 - vbt/(Vhv/2))}
+* heater: H2 -> HCT -> H1
+XF2 HCT H2 c mt_w N={Vh/2/Vp} R={Rh_/2} L={Lht/2}
+XF1 H1 HCT c mt_w N={Vh/2/Vp} R={Rh_/2} L={Lht/2}
+XA A1 A2 c mt_w N={Va/Vp} R={Ra_} L={Lat}
+XC c mt_core Lm={Vp/(w0*Im)} Rc={Vp*Vp/Pfe_} Lk={ksat*sqrt(2)*Vp/(2*pi*fmin)}
++ wk={wk} Lsr={Lsr} sat={sat}
+* DC references for floating windings
+Rg1 HVCT 0 1G
+Rg2 HCT 0 1G
+Rg3 A2 0 1G
+.ends pt_tube_aux
+
+.subckt pt_tube P1 P2 HV1 BIAS HVCT HV2 H1 HCT H2 params: Vp=120 fline=60 fmin=50
++ Vhv=600 Ihv=0.1 Vb=50 Ib=10m Vh=6.8 Ih=3 Iex=0.1 Pfe=0 reg=0.08 xlk=0.01
++ Rp=0 Rhv=0 hbal=0.5 Rb=0 Rh=0 sat=1 ksat=1.25 Lsr=1000 wk=0.02
+X1 P1 P2 HV1 BIAS HVCT HV2 H1 HCT H2 a1 a2 pt_tube_aux Vp={Vp} fline={fline}
++ fmin={fmin} Vhv={Vhv} Ihv={Ihv} Vb={Vb} Ib={Ib} Vh={Vh} Ih={Ih} Va=1 Ia=1m
++ Iex={Iex} Pfe={if(Pfe > 0, Pfe, 0.03*(Vhv*Ihv + Vb*Ib + Vh*Ih))} reg={reg}
++ xlk={xlk} Rp={Rp} Rhv={Rhv} hbal={hbal} Rb={Rb} Rh={Rh} Ra=1 sat={sat}
++ ksat={ksat} Lsr={Lsr} wk={wk}
+Rax a1 a2 1G
+.ends pt_tube
+
+* ---- solid-state: two equal secondaries -------------------------------------------------
+.subckt pt_ss P1 P2 SA1 SA2 SB1 SB2 params: Vp=230 fline=50 fmin=50 Vs=19.4 Is=4.44
++ Iex=20m Pfe=0 reg=0.08 xlk=0.0025 Rp=0 Rs1=0 Rs2=0 sat=1 ksat=1.25 Lsr=1000
++ wk=0.02
+.param VAt = 2*Vs*Is
+.param w0 = 2*pi*fline
+.param Pfe_ = if(Pfe > 0, Pfe, 0.01*VAt)
+.param Im = sqrt(max(Iex*Iex - (Pfe_/Vp)**2, 0.01*Iex*Iex))
+.param Rp_ = if(Rp > 0, Rp, reg/2*Vp*Vp/VAt)
+.param Rs1_ = if(Rs1 > 0, Rs1, reg/2*Vs/Is)
+.param Rs2_ = if(Rs2 > 0, Rs2, reg/2*Vs/Is)
+.param Lpt = xlk/2*Vp*Vp/VAt/w0
+.param Lst = xlk/2*Vs/Is/w0
+XP P1 P2 c mt_w N=1 R={Rp_} L={Lpt}
+XA SA1 SA2 c mt_w N={Vs/Vp} R={Rs1_} L={Lst}
+XB SB1 SB2 c mt_w N={Vs/Vp} R={Rs2_} L={Lst}
+XC c mt_core Lm={Vp/(w0*Im)} Rc={Vp*Vp/Pfe_} Lk={ksat*sqrt(2)*Vp/(2*pi*fmin)}
++ wk={wk} Lsr={Lsr} sat={sat}
+Rg1 SA2 0 1G
+Rg2 SB2 0 1G
+.ends pt_ss
+
+.subckt pt_ss_ct P1 P2 S1 SCT S2 params: Vp=230 fline=50 fmin=50 Vs=19.4 Is=4.44
++ Iex=20m Pfe=0 reg=0.08 xlk=0.0025 Rp=0 Rs1=0 Rs2=0 sat=1 ksat=1.25 Lsr=1000
++ wk=0.02
+X1 P1 P2 S1 SCT SCT S2 pt_ss Vp={Vp} fline={fline} fmin={fmin} Vs={Vs} Is={Is}
++ Iex={Iex} Pfe={Pfe} reg={reg} xlk={xlk} Rp={Rp} Rs1={Rs1} Rs2={Rs2} sat={sat}
++ ksat={ksat} Lsr={Lsr} wk={wk}
+.ends pt_ss_ct
+
+* ---- Presets ------------------------------------------------------------------------
+* Hammond Mfg. sheets https://www.hammfg.com/files/parts/pdf/<PART>.pdf (fetched
+* 2026-09-14): N.L.V. (no-load voltages at 120 V 60 Hz, or 117 V for the toroid), DCR
+* at 20 C, Iex (the sheet's maximum no-load current, used as the value). Estimates
+* (README "Provenance"): xlk (E-I 0.01, toroid 0.0025, from the leakage inductances
+* R. Elliott measured, sound-au.com/xfmr2.htm), Pfe (3 % / 1 % of VA), the toroid's Iex,
+* bias-tap current Ib = 10 mA. 'pri' selects the dual primary: 1 = the two 120 V
+* (117 V) windings in parallel, 2 = in series for 240 V (234 V).
+*
+* 370AX: 480 V CT @ 58 mA (under load), 50 V bias tap, 6.3 V CT @ 2.5 A, 44 VA
+.subckt PT_370AX P1 P2 HV1 BIAS HVCT HV2 H1 HCT H2 params: pri=1 sat=1
+X1 P1 P2 HV1 BIAS HVCT HV2 H1 HCT H2 pt_tube Vp={120*pri} fline=60 fmin=50
++ Vhv=520.1 Ihv=58m Vb=50.06 Ib=10m Vh=7.013 Ih=2.5 Iex={80m/pri}
++ Rp={if(pri > 1.5, 19.45 + 21.36, 19.45*21.36/(19.45 + 21.36))} Rhv=333.2 Rh=0.150
++ sat={sat}
+.ends PT_370AX
+* 370CX: 550 V CT @ 75 mA, 50 V bias, 6.3 V CT @ 2.5 A (H), 6.3 V CT @ 0.6 A (aux A1-A2)
+.subckt PT_370CX P1 P2 HV1 BIAS HVCT HV2 H1 HCT H2 A1 A2 params: pri=1 sat=1
+X1 P1 P2 HV1 BIAS HVCT HV2 H1 HCT H2 A1 A2 pt_tube_aux Vp={120*pri} fline=60 fmin=50
++ Vhv=608.8 Ihv=75m Vb=50.00 Ib=10m Vh=6.977 Ih=2.5 Va=6.977 Ia=0.6 Iex={77m/pri}
++ Rp={if(pri > 1.5, 14.39 + 15.81, 14.39*15.81/(14.39 + 15.81))} Rhv=361.3 Rh=0.112
++ Ra=0.435 sat={sat}
+.ends PT_370CX
+* 370FX: 550 V CT @ 173 mA, 50 V bias, 6.3 V CT @ 5 A (H), 5 V CT @ 3 A (aux), 141 VA
+.subckt PT_370FX P1 P2 HV1 BIAS HVCT HV2 H1 HCT H2 A1 A2 params: pri=1 sat=1
+X1 P1 P2 HV1 BIAS HVCT HV2 H1 HCT H2 A1 A2 pt_tube_aux Vp={120*pri} fline=60 fmin=50
++ Vhv=586.3 Ihv=173m Vb=50.13 Ib=10m Vh=6.835 Ih=5 Va=5.316 Ia=3 Iex={132m/pri}
++ Rp={if(pri > 1.5, 4.541 + 4.902, 4.541*4.902/(4.541 + 4.902))} Rhv=106.0 Rh=0.053
++ Ra=0.063 sat={sat}
+.ends PT_370FX
+* 290AX: Fender Champ / Princeton / Vibro Champ / Bronco (125P1B, 022772), 120 V 60 Hz
+* only; the 650 V CT taps @ 100 mA (the 550 V CT taps are not modelled), 6.3 V CT @
+* 2.25 A (H), 5 V @ 3 A rectifier heater (aux); no bias tap
+.subckt PT_290AX P1 P2 HV1 HVCT HV2 H1 HCT H2 A1 A2 params: sat=1
+X1 P1 P2 HV1 HVCT HVCT HV2 H1 HCT H2 A1 A2 pt_tube_aux Vp=120 fline=60 fmin=60
++ Vhv=702.3 Ihv=100m Vb=0 Ib=1m Vh=6.841 Ih=2.25 Va=5.416 Ia=3 Iex=184m Rp=3.927
++ Rhv=277.1 Rh=0.108 Ra=0.091 sat={sat}
+.ends PT_290AX
+* 290EX: Fender Bassman AA864/AB165, Bandmaster AA763 (125P7D, 022814), 120 V 60 Hz only;
+* 660 V CT @ 275 mA, 53 V bias tap on the HV1 half, 6.4 V CT @ 4 A
+.subckt PT_290EX P1 P2 HV1 BIAS HVCT HV2 H1 HCT H2 params: sat=1
+X1 P1 P2 HV1 BIAS HVCT HV2 H1 HCT H2 pt_tube Vp=120 fline=60 fmin=60 Vhv=686.2
++ Ihv=275m Vb=55.21 Ib=10m Vh=6.761 Ih=4 Iex=700m Rp=1.291 Rhv=35.64 hbal=0.5191
++ Rb=2.877 Rh=0.038 sat={sat}
+.ends PT_290EX
+* 1182N18: toroid, 2 x 117 V primaries, 2 x 18 V @ 4.44 A, 160 VA, 7.7 % regulation
+* (series table https://www.hammfg.com/electronics/transformers/power/1182.pdf); Iex:
+* estimate (see README)
+.subckt PT_1182N18 P1 P2 SA1 SA2 SB1 SB2 params: pri=1 sat=1
+X1 P1 P2 SA1 SA2 SB1 SB2 pt_ss Vp={117*pri} fline=60 fmin=50 Vs=19.39 Is=4.44
++ Iex={46m/pri} Pfe=1.6 xlk=0.0025 Rp={if(pri > 1.5, 10.2, 2.55)} Rs1=0.140
++ Rs2=0.140 sat={sat}
+.ends PT_1182N18
+.subckt PT_1182N18_CT P1 P2 S1 SCT S2 params: pri=1 sat=1
+X1 P1 P2 S1 SCT SCT S2 PT_1182N18 pri={pri} sat={sat}
+.ends PT_1182N18_CT

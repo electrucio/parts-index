@@ -1,0 +1,12 @@
+* ltp KSC1845 bordodynov.lib
+.include "models/bjt/KSC1845/bordodynov.lib"
+V1 vp 0 15
+V2 vn 0 -15
+Vin b1 0 DC 0 AC 1m
+Rb2 b2 0 10
+Q1 c1 b1 e KSC1845
+Q2 c2 b2 e KSC1845
+R1 vp c1 4.7k
+R2 vp c2 4.7k
+It e vn 1m
+.ac list 1k

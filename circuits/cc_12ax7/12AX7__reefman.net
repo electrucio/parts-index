@@ -1,0 +1,14 @@
+* 12ax7 cc 12AX7 reefman.lib
+.include "models/tube/12AX7/reefman.lib"
+Vb bplus 0 250
+Vin in 0 SIN(0 {amp} 1k)
+Rgs in g 1k
+Rg g 0 1Meg
+X1 p g k 12AX7
+Rp bplus p 100k
+Rk k 0 1.5k
+Ck k 0 25u
+Cc p o 22n
+Rl o 0 1Meg
+.param amp=0.01
+.tran 0 60m 40m 5u

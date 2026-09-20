@@ -1,0 +1,22 @@
+* ts808 LM358 bordodynov-3.lib
+.include "models/opamp/LM358/bordodynov-3.lib"
+.include "components/potentiometer/potentiometer.sub"
+.include "models/diode/1N914/onsemi.lib"
+V1 vcc 0 9
+Rb1 vcc vb 10k
+Rb2 vb 0 10k
+Cb vb 0 47u
+Vin in 0 SIN(0 {amp} 1k)
+Cin in inp 1u
+Rin inp vb 510k
+XU1 inp inn vcc 0 out LM358/MC
+Rg inn g1 4.7k
+Cg g1 vb 47n
+Rf out f1 51k
+Xdrive f1 f2 f2 pot_log R=500k rot={drive}
+Rfx f2 inn 1m
+Cf out inn 51p
+D1 out inn D1N914
+D2 inn out D1N914
+.param amp=0.01 drive=1
+.tran 0 40m 20m 5u

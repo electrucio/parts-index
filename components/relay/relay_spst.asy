@@ -1,0 +1,33 @@
+Version 4
+SymbolType CELL
+LINE Normal 0 16 0 40
+LINE Normal 0 88 0 112
+RECTANGLE Normal -16 40 16 88
+TEXT -4 28 Right 0 +
+LINE Normal 96 112 96 88
+CIRCLE Normal 93 85 99 91
+LINE Normal 128 16 128 40
+LINE Normal 128 40 118 40
+TEXT 132 24 Left 0 NO
+TEXT 102 104 Left 0 COM
+LINE Normal 96 88 110 46
+LINE Normal 16 64 83 64 1
+WINDOW 0 160 32 Left 2
+WINDOW 3 -16 144 Left 2
+SYMATTR Value Vnom=12 R=288 pu=0.65 do=0.2 Top=4m Trel=2m Ron=50m pol=0
+SYMATTR Prefix X
+SYMATTR SpiceModel relay_spst
+SYMATTR ModelFile relay.sub
+SYMATTR Description Relay, SPST-NO (1 Form A). Pins COIL+ COIL- COM NO
+PIN 0 16 NONE 8
+PINATTR PinName COIL+
+PINATTR SpiceOrder 1
+PIN 0 112 NONE 8
+PINATTR PinName COIL-
+PINATTR SpiceOrder 2
+PIN 96 112 NONE 8
+PINATTR PinName COM
+PINATTR SpiceOrder 3
+PIN 128 16 NONE 8
+PINATTR PinName NO
+PINATTR SpiceOrder 4

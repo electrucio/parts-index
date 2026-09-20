@@ -1,0 +1,23 @@
+Version 4
+SymbolType CELL
+ARC Normal 8 16 24 32 16 32 16 16
+ARC Normal 8 32 24 48 16 48 16 32
+ARC Normal 8 48 24 64 16 64 16 48
+ARC Normal 8 64 24 80 16 80 16 64
+ARC Normal 8 80 24 96 16 96 16 80
+ARC Normal 8 96 24 112 16 112 16 96
+LINE Normal 36 16 36 112
+LINE Normal 42 16 42 112
+WINDOW 0 52 40 Left 2
+WINDOW 3 52 88 Left 2
+SYMATTR Value S=1.3
+SYMATTR Prefix X
+SYMATTR SpiceModel CH_159R
+SYMATTR ModelFile choke.sub
+SYMATTR Description Hammond 159R choke 6 H @ 200 mA, 150 ohm
+PIN 16 16 NONE 8
+PINATTR PinName A
+PINATTR SpiceOrder 1
+PIN 16 112 NONE 8
+PINATTR PinName B
+PINATTR SpiceOrder 2
