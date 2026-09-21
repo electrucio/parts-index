@@ -1,5 +1,6 @@
 import { render } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
+import { Part, Search } from './part'
 import type { Manifest, SchematicSource, Sources } from './types'
 import './style.css'
 
@@ -131,15 +132,31 @@ function Missing({ have }: { have: Manifest['have'] }) {
   if (pending.length === 0) return null
   return (
     <p class="pending">
-      Not built yet: {pending.join(', ')}. This page shows what has been processed; searching by part
-      number arrives with the index export.
+      Not built yet: {pending.join(', ')}. Everything else below is what has been processed so far.
     </p>
   )
+}
+
+/** The part currently open, kept in the URL so a result can be linked to and the back button works. */
+function usePart(): [string | null, (p: string | null) => void] {
+  const read = () => new URLSearchParams(location.search).get('part')
+  const [part, set] = useState<string | null>(read)
+  useEffect(() => {
+    const onPop = () => set(read())
+    addEventListener('popstate', onPop)
+    return () => removeEventListener('popstate', onPop)
+  }, [])
+  const go = (p: string | null) => {
+    history.pushState({}, '', p ? `?part=${encodeURIComponent(p)}` : location.pathname)
+    set(p)
+  }
+  return [part, go]
 }
 
 function App() {
   const [data, setData] = useState<{ m: Manifest; s: Sources } | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [part, goPart] = usePart()
 
   useEffect(() => {
     Promise.all([
@@ -162,10 +179,17 @@ function App() {
           circuits, which SPICE models exist, and how far they can be trusted.
         </p>
       </header>
-      <Totals m={data.m} />
-      <Missing have={data.m.have} />
-      <Schematics rows={data.s.schematics} />
-      <Models rows={data.s.models} />
+      {part ? (
+        <Part part={part} onBack={() => goPart(null)} />
+      ) : (
+        <>
+          {data.m.have.parts && <Search onPick={goPart} />}
+          <Totals m={data.m} />
+          <Missing have={data.m.have} />
+          <Schematics rows={data.s.schematics} />
+          <Models rows={data.s.models} />
+        </>
+      )}
       <footer>
         <p>
           Built {data.m.built} from the committed dataset. This project stores links, never documents.

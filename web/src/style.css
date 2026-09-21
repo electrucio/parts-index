@@ -4,6 +4,7 @@
   --muted: #6b655c;
   --line: #e2ddd4;
   --accent: #8a5a2b;
+  --card: #f3f0ea;
   --bar: #c9bda9;
   --bar-fill: #7a9a6d;
   color-scheme: light dark;
@@ -16,6 +17,7 @@
     --muted: #9a938a;
     --line: #2f2c28;
     --accent: #d9a468;
+    --card: #201e1b;
     --bar: #33302b;
     --bar-fill: #6f8f63;
   }
@@ -90,3 +92,33 @@ a { color: var(--accent); }
   main { padding: 1.75rem 1rem 3rem; }
   th:nth-child(2), td:nth-child(2) { display: none; }
 }
+
+/* --- search and the part page ------------------------------------------------------------ */
+.search input {
+  width: 100%; padding: .7rem .9rem; font: inherit; font-size: 1.1rem;
+  border: 1px solid var(--line); border-radius: 6px;
+  background: var(--card); color: var(--fg);
+}
+.search input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.results { list-style: none; padding: 0; margin: .6rem 0 0; }
+.results li { border-bottom: 1px solid var(--line); }
+.result {
+  display: flex; gap: .8rem; align-items: baseline; width: 100%;
+  padding: .55rem .2rem; background: none; border: 0; color: inherit;
+  font: inherit; text-align: left; cursor: pointer;
+}
+.result:hover, .result:focus-visible { background: var(--card); }
+.result b { min-width: 8rem; }
+.counts { display: flex; gap: .9rem; color: var(--muted); font-size: .88rem; }
+.back { background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; font: inherit; }
+.part h2 { font-size: 2rem; margin: .2rem 0 1rem; letter-spacing: .02em; }
+.uses { list-style: none; padding: 0; margin: .5rem 0 0; }
+.uses li { padding: .55rem 0; border-bottom: 1px solid var(--line); }
+.pages { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .3rem; }
+.pages a {
+  font-size: .82rem; padding: .1rem .45rem; border: 1px solid var(--line);
+  border-radius: 4px; text-decoration: none; white-space: nowrap;
+}
+.pages a:hover { border-color: var(--accent); }
+.near { color: var(--muted); }
+tr.preferred { background: var(--card); }

@@ -48,6 +48,54 @@ export interface Manifest {
     definitions: number
   }
   /** Which exports exist yet. The site renders what is present and says what is not. */
-  have: { sources: boolean; index: boolean; models: boolean; datasheets: boolean }
+  have: { sources: boolean; index: boolean; parts: boolean; models: boolean; datasheets: boolean }
   sizes: Record<string, number>
+}
+
+/** One row of the search index: part, documents, uses, model candidates. */
+export type PartRow = [string, number, number, number]
+
+export interface PartIndex {
+  schema: number
+  /** The source names, once. A document names its source by position in this list. */
+  sources: string[]
+  parts: PartRow[]
+}
+
+export interface PartModel {
+  source: string
+  name: string
+  def: string
+  type?: string
+  pins?: string[]
+  verbatim?: boolean
+  symbol?: string
+  get: { url?: string; member?: string; installed_with?: string; file?: string; how?: string }
+  score?: number
+  /** pass, marginal, fail — the datasheet rows this model was judged against. */
+  rows?: [number, number, number]
+}
+
+export interface PartPage {
+  part: string
+  docs: {
+    /** Index into `PartIndex.sources`. */
+    s: number
+    t: string
+    u: string
+    y: string
+    schematic: number
+    /** page number, link, nearby designators, times on the page */
+    p: [number, string, string, number][]
+    more?: number
+    also?: string[]
+  }[]
+  n: { documents: number; shown: number; copies: number }
+  models?: {
+    kind: string
+    preferred: string
+    why: string
+    models: PartModel[]
+    datasheet?: { url: string; maker?: string; doc?: string; date?: string }
+  }
 }

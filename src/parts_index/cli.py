@@ -134,8 +134,11 @@ def main(argv: list[str] | None = None) -> int:
         manifest = web_build.build(args.out)
         t = manifest["totals"]
         missing = [k for k, v in manifest["have"].items() if not v]
-        print(f"{sum(manifest['sizes'].values()) / 1024:.0f} KB  "
-              f"{t['sources']} schematic sources, {t['modelSources']} model sources")
+        first = manifest["sizes"].get("parts.json", 0) + manifest["sizes"].get("sources.json", 0)
+        print(f"{sum(manifest['sizes'].values()) / 1e6:.0f} MB  "
+              f"{t['sources']} schematic sources, {t['modelSources']} model sources, "
+              f"{manifest.get('parts', 0):,} part pages")
+        print(f"{first / 1024:.0f} KB before compression is what a visitor loads to start searching")
         if missing:
             print(f"not built yet: {', '.join(missing)}")
         return 0

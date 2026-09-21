@@ -6,8 +6,12 @@ This is the architectural contract of the project: everything the site shows is 
 clones the repository can rebuild it — no corpus, no GPU, no credentials. `tests/web/test_build.py` proves
 it by making the private data root raise and running this anyway.
 
-What it emits grows as the exports land. Today: the source registries with their processing coverage,
-which is the "what has been indexed" page. The part index, model recipes and datasheets follow.
+What it emits grows as the exports land. Today: the source registries with their coverage, the search
+index, and one file per part holding everything its page shows — where the part is used, which models
+exist for it and how good each one is. Datasheets follow.
+
+A part page is one request, because the site is static and has nobody to ask. `web/parts.py` does the
+joining, grouping and capping that a browser would otherwise have to be sent the raw rows to do.
 """
 from __future__ import annotations
 
@@ -19,6 +23,7 @@ from pathlib import Path
 
 from parts_index import status
 from parts_index.core.config import datasheets_table, model_part, schematics_parts, web_data
+from parts_index.web import parts as part_pages
 
 SCHEMA = 1
 
@@ -69,6 +74,18 @@ def build(out: Path | None = None) -> dict:
     payload = sources_payload()
     sizes = {"sources.json": write_json(out, "sources.json", payload)}
 
+    idx = part_pages.index()
+    recipes = part_pages.model_recipes()
+    search = part_pages.search_index(idx, recipes)
+    if search:
+        sizes["parts.json"] = write_json(out, "parts.json", {
+            "schema": SCHEMA, "sources": idx["sources"], "parts": search})
+        total = 0
+        for name, *_ in search:
+            total += write_json(out / "part", f"{name}.json",
+                                part_pages.part_payload(name, idx, recipes.get(name)))
+        sizes["part/"] = total
+
     # Each of these lands with its exporter; the site renders what is present and says what is not.
     manifest = {
         "schema": SCHEMA,
@@ -77,9 +94,11 @@ def build(out: Path | None = None) -> dict:
         "have": {
             "sources": True,
             "index": schematics_parts().exists(),
+            "parts": bool(search),
             "models": model_part("bjt", "any").parent.parent.is_dir(),
             "datasheets": datasheets_table().exists(),
         },
+        "parts": len(search),
         "sizes": sizes,
     }
     write_json(out, "manifest.json", manifest)

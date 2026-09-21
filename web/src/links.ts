@@ -52,9 +52,11 @@ export function partUrl(doc: LinkDoc, n: number, boxes?: number[][] | string | n
     return url
   }
   const { w_pt: w, h_pt: h } = doc
-  if (!box || box.length < 2 || !w || !h) return url
-  const left = Math.max(0, box[0] / 1000 - MARGIN) * w
-  const top = Math.max(0, box[1] / 1000 - MARGIN) * h // downwards from the top: Chrome's reading
+  const x0 = box?.[0]
+  const y0 = box?.[1]
+  if (x0 === undefined || y0 === undefined || !w || !h) return url
+  const left = Math.max(0, x0 / 1000 - MARGIN) * w
+  const top = Math.max(0, y0 / 1000 - MARGIN) * h // downwards from the top: Chrome's reading
   return `${url}&zoom=${ZOOM},${Math.round(left)},${Math.round(top)}&h=${Math.round(h)}`
 }
 
