@@ -7,7 +7,7 @@ UV := uv
 RUN := $(UV) run --quiet
 
 .DEFAULT_GOAL := help
-.PHONY: help setup test lint guard check status status-write paths seed clean
+.PHONY: help setup test lint guard check status status-write paths seed clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -45,6 +45,19 @@ status-write:  ## regenerate STATUS.md from the ledgers
 paths:  ## where everything is, and which side of the public/private line
 	$(RUN) pidx paths
 
+# --- the website -------------------------------------------------------------------------------
+web-deps:  ## install the website's dependencies (once)
+	cd web && npm install --no-fund --no-audit
+
+web-data:  ## write the site's data from data/ — reads nothing private
+	$(RUN) pidx web build
+
+web: web-data  ## build the site into web/dist
+	cd web && npm run build
+
+serve: web-data  ## bring the site up locally with live reload, at http://localhost:5173
+	cd web && npm run dev
+
 # --- maintainer only ----------------------------------------------------------------------------
 seed:  ## (maintainer) rebuild the ledgers from the pre-monorepo pipeline outputs
 	$(RUN) python -m parts_index.schematics.seed
@@ -59,4 +72,4 @@ clean:  ## remove caches and build output (never touches the private data root)
 #   crawl / download / ocr / index / linkcheck   pillar 1, per source
 #   export                                       the private index -> data/
 #   fetch / promote                              pillar 2, SPICE models
-#   web / web-private                            build the site from data/ (--private inlines model text)
+#   serve-private                                the site with the model text inlined, never deployed

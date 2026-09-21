@@ -24,6 +24,10 @@ def main(argv: list[str] | None = None) -> int:
     pa.add_argument("--public", action="store_true", help="only what is committed")
     pa.add_argument("--missing", action="store_true", help="only locations that do not exist here")
 
+    web = sub.add_parser("web", help="the static site").add_subparsers(dest="web_cmd", required=True)
+    wb = web.add_parser("build", help="write the site's data from data/ (never reads the private root)")
+    wb.add_argument("--out", help="output directory (default: web/public/data)")
+
     args = ap.parse_args(argv)
 
     if args.cmd == "status":
@@ -53,6 +57,17 @@ def main(argv: list[str] | None = None) -> int:
             print(f"{mark} {visibility:8s} {name:{width}s}  {shown}")
         if any(not exists for *_, exists in rows):
             print("\n? = not present here. Private locations are absent unless you hold the corpus.")
+        return 0
+
+    if args.cmd == "web" and args.web_cmd == "build":
+        from parts_index.web import build as web_build
+        manifest = web_build.build(args.out)
+        t = manifest["totals"]
+        missing = [k for k, v in manifest["have"].items() if not v]
+        print(f"{sum(manifest['sizes'].values()) / 1024:.0f} KB  "
+              f"{t['sources']} schematic sources, {t['modelSources']} model sources")
+        if missing:
+            print(f"not built yet: {', '.join(missing)}")
         return 0
 
     return 0
