@@ -117,6 +117,10 @@ redistributed, and the working state around it. It is a backup, not a publicatio
 
 ## Restoring
 
+This archive is a plain zip: any tool opens it, and `restore.py` is inside it, so nothing else needs to
+have been kept. Take the script out first — the zip has an index, so this reads kilobytes, not gigabytes:
+
+    unzip -j {archive_name(level)} restore.py
     python3 restore.py {archive_name(level)} --into /path/to/parts-index
 
 Files go back to the paths they came from. Nothing already there is overwritten: a file that is present
@@ -178,8 +182,9 @@ def build(out_dir: Path, level: str = "essential", dry: bool = False) -> dict:
         if RESTORE_SCRIPT.is_file():
             zf.write(RESTORE_SCRIPT, "restore.py")
     tmp.replace(target)
-    # The script also goes beside the archive: needing to unpack the archive to get the thing that
-    # unpacks the archive is a trap worth not setting.
+    # A copy also goes beside the archive. Not because it is needed — a zip carries a central
+    # directory, so `unzip -j <archive> restore.py` pulls it out in milliseconds without reading the
+    # other 2.4 GB — but so it can be read before deciding to download them.
     if RESTORE_SCRIPT.is_file():
         (out_dir / "restore.py").write_bytes(RESTORE_SCRIPT.read_bytes())
     counts["archive"] = str(target)
@@ -217,7 +222,9 @@ def main(argv=None) -> int:
     print(f"{c['archive_bytes'] / 1e9:.2f} GB, {saved:.1%} smaller than the {c['bytes'] / 1e9:.2f} GB "
           f"on disk — most of it was already compressed, so what this buys is one file instead of "
           f"{c['packed']:,}")
-    print(f"restore.py is beside it and inside it. Upload both, then:\n"
+    print(f"restore.py is inside the archive, so the .zip alone is enough. A copy sits beside it too,"
+          f"\nin case it helps to read it before downloading the rest. To restore:\n"
+          f"  unzip -j {archive_name(a.level)} restore.py\n"
           f"  python3 restore.py {archive_name(a.level)} --into /path/to/parts-index")
     return 0
 
