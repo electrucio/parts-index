@@ -1,0 +1,70 @@
+Version 4
+SymbolType CELL
+LINE Normal 0 16 32 16
+LINE Normal 16 16 16 0
+LINE Normal 0 16 16 48
+LINE Normal 32 16 16 48
+LINE Normal 0 48 32 48
+LINE Normal 16 48 16 64
+TEXT 60 16 Right 0 xCt
+TEXT 60 48 Right 0 xRt
+TEXT 60 80 Right 0 xRCt
+TEXT 60 112 Right 0 xAstable
+TEXT 60 144 Right 0 _xAstable
+TEXT 60 176 Right 0 xNegTrig
+TEXT 60 208 Right 0 xPosTrig
+TEXT 60 240 Right 0 xReTrig
+TEXT 60 272 Right 0 xExtRst
+TEXT 60 304 Right 0 xQ
+TEXT 60 336 Right 0 _xQ
+TEXT 60 368 Right 0 xOscOut
+TEXT 60 400 Right 0 VDD
+TEXT 60 432 Right 0 VGND
+WINDOW 0 -40 -16 Left 2
+WINDOW 38 -40 176 Left 2
+SYMATTR Prefix X
+SYMATTR SpiceModel CD4047B
+SYMATTR ModelFile CD4047B_bordodynov.lib
+SYMATTR Description CD4047B (bordodynov model CD4047B); pins xCt xRt xRCt xAstable _xAstable xNegTrig xPosTrig xReTrig xExtRst xQ _xQ xOscOut VDD VGND
+PIN 64 16 NONE 8
+PINATTR PinName xCt
+PINATTR SpiceOrder 1
+PIN 64 48 NONE 8
+PINATTR PinName xRt
+PINATTR SpiceOrder 2
+PIN 64 80 NONE 8
+PINATTR PinName xRCt
+PINATTR SpiceOrder 3
+PIN 64 112 NONE 8
+PINATTR PinName xAstable
+PINATTR SpiceOrder 4
+PIN 64 144 NONE 8
+PINATTR PinName _xAstable
+PINATTR SpiceOrder 5
+PIN 64 176 NONE 8
+PINATTR PinName xNegTrig
+PINATTR SpiceOrder 6
+PIN 64 208 NONE 8
+PINATTR PinName xPosTrig
+PINATTR SpiceOrder 7
+PIN 64 240 NONE 8
+PINATTR PinName xReTrig
+PINATTR SpiceOrder 8
+PIN 64 272 NONE 8
+PINATTR PinName xExtRst
+PINATTR SpiceOrder 9
+PIN 64 304 NONE 8
+PINATTR PinName xQ
+PINATTR SpiceOrder 10
+PIN 64 336 NONE 8
+PINATTR PinName _xQ
+PINATTR SpiceOrder 11
+PIN 64 368 NONE 8
+PINATTR PinName xOscOut
+PINATTR SpiceOrder 12
+PIN 64 400 NONE 8
+PINATTR PinName VDD
+PINATTR SpiceOrder 13
+PIN 64 432 NONE 8
+PINATTR PinName VGND
+PINATTR SpiceOrder 14

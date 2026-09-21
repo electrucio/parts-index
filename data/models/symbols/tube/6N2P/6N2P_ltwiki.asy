@@ -1,0 +1,20 @@
+Version 4
+SymbolType CELL
+CIRCLE Normal 16 16 112 112
+LINE Normal 36 36 92 36
+LINE Normal 40 92 88 92
+LINE Normal 64 92 64 112
+LINE Normal 32 0 32 36
+TEXT 140 16 Right 0 B
+WINDOW 0 -40 -16 Left 2
+WINDOW 38 -40 176 Left 2
+SYMATTR Prefix X
+SYMATTR SpiceModel 62
+SYMATTR ModelFile 6N2P_ltwiki.lib
+SYMATTR Description 6N2P (ltwiki model 62); pins A B
+PIN 32 0 NONE 8
+PINATTR PinName A
+PINATTR SpiceOrder 1
+PIN 144 16 NONE 8
+PINATTR PinName B
+PINATTR SpiceOrder 2

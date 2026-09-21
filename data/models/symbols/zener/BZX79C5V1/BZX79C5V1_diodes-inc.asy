@@ -1,0 +1,20 @@
+Version 4
+SymbolType CELL
+LINE Normal 0 16 32 16
+LINE Normal 16 16 16 0
+LINE Normal 0 16 16 48
+LINE Normal 32 16 16 48
+LINE Normal 0 48 32 48
+LINE Normal 16 48 16 64
+WINDOW 0 -40 -16 Left 2
+WINDOW 38 -40 176 Left 2
+SYMATTR Prefix X
+SYMATTR SpiceModel DI_BZX84C5V1
+SYMATTR ModelFile BZX79C5V1_diodes-inc.lib
+SYMATTR Description BZX79C5V1 (diodes-inc model DI_BZX84C5V1); pins A K
+PIN 16 0 NONE 8
+PINATTR PinName A
+PINATTR SpiceOrder 1
+PIN 16 64 NONE 8
+PINATTR PinName K
+PINATTR SpiceOrder 2

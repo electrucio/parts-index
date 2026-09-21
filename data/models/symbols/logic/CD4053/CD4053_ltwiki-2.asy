@@ -1,0 +1,76 @@
+Version 4
+SymbolType CELL
+LINE Normal 0 16 32 16
+LINE Normal 16 16 16 0
+LINE Normal 0 16 16 48
+LINE Normal 32 16 16 48
+LINE Normal 0 48 32 48
+LINE Normal 16 48 16 64
+TEXT 60 16 Right 0 B
+TEXT 60 48 Right 0 INH
+TEXT 60 80 Right 0 ax
+TEXT 60 112 Right 0 ay
+TEXT 60 144 Right 0 axOay
+TEXT 60 176 Right 0 bx
+TEXT 60 208 Right 0 by
+TEXT 60 240 Right 0 bxOby
+TEXT 60 272 Right 0 cx
+TEXT 60 304 Right 0 cy
+TEXT 60 336 Right 0 cxOcy
+TEXT 60 368 Right 0 V+
+TEXT 60 400 Right 0 Vss
+TEXT 60 432 Right 0 Vee
+WINDOW 0 -40 -16 Left 2
+WINDOW 38 -40 176 Left 2
+SYMATTR Prefix X
+SYMATTR SpiceModel 4053
+SYMATTR ModelFile CD4053_ltwiki-2.lib
+SYMATTR Description CD4053 (ltwiki model 4053); pins A B C INH ax ay axOay bx by bxOby cx cy cxOcy V+ Vss Vee
+PIN 16 0 NONE 8
+PINATTR PinName A
+PINATTR SpiceOrder 1
+PIN 64 16 NONE 8
+PINATTR PinName B
+PINATTR SpiceOrder 2
+PIN 16 64 NONE 8
+PINATTR PinName C
+PINATTR SpiceOrder 3
+PIN 64 48 NONE 8
+PINATTR PinName INH
+PINATTR SpiceOrder 4
+PIN 64 80 NONE 8
+PINATTR PinName ax
+PINATTR SpiceOrder 5
+PIN 64 112 NONE 8
+PINATTR PinName ay
+PINATTR SpiceOrder 6
+PIN 64 144 NONE 8
+PINATTR PinName axOay
+PINATTR SpiceOrder 7
+PIN 64 176 NONE 8
+PINATTR PinName bx
+PINATTR SpiceOrder 8
+PIN 64 208 NONE 8
+PINATTR PinName by
+PINATTR SpiceOrder 9
+PIN 64 240 NONE 8
+PINATTR PinName bxOby
+PINATTR SpiceOrder 10
+PIN 64 272 NONE 8
+PINATTR PinName cx
+PINATTR SpiceOrder 11
+PIN 64 304 NONE 8
+PINATTR PinName cy
+PINATTR SpiceOrder 12
+PIN 64 336 NONE 8
+PINATTR PinName cxOcy
+PINATTR SpiceOrder 13
+PIN 64 368 NONE 8
+PINATTR PinName V+
+PINATTR SpiceOrder 14
+PIN 64 400 NONE 8
+PINATTR PinName Vss
+PINATTR SpiceOrder 15
+PIN 64 432 NONE 8
+PINATTR PinName Vee
+PINATTR SpiceOrder 16

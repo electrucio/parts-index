@@ -1,0 +1,34 @@
+Version 4
+SymbolType CELL
+LINE Normal 0 16 32 16
+LINE Normal 16 16 16 0
+LINE Normal 0 16 16 48
+LINE Normal 32 16 16 48
+LINE Normal 0 48 32 48
+LINE Normal 16 48 16 64
+TEXT 60 16 Right 0 11
+TEXT 60 48 Right 0 4
+TEXT 60 80 Right 0 2
+TEXT 60 112 Right 0 10
+TEXT 60 144 Right 0 7
+WINDOW 0 -40 -16 Left 2
+WINDOW 38 -40 176 Left 2
+SYMATTR Prefix X
+SYMATTR SpiceModel CD4066B
+SYMATTR ModelFile CD4066B_kicad-spice-library.lib
+SYMATTR Description CD4066B (kicad-spice-library model CD4066B); pins 11 4 2 10 7
+PIN 64 16 NONE 8
+PINATTR PinName 11
+PINATTR SpiceOrder 1
+PIN 64 48 NONE 8
+PINATTR PinName 4
+PINATTR SpiceOrder 2
+PIN 64 80 NONE 8
+PINATTR PinName 2
+PINATTR SpiceOrder 3
+PIN 64 112 NONE 8
+PINATTR PinName 10
+PINATTR SpiceOrder 4
+PIN 64 144 NONE 8
+PINATTR PinName 7
+PINATTR SpiceOrder 5

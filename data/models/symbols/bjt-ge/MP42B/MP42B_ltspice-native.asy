@@ -1,0 +1,34 @@
+Version 4
+SymbolType CELL
+LINE Normal 16 32 16 96
+LINE Normal 0 64 16 64
+LINE Normal 16 48 64 16
+LINE Normal 16 80 64 112
+LINE Normal 64 0 64 16
+LINE Normal 64 112 64 128
+TEXT 108 16 Right 0 D
+TEXT 108 48 Right 0 G
+TEXT 108 80 Right 0 S
+TEXT 108 112 Right 0 Tj
+TEXT 108 144 Right 0 Id
+WINDOW 0 -40 -16 Left 2
+WINDOW 38 -40 176 Left 2
+SYMATTR Prefix X
+SYMATTR SpiceModel 42
+SYMATTR ModelFile MP42B_ltspice-native.lib
+SYMATTR Description MP42B (ltspice-native model 42); pins D G S Tj Id
+PIN 112 16 NONE 8
+PINATTR PinName D
+PINATTR SpiceOrder 1
+PIN 112 48 NONE 8
+PINATTR PinName G
+PINATTR SpiceOrder 2
+PIN 112 80 NONE 8
+PINATTR PinName S
+PINATTR SpiceOrder 3
+PIN 112 112 NONE 8
+PINATTR PinName Tj
+PINATTR SpiceOrder 4
+PIN 112 144 NONE 8
+PINATTR PinName Id
+PINATTR SpiceOrder 5

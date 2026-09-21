@@ -1,0 +1,26 @@
+Version 4
+SymbolType CELL
+LINE Normal 0 16 32 16
+LINE Normal 16 16 16 0
+LINE Normal 0 16 16 48
+LINE Normal 32 16 16 48
+LINE Normal 0 48 32 48
+LINE Normal 16 48 16 64
+TEXT 60 16 Right 0 IN
+TEXT 60 48 Right 0 GND
+TEXT 60 80 Right 0 OUT
+WINDOW 0 -40 -16 Left 2
+WINDOW 38 -40 176 Left 2
+SYMATTR Prefix X
+SYMATTR SpiceModel LM7805
+SYMATTR ModelFile LM7805_bordodynov.lib
+SYMATTR Description LM7805 (bordodynov model LM7805); pins IN GND OUT
+PIN 64 16 NONE 8
+PINATTR PinName IN
+PINATTR SpiceOrder 1
+PIN 64 48 NONE 8
+PINATTR PinName GND
+PINATTR SpiceOrder 2
+PIN 64 80 NONE 8
+PINATTR PinName OUT
+PINATTR SpiceOrder 3

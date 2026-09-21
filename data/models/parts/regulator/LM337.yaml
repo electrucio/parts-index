@@ -32,6 +32,7 @@ models:
     fail: 1
     not_measurable: 0
     typical_rows: 0
+  symbol: LM337_ti.asy
 - source: ti
   name: LM337_N_H1
   def: subckt
@@ -57,6 +58,7 @@ models:
     fail: 1
     not_measurable: 0
     typical_rows: 0
+  symbol: LM337_ti-2.asy
 - source: ti
   name: LM337_N_TRANS
   def: subckt
@@ -88,6 +90,7 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 0
+  symbol: LM337_ti-3.asy
   note: found under the alias LM337_N_TRANS; pins from names
 - source: ltwiki
   name: LM337
@@ -113,6 +116,7 @@ models:
     fail: 0
     not_measurable: 2
     typical_rows: 0
+  symbol: LM337_ltwiki.asy
   note: pins from LM337 package pin numbers (unverified)
 - source: ltwiki
   name: LM337
@@ -139,6 +143,7 @@ models:
     fail: 1
     not_measurable: 0
     typical_rows: 0
+  symbol: LM337_ltwiki-2.asy
 - source: kicad-spice-library
   name: LM337K
   def: subckt
@@ -162,6 +167,7 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 0
+  symbol: LM337_kicad-spice-library.asy
   note: 'pins from simulation: of the 6 node orders only IN ADJ OUT regulates to about -1.25 V at Vin-Vout
     5 V / 20 mA, Vin-Vout 15 V / 20 mA, Vin-Vout 5 V / 100 mA (not at the 100 mA point) (orders tried:
     IN OUT ADJ: 3.57 V, 3.57 V, 22.8 V; IN ADJ OUT: -1.25 V, -1.25 V, 9.18 V; OUT IN ADJ: 1.73 V, 1.73

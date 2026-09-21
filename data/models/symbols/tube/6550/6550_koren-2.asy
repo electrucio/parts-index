@@ -1,0 +1,25 @@
+Version 4
+SymbolType CELL
+CIRCLE Normal 0 16 128 144
+LINE Normal 40 40 88 40
+LINE Normal 64 0 64 40
+LINE Normal 40 120 88 120
+LINE Normal 64 120 64 160
+LINE Normal 36 96 92 96 2
+LINE Normal -32 96 36 96
+TEXT 108 16 Right 0 CS
+WINDOW 0 -40 -16 Left 2
+WINDOW 38 -40 176 Left 2
+SYMATTR Prefix X
+SYMATTR SpiceModel 6550
+SYMATTR ModelFile 6550_koren-2.lib
+SYMATTR Description 6550 (koren model 6550); pins P G CS
+PIN 64 0 NONE 8
+PINATTR PinName P
+PINATTR SpiceOrder 1
+PIN -32 96 NONE 8
+PINATTR PinName G
+PINATTR SpiceOrder 2
+PIN 112 16 NONE 8
+PINATTR PinName CS
+PINATTR SpiceOrder 3

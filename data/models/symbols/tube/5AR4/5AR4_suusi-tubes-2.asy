@@ -1,0 +1,23 @@
+Version 4
+SymbolType CELL
+CIRCLE Normal 16 16 112 112
+LINE Normal 36 36 92 36
+LINE Normal 40 92 88 92
+LINE Normal 64 92 64 112
+LINE Normal 32 0 32 36
+LINE Normal 96 0 96 36
+WINDOW 0 -40 -16 Left 2
+WINDOW 38 -40 176 Left 2
+SYMATTR Prefix X
+SYMATTR SpiceModel GZ34
+SYMATTR ModelFile 5AR4_suusi-tubes-2.lib
+SYMATTR Description 5AR4 (suusi-tubes model GZ34); pins A1 A2 C
+PIN 32 0 NONE 8
+PINATTR PinName A1
+PINATTR SpiceOrder 1
+PIN 96 0 NONE 8
+PINATTR PinName A2
+PINATTR SpiceOrder 2
+PIN 64 128 NONE 8
+PINATTR PinName C
+PINATTR SpiceOrder 3

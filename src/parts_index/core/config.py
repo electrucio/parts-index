@@ -124,6 +124,11 @@ def model_part(kind: str, part: str) -> Path:
     return models_dir() / "parts" / kind / f"{part}.yaml"
 
 
+def model_symbol(kind: str, part: str, name: str) -> Path:
+    """An LTspice symbol we drew for one model: our own work, so it is published."""
+    return models_dir() / "symbols" / kind / part / name
+
+
 def model_licence(source: str) -> Path:
     return models_dir() / "licences" / f"{source}.md"
 
@@ -326,6 +331,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("model_sources", "public", ("onsemi",)),
     ("model_state", "public", ("onsemi",)),
     ("model_part", "public", ("bjt", "2N3904")),
+    ("model_symbol", "public", ("bjt", "2N3904", "2N3904_acme.asy")),
     ("model_licence", "public", ("onsemi",)),
     ("model_files", "public", ("germaniumbjts",)),
     ("model_links", "public", ()),

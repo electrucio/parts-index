@@ -1,0 +1,46 @@
+Version 4
+SymbolType CELL
+LINE Normal 0 16 32 16
+LINE Normal 16 16 16 0
+LINE Normal 0 16 16 48
+LINE Normal 32 16 16 48
+LINE Normal 0 48 32 48
+LINE Normal 16 48 16 64
+TEXT 60 16 Right 0 1
+TEXT 60 48 Right 0 2
+TEXT 60 80 Right 0 3
+TEXT 60 112 Right 0 4
+TEXT 60 144 Right 0 5
+TEXT 60 176 Right 0 6
+TEXT 60 208 Right 0 7
+TEXT 60 240 Right 0 8
+WINDOW 0 -40 -16 Left 2
+WINDOW 38 -40 176 Left 2
+SYMATTR Prefix X
+SYMATTR SpiceModel NE555
+SYMATTR ModelFile NE555_ltspice-native.lib
+SYMATTR Description NE555 (ltspice-native model NE555); pins 1 2 3 4 5 6 7 8
+PIN 64 16 NONE 8
+PINATTR PinName 1
+PINATTR SpiceOrder 1
+PIN 64 48 NONE 8
+PINATTR PinName 2
+PINATTR SpiceOrder 2
+PIN 64 80 NONE 8
+PINATTR PinName 3
+PINATTR SpiceOrder 3
+PIN 64 112 NONE 8
+PINATTR PinName 4
+PINATTR SpiceOrder 4
+PIN 64 144 NONE 8
+PINATTR PinName 5
+PINATTR SpiceOrder 5
+PIN 64 176 NONE 8
+PINATTR PinName 6
+PINATTR SpiceOrder 6
+PIN 64 208 NONE 8
+PINATTR PinName 7
+PINATTR SpiceOrder 7
+PIN 64 240 NONE 8
+PINATTR PinName 8
+PINATTR SpiceOrder 8

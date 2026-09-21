@@ -1,0 +1,57 @@
+Version 4
+SymbolType CELL
+LINE Normal 0 16 32 16
+LINE Normal 16 16 16 0
+LINE Normal 0 16 16 48
+LINE Normal 32 16 16 48
+LINE Normal 0 48 32 48
+LINE Normal 16 48 16 64
+TEXT 60 16 Right 0 B
+TEXT 60 48 Right 0 INH
+TEXT 60 80 Right 0 io0
+TEXT 60 112 Right 0 io1
+TEXT 60 144 Right 0 io2
+TEXT 60 176 Right 0 io3
+TEXT 60 208 Right 0 ioc
+TEXT 60 240 Right 0 V+
+TEXT 60 272 Right 0 Vss
+TEXT 60 304 Right 0 Vee
+WINDOW 0 -40 -16 Left 2
+WINDOW 38 -40 176 Left 2
+SYMATTR Prefix X
+SYMATTR SpiceModel 4052half
+SYMATTR ModelFile CD4052_bordodynov-3.lib
+SYMATTR Description CD4052 (bordodynov model 4052half); pins A B INH io0 io1 io2 io3 ioc V+ Vss Vee
+PIN 16 0 NONE 8
+PINATTR PinName A
+PINATTR SpiceOrder 1
+PIN 64 16 NONE 8
+PINATTR PinName B
+PINATTR SpiceOrder 2
+PIN 64 48 NONE 8
+PINATTR PinName INH
+PINATTR SpiceOrder 3
+PIN 64 80 NONE 8
+PINATTR PinName io0
+PINATTR SpiceOrder 4
+PIN 64 112 NONE 8
+PINATTR PinName io1
+PINATTR SpiceOrder 5
+PIN 64 144 NONE 8
+PINATTR PinName io2
+PINATTR SpiceOrder 6
+PIN 64 176 NONE 8
+PINATTR PinName io3
+PINATTR SpiceOrder 7
+PIN 64 208 NONE 8
+PINATTR PinName ioc
+PINATTR SpiceOrder 8
+PIN 64 240 NONE 8
+PINATTR PinName V+
+PINATTR SpiceOrder 9
+PIN 64 272 NONE 8
+PINATTR PinName Vss
+PINATTR SpiceOrder 10
+PIN 64 304 NONE 8
+PINATTR PinName Vee
+PINATTR SpiceOrder 11

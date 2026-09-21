@@ -1,0 +1,31 @@
+Version 4
+SymbolType CELL
+CIRCLE Normal 0 16 128 144
+LINE Normal 40 40 88 40
+LINE Normal 64 0 64 40
+LINE Normal 40 120 88 120
+LINE Normal 64 120 64 160
+LINE Normal 36 96 92 96 2
+LINE Normal -32 96 36 96
+LINE Normal 36 72 92 72 2
+LINE Normal 92 72 160 72
+LINE Normal 36 56 92 56 2
+LINE Normal 36 56 36 120
+WINDOW 0 -40 -16 Left 2
+WINDOW 38 -40 176 Left 2
+SYMATTR Prefix X
+SYMATTR SpiceModel KT77
+SYMATTR ModelFile KT77_suusi-tubes.lib
+SYMATTR Description KT77 (suusi-tubes model KT77); pins A G2 G1 C
+PIN 64 0 NONE 8
+PINATTR PinName A
+PINATTR SpiceOrder 1
+PIN 160 72 NONE 8
+PINATTR PinName G2
+PINATTR SpiceOrder 2
+PIN -32 96 NONE 8
+PINATTR PinName G1
+PINATTR SpiceOrder 3
+PIN 64 160 NONE 8
+PINATTR PinName C
+PINATTR SpiceOrder 4

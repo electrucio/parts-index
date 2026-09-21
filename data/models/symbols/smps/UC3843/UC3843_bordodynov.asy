@@ -1,0 +1,46 @@
+Version 4
+SymbolType CELL
+LINE Normal 0 16 32 16
+LINE Normal 16 16 16 0
+LINE Normal 0 16 16 48
+LINE Normal 32 16 16 48
+LINE Normal 0 48 32 48
+LINE Normal 16 48 16 64
+TEXT 60 16 Right 0 Err
+TEXT 60 48 Right 0 Vfb
+TEXT 60 80 Right 0 Ifb
+TEXT 60 112 Right 0 Osc
+TEXT 60 144 Right 0 Com
+TEXT 60 176 Right 0 Out
+TEXT 60 208 Right 0 Vcc
+TEXT 60 240 Right 0 Ref
+WINDOW 0 -40 -16 Left 2
+WINDOW 38 -40 176 Left 2
+SYMATTR Prefix X
+SYMATTR SpiceModel uc3843
+SYMATTR ModelFile UC3843_bordodynov.lib
+SYMATTR Description UC3843 (bordodynov model uc3843); pins Err Vfb Ifb Osc Com Out Vcc Ref
+PIN 64 16 NONE 8
+PINATTR PinName Err
+PINATTR SpiceOrder 1
+PIN 64 48 NONE 8
+PINATTR PinName Vfb
+PINATTR SpiceOrder 2
+PIN 64 80 NONE 8
+PINATTR PinName Ifb
+PINATTR SpiceOrder 3
+PIN 64 112 NONE 8
+PINATTR PinName Osc
+PINATTR SpiceOrder 4
+PIN 64 144 NONE 8
+PINATTR PinName Com
+PINATTR SpiceOrder 5
+PIN 64 176 NONE 8
+PINATTR PinName Out
+PINATTR SpiceOrder 6
+PIN 64 208 NONE 8
+PINATTR PinName Vcc
+PINATTR SpiceOrder 7
+PIN 64 240 NONE 8
+PINATTR PinName Ref
+PINATTR SpiceOrder 8

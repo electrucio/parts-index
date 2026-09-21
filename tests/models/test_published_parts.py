@@ -11,7 +11,7 @@ import re
 import pytest
 import yaml
 
-from parts_index.core.config import model_part, model_sources
+from parts_index.core.config import model_part, model_sources, model_symbol
 
 PARTS = sorted(model_part("*", "*").parent.parent.glob("*/*.yaml"))
 REGISTERED = {p.stem for p in model_sources().glob("*.yaml")}
@@ -64,3 +64,34 @@ def test_the_preferred_model_is_one_of_the_models_offered():
         if doc.get("preferred") and doc["preferred"] not in {m["source"] for m in doc["models"]}:
             bad.append(f"{p.name}: prefers {doc['preferred']}")
     assert not bad, bad[:10]
+
+
+SYMBOLS = sorted(model_symbol("*", "*", "*.asy").parent.parent.parent.glob("*/*/*.asy"))
+
+
+@pytest.mark.skipif(not SYMBOLS, reason="no symbols published yet")
+def test_a_symbol_carries_no_model_text():
+    """A symbol is geometry and pin names — our own drawing, never the vendor's parameters."""
+    bad = [p.name for p in SYMBOLS
+           if re.search(r"^\s*\.(model|subckt)\s", p.read_text(encoding="utf-8", errors="replace"), re.M | re.I)]
+    assert not bad, bad[:10]
+
+
+@pytest.mark.skipif(not PARTS, reason="no promoted parts yet")
+def test_every_symbol_named_by_a_recipe_is_published():
+    missing = []
+    for p in PARTS:
+        doc = load(p)
+        for m in doc["models"]:
+            if m.get("symbol") and not model_symbol(doc["kind"], doc["part"], m["symbol"]).is_file():
+                missing.append(f"{doc['kind']}/{doc['part']}/{m['symbol']}")
+    assert not missing, missing[:10]
+
+
+@pytest.mark.skipif(not SYMBOLS, reason="no symbols published yet")
+def test_no_symbol_is_published_that_no_recipe_names():
+    """An orphan would draw a model the part no longer offers."""
+    named = {(doc["kind"], doc["part"], m["symbol"])
+             for p in PARTS for doc in [load(p)] for m in doc["models"] if m.get("symbol")}
+    extra = [str(p) for p in SYMBOLS if (p.parent.parent.name, p.parent.name, p.name) not in named]
+    assert not extra, extra[:10]

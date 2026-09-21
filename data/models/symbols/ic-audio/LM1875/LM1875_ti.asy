@@ -1,0 +1,34 @@
+Version 4
+SymbolType CELL
+LINE Normal 0 16 32 16
+LINE Normal 16 16 16 0
+LINE Normal 0 16 16 48
+LINE Normal 32 16 16 48
+LINE Normal 0 48 32 48
+LINE Normal 16 48 16 64
+TEXT 60 16 Right 0 Vin
+TEXT 60 48 Right 0 Vip
+TEXT 60 80 Right 0 VSS
+TEXT 60 112 Right 0 VDD
+TEXT 60 144 Right 0 Vout
+WINDOW 0 -40 -16 Left 2
+WINDOW 38 -40 176 Left 2
+SYMATTR Prefix X
+SYMATTR SpiceModel LM1875
+SYMATTR ModelFile LM1875_ti.lib
+SYMATTR Description LM1875 (ti model LM1875); pins Vin Vip VSS VDD Vout
+PIN 64 16 NONE 8
+PINATTR PinName Vin
+PINATTR SpiceOrder 1
+PIN 64 48 NONE 8
+PINATTR PinName Vip
+PINATTR SpiceOrder 2
+PIN 64 80 NONE 8
+PINATTR PinName VSS
+PINATTR SpiceOrder 3
+PIN 64 112 NONE 8
+PINATTR PinName VDD
+PINATTR SpiceOrder 4
+PIN 64 144 NONE 8
+PINATTR PinName Vout
+PINATTR SpiceOrder 5

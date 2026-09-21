@@ -1,0 +1,38 @@
+Version 4
+SymbolType CELL
+LINE Normal 16 16 16 112
+LINE Normal 16 16 112 64
+LINE Normal 16 112 112 64
+LINE Normal -16 48 16 48
+LINE Normal -16 80 16 80
+LINE Normal 112 64 144 64
+LINE Normal 64 0 64 40
+LINE Normal 64 88 64 128
+TEXT 24 48 Left 2 -
+TEXT 24 80 Left 2 +
+TEXT 188 16 Right 0 1
+TEXT 188 48 Right 0 2
+TEXT 188 80 Right 0 3
+TEXT 188 112 Right 0 4
+TEXT 188 144 Right 0 5out
+WINDOW 0 -40 -16 Left 2
+WINDOW 38 -40 176 Left 2
+SYMATTR Prefix X
+SYMATTR SpiceModel TL072s
+SYMATTR ModelFile TL072_bordodynov-3.lib
+SYMATTR Description TL072 (bordodynov model TL072s); pins 1 2 3 4 5out
+PIN 192 16 NONE 8
+PINATTR PinName 1
+PINATTR SpiceOrder 1
+PIN 192 48 NONE 8
+PINATTR PinName 2
+PINATTR SpiceOrder 2
+PIN 192 80 NONE 8
+PINATTR PinName 3
+PINATTR SpiceOrder 3
+PIN 192 112 NONE 8
+PINATTR PinName 4
+PINATTR SpiceOrder 4
+PIN 192 144 NONE 8
+PINATTR PinName 5out
+PINATTR SpiceOrder 5

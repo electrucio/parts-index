@@ -28,7 +28,13 @@ from pathlib import Path
 
 import yaml
 
-from parts_index.core.config import model_part, model_sources, require, spice_curated
+from parts_index.core.config import (
+    model_part,
+    model_sources,
+    model_symbol,
+    require,
+    spice_curated,
+)
 from parts_index.models.fetch import archive_for, source_files
 
 
@@ -140,6 +146,20 @@ def get_block(prov: dict) -> dict:
     return out
 
 
+def symbols(part_dir: Path, part: str) -> dict[str, str]:
+    """The symbols drawn for this part, by the curated file each one is for.
+
+    A symbol is named `<PART>_<candidate>.asy`, so it says which model it draws. Ones left over from a
+    candidate the curation has since dropped are not returned: they would name a model the part no
+    longer offers, and a symbol pointing at nothing is worse than no symbol.
+    """
+    out = {}
+    for asy in sorted(part_dir.glob("*.asy")):
+        if asy.stem.startswith(part + "_"):
+            out[asy.stem[len(part) + 1:] + ".lib"] = asy.name
+    return out
+
+
 def score_block(v: dict | None) -> dict | None:
     """One candidate's agreement with its datasheet, with the two cryptic keys spelled out."""
     if not v:
@@ -155,7 +175,7 @@ def score_block(v: dict | None) -> dict | None:
     return out
 
 
-def candidate(c: dict, scores: dict) -> dict:
+def candidate(c: dict, scores: dict, syms: dict[str, str] | None = None) -> dict:
     """One model offered for this part: what it is, how to get it, how well it did."""
     prov = c.get("provenance") or {}
     changes = c.get("changes") or []
@@ -181,6 +201,8 @@ def candidate(c: dict, scores: dict) -> dict:
     v = score_block(scores.get(c.get("file", "")))
     if v:
         out["verification"] = v
+    if syms and c.get("file") in syms:
+        out["symbol"] = syms[c["file"]]
     if c.get("note"):
         out["note"] = unsigned(c["note"])
     return out
@@ -193,10 +215,10 @@ def datasheet_block(d: dict | None) -> dict | None:
     return {k: d[k] for k in ("url", "maker", "doc", "date") if d.get(k)}
 
 
-def recipe(data: dict) -> dict:
+def recipe(data: dict, syms: dict[str, str] | None = None) -> dict:
     """The public record for one part."""
     scores = data.get("verification") or {}
-    cands = [candidate(c, scores) for c in data.get("candidates") or []]
+    cands = [candidate(c, scores, syms) for c in data.get("candidates") or []]
     by_file = {c.get("file", ""): c for c in data.get("candidates") or []}
     pref = data.get("preferred") or ""
     out: dict = {"part": data.get("part", ""), "kind": data.get("kind", "")}
@@ -236,15 +258,24 @@ def promote(only: str | None = None, dry: bool = False) -> dict:
     root = require(spice_curated(), "promoting the curated models")
     known = known_sources()
     counts = {"parts": 0, "models": 0, "verified": 0, "with_datasheet": 0, "bytes": 0,
-              "unknown_sources": 0}
+              "symbols": 0, "orphan_symbols": 0, "unknown_sources": 0}
     unknown: set[str] = set()
     for p in parts(root):
         data = json.loads(p.read_text(encoding="utf-8"))
         if only and data.get("kind") != only:
             continue
-        doc = recipe(data)
+        syms = symbols(p.parent, data.get("part", ""))
+        doc = recipe(data, syms)
         if not doc["part"] or not doc["kind"]:
             continue
+        kept = {m["symbol"] for m in doc["models"] if m.get("symbol")}
+        counts["symbols"] += len(kept)
+        counts["orphan_symbols"] += len(list(p.parent.glob("*.asy"))) - len(kept)
+        if not dry:
+            for name in sorted(kept):
+                target = model_symbol(doc["kind"], doc["part"], name)
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes((p.parent / name).read_bytes())
         counts["parts"] += 1
         counts["models"] += len(doc["models"])
         counts["verified"] += sum(1 for m in doc["models"] if m.get("verification"))
@@ -270,6 +301,9 @@ def main(argv=None) -> int:
     print(f"{counts['parts']:,} parts, {counts['models']:,} candidate models "
           f"({counts['verified']:,} scored against a datasheet, {counts['with_datasheet']:,} parts "
           f"with a datasheet link)" + (" — dry run" if a.dry else ""))
+    print(f"{counts['symbols']:,} LTspice symbols published"
+          + (f", {counts['orphan_symbols']:,} left behind for candidates the curation dropped"
+             if counts["orphan_symbols"] else ""))
     if not a.dry:
         print(f"{counts['bytes'] / 1e6:.1f} MB into {model_part('<kind>', '<PART>').parent.parent}")
     if counts.get("unknown"):

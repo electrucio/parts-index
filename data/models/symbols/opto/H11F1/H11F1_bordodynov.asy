@@ -1,0 +1,28 @@
+Version 4
+SymbolType CELL
+LINE Normal 0 16 32 16
+LINE Normal 16 16 16 0
+LINE Normal 0 16 16 48
+LINE Normal 32 16 16 48
+LINE Normal 0 48 32 48
+LINE Normal 16 48 16 64
+TEXT 60 16 Right 0 R1
+TEXT 60 48 Right 0 R2
+WINDOW 0 -40 -16 Left 2
+WINDOW 38 -40 176 Left 2
+SYMATTR Prefix X
+SYMATTR SpiceModel H11F1M
+SYMATTR ModelFile H11F1_bordodynov.lib
+SYMATTR Description H11F1 (bordodynov model H11F1M); pins A C R1 R2
+PIN 16 0 NONE 8
+PINATTR PinName A
+PINATTR SpiceOrder 1
+PIN 16 64 NONE 8
+PINATTR PinName C
+PINATTR SpiceOrder 2
+PIN 64 16 NONE 8
+PINATTR PinName R1
+PINATTR SpiceOrder 3
+PIN 64 48 NONE 8
+PINATTR PinName R2
+PINATTR SpiceOrder 4
