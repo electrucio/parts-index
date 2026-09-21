@@ -45,6 +45,12 @@ def main(argv: list[str] | None = None) -> int:
     mr.add_argument("--limit", type=int, default=0)
     mr.add_argument("--dry", action="store_true")
 
+    sch = sub.add_parser("schematics", help="the schematic index").add_subparsers(
+        dest="sch_cmd", required=True)
+    se = sch.add_parser("export", help="write the index into data/, where the site is built from")
+    se.add_argument("--source", action="append", help="only these sources (repeatable)")
+    se.add_argument("--dry", action="store_true", help="count what would be written and write nothing")
+
     bk = sub.add_parser("backup", help="pack the private trees into one archive to carry off this machine")
     bk.add_argument("--level", choices=("essential", "full", "all"), default="essential")
     bk.add_argument("--out", help="where to write it")
@@ -112,6 +118,11 @@ def main(argv: list[str] | None = None) -> int:
             argv2 += ["--limit", str(args.limit)] if args.limit else []
             argv2 += ["--dry"] if args.dry else []
         return model_fetch.main(argv2)
+
+    if args.cmd == "schematics" and args.sch_cmd == "export":
+        from parts_index.schematics import export as sch_export
+        argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
+        return sch_export.main(argv2 + (["--dry"] if args.dry else []))
 
     if args.cmd == "backup":
         from parts_index import backup
