@@ -1,23 +1,25 @@
-"""Rescue from the index the things that exist nowhere else, so the database becomes disposable.
+"""Write the OCR records the old pipeline never wrote to disk, and the two indexes over them.
 
-    pidx schematics freeze
+    make migrate
 
-Three artefacts, written under the private data root:
+Most documents were OCR'd into a file. Some were not: an HTML page and a born-digital PDF have a text
+layer, so the old ingester read their text straight from the source and kept it only inside the database.
+Those documents get their page records written here, in the same format and the same tree as every other
+document — there is nothing special about them beyond `how: "text"` inside the record, which is where
+that distinction belongs. The database then holds the last copy of nothing.
 
-  `rescued/ocr_map.csv`     which OCR file holds each document. Today that link is only a convention —
-                            it is derived from `documents.local_path`, which never leaves the database.
-                            Written down, the OCR files stop being orphans the moment the index goes.
-  `rescued/frozen/…`        page records for the documents that have no OCR file at all: the HTML pages
-                            and the born-digital Elektor articles, whose text the ingester read straight
-                            from the source and only ever stored in `page_text`.
-  `rescued/linkchecks.csv`  the links checked by hand. Re-indexing regenerates the advert and schematic
-                            judgements, because the classifier is deterministic; it cannot regenerate these.
+Two indexes come with them:
 
-What a frozen record can and cannot carry: an HTML page was always one chunk of text with no geometry, so
-freezing it loses nothing. An Elektor article had line blocks with boxes, built from the PDF's text layer;
-those were never saved, so a frozen page is one block holding the whole text. Its already-extracted part
-positions survive in the export, but a future extractor could not place a part it newly finds. The source
-items are public on archive.org if that ever matters enough to re-fetch them.
+  `ocr_map.csv`     which OCR file holds each document. That link was only a convention, derived from a
+                    column that never leaves the database; written down, the OCR files stop being orphans.
+  `linkchecks.csv`  the links checked by hand. Re-indexing regenerates the advert and schematic judgements,
+                    because the classifier is deterministic; it cannot regenerate these.
+
+What a written-out record can and cannot carry: an HTML page was always one chunk of text with no geometry,
+so it loses nothing — measured, 99.4 % of them re-extract identically. A born-digital article had line
+blocks with boxes built from the PDF's text layer, and those were never saved, so its page becomes one
+block holding the whole text; 95.5 % re-extract identically, the rest losing a hit that depended on the
+line structure. Their already-extracted positions survive in the export.
 
 Reads the database through an explicit column allow-list, and writes no local path.
 """
@@ -37,8 +39,9 @@ MAP_FIELDS = ("source", "doc_key", "text_method", "pages", "ocr_file", "present"
 LINK_FIELDS = ("source", "doc_key", "link_verified", "link_ok", "checked_at")
 
 
-def rescued_dir() -> Path:
-    return data_root() / "rescued"
+def ocr_root() -> Path:
+    """The one OCR tree: every document's page records, whatever produced them."""
+    return data_root() / "ocr"
 
 
 def ocr_file(source: str, text_method: str | None, ocr_path: str | None, local_path: str | None) -> str | None:
@@ -55,9 +58,10 @@ def ocr_file(source: str, text_method: str | None, ocr_path: str | None, local_p
     return None
 
 
-def frozen_name(source: str, doc_key: str) -> str:
-    """A stable, short file name for a document whose key is a URL. ocr_map.csv resolves it back."""
-    return f"frozen/{source}/{hashlib.sha1(doc_key.encode()).hexdigest()[:16]}.jsonl.gz"
+def written_name(source: str, doc_key: str) -> str:
+    """Where a document with no OCR file gets one. Its key is a URL, so the name is a stable digest of it
+    and `ocr_map.csv` resolves it back, exactly as it resolves every other file."""
+    return f"{source}/{hashlib.sha1(doc_key.encode()).hexdigest()[:16]}.jsonl.gz"
 
 
 def page_records(db: sqlite3.Connection, doc_id: int) -> list[dict]:
@@ -77,7 +81,7 @@ def page_records(db: sqlite3.Connection, doc_id: int) -> list[dict]:
     return out
 
 
-def write_frozen(path: Path, records: list[dict]) -> None:
+def write_records(path: Path, records: list[dict]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with gzip.open(path, "wt", encoding="utf-8") as f:
         for rec in records:
@@ -85,10 +89,10 @@ def write_frozen(path: Path, records: list[dict]) -> None:
     path.with_suffix("").with_suffix(".done").touch()
 
 
-def freeze(db: sqlite3.Connection, out: Path, corpus_root: Path | None = None) -> dict:
-    """Write the three artefacts. Returns counts, for the caller to report and a test to assert."""
+def run(db: sqlite3.Connection, out: Path, corpus_root: Path | None = None) -> dict:
+    """Write the records and the two indexes. Returns counts, for the caller to report and a test to assert."""
     out.mkdir(parents=True, exist_ok=True)
-    counts = {"documents": 0, "with_ocr": 0, "ocr_missing": 0, "frozen": 0, "frozen_pages": 0, "linkchecks": 0}
+    counts = {"documents": 0, "with_ocr": 0, "ocr_missing": 0, "written": 0, "written_pages": 0, "linkchecks": 0}
 
     q = ("select d.doc_id, d.source, d.doc_key, d.text_method, d.ocr_path, d.local_path, d.n_pages "
          "from documents d order by d.source, d.doc_key")
@@ -107,10 +111,10 @@ def freeze(db: sqlite3.Connection, out: Path, corpus_root: Path | None = None) -
             if not present:
                 records = page_records(db, doc_id)
                 if records:
-                    rel = frozen_name(source, doc_key)
-                    write_frozen(out / rel, records)
-                    counts["frozen"] += 1
-                    counts["frozen_pages"] += len(records)
+                    rel = written_name(source, doc_key)
+                    write_records(out / rel, records)
+                    counts["written"] += 1
+                    counts["written_pages"] += len(records)
                     present = True
             w.writerow({"source": source, "doc_key": doc_key, "text_method": method or "",
                         "pages": n_pages or 0, "ocr_file": rel or "", "present": int(present)})
@@ -129,15 +133,15 @@ def freeze(db: sqlite3.Connection, out: Path, corpus_root: Path | None = None) -
 
 
 def main() -> int:
-    require(corpus_db(), "rescuing the OCR that only the index holds")
+    require(corpus_db(), "writing the OCR records the old pipeline never wrote")
     db = sqlite3.connect(corpus_db_uri(), uri=True)
-    out = rescued_dir()
-    counts = freeze(db, out, corpus())
+    out = ocr_root()
+    counts = run(db, out, corpus())
     size = sum(p.stat().st_size for p in out.rglob("*") if p.is_file())
-    print(f"{counts['documents']:,} documents: {counts['with_ocr']:,} already have an OCR file, "
-          f"{counts['frozen']:,} frozen here ({counts['frozen_pages']:,} pages)")
+    print(f"{counts['documents']:,} documents: {counts['with_ocr']:,} already had an OCR file, "
+          f"{counts['written']:,} written here ({counts['written_pages']:,} pages)")
     if counts["ocr_missing"]:
-        print(f"{counts['ocr_missing']:,} pointed at an OCR file that is not on disk; frozen instead")
+        print(f"{counts['ocr_missing']:,} pointed at an OCR file that is not on disk; written out instead")
     print(f"{counts['linkchecks']:,} hand-checked links kept")
     print(f"{size / 1048576:.0f} MB in {out}")
     return 0

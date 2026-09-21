@@ -1,12 +1,12 @@
 """Import the state of the pre-monorepo pipeline into the public registry and ledgers.
 
-    python -m parts_index.schematics.seed            # writes data/schematics/sources.yaml (if missing) and state/*.csv
+    make migrate            # writes data/schematics/sources.yaml (if missing) and state/*.csv
 
 Reads, under the private data root:  corpus/db/schematics.sqlite (what was indexed), corpus/raw/<source>/files.csv
 (what was downloaded, including failures), corpus/magazines/ocr/sources.csv, and the OCR outputs (for their dates).
 Writes only public facts: URLs, hashes, sizes, dates and stage versions. Local paths never leave the data root.
 
-Run once at the migration and again after the freeze re-sync; after that the pipeline stages keep the ledgers.
+Run once, and again after re-syncing the old trees; after that the pipeline stages keep the ledgers themselves.
 """
 from __future__ import annotations
 

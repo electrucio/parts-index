@@ -11,20 +11,20 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
 - `src/parts_index/core/` shared code: `config` (every location in the project — see rule 4), `http`
   (the one polite client), `ledger` (what has been processed), `pagesio` (OCR page records), `adfilter`,
   and `parts/` (the part-number extractor, single source of truth). **(todo)** `links`, `table`, `llm`.
-- `src/parts_index/schematics/` pillar 1. Today `seed` only (it imports the old pipeline's state).
-  **(todo)** crawl → download → ocr → index → linkcheck → export.
-- `src/parts_index/models/` pillar 2. Today `seed` only. **(todo)** fetch, index, curate, promote,
-  and `datasheets/`.
-- **(todo)** `src/parts_index/bench/` pillar 3: simulate models (ngspice is the reference engine) and
-  score them against datasheet rows. `src/parts_index/web/`: build the site data from `data/`.
+- `src/parts_index/schematics/` pillar 1. **(todo)** crawl → download → ocr → index → linkcheck → export.
+- `src/parts_index/models/` pillar 2. **(todo)** fetch, index, curate, promote, and `datasheets/`.
+- `src/parts_index/web/` builds the site's data from `data/` alone. **(todo)** `src/parts_index/bench/`
+  pillar 3: simulate models (ngspice is the reference engine) and score them against datasheet rows.
 - `components/`, `circuits/` pillar 4: original LTspice components with `.asy` symbols, and reference
   circuits. The `.net` files reference model files that only exist in the private data root, so they do
   not run from a clean clone yet.
 - `data/` the public dataset: registries, ledgers, the part dictionary. **(todo)** the exported index,
   model recipes, licence notes, verification results.
-- **(todo)** `web/` the site, `docs/` conventions and the maintainer runbook.
-- `private_uncommitted/` local, git-ignored data root. `staging/` inside it holds the old code still to
-  be ported; port from there, never edit the old repositories.
+- `web/` the site (Vite + TypeScript + Preact), `docs/` the roadmap. **(todo)** the maintainer runbook.
+- `src/parts_index/migrate/` one-off steps carrying the old pipeline's state across; deleted when the
+  last stage is ported.
+- `private_uncommitted/` local, git-ignored data root: `ocr/` the page records with their map, and
+  `staging/` the old code still to be ported. Port from there, never edit the old repositories.
 
 ## Hard rules
 
@@ -74,8 +74,9 @@ Read [STATUS.md](STATUS.md) first: one row per source with items downloaded, OCR
 and the next action. It is generated from `data/schematics/sources.yaml` (the registry) and
 `data/schematics/state/<source>.csv` (one ledger row per URL). To add a site, add a registry entry with
 `status: proposed`; to reprocess, bump a stage version. Never edit ledgers by hand to force a rerun.
-`python -m parts_index.schematics.seed` rebuilds the ledgers from the pre-monorepo pipeline outputs (maintainer
-only; used until the pipeline stages are ported and write the ledgers themselves).
+`make migrate` carries the old pipeline's state across: it rebuilds the ledgers and writes the OCR records
+that pipeline never wrote to disk. It is one-off — `src/parts_index/migrate/` is deleted when the last
+stage is ported.
 
 ## Without the private corpus you can still
 

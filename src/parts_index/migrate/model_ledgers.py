@@ -1,6 +1,6 @@
 """Import the state of the pre-monorepo SPICE model campaign into the public registry and ledgers.
 
-    python -m parts_index.models.seed        # writes data/models/sources/<id>.yaml (if missing) and data/models/state/<id>.csv
+    make migrate        # writes data/models/sources/<id>.yaml (if missing) and data/models/state/<id>.csv
 
 Reads, under the private data root:  spice/sources/<id>/{SOURCE.md,manifest.json} (what was downloaded, with URL and
 sha256), spice/index.jsonl (which definitions each file yielded) and staging/.../model_links.csv (per part and vendor:
