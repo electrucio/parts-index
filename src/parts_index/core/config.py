@@ -4,6 +4,8 @@ No other module joins a path: it asks here. That keeps one rule checkable in one
 
     PUBLIC   lives in the repository and is committed: registries, ledgers, the exported index,
              model recipes, licence notes, verification results, the part dictionary, the website.
+    BUILT    lives in the repository but is generated and git-ignored: the site's data files.
+             Deleting it costs a rebuild, nothing more.
     PRIVATE  lives under the data root and is never committed: downloaded documents, OCR text,
              the sqlite index, vendor model files, datasheet PDFs, caches and the old code.
 
@@ -11,7 +13,7 @@ The data root is `$PIDX_DATA_ROOT`, else `private_uncommitted/` inside the check
 and `scripts/licence_guard.py` both refuse. Private accessors are wrapped in `require()` by their caller
 so a contributor without the corpus gets an explanation instead of a stack trace.
 
-    pidx paths        prints every location, resolved, marked public or private
+    pidx paths        prints every location, resolved, marked public, built or private
 """
 from __future__ import annotations
 
@@ -167,8 +169,13 @@ def web_dir() -> Path:
 
 
 def web_data() -> Path:
-    """Build output of `pidx web build`; git-ignored, rebuilt from data/ alone."""
+    """Build output of `pidx web build`: git-ignored, rebuilt from data/ alone."""
     return web_dir() / "public" / "data"
+
+
+def web_dist() -> Path:
+    """Build output of `make web`: the site itself, git-ignored."""
+    return web_dir() / "dist"
 
 
 def tests_fixtures() -> Path:
@@ -312,8 +319,9 @@ def guard_extra_patterns() -> Path:
 
 
 # --- the map ----------------------------------------------------------------------------------------
-# name, visibility, sample arguments. `pidx paths` prints this; a test asserts nothing public resolves
-# inside the data root and nothing private resolves inside the checkout's committed tree.
+# name, visibility, sample arguments. `pidx paths` prints this, and tests/core/test_config.py asserts
+# that each kind keeps to its side: public is committed and never git-ignored, built is in the checkout
+# but always ignored, private lives under the data root.
 LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("schematics_registry", "public", ()),
     ("schematics_state", "public", ("esp",)),
@@ -341,7 +349,8 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("docs_dir", "public", ()),
     ("status_md", "public", ()),
     ("web_dir", "public", ()),
-    ("web_data", "public", ()),
+    ("web_data", "built", ()),
+    ("web_dist", "built", ()),
     ("tests_fixtures", "public", ()),
     ("corpus", "private", ()),
     ("corpus_db", "private", ()),

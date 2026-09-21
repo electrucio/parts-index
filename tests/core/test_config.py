@@ -18,8 +18,8 @@ def test_every_location_resolves_on_the_right_side():
     root = config.data_root()
     for name, visibility, path, _ in config.describe():
         inside_private = path == root or root in path.parents
-        if visibility == "public":
-            assert not inside_private, f"{name} is public but lives inside the data root: {path}"
+        if visibility in ("public", "built"):
+            assert not inside_private, f"{name} is {visibility} but lives inside the data root: {path}"
             assert REPO in path.parents or path == REPO, f"{name} escapes the checkout: {path}"
         else:
             assert inside_private, f"{name} is private but lives outside the data root: {path}"
@@ -62,6 +62,13 @@ def test_nothing_public_is_git_ignored():
     public = [str(p.relative_to(REPO)) for _, v, p, _ in config.describe() if v == "public" and REPO in p.parents]
     r = subprocess.run(["git", "check-ignore", *public], cwd=REPO, capture_output=True, text=True)
     assert r.stdout == "", f"public locations are git-ignored:\n{r.stdout}"
+
+
+def test_built_locations_are_git_ignored():
+    """Generated output lives in the checkout but must never be committed."""
+    built = [str(p.relative_to(REPO)) for _, v, p, _ in config.describe() if v == "built"]
+    r = subprocess.run(["git", "check-ignore", *built], cwd=REPO, capture_output=True, text=True)
+    assert set(r.stdout.split()) == set(built), f"built locations git does not ignore: {r.stdout}"
 
 
 def test_the_whole_data_root_is_git_ignored():
