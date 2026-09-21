@@ -6,12 +6,15 @@ No other module joins a path: it asks here. That keeps one rule checkable in one
              model recipes, licence notes, verification results, the part dictionary, the website.
     BUILT    lives in the repository but is generated and git-ignored: the site's data files.
              Deleting it costs a rebuild, nothing more.
-    PRIVATE  lives under the data root and is never committed: downloaded documents, OCR text,
-             the sqlite index, vendor model files, datasheet PDFs, caches and the old code.
+    PRIVATE  never committed, in two trees with different lifetimes:
+             `private_web_spice_models/` is permanent — the vendor model text and symbols the site
+             serves in private mode, which licences forbid publishing;
+             `private_material/` is in transit — the OCR of everything scraped with the map over it,
+             and what has not been ported or exported yet. It ends up holding only the OCR.
 
-The data root is `$PIDX_DATA_ROOT`, else `private_uncommitted/` inside the checkout, which `.gitignore`
-and `scripts/licence_guard.py` both refuse. Private accessors are wrapped in `require()` by their caller
-so a contributor without the corpus gets an explanation instead of a stack trace.
+Both are `$PIDX_SPICE_MODELS` / `$PIDX_MATERIAL` if you keep them elsewhere. `.gitignore` and
+`scripts/licence_guard.py` both refuse them. Private accessors are wrapped in `require()` by their caller
+so a contributor without them gets an explanation instead of a stack trace.
 
     pidx paths        prints every location, resolved, marked public, built or private
 """
@@ -28,9 +31,17 @@ class PrivateDataMissing(RuntimeError):
     """Raised when work needs the private corpus and it is not here."""
 
 
-def data_root() -> Path:
-    env = os.environ.get("PIDX_DATA_ROOT")
-    return Path(env).expanduser() if env else REPO_ROOT / "private_uncommitted"
+def spice_models_root() -> Path:
+    """Permanent: the vendor model text and symbols. Not publishable, not re-fetchable for the vendors
+    that block us, and what the site shows in private mode."""
+    env = os.environ.get("PIDX_SPICE_MODELS")
+    return Path(env).expanduser() if env else REPO_ROOT / "private_web_spice_models"
+
+
+def material_root() -> Path:
+    """In transit: the OCR of everything scraped, its map, and what is not ported or exported yet."""
+    env = os.environ.get("PIDX_MATERIAL")
+    return Path(env).expanduser() if env else REPO_ROOT / "private_material"
 
 
 def require(path: Path, why: str) -> Path:
@@ -182,75 +193,55 @@ def tests_fixtures() -> Path:
     return REPO_ROOT / "tests" / "fixtures"
 
 
-# --- private: the document corpus -------------------------------------------------------------------
-def corpus() -> Path:
-    return data_root() / "corpus"
+# --- private: the OCR of everything scraped, and the indexes over it -------------------------------
+def ocr_root() -> Path:
+    """One tree, `<source>/<name>.jsonl.gz`, whatever produced the records."""
+    return material_root() / "ocr"
 
 
-def corpus_db() -> Path:
-    """The full index: document text and local paths. Export from it by column allow-list, never wholesale."""
-    return corpus() / "db" / "schematics.sqlite"
+def ocr_map() -> Path:
+    """Which OCR file holds each document. Lives inside the tree, so copying it takes its index along."""
+    return ocr_root() / "ocr_map.csv"
 
 
-def corpus_db_uri(readonly: bool = True) -> str:
+def linkchecks() -> Path:
+    """Links checked by hand. Re-indexing regenerates every other judgement, but not these."""
+    return ocr_root() / "linkchecks.csv"
+
+
+def index_db() -> Path:
+    """The full index: document text and local paths. Rebuildable from the OCR in about eight minutes,
+    so it is in transit, not permanent. Export from it by column allow-list, never wholesale."""
+    return material_root() / "index.sqlite"
+
+
+def index_db_uri(readonly: bool = True) -> str:
     """The only place this connection string is written."""
-    return f"file:{corpus_db()}{'?mode=ro' if readonly else ''}"
+    return f"file:{index_db()}{'?mode=ro' if readonly else ''}"
 
 
-def corpus_raw(source: str) -> Path:
-    return corpus() / "raw" / source
+def page_sizes() -> Path:
+    """Page geometry in points, frozen before the PDFs went. Without it a link cannot carry a zoom."""
+    return material_root() / "pagesizes.csv.gz"
 
 
-def corpus_files_csv(source: str) -> Path:
-    """Download manifest written by crawl and download."""
-    return corpus_raw(source) / "files.csv"
+def download_manifest(source: str) -> Path:
+    """What the crawler already has for a source, so it resumes instead of starting again."""
+    return material_root() / "manifests" / f"{source}.csv"
 
 
-def corpus_ocr(source: str) -> Path:
-    """OCR with boxes, one gzip JSON-lines file per document."""
-    return corpus() / "ocr_boxes" / source
+def source_list(source: str) -> Path:
+    """URLs gathered for a source that cannot be crawled; the input for downloading it."""
+    return material_root() / "source_lists" / f"assets_{source}.jsonl"
 
 
-def corpus_ocr_scans() -> Path:
-    return corpus() / "ocr_scans"
-
-
-def corpus_magazine_ocr(magazine: str | None = None) -> Path:
-    d = corpus() / "magazines" / "ocr"
-    return d / magazine if magazine else d
-
-
-def corpus_magazine_ledger() -> Path:
-    return corpus_magazine_ocr() / "sources.csv"
-
-
-def corpus_elektor_ocr() -> Path:
-    return corpus() / "elektor" / "ocr"
-
-
-def corpus_books_ocr() -> Path:
-    return corpus() / "books" / "ocr"
-
-
-def corpus_pagesizes() -> Path:
-    """Page sizes frozen before the PDFs were deleted; without them a link cannot carry a zoom."""
-    return corpus() / "pagesizes.csv.gz"
-
-
-def corpus_labelset() -> Path:
-    return corpus() / "labelset"
-
-
-# --- private: SPICE material ------------------------------------------------------------------------
-def spice_root() -> Path:
-    return data_root() / "spice"
-
-
+# --- private: the SPICE models the site serves in private mode --------------------------------------
 def spice_source(source: str) -> Path:
-    return spice_root() / "sources" / source
+    return spice_models_root() / "sources" / source
 
 
 def spice_source_doc(source: str) -> Path:
+    """Licence analysis and how it was fetched; promoted to data/models/licences/ once translated."""
     return spice_source(source) / "SOURCE.md"
 
 
@@ -259,63 +250,57 @@ def spice_source_manifest(source: str) -> Path:
 
 
 def spice_model_dir(kind: str, part: str) -> Path:
-    """Extracted vendor model text. Never published unless its source allows redistribution."""
-    return spice_root() / "models" / kind / part
+    """Curated model text for one part. Published only where its source allows redistribution."""
+    return spice_models_root() / "models" / kind / part
 
 
 def spice_part_json(kind: str, part: str) -> Path:
     return spice_model_dir(kind, part) / "part.json"
 
 
-def spice_index() -> Path:
-    """Every definition found, with its parameters: a copy of the models. Never published."""
-    return spice_root() / "index.jsonl"
+# --- private: in transit ----------------------------------------------------------------------------
+def spice_definitions() -> Path:
+    """Every definition found, with its parameters: a copy of the models. Never published, and
+    regenerated from the sources, so it is in transit."""
+    return material_root() / "index.jsonl"
 
 
-def datasheet_pdfs() -> Path:
-    return spice_root() / "datasheets"
+def datasheets(kind: str | None = None) -> Path:
+    """Vendor PDFs, kept until the simulation and datasheet-reading work is done."""
+    d = material_root() / "datasheets"
+    return d / kind if kind else d
 
 
-def datasheet_manifest() -> Path:
-    return datasheet_pdfs() / "manifest.json"
+def simulators() -> Path:
+    """Installers and tools for the simulation stage, each with its URL and checksum recorded.
+    Never published and never inside a docker image: the Dockerfile downloads them where it builds."""
+    return material_root() / "simulators"
 
 
-# --- private: everything else -----------------------------------------------------------------------
-def books() -> Path:
-    return data_root() / "books"
-
-
-def elektor_pdfs() -> Path:
-    return data_root() / "elektor_pdfs"
-
-
-def sch_datasets() -> Path:
-    return data_root() / "sch-datasets"
-
-
+# --- private: the rest, all of it temporary ---------------------------------------------------------
 def staging(*parts: str) -> Path:
     """The old code, kept until each piece is ported."""
-    return data_root().joinpath("staging", *parts)
+    return material_root().joinpath("staging", *parts)
 
 
 def legacy() -> Path:
-    return data_root() / "legacy"
+    return material_root() / "legacy"
 
 
 def llm_cache() -> Path:
-    return data_root() / "llm_cache"
+    return material_root() / "llm_cache"
 
 
 def logs() -> Path:
-    return data_root() / "logs"
+    return material_root() / "logs"
 
 
 def scratch() -> Path:
-    return data_root() / "scratch"
+    return material_root() / "scratch"
 
 
 def guard_extra_patterns() -> Path:
-    return data_root() / "guard_extra_patterns.txt"
+    return material_root() / "guard_extra_patterns.txt"
 
 
 # --- the map ----------------------------------------------------------------------------------------
@@ -352,30 +337,22 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("web_data", "built", ()),
     ("web_dist", "built", ()),
     ("tests_fixtures", "public", ()),
-    ("corpus", "private", ()),
-    ("corpus_db", "private", ()),
-    ("corpus_raw", "private", ("esp",)),
-    ("corpus_files_csv", "private", ("esp",)),
-    ("corpus_ocr", "private", ("esp",)),
-    ("corpus_ocr_scans", "private", ()),
-    ("corpus_magazine_ocr", "private", ()),
-    ("corpus_magazine_ledger", "private", ()),
-    ("corpus_elektor_ocr", "private", ()),
-    ("corpus_books_ocr", "private", ()),
-    ("corpus_pagesizes", "private", ()),
-    ("corpus_labelset", "private", ()),
-    ("spice_root", "private", ()),
+    ("ocr_root", "private", ()),
+    ("ocr_map", "private", ()),
+    ("linkchecks", "private", ()),
+    ("index_db", "private", ()),
+    ("page_sizes", "private", ()),
+    ("download_manifest", "private", ("esp",)),
+    ("source_list", "private", ("diyaudio",)),
+    ("spice_models_root", "private", ()),
     ("spice_source", "private", ("onsemi",)),
     ("spice_source_doc", "private", ("onsemi",)),
     ("spice_source_manifest", "private", ("onsemi",)),
     ("spice_model_dir", "private", ("bjt", "2N3904")),
     ("spice_part_json", "private", ("bjt", "2N3904")),
-    ("spice_index", "private", ()),
-    ("datasheet_pdfs", "private", ()),
-    ("datasheet_manifest", "private", ()),
-    ("books", "private", ()),
-    ("elektor_pdfs", "private", ()),
-    ("sch_datasets", "private", ()),
+    ("spice_definitions", "private", ()),
+    ("datasheets", "private", ()),
+    ("simulators", "private", ()),
     ("staging", "private", ()),
     ("legacy", "private", ()),
     ("llm_cache", "private", ()),

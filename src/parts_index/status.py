@@ -8,11 +8,9 @@ from pathlib import Path
 
 import yaml
 
-from parts_index.core.config import PUBLIC_DATA, REPO_ROOT
+from parts_index.core.config import models_dir, schematics_dir, status_md
 from parts_index.core.ledger import Ledger, today
 
-SCHEMATICS = PUBLIC_DATA / "schematics"
-MODELS = PUBLIC_DATA / "models"
 # How each stage is named in the "Next" column. A stage with no entry falls back to its own name,
 # so adding a stage to core.ledger never breaks this report.
 STAGE_VERB = {"ocr": "OCR", "linkcheck": "link-check"}
@@ -37,10 +35,10 @@ def next_action(entry: dict, led: Ledger | None) -> str:
 
 
 def schematics_rows() -> list[dict]:
-    registry = yaml.safe_load((SCHEMATICS / "sources.yaml").read_text(encoding="utf-8")) or {}
+    registry = yaml.safe_load((schematics_dir() / "sources.yaml").read_text(encoding="utf-8")) or {}
     rows = []
     for source, entry in registry.items():
-        f = SCHEMATICS / "state" / f"{source}.csv"
+        f = schematics_dir() / "state" / f"{source}.csv"
         led = Ledger(f) if f.exists() else None
         s = led.summary() if led else {}
         rows.append(dict(source=source, kind=entry["kind"], status=entry["status"], last=last_activity(led) if led else "",
@@ -51,9 +49,9 @@ def schematics_rows() -> list[dict]:
 def model_rows() -> list[dict]:
     from parts_index.core.ledger import MODEL_FIELDS, MODEL_STAGES, MODEL_VERSIONED
     rows = []
-    for reg in sorted((MODELS / "sources").glob("*.yaml")):
+    for reg in sorted((models_dir() / "sources").glob("*.yaml")):
         entry = yaml.safe_load(reg.read_text(encoding="utf-8"))
-        f = MODELS / "state" / f"{reg.stem}.csv"
+        f = models_dir() / "state" / f"{reg.stem}.csv"
         led = Ledger(f, stages=MODEL_STAGES, fields=MODEL_FIELDS, versioned=MODEL_VERSIONED) if f.exists() else None
         rs = list(led.rows.values()) if led else []
         files = [r for r in rs if not r["key"].startswith("part:") and r["status"] == "downloaded"]
@@ -129,6 +127,7 @@ def render() -> str:
     return "\n".join(out)
 
 
-def write(path: Path = REPO_ROOT / "STATUS.md") -> Path:
+def write(path: Path | None = None) -> Path:
+    path = Path(path) if path else status_md()
     path.write_text(render(), encoding="utf-8")
     return path

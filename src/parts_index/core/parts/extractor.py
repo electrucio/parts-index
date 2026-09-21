@@ -18,9 +18,7 @@ import re
 import sys
 from collections import namedtuple
 
-from parts_index.core.config import PUBLIC_DATA, staging
-
-HERE = PUBLIC_DATA / "parts"
+from parts_index.core.config import known_parts, rejected_tokens, staging
 
 Hit = namedtuple("Hit", "part base raw family kind conf fixed block")      # conf: high | medium | low ; block: index in the page or None
 
@@ -85,11 +83,11 @@ def norm(s):
 
 def _load():
     known, rejected = {}, set()
-    f = HERE / "known_parts.csv"
+    f = known_parts()
     if f.exists():
         for r in csv.DictReader(open(f, encoding="utf-8")):
             known[r["name"]] = (r["part"], r["kind"])
-    f = HERE / "rejected_tokens.txt"
+    f = rejected_tokens()
     if f.exists():
         rejected = set(f.read_text(encoding="utf-8").split())
     return known, rejected
@@ -351,11 +349,11 @@ def snapshot():
             rows.setdefault(norm(p), (p, r["llm_kind"] or r["kind"], "audio docs"))
         elif r["real"] == "no":
             rejected.add(r["part"].upper())
-    with open(HERE / "known_parts.csv", "w", newline="", encoding="utf-8") as f:
+    with open(known_parts(), "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["name", "part", "kind", "from"])
         w.writerows([n, *v] for n, v in sorted(rows.items()))
-    (HERE / "rejected_tokens.txt").write_text("\n".join(sorted(rejected)) + "\n", encoding="utf-8")
+    rejected_tokens().write_text("\n".join(sorted(rejected)) + "\n", encoding="utf-8")
     print(f"{len(rows)} known names, {len(rejected)} rejected tokens")
 
 

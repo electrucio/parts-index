@@ -18,7 +18,7 @@ from datetime import date
 from pathlib import Path
 
 from parts_index import status
-from parts_index.core.config import PUBLIC_DATA, web_data
+from parts_index.core.config import datasheets_table, model_part, schematics_parts, web_data
 
 SCHEMA = 1
 
@@ -70,16 +70,15 @@ def build(out: Path | None = None) -> dict:
     sizes = {"sources.json": write_json(out, "sources.json", payload)}
 
     # Each of these lands with its exporter; the site renders what is present and says what is not.
-    parts_csv = PUBLIC_DATA / "schematics" / "parts.csv"
     manifest = {
         "schema": SCHEMA,
         "built": date.today().isoformat(),
         "totals": totals(payload),
         "have": {
             "sources": True,
-            "index": parts_csv.exists(),
-            "models": (PUBLIC_DATA / "models" / "parts").is_dir(),
-            "datasheets": (PUBLIC_DATA / "datasheets" / "datasheets.csv").exists(),
+            "index": schematics_parts().exists(),
+            "models": model_part("bjt", "any").parent.parent.is_dir(),
+            "datasheets": datasheets_table().exists(),
         },
         "sizes": sizes,
     }

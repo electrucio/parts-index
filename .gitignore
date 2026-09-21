@@ -1,7 +1,8 @@
-# Everything that cannot be redistributed (vendor SPICE models, datasheet PDFs,
-# scraped corpora, OCR output, caches, legacy code awaiting clean-up) lives here.
-# It is the default DATA_ROOT. Never `git add -f` anything under it.
-private_uncommitted/
+# The two private trees, never committed. Never `git add -f` anything under either.
+#   private_web_spice_models/  vendor model text and symbols: what the site shows in private mode
+#   private_material/          OCR, its map, and everything still in transit
+private_web_spice_models/
+private_material/
 
 # Python
 __pycache__/

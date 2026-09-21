@@ -4,13 +4,13 @@
 Used by the pre-commit hook (``--staged``) and by CI (``--all``). Standard library only.
 
 Blocks:
-  * anything under private_uncommitted/
+  * anything under the private trees
   * documents and archives (PDF, zip, sqlite ...): the project publishes links, not files
   * files over 1 MB
   * SPICE model text outside the places where redistribution is known to be allowed
   * saved web pages and images outside web/ and docs/
   * local absolute paths, personal e-mail addresses and API-key shaped strings
-  * any regex listed in private_uncommitted/guard_extra_patterns.txt (local only)
+  * any regex listed in private_material/guard_extra_patterns.txt (local only)
 """
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parent.parent
 MAX_BYTES = 1_000_000
 MAX_BYTES_DATA = 5_000_000          # ledgers and exports under data/ are plain CSV and may be larger
 
-PRIVATE_DIR = "private_uncommitted/"
+PRIVATE_DIRS = ("private_web_spice_models/", "private_material/")
 BLOCKED_SUFFIXES = {
     ".pdf", ".djvu", ".zip", ".tgz", ".gz", ".7z", ".rar", ".sqlite", ".sqlite3", ".db",
     ".xlsx", ".xls", ".msi", ".exe", ".dmg",
@@ -52,7 +52,7 @@ PUBLIC_URL = re.compile(r"https?://[^\s,\"'<>]+")
 
 def local_patterns() -> list[tuple[str, re.Pattern]]:
     """Extra private patterns (real names, hostnames ...), one regex per line, kept out of git."""
-    f = ROOT / PRIVATE_DIR / "guard_extra_patterns.txt"
+    f = ROOT / "private_material" / "guard_extra_patterns.txt"
     if not f.is_file():
         return []
     lines = [ln.strip() for ln in f.read_text(encoding="utf-8").splitlines()]
@@ -74,8 +74,8 @@ def check(path: str) -> list[str]:
     problems: list[str] = []
     p = ROOT / path
     suffix = p.suffix.lower()
-    if path.startswith(PRIVATE_DIR):
-        return [f"{path}: is under {PRIVATE_DIR} (never committed)"]
+    if path.startswith(PRIVATE_DIRS):
+        return [f"{path}: is under a private tree (never committed)"]
     if suffix in BLOCKED_SUFFIXES and not path.startswith(SUFFIX_EXCEPTIONS):
         problems.append(f"{path}: {suffix} files are not published; store a URL + sha256 instead")
     if suffix in SAVED_PAGE_SUFFIXES and not path.startswith(SAVED_PAGE_ALLOWED_PREFIXES):

@@ -60,9 +60,8 @@ serve: web-data  ## bring the site up locally with live reload, at http://localh
 
 # --- maintainer only ----------------------------------------------------------------------------
 migrate:  ## (maintainer, one-off) carry the old pipeline's state across — see src/parts_index/migrate/
-	$(RUN) python -m parts_index.migrate.schematic_ledgers
 	$(RUN) python -m parts_index.migrate.model_ledgers
-	$(RUN) python -m parts_index.migrate.missing_ocr
+	$(RUN) python -m parts_index.migrate.ocr_tree
 	$(MAKE) status-write
 
 clean:  ## remove caches and build output (never touches the private data root)

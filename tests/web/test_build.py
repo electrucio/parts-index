@@ -10,9 +10,10 @@ from parts_index.web import build as web_build
 def test_builds_without_the_private_data_root(tmp_path, monkeypatch):
     """Sabotage the private root. A clean clone has no corpus, and the build must not care."""
     def explode():
-        raise AssertionError("web build touched the private data root")
+        raise AssertionError("web build touched a private tree")
 
-    monkeypatch.setattr(config, "data_root", explode)
+    monkeypatch.setattr(config, "material_root", explode)
+    monkeypatch.setattr(config, "spice_models_root", explode)
     monkeypatch.setattr("parts_index.web.build.web_data", lambda: tmp_path)
 
     manifest = web_build.build()

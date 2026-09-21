@@ -47,7 +47,8 @@ def main(argv: list[str] | None = None) -> int:
             print("nothing to show")
             return 0
         width = max(len(name) for name, *_ in rows)
-        print(f"data root: {config.data_root()}\n")
+        print(f"spice models: {config.spice_models_root()}")
+        print(f"material:     {config.material_root()}\n")
         for name, visibility, path, exists in rows:
             mark = " " if exists else "?"
             try:

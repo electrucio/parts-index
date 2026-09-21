@@ -22,10 +22,9 @@ from pathlib import Path
 
 import yaml
 
-from parts_index.core.config import PUBLIC_DATA, spice_index, spice_root, staging
+from parts_index.core.config import models_dir, spice_definitions, spice_models_root, staging
 from parts_index.core.ledger import MODEL_FIELDS, MODEL_STAGES, MODEL_VERSIONED, Ledger
 
-OUT = PUBLIC_DATA / "models"
 INDEX_VERSION = "index_models-1"
 ADAPTERS = {"ti", "onsemi", "onsemi-ic", "nexperia", "vishay", "infineon", "diodes-inc"}
 # Statuses that must not be retried automatically. "not_tried" stays pending.
@@ -39,7 +38,7 @@ LICENCE_HINTS = {"germaniumbjts": "MIT", "spiceypedals": "MIT", "pnp-fuzz-simula
 
 
 def model_ledger(source: str) -> Ledger:
-    return Ledger(OUT / "state" / f"{source}.csv", stages=MODEL_STAGES, fields=MODEL_FIELDS, versioned=MODEL_VERSIONED)
+    return Ledger(models_dir() / "state" / f"{source}.csv", stages=MODEL_STAGES, fields=MODEL_FIELDS, versioned=MODEL_VERSIONED)
 
 
 def source_doc(folder: Path) -> tuple[str, str]:
@@ -123,7 +122,7 @@ def seed_source(folder: Path, defs: Counter, index_day: str, links: list[dict]) 
 
 
 def main() -> int:
-    sources, index = spice_root() / "sources", spice_index()
+    sources, index = spice_models_root() / "sources", spice_definitions()
     links_csv = staging("spice-library/research/model-search/model_links.csv")
     if not sources.exists():
         print("no spice/sources under the data root: nothing to seed", file=sys.stderr)
@@ -137,10 +136,10 @@ def main() -> int:
                 if not r["source"].startswith("("):                 # "(index)" rows: the part was already covered
                     links.setdefault(r["source"], []).append(r)
     ids = sorted({p.name for p in sources.iterdir() if p.is_dir()} | set(links))
-    (OUT / "sources").mkdir(parents=True, exist_ok=True)
+    (models_dir() / "sources").mkdir(parents=True, exist_ok=True)
     for sid in ids:
         entry, led = seed_source(sources / sid, defs, index_day, links.get(sid, []))
-        reg = OUT / "sources" / f"{sid}.yaml"
+        reg = models_dir() / "sources" / f"{sid}.yaml"
         if not reg.exists():
             reg.write_text(yaml.safe_dump(entry, sort_keys=False, allow_unicode=True, width=120), encoding="utf-8")
         if len(led):
