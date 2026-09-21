@@ -7,7 +7,7 @@ UV := uv
 RUN := $(UV) run --quiet
 
 .DEFAULT_GOAL := help
-.PHONY: help setup test lint guard check status status-write paths migrate clean web web-data web-deps serve
+.PHONY: help setup test lint guard check status status-write paths models-index models-missing migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -44,6 +44,13 @@ status-write:  ## regenerate STATUS.md from the ledgers
 
 paths:  ## where everything is, and which side of the public/private line
 	$(RUN) pidx paths
+
+# --- SPICE models ------------------------------------------------------------------------------
+models-index:  ## (maintainer) find every definition in the model sources, and stamp the ledgers
+	$(RUN) pidx models index --stats
+
+models-missing:  ## (maintainer) what the catalogue recorded that the sources no longer hold
+	$(RUN) pidx models index --missing
 
 # --- the website -------------------------------------------------------------------------------
 web-deps:  ## install the website's dependencies (once)

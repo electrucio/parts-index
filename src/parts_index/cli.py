@@ -24,6 +24,13 @@ def main(argv: list[str] | None = None) -> int:
     pa.add_argument("--public", action="store_true", help="only what is committed")
     pa.add_argument("--missing", action="store_true", help="only locations that do not exist here")
 
+    mod = sub.add_parser("models", help="SPICE models").add_subparsers(dest="mod_cmd", required=True)
+    mi = mod.add_parser("index", help="find every definition in the model sources and stamp the ledgers")
+    mi.add_argument("--source", action="append", help="only these sources (repeatable)")
+    mi.add_argument("--missing", action="store_true", help="what a previous catalogue had and the tree lacks")
+    mi.add_argument("--stats", action="store_true", help="also print counts per source")
+    mi.add_argument("-o", "--out", help="where to write the catalogue")
+
     web = sub.add_parser("web", help="the static site").add_subparsers(dest="web_cmd", required=True)
     wb = web.add_parser("build", help="write the site's data from data/ (never reads the private root)")
     wb.add_argument("--out", help="output directory (default: web/public/data)")
@@ -59,6 +66,14 @@ def main(argv: list[str] | None = None) -> int:
         if any(not exists for *_, exists in rows):
             print("\n? = not present here. Private locations are absent unless you hold the corpus.")
         return 0
+
+    if args.cmd == "models" and args.mod_cmd == "index":
+        from parts_index.models import index as model_index
+        argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
+        argv2 += ["--missing"] if args.missing else []
+        argv2 += ["--stats"] if args.stats else []
+        argv2 += ["-o", args.out] if args.out else []
+        return model_index.main(argv2)
 
     if args.cmd == "web" and args.web_cmd == "build":
         from parts_index.web import build as web_build
