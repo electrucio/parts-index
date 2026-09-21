@@ -43,7 +43,7 @@ def sources_payload() -> dict:
             for r in status.schematics_rows()
         ],
         "models": [
-            {k: r[k] for k in ("source", "status", "fetch", "files", "indexed", "defs",
+            {k: r[k] for k in ("source", "status", "fetch", "files", "scanned", "with_defs", "defs",
                                "unavailable", "not_tried", "licence", "last", "next")}
             for r in status.model_rows()
         ],

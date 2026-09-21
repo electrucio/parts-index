@@ -20,7 +20,8 @@ export interface ModelSource {
   status: string
   fetch: string
   files: number
-  indexed: number
+  scanned: number
+  with_defs: number
   defs: number
   unavailable: number
   not_tried: number

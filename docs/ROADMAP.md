@@ -40,6 +40,19 @@ each one stands. This file is for everything that is not a source.
   and "here it is". Start with the sources already believed to be permissive.
 - **970 parts have never been looked up** at a vendor that might have a model, and 840 are recorded as not
   available. Both counts are in `STATUS.md`.
+- **The ledger attributes a definition to the file it was downloaded as, so unpacked models are counted
+  against their archive — and when the archive is not kept, against nothing.** `STATUS.md` totals 626,794
+  definitions while the catalogue holds 847,884; the 221,090 difference is files with no ledger row of
+  their own: members unpacked from an archive, and models transcribed out of a datasheet. It shows up as
+  sources that appear to hold almost nothing — toshiba reports 5 and holds 9,878. `stamp_ledgers` should
+  credit an unpacked member to the archive's row, the same join `recovery_targets` already makes.
+- **Nothing routinely checks that the downloaded tree still holds what was downloaded.** `models index
+  --missing` compares the tree against `index.jsonl`, which is rebuilt from that same tree, so a file lost
+  between two runs disappears from both and the check reports nothing. The durable record is elsewhere and
+  is already written: the manifests hold a sha256 per file and the ledgers a committed `n_defs` per URL.
+  A `pidx models verify` reading those two would have caught the 59,407 definitions pruned by mistake on
+  the day it happened, instead of after the archives had been deleted. It found one stale record when run
+  by hand, so it is worth having as a step with its own `make` target.
 - Some vendors publish only encrypted models, readable by one simulator and no other. They are recorded as
   `encrypted_only`; the link is still worth publishing.
 - **Several parts filed as germanium are silicon.** Under the Pro-Electron naming convention the first

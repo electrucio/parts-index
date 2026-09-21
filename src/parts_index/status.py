@@ -67,7 +67,8 @@ def model_rows() -> list[dict]:
         else:
             nxt = "up to date"
         rows.append(dict(source=reg.stem, status=entry["status"], fetch=entry.get("fetch", ""), files=len(files),
-                         indexed=len(files) - to_index, defs=sum(int(r["n_defs"] or 0) for r in files),
+                         scanned=len(files) - to_index, defs=sum(int(r["n_defs"] or 0) for r in files),
+                         with_defs=sum(1 for r in files if int(r["n_defs"] or 0)),
                          unavailable=sum(1 for r in lookups if r["skip_reason"]), not_tried=not_tried,
                          licence=entry.get("licence", ""), last=last_activity(led) if led else "", next=nxt))
     return rows
@@ -77,24 +78,28 @@ def render_models() -> list[str]:
     rows = model_rows()
     if not rows:
         return []
-    tot = {k: sum(r[k] for r in rows) for k in ("files", "indexed", "defs", "unavailable", "not_tried")}
+    tot = {k: sum(r[k] for r in rows) for k in ("files", "scanned", "with_defs", "defs", "unavailable", "not_tried")}
     out = [
         "## SPICE model sources",
         "",
-        f"{len(rows)} sources · {tot['files']:,} files downloaded · {tot['indexed']:,} with indexed definitions "
-        f"({tot['defs']:,} definitions) · part look-ups: {tot['unavailable']:,} not available, {tot['not_tried']:,} not tried yet",
+        f"{len(rows)} sources · {tot['files']:,} files downloaded · {tot['scanned']:,} scanned by the indexer, "
+        f"of which {tot['with_defs']:,} hold definitions ({tot['defs']:,} in all) · part look-ups: "
+        f"{tot['unavailable']:,} not available, {tot['not_tried']:,} not tried yet",
         "",
         "Registry: `data/models/sources/<id>.yaml`. Ledgers: `data/models/state/<id>.csv`, one row per downloaded file",
-        "(URL + sha256) and one per part looked up at that vendor. A file without indexed definitions is usually a",
-        "symbol, a document or a binary format. Model files themselves are not in this repository unless the source",
+        "(URL + sha256) and one per part looked up at that vendor. **Scanned** is how many the indexer has read;",
+        "**With models** how many of those held any definition — the rest are symbols, documents or binary formats,",
+        "and they are read every time all the same. Model files themselves are not in this repository unless the source",
         "is marked `redistributable: true`.",
         "",
-        "| Source | Status | Fetch | Files | Indexed | Definitions | Parts not available | Parts not tried | Licence | Last activity | Next |",
-        "|---|---|---|--:|--:|--:|--:|--:|---|---|---|",
+        "| Source | Status | Fetch | Files | Scanned | With models | Definitions | Parts not available "
+        "| Parts not tried | Licence | Last activity | Next |",
+        "|---|---|---|--:|--:|--:|--:|--:|--:|---|---|---|",
     ]
     for r in sorted(rows, key=lambda r: (-r["files"], r["source"])):
-        out.append(f"| {r['source']} | {r['status']} | {r['fetch']} | {r['files']:,} | {r['indexed']:,} | {r['defs']:,} | "
-                   f"{r['unavailable']:,} | {r['not_tried']:,} | {r['licence']} | {r['last']} | {r['next']} |")
+        out.append(f"| {r['source']} | {r['status']} | {r['fetch']} | {r['files']:,} | {r['scanned']:,} | "
+                   f"{r['with_defs']:,} | {r['defs']:,} | {r['unavailable']:,} | {r['not_tried']:,} | "
+                   f"{r['licence']} | {r['last']} | {r['next']} |")
     return out + [""]
 
 
