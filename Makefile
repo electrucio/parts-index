@@ -7,7 +7,7 @@ UV := uv
 RUN := $(UV) run --quiet
 
 .DEFAULT_GOAL := help
-.PHONY: help setup test lint guard check status status-write paths seed clean web web-data web-deps serve
+.PHONY: help setup test lint guard check status status-write paths freeze seed clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -59,6 +59,9 @@ serve: web-data  ## bring the site up locally with live reload, at http://localh
 	cd web && npm run dev
 
 # --- maintainer only ----------------------------------------------------------------------------
+freeze:  ## (maintainer) rescue from the index the OCR, links and mapping that exist nowhere else
+	$(RUN) pidx schematics freeze
+
 seed:  ## (maintainer) rebuild the ledgers from the pre-monorepo pipeline outputs
 	$(RUN) python -m parts_index.schematics.seed
 	$(RUN) python -m parts_index.models.seed

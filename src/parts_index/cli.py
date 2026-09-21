@@ -24,6 +24,9 @@ def main(argv: list[str] | None = None) -> int:
     pa.add_argument("--public", action="store_true", help="only what is committed")
     pa.add_argument("--missing", action="store_true", help="only locations that do not exist here")
 
+    sch = sub.add_parser("schematics", help="the schematic index").add_subparsers(dest="sch_cmd", required=True)
+    sch.add_parser("freeze", help="(maintainer) rescue from the index what exists nowhere else")
+
     web = sub.add_parser("web", help="the static site").add_subparsers(dest="web_cmd", required=True)
     wb = web.add_parser("build", help="write the site's data from data/ (never reads the private root)")
     wb.add_argument("--out", help="output directory (default: web/public/data)")
@@ -58,6 +61,10 @@ def main(argv: list[str] | None = None) -> int:
         if any(not exists for *_, exists in rows):
             print("\n? = not present here. Private locations are absent unless you hold the corpus.")
         return 0
+
+    if args.cmd == "schematics" and args.sch_cmd == "freeze":
+        from parts_index.schematics import freeze
+        return freeze.main()
 
     if args.cmd == "web" and args.web_cmd == "build":
         from parts_index.web import build as web_build
