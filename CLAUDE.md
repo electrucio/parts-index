@@ -63,6 +63,7 @@ make setup      # install dependencies and enable the pre-commit guard, once per
 make check      # guard + lint + test — what CI runs
 make status     # what has been processed and what comes next, per source
 make paths      # where everything is, and which side of the public/private line
+make backup     # pack the private trees into one archive to carry off this machine
 ```
 
 Each target is a thin wrapper around `pidx`, the command this package installs (`src/parts_index/cli.py`).

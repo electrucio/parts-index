@@ -314,6 +314,11 @@ def scratch() -> Path:
     return material_root() / "scratch"
 
 
+def backups() -> Path:
+    """Where a backup archive is written before it is carried off this machine."""
+    return material_root() / "backups"
+
+
 def guard_extra_patterns() -> Path:
     return material_root() / "guard_extra_patterns.txt"
 
@@ -376,6 +381,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("llm_cache", "private", ()),
     ("logs", "private", ()),
     ("scratch", "private", ()),
+    ("backups", "private", ()),
     ("guard_extra_patterns", "private", ()),
 )
 

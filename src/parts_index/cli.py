@@ -45,6 +45,11 @@ def main(argv: list[str] | None = None) -> int:
     mr.add_argument("--limit", type=int, default=0)
     mr.add_argument("--dry", action="store_true")
 
+    bk = sub.add_parser("backup", help="pack the private trees into one archive to carry off this machine")
+    bk.add_argument("--level", choices=("essential", "full", "all"), default="essential")
+    bk.add_argument("--out", help="where to write it")
+    bk.add_argument("--dry", action="store_true", help="say what would be packed and write nothing")
+
     web = sub.add_parser("web", help="the static site").add_subparsers(dest="web_cmd", required=True)
     wb = web.add_parser("build", help="write the site's data from data/ (never reads the private root)")
     wb.add_argument("--out", help="output directory (default: web/public/data)")
@@ -107,6 +112,11 @@ def main(argv: list[str] | None = None) -> int:
             argv2 += ["--limit", str(args.limit)] if args.limit else []
             argv2 += ["--dry"] if args.dry else []
         return model_fetch.main(argv2)
+
+    if args.cmd == "backup":
+        from parts_index import backup
+        argv2 = ["--level", args.level] + (["--out", args.out] if args.out else [])
+        return backup.main(argv2 + (["--dry"] if args.dry else []))
 
     if args.cmd == "web" and args.web_cmd == "build":
         from parts_index.web import build as web_build

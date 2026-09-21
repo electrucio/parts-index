@@ -7,7 +7,7 @@ UV := uv
 RUN := $(UV) run --quiet
 
 .DEFAULT_GOAL := help
-.PHONY: help setup test lint guard check status status-write paths models-index models-missing models-recover models-promote migrate clean web web-data web-deps serve
+.PHONY: help setup test lint guard check status status-write paths models-index models-missing models-recover models-promote backup migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -57,6 +57,9 @@ models-recover:  ## (maintainer) fetch those files again, checking each against 
 
 models-promote:  ## (maintainer) write the public recipe for every curated part into data/models/parts/
 	$(RUN) pidx models promote
+
+backup:  ## (maintainer) pack the private trees into one archive to carry off this machine
+	$(RUN) pidx backup
 
 # --- the website -------------------------------------------------------------------------------
 web-deps:  ## install the website's dependencies (once)
