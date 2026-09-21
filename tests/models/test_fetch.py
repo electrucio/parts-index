@@ -148,3 +148,26 @@ def test_recovery_says_so_when_the_vendor_changed_the_file(tree, server, capsys)
     counts = F.recover([{"file": "sources/acme/raw/q.lib", "source": "acme", "definitions": 1}])
     assert counts["verified"] == 0 and counts["changed"] == 1
     assert "checksum differs" in capsys.readouterr().out
+
+
+def test_a_flattened_manifest_path_still_names_its_file(tree):
+    """An early recovery run recorded `raw/<name>` for files that belong deep in a tree.
+
+    The entry kept the right URL, so the file name finds it; and what is written back is the path the
+    catalogue gives, not the flattened one, or the next run would have to recover it all over again.
+    """
+    manifest(tree, "kicad", [{"url": "https://raw.example/repo/c0de/Models/Maxim%20Integrated/MAX4200.FAM",
+                              "path": "raw/MAX4200.FAM", "sha256": "cc"}])
+    deep = "sources/kicad/raw/repo/Models/Maxim Integrated/MAX4200.FAM"
+    targets, unmatched = F.recovery_targets([{"file": deep, "source": "kicad", "definitions": 48}])
+    assert not unmatched
+    assert targets[0][1]["rel"] == "raw/repo/Models/Maxim Integrated/MAX4200.FAM"
+
+
+def test_two_files_of_the_same_name_are_not_guessed_at(tree):
+    """A name that matches two entries identifies neither, and guessing would fetch the wrong one."""
+    manifest(tree, "twins", [{"url": "https://v.example/a/x.lib", "path": "raw/a/x.lib", "sha256": "dd"},
+                             {"url": "https://v.example/b/x.lib", "path": "raw/b/x.lib", "sha256": "ee"}])
+    gone = [{"file": "sources/twins/raw/c/x.lib", "source": "twins", "definitions": 1}]
+    targets, unmatched = F.recovery_targets(gone)
+    assert not targets and unmatched == gone

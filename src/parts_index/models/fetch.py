@@ -23,6 +23,7 @@ import sys
 import zipfile
 from datetime import date
 from pathlib import Path
+from urllib.parse import unquote
 
 import yaml
 
@@ -231,6 +232,13 @@ def recovery_targets(gone: list[dict]) -> tuple[list[tuple[str, dict]], list[dic
     A file under `extracted/<X>/` came out of an archive, so the thing to fetch again is the archive, not
     the file. The archive is matched by the name it unpacked into, and where a source kept no local copy
     of it — several were too large to keep — by being the only archive that source ever recorded.
+
+    Matching on the recorded path alone is not enough, because an early recovery run wrote the path
+    flattened: `raw/MAX4200.FAM` for a file that belongs at `raw/KiCad-Spice-Library/Models/Manufacturer/
+    Maxim Integrated/MAX4200.FAM`, spaces turned to underscores. The entry still holds the right URL, so
+    the file name recovers it when it names exactly one entry. Each target therefore carries the `rel` to
+    write, and for a direct file that is **the catalogue's** path, never the manifest's: the catalogue
+    says where the file belongs, and re-fetching to the recorded path would flatten it a second time.
     """
     targets: dict[tuple[str, str], dict] = {}
     unmatched: list[dict] = []
@@ -244,6 +252,9 @@ def recovery_targets(gone: list[dict]) -> tuple[list[tuple[str, dict]], list[dic
         with_url = [f for f in files if f.get("url")]
         archives = [f for f in with_url if not f.get("path")
                     or Path(f["path"]).suffix.lower() in (".zip", ".7z", ".rar", ".tgz", ".gz")]
+        by_name: dict[str, list[dict]] = {}
+        for f in with_url:
+            by_name.setdefault(unquote(Path(f["url"].split("?")[0]).name).lower(), []).append(f)
         for g in items:
             parts = g["file"].split("/")
             rel = "/".join(parts[2:])
@@ -256,10 +267,14 @@ def recovery_targets(gone: list[dict]) -> tuple[list[tuple[str, dict]], list[dic
                                 if Path(f["url"].split("?")[0]).stem.lower() == stem), None)
                 if hit is None and len(archives) == 1:
                     hit = archives[0]                      # the one archive this source ever recorded
+                rel = hit["path"] if hit and hit.get("path") else None   # fetch the archive, not the member
+            elif hit is None:
+                same = by_name.get(Path(rel).name.lower(), [])
+                hit = same[0] if len(same) == 1 else None  # one candidate only: two would be a guess
             if hit is None:
                 unmatched.append(g)
             else:
-                targets.setdefault((source, hit["url"]), hit)
+                targets.setdefault((source, hit["url"]), dict(hit, rel=rel))
     return [(s, f) for (s, _), f in sorted(targets.items())], unmatched
 
 
@@ -275,7 +290,7 @@ def recover(gone: list[dict], only: str | None = None, limit: int = 0, dry: bool
         return counts
     expected = {g["file"] for g in gone}       # where the catalogue says each file belongs
     for source, entry in targets:
-        got = fetch(source, entry["url"], rel=entry.get("path"), note=entry.get("note", ""),
+        got = fetch(source, entry["url"], rel=entry.get("rel"), note=entry.get("note", ""),
                     keep_anything=True, expected=expected)
         if got["status"] != "downloaded":
             counts["failed"] += 1
