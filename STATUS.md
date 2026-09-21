@@ -85,7 +85,7 @@ OCR'd counts only items that need OCR (scans and images); HTML pages and born-di
 
 ## SPICE model sources
 
-76 sources · 12,778 files downloaded · 12,778 scanned by the indexer, of which 12,048 hold definitions (626,794 in all) · part look-ups: 846 not available, 970 not tried yet
+80 sources · 13,710 files downloaded · 13,706 scanned by the indexer, of which 12,901 hold definitions (705,191 in all) · part look-ups: 846 not available, 970 not tried yet
 
 Registry: `data/models/sources/<id>.yaml`. Ledgers: `data/models/state/<id>.csv`, one row per downloaded file
 (URL + sha256) and one per part looked up at that vendor. **Scanned** is how many the indexer has read;
@@ -96,11 +96,13 @@ is marked `redistributable: true`.
 | Source | Status | Fetch | Files | Scanned | With models | Definitions | Parts not available | Parts not tried | Licence | Last activity | Next |
 |---|---|---|--:|--:|--:|--:|--:|--:|---|---|---|
 | onsemi | active | adapter | 4,742 | 4,742 | 4,740 | 33,903 | 172 | 165 | unreviewed | 2026-09-21 | fetch 165 parts |
-| diodes-inc | active | adapter | 4,159 | 4,159 | 4,156 | 35,003 | 0 | 255 | unreviewed | 2026-09-21 | fetch 255 parts |
+| diodes-inc | active | adapter | 4,219 | 4,219 | 4,157 | 35,009 | 0 | 255 | unreviewed | 2026-09-21 | fetch 255 parts |
 | kicad-spice-library | active | manual | 2,083 | 2,083 | 2,027 | 154,194 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
+| spice-model-cd | active | manual | 493 | 489 | 486 | 1,677 | 0 | 0 | unreviewed | 2026-09-21 | write manifest |
 | ti | active | adapter | 451 | 451 | 444 | 9,169 | 321 | 8 | unreviewed | 2026-09-21 | fetch 8 parts |
+| tdk | active | adapter | 280 | 280 | 278 | 49,531 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
+| ltwiki | active | manual | 223 | 223 | 116 | 253,638 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | cordell | active | manual | 187 | 187 | 4 | 1,170 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
-| ltwiki | active | manual | 136 | 136 | 39 | 226,773 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | duncanamps | active | manual | 131 | 131 | 91 | 1,535 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | nexperia | active | adapter | 124 | 124 | 124 | 300 | 263 | 100 | unreviewed | 2026-09-21 | fetch 100 parts |
 | spiceypedals | active | manual | 112 | 112 | 49 | 309 | 0 | 0 | MIT | 2026-09-21 | up to date |
@@ -121,7 +123,8 @@ is marked `redistributable: true`.
 | ltspice-guitar-pedals | active | manual | 14 | 14 | 1 | 6 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | nisshinbo | link_only | manual | 12 | 12 | 12 | 76 | 0 | 6 | unreviewed | 2026-09-21 | manual: link only |
 | linear-systems | active | manual | 11 | 11 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
-| toshiba | link_only | manual | 9 | 9 | 4 | 5 | 0 | 34 | unreviewed | 2026-09-21 | manual: link only |
+| toshiba | active | manual | 11 | 11 | 5 | 70 | 0 | 34 | unreviewed | 2026-09-21 | fetch 34 parts |
+| nichicon | active | adapter | 10 | 10 | 10 | 253 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | audio-effects-ltspice | active | manual | 7 | 7 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | germanium-apm | active | manual | 7 | 7 | 2 | 41 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | pnp-fuzz-simulation | active | manual | 7 | 7 | 0 | 0 | 0 | 0 | GPL-2.0-only | 2026-09-21 | up to date |
@@ -165,6 +168,7 @@ is marked `redistributable: true`.
 | immler | active | manual | 0 | 0 | 0 | 0 | 0 | 0 | unreviewed |  | write manifest |
 | kemet | pending_manual | manual | 0 | 0 | 0 | 0 | 0 | 0 | unreviewed |  | manual download |
 | littelfuse | link_only | manual | 0 | 0 | 0 | 0 | 0 | 17 | unreviewed |  | manual: link only |
+| ltspice-native | active | installed | 0 | 0 | 0 | 0 | 0 | 0 | proprietary |  | write manifest |
 | mps | link_only | manual | 0 | 0 | 0 | 0 | 0 | 2 | unreviewed |  | manual: link only |
 | panasonic | pending_manual | manual | 0 | 0 | 0 | 0 | 0 | 0 | unreviewed |  | manual download |
 | renesas | link_only | manual | 0 | 0 | 0 | 0 | 0 | 6 | unreviewed |  | manual: link only |

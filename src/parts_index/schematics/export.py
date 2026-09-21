@@ -62,7 +62,10 @@ NEAR_MAX = 4
 GATE = """pp.conf = 'high' AND p.is_ad = 0
           AND (d.sha256 IS NOT NULL OR d.link_verified = 1 OR d.page_url_tpl LIKE '%?q=%')"""
 
-DOC_FIELDS = ("id", "key", "title", "url", "parent", "role", "year", "month", "pages")
+DOC_FIELDS = ("id", "key", "title", "url", "parent", "role", "year", "month", "pages", "sha")
+# Enough of the checksum to group the copies of one sheet without carrying 64 characters 22,383 times.
+# 2,827 sheets are published by more than one archive; the Bassman 5F6-A is in three.
+SHA_LEN = 16
 PAGE_FIELDS = ("doc", "page", "url", "schematic", "parts")
 USE_FIELDS = ("part", "doc", "page", "times", "near")
 PART_FIELDS = ("part", "documents", "pages", "uses", "sources")
@@ -121,7 +124,7 @@ def near_of(value: str | None) -> str:
 def rows(db: sqlite3.Connection):
     return db.execute(f"""
         SELECT pa.part, d.source, d.doc_id, d.doc_key, d.title, d.public_url, d.page_url_tpl,
-               d.page_offset, d.role, d.year, d.month, d.n_pages, d.parent_doc_id,
+               d.page_offset, d.role, d.year, d.month, d.n_pages, d.parent_doc_id, d.sha256,
                par.doc_key par_key, par.title par_title, par.public_url par_url,
                p.page_no, p.w_pt, p.h_pt, p.has_schematic, p.n_parts,
                pp.n, pp.boxes, pp.near
@@ -181,6 +184,7 @@ def export(only: list[str] | None = None, dry: bool = False) -> dict:
                 "year": r["year"] or "",
                 "month": r["month"] or "",
                 "pages": r["n_pages"] or 0,
+                "sha": (r["sha256"] or "")[:SHA_LEN],
             }
         pg = pages.setdefault(source, {})
         pkey = (key, r["page_no"])
@@ -212,7 +216,7 @@ def export(only: list[str] | None = None, dry: bool = False) -> dict:
         n_doc = write(schematics_documents(source), DOC_FIELDS,
                       ([ids.of(d["key"]), d["key"], d["title"], d["url"],
                         ids.by_key.get(d["parent"], "") if d["parent"] else "",
-                        d["role"], d["year"], d["month"], d["pages"]]
+                        d["role"], d["year"], d["month"], d["pages"], d["sha"]]
                        for d in sorted(docs[source].values(), key=lambda x: ids.of(x["key"]))))
         n_page = write(schematics_pages(source), PAGE_FIELDS,
                        ([ids.of(k), p["page"], p["url"], p["schematic"], p["parts"]]
