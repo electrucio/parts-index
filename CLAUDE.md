@@ -20,8 +20,8 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
   circuits. The `.net` files reference model files that only exist in the private data root, so they do
   not run from a clean clone yet.
 - `data/` the public dataset: registries, ledgers, the part dictionary, the model recipes with their
-  verification results, and the LTspice symbols drawn for them. **(todo)** the exported schematic
-  index and the licence notes.
+  verification results, the LTspice symbols drawn for them, and what was distilled from the
+  research datasets. **(todo)** the exported schematic index and the licence notes.
 - `web/` the site (Vite + TypeScript + Preact), `docs/` the roadmap. **(todo)** the maintainer runbook.
 - `src/parts_index/migrate/` one-off steps carrying the old pipeline's state across; deleted when the
   last stage is ported.

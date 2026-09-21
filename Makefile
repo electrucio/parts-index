@@ -7,7 +7,7 @@ UV := uv
 RUN := $(UV) run --quiet
 
 .DEFAULT_GOAL := help
-.PHONY: help setup test lint guard check status status-write paths models-index models-missing models-recover models-promote backup migrate clean web web-data web-deps serve
+.PHONY: help setup test lint guard check status status-write paths models-index models-missing models-recover models-promote backup migrate-datasets migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -75,6 +75,10 @@ serve: web-data  ## bring the site up locally with live reload, at http://localh
 	cd web && npm run dev
 
 # --- maintainer only ----------------------------------------------------------------------------
+migrate-datasets:  ## (maintainer, one-off) distil the research datasets; needs FROM=/path/to/sch-datasets
+	@test -n "$(FROM)" || { echo "give the dataset tree: make migrate-datasets FROM=/path/to/sch-datasets"; exit 1; }
+	$(RUN) --extra datasets python -m parts_index.migrate.datasets --from "$(FROM)"
+
 migrate:  ## (maintainer, one-off) carry the old pipeline's state across — see src/parts_index/migrate/
 	$(RUN) python -m parts_index.migrate.model_ledgers
 	$(RUN) python -m parts_index.migrate.ocr_tree

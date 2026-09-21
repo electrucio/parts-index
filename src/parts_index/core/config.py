@@ -169,6 +169,11 @@ def datasets_registry() -> Path:
     return PUBLIC_DATA / "datasets" / "registry.yaml"
 
 
+def dataset_table(name: str) -> Path:
+    """A result distilled from a research dataset: facts and links, never the dataset itself."""
+    return PUBLIC_DATA / "datasets" / f"{name}.csv"
+
+
 def components_dir(name: str | None = None) -> Path:
     return REPO_ROOT / "components" / name if name else REPO_ROOT / "components"
 
@@ -351,6 +356,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("known_parts", "public", ()),
     ("rejected_tokens", "public", ()),
     ("datasets_registry", "public", ()),
+    ("dataset_table", "public", ("part_repos",)),
     ("components_dir", "public", ()),
     ("circuits_dir", "public", ()),
     ("docs_dir", "public", ()),

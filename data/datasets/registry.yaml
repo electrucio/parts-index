@@ -1,0 +1,122 @@
+note: 'Public research datasets of schematic images, surveyed and then deleted. None is a source for this
+  index — they are textbook figures, hand-drawn exercises and cropped symbols — and several carry non-commercial
+  or no-derivatives terms, or hold figures cropped from copyrighted textbooks, which would keep them out
+  regardless. What is kept is what may be kept: the facts and links distilled into `part_repos.csv` and
+  `part_stats.csv`, and this list, so the survey is not repeated.'
+datasets:
+- id: open_schematics
+  name: Open Schematics
+  images: 33320
+  source: Hugging Face `Joseferrera24/open-schematics`
+  licence: CC-BY-4.0 for the dataset; each source project keeps its own (GPL, CERN-OHL, MIT…)
+  transcription: complete EDA source
+  netlist: yes, derivable
+  ground_truth: exact by construction
+  note: the only one that points back at an original project rather than a figure
+- id: masala_chai
+  name: Masala-CHAI
+  images: 6371
+  source: Google Drive; the link had been removed from the README and was recovered from its history
+  licence: not declared; images cropped from ten textbooks, so third-party copyright
+  transcription: SPICE plus caption
+  netlist: 'yes'
+  ground_truth: poor
+  note: netlists are LLM-generated; five of five checked by hand were wrong
+  clone: https://github.com/jitendra-bhandari/Masala-CHAI
+- id: cghd
+  name: CGHD — Circuit Graph Handwritten Dataset
+  images: 4181
+  source: Hugging Face `lowercaseonly/cghd`; Zenodo 14042961 answered 403
+  licence: CC-BY-SA-3.0 per its README, while the Hugging Face card says CC-BY-3.0
+  transcription: symbol, junction and text boxes, with rotation and OCR
+  netlist: 12 .asc files
+  ground_truth: high, hand-made
+  note: 'perception ground truth: where each symbol is, not what is joined to what'
+- id: ci2n
+  name: Image2Net / CI2N
+  images: 2269
+  source: https://github.com/LAD021/ci2n_datasets
+  licence: Apache-2.0 for the repository; images from papers, books and the web, so third-party copyright
+  transcription: device boxes, crossings, orientation
+  netlist: 122 verified
+  ground_truth: high, hand-made
+  note: its 122 golden netlists are the only hand-verified connectivity in any of these
+  clone: https://github.com/LAD021/ci2n_datasets
+- id: amsnet_v1
+  name: AMSNet 1.0
+  images: 734
+  source: https://github.com/AMS-Net/ams-net.github.io
+  licence: GPL-3.0 for the repository; figures from textbooks, so third-party copyright
+  transcription: SPICE plus component and node boxes
+  netlist: 'yes'
+  ground_truth: medium-high, automatic
+  note: component values are generic
+  clone: https://github.com/AMS-Net/ams-net.github.io
+- id: digitize_hcd
+  name: Digitize-HCD
+  images: 1277
+  source: Mendeley Data `rngcz5wtv8` v2
+  licence: CC-BY-4.0
+  transcription: component boxes, text with its string, ports in crops
+  netlist: 'no'
+  ground_truth: high, hand-made
+  note: perception ground truth only
+- id: sesyd
+  name: SESYD, synthetic electrical diagrams
+  images: 1000
+  source: http://mathieu.delalandre.free.fr/projects/sesyd/symbols/diagrams.html
+  licence: none stated; the site asks that the paper be cited (Delalandre et al., 2010)
+  transcription: symbol boxes and full vector geometry
+  netlist: no, but the geometry is exact
+  ground_truth: exact, synthetic
+  note: generated, so it says nothing about real drawings
+- id: aitee
+  name: AITEE
+  images: 828
+  source: https://github.com/CKnievel/aitee-dataset
+  licence: Apache-2.0
+  transcription: YOLO boxes, 11 classes
+  netlist: 'no'
+  ground_truth: high
+  note: a trivial domain
+  clone: https://github.com/CKnievel/aitee-dataset
+- id: juhccr
+  name: JUHCCR-v1
+  images: 56017
+  source: Kaggle `ayush02102001/circuit-component-analysis`
+  licence: CC-BY-NC-ND-4.0 for the paper
+  transcription: one class per folder
+  netlist: 'no'
+  ground_truth: isolated components
+  note: crops of single components, no circuit
+  clone: https://github.com/AyushRoy2001/Circuit-Component-Analysis
+- id: circuit_recognizer
+  name: Hand-drawn Circuit Recognizer
+  images: 306
+  source: https://github.com/mahmut-aksakalli/circuit_recognizer
+  licence: not recorded
+  transcription: one class per folder
+  netlist: 'no'
+  ground_truth: isolated components
+  note: crops of single components, no circuit
+  clone: https://github.com/mahmut-aksakalli/circuit_recognizer
+- id: circuitnet
+  name: CircuitNet (aaanthonyyy)
+  images: 2991
+  source: https://github.com/aaanthonyyy/CircuitNet
+  licence: not recorded
+  transcription: class and orientation per folder
+  netlist: 'no'
+  ground_truth: isolated components
+  note: crops of single components, no circuit
+  clone: https://github.com/aaanthonyyy/CircuitNet
+not_available:
+- id: circuitpile_9k
+  name: CircuitPile-9k / CircuitHub9K
+  why: the repository was withdrawn
+- id: amsnet_v2
+  name: AMSnet 2.0
+  why: announced but never published
+- id: dcd
+  name: DCD — Digital Circuit Diagram
+  why: no source could be located
