@@ -31,6 +31,17 @@ def main(argv: list[str] | None = None) -> int:
     mi.add_argument("--stats", action="store_true", help="also print counts per source")
     mi.add_argument("-o", "--out", help="where to write the catalogue")
 
+    mf = mod.add_parser("fetch", help="download one URL into a source")
+    mf.add_argument("source")
+    mf.add_argument("--url", required=True)
+    mf.add_argument("--name", help="file name to store it under")
+    mf.add_argument("--note", default="")
+    mf.add_argument("--curl", action="store_true", help="some vendors answer curl and nothing else")
+    mr = mod.add_parser("recover", help="fetch again what the catalogue says the tree has lost")
+    mr.add_argument("--source")
+    mr.add_argument("--limit", type=int, default=0)
+    mr.add_argument("--dry", action="store_true")
+
     web = sub.add_parser("web", help="the static site").add_subparsers(dest="web_cmd", required=True)
     wb = web.add_parser("build", help="write the site's data from data/ (never reads the private root)")
     wb.add_argument("--out", help="output directory (default: web/public/data)")
@@ -74,6 +85,19 @@ def main(argv: list[str] | None = None) -> int:
         argv2 += ["--stats"] if args.stats else []
         argv2 += ["-o", args.out] if args.out else []
         return model_index.main(argv2)
+
+    if args.cmd == "models" and args.mod_cmd in ("fetch", "recover"):
+        from parts_index.models import fetch as model_fetch
+        if args.mod_cmd == "fetch":
+            argv2 = ["fetch", args.source, "--url", args.url, "--note", args.note]
+            argv2 += ["--name", args.name] if args.name else []
+            argv2 += ["--curl"] if args.curl else []
+        else:
+            argv2 = ["recover"]
+            argv2 += ["--source", args.source] if args.source else []
+            argv2 += ["--limit", str(args.limit)] if args.limit else []
+            argv2 += ["--dry"] if args.dry else []
+        return model_fetch.main(argv2)
 
     if args.cmd == "web" and args.web_cmd == "build":
         from parts_index.web import build as web_build
