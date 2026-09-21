@@ -9,11 +9,12 @@ is worse than no link**.
 ```
 git clone git@github.com:electrucio/parts-index.git
 cd parts-index
-git config core.hooksPath .githooks
+make setup      # installs dependencies and enables the pre-commit guard
+make            # lists every step
 ```
 
-The pre-commit hook runs `scripts/licence_guard.py`, which refuses PDFs, archives, large files,
-manufacturer model text outside the allowed folders, local paths and secrets.
+`make check` runs what CI runs. The pre-commit hook runs `scripts/licence_guard.py`, which refuses PDFs,
+archives, large files, manufacturer model text outside the allowed folders, local paths and secrets.
 
 ## What you can contribute without any private data
 

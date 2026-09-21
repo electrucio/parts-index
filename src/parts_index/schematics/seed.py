@@ -19,7 +19,8 @@ from pathlib import Path
 
 import yaml
 
-from parts_index.core.config import PUBLIC_DATA, corpus as corpus_dir, corpus_db, data_root, staging
+from parts_index.core.config import PUBLIC_DATA, corpus_db, data_root, staging
+from parts_index.core.config import corpus as corpus_dir
 from parts_index.core.ledger import Ledger
 
 STATE = PUBLIC_DATA / "schematics" / "state"

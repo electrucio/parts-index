@@ -54,15 +54,19 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
 
 ## Working here
 
+**`make` is the front door**; run it with no target to list every step.
+
 ```
-git config core.hooksPath .githooks     # once per clone
-python3 scripts/licence_guard.py --all  # what CI runs
-uv sync && uv run pytest                # or: PYTHONPATH=src python3 -m pytest
-uv run pidx status                      # what is processed and what comes next; --write refreshes STATUS.md
-uv run pidx paths                       # every location, public or private, and whether it is here
+make setup      # install dependencies and enable the pre-commit guard, once per clone
+make check      # guard + lint + test — what CI runs
+make status     # what has been processed and what comes next, per source
+make paths      # where everything is, and which side of the public/private line
 ```
 
-Python ≥ 3.11. `pidx --help` lists what exists today; the map above marks the rest **(todo)**.
+Each target is a thin wrapper around `pidx`, the command this package installs (`src/parts_index/cli.py`).
+Use either; `make` exists so the steps are listed in one place. Python ≥ 3.11. `make` and `pidx --help`
+list what exists today; the map above marks the rest **(todo)**. When you add a `pidx` command, add its
+`make` target in the same commit.
 
 ## Where things stand
 

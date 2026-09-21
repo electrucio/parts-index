@@ -17,7 +17,6 @@ import csv
 import re
 import sys
 from collections import namedtuple
-from pathlib import Path
 
 from parts_index.core.config import PUBLIC_DATA, staging
 

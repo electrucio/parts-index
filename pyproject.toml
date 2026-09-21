@@ -28,5 +28,13 @@ line-length = 110
 target-version = "py311"
 extend-exclude = ["private_uncommitted"]
 
+[tool.ruff.lint]
+# Real problems (pyflakes) and import hygiene, not style preferences: much of this code is a
+# deliberate verbatim port and is not reformatted until a golden test covers it (CLAUDE.md rule 7).
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/core/test_parts.py" = ["E731"]   # verbatim port; kept comparable to its original
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]

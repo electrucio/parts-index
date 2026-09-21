@@ -1,7 +1,6 @@
 """The public/private boundary, asserted. Every location is named in core.config and nowhere else."""
 import re
 import subprocess
-from pathlib import Path
 
 import pytest
 
