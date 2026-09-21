@@ -1,0 +1,21 @@
+part: SMBJ36A
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: vishay
+  name: smbj36a
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89578/p_smbj36.txt
+    sha256: 49c3bba9d88c61cc2cf25f64717ae8146dcfb10f30df3b4c22ef0189f9abdd92
+    lines:
+      smbj36a: [9, 30]
+    fetched: '2026-09-19'
+    note: 'TransZorb®TVS, PSpice Models (*.txt): smbj36a, DFMOD, RLMOD, DBDMOD, RBVCMOD'
+  note: pins from comment words

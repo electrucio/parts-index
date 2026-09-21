@@ -1,0 +1,106 @@
+part: IRFR9024
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: bordodynov
+  name: IRFR9024
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRFR9024: [1149, 1149]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: irfr9024
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irfr9024.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ddb56b098559a6ac6633edf1933f7c21e484d8fe42f6f8f6ab1b9fb42c2a9b28
+    lines:
+      irfr9024: [1, 60]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: irfr9024n
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irfr9024n.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 3d01adade2445ca42021af376259fd03c2d726cd64134e41a4d473e22cb27445
+    lines:
+      irfr9024n: [1, 56]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from default order (unverified)'
+- source: kicad-spice-library
+  name: IRFR9024
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWMOS3.LIB
+    sha256: 15daa43bae301f0f87935f96d7a7634586ef2319657a3f622e47f56ae492d6d7
+    lines:
+      IRFR9024: [4708, 4730]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: irfr9024n
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irfr9024n.spi
+    sha256: 6f48e8dc1e0ed0058e1f0a1e6b43cf2e0595291016f9604abed12c428389f074
+    lines:
+      irfr9024n: [1, 56]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: irfr9024_IR
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+    sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+    lines:
+      irfr9024_IR: [1501, 1560]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

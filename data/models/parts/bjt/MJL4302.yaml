@@ -1,0 +1,89 @@
+part: MJL4302
+kind: bjt
+priority: 3
+group: audio_docs
+models:
+- source: cordell
+  name: MJL4302C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.cordellaudio.com/book/Cordell-Models.txt
+    sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
+    lines:
+      MJL4302C: [411, 423]
+    fetched: '2026-09-14'
+    note: 'Cordell Models 04/20/2011 (current site file, HTTP Last-Modified 2024-09-15): 63 .model (BJT
+      GP, NJF, VDMOS, D)'
+- source: bordodynov
+  name: mjL4302a
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      mjL4302a: [1021, 1021]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: MJL4302_C
+  def: model
+  type: PNP
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      MJL4302_C: [1168, 1168]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: MJL4302_C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Mixer/standard.bjt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+    lines:
+      MJL4302_C: [1111, 1111]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: mjl4302a
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/distortion_OUTPUT_vs_bias/standard_BJT modified.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: b11d82ef9412f3285ead0b742f082d8c60ba31108d4eb85c48c7268e54aeb9a4
+    lines:
+      mjl4302a: [474, 474]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: MJL4302c
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/distortion_OUTPUT_vs_bias/standard_BJT modified.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: b11d82ef9412f3285ead0b742f082d8c60ba31108d4eb85c48c7268e54aeb9a4
+    lines:
+      MJL4302c: [477, 477]
+    fetched: '2026-09-14'

@@ -1,0 +1,41 @@
+part: SMAJ24CA
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: bordodynov
+  name: SMAJ24CA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - TRANSILB
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/transil_ST.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+    lines:
+      SMAJ24CA: [2448, 2453]
+      TRANSILB: [91, 129]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: kicad-spice-library
+  name: smaj24ca
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/GenSemiTVS2.lib
+    sha256: 28203b6422f594562d5f987512982d76db1fcfc0f1356e3b01077dc18895c1a4
+    lines:
+      smaj24ca: [1292, 1320]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

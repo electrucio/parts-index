@@ -1,0 +1,51 @@
+part: 1N5400
+kind: diode
+priority: 2
+group: rectifier
+preferred: duncanamps
+preferred_why: 'best datasheet agreement: 3 pass, 1 off, 0 fail of 4 judged rows (1 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: duncanamps
+  name: D1N5400
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/diode.mod
+    sha256: bb58d6a99a7204cfa89803598a0331243f10c11afb1b6279fb56fec2ae14c941
+    lines:
+      D1N5400: [61, 62]
+    fetched: '2026-09-14'
+    note: 34 .model
+  verification:
+    score: 0.75
+    pass: 3
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+- source: suusi-tubes
+  name: 1N5400
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: MotorolaRectifiers.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: 88449ae88e2f751e584a6c2a079ded8a074d765cee37ce146ad1fd34182c5b35
+    lines:
+      1N5400: [19, 19]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 2
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 1
+datasheet:
+  url: https://www.vishay.com/docs/88516/1n5400.pdf
+  maker: Vishay General Semiconductor
+  doc: Document Number 88516, Revision 19-Dec-2025 (1N5400 thru 1N5408)

@@ -1,0 +1,100 @@
+part: LM7912
+kind: regulator
+priority: 4
+models:
+- source: bordodynov
+  name: LM7912
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INPUT
+  - GROUND
+  - OUTPUT
+  deps:
+  - LM79XX
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/regulators.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1998b5aaba8b44019bf630a561c739ff33a83996cd6600bbaa8b8c3e02cf5bf2
+    lines:
+      LM7912: [919, 924]
+      LM79XX: [838, 916]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from names'
+- source: ltwiki
+  name: LM7912
+  def: subckt
+  type: SUBCKT
+  pins:
+  - GND
+  - IN
+  - OUT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/regulators.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: ba2105aa53d2db16001d205924af438b7c473ed9a864ce8e7ef13fcd71a7fcf7
+    lines:
+      LM7912: [585, 665]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, spiceypedals; pins from LM79 package pin numbers (unverified)'
+- source: kicad-spice-library
+  name: LM7912
+  def: subckt
+  type: SUBCKT
+  pins:
+  - GND
+  - IN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/regulators.lib
+    sha256: 0b15463dadbf7c99cb3692aa563c298dd2a488e40122b87c0094158001d08f4c
+    lines:
+      LM7912: [838, 919]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from LM79 package pin numbers (unverified)
+- source: kicad-spice-library
+  name: LM7912C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INPUT
+  - OUTPUT
+  - GROUND
+  deps:
+  - x_LM79XX
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      LM7912C: [2021, 2026]
+      x_LM79XX: [1885, 1963]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from names
+- source: kicad-spice-library
+  name: MC7912C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INPUT
+  - OUTPUT
+  - GROUND
+  deps:
+  - x_LM79XX
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      MC7912C: [2048, 2053]
+      x_LM79XX: [1885, 1963]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: found under the alias MC7912; pins from names

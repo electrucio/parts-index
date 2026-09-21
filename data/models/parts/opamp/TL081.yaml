@@ -1,0 +1,128 @@
+part: TL081
+kind: opamp
+priority: 2
+models:
+- source: ti
+  name: TL081
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ069
+    member: TL081.301
+    archive_sha256: 9b56892f3ebb8f78fd936a4fd08860c8a78a44b7e2033583e1f8988622db3d75
+    sha256: 74746c9e184824a7665d9b24c767f5f8cfabc77fbb4893115966dee531b08cf5
+    lines:
+      TL081: [10, 42]
+    fetched: '2026-09-19'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: TL081
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - TL082
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_TI.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+    lines:
+      TL081: [1004, 1036]
+      TL082: [1045, 1077]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: TL081
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      TL081: [2576, 2608]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: ltwiki
+  name: TL081
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - TL082
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/OpAmp_TI.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 9527567b0cc2c8a3023a6eed5baeb2ccabc2a67a41227a6c95866ece0253dc52
+    lines:
+      TL081: [1004, 1036]
+      TL082: [1045, 1077]
+    fetched: '2026-09-14'
+  note: pins from comment words
+- source: kicad-spice-library
+  name: TL081S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/SGS2.LIB
+    sha256: de2cf3e62490babc0d41be58bf08dd647938f83af9f43fdc287064f7024c1cfa
+    lines:
+      TL081S: [653, 697]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: TL081_TI
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+    sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+    lines:
+      TL081_TI: [6171, 6203]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words

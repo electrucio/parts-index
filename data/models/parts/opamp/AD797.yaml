@@ -1,0 +1,178 @@
+part: AD797
+kind: opamp
+priority: 3
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 0 pass, 0 off, 0 fail of 0 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 16 not measurable); tied with ltwiki, ltwiki, ltwiki,
+  kicad-spice-library, kicad-spice-library on score and typical-value error, chosen as the more original
+  source'
+models:
+- source: bordodynov
+  name: AD797
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '38'
+  - '14'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ad797.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: edd24a5262c76adce65b63f1bccc2dba502d6c0cc27363ada5d8d5bc1776faff
+    lines:
+      AD797: [18, 159]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 16
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: AD797A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '38'
+  - '14'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/AD/ad797a.cir
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: c79054ee3a85a9e214039e3b1bc0a32db303ee63e73f85c469831bb815f81e29
+    lines:
+      AD797A: [22, 163]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 16
+    typical_rows: 0
+- source: ltwiki
+  name: AD797B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '38'
+  - '14'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/AD/ad797b.cir
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: c4190bcac8dfa61e0fc8c3af5984f95c34187208413691a6d4b7019490fa6db1
+    lines:
+      AD797B: [22, 163]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 16
+    typical_rows: 0
+- source: ltwiki
+  name: AD797S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '38'
+  - '14'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/AD/ad797s.cir
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: bda0830f68c7bae424ca7a2c36f01a39afc28ec8cdd485d48507c5b7110997b5
+    lines:
+      AD797S: [22, 163]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 16
+    typical_rows: 0
+- source: kicad-spice-library
+  name: AD797
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '38'
+  - '14'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/AD4A.LIB
+    sha256: 2e0cebf7aaf8debe59afc1ead869b6b82d5b198fe0a2202b8615551773615e55
+    lines:
+      AD797: [404, 545]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 16
+    typical_rows: 0
+- source: kicad-spice-library
+  name: AD797_AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '38'
+  - '14'
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+    sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+    lines:
+      AD797_AD: [17341, 17482]
+      dx: [72212, 72212]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 16
+    typical_rows: 0
+datasheet:
+  url: https://www.analog.com/media/en/technical-documentation/data-sheets/ad797.pdf
+  maker: Analog Devices
+  doc: AD797 Data Sheet, Rev. K
+  date: 2015-03

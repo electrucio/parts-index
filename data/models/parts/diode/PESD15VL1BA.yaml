@@ -1,0 +1,38 @@
+part: PESD15VL1BA
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: nexperia
+  name: PESD15VL1BA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PESD15VL1BA.txt
+    sha256: 25eab167cd9bfb44706f145adc4d59f671dca8fa7ff2eb9424898925f7d8299d
+    lines:
+      PESD15VL1BA: [32, 66]
+    fetched: '2026-09-19'
+    note: 'PESD15VL1BA: PESD15VL1BA, DIODE1, DIODE2'
+  note: pins from default order (unverified)
+- source: ltwiki
+  name: PESD15VL1BA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/PESD15VL1BA.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: f5398b4623c1ec418012a8bd0abe9d8e775fd10416977055e357d0dd8b3cadb1
+    lines:
+      PESD15VL1BA: [2, 17]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)

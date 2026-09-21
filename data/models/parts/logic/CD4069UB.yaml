@@ -1,0 +1,106 @@
+part: CD4069UB
+kind: logic
+priority: 2
+models:
+- source: ti
+  name: CD4069UB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Y
+  - A
+  - VCC
+  - AGND
+  deps:
+  - LOGIC_FUNCTION_2_AHC_1i_NAND_PP_CMOS_CD4069UB
+  - LOGIC_ICC_AHC_1i_NAND_PP_CMOS_CD4069UB
+  - LOGIC_INPUT_AHC_1i_NAND_PP_CMOS_CD4069UB
+  - LOGIC_PP_OUTPUT_AHC_1i_NAND_PP_CMOS_CD4069UB
+  - TPD_AHC_1i_NAND_PP_CMOS_CD4069UB
+  - LOGIC_GATE_2PIN_OD_AHC_1i_NAND_PP_CMOS_CD4069UB
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: https://www.ti.com/lit/zip/SCHM017
+    member: CD4069UB.cir
+    archive_sha256: 6d7483699fe027177e4b63418330c279509e28e85a705e2352e1ca4b1ecf7d35
+    sha256: e51d6bc38b91f7d4a3c727637c2400d044ac1a0a57621edc1c10782471917579
+    lines:
+      CD4069UB: [35, 37]
+      LOGIC_FUNCTION_2_AHC_1i_NAND_PP_CMOS_CD4069UB: [141, 156]
+      LOGIC_GATE_2PIN_OD_AHC_1i_NAND_PP_CMOS_CD4069UB: [43, 76]
+      LOGIC_ICC_AHC_1i_NAND_PP_CMOS_CD4069UB: [252, 260]
+      LOGIC_INPUT_AHC_1i_NAND_PP_CMOS_CD4069UB: [77, 140]
+      LOGIC_PP_OUTPUT_AHC_1i_NAND_PP_CMOS_CD4069UB: [171, 182]
+      TPD_AHC_1i_NAND_PP_CMOS_CD4069UB: [157, 170]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''logic'''
+- source: bordodynov
+  name: CD4069UB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - Y
+  - VDD
+  - VSS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4069UB.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 637e45e124b6103b44004e1a64f1210130fca185be890f540905a998d3637661
+    lines:
+      CD4069UB: [1, 57]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''logic'''
+  note: 'same code also in: ltwiki'
+- source: kicad-spice-library
+  name: CD4069UB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '6'
+  - '1'
+  - '4'
+  - '3'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/DIGITAL.LIB
+    sha256: 480f028d2ccb230322f645d30135f1297937e1e9dad6433093f763534087750d
+    lines:
+      CD4069UB: [612, 623]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: null
+    error: 'KeyError: ''logic'''
+- source: kicad-spice-library
+  name: CD4069UB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - ABAR
+  - 'optional:'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cmos.lib
+    sha256: 4ee830d7932c2cdfcd5d21972f96c0387c3440d5d449c6554a0016f8b0f4f5b0
+    lines:
+      CD4069UB: [3239, 3250]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: null
+    error: 'KeyError: ''logic'''
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/cd4069ub.pdf
+  maker: Texas Instruments
+  doc: SCHS054E, rev. E (first issued Nov 1998)
+  date: 2019-01

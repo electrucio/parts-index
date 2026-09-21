@@ -1,0 +1,53 @@
+part: BC109C
+kind: bjt
+priority: 2
+group: small_signal_npn
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 12 pass, 0 off, 0 fail of 12 judged rows (2 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: BC109C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC109C: [575, 575]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: BC109C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTN.LIB
+    sha256: 2c85b6bbf3a7dcb9403d646a1c120714fdc7bce5c8287c8e537012a1cf3ef6c2
+    lines:
+      BC109C: [21, 24]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+datasheet:
+  url: https://www.ee.iitm.ac.in/vlsi/_media/courses/ec330/datasheets/bc107_108_109_4.pdf
+  maker: philips
+  doc: BC107; BC108; BC109 product specification (supersedes data of 1997 Jun 03)
+  date: '1997-09-03'

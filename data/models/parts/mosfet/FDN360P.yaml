@@ -1,0 +1,22 @@
+part: FDN360P
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: kicad-spice-library
+  name: FDN360P_FC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/fairch.lib
+    sha256: 7a65c19aecd31354d0fec1166479cad2d1453948039b85b0d6d15d51ed4b963d
+    lines:
+      FDN360P_FC: [2580, 2605]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

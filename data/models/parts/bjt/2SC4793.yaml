@@ -1,0 +1,116 @@
+part: 2SC4793
+kind: bjt
+priority: 2
+group: driver_vas
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, ltwiki, ltwiki
+  on score and typical-value error, chosen as the more original source'
+models:
+- source: bordodynov
+  name: 2SC4793
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      2SC4793: [870, 870]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 2SC4793_A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      2SC4793_A: [1194, 1194]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: 2SC4793
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
+    lines:
+      2SC4793: [812, 812]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: Q2SC4793
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/distortion_OUTPUT_vs_bias/standard_BJT modified.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: b11d82ef9412f3285ead0b742f082d8c60ba31108d4eb85c48c7268e54aeb9a4
+    lines:
+      Q2SC4793: [624, 650]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+- source: kicad-spice-library
+  name: Q2SC4793
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/BJT_NPN/TOSHIBA.LIB
+    sha256: 48d4fd1df68108bb9d61af444d53f63e19fc48d39cebc6bc9ff3a11eb947f336
+    lines:
+      Q2SC4793: [1198, 1214]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 2
+datasheet:
+  url: https://media.digikey.com/pdf/Data%20Sheets/Toshiba%20PDFs/2SC4793.pdf
+  maker: toshiba
+  doc: 2SC4793
+  date: '2001-11-05'

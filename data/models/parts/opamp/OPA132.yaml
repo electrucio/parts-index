@@ -1,0 +1,81 @@
+part: OPA132
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: OPA132
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Operational_Amplifiers.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: a23e6b6cd7f13ddcbd76cc0a88987255186bf1dca04a8349a968e4dad0daf832
+    lines:
+      OPA132: [830, 863]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: kicad-spice-library
+  name: OPA132/BB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/burr-brn.lib
+    sha256: 24467fdf16f7135ce54f90c7424e35ce1e6d2131c277351a4ee7276cdd6e2664
+    lines:
+      OPA132/BB: [8769, 8803]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words
+- source: kicad-spice-library
+  name: OPA132_BB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/burrbn.lib
+    sha256: 0cf1e02a8be40a2dd64ea79ba281cf359d8b5fab59844264bee4b3ac20e97ed8
+    lines:
+      OPA132_BB: [476, 509]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words
+- source: kicad-spice-library
+  name: OPA132B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/BB3.LIB
+    sha256: b5ff75b0395c283e7f86501d0454caf3012aa58ad37664d786a4a6658483c865
+    lines:
+      OPA132B: [1328, 1361]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words

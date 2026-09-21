@@ -1,0 +1,66 @@
+part: TLE2072
+kind: opamp
+priority: 2
+preferred: ltwiki
+preferred_why: 'best datasheet agreement: 17 pass, 2 off, 0 fail of 19 judged rows (5 against typical
+  values or curve points, the rest against min/max limits; 2 not measurable); tied with kicad-spice-library
+  on score and typical-value error, chosen as the more original source'
+models:
+- source: ltwiki
+  name: TLE2072
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/texas.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+    lines:
+      TLE2072: [2240, 2288]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.895
+    pass: 17
+    marginal: 2
+    fail: 0
+    not_measurable: 2
+    typical_rows: 5
+  note: pins from comment words
+- source: kicad-spice-library
+  name: TLE2072_TI_30
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+    sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+    lines:
+      TLE2072_TI_30: [15160, 15192]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.895
+    pass: 17
+    marginal: 2
+    fail: 0
+    not_measurable: 2
+    typical_rows: 5
+  note: pins from comment words
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/tle2072.pdf
+  maker: Texas Instruments
+  doc: SLOS181D, rev. D (first issued Feb 1997); tables 6.15-6.18 TLE2072C
+  date: 2026-01

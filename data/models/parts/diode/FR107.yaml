@@ -1,0 +1,52 @@
+part: FR107
+kind: diode
+priority: 3
+group: rectifier
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 7 pass, 1 off, 0 fail of 8 judged rows (5 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: FR107
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      FR107: [1754, 1754]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.875
+    pass: 7
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: ltwiki'
+- source: kicad-spice-library
+  name: FR107
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.dio
+    sha256: 85043335b56cc10779c03bcd2c237472827cf28c004628c9ddacb6fb3d8705c7
+    lines:
+      FR107: [1723, 1723]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.75
+    pass: 6
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+datasheet:
+  url: https://services.taiwansemi.com/storage/resources/datasheet/FR101G%20SERIES_H2104.pdf
+  maker: Taiwan Semiconductor
+  doc: FR101G - FR107G, Version H2104

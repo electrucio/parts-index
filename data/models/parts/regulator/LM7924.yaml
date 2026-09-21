@@ -1,0 +1,41 @@
+part: LM7924
+kind: regulator
+priority: 2
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 2 pass, 0 off, 1 fail of 3 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable). WEAK EVIDENCE: fewer than 5 rows,
+  all min/max limits'
+models:
+- source: bordodynov
+  name: LM7924
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - GND
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/regulators.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1998b5aaba8b44019bf630a561c739ff33a83996cd6600bbaa8b8c3e02cf5bf2
+    lines:
+      LM7924: [1103, 1184]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 2
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from simulation: of the 6 node orders only
+    IN GND OUT regulates to about -24 V at Vin-Vout 5 V / 5 mA, Vin-Vout 15 V / 5 mA, Vin-Vout 5 V / 100
+    mA (orders tried: IN OUT GND: -23 V, -32.8 V, 947 V; IN GND OUT: -23.6 V, -23.5 V, -23.6 V; OUT IN
+    GND: -27.5 V, -37.5 V, -27.3 V; OUT GND IN: -22.1 V, -31.9 V, 1.64 V; GND IN OUT: 34.4 V, 28.7 V,
+    64.2 V; GND OUT IN: 5.42 V, 5.28 V, 1.01e+03 V)'
+datasheet:
+  url: https://www.onsemi.com/pub/Collateral/MC7900-D.PDF
+  maker: onsemi (Motorola MC7900 series)
+  doc: MC7900/D data sheet (MC7900 series); MC7924B/MC7924C table

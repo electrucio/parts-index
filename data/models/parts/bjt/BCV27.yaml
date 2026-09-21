@@ -1,0 +1,74 @@
+part: BCV27
+kind: bjt
+priority: 4
+group: small_signal_npn
+models:
+- source: onsemi
+  name: BCV27
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bcv27.lib
+    sha256: a9d706dcb94750c89121d8b06e82077fd1d7825c875c7d3dc65dfcdbf01fb072
+    lines:
+      BCV27: [10, 49]
+    fetched: '2026-09-19'
+    note: 'BCV27: BCV27, QNPN'
+  note: pins from comment words
+- source: nexperia
+  name: BCV27
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BCV27.txt
+    sha256: dca60d798bc08ceaf6d96e63895629ce02068580e581ba5f4975143a715c17d9
+    lines:
+      BCV27: [39, 82]
+    fetched: '2026-09-19'
+    note: 'BCV27: BCV27, BCV27'
+  note: pins from default order (unverified)
+- source: ltwiki
+  name: BCV27
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/BCV27.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: b3bfc4b49ce0cce9cff145c574afc0f3d7d7c2ebf4e0aa957feed33d045c880f
+    lines:
+      BCV27: [2, 66]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: BCV27_PH
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
+    sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
+    lines:
+      BCV27_PH: [2891, 2955]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

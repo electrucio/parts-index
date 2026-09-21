@@ -1,0 +1,42 @@
+part: SFH203FA
+kind: led
+priority: 4
+models:
+- source: bordodynov
+  name: SFH_203_FA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - C
+  - P
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Photodiode1.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 30e478fd8bc490c3f4ec764c84aa13f0b2f24efbeb0ad47622bdd01c169430e8
+    lines:
+      SFH_203_FA: [1662, 1676]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: bordodynov
+  name: SFH203FA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - p
+  - '1'
+  - '6'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      SFH203FA: [2944, 2954]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

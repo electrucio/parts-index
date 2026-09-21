@@ -1,0 +1,131 @@
+part: LSJ74
+kind: jfet
+priority: 2
+group: p_channel
+preferred: interfet
+preferred_why: 'best datasheet agreement: 7 pass, 1 off, 2 fail of 10 judged rows (4 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: interfet
+  name: LSJ74A-LS
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSJ74A-LS: [460, 460]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.5
+    pass: 5
+    marginal: 2
+    fail: 3
+    not_measurable: 0
+    typical_rows: 4
+- source: interfet
+  name: LSJ74B-LS
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSJ74B-LS: [461, 461]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.7
+    pass: 7
+    marginal: 1
+    fail: 2
+    not_measurable: 0
+    typical_rows: 4
+- source: interfet
+  name: LSJ74C-LS
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSJ74C-LS: [462, 462]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.5
+    pass: 5
+    marginal: 2
+    fail: 3
+    not_measurable: 0
+    typical_rows: 4
+- source: interfet
+  name: LSJ74D-LS
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSJ74D-LS: [463, 463]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.5
+    pass: 5
+    marginal: 2
+    fail: 3
+    not_measurable: 0
+    typical_rows: 4
+- source: ltspice-native
+  name: LSJ74A
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.jft
+    sha256: 93ae8433a9412e96e81071b65d521b7f31dcb2c2f3fce714456b73586230bea0
+    lines:
+      LSJ74A: [74, 74]
+  verification:
+    score: 0.5
+    pass: 5
+    marginal: 2
+    fail: 3
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: ltspice-native
+  name: LSJ74C
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.jft
+    sha256: 93ae8433a9412e96e81071b65d521b7f31dcb2c2f3fce714456b73586230bea0
+    lines:
+      LSJ74C: [76, 76]
+  verification:
+    score: 0.5
+    pass: 5
+    marginal: 2
+    fail: 3
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+datasheet:
+  url: https://siliconsupplies.com/media/literature/linear-systems/LSJ74A.pdf
+  maker: Linear Integrated Systems
+  doc: LSJ74, SST74, Doc 201175, Rev A7
+  date: '2017-10-12'

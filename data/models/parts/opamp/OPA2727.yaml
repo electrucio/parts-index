@@ -1,0 +1,24 @@
+part: OPA2727
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA2727
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM712
+    member: OPA2727_PSPICE_AIO/OPA2727.LIB
+    archive_sha256: 462bd2c37bf378c650801a8195e40b047f1b8afa9047e0e1e44b01552b573692
+    sha256: 2c2a7ec60289c2b82e18397a3e6d35188b171abb8953e1f828e06f6aee234213
+    lines:
+      OPA2727: [81, 290]
+    fetched: '2026-09-19'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)

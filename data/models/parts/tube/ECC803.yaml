@@ -1,0 +1,90 @@
+part: ECC803
+kind: tube
+priority: 2
+group: audio_docs
+models:
+- source: suusi-tubes
+  name: ECC803S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      ECC803S: [1280, 1284]
+      TRIODE: [1980, 1991]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  note: pins from inline comment
+- source: suusi-tubes
+  name: ECC803S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      ECC803S: [1113, 1117]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: bordodynov
+  name: ECC803S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - DX
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/nk_triode.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 363865e784b6e6be0e0b1416cf67965cdfdc62d86f58137402e912b0066d85f0
+    lines:
+      DX: [205, 205]
+      ECC803S: [178, 182]
+      TRIODE: [192, 202]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki, robrobinette; pins from inline comment'
+- source: bordodynov
+  name: ECC803S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Koren_Tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
+    lines:
+      ECC803S: [1309, 1313]
+      TRIODE: [2016, 2027]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from inline comment'

@@ -1,0 +1,81 @@
+part: NDS351AN
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: bordodynov
+  name: NDS351AN
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      NDS351AN: [1201, 1201]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: NDS351AN_
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      NDS351AN_: [816, 816]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: NDS351AN
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      NDS351AN: [14791, 14837]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: ltwiki
+  name: NDS351AN_
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+    sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+    lines:
+      NDS351AN_: [812, 812]
+    fetched: '2026-09-14'
+    note: Bordodynov VDMOS collection for LTspice IV
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: NDS351AN_FC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/fairch.lib
+    sha256: 7a65c19aecd31354d0fec1166479cad2d1453948039b85b0d6d15d51ed4b963d
+    lines:
+      NDS351AN_FC: [6855, 6879]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

@@ -1,0 +1,142 @@
+part: KSA992
+kind: bjt
+priority: 2
+group: small_signal_pnp
+preferred: onsemi
+preferred_why: 'best datasheet agreement: 8 pass, 0 off, 0 fail of 8 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, bordodynov,
+  bordodynov, ltwiki, ltwiki on score and typical-value error, chosen as the more original source. Limits
+  only: the datasheet prints no typical values for these rows, so candidates inside the limits are not
+  told apart'
+models:
+- source: onsemi
+  name: KSA992
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/ksa992.lib
+    sha256: 16a8757b1d065745968e5a37295fe8214e015cdc4e03d33d901f1d18b1cb12a5
+    lines:
+      KSA992: [9, 20]
+    fetched: '2026-09-14'
+    note: 'model(s): KSA992 (PNP .model)'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: bordodynov
+  name: KSA992
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      KSA992: [875, 875]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: KSA992/Fair
+  def: model
+  type: PNP
+  deps:
+  - KSA992
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      KSA992: [875, 875]
+      KSA992/Fair: [876, 876]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: KSA992
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/Standard/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 7bc3409f9eac7e6ae2f8a5643ecb2d4b0ac997241fa9a39e6074d3124497e2ce
+    lines:
+      KSA992: [161, 169]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: KSA992
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
+    lines:
+      KSA992: [817, 817]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: KSA992
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/distortion_OUTPUT_vs_bias/standard_BJT modified.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: b11d82ef9412f3285ead0b742f082d8c60ba31108d4eb85c48c7268e54aeb9a4
+    lines:
+      KSA992: [346, 346]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/ksa992-d.pdf
+  maker: onsemi
+  doc: KSA992/D Rev. 4
+  date: 2023-08

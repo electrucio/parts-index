@@ -1,0 +1,55 @@
+part: PESD5V0L1BA
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: nexperia
+  name: PESD5V0L1BA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PESD5V0L1BA.txt
+    sha256: 4560118d961bf91be5124ae08ef30981173c34eba6915e7e4d07d80acb8137b0
+    lines:
+      PESD5V0L1BA: [32, 66]
+    fetched: '2026-09-19'
+    note: 'PESD5V0L1BA: PESD5V0L1BA, DIODE1, DIODE2'
+  note: pins from default order (unverified)
+- source: bordodynov
+  name: PESD5V0L1BA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/PESDxxx.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ff3b4d96c3410ac7dab23c71f52fb60399171b2f9f91d47d80801d9864f1935e
+    lines:
+      PESD5V0L1BA: [16, 54]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: ltwiki
+  name: PESD5V0L1BA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/PESD5V0L1BA.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: ca9851f5faa4da3c5032056c828d680ec994c599281bbda21a08bd544db5d5de
+    lines:
+      PESD5V0L1BA: [2, 17]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)

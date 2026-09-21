@@ -1,0 +1,147 @@
+part: BS107
+kind: mosfet
+priority: 3
+group: small_signal
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 1 fail of 7 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 1 not measurable)'
+models:
+- source: diodes-inc
+  name: BS107P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/2083/BS107P.spice.txt
+    sha256: 8fafb7786fa80280c59bfe3070ecb8484334ba0e6db44e61a63d4f4cd59c500b
+    lines:
+      BS107P: [19, 30]
+    fetched: '2026-09-14'
+    note: 'model(s): BS107P (.subckt 3 4 5), MN0124 (NMOS .model), DN0124 (D .model)'
+  verification:
+    score: 0.714
+    pass: 5
+    marginal: 2
+    fail: 0
+    not_measurable: 1
+    typical_rows: 3
+  note: pins from default order (unverified)
+- source: bordodynov
+  name: BS107KL
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      BS107KL: [821, 821]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.714
+    pass: 5
+    marginal: 2
+    fail: 0
+    not_measurable: 1
+    typical_rows: 3
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: BS107KL
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.mos
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 0f6a0a30f327903e5b61c3764e08354839fed85c6ce2d4a8b3d708d6c2ec9533
+    lines:
+      BS107KL: [815, 815]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.714
+    pass: 5
+    marginal: 2
+    fail: 0
+    not_measurable: 1
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: BS107A/PLP
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/phil_fet.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
+    lines:
+      BS107A/PLP: [1410, 1431]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.714
+    pass: 5
+    marginal: 2
+    fail: 0
+    not_measurable: 1
+    typical_rows: 3
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: BS107A_PH
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_mos.lib
+    sha256: 795bf5362d9c9ce1e5b504e78b48671614a7585f75d3533c2585557571d04168
+    lines:
+      BS107A_PH: [1, 22]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.714
+    pass: 5
+    marginal: 2
+    fail: 0
+    not_measurable: 1
+    typical_rows: 3
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: BS107
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/MOSFET.LIB
+    sha256: 1751c109a541fbf073d7f75840dc63faa70953cc4a96930ee53180e215c4a2a0
+    lines:
+      BS107: [171, 173]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 0
+    fail: 1
+    not_measurable: 1
+    typical_rows: 3
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/bs107-d.pdf
+  maker: onsemi
+  doc: BS107/D, Rev. 7 (titled BS107A)
+  date: 2014-06

@@ -1,0 +1,17 @@
+part: BA159
+kind: diode
+priority: 4
+group: rectifier
+models:
+- source: vishay
+  name: ba159
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89775/ba159.txt
+    sha256: 277f2064064246cad0ac412df67b91588aac29c35a0563db7d53211d98f57eda
+    lines:
+      ba159: [7, 10]
+    fetched: '2026-09-19'
+    note: 'Standard and Fast Recovery, PSpice Models (*.txt): ba159'

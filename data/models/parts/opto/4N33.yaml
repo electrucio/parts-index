@@ -1,0 +1,25 @@
+part: 4N33
+kind: opto
+priority: 4
+models:
+- source: kicad-spice-library
+  name: 4n33_MC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '4'
+  - '5'
+  - '3'
+  - '1'
+  - '2'
+  deps:
+  - 4n33_dar_MC
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_opto.lib
+    sha256: f36207853c3b3ed4064f1151ec7378fec752a8f4ddf621f090cb0b61ee42f6cb
+    lines:
+      4n33_MC: [3, 21]
+      4n33_dar_MC: [23, 60]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

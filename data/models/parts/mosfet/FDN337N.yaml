@@ -1,0 +1,39 @@
+part: FDN337N
+kind: mosfet
+priority: 4
+group: small_signal
+models:
+- source: onsemi
+  name: FDN337N
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '20'
+  - '10'
+  - '30'
+  - '50'
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/fdn337n.lib
+    sha256: 5a08b0d4c14a8a32d598850e9a2d90ed4dab5e3950406835dfbf9bb34d4f9889
+    lines:
+      FDN337N: [3, 48]
+    fetched: '2026-09-19'
+    note: 'FDN337N: FDN337N, DMOS, DDS, DBODY, INTER, DGD …'
+- source: kicad-spice-library
+  name: FDN337N_FC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/fairch.lib
+    sha256: 7a65c19aecd31354d0fec1166479cad2d1453948039b85b0d6d15d51ed4b963d
+    lines:
+      FDN337N_FC: [2228, 2252]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

@@ -1,0 +1,142 @@
+part: TIP41C
+kind: bjt
+priority: 2
+group: driver_vas
+preferred: central-semi
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, bordodynov,
+  ltwiki, kicad-spice-library, kicad-spice-library on score and typical-value error, chosen as the more
+  original source. Limits only: the datasheet prints no typical values for these rows, so candidates inside
+  the limits are not told apart'
+models:
+- source: central-semi
+  name: TIP41C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/TIP41C.LIB
+    sha256: 6cf669396966ee5b8e611f7e018a28d691fbdaa87621c5f66a3d045d45c02ece
+    lines:
+      TIP41C: [24, 48]
+    fetched: '2026-09-14'
+    note: 'model(s): TIP41C (NPN .model)'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: bordodynov
+  name: TIP41C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      TIP41C: [1053, 1053]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: TIP41C_
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      TIP41C_: [1055, 1055]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: TIP41C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Discretos/Bjt/tip41c_test/tip41c.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: b00fe2ac9194698b200c49b51cab40db641ca16c5c4896a55a61a5855edaa754
+    lines:
+      TIP41C: [13, 23]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: kicad-spice-library
+  name: TIP41C
+  def: model
+  type: NPN
+  deps:
+  - NSC_4A
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      NSC_4A: [912, 916]
+      TIP41C: [928, 928]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: kicad-spice-library
+  name: TIP41C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWBJT.LIB
+    sha256: a64b2703fc28c849c7760139346aa1e0c31b83f7701a15e8e7a8d12b01c7befc
+    lines:
+      TIP41C: [2812, 2821]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: pins from default order (unverified)
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/tip41a-d.pdf
+  maker: onsemi
+  doc: TIP41A/D Rev. 12 (June 2024) - TIP41/41A/41B/41C, TIP42/42A/42B/42C

@@ -1,0 +1,95 @@
+part: MMBT5401
+kind: bjt
+priority: 4
+group: small_signal_pnp
+models:
+- source: central-semi
+  name: 2N5401
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/2N5401.LIB
+    sha256: 3893d04c1a64c252d542f45908269b30d9773e113a404c5e58d74f2e68eb03e4
+    lines:
+      2N5401: [24, 48]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N5401 (PNP .model)'
+  note: 'STAND-IN: model of 2N5401, not of MMBT5401; equivalence declared in catalog/wanted.yaml (see
+    its note)'
+- source: duncanamps
+  name: Q2N5401
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/bjt/pnp.mod
+    sha256: 9554024b39ab1fa861067c6af517fbe13435370dd0e78c4ed0d461fe355488a1
+    lines:
+      Q2N5401: [95, 97]
+    fetched: '2026-09-14'
+    note: 10 subckts, 124 .model
+  note: 'STAND-IN: model of Q2N5401, not of MMBT5401; equivalence declared in catalog/wanted.yaml (see
+    its note)'
+- source: bordodynov
+  name: 2N5401
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/Standard/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 7bc3409f9eac7e6ae2f8a5643ecb2d4b0ac997241fa9a39e6074d3124497e2ce
+    lines:
+      2N5401: [20, 20]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 2N5401, not of MMBT5401; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 2N5401
+  def: model
+  type: PNP
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      2N5401: [281, 281]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 2N5401, not of MMBT5401; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: ltwiki'
+- source: ltwiki
+  name: 2N5401
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/Original_IV/standard.bjt
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 1657a1b27e3f6615d6a0d2fecb75bcfb84da0aaf4e28da0a104adaa6286de5a1
+    lines:
+      2N5401: [81, 82]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 2N5401, not of MMBT5401; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: Q2N5401
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/BJT_PNP/TOSHIBA.LIB
+    sha256: 4a5d1e7670eff99dfd5290383e42316cebae59769ce130e15a7f5d9a9a4cbd90
+    lines:
+      Q2N5401: [479, 495]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: 'STAND-IN: model of Q2N5401, not of MMBT5401; equivalence declared in catalog/wanted.yaml (see
+    its note)'

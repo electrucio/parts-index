@@ -1,0 +1,29 @@
+part: BC636
+kind: bjt
+priority: 4
+group: small_signal_pnp
+models:
+- source: kicad-spice-library
+  name: BC636s
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/S_AFBJT.LIB
+    sha256: f291616debefaec544e891373962217f0cde067ea5c516609e5605b7fa9512b0
+    lines:
+      BC636s: [305, 315]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BC636/SIE
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/siemens.lib
+    sha256: c1318342f700741e0d97896cf4f77fe203b8923e12b1106c6c14f848c74bdd5b
+    lines:
+      BC636/SIE: [5404, 5414]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

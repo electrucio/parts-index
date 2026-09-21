@@ -1,0 +1,146 @@
+part: BAT85
+kind: diode
+priority: 2
+group: schottky
+preferred: cordell
+preferred_why: 'best datasheet agreement: 12 pass, 0 off, 0 fail of 12 judged rows (5 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: nexperia
+  name: BAT85
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BAT85.txt
+    sha256: f8c6b9765e3b9a119f630c6b296364434c38a3b421b4fbc608d9e1174803c946
+    lines:
+      BAT85: [33, 48]
+    fetched: '2026-09-14'
+    note: 'model(s): BAT85 (.subckt 1 2), BAT85 (D .model)'
+  verification:
+    score: 0.083
+    pass: 1
+    marginal: 5
+    fail: 6
+    not_measurable: 0
+    typical_rows: 5
+  note: pins from comment words
+- source: cordell
+  name: BAT85C
+  def: model
+  type: D
+  deps:
+  - SCHOTTKY
+  verbatim: true
+  get:
+    url: https://www.cordellaudio.com/book/Cordell-Models.txt
+    sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
+    lines:
+      BAT85C: [570, 570]
+      SCHOTTKY: [565, 565]
+    fetched: '2026-09-14'
+    note: 'Cordell Models 04/20/2011 (current site file, HTTP Last-Modified 2024-09-15): 63 .model (BJT
+      GP, NJF, VDMOS, D)'
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+- source: bordodynov
+  name: BAT85
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BAT85: [911, 911]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: BAT85
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/BAT85.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5626cca1e94178d2bcf88f7ebc8b6fbcf81a5901bb3ceafb76864f57da588a5d
+    lines:
+      BAT85: [2, 23]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: bat85
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/General%20Semiconductor/General%20Semiconductor.lb5
+    sha256: 29db97b9e48c44570530220654814e32bc2a2cb0d10d0a4a018887fb43ef592d
+    lines:
+      bat85: [104, 113]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.667
+    pass: 8
+    marginal: 4
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: BAT85
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/DIODE.LIB
+    sha256: c68f4b4a28eb0e866fb8e516b6a6a37a779ac80fed8a2ef16a3afcfb80c522e5
+    lines:
+      BAT85: [827, 828]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+datasheet:
+  url: https://assets.nexperia.com/documents/data-sheet/BAT85.pdf
+  maker: Nexperia
+  doc: BAT85 v.5, Product data sheet
+  date: '2012-07-24'

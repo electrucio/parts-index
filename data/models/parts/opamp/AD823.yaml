@@ -1,0 +1,104 @@
+part: AD823
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: AD823an
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_AD.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+    lines:
+      AD823an: [7831, 7943]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: ltwiki
+  name: AD823an
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/AD/ad823AN.cir
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: f34f2768d05109431f919ac077611b17617ab0e7fde79ae797578e5e81e207fe
+    lines:
+      AD823an: [36, 148]
+    fetched: '2026-09-14'
+  note: pins from comment words
+- source: kicad-spice-library
+  name: AD823an
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/AD9.LIB
+    sha256: 50fda526d1a506d6d5b9c4186286bb08968f04ac8e5a7ee8e7751c9a32703347
+    lines:
+      AD823an: [1458, 1570]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words
+- source: kicad-spice-library
+  name: AD823an/AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/anlg_dev.lib
+    sha256: 505283370bc2c5b5cb15401e3a43d58793d1598e62e1b422bb333be402ada1b9
+    lines:
+      AD823an/AD: [22759, 22872]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words
+- source: kicad-spice-library
+  name: AD823an_AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+    sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+    lines:
+      AD823an_AD: [55936, 56048]
+      dx: [72212, 72212]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words

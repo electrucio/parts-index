@@ -1,0 +1,98 @@
+part: TIP32C
+kind: bjt
+priority: 2
+group: driver_vas
+preferred: central-semi
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with cordell, kicad-spice-library
+  on score and typical-value error, chosen as the more original source. Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: central-semi
+  name: TIP32C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/TIP32C.LIB
+    sha256: 20acefc329acd142d00c0ef24f6598e5d8bb364bc16ec183c0e476ef09b8533d
+    lines:
+      TIP32C: [24, 49]
+    fetched: '2026-09-14'
+    note: 'model(s): TIP32C (PNP .model)'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: cordell
+  name: TIP32C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    how: unknown
+    sha256: eee2b330ada2b89057d41e4dc2107ba39d4eaf9aa2335e7bb94cd5e1e0b8f48c
+    lines:
+      TIP32C: [657, 657]
+    fetched: '2026-09-14'
+    note: 'local copy from ~/Documents/LTspice: site file + 2 appended non-Cordell lines (TIP31C, TIP32C
+      .model)'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: bordodynov
+  name: TIP32C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      TIP32C: [561, 561]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: TIP32C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWBJT.LIB
+    sha256: a64b2703fc28c849c7760139346aa1e0c31b83f7701a15e8e7a8d12b01c7befc
+    lines:
+      TIP32C: [696, 705]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: pins from default order (unverified)
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/tip31a-d.pdf
+  maker: onsemi
+  doc: TIP31A/D Rev. 17 (June 2024) - shared NPN/PNP table

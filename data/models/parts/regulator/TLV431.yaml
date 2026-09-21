@@ -1,0 +1,114 @@
+part: TLV431
+kind: regulator
+priority: 4
+models:
+- source: ti
+  name: TLV431
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  - Fdbk
+  deps:
+  - DC_1mV_1A_1V_1nA
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLIM005
+    member: TLV431_PSPICE/tlv431.lib
+    archive_sha256: e71f754b5c473849cc0aabb5096536b10acb5a9b968e9e4234795ff460bbccb3
+    sha256: fa791cd6844b347820cfae44785d1c341db14fa676a41cb7119b6204c3ba486e
+    lines:
+      DC_1mV_1A_1V_1nA: [62, 64]
+      TLV431: [46, 60]
+    fetched: '2026-09-19'
+- source: bordodynov
+  name: TL431A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - REF
+  - ANODE
+  - CATHODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/TL431A.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 48c90b8c628933d6b1a1c6aa630acae5a2fe7ab55b8ee66b657570e9b61091f3
+    lines:
+      TL431A: [2, 19]
+    fetched: '2026-09-14'
+  note: 'found under the alias TL431A; same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: bordodynov
+  name: TL431A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  - R
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/REF/TL431A_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 586f8326dafe8a5ec92510eefc0d6e00cdf6c82190cc4bbca58223db0ee04c60
+    lines:
+      TL431A: [107, 120]
+    fetched: '2026-09-14'
+  note: 'found under the alias TL431A; same code also in: ltwiki; pins from names'
+- source: bordodynov
+  name: TL431AS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  - R
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/REF/TL431A_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 586f8326dafe8a5ec92510eefc0d6e00cdf6c82190cc4bbca58223db0ee04c60
+    lines:
+      TL431AS: [6, 28]
+    fetched: '2026-09-14'
+  note: 'found under the alias TL431A; same code also in: ltwiki; pins from names'
+- source: bordodynov
+  name: TL431AH
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  - R
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/REF/TL431A_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 586f8326dafe8a5ec92510eefc0d6e00cdf6c82190cc4bbca58223db0ee04c60
+    lines:
+      TL431AH: [68, 100]
+    fetched: '2026-09-14'
+  note: 'found under the alias TL431A; same code also in: ltwiki; pins from names'
+- source: bordodynov
+  name: TLV431_TI
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  - Fdbk
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      TLV431_TI: [17536, 17554]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

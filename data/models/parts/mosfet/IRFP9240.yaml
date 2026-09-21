@@ -1,0 +1,147 @@
+part: IRFP9240
+kind: mosfet
+priority: 1
+group: power_vertical
+preferred: cordell
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable); tied with bordodynov on score and
+  typical-value error, chosen as the more original source'
+models:
+- source: infineon
+  name: irfp9240
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://web.archive.org/web/19991008142548id_/http://www.irf.com:80/product-info/models/SPICE/irfp9240.spi
+    sha256: 1884c07a5ee9bc7e36d16ab07ae4af0fdd545f57b9ccfd19728587d2343bb16e
+    lines:
+      irfp9240: [1, 60]
+    fetched: '2026-09-14'
+    note: International Rectifier legacy HEXFET SPICE model; original URL http://www.irf.com:80/product-info/models/SPICE/irfp9240.spi
+      (Wayback capture 19991008142548)
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: pins from default order (unverified)
+- source: ltspice-native
+  name: IRFP9240
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.mos
+    sha256: adfdcda82e1b6186f907df2dc3905659a2ea2be2a0887a016d1fd9f1b3b1b40e
+    lines:
+      IRFP9240: [647, 647]
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: cordell
+  name: irfp9240C
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://www.cordellaudio.com/book/Install-Test.zip
+    member: Install Test/Cordell Models.txt
+    archive_sha256: 332b487564a6c8eca0f8a1db26ec86109b450af5e75278e32556ad000f9bcd77
+    sha256: ae2d30efd938496e2a633e5de71d2fceae0e588c0dde475cb2ec8ff6fe9f2bba
+    lines:
+      irfp9240C: [261, 261]
+    fetched: '2026-09-14'
+    note: Cordell Models 12/07/2010 (older version bundled in zip; RB=10 in small-signal BJTs)
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: irfp9240
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/MOS/IRF/LIB/irfp9240.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 79c219430dadbc3b0b8ec42b32969a2b04c161fdfb125299013db0ac7c065fe2
+    lines:
+      irfp9240: [1, 60]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 0
+    fail: 1
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: irfp9240Ckst
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      irfp9240Ckst: [914, 914]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: IRFP9240h
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRFP9240h: [1501, 1501]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://www.vishay.com/docs/91239/irfp9240.pdf
+  maker: Vishay Siliconix
+  doc: Document Number 91239, S22-0096-Rev. C
+  date: '2022-01-31'

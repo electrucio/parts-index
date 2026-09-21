@@ -1,0 +1,124 @@
+part: LF411
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: LF411C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      LF411C: [131, 163]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: LF411/NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ns_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+    lines:
+      LF411/NS: [1401, 1483]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: LF411/MC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/on_amp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+    lines:
+      LF411/MC: [1565, 1600]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+- source: bordodynov
+  name: LF411_NSC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_NSC.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+    lines:
+      LF411_NSC: [1027, 1109]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: LF411/ON
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/on_amp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+    lines:
+      LF411/ON: [87, 122]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+- source: ltwiki
+  name: LF411C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/texas.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+    lines:
+      LF411C: [4354, 4386]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library; pins from comment words'

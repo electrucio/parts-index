@@ -1,0 +1,130 @@
+part: LT1013
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: LT1013D
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      LT1013D: [9717, 9757]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: LT1013
+  def: subckt
+  type: SUBCKT
+  pins:
+  - OUT
+  - INP
+  - INN
+  - VP
+  - VN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      LT1013: [9597, 9637]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: LT1013A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      LT1013A: [9660, 9700]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: ltwiki
+  name: LT1013
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - LT1413
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+    lines:
+      LT1013: [1327, 1329]
+      LT1413: [9593, 9633]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'
+- source: ltwiki
+  name: LT1013
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/texas.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+    lines:
+      LT1013: [4053, 4087]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library; pins from comment words'
+- source: ltwiki
+  name: LT1013A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - LT1413A
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+    lines:
+      LT1013A: [1333, 1335]
+      LT1413A: [9637, 9677]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'

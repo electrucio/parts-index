@@ -1,0 +1,86 @@
+part: ECC99
+kind: tube
+priority: 2
+group: audio_docs
+models:
+- source: reefman
+  name: ECC99
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - TriodeK
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      ECC99: [337, 345]
+      TriodeK: [2345, 2357]
+    fetched: '2026-09-14'
+  note: 'same code also in: kurtblum; pins from inline comment'
+- source: suusi-tubes
+  name: ECC99
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      ECC99: [1127, 1131]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: bordodynov
+  name: ECC99
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/triodes.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1e31c73aba86877020a0740d279066992ad7c2cd57aed56223b59706e68a7f44
+    lines:
+      ECC99: [899, 915]
+    fetched: '2026-09-14'
+  note: 'same code also in: gist-chanmix51, ltwiki; pins from names'
+- source: bordodynov
+  name: ECC99
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  deps:
+  - Triode
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/new_triodes.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c621c85eb3b9d3dd97622ff9d25c1c1dcf93bc76e9dc887a946205326f08da2
+    lines:
+      ECC99: [311, 315]
+      Triode: [31, 49]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from names'

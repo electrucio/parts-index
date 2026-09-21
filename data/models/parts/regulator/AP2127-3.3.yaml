@@ -1,0 +1,43 @@
+part: AP2127-3.3
+kind: regulator
+priority: 4
+models:
+- source: diodes-inc
+  name: AP2127_ADJ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/5/AP2127.spice.txt
+    sha256: 706ad6f21e3696b1449efbecd11f63305ea10137d0a1eaf3331b00a99e81fec4
+    lines:
+      AP2127_ADJ: [21, 54]
+    fetched: '2026-09-19'
+    note: 'model(s): AP2127_ADJ, MOD1, Dmod1, Dmod2, Rmod1, Smod1'
+  note: found under the alias AP2127
+- source: bordodynov
+  name: AP2127_ADJ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/AP2127_ADJ.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ba61f58cce9bdd5798dc0e9f8a41e61de455dd8b6faef1d0838fb84ab43f2142
+    lines:
+      AP2127_ADJ: [5, 38]
+    fetched: '2026-09-14'
+  note: 'found under the alias AP2127; same code also in: kicad-spice-library, ltwiki'

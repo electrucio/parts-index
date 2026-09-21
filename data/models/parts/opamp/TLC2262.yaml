@@ -1,0 +1,172 @@
+part: TLC2262
+kind: opamp
+priority: 3
+preferred: ti
+preferred_why: 'best datasheet agreement: 3 pass, 4 off, 8 fail of 15 judged rows (6 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable)'
+models:
+- source: ti
+  name: TLC2262
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ078
+    member: TLC2262.5_2
+    archive_sha256: 1e52ba32282c9a4cb8d8ff069c2c0cf4d37290f699630809a7c6de150209981c
+    sha256: 15624e37e5dc8f20c220adf6562b0c929393e56227f0246fe4ec463c1c9ff8c4
+    lines:
+      TLC2262: [10, 58]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.2
+    pass: 3
+    marginal: 4
+    fail: 8
+    not_measurable: 2
+    typical_rows: 6
+  note: 'same code also in: ltwiki; pins from comment words'
+- source: ti
+  name: TLC2262
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ078
+    member: TLC2262.101
+    archive_sha256: 1e52ba32282c9a4cb8d8ff069c2c0cf4d37290f699630809a7c6de150209981c
+    sha256: 86e7009527690534cf939f91349af72afafa4d3ca49762c454beb12c50e5bf7c
+    lines:
+      TLC2262: [10, 43]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.2
+    pass: 3
+    marginal: 4
+    fail: 8
+    not_measurable: 2
+    typical_rows: 6
+  note: pins from comment words
+- source: ti
+  name: TLC2262
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ078
+    member: TLC2262.102
+    archive_sha256: 1e52ba32282c9a4cb8d8ff069c2c0cf4d37290f699630809a7c6de150209981c
+    sha256: 79c157575f9d7e06068490bc98a14ca145c37ff108e404977ee4ea51573a3543
+    lines:
+      TLC2262: [10, 58]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.2
+    pass: 3
+    marginal: 4
+    fail: 8
+    not_measurable: 2
+    typical_rows: 6
+  note: pins from comment words
+- source: ti
+  name: TLC2262
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ078
+    member: TLC2262.5_1
+    archive_sha256: 1e52ba32282c9a4cb8d8ff069c2c0cf4d37290f699630809a7c6de150209981c
+    sha256: 63548c633e84f2cb9f89ce3644b4e94090f3b9da19571d7e142367b437f6e109
+    lines:
+      TLC2262: [10, 43]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.2
+    pass: 3
+    marginal: 4
+    fail: 8
+    not_measurable: 2
+    typical_rows: 6
+  note: pins from comment words
+- source: kicad-spice-library
+  name: TLC2262T1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TI3.LIB
+    sha256: afc339a85f89634ba18ad3c5c99a8ec481d9e3a16fcf10d3a9181a3f66be00a8
+    lines:
+      TLC2262T1: [436, 469]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.2
+    pass: 3
+    marginal: 4
+    fail: 8
+    not_measurable: 2
+    typical_rows: 6
+  note: pins from comment words
+- source: kicad-spice-library
+  name: TLC2262T5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TI3.LIB
+    sha256: afc339a85f89634ba18ad3c5c99a8ec481d9e3a16fcf10d3a9181a3f66be00a8
+    lines:
+      TLC2262T5: [481, 529]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.2
+    pass: 3
+    marginal: 4
+    fail: 8
+    not_measurable: 2
+    typical_rows: 6
+  note: pins from comment words
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/tlc2262.pdf
+  maker: Texas Instruments
+  doc: SLOS177D, Feb 1997, revised Mar 2001 (TLC226x); TLC2262C tables at VDD = 5 V (pp.6-7) and VDD+-
+    = +-5 V (pp.8-9)

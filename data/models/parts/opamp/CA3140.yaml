@@ -1,0 +1,39 @@
+part: CA3140
+kind: opamp
+priority: 3
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 0 pass, 0 off, 0 fail of 0 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 15 not measurable)'
+models:
+- source: bordodynov
+  name: CA3140
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      CA3140: [10385, 10455]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 15
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+datasheet:
+  url: https://www.renesas.com/us/en/document/dst/ca3140-ca3140a-datasheet
+  maker: Renesas (ex Intersil / RCA)
+  doc: FN957 Rev.10.01
+  date: '2026-02-19'

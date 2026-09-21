@@ -1,0 +1,108 @@
+part: 12AV7
+kind: tube
+priority: 2
+group: audio_docs
+models:
+- source: reefman
+  name: 12AV7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - TriodeK
+  - 6BK7
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      12AV7: [1941, 1943]
+      6BK7: [1527, 1533]
+      TriodeK: [2345, 2357]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 12AV7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      12AV7: [505, 509]
+      TRIODE: [1980, 1991]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 12AV7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      12AV7: [779, 783]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: bordodynov
+  name: 12AV7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '6'
+  - '3'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/triodes.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1e31c73aba86877020a0740d279066992ad7c2cd57aed56223b59706e68a7f44
+    lines:
+      12AV7: [494, 509]
+    fetched: '2026-09-14'
+  note: 'same code also in: gist-chanmix51, ltwiki'
+- source: bordodynov
+  name: 12AV7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Koren_Tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
+    lines:
+      12AV7: [534, 538]
+      TRIODE: [2016, 2027]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from inline comment'

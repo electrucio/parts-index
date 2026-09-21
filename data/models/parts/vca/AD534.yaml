@@ -1,0 +1,37 @@
+part: AD534
+kind: vca
+priority: 2
+models:
+- source: ltwiki
+  name: ad534
+  def: subckt
+  type: SUBCKT
+  pins:
+  - X1
+  - X2
+  - SF
+  - Y1
+  - Y2
+  - V+
+  - OUT
+  - Z1
+  - Z2
+  - V-
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Multiplicadores/ad534/ad534.sub
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: ce14e646cbba8081082efd214ea6ce3b7425e8299a3803bf0d7587a2c5ea94de
+    lines:
+      ad534: [4, 58]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''vca'''
+datasheet:
+  url: https://www.analog.com/media/en/technical-documentation/data-sheets/AD534.pdf
+  maker: Analog Devices
+  doc: AD534 Rev. D (2013)

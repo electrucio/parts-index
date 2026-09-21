@@ -1,0 +1,288 @@
+part: 6DJ8
+kind: tube
+priority: 1
+group: triode
+preferred: ayumi
+preferred_why: 'best datasheet agreement: 18 pass, 0 off, 0 fail of 18 judged rows (18 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: reefman
+  name: ECC88
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - TriodeK
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      ECC88: [321, 326]
+      TriodeK: [2345, 2357]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.056
+    pass: 1
+    marginal: 17
+    fail: 0
+    not_measurable: 0
+    typical_rows: 18
+  note: found under the alias ECC88; pins from inline comment
+- source: ayumi
+  name: ECC88
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: ECC88.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 2b590dd048adf6bee980a3009b7d44121ffeab9d78c278aedf49508ffccac928
+    lines:
+      ECC88: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 18
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 18
+  note: found under the alias ECC88; pins from names
+- source: duncanamps
+  name: 6DJ8
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - K
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice.html
+    member: 6DJ8.INC
+    archive_sha256: ad86d20e99f616f8cafeb32e594ac68c5d33ba7a39557b3ef4a7e79b549555c5
+    sha256: bbb8a23f486ad75e9099fb812b19b6a1d53d025ee0c56976198a6e54722bafda
+    lines:
+      6DJ8: [26, 33]
+    fetched: '2026-09-14'
+    note: subckt 6DJ8 (P G K)
+  verification:
+    score: 0.5
+    pass: 9
+    marginal: 9
+    fail: 0
+    not_measurable: 0
+    typical_rows: 18
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from names'
+- source: koren
+  name: 6DJ8
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  verbatim: true
+  get:
+    url: https://www.normankoren.com/Audio/Tubemods.zip
+    member: Tube.lib
+    archive_sha256: 0a640ed245918dc5a349abf370f5e955ccdb6d85986fbf36b10bc720d55f8982
+    sha256: 581821af37b2669ea340b93116de46c9c4edf4c713990eea270b197c62885844
+    lines:
+      6DJ8: [191, 205]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 9
+    marginal: 9
+    fail: 0
+    not_measurable: 0
+    typical_rows: 18
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6DJ8
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - TRIODE
+  - ECC88
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6DJ8: [668, 671]
+      ECC88: [1085, 1089]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.944
+    pass: 17
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 18
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6DJ8
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6DJ8: [432, 435]
+      TRIODE: [1980, 1991]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.889
+    pass: 16
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 18
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6DJ8_OLD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6DJ8_OLD: [426, 429]
+      TRIODE: [1980, 1991]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 18
+    typical_rows: 0
+  note: pins from inline comment
+- source: suusi-tubes
+  name: ECC88
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      ECC88: [1085, 1089]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.944
+    pass: 17
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 18
+  note: found under the alias ECC88; pins from inline comment
+- source: suusi-tubes
+  name: ECC88
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      ECC88: [1252, 1256]
+      TRIODE: [1980, 1991]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.667
+    pass: 12
+    marginal: 6
+    fail: 0
+    not_measurable: 0
+    typical_rows: 18
+  note: found under the alias ECC88; pins from inline comment
+- source: suusi-tubes
+  name: '6922'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - TRIODE
+  - E88CC
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      '6922': [627, 630]
+      E88CC: [1092, 1096]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.444
+    pass: 8
+    marginal: 10
+    fail: 0
+    not_measurable: 0
+    typical_rows: 18
+  note: found under the alias 6922; pins from inline comment
+datasheet:
+  url: https://frank.pocnet.net/sheets/030/e/ECC88.pdf
+  maker: Philips
+  doc: 939 2455 (sheet 1), 939 2456 (sheet 2); Ia-Va graph 7R05409 'ECC88 8-3-57' (sheet B)
+  date: '1958-01-01'

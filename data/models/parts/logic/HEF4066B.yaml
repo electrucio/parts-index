@@ -1,0 +1,24 @@
+part: HEF4066B
+kind: logic
+priority: 4
+models:
+- source: bordodynov
+  name: '4066'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '11'
+  - '4'
+  - '2'
+  - '10'
+  - '7'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/SwitchAna.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
+    lines:
+      '4066': [227, 250]
+    fetched: '2026-09-14'
+  note: 'found under the alias 4066B; same code also in: kicad-spice-library, ltwiki'

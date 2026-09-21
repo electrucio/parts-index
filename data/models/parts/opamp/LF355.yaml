@@ -1,0 +1,122 @@
+part: LF355
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: LF355
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      LF355: [8339, 8400]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: bordodynov
+  name: LF355A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      LF355A: [8416, 8477]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: bordodynov
+  name: LF355/NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INN
+  - INP
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ns_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+    lines:
+      LF355/NS: [1107, 1181]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: LF355_NSC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INN
+  - INP
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_NSC.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+    lines:
+      LF355_NSC: [767, 841]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: kicad-spice-library
+  name: LF355_NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INN
+  - INP
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nation.lib
+    sha256: 97af188e570afc5c2b4b8246ade0670422d90c402c01a0f0383df0a6a37af9ac
+    lines:
+      LF355_NS: [971, 1045]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words
+- source: kicad-spice-library
+  name: LF355L
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/OPLTC.LIB
+    sha256: 0bb0c1e2ab47a36f3cc696d94f2944cb645528b29ffce4720f52863baacfc0d1
+    lines:
+      LF355L: [1535, 1596]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)

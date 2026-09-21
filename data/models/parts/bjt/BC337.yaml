@@ -1,0 +1,134 @@
+part: BC337
+kind: bjt
+priority: 2
+group: small_signal_npn
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 8 pass, 0 off, 0 fail of 8 judged rows (1 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with ltwiki on score and typical-value
+  error, chosen as the more original source'
+models:
+- source: bordodynov
+  name: BC337S
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC337S: [394, 394]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.875
+    pass: 7
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BC337
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC337: [1231, 1231]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: BC337S
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
+    lines:
+      BC337S: [360, 360]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.875
+    pass: 7
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: BC337
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Mixer/standard.bjt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+    lines:
+      BC337: [1174, 1174]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+- source: kicad-spice-library
+  name: BC337s
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/S_AFBJT.LIB
+    sha256: f291616debefaec544e891373962217f0cde067ea5c516609e5605b7fa9512b0
+    lines:
+      BC337s: [526, 536]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.875
+    pass: 7
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+- source: kicad-spice-library
+  name: BC337
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTN.LIB
+    sha256: 2c85b6bbf3a7dcb9403d646a1c120714fdc7bce5c8287c8e537012a1cf3ef6c2
+    lines:
+      BC337: [142, 144]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.75
+    pass: 6
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 1
+datasheet:
+  url: https://www.nxp.com/documents/data_sheet/BC817_BC817W_BC337.pdf
+  maker: nxp (philips/nexperia lineage)
+  doc: BC817; BC817W; BC337 product data sheet Rev. 06 (17 November 2009)

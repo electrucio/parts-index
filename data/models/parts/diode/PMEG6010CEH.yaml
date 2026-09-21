@@ -1,0 +1,52 @@
+part: PMEG6010CEH
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: nexperia
+  name: PMEG6010CEJ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG6010CEJ.txt
+    sha256: c42b333de97bad38a8e7477c28047d6679650724d7dd154d1a909c1fb2f78dd1
+    lines:
+      PMEG6010CEJ: [33, 48]
+    fetched: '2026-09-19'
+    note: 'PMEG6010CEJ: PMEG6010CEJ, PMEG6010CEJ'
+  note: found under the alias PMEG6010C; pins from comment words
+- source: bordodynov
+  name: PMEG6010CEH
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      PMEG6010CEH: [210, 210]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: PMEG6010CEJ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG6010CEJ.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 3c1502148f7b5ea3375c71a69b2352679f0b0db9b968f6a79ddde417d73d8199
+    lines:
+      PMEG6010CEJ: [2, 23]
+    fetched: '2026-09-14'
+  note: found under the alias PMEG6010C; pins from default order (unverified)

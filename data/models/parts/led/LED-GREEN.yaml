@@ -1,0 +1,116 @@
+part: LED-GREEN
+kind: led
+priority: 2
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 6 pass, 1 off, 0 fail of 7 judged rows (6 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with ltwiki, kicad-spice-library
+  on score and typical-value error, chosen as the more original source'
+models:
+- source: cordell
+  name: GREEN
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.cordellaudio.com/book/Install-Test.zip
+    member: Install Test/Cordell Models.txt
+    archive_sha256: 332b487564a6c8eca0f8a1db26ec86109b450af5e75278e32556ad000f9bcd77
+    sha256: ae2d30efd938496e2a633e5de71d2fceae0e588c0dde475cb2ec8ff6fe9f2bba
+    lines:
+      GREEN: [348, 348]
+    fetched: '2026-09-14'
+    note: Cordell Models 12/07/2010 (older version bundled in zip; RB=10 in small-signal BJTs)
+  verification:
+    score: 0.714
+    pass: 5
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 6
+  note: 'found under the alias GREEN; same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: GREEN
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      GREEN: [709, 709]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.714
+    pass: 5
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 6
+  note: 'found under the alias GREEN; same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: LedGreen
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      LedGreen: [124, 124]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 6
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: LedGreen
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: c37cd3feda2bf48e371d1b329a4f08dcedf3e90acb6a8b98ec28a8063b633c21
+    lines:
+      LedGreen: [90, 90]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 6
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: LedGreen
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.dio
+    sha256: 85043335b56cc10779c03bcd2c237472827cf28c004628c9ddacb6fb3d8705c7
+    lines:
+      LedGreen: [97, 97]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 6
+datasheet:
+  url: https://www.vishay.com/docs/83012/tlhg540.pdf
+  maker: Vishay
+  doc: TLHR540., TLHY540., TLHG540. Document Number 83012, Rev. 2.6, 09-Sep-2022

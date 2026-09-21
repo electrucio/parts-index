@@ -1,0 +1,28 @@
+part: THAT1606
+kind: opamp
+priority: 3
+models:
+- source: thatcorp
+  name: THAT1606
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Out-
+  - Cap1
+  - Gnd
+  - In-
+  - In+
+  - V-
+  - V+
+  - Cap2
+  - Out+
+  verbatim: true
+  get:
+    url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+    archive_sha256: a5699cf253cbe2b063a03b2dd8cc2927fe1ab03903ed2f1bb9ae23a0e867733b
+    archive_inferred: true
+    sha256: d6a7928e3003842224c99cc1a88aca20c62e9d9d3ee494e7e21cdbb81c57f6b1
+    lines:
+      THAT1606: [49, 162]
+    fetched: '2026-09-14'
+    note: file not listed in the manifest; see SOURCE.md

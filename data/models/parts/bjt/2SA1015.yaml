@@ -1,0 +1,120 @@
+part: 2SA1015
+kind: bjt
+priority: 1
+group: small_signal_pnp
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 1 fail of 7 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, ltwiki, kicad-spice-library,
+  kicad-spice-library on score and typical-value error, chosen as the more original source. Limits only:
+  the datasheet prints no typical values for these rows, so candidates inside the limits are not told
+  apart'
+models:
+- source: bordodynov
+  name: 2SA1015
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      2SA1015: [802, 802]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: Q2SA1015
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      Q2SA1015: [803, 803]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: Q2SA1015
+  def: model
+  type: PNP
+  deps:
+  - 2SA1015
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
+    lines:
+      2SA1015: [751, 751]
+      Q2SA1015: [752, 752]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: Q2SA1015
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/TRT-Electronics/2sa1015.lib
+    sha256: 28c8f187be1c71a6a3a7bbd420c0b55c0cd6cdb1263735f175110c20bed9b568
+    lines:
+      Q2SA1015: [2, 5]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: kicad-spice-library
+  name: Q2SA1015
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/BJT_PNP/TOSHIBA.LIB
+    sha256: 4a5d1e7670eff99dfd5290383e42316cebae59769ce130e15a7f5d9a9a4cbd90
+    lines:
+      Q2SA1015: [560, 576]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://media.digikey.com/pdf/Data%20Sheets/Toshiba%20PDFs/2SA1015.pdf
+  maker: toshiba
+  doc: 2SA1015
+  date: '2007-11-01'

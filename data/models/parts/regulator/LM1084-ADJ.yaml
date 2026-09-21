@@ -1,0 +1,22 @@
+part: LM1084-ADJ
+kind: regulator
+priority: 4
+models:
+- source: ti
+  name: LM1084_ADJ_F1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNVM998
+    member: LM1084_ADJ_TRANS.lib
+    archive_sha256: 38030ecbb658a1c19ce045b8c00d0a4d52604daccc0e8d1270936602a267c543
+    sha256: a992f0419da4cdfe05ebf8d227fdde4c102de6e9e52c5b76d3e10a6b59b91798
+    lines:
+      LM1084_ADJ_F1: [67, 70]
+    fetched: '2026-09-19'

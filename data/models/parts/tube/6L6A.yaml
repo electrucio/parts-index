@@ -1,0 +1,24 @@
+part: 6L6A
+kind: tube
+priority: 3
+group: audio_docs
+models:
+- source: ltwiki
+  name: 6L6_AN
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Pentode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
+    lines:
+      6L6_AN: [1450, 1470]
+    fetched: '2026-09-14'
+  note: pins from names

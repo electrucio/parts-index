@@ -1,0 +1,68 @@
+part: CA3080
+kind: ota
+priority: 1
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 6 pass, 1 off, 0 fail of 7 judged rows (5 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: ca3080a
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  - BIAS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Ota.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0145d7cd9827eb8a14113da0b4eb56b0f1e39b9041dee087068d3a7bef873777
+    lines:
+      ca3080a: [173, 193]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: bordodynov
+  name: ca3080
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN-
+  - IN+
+  - VEE
+  - BIAS
+  - OUT
+  - VCC
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Ota.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0145d7cd9827eb8a14113da0b4eb56b0f1e39b9041dee087068d3a7bef873777
+    lines:
+      ca3080: [215, 236]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.0
+    pass: 0
+    marginal: 5
+    fail: 2
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+datasheet:
+  url: https://media.digikey.com/pdf/Data%20Sheets/Intersil%20PDFs/CA3080(A).pdf
+  maker: Intersil (now Renesas)
+  doc: FN475.6, Data Sheet, OBSOLETE PRODUCT
+  date: 2004-08

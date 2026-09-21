@@ -1,0 +1,98 @@
+part: MJ15004
+kind: bjt
+priority: 2
+group: power_output
+preferred: central-semi
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, kicad-spice-library,
+  kicad-spice-library on score and typical-value error, chosen as the more original source. Limits only:
+  the datasheet prints no typical values for these rows, so candidates inside the limits are not told
+  apart'
+models:
+- source: central-semi
+  name: MJ15004
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/MJ15004.LIB
+    sha256: b29682a0790804b49643ae846755142f97b356a728f36c49ce55084c6e6c6b61
+    lines:
+      MJ15004: [24, 49]
+    fetched: '2026-09-14'
+    note: 'model(s): MJ15004 (PNP .model)'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: bordodynov
+  name: MJ15004
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      MJ15004: [866, 866]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: MJ15004
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJT.lib
+    sha256: 1f07e6e6b38c9b5d8d19dbccfd3c29741281ead66a7b48cc40eb82e9684580eb
+    lines:
+      MJ15004: [806, 806]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: kicad-spice-library
+  name: MJ15004
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWBJT.LIB
+    sha256: a64b2703fc28c849c7760139346aa1e0c31b83f7701a15e8e7a8d12b01c7befc
+    lines:
+      MJ15004: [418, 427]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: pins from default order (unverified)
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/mj15003-d.pdf
+  maker: onsemi
+  doc: MJ15003/D Rev. 16 (September 2013)

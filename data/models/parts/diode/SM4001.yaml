@@ -1,0 +1,94 @@
+part: SM4001
+kind: diode
+priority: 4
+group: silicon_signal
+models:
+- source: duncanamps
+  name: D1N4001
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/diode.mod
+    sha256: bb58d6a99a7204cfa89803598a0331243f10c11afb1b6279fb56fec2ae14c941
+    lines:
+      D1N4001: [21, 22]
+    fetched: '2026-09-14'
+    note: 34 .model
+  note: 'STAND-IN: model of D1N4001, not of SM4001; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+- source: suusi-tubes
+  name: 1N4001
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: MotorolaRectifiers.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: 88449ae88e2f751e584a6c2a079ded8a074d765cee37ce146ad1fd34182c5b35
+    lines:
+      1N4001: [3, 3]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 1N4001, not of SM4001; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+- source: bordodynov
+  name: D1N4001
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      D1N4001: [153, 153]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of D1N4001, not of SM4001; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 1N4001
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N4001: [149, 149]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 1N4001, not of SM4001; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: ltwiki'
+- source: ltwiki
+  name: 1N4001
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.dio
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+    lines:
+      1N4001: [108, 108]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 1N4001, not of SM4001; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: kicad-spice-library'
+- source: ltwiki
+  name: D1N4001
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Reg_Vref/lm/723Reg-DCsupply/Models.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: d93ad29c658c801ebb3a0e5e1f8155084f689ddcd56791d87b61c8436b5851b8
+    lines:
+      D1N4001: [336, 340]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of D1N4001, not of SM4001; equivalence declared in catalog/wanted.yaml (see its
+    note)'

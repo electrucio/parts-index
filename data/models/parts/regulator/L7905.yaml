@@ -1,0 +1,97 @@
+part: L7905
+kind: regulator
+priority: 4
+models:
+- source: bordodynov
+  name: LM7905
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/regulators.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1998b5aaba8b44019bf630a561c739ff33a83996cd6600bbaa8b8c3e02cf5bf2
+    lines:
+      LM7905: [498, 579]
+    fetched: '2026-09-14'
+  note: 'found under the alias LM7905; same code also in: kicad-spice-library, ltwiki, spiceypedals'
+- source: bordodynov
+  name: LM7905
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/lm7905_7912_7915.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: e1945dcaa615cbe04e8e71408bca74a4f57b58e3b6d6e98f1e395634a1ace97e
+    lines:
+      LM7905: [13, 93]
+    fetched: '2026-09-14'
+  note: 'found under the alias LM7905; same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: LM7905X
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/lm7905_7912_7915.lib
+    sha256: 5db12fcb180ba85eb887270680492fcc199886331a78eea1183889df52426541
+    lines:
+      LM7905X: [271, 352]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: found under the alias LM7905
+- source: kicad-spice-library
+  name: LM7905C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INPUT
+  - OUTPUT
+  - GROUND
+  deps:
+  - x_LM79XX
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      LM7905C: [1967, 1972]
+      x_LM79XX: [1885, 1963]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: found under the alias LM7905; pins from names
+- source: kicad-spice-library
+  name: MC7905C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INPUT
+  - OUTPUT
+  - GROUND
+  deps:
+  - x_LM79XX
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      MC7905C: [1994, 1999]
+      x_LM79XX: [1885, 1963]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: found under the alias MC7905; pins from names

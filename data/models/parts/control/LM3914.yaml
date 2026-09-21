@@ -1,0 +1,83 @@
+part: LM3914
+kind: control
+priority: 2
+models:
+- source: bordodynov
+  name: lm3914
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Bar/_dot
+  - Rhi
+  - Sig
+  - V+
+  - V-
+  - Adj
+  - L1
+  - L10
+  - L2
+  - L3
+  - L4
+  - L5
+  - L6
+  - L7
+  - L8
+  - L9
+  - Ref
+  - Rlo
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM3914.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0d7c8eadf79439ee42654d91628b7ab57bb12c02ae4af8dd46402d4cc5bd9a1f
+    lines:
+      lm3914: [10, 52]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''control'''
+  note: 'same code also in: ltwiki'
+- source: spiceypedals
+  name: lm3914
+  def: subckt
+  type: SUBCKT
+  pins:
+  - L1
+  - V-
+  - V+
+  - Rlo
+  - Sig
+  - Rhi
+  - Ref
+  - Adj
+  - Mode
+  - L10
+  - L9
+  - L8
+  - L7
+  - L6
+  - L5
+  - L4
+  - L3
+  - L2
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: https://raw.githubusercontent.com/thecowgoesmoo/SPICEyPedals/60f67a6fdb14b9d7c83630b1cade358bfdd4e638/PartModels/basic_models/others/lm3914ng.lib
+    sha256: 30b769384dd9fcbd4c5f083ebff61c5fc67c36e59245c9e8cfdcc3313b526307
+    lines:
+      lm3914: [12, 145]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit 60f67a6 (MicroCap-LIBRARY-for-ngspice/ and modelos_subckt/ not kept)
+  verification:
+    score: null
+    error: 'KeyError: ''control'''
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm3914.pdf
+  maker: Texas Instruments (National Semiconductor)
+  doc: SNVS761B, rev. B (January 2000, revised March 2013)
+  date: 2013-03

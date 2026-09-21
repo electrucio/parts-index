@@ -1,0 +1,76 @@
+part: PMEG1020EA
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: nexperia
+  name: PMEG1020EA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG1020EA.txt
+    sha256: 4dd42ab50e2c13bb79fb937beffaae02634103d26d76fa76610bc0ac4e9a33e4
+    lines:
+      PMEG1020EA: [33, 49]
+    fetched: '2026-09-19'
+    note: 'PMEG1020EA: PMEG1020EA, PMEG1020EA'
+  note: 'same code also in: ltwiki; pins from comment words'
+- source: ltwiki
+  name: PMEG1020EJ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG1020EJ.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: a43606611c5697bebb4823dc91a73c3f931da8a07f96d273b7a1975e854d478e
+    lines:
+      PMEG1020EJ: [2, 23]
+    fetched: '2026-09-14'
+  note: found under the alias PMEG1020E; pins from default order (unverified)
+- source: ltwiki
+  name: PMEG1020EV
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG1020EV.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 928201b528a1874f3d843b77b73fd229ce64e3a8f8287dbebbff071e047dc952
+    lines:
+      PMEG1020EV: [2, 32]
+    fetched: '2026-09-14'
+  note: found under the alias PMEG1020E
+- source: ltwiki
+  name: PMEG1020EH
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG1020EH.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 1a0c0fa7f953f8f98c6edef239c577cab6da3d1036f44a8bb5cd1bc57ca1da3d
+    lines:
+      PMEG1020EH: [2, 23]
+    fetched: '2026-09-14'
+  note: found under the alias PMEG1020E; pins from default order (unverified)

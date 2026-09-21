@@ -1,0 +1,24 @@
+part: THS4304
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: THS4304
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VS+
+  - VS-
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ170
+    member: ths4304.lib
+    archive_sha256: 7902563eac727f88e762156a50c52250bad18255635032744a82aa796d861e6b
+    sha256: fc58f0fbddc9cd4bbe82037825ec6a7e05a7903767a62ab8e56ab0d07cf6bacb
+    lines:
+      THS4304: [39, 108]
+    fetched: '2026-09-19'
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from names'

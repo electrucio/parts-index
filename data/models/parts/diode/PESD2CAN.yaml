@@ -1,0 +1,21 @@
+part: PESD2CAN
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: nexperia
+  name: PESD2CAN
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PESD2CAN.txt
+    sha256: fc035e4b692447016ceede551ce04d8a535225bcef1a417fd5074df15f06177c
+    lines:
+      PESD2CAN: [33, 67]
+    fetched: '2026-09-19'
+    note: 'PESD2CAN: PESD2CAN, DIODE1, DIODE2'
+  note: pins from default order (unverified)

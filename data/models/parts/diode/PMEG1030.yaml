@@ -1,0 +1,38 @@
+part: PMEG1030
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: nexperia
+  name: PMEG1030EJ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG1030EJ.txt
+    sha256: f9ad74f2514c7c2a36317fbc219e247c335cbc7099c17a398359919798967242
+    lines:
+      PMEG1030EJ: [33, 49]
+    fetched: '2026-09-19'
+    note: 'PMEG1030EJ: PMEG1030EJ, PMEG1030EJ'
+  note: 'same code also in: ltwiki; pins from comment words'
+- source: ltwiki
+  name: PMEG1030EH
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG1030EH.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 609e719ebe1530250528150502437584fc0b1bf9d021445356b7f68d09f86dda
+    lines:
+      PMEG1030EH: [2, 24]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)

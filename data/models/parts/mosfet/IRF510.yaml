@@ -1,0 +1,148 @@
+part: IRF510
+kind: mosfet
+priority: 2
+group: power_vertical
+preferred: infineon
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable); tied with kicad-spice-library on
+  score and typical-value error, chosen as the more original source'
+models:
+- source: infineon
+  name: irf510
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://web.archive.org/web/19991007224647id_/http://www.irf.com:80/product-info/models/SPICE/irf510.spi
+    sha256: dace084ce76647e226437aabab8e1106185201cb07a7275044d59013515a2d12
+    lines:
+      irf510: [1, 60]
+    fetched: '2026-09-14'
+    note: International Rectifier legacy HEXFET SPICE model; original URL http://www.irf.com:80/product-info/models/SPICE/irf510.spi
+      (Wayback capture 19991007224647)
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: ltspice-native
+  name: IRF510
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.mos
+    sha256: adfdcda82e1b6186f907df2dc3905659a2ea2be2a0887a016d1fd9f1b3b1b40e
+    lines:
+      IRF510: [654, 654]
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 2
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: IRF510_
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRF510_: [1047, 1047]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 2
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: IRF510
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.mos
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 0f6a0a30f327903e5b61c3764e08354839fed85c6ce2d4a8b3d708d6c2ec9533
+    lines:
+      IRF510: [259, 259]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 2
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: IRF510
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWMOS.LIB
+    sha256: 3a158ee63ad9816d8dcdc0cad0827d2f4646c66b6296d7bbcd2c28d49bf1d219
+    lines:
+      IRF510: [2554, 2574]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 0
+    fail: 1
+    not_measurable: 2
+    typical_rows: 3
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: IRF510M
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+    sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+    lines:
+      IRF510M: [1789, 1834]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: pins from default order (unverified)
+datasheet:
+  url: https://www.vishay.com/docs/91015/irf510.pdf
+  maker: Vishay Siliconix
+  doc: Document Number 91015, S21-0819-Rev. D
+  date: '2021-08-02'

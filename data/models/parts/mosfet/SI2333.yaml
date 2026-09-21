@@ -1,0 +1,39 @@
+part: SI2333
+kind: mosfet
+priority: 4
+group: small_signal
+models:
+- source: vishay
+  name: Si2333DS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/75711/Si2333DS.txt
+    sha256: 6aa4bcf94e82e46a754b53df68e38a4b3c57000f1811d2562e585efdaea8f0cc
+    lines:
+      Si2333DS: [4, 28]
+    fetched: '2026-09-19'
+    note: 'MOSFETs, PSpice Models (*.txt): Si2333DS, PMOS, NMOS, DBD, RTEMP'
+  note: pins from default order (unverified)
+- source: vishay
+  name: Si2333CDS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/68516/si2333cd.txt
+    sha256: 229e45a704ecd62bb40ab5fc6ea81f071dcfa9a77755572146c5c632dfd6f0c6
+    lines:
+      Si2333CDS: [8, 35]
+    fetched: '2026-09-19'
+    note: 'MOSFETs, PSpice Models (*.txt): Si2333CDS, PMOS, NMOS, DBD, RTEMP'
+  note: pins from names

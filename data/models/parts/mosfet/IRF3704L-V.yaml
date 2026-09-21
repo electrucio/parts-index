@@ -1,0 +1,24 @@
+part: IRF3704L-V
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: bordodynov
+  name: irf3704
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irf3704.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 51614a35508aa46d8fc17d741e1bb32ac7a98a90c0f12e6b857cd2b71f39ecbf
+    lines:
+      irf3704: [1, 56]
+    fetched: '2026-09-14'
+  note: 'found under the alias IRF3704L; same code also in: kicad-spice-library, ltwiki; pins from default
+    order (unverified)'

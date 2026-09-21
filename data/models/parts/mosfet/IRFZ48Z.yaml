@@ -1,0 +1,68 @@
+part: IRFZ48Z
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: bordodynov
+  name: IRFZ48Z
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRFZ48Z: [762, 762]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: irfz48z_s_l
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irfz48z_s_l.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 471c5f1544f5cb41dff48404e4e9ca18b19d3090830ff37f630819e0428f960a
+    lines:
+      irfz48z_s_l: [1, 57]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: irfz48z_s_lt
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '2'
+  - '0'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irfz48z_s_l.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 471c5f1544f5cb41dff48404e4e9ca18b19d3090830ff37f630819e0428f960a
+    lines:
+      irfz48z_s_lt: [60, 67]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: IRFZ48Z
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.mos
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 0f6a0a30f327903e5b61c3764e08354839fed85c6ce2d4a8b3d708d6c2ec9533
+    lines:
+      IRFZ48Z: [763, 763]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'

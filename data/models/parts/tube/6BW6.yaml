@@ -1,0 +1,24 @@
+part: 6BW6
+kind: tube
+priority: 2
+group: audio_docs
+models:
+- source: diyaudio
+  name: 6BW6.BRi3
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G2
+  - G1
+  - K
+  verbatim: true
+  get:
+    url: https://www.diyaudio.com/community/threads/vacuum-tube-spice-models.243950/post-6097928
+    sha256: 3be0db92bff745872b99909142575963cf55c19a1834fe52592fb109f1e9ccfa
+    lines:
+      6BW6.BRi3: [17, 123]
+    fetched: '2020-02-25'
+    note: 'Modelo pentodo/tetrodo completo .subckt 6BW6.BRi3 (P G2 G1 K), por Adrian Immler post #2192,
+      fiteado a datasheet Brimar, alta calidad (incluye emision secundaria). Descargado a diyaudio/6BW6_immler.lib'
+  note: pins from names

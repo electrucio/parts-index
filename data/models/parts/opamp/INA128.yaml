@@ -1,0 +1,112 @@
+part: INA128
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: INA128
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '8'
+  - '9'
+  - '10'
+  deps:
+  - A2_128E
+  - A3_128E
+  - A1_128E
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM763
+    member: INA128_TINA_AIO/INA128.LIB
+    archive_sha256: 4d6eda58634760702f8e8cf3035e1cdf49f74e768455544634809f2806edad0a
+    sha256: 207daadd2503c678c609173e42d68ecddaf2286cba61dc7587b44b4799464549
+    lines:
+      A1_128E: [122, 165]
+      A2_128E: [173, 216]
+      A3_128E: [224, 267]
+      INA128: [53, 114]
+    fetched: '2026-09-19'
+- source: bordodynov
+  name: INA128
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '8'
+  - '9'
+  - '10'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/INA128.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: a02dfd3b802d09827d8ff61111a663e4538837f3386a31bdaf03df12fd18079d
+    lines:
+      INA128: [53, 268]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: INA128/BB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '8'
+  - '9'
+  - '10'
+  deps:
+  - A2_128
+  - A3_128
+  - A1_128
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/burr-brn.lib
+    sha256: 24467fdf16f7135ce54f90c7424e35ce1e6d2131c277351a4ee7276cdd6e2664
+    lines:
+      A1_128: [5684, 5719]
+      A2_128: [5731, 5766]
+      A3_128: [5778, 5814]
+      INA128/BB: [5618, 5672]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: INA128E/BB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '8'
+  - '9'
+  - '10'
+  deps:
+  - A2_128E
+  - A3_128E
+  - A1_128E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/burr-brn.lib
+    sha256: 24467fdf16f7135ce54f90c7424e35ce1e6d2131c277351a4ee7276cdd6e2664
+    lines:
+      A1_128E: [5924, 5971]
+      A2_128E: [5983, 6030]
+      A3_128E: [6042, 6092]
+      INA128E/BB: [5831, 5912]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

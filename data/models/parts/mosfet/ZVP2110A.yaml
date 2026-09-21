@@ -1,0 +1,39 @@
+part: ZVP2110A
+kind: mosfet
+priority: 3
+group: small_signal
+preferred: diodes-inc
+preferred_why: 'best datasheet agreement: 4 pass, 0 off, 2 fail of 6 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable). Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: diodes-inc
+  name: ZVP2110A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/2145/ZVP2110A.spice.txt
+    sha256: 6cc38156503fcc2846d9e0583347aba555f4df100cf106eba6e470e6905f046a
+    lines:
+      ZVP2110A: [19, 41]
+    fetched: '2026-09-14'
+    note: 'model(s): ZVP2110A (.subckt 3 4 5), Pmod1 (PMOS .model), Dmod1 (D .model), Dmod2 (D .model),
+      Rmod1 (RES .model), Rmod2 (RES .model)'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 0
+    fail: 2
+    not_measurable: 2
+    typical_rows: 0
+  note: 'same code also in: ltwiki; pins from default order (unverified)'
+datasheet:
+  url: https://www.diodes.com/assets/Datasheets/ZVP2110A.pdf
+  maker: Zetex (now Diodes Incorporated)
+  doc: ZVP2110A, Issue 2 - March 94
+  date: 1994-03

@@ -1,0 +1,110 @@
+part: BZX84C5V1
+kind: zener
+priority: 4
+models:
+- source: nexperia
+  name: BZX84-C5V1
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BZX84-C5V1.txt
+    sha256: 3b8626be136e11e8c77ac58a192d1fad04b69a3573776fc97394e868a2c28ec6
+    lines:
+      BZX84-C5V1: [28, 39]
+    fetched: '2026-09-14'
+    note: 'model(s): BZX84-C5V1 (D .model)'
+- source: bordodynov
+  name: BZX84C5V1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - DF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Zener_DiodesInc.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+    lines:
+      BZX84C5V1: [3053, 3060]
+      DF: [6016, 6016]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: BZX84C5V1
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BZX84C5V1: [225, 225]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BZX84C5V1S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - DF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Zener_DiodesInc.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+    lines:
+      BZX84C5V1S: [3063, 3070]
+      DF: [6016, 6016]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: BZX84C5V1T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - DF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Zener_DiodesInc.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+    lines:
+      BZX84C5V1T: [3073, 3080]
+      DF: [6016, 6016]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: BZX84C5V1TS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - DF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Zener_DiodesInc.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+    lines:
+      BZX84C5V1TS: [3083, 3090]
+      DF: [6016, 6016]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'

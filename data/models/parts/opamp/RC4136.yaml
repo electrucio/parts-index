@@ -1,0 +1,43 @@
+part: RC4136
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: RC4136
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_TI.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+    lines:
+      RC4136: [1298, 1332]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: kicad-spice-library
+  name: RC4136_TI
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+    sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+    lines:
+      RC4136_TI: [4299, 4333]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words

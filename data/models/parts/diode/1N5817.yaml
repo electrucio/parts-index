@@ -1,0 +1,135 @@
+part: 1N5817
+kind: diode
+priority: 1
+group: schottky
+preferred: onsemi
+preferred_why: 'best datasheet agreement: 7 pass, 1 off, 0 fail of 8 judged rows (4 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with ltspice-native, ltwiki,
+  ltwiki on score and typical-value error, chosen as the more original source'
+models:
+- source: onsemi
+  name: D1n5817
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n5817.lib
+    sha256: 384c2fd38e40acb2f094f6b2221cc5e582c26580d31b91001d7867e055645dc7
+    lines:
+      D1n5817: [14, 18]
+    fetched: '2026-09-14'
+    note: 'model(s): D1n5817 (D .model)'
+  verification:
+    score: 0.875
+    pass: 7
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+- source: vishay
+  name: d1n5817
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/88002/1n5817.txt
+    sha256: b720e8be70b0ae7af9e6d5f63f95d0b797df022f7b3cfc73d0459428ad166445
+    lines:
+      d1n5817: [11, 20]
+    fetched: '2026-09-14'
+    note: 'model(s): d1n5817 (.subckt 1 2), legd (D .model), grd (D .model)'
+  verification:
+    score: 0.625
+    pass: 5
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'
+- source: central-semi
+  name: 1N5817
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/1N5817.LIB
+    sha256: 0d76be002e8afaa3ab3ba1921bac51e14d1abff5725e9942d57859204f26540f
+    lines:
+      1N5817: [25, 37]
+    fetched: '2026-09-14'
+    note: 'model(s): 1N5817 (D .model)'
+  verification:
+    score: 0.75
+    pass: 6
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+- source: ltspice-native
+  name: 1N5817
+  def: model
+  type: D
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.dio
+    sha256: 696d34dfe538966c80cfe1da259c1043f408777be79f59e4f1c47d82f3af320a
+    lines:
+      1N5817: [9, 9]
+  verification:
+    score: 0.875
+    pass: 7
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: 1N5817
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard3.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 13cb55bb7184e06a29b64a8d1991371f8414622ef1213c5b7bcb01e358ed71ee
+    lines:
+      1N5817: [36, 36]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.875
+    pass: 7
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: 1N5817
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/DIOD/DIODE_ST_10.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5fbff1861259b242b3696034eae7e9618dee580d80ef08990e75eff81815a0f7
+    lines:
+      1N5817: [6184, 6185]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.875
+    pass: 7
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+datasheet:
+  url: https://www.vishay.com/docs/88525/1n5817.pdf
+  maker: Vishay General Semiconductor
+  doc: Document Number 88525, Revision 01-Jul-2020 (1N5817, 1N5818, 1N5819)
+  date: '2020-07-01'

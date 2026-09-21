@@ -1,0 +1,130 @@
+part: J201
+kind: jfet
+priority: 1
+group: n_channel
+preferred: interfet
+preferred_why: 'best datasheet agreement: 5 pass, 1 off, 0 fail of 6 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: onsemi
+  name: J201
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/j201.lib
+    sha256: 0e377355688d02ff5f942bacd8805c1408bc547266375f4617963ad64733b44f
+    lines:
+      J201: [6, 24]
+    fetched: '2026-09-14'
+    note: 'model(s): J201 (NJF .model)'
+  verification:
+    score: 0.333
+    pass: 2
+    marginal: 2
+    fail: 2
+    not_measurable: 0
+    typical_rows: 3
+- source: onsemi
+  name: MMBFJ201
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mmbfj201.lib
+    sha256: 6981cd5a66dcd919f01657c50585bc23eb8e41623611307232caa542fd092fd2
+    lines:
+      MMBFJ201: [6, 24]
+    fetched: '2026-09-14'
+    note: 'model(s): MMBFJ201 (NJF .model)'
+  verification:
+    score: 0.333
+    pass: 2
+    marginal: 2
+    fail: 2
+    not_measurable: 0
+    typical_rows: 3
+  note: found under the alias MMBFJ201
+- source: central-semi
+  name: J201
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/J201.LIB
+    sha256: 475a4d7cd582cab1d69817e48a79281406f8b564d3c5ec723dd28eff2ae649bc
+    lines:
+      J201: [25, 42]
+    fetched: '2026-09-14'
+    note: 'model(s): J201 (NJF .model)'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+- source: interfet
+  name: J201
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J201: [733, 733]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+- source: interfet
+  name: J201-GEN
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J201-GEN: [188, 188]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+- source: interfet
+  name: J201-LS
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J201-LS: [189, 189]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.5
+    pass: 3
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+datasheet:
+  url: https://www.interfet.com/jfet-datasheets/jfet-j201-j202-interfet.pdf
+  maker: InterFET
+  doc: IF35018.R00, June 2019

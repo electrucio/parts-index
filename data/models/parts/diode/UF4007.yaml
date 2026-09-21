@@ -1,0 +1,118 @@
+part: UF4007
+kind: diode
+priority: 1
+group: rectifier
+preferred: vishay
+preferred_why: 'best datasheet agreement: 3 pass, 2 off, 2 fail of 7 judged rows (4 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with ltwiki, ltwiki on score
+  and typical-value error, chosen as the more original source'
+models:
+- source: vishay
+  name: UF4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/88184/uf4007.txt
+    sha256: 397fc424c372501d3a3cc3a3a6bd8c66772039e31f6e242a30b783cf5a7b2bee
+    lines:
+      UF4007: [9, 23]
+    fetched: '2026-09-14'
+    note: 'model(s): UF4007 (D .model)'
+  verification:
+    score: 0.429
+    pass: 3
+    marginal: 2
+    fail: 2
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: kicad-spice-library'
+- source: bordodynov
+  name: UF4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      UF4007: [160, 160]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.286
+    pass: 2
+    marginal: 3
+    fail: 2
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: UF4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: c37cd3feda2bf48e371d1b329a4f08dcedf3e90acb6a8b98ec28a8063b633c21
+    lines:
+      UF4007: [112, 112]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.429
+    pass: 3
+    marginal: 2
+    fail: 2
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: UF4007
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - C
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Basso/BassoBook20100103/D.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 4aa55e403008035c4f0065b93108abf95382d86498e6a25c499fb9e3061e656d
+    lines:
+      UF4007: [70, 74]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.429
+    pass: 3
+    marginal: 2
+    fail: 2
+    not_measurable: 0
+    typical_rows: 4
+  note: pins from names
+- source: kicad-spice-library
+  name: UF4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.dio
+    sha256: 85043335b56cc10779c03bcd2c237472827cf28c004628c9ddacb6fb3d8705c7
+    lines:
+      UF4007: [129, 129]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.286
+    pass: 2
+    marginal: 3
+    fail: 2
+    not_measurable: 0
+    typical_rows: 4
+datasheet:
+  url: https://www.vishay.com/docs/88755/uf4001.pdf
+  maker: Vishay
+  doc: Document Number 88755, Revision 06-Apr-2020 (UF4001 thru UF4007)

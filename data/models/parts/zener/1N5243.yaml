@@ -1,0 +1,30 @@
+part: 1N5243
+kind: zener
+priority: 3
+models:
+- source: bordodynov
+  name: 1N5243
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N5243: [1848, 1848]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: kicad-spice-library
+  name: D1N5243
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      D1N5243: [669, 671]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

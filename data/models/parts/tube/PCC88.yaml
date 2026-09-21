@@ -1,0 +1,46 @@
+part: PCC88
+kind: tube
+priority: 3
+group: audio_docs
+models:
+- source: reefman
+  name: PCC88
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - TriodeK
+  - ECC88
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      ECC88: [321, 326]
+      PCC88: [885, 887]
+      TriodeK: [2345, 2357]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: bordodynov
+  name: PCC88
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/tube.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0eeca282ba6506a1a4826c5833c023b17df0c557ef46c9ade79abe98a9c24a3f
+    lines:
+      PCC88: [920, 926]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from names'

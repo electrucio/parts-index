@@ -1,0 +1,93 @@
+part: BAS70-04
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: onsemi
+  name: bas70-04lt1g
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/sp3/bas70-04lt1g.sp3
+    sha256: 64dfd75bd7eff4f06ebe374da376f682730ba55a12607a7037b4fd11e40bba6e
+    lines:
+      bas70-04lt1g: [14, 18]
+    fetched: '2026-09-19'
+    note: 'BAS70-04LT1G.SP3: bas70-04lt1g'
+- source: diodes-inc
+  name: BAS70LP
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/129/BAS70LP.spice.txt
+    sha256: b848f28d34d85b290740a7da4963c39250bf09f4c39a1946c432d9bd1ae2df9d
+    lines:
+      BAS70LP: [24, 25]
+    fetched: '2026-09-19'
+    note: 'model(s): BAS70LP'
+  note: found under the alias BAS70
+- source: bordodynov
+  name: bas70
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      bas70: [101, 101]
+    fetched: '2026-09-14'
+  note: 'found under the alias BAS70; same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BAS70H
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BAS70H: [1425, 1425]
+    fetched: '2026-09-14'
+  note: 'found under the alias BAS70; same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BAS70_04
+  def: subckt
+  type: SUBCKT
+  pins:
+  - a
+  - ka
+  - k
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      BAS70_04: [12566, 12570]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: BAS70-04
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/BAS70-04.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 94c3c6c4195dfa62db209b7daeaaa13370ad3f976ad3fcbcfa01a647eaa2a2f3
+    lines:
+      BAS70-04: [2, 25]
+    fetched: '2026-09-14'

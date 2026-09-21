@@ -1,0 +1,24 @@
+part: OPA2350
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: OPA2350
+  def: subckt
+  type: SUBCKT
+  pins:
+  - +
+  - '-'
+  - V+
+  - V-
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Operational_Amplifiers.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: a23e6b6cd7f13ddcbd76cc0a88987255186bf1dca04a8349a968e4dad0daf832
+    lines:
+      OPA2350: [9363, 9439]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'

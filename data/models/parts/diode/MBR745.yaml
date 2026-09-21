@@ -1,0 +1,100 @@
+part: MBR745
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: vishay
+  name: MBR745
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/95298/mbr745.txt
+    sha256: 71d900de521e85fc85a7d73c055fde6fc705e9359611a382350d7518b79b6b26
+    lines:
+      MBR745: [29, 42]
+    fetched: '2026-09-19'
+    note: 'Schottky, PSpice Models (*.txt): MBR745, DMOD, TRES, MBR745'
+  note: pins from default order (unverified)
+- source: bordodynov
+  name: MBR745
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      MBR745: [191, 191]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: MBR745
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard3.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 13cb55bb7184e06a29b64a8d1991371f8414622ef1213c5b7bcb01e358ed71ee
+    lines:
+      MBR745: [52, 52]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: MBR745
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/SemiGenSchottkyRect.lib
+    sha256: d165361125280de311667a3cd347670774ffdf2bbd93f2360d2ebd8c3baebfe0
+    lines:
+      MBR745: [259, 285]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: MBR745
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - dio
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/General%20Semiconductor/General%20Semiconductor.lb5
+    sha256: 29db97b9e48c44570530220654814e32bc2a2cb0d10d0a4a018887fb43ef592d
+    lines:
+      MBR745: [657, 683]
+      dio: [2849, 2874]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: MBR745_GN
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/gensemi.lib
+    sha256: a6cf7dd0be40fa8de86b574b20c2481a4be41a33f77d1893d66664f19e3fe8d9
+    lines:
+      MBR745_GN: [503, 527]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

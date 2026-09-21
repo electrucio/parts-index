@@ -1,0 +1,109 @@
+part: UA723
+kind: regulator
+priority: 3
+models:
+- source: bordodynov
+  name: UA723
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '26'
+  - '17'
+  - '13'
+  - '7'
+  - '11'
+  - '25'
+  - '24'
+  - '1'
+  - '27'
+  - '37'
+  deps:
+  - LZEN#0
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/UA723.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 28f9a0bc07af49327ec76aeba9b27011b4a9918c271a5578230938dc9f9c6141
+    lines:
+      LZEN#0: [50, 55]
+      UA723: [1, 49]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: uA723M
+  def: subckt
+  type: SUBCKT
+  pins:
+  - CL
+  - CS
+  - INV
+  - NI
+  - VREF
+  - VN
+  - VZ
+  - VOUT
+  - VC
+  - VP
+  - COMP
+  deps:
+  - LM723
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      LM723: [2146, 2205]
+      uA723M: [2209, 2215]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from LM723 DIP-14 pin numbers
+- source: kicad-spice-library
+  name: UA723M
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '9'
+  - '8'
+  - '10'
+  - '1'
+  - '5'
+  - '6'
+  - '2'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/REG.LIB
+    sha256: 2581c0d0d57c3f5d13826e1be3608d8c05c6b9d033ddf76d398df2bd7dbd98bc
+    lines:
+      UA723M: [288, 302]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: uA723C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - CL
+  - CS
+  - INV
+  - NI
+  - VREF
+  - VN
+  - VZ
+  - VOUT
+  - VC
+  - VP
+  - COMP
+  deps:
+  - LM723
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      LM723: [2146, 2205]
+      uA723C: [2230, 2237]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from LM723 DIP-14 pin numbers

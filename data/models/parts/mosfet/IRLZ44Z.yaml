@@ -1,0 +1,40 @@
+part: IRLZ44Z
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: bordodynov
+  name: irlz44zsl
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irlz44zsl.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6dc7fa2f2eb0e8a99e4fa4f4a0880aaa5cc89aea7209bfff115dae6a257aba12
+    lines:
+      irlz44zsl: [1, 57]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: irlz44zslt
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '0'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irlz44zsl.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6dc7fa2f2eb0e8a99e4fa4f4a0880aaa5cc89aea7209bfff115dae6a257aba12
+    lines:
+      irlz44zslt: [62, 71]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'

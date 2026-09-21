@@ -1,0 +1,150 @@
+part: BAT54S
+kind: diode
+priority: 3
+group: schottky
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 8 pass, 3 off, 1 fail of 12 judged rows (5 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: ltspice-native
+  name: BAT54SHY
+  def: model
+  type: D
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.dio
+    sha256: 696d34dfe538966c80cfe1da259c1043f408777be79f59e4f1c47d82f3af320a
+    lines:
+      BAT54SHY: [482, 482]
+  verification:
+    score: 0.583
+    pass: 7
+    marginal: 4
+    fail: 1
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: bordodynov, ltwiki'
+- source: bordodynov
+  name: BAT54SHM
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BAT54SHM: [1434, 1434]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 8
+    marginal: 3
+    fail: 1
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BAT54S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - a
+  - ka
+  - k
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      BAT54S: [12574, 12580]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 12
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: BAT54S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/BAT54S.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 950d6bc1f5be7fb2dd59dc5d7b04c3b3f96ea109862b16864820546d2c987dba
+    lines:
+      BAT54S: [2, 26]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 12
+    typical_rows: 0
+- source: ltwiki
+  name: BAT54SFILM
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/DIOD/DIODE_ST_10.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5fbff1861259b242b3696034eae7e9618dee580d80ef08990e75eff81815a0f7
+    lines:
+      BAT54SFILM: [641, 648]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 12
+    typical_rows: 0
+- source: ltwiki
+  name: BAT54SW
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/BAT54SW.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: b0545d48202e5ee3e040c13fc33b4abaefff4a8ef489b65708d3e950e4265164
+    lines:
+      BAT54SW: [2, 26]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 12
+    typical_rows: 0
+datasheet:
+  url: https://assets.nexperia.com/documents/data-sheet/BAT54_SER.pdf
+  maker: Nexperia
+  doc: BAT54_SER v.5, Product data sheet (BAT54, BAT54A, BAT54C, BAT54S)
+  date: '2012-10-05'

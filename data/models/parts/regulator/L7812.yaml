@@ -1,0 +1,44 @@
+part: L7812
+kind: regulator
+priority: 3
+models:
+- source: kicad-spice-library
+  name: UA7812C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INPUT
+  - OUTPUT
+  - GROUND
+  deps:
+  - x_LM78XX
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      UA7812C: [1796, 1799]
+      x_LM78XX: [1632, 1736]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: found under the alias UA7812; pins from names
+- source: kicad-spice-library
+  name: MC7812C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INPUT
+  - OUTPUT
+  - GROUND
+  deps:
+  - x_LM78XX
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      MC7812C: [1810, 1813]
+      x_LM78XX: [1632, 1736]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: found under the alias MC7812; pins from names

@@ -1,0 +1,103 @@
+part: PESD3V3
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: nexperia
+  name: PESD3V3L1BA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PESD3V3L1BA.txt
+    sha256: 5576d01923eb8245c888174d6a411d2a35b08d82acb39465ba5c65c9ea409066
+    lines:
+      PESD3V3L1BA: [32, 66]
+    fetched: '2026-09-19'
+    note: 'PESD3V3L1BA: PESD3V3L1BA, DIODE1, DIODE2'
+  note: pins from default order (unverified)
+- source: nexperia
+  name: PESD3V3S2UT
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PESD3V3S2UT.txt
+    sha256: 236f99b88a519f52e4d311906b640015aca861fed061fab924551bc7d4829632
+    lines:
+      PESD3V3S2UT: [31, 40]
+    fetched: '2026-09-19'
+    note: 'PESD3V3S2UT: PESD3V3S2UT'
+- source: bordodynov
+  name: PESD3V3L1BA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/PESDxxx.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ff3b4d96c3410ac7dab23c71f52fb60399171b2f9f91d47d80801d9864f1935e
+    lines:
+      PESD3V3L1BA: [76, 114]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: ltwiki
+  name: PESD3V3L1BA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/PESD3V3L1BA.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 0ab3f56ae2990e787d71050669c2a28b56c82916775f7301604c3057739217bc
+    lines:
+      PESD3V3L1BA: [2, 17]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)
+- source: ltwiki
+  name: PESD3V3V4UW
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/PESD3V3V4UW.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 75f204d2d92e56776c3d3247a6bdd6132077d18e9ef3d74dcea04dc96cfac444
+    lines:
+      PESD3V3V4UW: [2, 27]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: PESD3V3L2BT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/PESD3V3L2BT.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 9e58b915933c2f60b160b1025b161c1021c95e934e87146f203fc1196c2ddf9d
+    lines:
+      PESD3V3L2BT: [2, 20]
+    fetched: '2026-09-14'

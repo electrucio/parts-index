@@ -1,0 +1,135 @@
+part: BC547B
+kind: bjt
+priority: 1
+group: small_signal_npn
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 12 pass, 0 off, 0 fail of 12 judged rows (3 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: ltspice-native
+  name: BC547B
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.bjt
+    sha256: 15e7c7fa149dbdc97bb647f77681999a38fb4c324928beb4f1fa2a589288f587
+    lines:
+      BC547B: [89, 89]
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BC547B_
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC547B_: [409, 409]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 10
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BC547B__
+  def: model
+  type: NPN
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      BC547B__: [410, 410]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.583
+    pass: 7
+    marginal: 2
+    fail: 3
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: BC547B
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
+    lines:
+      BC547B: [366, 366]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: BC547B__
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+    sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+    lines:
+      BC547B__: [393, 393]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.583
+    pass: 7
+    marginal: 2
+    fail: 3
+    not_measurable: 0
+    typical_rows: 3
+- source: kicad-spice-library
+  name: BC547BP
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTN.LIB
+    sha256: 2c85b6bbf3a7dcb9403d646a1c120714fdc7bce5c8287c8e537012a1cf3ef6c2
+    lines:
+      BC547BP: [741, 743]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+datasheet:
+  url: https://www.nxp.com/documents/data_sheet/BC847_BC547_SER.pdf
+  maker: nxp (philips/nexperia lineage)
+  doc: BC847/BC547 series product data sheet Rev. 07 (10 December 2008)

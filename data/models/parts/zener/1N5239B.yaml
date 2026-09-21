@@ -1,0 +1,24 @@
+part: 1N5239B
+kind: zener
+priority: 3
+models:
+- source: bordodynov
+  name: 1N5239B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - DF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Zener_DiodesInc.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+    lines:
+      1N5239B: [383, 390]
+      DF: [6016, 6016]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'

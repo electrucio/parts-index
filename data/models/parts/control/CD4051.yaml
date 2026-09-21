@@ -1,0 +1,160 @@
+part: CD4051
+kind: control
+priority: 2
+models:
+- source: bordodynov
+  name: 4051a
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - B
+  - C
+  - INH
+  - IO0
+  - IO1
+  - IO2
+  - IO3
+  - IO4
+  - IO5
+  - IO6
+  - IO7
+  - IOC
+  - V+
+  - Vss
+  - Vee
+  deps:
+  - '4066'
+  - CD40_OUT_1X
+  - CD40_IN_1
+  - 3To8
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/SwitchAna.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
+    lines:
+      3To8: [268, 298]
+      4051a: [256, 266]
+      '4066': [227, 250]
+      CD40_IN_1: [499, 517]
+      CD40_OUT_1X: [520, 532]
+    fetched: '2026-09-14'
+  note: 'found under the alias 4051; same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: '4051'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - B
+  - C
+  - INH
+  - IO0
+  - IO1
+  - IO2
+  - IO3
+  - IO4
+  - IO5
+  - IO6
+  - IO7
+  - IOC
+  - V+
+  - Vss
+  - Vee
+  deps:
+  - CD40_OUT_1X
+  - CD40_IN_1
+  - 3To8
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/SwitchAna.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
+    lines:
+      3To8: [268, 298]
+      '4051': [413, 424]
+      CD40_IN_1: [499, 517]
+      CD40_OUT_1X: [520, 532]
+    fetched: '2026-09-14'
+  note: 'found under the alias 4051; same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: 4051a
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - B
+  - C
+  - INH
+  - IO0
+  - IO1
+  - IO2
+  - IO3
+  - IO4
+  - IO5
+  - IO6
+  - IO7
+  - IOC
+  - V+
+  - Vss
+  - Vee
+  deps:
+  - '4066'
+  - CD40_OUT_1X
+  - CD40_IN_1
+  - 3To8
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/SwitchAna.Lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: bdc1ed4314c28014a88c6c98fee7934edf64321f0d1e3ff50101fce2a6793fda
+    lines:
+      3To8: [268, 298]
+      4051a: [256, 266]
+      '4066': [227, 250]
+      CD40_IN_1: [499, 517]
+      CD40_OUT_1X: [520, 532]
+    fetched: '2026-09-14'
+  note: found under the alias 4051
+- source: ltwiki
+  name: '4051'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - B
+  - C
+  - INH
+  - IO0
+  - IO1
+  - IO2
+  - IO3
+  - IO4
+  - IO5
+  - IO6
+  - IO7
+  - IOC
+  - V+
+  - Vss
+  - Vee
+  deps:
+  - CD40_OUT_1X
+  - CD40_IN_1
+  - 3To8
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/SwitchAna.Lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: bdc1ed4314c28014a88c6c98fee7934edf64321f0d1e3ff50101fce2a6793fda
+    lines:
+      3To8: [268, 298]
+      '4051': [413, 424]
+      CD40_IN_1: [499, 517]
+      CD40_OUT_1X: [520, 532]
+    fetched: '2026-09-14'
+  note: found under the alias 4051

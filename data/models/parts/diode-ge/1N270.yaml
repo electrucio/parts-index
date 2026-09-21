@@ -1,0 +1,32 @@
+part: 1N270
+kind: diode-ge
+priority: 2
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 2 pass, 1 off, 0 fail of 3 judged rows (1 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: 1N270
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N270: [92, 92]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 2
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: http://www.redrok.com/Diode_Germanium_1N270_0.04A_DO-7.pdf
+  maker: Microsemi (Lawrence, MA; ex-BKC Semiconductors)
+  doc: Gold Bonded 1N270 Germanium Diodes (no document number or date printed)

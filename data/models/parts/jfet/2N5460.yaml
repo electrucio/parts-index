@@ -1,0 +1,130 @@
+part: 2N5460
+kind: jfet
+priority: 3
+group: p_channel
+preferred: interfet
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable). Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: onsemi
+  name: J2N5460
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/2n5460.lib
+    sha256: 3ba90e12d1a9c1d302a0a2e3e8da2f7a9fa0da681154dd4364f2c0566aa16dcb
+    lines:
+      J2N5460: [5, 23]
+    fetched: '2026-09-14'
+    note: 'model(s): J2N5460 (PJF .model)'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 0
+- source: interfet
+  name: 2N5460-SCX
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      2N5460-SCX: [89, 89]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 0
+- source: interfet
+  name: J2N5460-GEN
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J2N5460-GEN: [334, 334]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: interfet
+  name: 2N5460-H
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      2N5460-H: [874, 874]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: ltspice-native
+  name: 2N5460
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.jft
+    sha256: 93ae8433a9412e96e81071b65d521b7f31dcb2c2f3fce714456b73586230bea0
+    lines:
+      2N5460: [24, 24]
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: duncanamps
+  name: J2N5460
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/jfet/pjfet.mod
+    sha256: ca416e9744c8562cd655bbaf9357844eca8e2ccdf652399d7946b580a74b8e9c
+    lines:
+      J2N5460: [11, 12]
+    fetched: '2026-09-14'
+    note: 2 .model (JPJFET~, J2N5460)
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://www.interfet.com/jfet-datasheets/jfet-2n5460-2n5461-2n5462-interfet.pdf
+  maker: InterFET
+  doc: IF35080.R00, December 2018

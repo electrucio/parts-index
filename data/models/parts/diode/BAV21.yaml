@@ -1,0 +1,31 @@
+part: BAV21
+kind: diode
+priority: 3
+group: silicon_signal
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 6 pass, 3 off, 0 fail of 9 judged rows (6 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: kicad-spice-library
+  name: BAV21
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/DIODE.LIB
+    sha256: c68f4b4a28eb0e866fb8e516b6a6a37a779ac80fed8a2ef16a3afcfb80c522e5
+    lines:
+      BAV21: [1831, 1832]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.667
+    pass: 6
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 6
+datasheet:
+  url: https://www.vishay.com/docs/85543/bav17.pdf
+  maker: Vishay
+  doc: Document Number 85543, Rev. 2.3, 22-May-2025 (BAV17, BAV18, BAV19, BAV20, BAV21)

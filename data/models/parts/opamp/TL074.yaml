@@ -1,0 +1,173 @@
+part: TL074
+kind: opamp
+priority: 2
+preferred: ti
+preferred_why: 'best datasheet agreement: 12 pass, 0 off, 1 fail of 13 judged rows (2 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, bordodynov,
+  kicad-spice-library, kicad-spice-library on score and typical-value error, chosen as the more original
+  source'
+models:
+- source: ti
+  name: TL074
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ068
+    member: TL074.301
+    archive_sha256: c20622bd9f4eb6e5fd2277ecab9810b7979574e194b10393807db964369960ef
+    sha256: a5f384a32ed660490d7ad57b82ddad836dfcf3b462d9dd8987e8fd4de603b1f3
+    lines:
+      TL074: [10, 42]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.923
+    pass: 12
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: stmicro
+  name: TL074
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '3'
+  - '2'
+  - '4'
+  - '5'
+  verbatim: false
+  changes:
+  - st_analog_token
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/STMicroelectronics/Standard%20Linear%20ICs/Spice/tl074.txt
+    sha256: 96766a2d0b99d6bd9f979cf7f9d824d1688423d26029ba71addef2b139c803f6
+    lines:
+      TL074: [25, 70]
+    fetched: '2026-09-14'
+    note: ST "Standard Linear ICs Macromodels, 1993" (TL074), mirrored on ltwiki.org
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 13
+    typical_rows: 0
+- source: bordodynov
+  name: TL074
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_TI.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+    lines:
+      TL074: [878, 910]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.923
+    pass: 12
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: TL074
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Opamp5.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+    lines:
+      TL074: [7803, 7834]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.923
+    pass: 12
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: kicad-spice-library
+  name: TL074_TI
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+    sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+    lines:
+      TL074_TI: [6129, 6161]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.923
+    pass: 12
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: pins from comment words
+- source: kicad-spice-library
+  name: TL074T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TIA.LIB
+    sha256: 9ab15d59dfe2a0a2393f98d60244934f66a2fdae82a8815b49b7517010d7b4ac
+    lines:
+      TL074T: [677, 709]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.923
+    pass: 12
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: pins from comment words
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/tl072.pdf
+  maker: Texas Instruments
+  doc: SLOS080N, rev. N, Jul 2017 (legacy-die revision; tables 6.10 TL07xC and 6.17)

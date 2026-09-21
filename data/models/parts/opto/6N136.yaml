@@ -1,0 +1,48 @@
+part: 6N136
+kind: opto
+priority: 4
+models:
+- source: vishay
+  name: 6N136
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DA
+  - DK
+  - QE
+  - QC
+  - QB
+  - VCC
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/84425/pspice6n136.zip
+    member: 6N136.lib
+    archive_sha256: bb93d4af675db95ea8fed6cac876bb147dea89d8c0b80d0f35c16bf9e8904d81
+    sha256: 87e7f6fcd61a404a4efb1e7923b8614eac497ddcdeb5fa9a73696e21166ab06a
+    lines:
+      6N136: [11, 34]
+    fetched: '2026-09-19'
+- source: bordodynov
+  name: 6N136
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '2'
+  - '3'
+  - '5'
+  - '6'
+  - '8'
+  - '7'
+  deps:
+  - Q1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      6N136: [2471, 2490]
+      Q1: [16399, 16440]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

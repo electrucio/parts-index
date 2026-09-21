@@ -1,0 +1,100 @@
+part: OPA548
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA548
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM088
+    member: OPA548.LIB
+    archive_sha256: 73860253212c29861f6dfb38b78fac611a729c765dc480fd7fc9abf8ad5acdbc
+    sha256: 994219b8d79edea3161425452fe03e541cb7576b2d055068ac50b708fe37ae89
+    lines:
+      OPA548: [53, 154]
+    fetched: '2026-09-19'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: ti
+  name: OPA548
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  deps:
+  - LAT5
+  - ZENERD
+  - NMIN
+  - VSM
+  - NMAX
+  - PSUB
+  - DIODE
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM191
+    member: OPA548.LIB
+    archive_sha256: 054423a4f33345d79814b58cfe735e51b000ecf828269094a2ebd031bcc91778
+    sha256: 10f0150d571feacc3f8242efaffe607f508ea359484cf837bf9f3d3397235b63
+    lines:
+      DIODE: [144, 144]
+      LAT5: [145, 145]
+      NMAX: [141, 142]
+      NMIN: [139, 140]
+      OPA548: [47, 137]
+      PSUB: [146, 147]
+      VSM: [148, 148]
+      ZENERD: [143, 143]
+    fetched: '2026-09-19'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: ltwiki
+  name: OPA548
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  deps:
+  - LAT5
+  - ZENERD
+  - NMIN
+  - VSM
+  - NMAX
+  - PSUB
+  - DIODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/OpAmps/By_Marks_Type/Ti_Bb_Unitrode/OpaXxx/OPA548 and loaded busline/opa548.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: b4f13382d1f217c89d5bac9b43d8f95f97b80c3e2446a5aff77bbcdf48f83de6
+    lines:
+      DIODE: [209, 209]
+      LAT5: [211, 211]
+      NMAX: [203, 205]
+      NMIN: [199, 201]
+      OPA548: [21, 195]
+      PSUB: [213, 215]
+      VSM: [217, 217]
+      ZENERD: [207, 207]
+    fetched: '2026-09-14'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)

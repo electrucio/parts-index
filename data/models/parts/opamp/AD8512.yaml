@@ -1,0 +1,24 @@
+part: AD8512
+kind: opamp
+priority: 3
+models:
+- source: ltwiki
+  name: AD8512
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/AD/ad8512.cir
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 0cc4160fda0fb1ebf3a6077e307f4726c41a75bac87e1c5069f5a46c727f4341
+    lines:
+      AD8512: [19, 124]
+    fetched: '2026-09-14'
+  note: pins from comment words

@@ -1,0 +1,71 @@
+part: MMBTA42
+kind: bjt
+priority: 4
+group: small_signal_npn
+models:
+- source: nexperia
+  name: MMBTA42
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B
+  - E
+  - C
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/MMBTA42.txt
+    sha256: d6448e6982cba734a7bb07830be5d5ccc1f77d7ccc53f97c1eb1a3ffa3d6f32d
+    lines:
+      MMBTA42: [29, 89]
+    fetched: '2026-09-19'
+    note: 'MMBTA42: MMBTA42, MMBTA42, DIODE'
+  note: pins from comment words
+- source: bordodynov
+  name: MMBTA42
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      MMBTA42: [1814, 1814]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: MMBTA42
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/MMBTA42.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 0402913e4e78adfc9167d6f910484c8af9087186284c29416052f3e95d564a83
+    lines:
+      MMBTA42: [2, 53]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: MMBTA42_PH
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
+    sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
+    lines:
+      MMBTA42_PH: [7101, 7152]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

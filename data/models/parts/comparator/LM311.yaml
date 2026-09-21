@@ -1,0 +1,177 @@
+part: LM311
+kind: comparator
+priority: 3
+models:
+- source: ti
+  name: LM311
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC+
+  - VCC-
+  - STROB
+  - COL_OUT
+  - EMIT_OUT
+  deps:
+  - VINRANGE_393
+  - 4ORGATE
+  - INPUTRANGE
+  - VCC_Range
+  - Difference
+  - ORGATE
+  - Supply_Enable
+  - ANDGATE
+  - Output_Stage_SHIZ
+  - DIGLEVSHIFT
+  - Output_Stage_SMID
+  - Output_Stage_H1
+  - Output_Stage_SVOL
+  - INVERTER
+  - MID_SUPPLY
+  - Output_Stage
+  - Top_Level_S2
+  - SUPPLY_BUFFER1
+  - Input_Buffer
+  - Supply_Buffer
+  - Prop_Delay
+  - HPA_COMPHYS
+  - Top_Level_S1
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLCM011
+    member: lm311.lib
+    archive_sha256: ebcedff925d15dde13fa8b2f8ff37964605ed1fde26fa2d0a08a041aadf7242b
+    sha256: 3de567b27649784e7909b085bf1a8f2b892e353f8cfabd9c5a0413efefba693e
+    lines:
+      4ORGATE: [356, 359]
+      ANDGATE: [171, 175]
+      DIGLEVSHIFT: [186, 192]
+      Difference: [259, 263]
+      HPA_COMPHYS: [177, 184]
+      INPUTRANGE: [118, 128]
+      INVERTER: [227, 230]
+      Input_Buffer: [70, 72]
+      LM311: [44, 68]
+      MID_SUPPLY: [232, 235]
+      ORGATE: [237, 241]
+      Output_Stage: [90, 116]
+      Output_Stage_H1: [166, 169]
+      Output_Stage_SHIZ: [154, 158]
+      Output_Stage_SMID: [148, 152]
+      Output_Stage_SVOL: [160, 164]
+      Prop_Delay: [130, 134]
+      SUPPLY_BUFFER1: [265, 268]
+      Supply_Buffer: [86, 88]
+      Supply_Enable: [74, 84]
+      Top_Level_S1: [136, 140]
+      Top_Level_S2: [142, 146]
+      VCC_Range: [270, 274]
+      VINRANGE_393: [276, 280]
+    fetched: '2026-09-19'
+- source: bordodynov
+  name: LM311
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Occomp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d4e98ddcd8fabe3cd892bb2be1e2447639c10f9f8759ce47b8b5c101a6999049
+    lines:
+      LM311: [112, 136]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: LM311/UK
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/unknown.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 7e231c76416356a5e6557f8ffe95eceaddd400f54eccfd0e4b67831c7c182008
+    lines:
+      LM311/UK: [43, 66]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: LM311/TI
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ti_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 91cd41205c65eb69c8d88ac91cb6c5678c6bedc408aaafc9b8d047f2c3c02d60
+    lines:
+      LM311/TI: [11, 35]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: LM311
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Compara/lm311/lm311.301
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 5d708ece3ee4df737e17f0e78e89ff186dae4ee563d305b6ea66b763102ad831
+    lines:
+      LM311: [61, 82]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: LM311/UK
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/unknown.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: d782a7e6e0a014e119008ecb20e640b104c9396f4d2ca90b3c29505aabe8ff46
+    lines:
+      LM311/UK: [41, 62]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'

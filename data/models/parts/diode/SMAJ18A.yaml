@@ -1,0 +1,27 @@
+part: SMAJ18A
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: bordodynov
+  name: SMAJ18A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - ANODE
+  - CATHODE
+  deps:
+  - TRANSIL
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/transil_ST.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+    lines:
+      SMAJ18A: [2392, 2397]
+      TRANSIL: [32, 80]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'

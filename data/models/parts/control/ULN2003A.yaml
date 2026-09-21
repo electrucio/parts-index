@@ -1,0 +1,35 @@
+part: ULN2003A
+kind: control
+priority: 3
+models:
+- source: bordodynov
+  name: ULN2003LV
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B[1]
+  - B[2]
+  - B[3]
+  - B[4]
+  - B[5]
+  - B[6]
+  - B[7]
+  - E
+  - COM
+  - C[7]
+  - C[6]
+  - C[5]
+  - C[4]
+  - C[3]
+  - C[2]
+  - C[1]
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ULN2003LV.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6600ae812ac8fa690e96715b74ea1d330e08b9d84cb45c1fe5b9703ec9207356
+    lines:
+      ULN2003LV: [2, 48]
+    fetched: '2026-09-14'
+  note: 'found under the alias ULN2003; same code also in: ltwiki'

@@ -1,0 +1,131 @@
+part: IRF9540
+kind: mosfet
+priority: 3
+group: power_vertical
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 5 pass, 0 off, 1 fail of 6 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable)'
+models:
+- source: infineon
+  name: irf9540n
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://web.archive.org/web/19991011135405id_/http://www.irf.com:80/product-info/models/SPICE/irf9540n.spi
+    sha256: fee90dc241c38c5d88eb724cde5f1d0c7c68ef41c7aaa02220ae05a3a7ab1366
+    lines:
+      irf9540n: [1, 60]
+    fetched: '2026-09-14'
+    note: International Rectifier legacy HEXFET SPICE model; original URL http://www.irf.com:80/product-info/models/SPICE/irf9540n.spi
+      (Wayback capture 19991011135405)
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: IRF9540
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRF9540: [1105, 1105]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 2
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: IRF9540N
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+    sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+    lines:
+      IRF9540N: [4648, 4693]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: IRF9540
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWMOS3.LIB
+    sha256: 15daa43bae301f0f87935f96d7a7634586ef2319657a3f622e47f56ae492d6d7
+    lines:
+      IRF9540: [658, 680]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 0
+    fail: 1
+    not_measurable: 2
+    typical_rows: 3
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: irf9540n_IR
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+    sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+    lines:
+      irf9540n_IR: [13613, 13672]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: pins from default order (unverified)
+datasheet:
+  url: https://www.vishay.com/docs/91078/91078.pdf
+  maker: Vishay Siliconix
+  doc: IRF9540, Document Number 91078, S21-0852-Rev. C
+  date: '2021-08-16'

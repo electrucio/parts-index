@@ -1,0 +1,168 @@
+part: TL431
+kind: regulator
+priority: 1
+preferred: ti
+preferred_why: 'best datasheet agreement: 1 pass, 0 off, 0 fail of 1 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, bordodynov,
+  bordodynov on score and typical-value error, chosen as the more original source. WEAK EVIDENCE: fewer
+  than 5 rows, all min/max limits'
+models:
+- source: ti
+  name: TL431
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  - REF
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ174
+    member: tl431.mod
+    archive_sha256: 7723fca410c50e1b893e1a02ce1f61288e26cf7f87b511e5b08c768f57bf67c2
+    sha256: 239c7cdb9bced084049b4769b9903357b80f1cf143eee2f40526626d35542602
+    lines:
+      TL431: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 1
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: ltwiki; pins from TL431 package pin numbers (unverified)'
+- source: ti
+  name: TL431
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '7'
+  - '6'
+  - '11'
+  deps:
+  - DCLAMP
+  - TL431_H8
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLVM071
+    member: TL431_PSPICE_AIO_30NOV2017/TL431_PSPICE/TL431.lib
+    archive_sha256: 4088a3a91d919311cfb1b2096412100ba00a3ce2589c5d5bdb9a8bf475b57003
+    sha256: 7192f0f1383b70beaa154313ca9d73fad91a855ce4b2f67eb3ccd3414f654b42
+    lines:
+      DCLAMP: [90, 99]
+      TL431: [54, 83]
+      TL431_H8: [85, 88]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.0
+    pass: 0
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: ti
+  name: TL431_H8
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLVM071
+    member: TL431_PSPICE_AIO_30NOV2017/TL431_PSPICE/TL431.lib
+    archive_sha256: 4088a3a91d919311cfb1b2096412100ba00a3ce2589c5d5bdb9a8bf475b57003
+    sha256: 7192f0f1383b70beaa154313ca9d73fad91a855ce4b2f67eb3ccd3414f654b42
+    lines:
+      TL431_H8: [85, 88]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.0
+    pass: 0
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: bordodynov
+  name: TL431A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - REF
+  - ANODE
+  - CATHODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/TL431A.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 48c90b8c628933d6b1a1c6aa630acae5a2fe7ab55b8ee66b657570e9b61091f3
+    lines:
+      TL431A: [2, 19]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 1
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: bordodynov
+  name: TL431AS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  - R
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/REF/TL431A_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 586f8326dafe8a5ec92510eefc0d6e00cdf6c82190cc4bbca58223db0ee04c60
+    lines:
+      TL431AS: [6, 28]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 1
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: ltwiki; pins from names'
+- source: bordodynov
+  name: TL431ED
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  - R
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/REF/TL431A_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 586f8326dafe8a5ec92510eefc0d6e00cdf6c82190cc4bbca58223db0ee04c60
+    lines:
+      TL431ED: [32, 61]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 1
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: ltwiki; pins from names'
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/tl431.pdf
+  maker: Texas Instruments
+  doc: SLVS543S, rev. S (first issued Aug 2004); table 6.5 TL431C
+  date: 2024-05

@@ -1,0 +1,27 @@
+part: 6Y6G
+kind: tube
+priority: 2
+group: audio_docs
+models:
+- source: diyaudio
+  name: 6Y6GA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G2
+  - G
+  - K
+  verbatim: true
+  get:
+    url: https://www.diyaudio.com/community/threads/mixed-results-with-srpp-otl-for-headphones.332564/post-5665594
+    sha256: f9172258890e67e26423dab50e67bca539c0669cfea8f4f0b00c26e37bd5ea87
+    lines:
+      6Y6GA: [10, 40]
+    fetched: '2019-01-15'
+    note: 'Par de modelos 6Y6GA por Koonw post #2: pentodo/tetrodo completo (.SUBCKT 6Y6GA P G2 G K, con
+      correccion kink/knee via herramienta paint_kip.jar) + version triodo derivada (.SUBCKT TRIODE_6Y6GA).
+      Descargado a diyaudio/6Y6GA_koonw.lib. Tambien existe hallazgo previo relacionado: Zoran post #53
+      (2026-04-02) en hilo "6V6 types in triode - operating points?" con .SUBCKT 6Y6G_triode (otra variante
+      triodo, params MU=6 KG1=885 KP=23.14 KVB=2328), no descargado por ser redundante con el ya guardado.'
+  note: pins from names

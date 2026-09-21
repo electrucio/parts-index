@@ -1,0 +1,44 @@
+part: CD4016
+kind: logic
+priority: 3
+models:
+- source: bordodynov
+  name: CD4016A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/SwitchAna.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
+    lines:
+      CD4016A: [44, 77]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: CD4016B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/SwitchAna.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
+    lines:
+      CD4016B: [78, 111]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

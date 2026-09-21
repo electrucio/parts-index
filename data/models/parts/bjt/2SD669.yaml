@@ -1,0 +1,122 @@
+part: 2SD669
+kind: bjt
+priority: 3
+group: driver_vas
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 7 pass, 0 off, 0 fail of 7 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with kicad-spice-library on
+  score and typical-value error, chosen as the more original source'
+models:
+- source: bordodynov
+  name: 2SD669A
+  def: model
+  type: NPN
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      2SD669A: [919, 919]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: 2SD669
+  def: model
+  type: NPN
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      2SD669: [1815, 1815]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: 2SD669A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Mixer/standard.bjt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+    lines:
+      2SD669A: [866, 866]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: 2SD669A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
+    lines:
+      2SD669A: [858, 858]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+- source: kicad-spice-library
+  name: 2SD669A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJT.lib
+    sha256: 1f07e6e6b38c9b5d8d19dbccfd3c29741281ead66a7b48cc40eb82e9684580eb
+    lines:
+      2SD669A: [856, 856]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+datasheet:
+  url: https://aliot.com.ua/pdf/2sd669.pdf
+  maker: hitachi
+  doc: 2SD669, 2SD669A ADE-208-899 (Z) 1st. Edition
+  date: 2000-09

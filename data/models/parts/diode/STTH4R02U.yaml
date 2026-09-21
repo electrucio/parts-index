@@ -1,0 +1,18 @@
+part: STTH4R02U
+kind: diode
+priority: 4
+group: rectifier
+models:
+- source: ltwiki
+  name: STTH4R02U
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/DIOD/DIODE_ST_10.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5fbff1861259b242b3696034eae7e9618dee580d80ef08990e75eff81815a0f7
+    lines:
+      STTH4R02U: [1740, 1742]
+    fetched: '2026-09-14'

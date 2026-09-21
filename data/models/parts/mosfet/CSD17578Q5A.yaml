@@ -1,0 +1,23 @@
+part: CSD17578Q5A
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: ti
+  name: CSD17578Q5A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLPM345
+    member: CSD17578Q5A.lib
+    archive_sha256: 0892cabe565dad3ec69ed27da205072d491e6f00049d4529aa42ca94b0bf427b
+    sha256: 806e6af505eafe2e515f04fa8826a4ee232420a0ad9e4393192b0214145ec3a1
+    lines:
+      CSD17578Q5A: [44, 106]
+    fetched: '2026-09-19'
+  note: pins from default order (unverified)

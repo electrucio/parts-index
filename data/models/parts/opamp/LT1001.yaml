@@ -1,0 +1,127 @@
+part: LT1001
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: LT1001
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      LT1001: [8927, 8969]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: bordodynov
+  name: LT1001A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      LT1001A: [8999, 9041]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: bordodynov
+  name: LT1001S8
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      LT1001S8: [8981, 8983]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: ltwiki
+  name: LT1001
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/texas.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+    lines:
+      LT1001: [3921, 3955]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library; pins from comment words'
+- source: ltwiki
+  name: LT1001S8
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - LT1001
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+    lines:
+      LT1001: [663, 705]
+      LT1001S8: [755, 757]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: ltwiki
+  name: LT1001A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Symbol Types For Subcircuits/ltcx_test1.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 5ca7b948e6a0217e51b78d49213e5d5720bf26d849d52a60584fedd5e133c1ce
+    lines:
+      LT1001A: [637, 679]
+    fetched: '2026-09-14'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)

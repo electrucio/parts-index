@@ -1,0 +1,177 @@
+part: TL494
+kind: smps
+priority: 2
+models:
+- source: bordodynov
+  name: tl494
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN1
+  - -IN1
+  - IN2
+  - -IN2
+  - FB
+  - DTC
+  - Vref
+  - OCT
+  - CT1
+  - ET1
+  - CT2
+  - ET2
+  - Ct
+  - Rt
+  - GND
+  - Vcc
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      tl494: [17133, 17198]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''smps'''
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: tl494h
+  def: subckt
+  type: SUBCKT
+  pins:
+  - 1IN+
+  - 1IN-
+  - 2IN+
+  - 2IN-
+  - FB
+  - DTC
+  - REF
+  - OC
+  - C1
+  - E1
+  - C2
+  - E2
+  - CT
+  - RT
+  - GRD
+  - VCC
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      tl494h: [17201, 17259]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''smps'''
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: tl494
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN1
+  - -IN1
+  - IN2
+  - -IN2
+  - FB
+  - DTC
+  - Vref
+  - OCT
+  - CT1
+  - ET1
+  - CT2
+  - ET2
+  - Ct
+  - Rt
+  - GND
+  - Vcc
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/ValVol.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: c12415c540e806c1348c9c16e84708c84fe8c9c6cb59b5ade3420c0fbb85e44d
+    lines:
+      tl494: [8, 77]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''smps'''
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: tl494
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN1
+  - -IN1
+  - IN2
+  - -IN2
+  - FB
+  - DTC
+  - Vref
+  - OCT
+  - CT1
+  - ET1
+  - CT2
+  - ET2
+  - Ct
+  - Rt
+  - GND
+  - Vcc
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/ValVol/ValVol.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 26e23b7fac523d6244507aedbdb38fe2fbf74fa181532bfb792d5db75f06245c
+    lines:
+      tl494: [8, 76]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''smps'''
+- source: ltwiki
+  name: tl494
+  def: subckt
+  type: SUBCKT
+  pins:
+  - In1
+  - -In1
+  - In2
+  - -In2
+  - Fb
+  - Dtc
+  - Vref
+  - Oct
+  - Ct1
+  - Et1
+  - Ct2
+  - Et2
+  - Ct
+  - Rt
+  - G
+  - Vcc
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Robertugo/Modelos/tl494/Final/tl494.sub
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: d0a3d13497f8dcfbd13c857472d08da6601367abc6565265ee6cb699e8693219
+    lines:
+      tl494: [1, 57]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''smps'''
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/tl494.pdf
+  maker: Texas Instruments
+  doc: SLVS074J, rev. J (January 1983, revised September 2026); TL494C/TL494I columns
+  date: 2026-09

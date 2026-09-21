@@ -1,0 +1,22 @@
+part: SI2306
+kind: mosfet
+priority: 4
+group: small_signal
+models:
+- source: vishay
+  name: Si2306BDS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/77623/Si2306BD.txt
+    sha256: c7acb02363c65df04c71e1a075c2dff8e4b34946efc472bf7292778bba48d6d0
+    lines:
+      Si2306BDS: [4, 28]
+    fetched: '2026-09-19'
+    note: 'MOSFETs, PSpice Models (*.txt): Si2306BDS, NMOS, PMOS, DBD, RTEMP'
+  note: 'same code also in: ltwiki; pins from default order (unverified)'

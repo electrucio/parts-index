@@ -1,0 +1,41 @@
+part: ZVP3310F
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: ltwiki
+  name: ZVP3310F
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ZETEX/LIB/zmodels.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 8d3fb488666b5f813a666d5c589ac6c7779a2c44a4b38799b2a41ca0006368e7
+    lines:
+      ZVP3310F: [3867, 3888]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)
+- source: ltwiki
+  name: ZVP3310A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ZETEX/LIB/zmodels.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 8d3fb488666b5f813a666d5c589ac6c7779a2c44a4b38799b2a41ca0006368e7
+    lines:
+      ZVP3310A: [3922, 3943]
+    fetched: '2026-09-14'
+  note: found under the alias ZVP3310; pins from default order (unverified)

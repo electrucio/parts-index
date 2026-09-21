@@ -1,0 +1,247 @@
+part: LM833
+kind: opamp
+priority: 2
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 11 pass, 1 off, 0 fail of 12 judged rows (2 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, bordodynov,
+  bordodynov on score and typical-value error, chosen as the more original source'
+models:
+- source: ti
+  name: LM833
+  def: subckt
+  type: SUBCKT
+  pins:
+  - OUT
+  - IN-
+  - IN+
+  - VCC-
+  - VCC+
+  deps:
+  - DallasAmp_DiodeIdeal_HT4
+  - DALLASAMP_VINRANGE_HT4
+  - ANALOG_BUFFER
+  - DALLASAMP_ZIN_HT4
+  - DALLASAMP_NONDOMPOLE_HT4
+  - DLSINV
+  - DallasAmp_GmItail_HT4
+  - CMRR
+  - CMRR_NEW
+  - DallasAmp_CMRR_HT4
+  - DALLASAMP_RECOVERYCIRCUIT_HT4
+  - PSRR_DUAL_NEW
+  - DallasAmp_PSRR_HT4
+  - FEMT
+  - DallasAmp_Inoise_HT4
+  - Vinoffset
+  - DallasAmp_Iq_HT4
+  - OUTPUTCIR_ISC_DIDEAL
+  - HPA_COMP_IDEAL
+  - DallasAmp_OutputCir_IscVlimit_HT4
+  - DallasAmp_OutputCir_IsinkVlimit_HT4
+  - HPA_OR2
+  - DallasAmp_OutputCir_VOHVOL_HT4
+  - DallasAmp_OutputCir_VOH_HT4
+  - DallasAmp_OutputCir_Rout_HT4
+  - DallasAmp_OutputCir_IsourceVlimit_HT4
+  - DLS
+  - DallasAmp_OutputCir_RecoveryAssist_HT4
+  - DallasAmp_OutputCir_ILOAD_HT4
+  - DallasAmp_OutputCir_VOL_HT4
+  - DALLASAMP_OUTPUTCIR_HT4
+  - VNSE
+  - DallasAmp_Vnoise_HT4
+  - HPA_INV_IDEAL
+  - DALLASAMP_DOMPOLE_HT4
+  - DALLASAMP_HT4
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNLM202
+    member: LM833.LIB
+    archive_sha256: aff1107b618db01c55deb3999bf4f10500f047a24a75804dd6fc3d43c57c1150
+    sha256: 753e9ce6cf79187ab45521710656d577293761afe006c974021e822ce0f12db3
+    lines:
+      ANALOG_BUFFER: [46, 50]
+      CMRR: [580, 589]
+      CMRR_NEW: [591, 606]
+      DALLASAMP_DOMPOLE_HT4: [52, 55]
+      DALLASAMP_HT4: [139, 165]
+      DALLASAMP_NONDOMPOLE_HT4: [57, 61]
+      DALLASAMP_OUTPUTCIR_HT4: [72, 108]
+      DALLASAMP_RECOVERYCIRCUIT_HT4: [63, 70]
+      DALLASAMP_VINRANGE_HT4: [119, 126]
+      DALLASAMP_ZIN_HT4: [128, 137]
+      DLS: [608, 612]
+      DLSINV: [614, 618]
+      DallasAmp_CMRR_HT4: [189, 198]
+      DallasAmp_DiodeIdeal_HT4: [200, 203]
+      DallasAmp_GmItail_HT4: [205, 239]
+      DallasAmp_Inoise_HT4: [248, 253]
+      DallasAmp_Iq_HT4: [255, 290]
+      DallasAmp_OutputCir_ILOAD_HT4: [292, 297]
+      DallasAmp_OutputCir_IscVlimit_HT4: [304, 322]
+      DallasAmp_OutputCir_IsinkVlimit_HT4: [324, 335]
+      DallasAmp_OutputCir_IsourceVlimit_HT4: [337, 348]
+      DallasAmp_OutputCir_RecoveryAssist_HT4: [350, 354]
+      DallasAmp_OutputCir_Rout_HT4: [356, 364]
+      DallasAmp_OutputCir_VOHVOL_HT4: [371, 393]
+      DallasAmp_OutputCir_VOH_HT4: [395, 406]
+      DallasAmp_OutputCir_VOL_HT4: [408, 419]
+      DallasAmp_PSRR_HT4: [421, 437]
+      DallasAmp_Vnoise_HT4: [241, 246]
+      FEMT: [472, 493]
+      HPA_COMP_IDEAL: [185, 187]
+      HPA_INV_IDEAL: [181, 183]
+      HPA_OR2: [175, 179]
+      LM833: [41, 44]
+      OUTPUTCIR_ISC_DIDEAL: [622, 622]
+      PSRR_DUAL_NEW: [547, 578]
+      VNSE: [449, 470]
+      Vinoffset: [167, 173]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 12
+    typical_rows: 0
+- source: stmicro
+  name: LM833
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '3'
+  - '2'
+  - '4'
+  - '5'
+  verbatim: false
+  changes:
+  - st_analog_token
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/STMicroelectronics/Standard%20Linear%20ICs/Spice/lm833.txt
+    sha256: cea2f7ff8ac8b2b6129c322dbb18fe0c6b87acb631ed89fd48b53bb003ff943e
+    lines:
+      LM833: [25, 93]
+    fetched: '2026-09-14'
+    note: ST "Standard Linear ICs Macromodels, 1993" (LM833), mirrored on ltwiki.org
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 12
+    typical_rows: 0
+- source: bordodynov
+  name: LM833
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      LM833: [560, 593]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: LM833/MC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/on_amp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+    lines:
+      LM833/MC: [1897, 1931]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+- source: bordodynov
+  name: LM833
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_NSC.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+    lines:
+      LM833: [7417, 7450]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: LM833/ON
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/on_amp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+    lines:
+      LM833/ON: [419, 453]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm833.pdf
+  maker: Texas Instruments
+  doc: SLOS481B, rev. B (first issued Jul 2010)
+  date: 2014-10

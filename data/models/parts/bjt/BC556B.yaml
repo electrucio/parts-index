@@ -1,0 +1,53 @@
+part: BC556B
+kind: bjt
+priority: 2
+group: small_signal_pnp
+preferred: ltspice-native
+preferred_why: 'best datasheet agreement: 9 pass, 2 off, 0 fail of 11 judged rows (5 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with ltwiki on score and typical-value
+  error, chosen as the more original source'
+models:
+- source: ltspice-native
+  name: BC556B
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.bjt
+    sha256: 15e7c7fa149dbdc97bb647f77681999a38fb4c324928beb4f1fa2a589288f587
+    lines:
+      BC556B: [109, 109]
+  verification:
+    score: 0.818
+    pass: 9
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: BC556B
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
+    lines:
+      BC556B: [543, 543]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.818
+    pass: 9
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: kicad-spice-library, spiceypedals'
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/bc556b-d.pdf
+  maker: onsemi
+  doc: BC556B/D Rev. 3 (March 2007) - covers BC556B, BC557A/B/C, BC558B

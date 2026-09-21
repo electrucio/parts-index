@@ -1,0 +1,26 @@
+part: TL5001
+kind: smps
+priority: 3
+models:
+- source: ltwiki
+  name: TL5001
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/TL5001.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: cfb4522eaedc125ddfc4eb6d33f31100cfb9b45c9ea9d5c4fcd203c84a4b915e
+    lines:
+      TL5001: [8, 120]
+    fetched: '2026-09-14'

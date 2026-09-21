@@ -1,0 +1,48 @@
+part: 2N3905
+kind: bjt
+priority: 4
+group: small_signal_pnp
+models:
+- source: duncanamps
+  name: Q2N3905
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/bjt/pnp.mod
+    sha256: 9554024b39ab1fa861067c6af517fbe13435370dd0e78c4ed0d461fe355488a1
+    lines:
+      Q2N3905: [59, 61]
+    fetched: '2026-09-14'
+    note: 10 subckts, 124 .model
+- source: bordodynov
+  name: 2N3905
+  def: model
+  type: PNP
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      2N3905: [354, 354]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: 2N3905
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Mixer/standard.bjt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+    lines:
+      2N3905: [327, 327]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'

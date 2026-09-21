@@ -1,0 +1,106 @@
+part: IRLZ34N
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: bordodynov
+  name: IRLZ34N
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRLZ34N: [1189, 1189]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: irlz34n
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irlz34n.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: fe1b6cf08f2a16886cf23f3fa90106968411c3a15717fb4e02b3c538b6789853
+    lines:
+      irlz34n: [1, 60]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: irlz34ns
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irlz34ns.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 80a5560792b2ac3fe9bb79a4121b176b3e3222d73740cf6a171fc8f1772cb3ad
+    lines:
+      irlz34ns: [1, 60]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: kicad-spice-library
+  name: irlz34n
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+    sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+    lines:
+      irlz34n: [21427, 21486]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: irlz34ns
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+    sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+    lines:
+      irlz34ns: [21487, 21546]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: IRLZ34N
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+    sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+    lines:
+      IRLZ34N: [14850, 14895]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

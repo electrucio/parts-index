@@ -1,0 +1,35 @@
+part: BZX85C3V3
+kind: zener
+priority: 3
+preferred: bordodynov
+preferred_why: 'STAND-IN: the preferred model is of 1N4728A, declared equivalent in catalog/wanted.yaml,
+  not of BZX85C3V3 itself; best datasheet agreement: 4 pass, 0 off, 0 fail of 4 judged rows (0 against
+  typical values or curve points, the rest against min/max limits; 0 not measurable). WEAK EVIDENCE: fewer
+  than 5 rows, all min/max limits'
+models:
+- source: bordodynov
+  name: 1N4728A
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N4728A: [1430, 1430]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of 1N4728A, not of BZX85C3V3; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://www.vishay.com/docs/85607/bzx85.pdf
+  maker: Vishay
+  doc: BZX85, Document Number 85607, Rev. 2.9, 17-Sep-2025

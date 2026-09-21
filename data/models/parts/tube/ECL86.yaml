@@ -1,0 +1,226 @@
+part: ECL86
+kind: tube
+priority: 2
+group: audio_docs
+models:
+- source: reefman
+  name: ECL86_C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - TriodeK
+  - PCL86_C
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      ECL86_C: [512, 514]
+      PCL86_C: [1022, 1029]
+      TriodeK: [2345, 2357]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: reefman
+  name: ECL86_L
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - BTetrodeDE
+  - PCL86_L
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      BTetrodeDE: [2232, 2249]
+      ECL86_L: [516, 518]
+      PCL86_L: [1031, 1040]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: suusi-tubes
+  name: ECL86P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      ECL86P: [1067, 1071]
+      PENTODE1: [2010, 2023]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  note: pins from inline comment
+- source: suusi-tubes
+  name: ECL86P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      ECL86P: [2676, 2680]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: suusi-tubes
+  name: ECL86T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      ECL86T: [1074, 1078]
+      TRIODE: [1980, 1991]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  note: pins from inline comment
+- source: suusi-tubes
+  name: ECL86T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      ECL86T: [2669, 2673]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: bordodynov
+  name: ECL86P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - DX
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Tubes_Koren.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 510f4c10247ba46358ff5a6b3f15189bec5cf207507ccc70922184385a66c360
+    lines:
+      DX: [1206, 1206]
+      ECL86P: [633, 637]
+      PENTODE1: [1159, 1171]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki, robrobinette; pins from inline comment'
+- source: bordodynov
+  name: ECL86T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - DX
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Tubes_Koren.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 510f4c10247ba46358ff5a6b3f15189bec5cf207507ccc70922184385a66c360
+    lines:
+      DX: [1206, 1206]
+      ECL86T: [640, 644]
+      TRIODE: [1131, 1141]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki, robrobinette; pins from inline comment'
+- source: bordodynov
+  name: ECL86P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Koren_Tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
+    lines:
+      ECL86P: [1096, 1100]
+      PENTODE1: [2046, 2059]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from inline comment'
+- source: bordodynov
+  name: ECL86T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Koren_Tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
+    lines:
+      ECL86T: [1103, 1107]
+      TRIODE: [2016, 2027]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from inline comment'

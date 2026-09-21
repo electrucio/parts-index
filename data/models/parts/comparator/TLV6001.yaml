@@ -1,0 +1,44 @@
+part: TLV6001
+kind: comparator
+priority: 4
+models:
+- source: bordodynov
+  name: TLV6001_AB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/TLV6001_AB.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: f6d7a05c7f45fef5d5a6329f623bda5f0011602020f8461370157a7a97683e2f
+    lines:
+      TLV6001_AB: [1, 31]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: TLV6001
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/TLV6001.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 69f370878dff7c73c824ed06d6d8743a9927e55c4a9495e97b63e5f8493b65aa
+    lines:
+      TLV6001: [32, 351]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'

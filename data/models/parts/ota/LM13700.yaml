@@ -1,0 +1,135 @@
+part: LM13700
+kind: ota
+priority: 1
+preferred: ti
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (4 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with kicad-spice-library,
+  kicad-spice-library, spiceypedals on score and typical-value error, chosen as the more original source'
+models:
+- source: ti
+  name: LM13700/NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IABC
+  - DBIAS
+  - INP
+  - INN
+  - OUT
+  - VN
+  - BUFIN
+  - BUFOUT
+  - VP
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNOM267
+    member: LM13700.MOD
+    archive_sha256: 1289ea54f143164a6e3200486aa3f4210e72119451c9c5de13c2b7a87147f690
+    sha256: 666df501773da5e65f7fd3b3c806b2c1ae7770784685dd8191a9df33b382f390
+    lines:
+      LM13700/NS: [33, 91]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: bordodynov, kicad-spice-library, ltspice-guitar-pedals, ltwiki, spiceypedals;
+    pins from LM13700 DIP pin numbers'
+- source: kicad-spice-library
+  name: LM13700_NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IABC
+  - DBIAS
+  - INP
+  - INN
+  - OUT
+  - VN
+  - BUFIN
+  - BUFOUT
+  - VP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nation.lib
+    sha256: 97af188e570afc5c2b4b8246ade0670422d90c402c01a0f0383df0a6a37af9ac
+    lines:
+      LM13700_NS: [3058, 3116]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: pins from LM13700 DIP pin numbers
+- source: kicad-spice-library
+  name: LM13700N
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IABC
+  - DBIAS
+  - INP
+  - INN
+  - OUT
+  - VN
+  - BUFIN
+  - BUFOUT
+  - VP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/NATBJT.LIB
+    sha256: cf6a0a8ae76413edbbe02dda7fa5372957d07a3454547dfb80f3bff10d99492a
+    lines:
+      LM13700N: [3443, 3499]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: pins from LM13700 DIP pin numbers
+- source: spiceypedals
+  name: LM13700
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IABC
+  - DBIAS
+  - INP
+  - INN
+  - OUT
+  - VN
+  - BUFIN
+  - BUFOUT
+  - VP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/thecowgoesmoo/SPICEyPedals/60f67a6fdb14b9d7c83630b1cade358bfdd4e638/PartModels/LM13700.SUB
+    sha256: 5f71c1e081fb21045e209f8025805ef35deba1bef1911a49396d85f915f0a66d
+    lines:
+      LM13700: [33, 91]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit 60f67a6 (MicroCap-LIBRARY-for-ngspice/ and modelos_subckt/ not kept)
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: pins from LM13700 DIP pin numbers
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm13700.pdf
+  maker: Texas Instruments (National Semiconductor)
+  doc: SNOSBW2F, rev. F (first issued Nov 1999)
+  date: 2015-11

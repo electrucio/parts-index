@@ -1,0 +1,46 @@
+part: MBRS130LT3
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: onsemi
+  name: mbrs130lt3
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mbrs130.lib
+    sha256: 42bc82462cc5d4ebd6ad7b7e9913140b7d8369dadcbdaf9c215f47378fcec251
+    lines:
+      mbrs130lt3: [38, 52]
+    fetched: '2026-09-14'
+    note: 'model(s): mbrs130lt3 (D .model)'
+  note: 'same code also in: kicad-spice-library'
+- source: bordodynov
+  name: MBRS130L
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      MBRS130L: [183, 183]
+    fetched: '2026-09-14'
+  note: 'found under the alias MBRS130L; same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: MBRS130L
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard3.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 13cb55bb7184e06a29b64a8d1991371f8414622ef1213c5b7bcb01e358ed71ee
+    lines:
+      MBRS130L: [45, 45]
+    fetched: '2026-09-14'
+  note: 'found under the alias MBRS130L; same code also in: kicad-spice-library'

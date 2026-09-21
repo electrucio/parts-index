@@ -1,0 +1,154 @@
+part: IRF840
+kind: mosfet
+priority: 3
+group: power_vertical
+preferred: infineon
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable)'
+models:
+- source: infineon
+  name: irf840
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://web.archive.org/web/20010503070247id_/http://www.irf.com:80/product-info/models/SPICE/irf840.spi
+    sha256: a3420046e17439fea15f6a345de134a064646641149041b813566a5aae3e2c4d
+    lines:
+      irf840: [1, 60]
+    fetched: '2026-09-14'
+    note: International Rectifier legacy HEXFET SPICE model; original URL http://www.irf.com:80/product-info/models/SPICE/irf840.spi
+      (Wayback capture 20010503070247)
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: IRF840LC
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRF840LC: [1100, 1100]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 2
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: irf840al
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/MOS/IRF/LIB/irf840al.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: e42b062e9dc963773b29c64b53cf792bd9d3051a94b53447095cd0b7f561850b
+    lines:
+      irf840al: [1, 56]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: irf840lc
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/MOS/IRF/LIB/irf840lc.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: dd00301e9a70cb8dd4435f47a3679659a03ab4115c628a83896818ad9fa4ad46
+    lines:
+      irf840lc: [1, 60]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 1
+    fail: 1
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: IRF840
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRF840: [1099, 1099]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: ltwiki'
+- source: kicad-spice-library
+  name: irf840lc
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf840lc.spi
+    sha256: 28315de624460e6fbd0698990f9e840672850a5a783e8db9b4529831ba8a400a
+    lines:
+      irf840lc: [1, 60]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 1
+    fail: 1
+    not_measurable: 2
+    typical_rows: 3
+  note: pins from default order (unverified)
+datasheet:
+  url: https://www.vishay.com/docs/91070/91070.pdf
+  maker: Vishay Siliconix
+  doc: Document Number 91070, S21-0883-Rev. E
+  date: '2021-08-30'

@@ -1,0 +1,38 @@
+part: PMEG2020EH
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: nexperia
+  name: PMEG2020EH
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG2020EH.txt
+    sha256: 324d5dc93c9a95a689e53d358b8f1ddc8194753dcc4bf923e497cf8a38d2e953
+    lines:
+      PMEG2020EH: [33, 49]
+    fetched: '2026-09-19'
+    note: 'PMEG2020EH: PMEG2020EH, PMEG2020EH'
+  note: pins from comment words
+- source: ltwiki
+  name: PMEG2020EJ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG2020EJ.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 8a0b7159195dd74c64dca0f2f32e9b148710f75844b24a840c0e3fd231a9875c
+    lines:
+      PMEG2020EJ: [2, 24]
+    fetched: '2026-09-14'
+  note: found under the alias PMEG2020E; pins from default order (unverified)

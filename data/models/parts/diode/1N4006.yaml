@@ -1,0 +1,83 @@
+part: 1N4006
+kind: diode
+priority: 4
+group: rectifier
+models:
+- source: onsemi
+  name: D1n4006rl
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n4006rl.lib
+    sha256: 8d2e974e03d71a5117075b592be1038bc2a2ded5dad16f0f9c9ac083265704b1
+    lines:
+      D1n4006rl: [12, 16]
+    fetched: '2026-09-19'
+    note: '1N4006: D1n4006rl'
+- source: duncanamps
+  name: D1N4006
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/diode.mod
+    sha256: bb58d6a99a7204cfa89803598a0331243f10c11afb1b6279fb56fec2ae14c941
+    lines:
+      D1N4006: [46, 47]
+    fetched: '2026-09-14'
+    note: 34 .model
+- source: suusi-tubes
+  name: 1N4006
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: MotorolaRectifiers.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: 88449ae88e2f751e584a6c2a079ded8a074d765cee37ce146ad1fd34182c5b35
+    lines:
+      1N4006: [8, 8]
+    fetched: '2026-09-14'
+- source: bordodynov
+  name: D1N4006
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      D1N4006: [158, 158]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: kicad-spice-library
+  name: D1N4006
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.dio
+    sha256: 85043335b56cc10779c03bcd2c237472827cf28c004628c9ddacb6fb3d8705c7
+    lines:
+      D1N4006: [127, 127]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: D1N4006
+  def: model
+  type: D
+  deps:
+  - D1N4001
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      D1N4001: [95, 96]
+      D1N4006: [106, 106]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

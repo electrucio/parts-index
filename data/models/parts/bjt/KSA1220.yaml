@@ -1,0 +1,104 @@
+part: KSA1220
+kind: bjt
+priority: 3
+group: driver_vas
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 1 fail of 7 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with ltwiki on score and typical-value
+  error, chosen as the more original source'
+models:
+- source: bordodynov
+  name: KSA1220
+  def: model
+  type: PNP
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      KSA1220: [810, 810]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.714
+    pass: 5
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: KSA1220A_k
+  def: model
+  type: PNP
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      KSA1220A_k: [1197, 1197]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: KSA1220
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
+    lines:
+      KSA1220: [757, 757]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.714
+    pass: 5
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: KSA1220A_k
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Mixer/standard.bjt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+    lines:
+      KSA1220A_k: [1140, 1140]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library'
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/ksa1220a-d.pdf
+  maker: fairchild (onsemi-hosted)
+  doc: KSA1220/1220A Rev. A1 (Fairchild, June 2001), behind the onsemi 'Is Now Part of' cover page
+  date: 2001-06

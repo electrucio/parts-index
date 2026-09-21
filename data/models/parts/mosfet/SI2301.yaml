@@ -1,0 +1,56 @@
+part: SI2301
+kind: mosfet
+priority: 3
+group: small_signal
+models:
+- source: vishay
+  name: Si2301BDS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/76385/Si2301BD.txt
+    sha256: cf021198ae4ff32c4e7409068b3565e6cb4516503361e9c402276a178a485592
+    lines:
+      Si2301BDS: [4, 28]
+    fetched: '2026-09-19'
+    note: 'MOSFETs, PSpice Models (*.txt): Si2301BDS, PMOS, NMOS, DBD, RTEMP'
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: SI2301p
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/SILICONX.LIB
+    sha256: 1939c14a18c06438238d8755b55a2bad3bfda92563363e4bd0d13750f60f07f4
+    lines:
+      SI2301p: [1960, 1979]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: si2301p_SI
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/vishay.lib
+    sha256: ac28d4292eda0d5bc84b0d744df3927070a13ab71e97f3d47a5958dcd0b4a8d5
+    lines:
+      si2301p_SI: [12, 36]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

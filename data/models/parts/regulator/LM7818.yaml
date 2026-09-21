@@ -1,0 +1,22 @@
+part: LM7818
+kind: regulator
+priority: 3
+models:
+- source: bordodynov
+  name: LM7818
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - GND
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/regulators.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1998b5aaba8b44019bf630a561c739ff33a83996cd6600bbaa8b8c3e02cf5bf2
+    lines:
+      LM7818: [375, 432]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from LM78 package pin numbers (unverified)'

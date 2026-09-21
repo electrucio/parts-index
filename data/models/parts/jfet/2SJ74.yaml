@@ -1,0 +1,115 @@
+part: 2SJ74
+kind: jfet
+priority: 2
+group: p_channel
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 7 pass, 0 off, 2 fail of 9 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with kicad-spice-library on
+  score and typical-value error, chosen as the more original source'
+models:
+- source: bordodynov
+  name: 2SJ74
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      2SJ74: [522, 522]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 6
+    marginal: 0
+    fail: 3
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: J2sj74
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      J2sj74: [768, 768]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 6
+    marginal: 0
+    fail: 3
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: J2SJ74X
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      J2SJ74X: [769, 769]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.778
+    pass: 7
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: J2SJ74
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/JFET.LIB
+    sha256: 074ecd8e372f5b20267f32722a3c5030cbf6b25ba4588b83b8377c9cc7883a01
+    lines:
+      J2SJ74: [1059, 1060]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.778
+    pass: 7
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 3
+- source: spiceypedals
+  name: 2SJ74
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/thecowgoesmoo/SPICEyPedals/60f67a6fdb14b9d7c83630b1cade358bfdd4e638/PartModels/basic_models/JFet/2SJ74.mod
+    sha256: eaf575c738a0c9eb2899be15c3f9019b50059a1d3aaaa0cb2f9daa36578b644c
+    lines:
+      2SJ74: [4, 7]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit 60f67a6 (MicroCap-LIBRARY-for-ngspice/ and modelos_subckt/ not kept)
+  verification:
+    score: 0.556
+    pass: 5
+    marginal: 2
+    fail: 2
+    not_measurable: 0
+    typical_rows: 3
+datasheet:
+  url: https://www.mouser.com/datasheet/2/408/6903-18063.pdf
+  maker: Toshiba
+  doc: 2SJ74 (Toshiba data sheet)
+  date: '2007-11-01'

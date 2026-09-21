@@ -1,0 +1,23 @@
+part: IRF3704S
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: bordodynov
+  name: irf3704zsl
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irf3704zsl.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: aa274a440d5df3557275564af31027278b423d95844c9769e4e87787376a47aa
+    lines:
+      irf3704zsl: [62, 71]
+    fetched: '2026-09-14'
+  note: 'found under the alias IRF3704; same code also in: ltwiki; pins from default order (unverified)'

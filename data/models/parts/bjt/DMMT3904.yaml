@@ -1,0 +1,25 @@
+part: DMMT3904
+kind: bjt
+priority: 4
+group: small_signal_npn
+models:
+- source: ltwiki
+  name: DMMT3904W
+  def: subckt
+  type: SUBCKT
+  pins:
+  - b2
+  - b1
+  - c1
+  - e1
+  - e2
+  - c2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/DMMT3904W.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6f2e0b4e86b5b7a602e80ae9bf03246e12ea8ccdba0c301aa940b629f3250b83
+    lines:
+      DMMT3904W: [3, 12]
+    fetched: '2026-09-14'

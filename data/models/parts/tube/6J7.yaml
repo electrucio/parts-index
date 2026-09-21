@@ -1,0 +1,101 @@
+part: 6J7
+kind: tube
+priority: 2
+group: audio_docs
+models:
+- source: ayumi
+  name: 6J7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6J7.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 8244fda9f30a0dc4b12d5dc720a01215cba16d0573740f69887b97fbf9192ad3
+    lines:
+      6J7: [10, 30]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: ayumi
+  name: 6J7T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6J7T.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 70b7d121d90da44b37f85e60b4474b750cfcf517cb9a925665b0d2f660ddb2da
+    lines:
+      6J7T: [9, 22]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: bordodynov
+  name: 6J7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/tube.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0eeca282ba6506a1a4826c5833c023b17df0c557ef46c9ade79abe98a9c24a3f
+    lines:
+      6J7: [1660, 1680]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from names'
+- source: bordodynov
+  name: 6J7_T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/Tube_IM.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8eed72dbd55b52f5eb6004bcaacd3d88c79e3e3df9ef28462570c887a70e0d00
+    lines:
+      6J7_T: [2140, 2155]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from inline comment'
+- source: ltwiki
+  name: 6J7T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Triode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+    lines:
+      6J7T: [2121, 2134]
+    fetched: '2026-09-14'
+  note: pins from names

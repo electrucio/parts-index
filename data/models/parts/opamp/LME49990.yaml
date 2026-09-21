@@ -1,0 +1,75 @@
+part: LME49990
+kind: opamp
+priority: 3
+models:
+- source: ltwiki
+  name: LME49990_ED
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/LME49990_ED.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ad81b78d1858929c54f9af938d4980ba5d97d25a420194bf421179ca35253c34
+    lines:
+      LME49990_ED: [31, 68]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)
+- source: ltwiki
+  name: LME49990
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - VNSE
+  - D_ideal
+  - Rnoiseless
+  - Amp_Dyn_Iout_Siq2
+  - Amp_Dyn_Iout_Siq1
+  - Tran_Iout
+  - Zout_Uz_H1
+  - HPA_PD_I
+  - FEMT
+  - VCCS_Limit
+  - EPOLY1
+  - Zout_Uz_S1
+  - HPA_PD_Sgnl
+  - Zout_Uz_S2
+  - VCVS_Limit
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/LME49990.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebd104f74287ff637e3d56908f0f45dfdca123cc66a079a3da394a5970adcb2c
+    lines:
+      Amp_Dyn_Iout_Siq1: [259, 263]
+      Amp_Dyn_Iout_Siq2: [266, 270]
+      D_ideal: [169, 173]
+      EPOLY1: [306, 311]
+      FEMT: [212, 245]
+      HPA_PD_I: [285, 292]
+      HPA_PD_Sgnl: [294, 296]
+      LME49990: [41, 148]
+      Rnoiseless: [314, 316]
+      Tran_Iout: [248, 257]
+      VCCS_Limit: [273, 276]
+      VCVS_Limit: [279, 282]
+      VNSE: [176, 209]
+      Zout_Uz_H1: [163, 166]
+      Zout_Uz_S1: [157, 161]
+      Zout_Uz_S2: [151, 155]
+    fetched: '2026-09-14'
+  note: pins from names

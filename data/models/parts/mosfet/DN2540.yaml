@@ -1,0 +1,87 @@
+part: DN2540
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: bordodynov
+  name: DN2540__
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      DN2540__: [1457, 1457]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: DN2540h
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      DN2540h: [1537, 1537]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: DN2540
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      DN2540: [305, 305]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: DN2540
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.mos
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 0f6a0a30f327903e5b61c3764e08354839fed85c6ce2d4a8b3d708d6c2ec9533
+    lines:
+      DN2540: [305, 305]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: DN2540
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Discretos/Mos&Fet/lnd250/supertex.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: bee2ceb743df92ef4c2c95e8784a0e1bfac5674feaab21e8c42723f3c9104084
+    lines:
+      DN2540: [76, 81]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: DN2540_
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+    sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+    lines:
+      DN2540_: [1526, 1526]
+    fetched: '2026-09-14'
+    note: Bordodynov VDMOS collection for LTspice IV

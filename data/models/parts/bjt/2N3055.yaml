@@ -1,0 +1,133 @@
+part: 2N3055
+kind: bjt
+priority: 1
+group: power_output
+preferred: onsemi
+preferred_why: 'best datasheet agreement: 7 pass, 0 off, 0 fail of 7 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov on score and
+  typical-value error, chosen as the more original source. Limits only: the datasheet prints no typical
+  values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: onsemi
+  name: Q2n3055
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/2n3055.lib
+    sha256: 8d9e78eec077daca06e67185ffe4e09df4121af252e0741299769100a94fe0f6
+    lines:
+      Q2n3055: [12, 22]
+    fetched: '2026-09-14'
+    note: 'model(s): Q2n3055 (NPN .model)'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+- source: onsemi
+  name: Q2n3055a
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/2n3055a.lib
+    sha256: abf1075833ec55f8979a3a3fb1c009e8f11aee1b03dd0676c677809f3783f6e4
+    lines:
+      Q2n3055a: [12, 22]
+    fetched: '2026-09-14'
+    note: 'model(s): Q2n3055a (NPN .model)'
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: ltspice-native
+  name: 2N3055
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.bjt
+    sha256: 15e7c7fa149dbdc97bb647f77681999a38fb4c324928beb4f1fa2a589288f587
+    lines:
+      2N3055: [83, 85]
+  verification:
+    score: 0.714
+    pass: 5
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: duncanamps
+  name: Q2N3055
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/bjt/npn.mod
+    sha256: 57dfef87174fc8f0310bc9527e0bf7ef3fa92d13d295ea8a504d3ba67f13ec87
+    lines:
+      Q2N3055: [56, 59]
+    fetched: '2026-09-14'
+    note: 39 subckts, 158 .model
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: bordodynov
+  name: 2N3055
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      2N3055: [288, 288]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.714
+    pass: 5
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 2N3055H
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      2N3055H: [791, 791]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/2n3055-d.pdf
+  maker: onsemi
+  doc: 2N3055/D Rev. 7 (October 2024)

@@ -1,0 +1,296 @@
+part: EL84
+kind: tube
+priority: 1
+group: pentode_beam
+preferred: ayumi
+preferred_why: 'best datasheet agreement: 25 pass, 0 off, 0 fail of 25 judged rows (25 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: reefman
+  name: EL84
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - BTetrodeD
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      BTetrodeD: [2211, 2228]
+      EL84: [770, 777]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.44
+    pass: 11
+    marginal: 14
+    fail: 0
+    not_measurable: 0
+    typical_rows: 25
+  note: pins from inline comment
+- source: ayumi
+  name: 6BQ5T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6BQ5T.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 646ec799a1627a3d7c01b116d3a96f529057990fc8d0b4702634bab1ce0fa26c
+    lines:
+      6BQ5T: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.24
+    pass: 6
+    marginal: 19
+    fail: 0
+    not_measurable: 0
+    typical_rows: 25
+  note: found under the alias 6BQ5; pins from names
+- source: ayumi
+  name: 6BQ5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6BQ5.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: a1c90439e98ba0ede764e9b1cb3d3535c184551ca99653290107170054e020a3
+    lines:
+      6BQ5: [10, 30]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 25
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 25
+  note: found under the alias 6BQ5; pins from names
+- source: duncanamps
+  name: 6BQ5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - S
+  - G
+  - K
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/valves/6bq5.inc
+    sha256: 0cfa0639a968ee52d817c693e2a4f0c89cf7973318add1c214f763cf30a5dc6a
+    lines:
+      6BQ5: [37, 65]
+    fetched: '2026-09-14'
+    note: subckt 6BQ5 (A S G K)
+  verification:
+    score: 0.88
+    pass: 22
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 25
+  note: 'found under the alias 6BQ5; same code also in: ltwiki; pins from names'
+- source: duncanamps
+  name: 6BQ5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - S
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: https://www.duncanamps.com/spice/valves/6bq5s.inc
+    sha256: aaf49780f180af45e01078c2b137467e87b14a1b4c4df97e32817f7949159bad
+    lines:
+      6BQ5: [31, 59]
+    fetched: '2026-09-14'
+    note: subckt 6BQ5 (A S G K)
+  verification:
+    score: 0.88
+    pass: 22
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 25
+  note: found under the alias 6BQ5; pins from names
+- source: suusi-tubes
+  name: EL84
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      EL84: [2074, 2078]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 20
+    marginal: 5
+    fail: 0
+    not_measurable: 0
+    typical_rows: 25
+  note: pins from inline comment
+- source: suusi-tubes
+  name: EL84
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      EL84: [1465, 1469]
+      PENTODE1: [2010, 2023]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.8
+    pass: 20
+    marginal: 5
+    fail: 0
+    not_measurable: 0
+    typical_rows: 25
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6BQ5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  - EL84
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6BQ5: [1305, 1309]
+      EL84: [2074, 2078]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 20
+    marginal: 5
+    fail: 0
+    not_measurable: 0
+    typical_rows: 25
+  note: found under the alias 6BQ5; pins from inline comment
+- source: suusi-tubes
+  name: 6BQ5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6BQ5: [754, 758]
+      PENTODE1: [2010, 2023]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.8
+    pass: 20
+    marginal: 5
+    fail: 0
+    not_measurable: 0
+    typical_rows: 25
+  note: found under the alias 6BQ5; pins from inline comment
+- source: bordodynov
+  name: EL84
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - DX
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/nk_pentode.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: c559485a397b0b4be28e593e9cd6dd23228a07fbce5ca4e240d2421fb98a3f40
+    lines:
+      DX: [303, 303]
+      EL84: [222, 226]
+      PENTODE1: [272, 284]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 20
+    marginal: 5
+    fail: 0
+    not_measurable: 0
+    typical_rows: 25
+  note: 'same code also in: kicad-spice-library, ltwiki, robrobinette; pins from inline comment'
+datasheet:
+  url: https://frank.pocnet.net/sheets/093/6/6BQ5.pdf
+  maker: General Electric
+  doc: ET-T1535 (6BQ5 / 8BQ5), curves K-55611-TD52-2 (1958-12-17)
+  date: 1959-03

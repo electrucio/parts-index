@@ -1,0 +1,17 @@
+part: MMBT4403
+kind: bjt
+priority: 3
+group: small_signal_pnp
+models:
+- source: onsemi
+  name: MMBT4403
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mmbt4403.lib
+    sha256: 4002f2e08cfee487f47a23f47222eb737ecf990bfefe639d04ac0c31ee57756f
+    lines:
+      MMBT4403: [5, 59]
+    fetched: '2026-09-14'
+    note: 'model(s): MMBT4403 (PNP .model)'

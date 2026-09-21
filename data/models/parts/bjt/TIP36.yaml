@@ -1,0 +1,99 @@
+part: TIP36
+kind: bjt
+priority: 2
+group: audio_docs
+models:
+- source: central-semi
+  name: TIP36C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/TIP36C.LIB
+    sha256: 2270a633d247474fa91c7d08cd2108b5a9449cbafbd15b25e591dd5dd92ca677
+    lines:
+      TIP36C: [24, 49]
+    fetched: '2026-09-14'
+    note: 'model(s): TIP36C (PNP .model)'
+- source: bordodynov
+  name: TIP36C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      TIP36C: [1582, 1582]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: TIP36C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWBJT.LIB
+    sha256: a64b2703fc28c849c7760139346aa1e0c31b83f7701a15e8e7a8d12b01c7befc
+    lines:
+      TIP36C: [2756, 2765]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: TIP36
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWBJT.LIB
+    sha256: a64b2703fc28c849c7760139346aa1e0c31b83f7701a15e8e7a8d12b01c7befc
+    lines:
+      TIP36: [641, 650]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: TIP36A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWBJT.LIB
+    sha256: a64b2703fc28c849c7760139346aa1e0c31b83f7701a15e8e7a8d12b01c7befc
+    lines:
+      TIP36A: [2728, 2737]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: TIP36B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWBJT.LIB
+    sha256: a64b2703fc28c849c7760139346aa1e0c31b83f7701a15e8e7a8d12b01c7befc
+    lines:
+      TIP36B: [2742, 2751]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

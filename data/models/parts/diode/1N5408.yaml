@@ -1,0 +1,117 @@
+part: 1N5408
+kind: diode
+priority: 2
+group: rectifier
+preferred: vishay
+preferred_why: 'best datasheet agreement: 7 pass, 0 off, 0 fail of 7 judged rows (4 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with kicad-spice-library on
+  score and typical-value error, chosen as the more original source'
+models:
+- source: onsemi
+  name: D1n5408rl
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n5408rl.lib
+    sha256: 802cc9457db5a7e7b1c66626eb9e790a4ae01220ca813a801ea168905aa5b24d
+    lines:
+      D1n5408rl: [12, 16]
+    fetched: '2026-09-14'
+    note: 'model(s): D1n5408rl (D .model)'
+  verification:
+    score: 0.571
+    pass: 4
+    marginal: 2
+    fail: 1
+    not_measurable: 0
+    typical_rows: 4
+- source: vishay
+  name: d1n5408
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/88001/1n5408.txt
+    sha256: 11f59d3d3878e8a162ab6e18a646fa023b3154bdfe870da56aa7ed1e68f68109
+    lines:
+      d1n5408: [11, 14]
+    fetched: '2026-09-14'
+    note: 'model(s): d1n5408 (D .model)'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: kicad-spice-library'
+- source: suusi-tubes
+  name: 1N5408
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: MotorolaRectifiers.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: 88449ae88e2f751e584a6c2a079ded8a074d765cee37ce146ad1fd34182c5b35
+    lines:
+      1N5408: [25, 25]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.714
+    pass: 5
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+- source: kicad-spice-library
+  name: 1N5408
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - d1n5408
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/General%20Semiconductor/General%20Semiconductor.lb5
+    sha256: 29db97b9e48c44570530220654814e32bc2a2cb0d10d0a4a018887fb43ef592d
+    lines:
+      1N5408: [2786, 2788]
+      d1n5408: [2918, 2921]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: D1N5408
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/DIODE/INTERNAT.LIB
+    sha256: 88b223c4822ca05eea2a85a0c7614ba68845bf7d93fba971f22409c4b8322943
+    lines:
+      D1N5408: [241, 256]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.143
+    pass: 1
+    marginal: 4
+    fail: 2
+    not_measurable: 0
+    typical_rows: 4
+datasheet:
+  url: https://www.vishay.com/docs/88516/1n5400.pdf
+  maker: Vishay
+  doc: Document Number 88516, Revision 19-Dec-2025 (1N5400 thru 1N5408)

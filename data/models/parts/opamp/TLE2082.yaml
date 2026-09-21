@@ -1,0 +1,62 @@
+part: TLE2082
+kind: opamp
+priority: 3
+models:
+- source: ltwiki
+  name: TLE2082
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/texas.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+    lines:
+      TLE2082: [2584, 2632]
+    fetched: '2026-09-14'
+  note: pins from comment words
+- source: kicad-spice-library
+  name: TLE2082_TI_10
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+    sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+    lines:
+      TLE2082_TI_10: [15461, 15494]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words
+- source: kicad-spice-library
+  name: TLE2082_TI_30
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+    sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+    lines:
+      TLE2082_TI_30: [15504, 15536]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words

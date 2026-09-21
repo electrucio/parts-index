@@ -1,0 +1,24 @@
+part: LM2940-5.0
+kind: regulator
+priority: 4
+models:
+- source: bordodynov
+  name: LM2940BLK
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - OUT
+  - VGND
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM2940XX.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 49a99ffae069c9eaa6f081847b941acbadf588d3acaf92df0ccbee5b00ac4504
+    lines:
+      LM2940BLK: [39, 99]
+    fetched: '2026-09-14'
+  note: 'found under the alias LM2940; same code also in: kicad-spice-library, ltwiki; pins from names'

@@ -1,0 +1,101 @@
+part: CD4060
+kind: logic
+priority: 4
+models:
+- source: bordodynov
+  name: CD4060Bg
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Clk
+  - Cx
+  - Rst
+  - Rx
+  - Q10
+  - Q12
+  - Q13
+  - Q14
+  - Q4
+  - Q5
+  - Q6
+  - Q7
+  - Q8
+  - Q9
+  - VDD
+  - VGND
+  deps:
+  - CD40_IN_S_1
+  - CD40_IN_1
+  - CD40_OUT_1X
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4060Bg.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1cdd3f63eac767d2f2e48feb86301c4829684e2b4fc7fbaefe6d7471d883a8bc
+    lines:
+      CD4060Bg: [8, 56]
+      CD40_IN_1: [77, 94]
+      CD40_IN_S_1: [98, 113]
+      CD40_OUT_1X: [128, 139]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: CD4060B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - RS
+  - RST
+  - CX
+  - Q10Out
+  - Q12Out
+  - Q13Out
+  - Q14Out
+  - Q4Out
+  - Q5Out
+  - Q6Out
+  - Q7Out
+  - Q8Out
+  - Q9Out
+  - RX
+  - VDD
+  - VSS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4060B.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: e1d9721d42a4fccc3398ac56b26c7c255eed354a1ec3d73641c6a4cb41495bfd
+    lines:
+      CD4060B: [13, 129]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: CD4060B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - OUT1
+  - OUT2
+  - RESET
+  - CLOCK
+  - Q4
+  - Q5
+  - Q6
+  - Q7
+  - Q8
+  - Q9
+  - Q10
+  - Q12
+  - Q13
+  - Q14
+  - 'OPTIONAL:'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cmos.lib
+    sha256: 4ee830d7932c2cdfcd5d21972f96c0387c3440d5d449c6554a0016f8b0f4f5b0
+    lines:
+      CD4060B: [2979, 3139]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

@@ -1,0 +1,40 @@
+part: INA125
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: INA125
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '2'
+  - '1'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+  - '10'
+  - '11'
+  - '12'
+  - '13'
+  - '14'
+  - '15'
+  deps:
+  - A1_125E
+  - REF_125E
+  - A2_125E
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM020
+    member: INA125.LIB
+    archive_sha256: 5550971044284790a9dc37541157d4b7f45b6d6db9b1b10c6a851765a1aaf7d9
+    sha256: 383c8cead37b9dd44c5497620b5b3e12253c1d035791ea350880f29c9fd37728
+    lines:
+      A1_125E: [134, 179]
+      A2_125E: [191, 236]
+      INA125: [62, 122]
+      REF_125E: [244, 289]
+    fetched: '2026-09-19'

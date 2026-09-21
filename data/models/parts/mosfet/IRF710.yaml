@@ -1,0 +1,88 @@
+part: IRF710
+kind: mosfet
+priority: 2
+group: audio_docs
+models:
+- source: bordodynov
+  name: IRF710
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRF710: [1508, 1508]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: IRF710_
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRF710_: [1454, 1454]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: IRF710h
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRF710h: [1528, 1528]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: IRF710_
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+    sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+    lines:
+      IRF710_: [1518, 1518]
+    fetched: '2026-09-14'
+    note: Bordodynov VDMOS collection for LTspice IV
+- source: kicad-spice-library
+  name: IRF710
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWMOS.LIB
+    sha256: 3a158ee63ad9816d8dcdc0cad0827d2f4646c66b6296d7bbcd2c28d49bf1d219
+    lines:
+      IRF710: [3154, 3174]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: IRF710
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL1.LIB
+    sha256: 8a0af54a34c8e405d5f54f85a9836846c3926f39a0926309907c5f1c3820df13
+    lines:
+      IRF710: [271, 301]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

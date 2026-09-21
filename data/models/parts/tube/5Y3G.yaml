@@ -1,0 +1,144 @@
+part: 5Y3G
+kind: tube
+priority: 2
+group: audio_docs
+models:
+- source: duncanamps
+  name: 5Y3GT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/valves/5y3gt.inc
+    sha256: 3e29f18bee9f9412d3d0576b116ffb9e439a6fde33dc78608ba910b8d461de70
+    lines:
+      5Y3GT: [28, 30]
+    fetched: '2026-09-14'
+    note: subckt 5Y3GT (A K)
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from names'
+- source: suusi-tubes
+  name: 5Y3GT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - A2
+  - C
+  deps:
+  - DULEREC
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      5Y3GT: [119, 122]
+      DULEREC: [2089, 2092]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  note: 'same code also in: bordodynov, ltwiki; pins from inline comment'
+- source: suusi-tubes
+  name: 5Y3GT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - A2
+  - C
+  deps:
+  - RECP2
+  - DULERECP2
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      5Y3GT: [75, 78]
+      DULERECP2: [3013, 3016]
+      RECP2: [2999, 3004]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: bordodynov
+  name: 5Y3GTRY
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - VALVE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      5Y3GTRY: [153, 156]
+      VALVE1: [2980, 2986]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 5Y3GT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - VRECTIFIER
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/vrectifier.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6f39b4729541ad16b04e62a45667127a910029cc5c095d49dc8622ca11a85443
+    lines:
+      5Y3GT: [100, 105]
+      VRECTIFIER: [19, 35]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: 5Y3GT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - VALVE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Rydel_tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+    lines:
+      5Y3GT: [176, 179]
+      VALVE1: [866, 872]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: 5Y3GT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/Tube_IM.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8eed72dbd55b52f5eb6004bcaacd3d88c79e3e3df9ef28462570c887a70e0d00
+    lines:
+      5Y3GT: [393, 396]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from names'

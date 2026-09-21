@@ -1,0 +1,29 @@
+part: S1D
+kind: diode
+priority: 4
+group: rectifier
+models:
+- source: vishay
+  name: s1d
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89825/s1d.txt
+    sha256: 17b7c2b67ff7d6113fd46bb0d31e3e9bb48440f45a4b5b80f35fccdb99f52029
+    lines:
+      s1d: [7, 10]
+    fetched: '2026-09-19'
+    note: 'Power Rectifiers, PSpice Models (*.txt): s1d'
+- source: kicad-spice-library
+  name: S1D
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/gensemi.lib
+    sha256: a6cf7dd0be40fa8de86b574b20c2481a4be41a33f77d1893d66664f19e3fe8d9
+    lines:
+      S1D: [1275, 1285]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

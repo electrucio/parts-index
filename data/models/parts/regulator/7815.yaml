@@ -1,0 +1,21 @@
+part: '7815'
+kind: regulator
+priority: 3
+models:
+- source: ltwiki
+  name: '7815'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - In
+  - Aj
+  - Out
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/regulators.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: ba2105aa53d2db16001d205924af438b7c473ed9a864ce8e7ef13fcd71a7fcf7
+    lines:
+      '7815': [432, 438]
+    fetched: '2026-09-14'

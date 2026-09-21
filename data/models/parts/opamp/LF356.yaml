@@ -1,0 +1,171 @@
+part: LF356
+kind: opamp
+priority: 3
+preferred: ltspice-native
+preferred_why: 'best datasheet agreement: 11 pass, 1 off, 0 fail of 12 judged rows (3 against typical
+  values or curve points, the rest against min/max limits; 1 not measurable); tied with ltspice-native,
+  bordodynov, bordodynov on score and typical-value error, chosen as the more original source'
+models:
+- source: ti
+  name: LF356/NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INN
+  - INP
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNOM255
+    member: LF356.MOD
+    archive_sha256: cf5ff1294fe3779847d46b0bb22209cd972fe6e8fca9e4283e339ca2fa53acc1
+    sha256: b43f40c7b054097e662f03b1927748de7a1ec3117b0ab6285155ecb167d597f1
+    lines:
+      LF356/NS: [38, 111]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 10
+    marginal: 2
+    fail: 0
+    not_measurable: 1
+    typical_rows: 3
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki, spiceypedals; pins from comment words'
+- source: ltspice-native
+  name: LF356
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: sub/LTC.lib
+    sha256: f794e567a5d81e0a3b6682f5d1353fdcec3bb090d76c0103642633ecf6083f16
+    lines:
+      LF356: [7542, 7601]
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 3
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: ltspice-native
+  name: LF356A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: sub/LTC.lib
+    sha256: f794e567a5d81e0a3b6682f5d1353fdcec3bb090d76c0103642633ecf6083f16
+    lines:
+      LF356A: [7482, 7540]
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 3
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: bordodynov
+  name: LF356
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      LF356: [8493, 8554]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: bordodynov
+  name: LF356A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      LF356A: [8570, 8631]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: bordodynov
+  name: LF356_NSC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INN
+  - INP
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_NSC.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+    lines:
+      LF356_NSC: [852, 925]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 10
+    marginal: 2
+    fail: 0
+    not_measurable: 1
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lf356.pdf
+  maker: Texas Instruments (National Semiconductor)
+  doc: SNOSBH0D, May 2000, revised Nov 2015 (LF155/LF156/LF256/LF257/LF355/LF356/LF357); tables 6.5 AC,
+    6.6/6.7 DC

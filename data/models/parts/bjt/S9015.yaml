@@ -1,0 +1,35 @@
+part: S9015
+kind: bjt
+priority: 4
+group: small_signal_pnp
+models:
+- source: bordodynov
+  name: ss9015
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      ss9015: [785, 785]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of ss9015, not of S9015; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: SS9015
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/distortion_OUTPUT_vs_bias/standard_BJT modified.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: b11d82ef9412f3285ead0b742f082d8c60ba31108d4eb85c48c7268e54aeb9a4
+    lines:
+      SS9015: [762, 785]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of SS9015, not of S9015; equivalence declared in catalog/wanted.yaml (see its
+    note)'

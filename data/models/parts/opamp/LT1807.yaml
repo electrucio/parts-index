@@ -1,0 +1,88 @@
+part: LT1807
+kind: opamp
+priority: 3
+models:
+- source: ltwiki
+  name: LT1807
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - LT1807MD
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+    lines:
+      LT1807: [19022, 19024]
+      LT1807MD: [19026, 19145]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'
+- source: ltwiki
+  name: LT1807MD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+    lines:
+      LT1807MD: [19026, 19145]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'
+- source: kicad-spice-library
+  name: LT1807
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - LT1807MD
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/LTC_ampliop.lib
+    sha256: 140c4a222da3dfce63a2a5af619a118436c566ab1db5ac47c8fc5dfcec8f7a68
+    lines:
+      LT1807: [14724, 14726]
+      LT1807MD: [14728, 14847]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: LT1807MD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/LTC_ampliop.lib
+    sha256: 140c4a222da3dfce63a2a5af619a118436c566ab1db5ac47c8fc5dfcec8f7a68
+    lines:
+      LT1807MD: [14728, 14847]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

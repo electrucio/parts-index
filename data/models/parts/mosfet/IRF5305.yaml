@@ -1,0 +1,109 @@
+part: IRF5305
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: bordodynov
+  name: irf5305s
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irf5305s.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dee511c2e8203dd55580c3bbe738eae565fb48b23a55a98d87a192a1055b166
+    lines:
+      irf5305s: [1, 60]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: irf5305
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irf5305.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: a17abefeb9eed069d6eccc2db1a56662086bf5c1295dd3a95fff4017e2afac68
+    lines:
+      irf5305: [1, 60]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: kicad-spice-library
+  name: irf5305s
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+    sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+    lines:
+      irf5305s: [6664, 6782]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: irf5305
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+    sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+    lines:
+      irf5305: [6544, 6662]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: IRF5305S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+    sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+    lines:
+      IRF5305S: [2181, 2226]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: IRF5305
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+    sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+    lines:
+      IRF5305: [2132, 2177]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

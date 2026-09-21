@@ -1,0 +1,65 @@
+part: 5Y4G
+kind: tube
+priority: 3
+group: audio_docs
+models:
+- source: suusi-tubes
+  name: 5Y4G
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - A2
+  - C
+  deps:
+  - DULEREC
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      5Y4G: [125, 128]
+      DULEREC: [2089, 2092]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  note: 'same code also in: bordodynov, ltwiki; pins from inline comment'
+- source: suusi-tubes
+  name: 5Y4GA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - A2
+  - C
+  deps:
+  - DULEREC
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      5Y4GA: [131, 134]
+      DULEREC: [2089, 2092]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  note: 'same code also in: bordodynov, ltwiki; pins from inline comment'
+- source: suusi-tubes
+  name: 5Y4GT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - A2
+  - C
+  deps:
+  - DULEREC
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      5Y4GT: [137, 140]
+      DULEREC: [2089, 2092]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  note: 'same code also in: bordodynov, ltwiki; pins from inline comment'

@@ -1,0 +1,132 @@
+part: LED-RED-5MM
+kind: led
+priority: 1
+preferred: ltspice-native
+preferred_why: 'best datasheet agreement: 5 pass, 1 off, 0 fail of 6 judged rows (5 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with cordell, duncanamps,
+  bordodynov on score and typical-value error, chosen as the more original source'
+models:
+- source: ltspice-native
+  name: QTLP690C
+  def: model
+  type: D
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.dio
+    sha256: 696d34dfe538966c80cfe1da259c1043f408777be79f59e4f1c47d82f3af320a
+    lines:
+      QTLP690C: [42, 42]
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: 'found under the alias QTLP690C; same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: ltspice-native
+  name: L128-RED1003500000
+  def: model
+  type: D
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.dio
+    sha256: 696d34dfe538966c80cfe1da259c1043f408777be79f59e4f1c47d82f3af320a
+    lines:
+      L128-RED1003500000: [902, 902]
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: 'found under the alias L128-RED1003500000; same code also in: bordodynov, ltwiki'
+- source: ltspice-native
+  name: L1C1-RED1000000000
+  def: model
+  type: D
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.dio
+    sha256: 696d34dfe538966c80cfe1da259c1043f408777be79f59e4f1c47d82f3af320a
+    lines:
+      L1C1-RED1000000000: [916, 916]
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: 'found under the alias L1C1-RED1000000000; same code also in: bordodynov, ltwiki'
+- source: cordell
+  name: RED
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.cordellaudio.com/book/Install-Test.zip
+    member: Install Test/Cordell Models.txt
+    archive_sha256: 332b487564a6c8eca0f8a1db26ec86109b450af5e75278e32556ad000f9bcd77
+    sha256: ae2d30efd938496e2a633e5de71d2fceae0e588c0dde475cb2ec8ff6fe9f2bba
+    lines:
+      RED: [353, 353]
+    fetched: '2026-09-14'
+    note: Cordell Models 12/07/2010 (older version bundled in zip; RB=10 in small-signal BJTs)
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: 'found under the alias RED; same code also in: kicad-spice-library, ltwiki'
+- source: duncanamps
+  name: DLED1
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/led.mod
+    sha256: 595b59d32f2564722ea0494afdebed82f928759887722561135b5d4ea35eb3bc
+    lines:
+      DLED1: [10, 11]
+    fetched: '2026-09-14'
+    note: 4 .model
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: found under the alias DLED1
+- source: bordodynov
+  name: LedRed
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      LedRed: [123, 123]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: 'found under the alias LedRed; same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://www.vishay.com/docs/83012/tlhr540x_tlhy540x.pdf
+  maker: Vishay
+  doc: TLHR540., TLHY540. Document Number 83012, Rev. 2.7, 25-Jan-2024

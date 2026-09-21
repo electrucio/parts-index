@@ -1,0 +1,23 @@
+part: CSD17311Q5
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: ti
+  name: CSD17311Q5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLLM119
+    member: CSD17311Q5.lib
+    archive_sha256: 91adc2693287b5868d46a45686b753f2bff7e0b87fc0a46a2471d7d2b94c90f3
+    sha256: 288a5e8642eab8b415aeaea47689f00dc2bf33f50316cdac1871c31850b537d9
+    lines:
+      CSD17311Q5: [40, 101]
+    fetched: '2026-09-19'
+  note: pins from default order (unverified)

@@ -1,0 +1,69 @@
+part: IRF644
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: bordodynov
+  name: irf644s
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irf644s.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 03a199e5705ab3242f041946973c8e363ecd418d98df8e2c1b2d3cf3bc4c83f2
+    lines:
+      irf644s: [1, 60]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: kicad-spice-library
+  name: IRF644
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWMOS3.LIB
+    sha256: 15daa43bae301f0f87935f96d7a7634586ef2319657a3f622e47f56ae492d6d7
+    lines:
+      IRF644: [497, 519]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: IRF644
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL1.LIB
+    sha256: 8a0af54a34c8e405d5f54f85a9836846c3926f39a0926309907c5f1c3820df13
+    lines:
+      IRF644: [238, 268]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: irf644s_IR
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+    sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+    lines:
+      irf644s_IR: [18773, 18832]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

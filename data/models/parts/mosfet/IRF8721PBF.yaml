@@ -1,0 +1,40 @@
+part: IRF8721PBF
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: bordodynov
+  name: irf8721pbf
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irf8721pbf.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bb656c495594a25c75ab4ea6a98fe20ec687f61e3e7f3057d4c7e011e8648482
+    lines:
+      irf8721pbf: [1, 57]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: irf8721pbft
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '4'
+  - '0'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irf8721pbf.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bb656c495594a25c75ab4ea6a98fe20ec687f61e3e7f3057d4c7e011e8648482
+    lines:
+      irf8721pbft: [60, 71]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'

@@ -1,0 +1,86 @@
+part: LSK189
+kind: jfet
+priority: 3
+group: audio_docs
+models:
+- source: interfet
+  name: LSK189A-LS
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK189A-LS: [470, 470]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+- source: interfet
+  name: LSK189B-LS
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK189B-LS: [471, 471]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+- source: interfet
+  name: LSK189C-LS
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK189C-LS: [472, 472]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+- source: bordodynov
+  name: LSK189A
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      LSK189A: [1029, 1029]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: LSK189B
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      LSK189B: [1030, 1030]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: LSK189C
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      LSK189C: [1031, 1031]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

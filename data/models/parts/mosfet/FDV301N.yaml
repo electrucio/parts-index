@@ -1,0 +1,102 @@
+part: FDV301N
+kind: mosfet
+priority: 4
+group: small_signal
+models:
+- source: bordodynov
+  name: FDV301N_AB
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      FDV301N_AB: [4, 4]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: fdv301n
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      fdv301n: [15847, 15873]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: bordodynov
+  name: FDV301N/FAI
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/fairchild_NMOS.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1a975526cba57c9199b644b4b6a662a0dbb285a7e2b7b89a01dd05c50e9bc2f0
+    lines:
+      FDV301N/FAI: [149, 173]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: ltwiki
+  name: FDV301N
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '20'
+  - '10'
+  - '30'
+  - '50'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Discretos/Mos&Fet/fdv301n/fdv301n.mod
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 3a4ad55e7027d1e535597a58ba14ec2024538389812c2c5e343ed2ce8f25bac0
+    lines:
+      FDV301N: [3, 48]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: FDV301N_AB
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+    sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+    lines:
+      FDV301N_AB: [4, 4]
+    fetched: '2026-09-14'
+    note: Bordodynov VDMOS collection for LTspice IV
+- source: kicad-spice-library
+  name: FDV301N_FC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/fairch.lib
+    sha256: 7a65c19aecd31354d0fec1166479cad2d1453948039b85b0d6d15d51ed4b963d
+    lines:
+      FDV301N_FC: [4359, 4383]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

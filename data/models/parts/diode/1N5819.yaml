@@ -1,0 +1,133 @@
+part: 1N5819
+kind: diode
+priority: 1
+group: schottky
+preferred: central-semi
+preferred_why: 'best datasheet agreement: 5 pass, 0 off, 0 fail of 5 judged rows (1 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: onsemi
+  name: D1n5819
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n5819.lib
+    sha256: 493ee34f39d98e370f3177c030f11da55e9b86da644d53a79cc1bd2a49735f13
+    lines:
+      D1n5819: [14, 18]
+    fetched: '2026-09-14'
+    note: 'model(s): D1n5819 (D .model)'
+  verification:
+    score: 1.0
+    pass: 5
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+- source: central-semi
+  name: 1N5819
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/1N5819.LIB
+    sha256: bfe233cc2e21066b546b3a0ccaac6b4e3c58f9308eb416098b9ae8579d93c868
+    lines:
+      1N5819: [25, 37]
+    fetched: '2026-09-14'
+    note: 'model(s): 1N5819 (D .model)'
+  verification:
+    score: 1.0
+    pass: 5
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+- source: ltspice-native
+  name: 1N5819
+  def: model
+  type: D
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.dio
+    sha256: 696d34dfe538966c80cfe1da259c1043f408777be79f59e4f1c47d82f3af320a
+    lines:
+      1N5819: [11, 11]
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 1N5819_
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N5819_: [177, 177]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 1N5819HW
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N5819HW: [1784, 1784]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: 1N5819
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard3.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 13cb55bb7184e06a29b64a8d1991371f8414622ef1213c5b7bcb01e358ed71ee
+    lines:
+      1N5819: [38, 38]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library'
+datasheet:
+  url: https://www.vishay.com/docs/88525/1n5817.pdf
+  maker: Vishay General Semiconductor
+  doc: Document Number 88525, Revision 01-Jul-2020 (1N5817, 1N5818, 1N5819)
+  date: '2020-07-01'

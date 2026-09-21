@@ -1,0 +1,40 @@
+part: THAT1570
+kind: ic-audio
+priority: 3
+models:
+- source: thatcorp
+  name: THAT1570
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN1
+  - Rg1
+  - Rg2
+  - IN2
+  - OUT1
+  - OUT2
+  - V+
+  - V-
+  deps:
+  - RB
+  - RE
+  - QPNPS
+  - QNPNLI
+  - RPTAT
+  - Dgen
+  verbatim: true
+  get:
+    url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+    archive_sha256: a5699cf253cbe2b063a03b2dd8cc2927fe1ab03903ed2f1bb9ae23a0e867733b
+    archive_inferred: true
+    sha256: 1cdb2d7ab452c8542a9a91b8c7e83a2e8b3d9a56b5d936d03f3a935cd151c419
+    lines:
+      Dgen: [137, 138]
+      QNPNLI: [105, 119]
+      QPNPS: [121, 134]
+      RB: [142, 142]
+      RE: [144, 144]
+      RPTAT: [140, 140]
+      THAT1570: [20, 102]
+    fetched: '2026-09-14'
+    note: file not listed in the manifest; see SOURCE.md

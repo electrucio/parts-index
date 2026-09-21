@@ -1,0 +1,91 @@
+part: PMEG2010
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: nexperia
+  name: PMEG2010AEH
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG2010AEH.txt
+    sha256: 58e5a541d25d70be8f52f4447603b7a595f5ad8e169d4b01adc4c4338c468456
+    lines:
+      PMEG2010AEH: [33, 49]
+    fetched: '2026-09-14'
+    note: 'model(s): PMEG2010AEH (.subckt 1 2), PMEG2010AEH (D .model)'
+  note: 'same code also in: ltwiki; pins from comment words'
+- source: bordodynov
+  name: PMEG2010EA
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      PMEG2010EA: [199, 199]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: PMEG2010BEA
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      PMEG2010BEA: [200, 200]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: PMEG2010AEB
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      PMEG2010AEB: [207, 207]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: PMEG2010EA
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.dio
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+    lines:
+      PMEG2010EA: [150, 150]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: PMEG2010BEA
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.dio
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+    lines:
+      PMEG2010BEA: [151, 151]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'

@@ -1,0 +1,186 @@
+part: TL062
+kind: opamp
+priority: 2
+preferred: ti
+preferred_why: 'best datasheet agreement: 12 pass, 0 off, 0 fail of 12 judged rows (2 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, bordodynov
+  on score and typical-value error, chosen as the more original source'
+models:
+- source: ti
+  name: TL062
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ063
+    member: TL062.301
+    archive_sha256: 075ef4587bd4b45e7c1a7e23a5e35533fdbf1b1e6b84bcc4844e6df8453ae4d9
+    sha256: 04bcde9dc511e6f4ee700215b72d38701be2a40d2c68fa341da78a727b779a91
+    lines:
+      TL062: [10, 42]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from comment words'
+- source: stmicro
+  name: TL062
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '3'
+  - '2'
+  - '4'
+  - '5'
+  verbatim: false
+  changes:
+  - st_analog_token
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/STMicroelectronics/Standard%20Linear%20ICs/Spice/tl062.txt
+    sha256: 4f520123fe4abbab9cecca5d2ea4c0e08a3ebcc9f1688296b6a4a8c8a57a1537
+    lines:
+      TL062: [27, 74]
+    fetched: '2026-09-14'
+    note: ST "Standard Linear ICs Macromodels, 1993" (TL062), mirrored on ltwiki.org
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 12
+    typical_rows: 0
+- source: bordodynov
+  name: TL062
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      TL062: [2317, 2349]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: TL062/MC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/on_amp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+    lines:
+      TL062/MC: [2941, 2976]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 10
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+- source: bordodynov
+  name: TL062
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - TL074
+  - TL072
+  - TL071
+  - TL070
+  - TL064
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_TI.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+    lines:
+      TL062: [670, 702]
+      TL064: [712, 744]
+      TL070: [755, 787]
+      TL071: [796, 828]
+      TL072: [837, 869]
+      TL074: [878, 910]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: TL062/ON
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/on_amp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+    lines:
+      TL062/ON: [1463, 1498]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 10
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/tl062.pdf
+  maker: Texas Instruments
+  doc: SLOS078N, rev. N (first issued Nov 1978)
+  date: 2023-08

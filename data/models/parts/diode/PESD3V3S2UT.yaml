@@ -1,0 +1,34 @@
+part: PESD3V3S2UT
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: nexperia
+  name: PESD3V3S2UT
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PESD3V3S2UT.txt
+    sha256: 236f99b88a519f52e4d311906b640015aca861fed061fab924551bc7d4829632
+    lines:
+      PESD3V3S2UT: [31, 40]
+    fetched: '2026-09-19'
+    note: 'PESD3V3S2UT: PESD3V3S2UT'
+- source: ltwiki
+  name: PESD3V3S2UT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/PESD3V3S2UT.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 3f344ba1d2492843758876011827c74b7332882e42c2d32ed9670fc17b8bda3c
+    lines:
+      PESD3V3S2UT: [2, 17]
+    fetched: '2026-09-14'

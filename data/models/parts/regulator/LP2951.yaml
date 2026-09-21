@@ -1,0 +1,55 @@
+part: LP2951
+kind: regulator
+priority: 4
+models:
+- source: ti
+  name: LP2951
+  def: subckt
+  type: SUBCKT
+  pins:
+  - OUTPUT
+  - SENSE
+  - SHUTDOWN
+  - GND
+  - ERROR
+  - VTAP
+  - FEEDBACK
+  - INPUT
+  deps:
+  - LP2951_LP2951_F1
+  - comp_hys_basic
+  - LP2951_LP2951_S1
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNVMAO3
+    member: LP2951.lib
+    archive_sha256: cbe3368a22d5ef18a3faee224cbfc8c0219030d3cbba73014f17f8050f345984
+    sha256: 3cbab6e1a5c84df1e96c7128bb30919fe45d02181780a39345c33b5c6fcc6bc9
+    lines:
+      LP2951: [35, 74]
+      LP2951_LP2951_F1: [82, 85]
+      LP2951_LP2951_S1: [76, 80]
+      comp_hys_basic: [87, 95]
+    fetched: '2026-09-19'
+- source: ltwiki
+  name: LP2951
+  def: subckt
+  type: SUBCKT
+  pins:
+  - OUTPUT
+  - SENSE
+  - SHUTDOWN
+  - GND
+  - ERROR
+  - VTAP
+  - FEEDBACK
+  - INPUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/LP2951.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: b414002c95418b80553b871ac1db8fcd1323ca7521ab046fe8788bbb0b084d7a
+    lines:
+      LP2951: [31, 84]
+    fetched: '2026-09-14'

@@ -1,0 +1,134 @@
+part: 2N5484
+kind: jfet
+priority: 3
+group: n_channel
+preferred: interfet
+preferred_why: 'best datasheet agreement: 5 pass, 0 off, 0 fail of 5 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 1 not measurable); tied with bordodynov on score and
+  typical-value error, chosen as the more original source. Limits only: the datasheet prints no typical
+  values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: interfet
+  name: 2N5484-SCX
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      2N5484-SCX: [92, 92]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 0
+    fail: 1
+    not_measurable: 1
+    typical_rows: 0
+- source: interfet
+  name: J2N5484-GEN
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J2N5484-GEN: [337, 337]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 1.0
+    pass: 5
+    marginal: 0
+    fail: 0
+    not_measurable: 1
+    typical_rows: 0
+- source: ltspice-native
+  name: 2N5484
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.jft
+    sha256: 93ae8433a9412e96e81071b65d521b7f31dcb2c2f3fce714456b73586230bea0
+    lines:
+      2N5484: [27, 27]
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 0
+    fail: 1
+    not_measurable: 1
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: duncanamps
+  name: J2N5484
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/jfet/njfet.mod
+    sha256: 038dc1062e5ec82b6d49076d7bccf0f06e485e43a89f185c2b7ca121258295ac
+    lines:
+      J2N5484: [26, 27]
+    fetched: '2026-09-14'
+    note: 10 .model
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 0
+    fail: 1
+    not_measurable: 1
+    typical_rows: 0
+- source: bordodynov
+  name: 2N5484
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      2N5484: [86, 86]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 0
+    fail: 1
+    not_measurable: 1
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: J2N5484
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      J2N5484: [328, 328]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 5
+    marginal: 0
+    fail: 0
+    not_measurable: 1
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://www.interfet.com/jfet-datasheets/jfet-2n5484-2n5485-2n5486-interfet.pdf
+  maker: InterFET
+  doc: IF35032.R00, December 2018

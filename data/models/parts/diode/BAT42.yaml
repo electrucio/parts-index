@@ -1,0 +1,30 @@
+part: BAT42
+kind: diode
+priority: 3
+group: schottky
+models:
+- source: ltwiki
+  name: BAT42
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/DIOD/DIODE_ST_10.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5fbff1861259b242b3696034eae7e9618dee580d80ef08990e75eff81815a0f7
+    lines:
+      BAT42: [515, 517]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: BAT42
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/diode_ST.lib
+    sha256: 5481ed55e9738303fe20e33d9889db3f5a684d384e1d83667fa178b6c99ac49d
+    lines:
+      BAT42: [134, 136]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

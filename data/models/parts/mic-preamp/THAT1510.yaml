@@ -1,0 +1,92 @@
+part: THAT1510
+kind: mic-preamp
+priority: 2
+models:
+- source: thatcorp
+  name: THAT1510
+  def: subckt
+  type: SUBCKT
+  pins:
+  - +In
+  - RG1
+  - RG2
+  - -In
+  - REF
+  - OUT
+  - V+
+  - V-
+  deps:
+  - RB
+  - RE
+  - RPTAT
+  - QPNPS
+  - Dgen
+  - QNPNS
+  - QNPNLI
+  verbatim: true
+  get:
+    url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+    archive_sha256: a5699cf253cbe2b063a03b2dd8cc2927fe1ab03903ed2f1bb9ae23a0e867733b
+    archive_inferred: true
+    sha256: 63b6938a0f51e58d7d16c645bad0bbde063a357a29127372c966a5ed30e1c9ce
+    lines:
+      Dgen: [235, 236]
+      QNPNLI: [173, 187]
+      QNPNS: [206, 219]
+      QPNPS: [189, 202]
+      RB: [240, 240]
+      RE: [242, 242]
+      RPTAT: [238, 238]
+      THAT1510: [17, 170]
+    fetched: '2026-09-14'
+    note: file not listed in the manifest; see SOURCE.md
+  verification:
+    score: null
+    error: 'KeyError: ''mic-preamp'''
+- source: thatcorp
+  name: THAT1512
+  def: subckt
+  type: SUBCKT
+  pins:
+  - +In
+  - RG1
+  - RG2
+  - -In
+  - REF
+  - OUT
+  - V+
+  - V-
+  deps:
+  - RB
+  - RE
+  - RPTAT
+  - QPNPS
+  - Dgen
+  - QNPNS
+  - QNPNLI
+  verbatim: true
+  get:
+    url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+    archive_sha256: a5699cf253cbe2b063a03b2dd8cc2927fe1ab03903ed2f1bb9ae23a0e867733b
+    archive_inferred: true
+    sha256: 33910aad8f9f3318573a0996620e930cf4cc68b946f2a8e40bb849f679d10acb
+    lines:
+      Dgen: [236, 237]
+      QNPNLI: [174, 188]
+      QNPNS: [207, 220]
+      QPNPS: [190, 203]
+      RB: [241, 241]
+      RE: [243, 243]
+      RPTAT: [239, 239]
+      THAT1512: [17, 171]
+    fetched: '2026-09-14'
+    note: file not listed in the manifest; see SOURCE.md
+  verification:
+    score: null
+    error: 'KeyError: ''mic-preamp'''
+  note: found under the alias THAT1512
+datasheet:
+  url: https://www.thatcorp.com/datashts/THAT_1510-1512_Datasheet.pdf
+  maker: THAT Corporation
+  doc: Document 600031 Rev 09
+  date: 2017

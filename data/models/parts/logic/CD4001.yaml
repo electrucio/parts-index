@@ -1,0 +1,153 @@
+part: CD4001
+kind: logic
+priority: 3
+models:
+- source: bordodynov
+  name: CD4001
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - B
+  - Y
+  - VDD
+  - VGND
+  deps:
+  - CD4001_OUT_1X
+  - CD4001_IN_1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4001_NEU.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 82b50532a657b483879aad8cb1b6a12e7da219722a0156da5f5cfdd9d26a8d2a
+    lines:
+      CD4001: [4, 14]
+      CD4001_IN_1: [18, 42]
+      CD4001_OUT_1X: [48, 61]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: CD4001_IN_1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - in
+  - out
+  - VDD
+  - VGND
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4001_NEU.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 82b50532a657b483879aad8cb1b6a12e7da219722a0156da5f5cfdd9d26a8d2a
+    lines:
+      CD4001_IN_1: [18, 42]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: CD4001B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - B
+  - Y
+  - VDD
+  - VGND
+  deps:
+  - CD40_IN_1
+  - CD40_OUT_1X
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4000_v.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: a814b0ca1e4ced9b7963913afd06147754592c9002010ecc1beb635b45e222eb
+    lines:
+      CD4001B: [54, 63]
+      CD40_IN_1: [920, 937]
+      CD40_OUT_1X: [971, 982]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: CD4001B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - B
+  - Y
+  - VDD
+  - VGND
+  deps:
+  - CD40DIO1
+  - CD40_IN_1
+  - DIO2
+  - CD40_OUT_1X
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4000_Don.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 47fa60aec4237b21d853cfde5dffd06191f4bd16165aaab6bf2ac16c64839a0d
+    lines:
+      CD4001B: [47, 56]
+      CD40DIO1: [785, 785]
+      CD40_IN_1: [799, 815]
+      CD40_OUT_1X: [848, 858]
+      DIO2: [845, 845]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: CD4001B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - B
+  - Y
+  - VDD
+  - VGND
+  deps:
+  - CD40DIO1
+  - CD40_IN_1
+  - CD40_OUT_1X
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/cd4000.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 794f3386c6ab888d2abf2f2c54ec97b6af582b14e138de0252059e9f07107f08
+    lines:
+      CD4001B: [51, 60]
+      CD40DIO1: [902, 902]
+      CD40_IN_1: [917, 930]
+      CD40_OUT_1X: [965, 976]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: CD4001B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - B
+  - Y
+  - VDD
+  - VGND
+  deps:
+  - CD40_IN_1
+  - CD40_OUT_1X
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Digital/cd4xxx/Test Circuit CD4029B/cd4000.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: db071ddc0bc4fe1e6050e259bd9d1917dbbee47101187031e8f27ad1039b5cf1
+    lines:
+      CD4001B: [47, 56]
+      CD40_IN_1: [863, 879]
+      CD40_OUT_1X: [912, 922]
+    fetched: '2026-09-14'

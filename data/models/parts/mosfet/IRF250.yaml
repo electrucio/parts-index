@@ -1,0 +1,120 @@
+part: IRF250
+kind: mosfet
+priority: 3
+group: audio_docs
+models:
+- source: infineon
+  name: IRF250P224
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  - TJ
+  - TCASE
+  deps:
+  - S3_250_n1sp_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-simulationmodel-optimos-powermosfet-pspice-250v-n-channel-simulationmodels-en.zip
+    member: OptiMOS3_250V_LTSpice.lib
+    archive_sha256: 5d2f3111c0314e2dbe52facaf5e3503c4b72beca674c8d29724f935a8554182f
+    sha256: 1b1363b235b21c0bccce92430e98b026b098a4aa94114da80d99d3d442c70ea2
+    lines:
+      IRF250P224: [726, 764]
+      S3_250_n1sp_var: [188, 309]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: infineon
+  name: IRF250P225
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  - TJ
+  - TCASE
+  deps:
+  - S3_250_n1sp_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-simulationmodel-optimos-powermosfet-pspice-250v-n-channel-simulationmodels-en.zip
+    member: OptiMOS3_250V_LTSpice.lib
+    archive_sha256: 5d2f3111c0314e2dbe52facaf5e3503c4b72beca674c8d29724f935a8554182f
+    sha256: 1b1363b235b21c0bccce92430e98b026b098a4aa94114da80d99d3d442c70ea2
+    lines:
+      IRF250P225: [768, 805]
+      S3_250_n1sp_var: [188, 309]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: bordodynov
+  name: irf250
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/IrfNmosFet.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: e34cb81ed38fc5228d4544f69c106f994942a5a06965064598fe10f739a57b37
+    lines:
+      irf250: [568, 627]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: kicad-spice-library
+  name: IRF250
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWMOS.LIB
+    sha256: 3a158ee63ad9816d8dcdc0cad0827d2f4646c66b6296d7bbcd2c28d49bf1d219
+    lines:
+      IRF250: [1304, 1324]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: irf250_IR
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+    sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+    lines:
+      irf250_IR: [2246, 2305]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: IRF250M
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+    sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+    lines:
+      IRF250M: [1348, 1393]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

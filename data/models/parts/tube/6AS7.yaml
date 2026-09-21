@@ -1,0 +1,67 @@
+part: 6AS7
+kind: tube
+priority: 3
+group: audio_docs
+models:
+- source: reefman
+  name: 6AS7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - TriodeK
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      6AS7: [1415, 1423]
+      TriodeK: [2345, 2357]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: bordodynov
+  name: 6AS7S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - Triodo
+  - 6N13S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      6AS7S: [1220, 1222]
+      6N13S: [1216, 1219]
+      Triodo: [3149, 3161]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 6AS7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/tube.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0eeca282ba6506a1a4826c5833c023b17df0c557ef46c9ade79abe98a9c24a3f
+    lines:
+      6AS7: [887, 893]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from names'

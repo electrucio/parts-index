@@ -1,0 +1,36 @@
+part: MB4S
+kind: diode
+priority: 4
+group: bridge
+models:
+- source: onsemi
+  name: MB4S
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mb4s.lib
+    sha256: bec7212ab9ce20a7fcce34bce6b5410d6f7e844291e80d80c61be4c66a202379
+    lines:
+      MB4S: [6, 9]
+    fetched: '2026-09-19'
+    note: 'MB4S: MB4S'
+- source: bordodynov
+  name: MB4S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/diode_fullbridge.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 2e0399bfb1c1da49c79e1aa6fffe5fac3c723bb9e1a559d02d15e385ccf8376f
+    lines:
+      MB4S: [1465, 1484]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'

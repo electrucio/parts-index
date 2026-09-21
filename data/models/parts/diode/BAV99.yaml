@@ -1,0 +1,141 @@
+part: BAV99
+kind: diode
+priority: 3
+group: silicon_signal
+preferred: nexperia
+preferred_why: 'best datasheet agreement: 13 pass, 0 off, 0 fail of 13 judged rows (4 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with ltspice-native,
+  ltwiki on score and typical-value error, chosen as the more original source'
+models:
+- source: nexperia
+  name: BAV99
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BAV99.txt
+    sha256: 7034902423fa50c944e16117035206ccf5f3314861be12f42bfa87d8f55935fc
+    lines:
+      BAV99: [36, 60]
+    fetched: '2026-09-14'
+    note: 'model(s): BAV99 (.subckt 1 2), DIODE1 (D .model), DIODE2 (D .model)'
+  verification:
+    score: 1.0
+    pass: 13
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: pins from default order (unverified)
+- source: ltspice-native
+  name: BAV99HY
+  def: model
+  type: D
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.dio
+    sha256: 696d34dfe538966c80cfe1da259c1043f408777be79f59e4f1c47d82f3af320a
+    lines:
+      BAV99HY: [613, 613]
+  verification:
+    score: 1.0
+    pass: 13
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: bordodynov, ltwiki'
+- source: bordodynov
+  name: BAV99HM
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BAV99HM: [1443, 1443]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 13
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: bav99
+  def: subckt
+  type: SUBCKT
+  pins:
+  - a
+  - ka
+  - k
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      bav99: [12621, 12625]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 13
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: BAV99S
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/BAV99S.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 8ce30bdd8da81f5ab888bed72b8d75559650c815c714093f3c8372b06c2a2f1e
+    lines:
+      BAV99S: [6, 18]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 13
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+- source: kicad-spice-library
+  name: BAV99
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Zetex%20Semiconductors/ZMODELS.LIB
+    sha256: 356f4751706278dd76767c0cbdfceab52ea806ed01a3669b26584507bf29f3e0
+    lines:
+      BAV99: [187, 188]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 13
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+datasheet:
+  url: https://assets.nexperia.com/documents/data-sheet/BAV99_SER.pdf
+  maker: Nexperia
+  doc: BAV99_SER, Rev. 8 (BAV99, BAV99S, BAV99W)
+  date: '2010-11-18'

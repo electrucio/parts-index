@@ -1,0 +1,24 @@
+part: LMV601
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: LMV601
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNOJ004
+    member: LMV601.TXT
+    archive_sha256: a60a1569937dda57446ec84a41e29381fb6d472128ff1798d79d95194c1c52ca
+    sha256: ede072884a33726a234aece08f8ddf9ef6f7fe25eb46e99cf8ca4eeff06efbef
+    lines:
+      LMV601: [42, 181]
+    fetched: '2026-09-19'
+  note: pins from default order (unverified)

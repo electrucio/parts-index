@@ -1,0 +1,62 @@
+part: TS912
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: TS912
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INN
+  - INP
+  - OUT
+  - VP
+  - VN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_ST.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d90f4c4fd1a82f698bcdd91bde8be169c258e283648fef8a669e0d1ced09e50a
+    lines:
+      TS912: [1346, 1405]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+- source: kicad-spice-library
+  name: TS912S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/SGS2.LIB
+    sha256: de2cf3e62490babc0d41be58bf08dd647938f83af9f43fdc287064f7024c1cfa
+    lines:
+      TS912S: [991, 1049]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: TS912_ST
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INN
+  - OUT
+  - INP
+  - VP
+  - VN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/stmicro.lib
+    sha256: 1bc5bba150b91fb1bdf69c3ffa1deb78a4f08951827cad399705cdc2a9ab5e9a
+    lines:
+      TS912_ST: [2163, 2222]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from numbered connections table

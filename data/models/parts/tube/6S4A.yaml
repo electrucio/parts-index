@@ -1,0 +1,43 @@
+part: 6S4A
+kind: tube
+priority: 3
+group: audio_docs
+models:
+- source: ayumi
+  name: 6S4A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6S4A.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 09d67d784858503c5827ad56f6a5cf34f590703129bab06e459c09a1e2d8d330
+    lines:
+      6S4A: [9, 22]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: ltwiki
+  name: 6S4A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Triode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+    lines:
+      6S4A: [2583, 2596]
+    fetched: '2026-09-14'
+  note: pins from names

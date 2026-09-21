@@ -1,0 +1,212 @@
+part: LF353
+kind: opamp
+priority: 2
+preferred: ti
+preferred_why: 'best datasheet agreement: 10 pass, 0 off, 0 fail of 10 judged rows (2 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, bordodynov,
+  bordodynov on score and typical-value error, chosen as the more original source'
+models:
+- source: ti
+  name: LF353
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ039
+    member: LF353.301
+    archive_sha256: db73796479fd22ae50cd29ec5913fda48853bfd93d4993748afe12e3940a108d
+    sha256: 6400af2ea481076dfadcead7bfa4949657f298fac95affd0b8f44bcfbd8be51a
+    lines:
+      LF353: [10, 42]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 10
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: LF353/NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INN
+  - INP
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ns_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+    lines:
+      LF353/NS: [1001, 1084]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 8
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: LF353
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      LF353: [94, 126]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 10
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: LF353_Ti
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Opamp5.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+    lines:
+      LF353_Ti: [8122, 8154]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 10
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: LF353
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - TL074
+  - TL072
+  - TL071
+  - TL070
+  - TL064
+  - TL062
+  - TL061
+  - TL060
+  - TL022C
+  - MC3403
+  - LM358
+  - LM348
+  - LM324
+  - LM318
+  - LM301A
+  - LM2904
+  - LM2902
+  - LM107
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_TI.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+    lines:
+      LF353: [53, 85]
+      LM107: [100, 136]
+      LM2902: [146, 180]
+      LM2904: [189, 226]
+      LM301A: [244, 281]
+      LM318: [297, 356]
+      LM324: [366, 400]
+      LM348: [410, 444]
+      LM358: [454, 487]
+      MC3403: [497, 531]
+      TL022C: [541, 575]
+      TL060: [586, 618]
+      TL061: [628, 660]
+      TL062: [670, 702]
+      TL064: [712, 744]
+      TL070: [755, 787]
+      TL071: [796, 828]
+      TL072: [837, 869]
+      TL074: [878, 910]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 10
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: LF353_NSC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INN
+  - INP
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_NSC.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+    lines:
+      LF353_NSC: [673, 756]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.889
+    pass: 8
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lf353.pdf
+  maker: Texas Instruments (National Semiconductor)
+  doc: SLOS012C, rev. C (first issued Mar 1987)
+  date: 2016-03

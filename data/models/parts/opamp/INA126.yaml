@@ -1,0 +1,86 @@
+part: INA126
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: INA126
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  - COMP2
+  deps:
+  - OPAMP1
+  - OPAMP2
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM210
+    member: INA126_TINA_AIO/INA126.LIB
+    archive_sha256: abeec9db39ef1ed76b8fa6efb1f28c17d99a599675b76a8d9983ba09a4deeef8
+    sha256: 8a769e0a13bd88d3cb24b2243c4d2ce8cab2dd98280203fee5a9a05d40e07edb
+    lines:
+      INA126: [50, 53]
+      OPAMP1: [63, 100]
+      OPAMP2: [108, 145]
+    fetched: '2026-09-19'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: kicad-spice-library
+  name: INA126P/BB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  - COMP2
+  deps:
+  - OPAMP2_126
+  - OPAMP1_126
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/burr-brn.lib
+    sha256: 24467fdf16f7135ce54f90c7424e35ce1e6d2131c277351a4ee7276cdd6e2664
+    lines:
+      INA126P/BB: [5494, 5499]
+      OPAMP1_126: [5509, 5548]
+      OPAMP2_126: [5557, 5597]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: kicad-spice-library
+  name: INA126P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  - COMP2
+  deps:
+  - INA126opamp1
+  - INA126opamp2
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/BB.LIB
+    sha256: 39cd5f745971a0eef7c5b3a564fadfe85c38348218e6ba9e9875032dcb3a8044
+    lines:
+      INA126P: [3848, 3852]
+      INA126opamp1: [3863, 3900]
+      INA126opamp2: [3910, 3947]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)

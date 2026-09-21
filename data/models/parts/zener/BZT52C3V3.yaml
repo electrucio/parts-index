@@ -1,0 +1,80 @@
+part: BZT52C3V3
+kind: zener
+priority: 4
+models:
+- source: diodes-inc
+  name: BZT52C3V3LP
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/833/BZT52C3V3LP.spice.txt
+    sha256: 953705610f989c0be46d735a6b89f1525c8f3e6111772c59cf181c68bfae72d8
+    lines:
+      BZT52C3V3LP: [19, 27]
+    fetched: '2026-09-19'
+    note: 'model(s): BZT52C3V3LP, DF, DR'
+  note: pins from default order (unverified)
+- source: bordodynov
+  name: BZT52C3V3
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - DF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Zener_DiodesInc.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+    lines:
+      BZT52C3V3: [1410, 1417]
+      DF: [6016, 6016]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: BZT52C3V3S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - DF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Zener_DiodesInc.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+    lines:
+      BZT52C3V3S: [1420, 1427]
+      DF: [6016, 6016]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: BZT52C3V3T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - DF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Zener_DiodesInc.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+    lines:
+      BZT52C3V3T: [1430, 1437]
+      DF: [6016, 6016]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'

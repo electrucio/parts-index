@@ -1,0 +1,132 @@
+part: 1N4004
+kind: diode
+priority: 2
+group: rectifier
+preferred: vishay
+preferred_why: 'best datasheet agreement: 7 pass, 0 off, 0 fail of 7 judged rows (4 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: onsemi
+  name: D1n4004rl
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n4004rl.lib
+    sha256: 1553e6ac57c5930d9babc59037ca324fa577af93175bd8f0fb9c5ebd5c3b3fe3
+    lines:
+      D1n4004rl: [12, 16]
+    fetched: '2026-09-14'
+    note: 'model(s): D1n4004rl (D .model)'
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+- source: vishay
+  name: 1N4004
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/98980/p_1n4004.txt
+    sha256: 71c81fe4fd02ec6569f534d2df806f3b4e56a421246fe9094a826a6a39145a47
+    lines:
+      1N4004: [6, 12]
+    fetched: '2026-09-14'
+    note: 'model(s): 1N4004 (D .model)'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+- source: cordell
+  name: 1N4004C
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.cordellaudio.com/book/Install-Test.zip
+    member: Install Test/Cordell Models.txt
+    archive_sha256: 332b487564a6c8eca0f8a1db26ec86109b450af5e75278e32556ad000f9bcd77
+    sha256: ae2d30efd938496e2a633e5de71d2fceae0e588c0dde475cb2ec8ff6fe9f2bba
+    lines:
+      1N4004C: [286, 287]
+    fetched: '2026-09-14'
+    note: Cordell Models 12/07/2010 (older version bundled in zip; RB=10 in small-signal BJTs)
+  verification:
+    score: 0.571
+    pass: 4
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: duncanamps
+  name: D1N4004
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/diode.mod
+    sha256: bb58d6a99a7204cfa89803598a0331243f10c11afb1b6279fb56fec2ae14c941
+    lines:
+      D1N4004: [36, 37]
+    fetched: '2026-09-14'
+    note: 34 .model
+  verification:
+    score: 0.714
+    pass: 5
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 4
+- source: suusi-tubes
+  name: 1N4004
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: MotorolaRectifiers.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: 88449ae88e2f751e584a6c2a079ded8a074d765cee37ce146ad1fd34182c5b35
+    lines:
+      1N4004: [6, 6]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+- source: bordodynov
+  name: 1N4004
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N4004: [1406, 1406]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.571
+    pass: 4
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://www.vishay.com/docs/88503/1n4001.pdf
+  maker: Vishay
+  doc: Document Number 88503, Revision 29-Apr-2020 (1N4001 thru 1N4007)

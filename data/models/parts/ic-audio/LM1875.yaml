@@ -1,0 +1,93 @@
+part: LM1875
+kind: ic-audio
+priority: 2
+preferred: ti
+preferred_why: 'best datasheet agreement: 0 pass, 0 off, 0 fail of 0 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 1 not measurable); tied with bordodynov on score and
+  typical-value error, chosen as the more original source'
+models:
+- source: ti
+  name: LM1875
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Vin
+  - Vip
+  - VSS
+  - VDD
+  - Vout
+  deps:
+  - CMRR_0
+  - IQ_IOFF_0
+  - IDEAL_DIODE_0
+  - INPUT_0
+  - VCLAMP_W_SENSE_0
+  - VCLAMP_0
+  - AMETER_0
+  - GBW_SLEW_SE_0
+  - PSRR_0
+  - GND_FLOAT_0
+  - TF_0
+  - OUT_CURRENT_CLAMP_PD_0
+  - VNSE_0
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNAM067
+    member: LM1875.lib
+    archive_sha256: 2241b9a0fc154bbf0119fc1e1a915c46551268ced2e9c8d05f7726062ca10f42
+    sha256: 062f6787e2553985920fc3725eb322c7c34d7f6aa68afeed0bc7c72cfcfa0bc9
+    lines:
+      AMETER_0: [273, 277]
+      CMRR_0: [316, 325]
+      GBW_SLEW_SE_0: [149, 163]
+      GND_FLOAT_0: [261, 263]
+      IDEAL_DIODE_0: [248, 252]
+      INPUT_0: [335, 341]
+      IQ_IOFF_0: [235, 238]
+      LM1875: [34, 74]
+      OUT_CURRENT_CLAMP_PD_0: [174, 178]
+      PSRR_0: [84, 94]
+      TF_0: [181, 224]
+      VCLAMP_0: [304, 306]
+      VCLAMP_W_SENSE_0: [287, 294]
+      VNSE_0: [98, 136]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 1
+    typical_rows: 0
+- source: bordodynov
+  name: LM1875
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '2'
+  - '6'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM1875.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 91d4e379311a8bf4f27d6a300b054c67489149fdca7643fe29b95c885be3fbf4
+    lines:
+      LM1875: [14, 164]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 1
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm1875.pdf
+  maker: Texas Instruments (National Semiconductor)
+  doc: SNAS524A, rev. A
+  date: 2004-05

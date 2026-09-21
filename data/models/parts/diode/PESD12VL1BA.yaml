@@ -1,0 +1,38 @@
+part: PESD12VL1BA
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: nexperia
+  name: PESD12VL1BA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PESD12VL1BA.txt
+    sha256: 95936c78474738d758df1cab5c67cb7890fbcbb4e21bbf305012675fd5e05960
+    lines:
+      PESD12VL1BA: [32, 67]
+    fetched: '2026-09-19'
+    note: 'PESD12VL1BA: PESD12VL1BA, DIODE1, DIODE2'
+  note: pins from default order (unverified)
+- source: ltwiki
+  name: PESD12VL1BA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/PESD12VL1BA.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 42a38d5d9f441e4b6d1ea288a2d048c6504fc4faa1aaa472ccb65a496951579b
+    lines:
+      PESD12VL1BA: [2, 17]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)

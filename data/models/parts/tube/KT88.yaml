@@ -1,0 +1,296 @@
+part: KT88
+kind: tube
+priority: 1
+group: pentode_beam
+preferred: ayumi
+preferred_why: 'best datasheet agreement: 17 pass, 2 off, 0 fail of 19 judged rows (19 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: ayumi
+  name: KT88T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: KT88T.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 3957175fcee4eb053ff72d502168b2a93265482bdb8ac248cdfd7eccf4545ed9
+    lines:
+      KT88T: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.421
+    pass: 8
+    marginal: 11
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from names
+- source: ayumi
+  name: KT88
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: KT88.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: eb60d92a4376149c41fafb31e747fd1dbcf43209c0da6ecd57a68252d89ad103
+    lines:
+      KT88: [10, 30]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.895
+    pass: 17
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from names
+- source: duncanamps
+  name: KT88
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - S
+  - G
+  - K
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice.html
+    member: KT88.INC
+    archive_sha256: ad86d20e99f616f8cafeb32e594ac68c5d33ba7a39557b3ef4a7e79b549555c5
+    sha256: 2eb5da7b7a59bbd2e539d215a1b9e4c7f9ae933cb7d7ff9dcb226bfb74469712
+    lines:
+      KT88: [34, 46]
+    fetched: '2026-09-14'
+    note: subckt KT88 (P S G K)
+  verification:
+    score: 0.474
+    pass: 9
+    marginal: 10
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from names
+- source: koren
+  name: KT88
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G1
+  - C
+  - G2
+  verbatim: true
+  get:
+    url: https://www.normankoren.com/Audio/Tubemods.zip
+    member: Tube.lib
+    archive_sha256: 0a640ed245918dc5a349abf370f5e955ccdb6d85986fbf36b10bc720d55f8982
+    sha256: 581821af37b2669ea340b93116de46c9c4edf4c713990eea270b197c62885844
+    lines:
+      KT88: [224, 239]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.737
+    pass: 14
+    marginal: 5
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from inline comment
+- source: suusi-tubes
+  name: KT88
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      KT88: [2137, 2141]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.842
+    pass: 16
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from inline comment
+- source: suusi-tubes
+  name: KT88
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      KT88: [1541, 1545]
+      PENTODE1: [2010, 2023]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.842
+    pass: 16
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from inline comment
+- source: suusi-tubes
+  name: KT88_OLD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      KT88_OLD: [1535, 1538]
+      PENTODE: [1994, 2007]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.737
+    pass: 14
+    marginal: 5
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from inline comment
+- source: bordodynov
+  name: KT88
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - DX
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/nk_pentode.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: c559485a397b0b4be28e593e9cd6dd23228a07fbce5ca4e240d2421fb98a3f40
+    lines:
+      DX: [303, 303]
+      KT88: [243, 247]
+      PENTODE1: [272, 284]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.842
+    pass: 16
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: 'same code also in: kicad-spice-library, ltwiki, robrobinette; pins from inline comment'
+- source: bordodynov
+  name: KT88
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G2
+  - G1
+  - K
+  deps:
+  - Tetro
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      KT88: [2866, 2869]
+      Tetro: [3163, 3176]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.737
+    pass: 14
+    marginal: 5
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from inline comment'
+- source: bordodynov
+  name: KT88TR_RY
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - Igrid
+  - TRIO1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      Igrid: [2974, 2978]
+      KT88TR_RY: [684, 693]
+      TRIO1: [2927, 2929]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 19
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://frank.pocnet.net/sheets/086/k/KT88.pdf
+  maker: M-O Valve Co (Genalex)
+  doc: KT88 Issue 5 (pages 1-8), curves 1470-1475
+  date: 1974-12

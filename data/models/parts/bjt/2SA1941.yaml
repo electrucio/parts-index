@@ -1,0 +1,78 @@
+part: 2SA1941
+kind: bjt
+priority: 3
+group: power_output
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 4 pass, 0 off, 3 fail of 7 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with ltwiki, kicad-spice-library
+  on score and typical-value error, chosen as the more original source'
+models:
+- source: bordodynov
+  name: 2SA1941
+  def: model
+  type: PNP
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      2SA1941: [1134, 1134]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.571
+    pass: 4
+    marginal: 0
+    fail: 3
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: 2SA1941
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Mixer/standard.bjt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+    lines:
+      2SA1941: [1077, 1077]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.571
+    pass: 4
+    marginal: 0
+    fail: 3
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: Q2SA1941
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/BJT_PNP/TOSH_PWR.LIB
+    sha256: 1b6e2abc4bd76907b3e01ab4be9719410ab5dcdb3a022627e0d970a62cb14e7c
+    lines:
+      Q2SA1941: [5975, 5991]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.571
+    pass: 4
+    marginal: 0
+    fail: 3
+    not_measurable: 0
+    typical_rows: 2
+datasheet:
+  url: https://toshiba.semicon-storage.com/info/docget.jsp?did=20422&prodName=2SA1941
+  maker: toshiba
+  doc: 2SA1941 (English data sheet, listed on the Toshiba product page as Nov 2013)
+  date: '2013-11-01'

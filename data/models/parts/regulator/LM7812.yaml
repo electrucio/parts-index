@@ -1,0 +1,98 @@
+part: LM7812
+kind: regulator
+priority: 2
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 4 pass, 0 off, 0 fail of 4 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, kicad-spice-library
+  on score and typical-value error, chosen as the more original source. WEAK EVIDENCE: fewer than 5 rows,
+  all min/max limits'
+models:
+- source: bordodynov
+  name: LM7812
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - GND
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/regulators.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1998b5aaba8b44019bf630a561c739ff33a83996cd6600bbaa8b8c3e02cf5bf2
+    lines:
+      LM7812: [253, 310]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from simulation: of the 6 node orders only
+    IN GND OUT regulates to about 12 V at Vin-Vout 5 V / 5 mA, Vin-Vout 15 V / 5 mA, Vin-Vout 5 V / 100
+    mA (orders tried: IN OUT GND: -12 V, -12 V, -89.2 V; IN GND OUT: 12 V, 12 V, 12 V; OUT IN GND: 14.8
+    V, 24.8 V, 14.8 V; OUT GND IN: 11.5 V, 19.8 V, -1.72 V; GND IN OUT: -0.73 V, -0.73 V, -0.849 V; GND
+    OUT IN: -3.27 V, -3.25 V, -73.1 V)'
+- source: bordodynov
+  name: LM7812
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - VGND
+  - OUT
+  deps:
+  - lm78xx
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM78xx.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 85a79b9c4224eedd7b333dc306ea7ae90a39a5d92242196b6fbd370eeb3300bc
+    lines:
+      LM7812: [15, 18]
+      lm78xx: [27, 70]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: kicad-spice-library
+  name: LM7812C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INPUT
+  - OUTPUT
+  - GROUND
+  deps:
+  - x_LM78XX
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      LM7812C: [1789, 1792]
+      x_LM78XX: [1632, 1736]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: pins from names
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm7812.pdf
+  maker: Texas Instruments (National Semiconductor)
+  doc: SNOSBT0L, rev. L; table 6.7 LM340/LM7812
+  date: 2016-09

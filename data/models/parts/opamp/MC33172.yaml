@@ -1,0 +1,146 @@
+part: MC33172
+kind: opamp
+priority: 2
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 13 pass, 0 off, 1 fail of 14 judged rows (2 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, bordodynov,
+  kicad-spice-library, kicad-spice-library on score and typical-value error, chosen as the more original
+  source'
+models:
+- source: bordodynov
+  name: MC33172/MC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/on_amp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+    lines:
+      MC33172/MC: [2321, 2359]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.929
+    pass: 13
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+- source: bordodynov
+  name: MC33172
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      MC33172: [1312, 1349]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.929
+    pass: 13
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: MC33172/ON
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/on_amp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+    lines:
+      MC33172/ON: [843, 881]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.929
+    pass: 13
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+- source: kicad-spice-library
+  name: MC33172_MC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_opamp.lib
+    sha256: bfbf4e51462367a37800fa5c0f5a2b3190a30da3e6321416caa3e14b91ff274a
+    lines:
+      MC33172_MC: [1549, 1587]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.929
+    pass: 13
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: pins from numbered connections table
+- source: kicad-spice-library
+  name: MC33172
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/MOTOR.LIB
+    sha256: 44f08a5cfceeb4c72d4f6e77e1eac1d108b46f7cb81dee8f3296a908b1eb53e6
+    lines:
+      MC33172: [1468, 1506]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.929
+    pass: 13
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: pins from numbered connections table
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/mc33171-d.pdf
+  maker: onsemi (ex Motorola)
+  doc: MC33171/D Rev. 14, July 2025 (MC33171, MC33172, MC33174, NCV33172, NCV33174)

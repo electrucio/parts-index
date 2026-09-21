@@ -1,0 +1,47 @@
+part: PC357
+kind: opto
+priority: 4
+models:
+- source: bordodynov
+  name: Pc357nt
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  - E
+  - C
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OptoAcop.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: afc41e67a056aadd6af70da491aedd69fb6e66a9f20ffe644c8b39d92e8ad025
+    lines:
+      Pc357nt: [134, 150]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: pc357nt
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  - E
+  - C
+  deps:
+  - Rb
+  - Q1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      Q1: [16399, 16440]
+      Rb: [564, 570]
+      pc357nt: [2602, 2618]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

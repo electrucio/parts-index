@@ -1,0 +1,99 @@
+part: LM7915
+kind: regulator
+priority: 2
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 2 pass, 0 off, 1 fail of 3 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with ltwiki, kicad-spice-library
+  on score and typical-value error, chosen as the more original source. WEAK EVIDENCE: fewer than 5 rows,
+  all min/max limits'
+models:
+- source: bordodynov
+  name: LM7915
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - GND
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/lm7905_7912_7915.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: e1945dcaa615cbe04e8e71408bca74a4f57b58e3b6d6e98f1e395634a1ace97e
+    lines:
+      LM7915: [189, 270]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 2
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from simulation: of the 6 node orders only
+    IN GND OUT regulates to about -15 V at Vin-Vout 5 V / 5 mA, Vin-Vout 15 V / 5 mA, Vin-Vout 5 V / 100
+    mA (orders tried: IN OUT GND: -13.9 V, -23.5 V, 748 V; IN GND OUT: -15.1 V, -15 V, -15 V; OUT IN GND:
+    -18.5 V, -28.5 V, -18.3 V; OUT GND IN: -13.3 V, -23.1 V, 1.68 V; GND IN OUT: 23.9 V, 17.7 V, 72.3
+    V; GND OUT IN: 5.34 V, 5.14 V, 780 V)'
+- source: ltwiki
+  name: LM7915
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - GND
+  - OUT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/regulators.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: ba2105aa53d2db16001d205924af438b7c473ed9a864ce8e7ef13fcd71a7fcf7
+    lines:
+      LM7915: [671, 751]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 2
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library; pins from simulation: of the 6 node orders only IN GND
+    OUT regulates to about -15 V at Vin-Vout 5 V / 5 mA, Vin-Vout 15 V / 5 mA, Vin-Vout 5 V / 100 mA (orders
+    tried: IN OUT GND: -13.9 V, -23.5 V, 747 V; IN GND OUT: -15 V, -15 V, -15 V; OUT IN GND: -18.5 V,
+    -28.5 V, -18.3 V; OUT GND IN: -13.3 V, -23.1 V, 1.68 V; GND IN OUT: 23.8 V, 17.6 V, 72.3 V; GND OUT
+    IN: 5.34 V, 5.13 V, 779 V)'
+- source: kicad-spice-library
+  name: LM7915C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INPUT
+  - OUTPUT
+  - GROUND
+  deps:
+  - x_LM79XX
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      LM7915C: [2075, 2080]
+      x_LM79XX: [1885, 1963]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.667
+    pass: 2
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+  note: pins from names
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm7915.pdf
+  maker: Texas Instruments (National Semiconductor)
+  doc: SNOSBQ7C, rev. C (first issued Jun 1999); LM7915C column
+  date: 2013-05

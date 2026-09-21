@@ -1,0 +1,180 @@
+part: LM741
+kind: opamp
+priority: 2
+preferred: ti
+preferred_why: 'best datasheet agreement: 10 pass, 0 off, 0 fail of 10 judged rows (0 against typical
+  values or curve points, the rest against min/max limits; 2 not measurable); tied with bordodynov, bordodynov
+  on score and typical-value error, chosen as the more original source. Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: ti
+  name: LM741
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNOM211
+    member: lm741.lib
+    archive_sha256: cdf5544ccf12a2957750a4c57c15b684528315e61488a85e99b96f1771f6d136
+    sha256: f58370983c8bd22bf6a59ddd05a1dd492f1a0ea60f673ffd460a356da5e693dc
+    lines:
+      LM741: [30, 110]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 10
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 0
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from comment words'
+- source: ti
+  name: UA741
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ138
+    member: UA741.301
+    archive_sha256: 0494763955e459f789c90e2a0403e202742b29bc2f45c4c99c8346317c0e2f86
+    sha256: 6fc707dc0f43edccf82c22ca3cf582f8fa3e65b3ceb8e73fc6caf6d8679b6f17
+    lines:
+      UA741: [10, 44]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'found under the alias uA741; same code also in: kicad-spice-library, ltwiki; pins from comment
+    words'
+- source: stmicro
+  name: UA741
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '3'
+  - '2'
+  - '4'
+  - '5'
+  verbatim: false
+  changes:
+  - st_analog_token
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/STMicroelectronics/Standard%20Linear%20ICs/Spice/ua741.txt
+    sha256: 4e5cd1d80fc426808c5b62fe953a1ace5f3c7e4af5a814e2a4db6572a88d07a0
+    lines:
+      UA741: [26, 73]
+    fetched: '2026-09-14'
+    note: ST "Standard Linear ICs Macromodels, 1993" (UA741), mirrored on ltwiki.org
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 12
+    typical_rows: 0
+  note: found under the alias uA741
+- source: bordodynov
+  name: LM741/NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ns_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+    lines:
+      LM741/NS: [8808, 8888]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 10
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: uA741
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/ST/OpAmp/OpAmp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 031081f30e7ec5cc20b5749d74edb01f155e0dc04179b4edb69d698b0d95fbaf
+    lines:
+      uA741: [8, 43]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'found under the alias uA741; same code also in: kicad-spice-library, ltwiki; pins from comment
+    words'
+- source: bordodynov
+  name: UA741
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      UA741: [2913, 2947]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'found under the alias uA741; same code also in: kicad-spice-library, ltwiki; pins from default
+    order (unverified)'
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm741.pdf
+  maker: Texas Instruments (National Semiconductor)
+  doc: SNOSC25D, rev. D (first issued May 1998); tables 6.5 LM741, 6.6 LM741A, 6.7 LM741C
+  date: 2015-10

@@ -1,0 +1,132 @@
+part: BAT54
+kind: diode
+priority: 2
+group: schottky
+preferred: nexperia
+preferred_why: 'best datasheet agreement: 12 pass, 0 off, 0 fail of 12 judged rows (5 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: nexperia
+  name: BAT54
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BAT54.txt
+    sha256: 22735f1c4b21de402ec1a265fe39c8bf1d4d28bc1b576759b948388efd57c90d
+    lines:
+      BAT54: [38, 60]
+    fetched: '2026-09-14'
+    note: 'model(s): BAT54 (.subckt 1 2), DIODE1 (D .model)'
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: pins from comment words
+- source: diodes-inc
+  name: BAT54
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/510/BAT54.spice.txt
+    sha256: a1d142e1f32ea55aca3aa434897a3b648266f58b91745aa79579640b52eccd03
+    lines:
+      BAT54: [19, 22]
+    fetched: '2026-09-14'
+    note: 'model(s): BAT54 (D .model)'
+  verification:
+    score: 0.833
+    pass: 10
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltspice-native
+  name: BAT54
+  def: model
+  type: D
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.dio
+    sha256: 696d34dfe538966c80cfe1da259c1043f408777be79f59e4f1c47d82f3af320a
+    lines:
+      BAT54: [12, 12]
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: ltspice-native
+  name: BAT54AHY
+  def: model
+  type: D
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.dio
+    sha256: 696d34dfe538966c80cfe1da259c1043f408777be79f59e4f1c47d82f3af320a
+    lines:
+      BAT54AHY: [479, 479]
+  verification:
+    score: 0.583
+    pass: 7
+    marginal: 4
+    fail: 1
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: bordodynov, ltwiki'
+- source: ltspice-native
+  name: BAT54CHY
+  def: model
+  type: D
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.dio
+    sha256: 696d34dfe538966c80cfe1da259c1043f408777be79f59e4f1c47d82f3af320a
+    lines:
+      BAT54CHY: [480, 480]
+  verification:
+    score: 0.583
+    pass: 7
+    marginal: 4
+    fail: 1
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: bordodynov, ltwiki'
+- source: ltspice-native
+  name: BAT54HY
+  def: model
+  type: D
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.dio
+    sha256: 696d34dfe538966c80cfe1da259c1043f408777be79f59e4f1c47d82f3af320a
+    lines:
+      BAT54HY: [481, 481]
+  verification:
+    score: 0.583
+    pass: 7
+    marginal: 4
+    fail: 1
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: bordodynov, ltwiki'
+datasheet:
+  url: https://assets.nexperia.com/documents/data-sheet/BAT54_SER.pdf
+  maker: Nexperia
+  doc: BAT54_SER v.5, Product data sheet (BAT54, BAT54A, BAT54C, BAT54S)
+  date: '2012-10-05'

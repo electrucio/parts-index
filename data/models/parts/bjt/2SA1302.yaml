@@ -1,0 +1,74 @@
+part: 2SA1302
+kind: bjt
+priority: 2
+group: power_output
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 7 pass, 0 off, 0 fail of 7 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov on score and
+  typical-value error, chosen as the more original source'
+models:
+- source: bordodynov
+  name: Q2SA1302
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      Q2SA1302: [772, 772]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 2SA1302
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      2SA1302: [925, 925]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: Q2SA1302
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/BJT_PNP/TOSHIBA.LIB
+    sha256: 4a5d1e7670eff99dfd5290383e42316cebae59769ce130e15a7f5d9a9a4cbd90
+    lines:
+      Q2SA1302: [803, 819]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.571
+    pass: 4
+    marginal: 1
+    fail: 2
+    not_measurable: 0
+    typical_rows: 2
+datasheet:
+  url: https://media.digikey.com/pdf/Data%20Sheets/Toshiba%20PDFs/2SA1302.pdf
+  maker: toshiba
+  doc: 2SA1302 Discrete Semiconductors sheet (2 pages, no revision printed; PDF created 1996-09-19)

@@ -1,0 +1,184 @@
+part: INA826
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: INA826
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VDD
+  - GND
+  - OUT
+  - REF
+  - RG-
+  - RG+
+  deps:
+  - Q_PNP_INN
+  - PNP_INN_0
+  - Dbe
+  - D1
+  - D_DBE_0
+  - JPF
+  - JPF_0
+  - Q_NPN_1
+  - NPN_1_0
+  - D_DBE_1
+  - Q_PNP_1
+  - PNP_1_0
+  - D_ZB1_0
+  - D_Lim1
+  - D_LIM1_0
+  - D_D4_0
+  - Bias_0
+  - Q_PNP_INP
+  - PNP_INP_0
+  - D2
+  - D_D2_0
+  - D_Lim5
+  - D_LIM5_0
+  - Q_PNP_OUT
+  - PNP_OUT_0
+  - D_DBE_3
+  - Q_NPN_OUT
+  - NPN_OUT_0
+  - VOST_0
+  - Output_0
+  - D_DBE_2
+  - Input_0
+  - Input_1
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: https://www.ti.com/lit/zip/SBOM472
+    member: INA826_TINA_AIO/INA826.lib
+    archive_sha256: c7542b8f9a569b42943020d9dddbba367fd3ae86810dfe4b4c662595796b625d
+    sha256: a0fd21fdd96a7601c977765f0d8044c1368264a89eecb0313270a1afe5de4a7a
+    lines:
+      Bias_0: [84, 128]
+      D1: [473, 473]
+      D2: [475, 475]
+      D_D2_0: [342, 344]
+      D_D4_0: [387, 390]
+      D_DBE_0: [347, 349]
+      D_DBE_1: [382, 385]
+      D_DBE_2: [418, 421]
+      D_DBE_3: [445, 447]
+      D_LIM1_0: [413, 415]
+      D_LIM5_0: [423, 425]
+      D_Lim1: [463, 463]
+      D_Lim5: [471, 471]
+      D_ZB1_0: [392, 396]
+      Dbe: [584, 584]
+      INA826: [38, 82]
+      Input_0: [130, 187]
+      Input_1: [250, 307]
+      JPF: [577, 577]
+      JPF_0: [309, 311]
+      NPN_1_0: [408, 411]
+      NPN_OUT_0: [449, 452]
+      Output_0: [189, 248]
+      PNP_1_0: [403, 406]
+      PNP_INN_0: [317, 320]
+      PNP_INP_0: [356, 359]
+      PNP_OUT_0: [458, 461]
+      Q_NPN_1: [477, 499]
+      Q_NPN_OUT: [501, 523]
+      Q_PNP_1: [525, 547]
+      Q_PNP_INN: [322, 341]
+      Q_PNP_INP: [361, 380]
+      Q_PNP_OUT: [549, 571]
+      VOST_0: [427, 443]
+    fetched: '2026-09-19'
+- source: ti
+  name: INA826
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - RG+
+  - RG-
+  - VDD
+  - GND
+  - OUT
+  - REF
+  deps:
+  - VOST_0_Output_0_INA826
+  - NPN_1_0_Output_0_INA826
+  - D_LIM5_0_Output_0_INA826
+  - PNP_1_0_Output_0_INA826
+  - D_DBE_3_Output_0_INA826
+  - D_LIM1_0_Output_0_INA826
+  - NPN_OUT_0_Output_0_INA826
+  - PNP_OUT_0_Output_0_INA826
+  - Output_0_INA826
+  - PNP_INN_0_INA826
+  - PNP_1_0_Bias_0
+  - D_DBE_1_Bias_0
+  - D_LIM1_0_Bias_0
+  - D_ZB1_0_Bias_0
+  - NPN_1_0_Bias_0
+  - D_D4_0_Bias_0
+  - Bias_0_INA826
+  - D_D2_0_INA826
+  - PNP_1_0_Input_1_INA826
+  - D_DBE_2_Input_1_INA826
+  - NPN_1_0_Input_1_INA826
+  - D_DBE_1_Input_1_INA826
+  - D_LIM1_0_Input_1_INA826
+  - Input_1_INA826
+  - D_DBE_0_INA826
+  - PNP_INP_0_INA826
+  - JPF_0_INA826
+  - D_DBE_2_Input_0_INA826
+  - D_DBE_1_Input_0_INA826
+  - NPN_1_0_Input_0_INA826
+  - PNP_1_0_Input_0_INA826
+  - D_LIM1_0_Input_0_INA826
+  - Input_0_INA826
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOMC48
+    member: ina826.lib
+    archive_sha256: b8d327020255934b669ae904567f17bde30f9753451d39fb1d89ba8aeff5cbe3
+    sha256: 350ea59e977e5749f7ae614d84c79647f21584b8e0019e9e98b292c34e36851f
+    lines:
+      Bias_0_INA826: [167, 213]
+      D_D2_0_INA826: [94, 97]
+      D_D4_0_Bias_0: [215, 218]
+      D_DBE_0_INA826: [99, 102]
+      D_DBE_1_Bias_0: [220, 226]
+      D_DBE_1_Input_0_INA826: [363, 369]
+      D_DBE_1_Input_1_INA826: [508, 514]
+      D_DBE_2_Input_0_INA826: [371, 377]
+      D_DBE_2_Input_1_INA826: [516, 522]
+      D_DBE_3_Output_0_INA826: [655, 660]
+      D_LIM1_0_Bias_0: [228, 233]
+      D_LIM1_0_Input_0_INA826: [379, 384]
+      D_LIM1_0_Input_1_INA826: [524, 529]
+      D_LIM1_0_Output_0_INA826: [662, 667]
+      D_LIM5_0_Output_0_INA826: [669, 674]
+      D_ZB1_0_Bias_0: [235, 239]
+      INA826: [45, 92]
+      Input_0_INA826: [303, 361]
+      Input_1_INA826: [448, 506]
+      JPF_0_INA826: [104, 107]
+      NPN_1_0_Bias_0: [241, 269]
+      NPN_1_0_Input_0_INA826: [386, 414]
+      NPN_1_0_Input_1_INA826: [531, 559]
+      NPN_1_0_Output_0_INA826: [676, 704]
+      NPN_OUT_0_Output_0_INA826: [706, 734]
+      Output_0_INA826: [593, 653]
+      PNP_1_0_Bias_0: [271, 299]
+      PNP_1_0_Input_0_INA826: [416, 444]
+      PNP_1_0_Input_1_INA826: [561, 589]
+      PNP_1_0_Output_0_INA826: [736, 764]
+      PNP_INN_0_INA826: [110, 135]
+      PNP_INP_0_INA826: [137, 162]
+      PNP_OUT_0_Output_0_INA826: [766, 794]
+      VOST_0_Output_0_INA826: [796, 810]
+    fetched: '2026-09-19'

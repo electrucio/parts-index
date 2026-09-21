@@ -1,0 +1,47 @@
+part: LM3915
+kind: control
+priority: 3
+models:
+- source: bordodynov
+  name: lm3915
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Bar/_dot
+  - Rhi
+  - Sig
+  - V+
+  - V-
+  - Adj
+  - L1
+  - L10
+  - L2
+  - L3
+  - L4
+  - L5
+  - L6
+  - L7
+  - L8
+  - L9
+  - Ref
+  - Rlo
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM3915.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8c82353293756620faf458a83ce8d28d4601bbef8b967a8a161e70a69979ecca
+    lines:
+      lm3915: [12, 54]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''control'''
+  note: 'same code also in: ltwiki'
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm3915.pdf
+  maker: Texas Instruments (National Semiconductor)
+  doc: SNVS740C, rev. C (January 2000, revised March 2013)
+  date: 2013-03

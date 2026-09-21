@@ -1,0 +1,24 @@
+part: TLV2464
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: TLV2464
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOM349
+    member: TLV2464.LIB
+    archive_sha256: 33dfaf24038b1fc468b92383d5edbc5b66c491f9ff99545dd389ad83c5fc979e
+    sha256: fcc76b18bf5802db7cad94c73bc473fdd762251b8ab9812b7a0d8d6ba95c3058
+    lines:
+      TLV2464: [65, 239]
+    fetched: '2026-09-19'
+  note: pins from default order (unverified)

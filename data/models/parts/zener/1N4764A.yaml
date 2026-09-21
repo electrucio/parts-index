@@ -1,0 +1,31 @@
+part: 1N4764A
+kind: zener
+priority: 3
+preferred: duncanamps
+preferred_why: 'best datasheet agreement: 4 pass, 0 off, 1 fail of 5 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable). Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: duncanamps
+  name: D1N4764
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/zener.mod
+    sha256: 53758db14bf58c6f53e5655b57def938fd7ebbaee865e81ef7ad3ba689a7f192
+    lines:
+      D1N4764: [261, 262]
+    fetched: '2026-09-14'
+    note: 77 .model
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://ww1.microchip.com/downloads/aemDocuments/documents/HRDS/ProductDocuments/DataSheets/1N4728AG_1N4764AG_e3.pdf
+  maker: Microchip (Microsemi Scottsdale)
+  doc: 1N4728AG thru 1N4764AG, e3 (Glass), REV C, 10-18-2005 (JEDEC registered data)

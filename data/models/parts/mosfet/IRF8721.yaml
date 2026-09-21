@@ -1,0 +1,68 @@
+part: IRF8721
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: bordodynov
+  name: IRF8721
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRF8721: [309, 309]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: irf8721pbf
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irf8721pbf.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bb656c495594a25c75ab4ea6a98fe20ec687f61e3e7f3057d4c7e011e8648482
+    lines:
+      irf8721pbf: [1, 57]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: irf8721pbft
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '4'
+  - '0'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irf8721pbf.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bb656c495594a25c75ab4ea6a98fe20ec687f61e3e7f3057d4c7e011e8648482
+    lines:
+      irf8721pbft: [60, 71]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: IRF8721
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.mos
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 0f6a0a30f327903e5b61c3764e08354839fed85c6ce2d4a8b3d708d6c2ec9533
+    lines:
+      IRF8721: [310, 310]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'

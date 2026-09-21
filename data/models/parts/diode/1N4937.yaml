@@ -1,0 +1,31 @@
+part: 1N4937
+kind: diode
+priority: 4
+group: rectifier
+models:
+- source: onsemi
+  name: D1n4937rl
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n4937rl.lib
+    sha256: cd1aebce3624158ce26afb7485ceef718c98dc62f570be8ee363482a46efd861
+    lines:
+      D1n4937rl: [12, 16]
+    fetched: '2026-09-19'
+    note: '1N4937: D1n4937rl'
+- source: bordodynov
+  name: 1N4937
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N4937: [1987, 1987]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'

@@ -1,0 +1,147 @@
+part: IRF610
+kind: mosfet
+priority: 2
+group: power_vertical
+preferred: infineon
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable); tied with kicad-spice-library on
+  score and typical-value error, chosen as the more original source'
+models:
+- source: infineon
+  name: IRF610
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://web.archive.org/web/19991008164234id_/http://www.irf.com:80/product-info/models/SPICE/irf610.spi
+    sha256: a3bef0ab5522b6d82b8b273f58a8b1ecc90dfea85885b89d29fe7022505b6a43
+    lines:
+      IRF610: [1, 60]
+    fetched: '2026-09-14'
+    note: International Rectifier legacy HEXFET SPICE model; original URL http://www.irf.com:80/product-info/models/SPICE/irf610.spi
+      (Wayback capture 19991008164234)
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: IRF610h
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRF610h: [1504, 1504]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 1
+    fail: 1
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: IRF610
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+    sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+    lines:
+      IRF610: [1457, 1457]
+    fetched: '2026-09-14'
+    note: Bordodynov VDMOS collection for LTspice IV
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 2
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: IRF610_
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+    sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+    lines:
+      IRF610_: [1510, 1510]
+    fetched: '2026-09-14'
+    note: Bordodynov VDMOS collection for LTspice IV
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 1
+    fail: 1
+    not_measurable: 2
+    typical_rows: 3
+- source: kicad-spice-library
+  name: IRF610
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWMOS.LIB
+    sha256: 3a158ee63ad9816d8dcdc0cad0827d2f4646c66b6296d7bbcd2c28d49bf1d219
+    lines:
+      IRF610: [2854, 2874]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: IRF610M
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+    sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+    lines:
+      IRF610M: [2475, 2520]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: pins from default order (unverified)
+datasheet:
+  url: https://www.vishay.com/docs/91023/irf610.pdf
+  maker: Vishay Siliconix
+  doc: Document Number 91023, S21-0819-Rev. C
+  date: '2021-08-02'

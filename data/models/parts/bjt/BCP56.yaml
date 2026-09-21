@@ -1,0 +1,90 @@
+part: BCP56
+kind: bjt
+priority: 4
+group: small_signal_pnp
+models:
+- source: nexperia
+  name: BCP56
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B
+  - C
+  - E
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BCP56.txt
+    sha256: ef9070e2a2a2a04c01687ce2e8f1a367c18457c5934972c219b11559cffd7c5a
+    lines:
+      BCP56: [29, 88]
+    fetched: '2026-09-14'
+    note: 'model(s): BCP56 (.subckt 1 2 3), MAIN (NPN .model), DIODE (D .model)'
+  note: pins from comment words
+- source: bordodynov
+  name: BCP56
+  def: model
+  type: NPN
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      BCP56: [1183, 1183]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: BCP56
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Mixer/standard.bjt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+    lines:
+      BCP56: [1126, 1126]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: BCP56
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ZETEX/LIB/zmodels.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 8d3fb488666b5f813a666d5c589ac6c7779a2c44a4b38799b2a41ca0006368e7
+    lines:
+      BCP56: [5816, 5820]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: BCP56
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+    sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+    lines:
+      BCP56: [4042, 4046]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BCP56_ZX
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zetex.lib
+    sha256: 453392deca3bd0ddfca565d56241c4a5bb4d2e8f14c6efa92c1c453ed434fdca
+    lines:
+      BCP56_ZX: [5885, 5889]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

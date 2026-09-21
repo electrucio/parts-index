@@ -1,0 +1,62 @@
+part: LT1124
+kind: opamp
+priority: 2
+models:
+- source: ltwiki
+  name: LT1124
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+    lines:
+      LT1124: [4008, 4067]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: kicad-spice-library
+  name: LT1124_LT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/linear.lib
+    sha256: 025903d9677acbc507e2eaa578ba581d9e52f17c10dbf286da658f1af22dd5ba
+    lines:
+      LT1124_LT: [3863, 3922]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: kicad-spice-library
+  name: LT1124/LT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/lin_tech.lib
+    sha256: ecf83f07a8bd4c59f1b672a6af78483039b75f982c54349f9eca7641007da6d9
+    lines:
+      LT1124/LT: [4803, 4862]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)

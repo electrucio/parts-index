@@ -1,0 +1,23 @@
+part: CSD17581Q3A
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: ti
+  name: csd17581q3a
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLPM343
+    member: CSD17581Q3A.lib
+    archive_sha256: 2dc520adb98aef49aae14c5d20d9e3cbd4f35e981654aa3a3efd4e625876e6b0
+    sha256: 95ee411be874b8c6e22581ba398cee99e4c4db50dda8f2081a5df6ba4511108e
+    lines:
+      csd17581q3a: [39, 101]
+    fetched: '2026-09-19'
+  note: pins from default order (unverified)

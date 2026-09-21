@@ -1,0 +1,27 @@
+part: LMH6552
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: LMH6552
+  def: subckt
+  type: SUBCKT
+  pins:
+  - vip
+  - vim
+  - vcc
+  - vee
+  - vop
+  - vom
+  - vcm
+  - ven
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNOM155
+    member: LMH6552.MOD
+    archive_sha256: 521ddeb0631ea0bec9382f3d264b33d747e5f90b4e1d1ef6200ea37b46a5d5f8
+    sha256: 3ed86357f219eb7950192c5a4379a0930cde8320271cbbcd4f4245509c29f26f
+    lines:
+      LMH6552: [45, 147]
+    fetched: '2026-09-19'
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'

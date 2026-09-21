@@ -1,0 +1,130 @@
+part: LSK489
+kind: jfet
+priority: 2
+group: n_channel
+preferred: linear-systems
+preferred_why: 'best datasheet agreement: 7 pass, 0 off, 2 fail of 9 judged rows (4 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with interfet on score and
+  typical-value error, chosen as the more original source'
+models:
+- source: linear-systems
+  name: LSK489A
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.linearsystems.com/_files/ugd/7e8069_668879111342422cbdbc172d1d2d9d75.pdf
+    sha256: 5a19f1591a83fd30be6f557066dca3250fd753d5a0c90288530c8e245dceb07b
+    lines:
+      LSK489A: [9, 11]
+    fetched: '2026-09-14'
+    note: 'transcribed: .model LSK489A NJF, from page 1 of raw/7e8069_668879111342422cbdbc172d1d2d9d75.pdf
+      (values unchanged, ''+'' continuation marks added)'
+  verification:
+    score: 0.778
+    pass: 7
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 4
+- source: interfet
+  name: LSK489A-LS
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK489A-LS: [479, 479]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.778
+    pass: 7
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 4
+- source: interfet
+  name: LSK489B-LS
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK489B-LS: [480, 480]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.778
+    pass: 7
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 4
+- source: interfet
+  name: LSK489C-LS
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK489C-LS: [481, 481]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.778
+    pass: 7
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 4
+- source: ltspice-native
+  name: LSK489A
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.jft
+    sha256: 93ae8433a9412e96e81071b65d521b7f31dcb2c2f3fce714456b73586230bea0
+    lines:
+      LSK489A: [131, 131]
+  verification:
+    score: 0.667
+    pass: 6
+    marginal: 1
+    fail: 2
+    not_measurable: 0
+    typical_rows: 4
+- source: ltspice-native
+  name: LSK489B
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.jft
+    sha256: 93ae8433a9412e96e81071b65d521b7f31dcb2c2f3fce714456b73586230bea0
+    lines:
+      LSK489B: [132, 132]
+  verification:
+    score: 0.778
+    pass: 7
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 4
+datasheet:
+  url: https://cms.nacsemi.com/content/AuthDatasheets/linearsys/LSK489.pdf
+  maker: Linear Integrated Systems
+  doc: LSK489 A/B, Doc 201151, Rev A40
+  date: '2022-04-12'

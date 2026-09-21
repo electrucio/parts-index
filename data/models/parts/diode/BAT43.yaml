@@ -1,0 +1,73 @@
+part: BAT43
+kind: diode
+priority: 3
+group: schottky
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 5 pass, 4 off, 2 fail of 11 judged rows (6 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: BAT43
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BAT43: [899, 899]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.455
+    pass: 5
+    marginal: 4
+    fail: 2
+    not_measurable: 0
+    typical_rows: 6
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: BAT43
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/DIOD/DIODE_ST_10.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5fbff1861259b242b3696034eae7e9618dee580d80ef08990e75eff81815a0f7
+    lines:
+      BAT43: [535, 537]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.364
+    pass: 4
+    marginal: 4
+    fail: 3
+    not_measurable: 0
+    typical_rows: 6
+- source: kicad-spice-library
+  name: BAT43
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/diode_ST.lib
+    sha256: 5481ed55e9738303fe20e33d9889db3f5a684d384e1d83667fa178b6c99ac49d
+    lines:
+      BAT43: [144, 146]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.364
+    pass: 4
+    marginal: 4
+    fail: 3
+    not_measurable: 0
+    typical_rows: 6
+datasheet:
+  url: https://www.vishay.com/docs/85660/bat42.pdf
+  maker: Vishay Semiconductors
+  doc: Document Number 85660, Rev. 2.2 (BAT42, BAT43)
+  date: '2025-05-12'

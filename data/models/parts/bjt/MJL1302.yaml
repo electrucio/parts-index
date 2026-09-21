@@ -1,0 +1,92 @@
+part: MJL1302
+kind: bjt
+priority: 3
+group: audio_docs
+models:
+- source: cordell
+  name: MJL1302C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.cordellaudio.com/book/Cordell-Models.txt
+    sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
+    lines:
+      MJL1302C: [363, 375]
+    fetched: '2026-09-14'
+    note: 'Cordell Models 04/20/2011 (current site file, HTTP Last-Modified 2024-09-15): 63 .model (BJT
+      GP, NJF, VDMOS, D)'
+- source: andyc
+  name: mjl1302a_x
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.andyc.diy-audio-engineering.org/spice-models/downloads/mjl_3281a_1302a.mod
+    sha256: 1542f4cf7365590b24e23b7263655dae9aad38cfc8c62b6a573f69c6a4cc3dde
+    lines:
+      mjl1302a_x: [2, 2]
+    fetched: '2026-09-14'
+    note: MJL3281A/MJL1302A models
+- source: bordodynov
+  name: mjl1302a
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      mjl1302a: [843, 843]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: MJl1302A_A
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      MJl1302A_A: [1164, 1164]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: mjl1302a_x
+  def: model
+  type: PNP
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      mjl1302a_x: [1410, 1410]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: MJL1302_C
+  def: model
+  type: PNP
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      MJL1302_C: [1163, 1163]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'

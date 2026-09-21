@@ -1,0 +1,92 @@
+part: TLV3501
+kind: comparator
+priority: 4
+models:
+- source: ti
+  name: TLV3501
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - SHDN
+  - V+
+  - V-
+  - OUT
+  deps:
+  - VCC_Range
+  - Difference
+  - ORGATE
+  - Supply_Enable
+  - VINRANGE_393
+  - 4ORGATE
+  - INPUTRANGE
+  - Output_Stage_SVOH
+  - INVERTER
+  - Output_Stage_SHIZ
+  - MID_SUPPLY
+  - Output_Stage_SMID
+  - DIGLEVSHIFT
+  - ANDGATE
+  - Output_Stage_SVOL
+  - Output_Stage
+  - Prop_Delay
+  - SUPPLY_BUFFER1
+  - Supply_Buffer
+  - Top_Level_S2
+  - Input_Buffer
+  - HPA_COMPHYS
+  - Top_Level_S1
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOMBU5
+    member: tlv3501.lib
+    archive_sha256: 3f61b6eae05a5a734ee195160bfcc637fdd75a06c898f8fad15ca26a9b5d8e1e
+    sha256: 4e4345dc2929ee91a99a0b5437369c32b3817e9c8673a7ae90310d5485a81ba9
+    lines:
+      4ORGATE: [367, 370]
+      ANDGATE: [182, 186]
+      DIGLEVSHIFT: [197, 203]
+      Difference: [270, 274]
+      HPA_COMPHYS: [188, 195]
+      INPUTRANGE: [128, 138]
+      INVERTER: [238, 241]
+      Input_Buffer: [86, 88]
+      MID_SUPPLY: [243, 246]
+      ORGATE: [248, 252]
+      Output_Stage: [106, 126]
+      Output_Stage_SHIZ: [164, 168]
+      Output_Stage_SMID: [158, 162]
+      Output_Stage_SVOH: [170, 174]
+      Output_Stage_SVOL: [176, 180]
+      Prop_Delay: [140, 144]
+      SUPPLY_BUFFER1: [276, 279]
+      Supply_Buffer: [102, 104]
+      Supply_Enable: [90, 100]
+      TLV3501: [43, 84]
+      Top_Level_S1: [146, 150]
+      Top_Level_S2: [152, 156]
+      VCC_Range: [281, 285]
+      VINRANGE_393: [287, 291]
+    fetched: '2026-09-19'
+- source: bordodynov
+  name: TLV3501
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '1'
+  - '4'
+  - '2'
+  - '5'
+  - '6'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      TLV3501: [18288, 18417]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

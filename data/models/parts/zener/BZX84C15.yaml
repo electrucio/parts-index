@@ -1,0 +1,95 @@
+part: BZX84C15
+kind: zener
+priority: 4
+models:
+- source: onsemi
+  name: BZX84C15
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bzx84c15.lib
+    sha256: d925601ace660061518cd38a5b7efc1c187833f1ad3fb759908c3c6729c7a914
+    lines:
+      BZX84C15: [11, 33]
+    fetched: '2026-09-14'
+    note: 'model(s): BZX84C15 (.subckt 1 2), DF (D .model), DR (D .model)'
+  note: pins from comment words
+- source: nexperia
+  name: BZX84-C15
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BZX84-C15.txt
+    sha256: 91de9521d19802188e3742cdbf69867d74d5c554b2e0d2ad8ac2504f014fe1e1
+    lines:
+      BZX84-C15: [28, 39]
+    fetched: '2026-09-14'
+    note: 'model(s): BZX84-C15 (D .model)'
+  note: 'same code also in: spiceypedals'
+- source: bordodynov
+  name: BZX84C15L
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BZX84C15L: [243, 243]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BZX84C15VL
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BZX84C15VL: [1519, 1519]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BZX84C15
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - DF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Zener_DiodesInc.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+    lines:
+      BZX84C15: [2073, 2080]
+      DF: [6016, 6016]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: BZX84C15
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BZX84C15: [236, 236]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

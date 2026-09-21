@@ -1,0 +1,176 @@
+part: TL072
+kind: opamp
+priority: 1
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 10 pass, 0 off, 0 fail of 10 judged rows (2 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: ti
+  name: TL072
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ067
+    member: TL072.301
+    archive_sha256: db3af55a18021e1a8d30ef4ca324c388e734fa3d9c3cf20a631fead224440d8e
+    sha256: 74e89d558163615ac7a19f0c783101a6f8af77fb6d80bd3c20c6ab66426561cd
+    lines:
+      TL072: [10, 42]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.9
+    pass: 9
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki, spiceypedals; pins from comment words'
+- source: stmicro
+  name: TL072
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '3'
+  - '2'
+  - '4'
+  - '5'
+  verbatim: false
+  changes:
+  - st_analog_token
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/STMicroelectronics/Standard%20Linear%20ICs/Spice/tl072.txt
+    sha256: 90f5cdd8248e225722d05b3a4415640ef275cd18b7fe6b577ef25e9f7cae5a42
+    lines:
+      TL072: [25, 70]
+    fetched: '2026-09-14'
+    note: ST "Standard Linear ICs Macromodels, 1993" (TL072), mirrored on ltwiki.org
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 10
+    typical_rows: 0
+- source: bordodynov
+  name: TL072
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      TL072: [2465, 2497]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.9
+    pass: 9
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: TL072
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - TL074
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_TI.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+    lines:
+      TL072: [837, 869]
+      TL074: [878, 910]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.9
+    pass: 9
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: TL072s
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - 5out
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Opamp5.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+    lines:
+      TL072s: [7753, 7791]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 10
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: TL072-R
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/TL072-R.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 58ab27f43c6cb5da77dd7ea49242416e56ced6006ef221280e2a3efcfc35d99e
+    lines:
+      TL072-R: [1, 41]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 10
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: ltwiki; pins from default order (unverified)'
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/tl072.pdf
+  maker: Texas Instruments
+  doc: SLOS080N, rev. N, Jul 2017 (legacy-die revision; tables 6.10 TL07xC and 6.17)

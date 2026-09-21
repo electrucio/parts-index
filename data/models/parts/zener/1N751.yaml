@@ -1,0 +1,132 @@
+part: 1N751
+kind: zener
+priority: 2
+preferred: central-semi
+preferred_why: 'best datasheet agreement: 4 pass, 0 off, 0 fail of 4 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with duncanamps, bordodynov,
+  ltwiki, ltwiki, kicad-spice-library on score and typical-value error, chosen as the more original source.
+  WEAK EVIDENCE: fewer than 5 rows, all min/max limits'
+models:
+- source: central-semi
+  name: 1N751A
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/1N751A.LIB
+    sha256: fb7b98ab5279f859ce24753f3a24fa9e20e71f8fbd8ddac0d5663f78b7ddc520
+    lines:
+      1N751A: [20, 31]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: duncanamps
+  name: D1N751
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/zener.mod
+    sha256: 53758db14bf58c6f53e5655b57def938fd7ebbaee865e81ef7ad3ba689a7f192
+    lines:
+      D1N751: [36, 37]
+    fetched: '2026-09-14'
+    note: 77 .model
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: bordodynov
+  name: 1N751
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N751: [288, 288]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: 1N751
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: c37cd3feda2bf48e371d1b329a4f08dcedf3e90acb6a8b98ec28a8063b633c21
+    lines:
+      1N751: [216, 216]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: 1N751
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard3.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 13cb55bb7184e06a29b64a8d1991371f8414622ef1213c5b7bcb01e358ed71ee
+    lines:
+      1N751: [102, 104]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: D1N751
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      D1N751: [157, 159]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://web.archive.org/web/20000709095148id_/http://www.fairchildsemi.com:80/ds/1N/1N746A.pdf
+  maker: Fairchild Semiconductor (now onsemi)
+  doc: 1N746A - 1N759A Series Half Watt Zeners, (c) 1997 Fairchild Semiconductor

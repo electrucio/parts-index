@@ -1,0 +1,205 @@
+part: CD4040
+kind: logic
+priority: 4
+models:
+- source: bordodynov
+  name: CD4040B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - MR
+  - CP
+  - Q1
+  - Q2
+  - Q3
+  - Q4
+  - Q5
+  - Q6
+  - Q7
+  - Q8
+  - Q9
+  - Q10
+  - Q11
+  - Q12
+  - VDD
+  - VGND
+  deps:
+  - CD40_IN_1
+  - CD40_OUT_1X
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4000_v.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: a814b0ca1e4ced9b7963913afd06147754592c9002010ecc1beb635b45e222eb
+    lines:
+      CD4040B: [506, 545]
+      CD40_IN_1: [920, 937]
+      CD40_OUT_1X: [971, 982]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: CD4040B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - MR
+  - CP
+  - Q1
+  - Q2
+  - Q3
+  - Q4
+  - Q5
+  - Q6
+  - Q7
+  - Q8
+  - Q9
+  - Q10
+  - Q11
+  - Q12
+  - VDD
+  - VGND
+  deps:
+  - CD40DIO1
+  - CD40_IN_1
+  - DIO2
+  - CD40_OUT_1X
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4000_Don.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 47fa60aec4237b21d853cfde5dffd06191f4bd16165aaab6bf2ac16c64839a0d
+    lines:
+      CD4040B: [450, 489]
+      CD40DIO1: [785, 785]
+      CD40_IN_1: [799, 815]
+      CD40_OUT_1X: [848, 858]
+      DIO2: [845, 845]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: CD4040B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - MR
+  - CP
+  - Q1
+  - Q2
+  - Q3
+  - Q4
+  - Q5
+  - Q6
+  - Q7
+  - Q8
+  - Q9
+  - Q10
+  - Q11
+  - Q12
+  - VDD
+  - VGND
+  deps:
+  - CD40DIO1
+  - CD40_IN_1
+  - CD40_OUT_1X
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/cd4000.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 794f3386c6ab888d2abf2f2c54ec97b6af582b14e138de0252059e9f07107f08
+    lines:
+      CD4040B: [503, 542]
+      CD40DIO1: [902, 902]
+      CD40_IN_1: [917, 930]
+      CD40_OUT_1X: [965, 976]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: CD4040B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - MR
+  - CP
+  - Q1
+  - Q2
+  - Q3
+  - Q4
+  - Q5
+  - Q6
+  - Q7
+  - Q8
+  - Q9
+  - Q10
+  - Q11
+  - Q12
+  - VDD
+  - VGND
+  deps:
+  - CD40_IN_1
+  - CD40_OUT_1X
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Digital/cd4xxx/Test Circuit CD4029B/cd4000.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: db071ddc0bc4fe1e6050e259bd9d1917dbbee47101187031e8f27ad1039b5cf1
+    lines:
+      CD4040B: [450, 489]
+      CD40_IN_1: [863, 879]
+      CD40_OUT_1X: [912, 922]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: Q4040K7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/TECCOR/TRIAC/Tecc_triac.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 1455a55d2d2d19680542bc57f0feaf593fd16b14f9c3be49fe086af36cff25e8
+    lines:
+      Q4040K7: [3552, 3574]
+    fetched: '2026-09-14'
+  note: 'found under the alias 4040; same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: CD4040B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - MR
+  - CP
+  - Q1
+  - Q2
+  - Q3
+  - Q4
+  - Q5
+  - Q6
+  - Q7
+  - Q8
+  - Q9
+  - Q10
+  - Q11
+  - Q12
+  - VDD
+  - VGND
+  deps:
+  - CD40_IN_1
+  - CD40_OUT_1X
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/cd4000.lib
+    sha256: b30e91bc7f5937fcd4b64fa5f37eabd91619b78de506c64ec29100404f0e5060
+    lines:
+      CD4040B: [503, 542]
+      CD40_IN_1: [917, 934]
+      CD40_OUT_1X: [968, 979]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

@@ -1,0 +1,43 @@
+part: SMBJ7.0A
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: vishay
+  name: smbj70a
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89803/smbj70a.txt
+    sha256: f4168e4bd2e28de7e5e1bcf442243d10f8dbef157c14e7eb4c05ef4ac29ca348
+    lines:
+      smbj70a: [9, 30]
+    fetched: '2026-09-19'
+    note: 'TransZorb®TVS, PSpice Models (*.txt): smbj70a, DFMOD, RLMOD, DBDMOD, RBVCMOD'
+  note: pins from comment words
+- source: bordodynov
+  name: SMBJ70A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - ANODE
+  - CATHODE
+  deps:
+  - TRANSIL
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/transil_ST.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+    lines:
+      SMBJ70A: [2986, 2991]
+      TRANSIL: [32, 80]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'

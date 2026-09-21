@@ -1,0 +1,21 @@
+part: SMAJ16A
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: vishay
+  name: smaj16a
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89521/p_smaj16.txt
+    sha256: 97f7747267de1f17e90b736a79c39478b9465ae27bbafaec85b14c2e471cdc5a
+    lines:
+      smaj16a: [17, 59]
+    fetched: '2026-09-19'
+    note: 'TransZorb®TVS, PSpice Models (*.txt): smaj16a, DFMOD, RLMOD, DBDMOD, RBVCMOD'
+  note: pins from comment words

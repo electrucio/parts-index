@@ -1,0 +1,98 @@
+part: PMEG2010ER
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: bordodynov
+  name: PMEG2010EA
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      PMEG2010EA: [199, 199]
+    fetched: '2026-09-14'
+  note: 'found under the alias PMEG2010E; same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: PMEG2010EA
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.dio
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+    lines:
+      PMEG2010EA: [150, 150]
+    fetched: '2026-09-14'
+  note: 'found under the alias PMEG2010E; same code also in: kicad-spice-library'
+- source: ltwiki
+  name: PMEG2010EA
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard3.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 13cb55bb7184e06a29b64a8d1991371f8414622ef1213c5b7bcb01e358ed71ee
+    lines:
+      PMEG2010EA: [60, 60]
+    fetched: '2026-09-14'
+  note: 'found under the alias PMEG2010E; same code also in: kicad-spice-library'
+- source: ltwiki
+  name: PMEG2010EA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG2010EA.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 710df4361cfa7b460d0e19bfee102dfa3b479251f77bafa4934b6fcf69b0ca55
+    lines:
+      PMEG2010EA: [2, 24]
+    fetched: '2026-09-14'
+  note: found under the alias PMEG2010E; pins from default order (unverified)
+- source: ltwiki
+  name: PMEG2010EJ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG2010EJ.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: e8dca76b2ab6b2128f34b6d0a901ef077d1e15602b4b62ef8c40b2caa782911b
+    lines:
+      PMEG2010EJ: [2, 24]
+    fetched: '2026-09-14'
+  note: found under the alias PMEG2010E; pins from default order (unverified)
+- source: ltwiki
+  name: PMEG2010EH
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG2010EH.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 06f71074ec4a4951d00831ea577fad6551a7fc8fff33e34327a43590a30300e4
+    lines:
+      PMEG2010EH: [2, 24]
+    fetched: '2026-09-14'
+  note: found under the alias PMEG2010E; pins from default order (unverified)

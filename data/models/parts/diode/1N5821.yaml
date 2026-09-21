@@ -1,0 +1,43 @@
+part: 1N5821
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: onsemi
+  name: D1n5821rl
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n5821rl.lib
+    sha256: 3e25ae2dd722bee65cf041fb7a6d614422d808238e2b3c4cf16022eadf0576ba
+    lines:
+      D1n5821rl: [12, 16]
+    fetched: '2026-09-19'
+    note: '1N5821: D1n5821rl'
+- source: ltwiki
+  name: 1N5821
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/DIOD/DIODE_ST_10.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5fbff1861259b242b3696034eae7e9618dee580d80ef08990e75eff81815a0f7
+    lines:
+      1N5821: [6497, 6498]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: 1N5821RL
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/DIOD/DIODE_ST_10.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5fbff1861259b242b3696034eae7e9618dee580d80ef08990e75eff81815a0f7
+    lines:
+      1N5821RL: [6506, 6507]
+    fetched: '2026-09-14'

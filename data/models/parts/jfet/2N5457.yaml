@@ -1,0 +1,137 @@
+part: 2N5457
+kind: jfet
+priority: 1
+group: n_channel
+preferred: interfet
+preferred_why: 'best datasheet agreement: 5 pass, 0 off, 0 fail of 5 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with interfet, duncanamps,
+  bordodynov, bordodynov on score and typical-value error, chosen as the more original source. Limits
+  only: the datasheet prints no typical values for these rows, so candidates inside the limits are not
+  told apart'
+models:
+- source: interfet
+  name: 2N5457
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      2N5457: [789, 789]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 1.0
+    pass: 5
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: interfet
+  name: J2N5457-GEN
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J2N5457-GEN: [331, 331]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 1.0
+    pass: 5
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: duncanamps
+  name: J2N5457
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/jfet/njfet.mod
+    sha256: 038dc1062e5ec82b6d49076d7bccf0f06e485e43a89f185c2b7ca121258295ac
+    lines:
+      J2N5457: [16, 17]
+    fetched: '2026-09-14'
+    note: 10 .model
+  verification:
+    score: 1.0
+    pass: 5
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: bordodynov
+  name: J2N5457
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      J2N5457: [322, 322]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 5
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 2N5457
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      2N5457: [617, 617]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 5
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 2n5457X
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      2n5457X: [618, 618]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.6
+    pass: 3
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://web.archive.org/web/2024id_/https://www.onsemi.com/pdf/datasheet/2n5457-d.pdf
+  maker: onsemi
+  doc: 2N5457/D Rev. 6, February 2010

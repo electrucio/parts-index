@@ -1,0 +1,82 @@
+part: LM4871
+kind: ic-audio
+priority: 3
+models:
+- source: ti
+  name: LM4871
+  def: subckt
+  type: SUBCKT
+  pins:
+  - +IN
+  - -IN
+  - VDD
+  - GND
+  - SHUTDOWN
+  - BYPASS
+  - Vo1
+  - Vo2
+  deps:
+  - GBW_SLEW_SE
+  - VCLAMP_W_CLAW
+  - GND_FLOAT
+  - AMETER
+  - OUT_CURRENT_CLAMP
+  - IQ
+  - PSRR
+  - CMR
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNAM136
+    member: LM4871_TINA_AIO/LM4871.LIB
+    archive_sha256: 5cc6d821222805211673b2c43014c80d172e4a0e2fa0590655ceffc7119a4353
+    sha256: a157a94c3fe0c7f9e67d9fdfa5dda50a2bddfa8864500ffef06928579f25bfd4
+    lines:
+      AMETER: [106, 110]
+      CMR: [149, 153]
+      GBW_SLEW_SE: [84, 96]
+      GND_FLOAT: [163, 165]
+      IQ: [175, 178]
+      LM4871: [41, 74]
+      OUT_CURRENT_CLAMP: [120, 124]
+      PSRR: [188, 198]
+      VCLAMP_W_CLAW: [134, 139]
+    fetched: '2026-09-19'
+- source: ti
+  name: LM4871
+  def: subckt
+  type: SUBCKT
+  pins:
+  - +IN
+  - -IN
+  - VDD
+  - GND
+  - SHUTDOWN
+  - BYPASS
+  - Vo1
+  - Vo2
+  deps:
+  - GBW_SLEW_SE
+  - VCLAMP_W_CLAW
+  - GND_FLOAT
+  - AMETER
+  - OUT_CURRENT_CLAMP
+  - IQ
+  - PSRR
+  - CMR
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNAM137
+    member: LM4871_PSPICE_TRANS/lm4871.lib
+    archive_sha256: a80162bb8aa68312233d4d489982ab17c6844c26bc22f809049c3ac532e482d6
+    sha256: 676e1a5d9dbb50a4df1093ef89a56f28c70eb82ac41c91ba727a891db3c7b31d
+    lines:
+      AMETER: [104, 108]
+      CMR: [141, 145]
+      GBW_SLEW_SE: [84, 96]
+      GND_FLOAT: [153, 155]
+      IQ: [163, 166]
+      LM4871: [42, 76]
+      OUT_CURRENT_CLAMP: [116, 120]
+      PSRR: [174, 184]
+      VCLAMP_W_CLAW: [128, 133]
+    fetched: '2026-09-19'

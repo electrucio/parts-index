@@ -1,0 +1,41 @@
+part: BZX85C24
+kind: zener
+priority: 3
+preferred: bordodynov
+preferred_why: 'STAND-IN: the preferred model is of 1N4749A, declared equivalent in catalog/wanted.yaml,
+  not of BZX85C24 itself; best datasheet agreement: 4 pass, 0 off, 0 fail of 4 judged rows (0 against
+  typical values or curve points, the rest against min/max limits; 0 not measurable). WEAK EVIDENCE: fewer
+  than 5 rows, all min/max limits'
+models:
+- source: bordodynov
+  name: 1N4749A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - DF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Zener_DiodesInc.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+    lines:
+      1N4749A: [211, 218]
+      DF: [6016, 6016]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of 1N4749A, not of BZX85C24; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+datasheet:
+  url: https://www.vishay.com/docs/85607/bzx85.pdf
+  maker: Vishay
+  doc: BZX85, Document Number 85607, Rev. 2.9, 17-Sep-2025

@@ -1,0 +1,76 @@
+part: UC3842
+kind: smps
+priority: 3
+models:
+- source: bordodynov
+  name: UC3842B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '14'
+  - '15'
+  - '1'
+  - '18'
+  - '4'
+  - '20'
+  - '2'
+  deps:
+  - SWhyste
+  - NAND3_0
+  - INV
+  - NAND3_1
+  - FFLOP
+  - 1845AMP
+  - 1845OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/UC384xB.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 94006e2482dc5254c8121e572eecd40e9ed102888b6624b3ca8b73a8bc9b8df2
+    lines:
+      1845AMP: [273, 297]
+      1845OUT: [299, 316]
+      FFLOP: [318, 328]
+      INV: [342, 346]
+      NAND3_0: [330, 334]
+      NAND3_1: [336, 340]
+      SWhyste: [348, 358]
+      UC3842B: [28, 65]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''smps'''
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: uc3842a
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Err
+  - Vfb
+  - Ifb
+  - Osc
+  - Com
+  - Out
+  - Vcc
+  - Ref
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/UC3842A.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a567422d1c4836a851be4613b09f3330beba169cfe4a4a5711e79fc37cf6801
+    lines:
+      uc3842a: [1, 45]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''smps'''
+  note: 'same code also in: ltwiki'
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/uc3842.pdf
+  maker: Texas Instruments (Unitrode)
+  doc: SLUS223H, rev. H (April 1997, revised October 2024); UC384x limits
+  date: 2024-10

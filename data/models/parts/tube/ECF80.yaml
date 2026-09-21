@@ -1,0 +1,221 @@
+part: ECF80
+kind: tube
+priority: 3
+group: audio_docs
+models:
+- source: reefman
+  name: ECF80_F
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  deps:
+  - PenthodeD
+  - PCF80_F
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      ECF80_F: [348, 350]
+      PCF80_F: [890, 896]
+      PenthodeD: [2326, 2342]
+    fetched: '2026-09-14'
+- source: reefman
+  name: ECF80_C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - TriodeK
+  - PCF80_C
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      ECF80_C: [352, 354]
+      PCF80_C: [905, 910]
+      TriodeK: [2345, 2357]
+    fetched: '2026-09-14'
+- source: suusi-tubes
+  name: ECF80P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      ECF80P: [1115, 1119]
+      PENTODE1: [2010, 2023]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  note: pins from inline comment
+- source: suusi-tubes
+  name: ECF80P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      ECF80P: [2536, 2540]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: suusi-tubes
+  name: ECF80T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      ECF80T: [1122, 1126]
+      TRIODE: [1980, 1991]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  note: pins from inline comment
+- source: suusi-tubes
+  name: ECF80T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      ECF80T: [2529, 2533]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: bordodynov
+  name: ECF80P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - DX
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Tubes_Koren.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 510f4c10247ba46358ff5a6b3f15189bec5cf207507ccc70922184385a66c360
+    lines:
+      DX: [1206, 1206]
+      ECF80P: [675, 679]
+      PENTODE1: [1159, 1171]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki, robrobinette; pins from inline comment'
+- source: bordodynov
+  name: ECF80p
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - S
+  - G
+  - K
+  deps:
+  - Tetrode
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      ECF80p: [2334, 2338]
+      Tetrode: [2244, 2269]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: bordodynov
+  name: ECF80T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - DX
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Tubes_Koren.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 510f4c10247ba46358ff5a6b3f15189bec5cf207507ccc70922184385a66c360
+    lines:
+      DX: [1206, 1206]
+      ECF80T: [682, 686]
+      TRIODE: [1131, 1141]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki, robrobinette; pins from inline comment'
+- source: bordodynov
+  name: ECF80t
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      ECF80t: [1872, 1887]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'

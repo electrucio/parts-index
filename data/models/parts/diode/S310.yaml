@@ -1,0 +1,45 @@
+part: S310
+kind: diode
+priority: 4
+group: rectifier
+models:
+- source: onsemi
+  name: S310
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/s310.lib
+    sha256: 41ed78e725ec48f911b75cd127b8d130ad9c1e327afde42371f65d12b774be35
+    lines:
+      S310: [7, 17]
+    fetched: '2026-09-19'
+    note: 'S310: S310'
+- source: bordodynov
+  name: S310
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      S310: [728, 728]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: S310
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.dio
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+    lines:
+      S310: [650, 650]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'

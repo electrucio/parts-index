@@ -1,0 +1,31 @@
+part: MPSA44
+kind: bjt
+priority: 3
+group: audio_docs
+models:
+- source: bordodynov
+  name: MPSA44
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      MPSA44: [1105, 1105]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: MPSA44
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTN.LIB
+    sha256: 2c85b6bbf3a7dcb9403d646a1c120714fdc7bce5c8287c8e537012a1cf3ef6c2
+    lines:
+      MPSA44: [437, 440]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

@@ -1,0 +1,23 @@
+part: AO3400A
+kind: mosfet
+priority: 3
+group: power_vertical
+models:
+- source: kicad-spice-library
+  name: AO3400
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/AO3400.lib
+    sha256: 17db9009e250b30205046d3b2ffad297cb60dfb39eed9c8d8f782aca1136c020
+    lines:
+      AO3400: [1, 49]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: 'STAND-IN: model of AO3400, not of AO3400A; equivalence declared in catalog/wanted.yaml (see its
+    note); pins from default order (unverified)'

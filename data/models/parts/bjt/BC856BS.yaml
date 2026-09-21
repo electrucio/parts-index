@@ -1,0 +1,113 @@
+part: BC856BS
+kind: bjt
+priority: 4
+group: small_signal_pnp
+models:
+- source: onsemi
+  name: bc856bwt1
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/sp3/bc856bwt1.sp3
+    sha256: dc22a9d6829da1b1ac0afd3f133bf2d4c77cb029c36ea1a8a9bd585f317e2d00
+    lines:
+      bc856bwt1: [14, 24]
+    fetched: '2026-09-19'
+    note: 'BC856BWT1.SP3: bc856bwt1'
+  note: found under the alias BC856B
+- source: ltwiki
+  name: BC856_BEBR_P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  deps:
+  - VBREB0_MYPHI
+  - '2'
+  - VBREB0_PHI
+  - '1'
+  - VBREB0_HEL
+  - '3'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Discretos/Bjt/ComparingModels/MyBC856x.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 47cd442ecaa41fb4d81474bdc9f0c7195c282e03e7c76786cf492795aba26111
+    lines:
+      '1': [72, 72]
+      '2': [73, 73]
+      '3': [74, 74]
+      BC856_BEBR_P: [17, 19]
+      VBREB0_HEL: [80, 80]
+      VBREB0_MYPHI: [78, 78]
+      VBREB0_PHI: [76, 76]
+    fetched: '2026-09-14'
+  note: found under the alias BC856B; pins from default order (unverified)
+- source: ltwiki
+  name: BC856B_PHI
+  def: model
+  type: PNP
+  deps:
+  - VBREB0_HEL
+  - '3'
+  - BC856_PHI
+  - '10'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Discretos/Bjt/ComparingModels/MyBC856x.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 47cd442ecaa41fb4d81474bdc9f0c7195c282e03e7c76786cf492795aba26111
+    lines:
+      '10': [37, 37]
+      '3': [74, 74]
+      BC856B_PHI: [43, 43]
+      BC856_PHI: [40, 40]
+      VBREB0_HEL: [80, 80]
+    fetched: '2026-09-14'
+  note: found under the alias BC856B
+- source: ltwiki
+  name: BC856B_DIO
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Discretos/Bjt/ComparingModels/MyBC856x.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 47cd442ecaa41fb4d81474bdc9f0c7195c282e03e7c76786cf492795aba26111
+    lines:
+      BC856B_DIO: [52, 52]
+    fetched: '2026-09-14'
+  note: found under the alias BC856B
+- source: ltwiki
+  name: BC856BW_DIO
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Discretos/Bjt/ComparingModels/MyBC856x.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 47cd442ecaa41fb4d81474bdc9f0c7195c282e03e7c76786cf492795aba26111
+    lines:
+      BC856BW_DIO: [53, 53]
+    fetched: '2026-09-14'
+  note: found under the alias BC856B
+- source: kicad-spice-library
+  name: BC856BT
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
+    sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
+    lines:
+      BC856BT: [2079, 2117]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: found under the alias BC856B

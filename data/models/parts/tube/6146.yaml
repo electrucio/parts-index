@@ -1,0 +1,202 @@
+part: '6146'
+kind: tube
+priority: 3
+group: pentode_beam
+preferred: ayumi
+preferred_why: 'best datasheet agreement: 12 pass, 3 off, 0 fail of 15 judged rows (15 against typical
+  values or curve points, the rest against min/max limits; 2 not measurable); tied with suusi-tubes, ltwiki
+  on score and typical-value error, chosen as the more original source'
+models:
+- source: ayumi
+  name: 6146B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6146B.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: b521730077c2bc58282695a003c841ed69ce46c50fb101d5c654894208af9cd0
+    lines:
+      6146B: [10, 30]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 12
+    marginal: 3
+    fail: 0
+    not_measurable: 2
+    typical_rows: 15
+  note: pins from names
+- source: ayumi
+  name: 6146BT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6146BT.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: a4504db766778005621d1f62ffc8246b8bb7629761ab3da1d15330e762b057d3
+    lines:
+      6146BT: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.067
+    pass: 1
+    marginal: 14
+    fail: 0
+    not_measurable: 2
+    typical_rows: 15
+  note: pins from names
+- source: duncanamps
+  name: '6146'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - S
+  - G
+  - K
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/valves/6146.inc
+    sha256: c18d6db93e9043ab5e1896e9eb9ec460de3741cd07da5804337e5cb1ce88bbc9
+    lines:
+      '6146': [30, 61]
+    fetched: '2026-09-14'
+    note: subckt 6146 (A S G K)
+  verification:
+    score: 0.733
+    pass: 11
+    marginal: 4
+    fail: 0
+    not_measurable: 2
+    typical_rows: 15
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from names'
+- source: duncanamps
+  name: '6146'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - S
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: https://www.duncanamps.com/spice/valves/6146s.inc
+    sha256: 39f621ea79fa10f73b9a7ac7533d883befd485ff8dfec50ec1fc177ad534010c
+    lines:
+      '6146': [30, 62]
+    fetched: '2026-09-14'
+    note: subckt 6146 (A S G K)
+  verification:
+    score: 0.8
+    pass: 12
+    marginal: 3
+    fail: 0
+    not_measurable: 2
+    typical_rows: 15
+  note: pins from names
+- source: suusi-tubes
+  name: 6146B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE3
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6146B: [1452, 1456]
+      PENTODE3: [3117, 3136]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 12
+    marginal: 3
+    fail: 0
+    not_measurable: 2
+    typical_rows: 15
+  note: pins from inline comment
+- source: ltwiki
+  name: 6146B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Pentode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
+    lines:
+      6146B: [310, 330]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 12
+    marginal: 3
+    fail: 0
+    not_measurable: 2
+    typical_rows: 15
+  note: pins from names
+- source: ltwiki
+  name: 6146BT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Triode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+    lines:
+      6146BT: [845, 858]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.067
+    pass: 1
+    marginal: 14
+    fail: 0
+    not_measurable: 2
+    typical_rows: 15
+  note: pins from names
+datasheet:
+  url: https://frank.pocnet.net/sheets/049/6/6146.pdf
+  maker: RCA
+  doc: RCA 6146 VHF Beam Power Amplifier, Tentative Data 1-8 (1952-05-01) + Data 1-9 (1-62); curve 'Typical
+    plate characteristics' 92CM-7707R1
+  date: 1962-01

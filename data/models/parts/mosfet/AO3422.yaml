@@ -1,0 +1,17 @@
+part: AO3422
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: qspice
+  name: AO3422
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 7e57e30fa48c9cf43578457aa48aaa511c0c6a6a998a334fae970c469e3be74c
+    lines:
+      AO3422: [51, 51]
+    fetched: '2026-09-20'
+    note: file not listed in the manifest; the URL above is the source, not this file -- see SOURCE.md

@@ -1,0 +1,291 @@
+part: 5AR4
+kind: tube
+priority: 1
+group: rectifier
+preferred: ayumi
+preferred_why: 'best datasheet agreement: 13 pass, 0 off, 0 fail of 13 judged rows (13 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov on
+  score and typical-value error, chosen as the more original source'
+models:
+- source: ayumi
+  name: 5AR4
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 5AR4.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: c67bbb7b58244ebf49168c0933838b63677d8099cf2de66ef1719ceeb9a3d0c9
+    lines:
+      5AR4: [5, 7]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 13
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 13
+  note: pins from names
+- source: duncanamps
+  name: 5AR4
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - K
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice.html
+    member: 5AR4.INC
+    archive_sha256: ad86d20e99f616f8cafeb32e594ac68c5d33ba7a39557b3ef4a7e79b549555c5
+    sha256: 9b63cf11b5387032008b5ffa9e6e56d7a8687a0617e97799872a6a27344229b4
+    lines:
+      5AR4: [23, 25]
+    fetched: '2026-09-14'
+    note: subckt 5AR4 (P K)
+  verification:
+    score: 1.0
+    pass: 13
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 13
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from names'
+- source: suusi-tubes
+  name: 5AR4
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - A2
+  - C
+  deps:
+  - DULEREC
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      5AR4: [71, 74]
+      DULEREC: [2089, 2092]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 1.0
+    pass: 13
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 13
+  note: 'same code also in: bordodynov, ltwiki; pins from inline comment'
+- source: suusi-tubes
+  name: GZ34
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - A2
+  - C
+  deps:
+  - DULEREC
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      DULEREC: [2089, 2092]
+      GZ34: [915, 918]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 1.0
+    pass: 13
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 13
+  note: 'found under the alias GZ34; same code also in: bordodynov, ltwiki; pins from inline comment'
+- source: suusi-tubes
+  name: 5AR4
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - A2
+  - C
+  deps:
+  - RECP2
+  - DULERECP2
+  - GZ34
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      5AR4: [15, 18]
+      DULERECP2: [3013, 3016]
+      GZ34: [233, 236]
+      RECP2: [2999, 3004]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 13
+    typical_rows: 0
+  note: pins from inline comment
+- source: suusi-tubes
+  name: GZ34
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - A2
+  - C
+  deps:
+  - RECP2
+  - DULERECP2
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      DULERECP2: [3013, 3016]
+      GZ34: [233, 236]
+      RECP2: [2999, 3004]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 13
+    typical_rows: 0
+  note: found under the alias GZ34; pins from inline comment
+- source: bordodynov
+  name: 5AR4RY
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - VALVE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      5AR4RY: [16, 19]
+      VALVE1: [2980, 2986]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 13
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: GZ34RY
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - VALVE1
+  - 5AR4RY
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      5AR4RY: [16, 19]
+      GZ34RY: [20, 22]
+      VALVE1: [2980, 2986]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 13
+    typical_rows: 0
+  note: 'found under the alias GZ34; same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 5AR4
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/tube.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0eeca282ba6506a1a4826c5833c023b17df0c557ef46c9ade79abe98a9c24a3f
+    lines:
+      5AR4: [491, 498]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 13
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 13
+  note: 'same code also in: ltwiki; pins from names'
+- source: bordodynov
+  name: 5AR4
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - VRECTIFIER
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/vrectifier.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6f39b4729541ad16b04e62a45667127a910029cc5c095d49dc8622ca11a85443
+    lines:
+      5AR4: [41, 43]
+      VRECTIFIER: [19, 35]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 13
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+datasheet:
+  url: https://frank.pocnet.net/sheets/093/5/5AR4.pdf
+  maker: General Electric
+  doc: ET-T1547
+  date: 1959-11

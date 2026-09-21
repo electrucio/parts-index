@@ -1,0 +1,138 @@
+part: MUR160
+kind: diode
+priority: 2
+group: rectifier
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 7 pass, 0 off, 0 fail of 7 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, bordodynov,
+  ltwiki, ltwiki, ltwiki on score and typical-value error, chosen as the more original source'
+models:
+- source: bordodynov
+  name: MUR160
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      MUR160: [511, 511]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: MUR160
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/UCC28C42_TRANS.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4f4f067a3fb2767f56d49660426fa5074ea3a72b68d5ba5e469b681a936980f0
+    lines:
+      MUR160: [442, 443]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: MUR160-M
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      MUR160-M: [835, 835]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: MUR160
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: c37cd3feda2bf48e371d1b329a4f08dcedf3e90acb6a8b98ec28a8063b633c21
+    lines:
+      MUR160: [438, 438]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: MUR160-M
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: c37cd3feda2bf48e371d1b329a4f08dcedf3e90acb6a8b98ec28a8063b633c21
+    lines:
+      MUR160-M: [756, 756]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: mur160
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Smps/HalfVm/Power456.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 9f06df533ae2edb2c14beb1b88977c99a92ad826c248ffb93ab84c151d37ac36
+    lines:
+      mur160: [686, 689]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+datasheet:
+  url: https://web.archive.org/web/2024id_/https://www.onsemi.com/pdf/datasheet/mur120-d.pdf
+  maker: onsemi
+  doc: 'MUR120/D, Rev. 12, May 2013 (MUR120 Series: MUR105, MUR110, MUR115, MUR120, MUR130, MUR140, MUR160)'

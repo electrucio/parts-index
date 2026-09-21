@@ -1,0 +1,35 @@
+part: BAS321
+kind: diode
+priority: 4
+group: silicon_signal
+models:
+- source: nexperia
+  name: BAS321
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BAS321.txt
+    sha256: 2620d65ed2ac3df473dfbbe5e429539478ce0700829d1e8a325c77ad843a6224
+    lines:
+      BAS321: [33, 57]
+    fetched: '2026-09-19'
+    note: 'BAS321: BAS321, DIODE1, DIODE2'
+  note: pins from comment words
+- source: ltwiki
+  name: BAS321
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/BAS321.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 1ae208e15e167426594c474beef6610e393c19090425bf57e70cbc742d328d02
+    lines:
+      BAS321: [5, 16]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'

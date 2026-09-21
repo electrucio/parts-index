@@ -1,0 +1,168 @@
+part: LMP7721
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: LMP7721
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - FEMT_LMP7721
+  - ESD_IN_LMP7721
+  - BLOCK_DC_H2_LMP7721
+  - IQ_SRC_LMP7721
+  - AOL_2_LMP7721
+  - ESD_BB_LMP7721
+  - OL_SENSE_LMP7721
+  - CLAW_SRC_LMP7721
+  - BLOCK_DC_H1_LMP7721
+  - CLAMP_AMP_HI_LMP7721
+  - ESD_OUT_LMP7721
+  - CLAMP_AMP_LO_LMP7721
+  - BLOCK_DC_H3_LMP7721
+  - CLAWN_LMP7721
+  - SW_OL_LMP7721
+  - VNSE_LMP7721
+  - VCM_CLAMP_LMP7721
+  - ZO_SRC_LMP7721
+  - VOS_DRIFT_LMP7721
+  - CLAWP_LMP7721
+  - BLOCK_DC_S1_LMP7721
+  - BLOCK_DC_S2_LMP7721
+  - CL_SRC_LMP7721
+  - AOL_1_LMP7721
+  - GR_SRC_LMP7721
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNOM096
+    member: LMP7721.LIB
+    archive_sha256: bdc5776a44d34d956e499e0605ad5e47a097fc36e990ae12e09503df7114284b
+    sha256: 815a27e4a2189e0f54626a36f21cad3002ff21a5d5cd8df9fea60b34ceb2cb39
+    lines:
+      AOL_1_LMP7721: [319, 321]
+      AOL_2_LMP7721: [323, 325]
+      BLOCK_DC_H1_LMP7721: [292, 295]
+      BLOCK_DC_H2_LMP7721: [297, 300]
+      BLOCK_DC_H3_LMP7721: [302, 305]
+      BLOCK_DC_S1_LMP7721: [307, 311]
+      BLOCK_DC_S2_LMP7721: [313, 317]
+      CLAMP_AMP_HI_LMP7721: [327, 330]
+      CLAMP_AMP_LO_LMP7721: [332, 335]
+      CLAWN_LMP7721: [337, 349]
+      CLAWP_LMP7721: [351, 363]
+      CLAW_SRC_LMP7721: [365, 367]
+      CL_SRC_LMP7721: [369, 371]
+      ESD_BB_LMP7721: [373, 377]
+      ESD_IN_LMP7721: [379, 385]
+      ESD_OUT_LMP7721: [387, 391]
+      FEMT_LMP7721: [393, 398]
+      GR_SRC_LMP7721: [400, 402]
+      IQ_SRC_LMP7721: [404, 406]
+      LMP7721: [78, 290]
+      OL_SENSE_LMP7721: [408, 410]
+      SW_OL_LMP7721: [412, 415]
+      VCM_CLAMP_LMP7721: [417, 419]
+      VNSE_LMP7721: [421, 437]
+      VOS_DRIFT_LMP7721: [439, 441]
+      ZO_SRC_LMP7721: [443, 445]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: ti
+  name: LMP7721
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - FEMT_LMP7721
+  - ESD_IN_LMP7721
+  - BLOCK_DC_H2_LMP7721
+  - IQ_SRC_LMP7721
+  - AOL_2_LMP7721
+  - ESD_BB_LMP7721
+  - OL_SENSE_LMP7721
+  - CLAW_SRC_LMP7721
+  - BLOCK_DC_H1_LMP7721
+  - CLAMP_AMP_HI_LMP7721
+  - ESD_OUT_LMP7721
+  - CLAMP_AMP_LO_LMP7721
+  - BLOCK_DC_H3_LMP7721
+  - CLAWN_LMP7721
+  - SW_OL_LMP7721
+  - VNSE_LMP7721
+  - VCM_CLAMP_LMP7721
+  - ZO_SRC_LMP7721
+  - VOS_DRIFT_LMP7721
+  - CLAWP_LMP7721
+  - BLOCK_DC_S1_LMP7721
+  - BLOCK_DC_S2_LMP7721
+  - CL_SRC_LMP7721
+  - AOL_1_LMP7721
+  - R_NOISELESS
+  - GR_SRC_LMP7721
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNOM304
+    member: LMP7721.LIB
+    archive_sha256: 28bb4164f30bcce1949b3c41bc1f791fc35e67adfb577e8e948b0ecde8e6051d
+    sha256: c6f79a4a98723be91cd0301282424966f9f4cb1acd80fc1ae465655eff97100a
+    lines:
+      AOL_1_LMP7721: [314, 316]
+      AOL_2_LMP7721: [318, 320]
+      BLOCK_DC_H1_LMP7721: [287, 290]
+      BLOCK_DC_H2_LMP7721: [292, 295]
+      BLOCK_DC_H3_LMP7721: [297, 300]
+      BLOCK_DC_S1_LMP7721: [302, 306]
+      BLOCK_DC_S2_LMP7721: [308, 312]
+      CLAMP_AMP_HI_LMP7721: [322, 325]
+      CLAMP_AMP_LO_LMP7721: [327, 330]
+      CLAWN_LMP7721: [332, 344]
+      CLAWP_LMP7721: [346, 358]
+      CLAW_SRC_LMP7721: [360, 362]
+      CL_SRC_LMP7721: [364, 366]
+      ESD_BB_LMP7721: [368, 372]
+      ESD_IN_LMP7721: [374, 380]
+      ESD_OUT_LMP7721: [382, 386]
+      FEMT_LMP7721: [388, 393]
+      GR_SRC_LMP7721: [395, 397]
+      IQ_SRC_LMP7721: [399, 401]
+      LMP7721: [74, 285]
+      OL_SENSE_LMP7721: [403, 405]
+      R_NOISELESS: [442, 442]
+      SW_OL_LMP7721: [407, 410]
+      VCM_CLAMP_LMP7721: [412, 414]
+      VNSE_LMP7721: [416, 432]
+      VOS_DRIFT_LMP7721: [434, 436]
+      ZO_SRC_LMP7721: [438, 440]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: bordodynov
+  name: LMP7721
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      LMP7721: [5420, 5669]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'

@@ -1,0 +1,125 @@
+part: AD822A
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: AD822S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_AD.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+    lines:
+      AD822S: [34381, 34453]
+    fetched: '2026-09-14'
+  note: 'found under the alias AD822; same code also in: kicad-spice-library, ltwiki; pins from comment
+    words'
+- source: bordodynov
+  name: AD822A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Opamp5.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+    lines:
+      AD822A: [515, 587]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: AD822A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_AD.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+    lines:
+      AD822A: [7630, 7702]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: AD822B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_AD.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+    lines:
+      AD822B: [7723, 7795]
+    fetched: '2026-09-14'
+  note: 'found under the alias AD822; same code also in: kicad-spice-library, ltwiki; pins from comment
+    words'
+- source: ltwiki
+  name: AD822B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/AD/ad822b.cir
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 27add44ecc81f36afec6ef476bcf15c90e8449e1cd3f4835e1c2342aea349243
+    lines:
+      AD822B: [21, 93]
+    fetched: '2026-09-14'
+  note: found under the alias AD822; pins from comment words
+- source: kicad-spice-library
+  name: AD822A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/AD8.LIB
+    sha256: 3fb259cb22007e43e51828e915f7b20ac57456fc6ba703d24f00048301fc0fbe
+    lines:
+      AD822A: [588, 660]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words

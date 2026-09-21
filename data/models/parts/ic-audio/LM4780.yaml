@@ -1,0 +1,66 @@
+part: LM4780
+kind: ic-audio
+priority: 3
+preferred: ti
+preferred_why: 'best datasheet agreement: 0 pass, 0 off, 0 fail of 0 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: ti
+  name: LM4780
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Vinm
+  - Vinp
+  - VCC
+  - VEE
+  - Vout
+  - MUTE
+  deps:
+  - VCLAMP
+  - RNOISE_LESS_WILIM
+  - INPUT
+  - TF
+  - PSRR
+  - VCLAMP_W_SENSE
+  - GND_FLOAT
+  - VNSE
+  - FEMT
+  - AMETER
+  - GBW_SLEW_SE
+  - CMRR
+  - AMP
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNAM082
+    member: LM4780.LIB
+    archive_sha256: 37744bfbf5f320a727e51ff8fefc93b762440e05c3533de32cb0d800a590d644
+    sha256: 3819f7397c75ef0eb14fec6a170c605d85694ced3184725076ec79e5d9640446
+    lines:
+      AMETER: [170, 174]
+      AMP: [52, 137]
+      CMRR: [341, 350]
+      FEMT: [379, 417]
+      GBW_SLEW_SE: [251, 263]
+      GND_FLOAT: [159, 161]
+      INPUT: [476, 482]
+      LM4780: [45, 49]
+      PSRR: [359, 369]
+      RNOISE_LESS_WILIM: [283, 285]
+      TF: [199, 242]
+      VCLAMP: [272, 274]
+      VCLAMP_W_SENSE: [184, 189]
+      VNSE: [428, 466]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm4780.pdf
+  maker: Texas Instruments (National Semiconductor)
+  doc: SNAS193B, rev. B (July 2003, revised April 2013)
+  date: 2013-04

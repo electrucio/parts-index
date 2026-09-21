@@ -1,0 +1,35 @@
+part: BZX55C6V2
+kind: zener
+priority: 2
+preferred: vishay
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable). Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: vishay
+  name: BZX6V2
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - C
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/85287/bzx55c6v2.txt
+    sha256: 8f7af4736dab7bb799d7e5eb37feb3ad4a02d5877a3966e58838bd7ead265d94
+    lines:
+      BZX6V2: [16, 36]
+    fetched: '2026-09-14'
+    note: 'model(s): BZX6V2 (.subckt a c), DFOR (D .model), DREV (D .model), DBRE (D .model)'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: found under the alias BZX6V2; pins from names
+datasheet:
+  url: https://www.vishay.com/docs/85604/bzx55.pdf
+  maker: Vishay
+  doc: BZX55-Series, Document Number 85604, Rev. 2.0, 07-Nov-2024

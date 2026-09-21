@@ -1,0 +1,22 @@
+part: SI2302CDS
+kind: mosfet
+priority: 4
+group: small_signal
+models:
+- source: vishay
+  name: Si2302CDS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/68508/si2302cd.txt
+    sha256: e0061a262fa362f425d354e070181ffe492555cccdbf77cda96e06befe5fef99
+    lines:
+      Si2302CDS: [8, 35]
+    fetched: '2026-09-19'
+    note: 'MOSFETs, PSpice Models (*.txt): Si2302CDS, NMOS, PMOS, DBD, RTEMP'
+  note: pins from names

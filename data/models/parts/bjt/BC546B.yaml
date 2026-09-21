@@ -1,0 +1,130 @@
+part: BC546B
+kind: bjt
+priority: 2
+group: small_signal_npn
+preferred: ltspice-native
+preferred_why: 'best datasheet agreement: 12 pass, 0 off, 0 fail of 12 judged rows (3 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with ltwiki on score
+  and typical-value error, chosen as the more original source'
+models:
+- source: ltspice-native
+  name: BC546B
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.bjt
+    sha256: 15e7c7fa149dbdc97bb647f77681999a38fb4c324928beb4f1fa2a589288f587
+    lines:
+      BC546B: [107, 107]
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: BC546B
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
+    lines:
+      BC546B: [537, 537]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: BC546B
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BC546.lib
+    sha256: f75413876112a0b39eb7d11723606d9159f0bff1ff80143d4f51a14a62c98d7f
+    lines:
+      BC546B: [3, 6]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: spiceypedals'
+- source: kicad-spice-library
+  name: BC546BP
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTN.LIB
+    sha256: 2c85b6bbf3a7dcb9403d646a1c120714fdc7bce5c8287c8e537012a1cf3ef6c2
+    lines:
+      BC546BP: [735, 737]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+- source: kicad-spice-library
+  name: BC546BP
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Zetex%20Semiconductors/ZMODELS.LIB
+    sha256: 356f4751706278dd76767c0cbdfceab52ea806ed01a3669b26584507bf29f3e0
+    lines:
+      BC546BP: [359, 361]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+- source: kicad-spice-library
+  name: BC546BP
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+    sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+    lines:
+      BC546BP: [421, 423]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+datasheet:
+  url: https://www.nxp.com/documents/data_sheet/BC846_BC546_SER.pdf
+  maker: nxp (philips/nexperia lineage)
+  doc: BC846/BC546 series product data sheet Rev. 07 (17 November 2009)

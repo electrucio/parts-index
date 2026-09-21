@@ -1,0 +1,24 @@
+part: OPA211
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: OPA211
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPA211.mod
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4957fd2437119c81a11d74a6382c23715116a373881e9dc38b1d21793b46c568
+    lines:
+      OPA211: [18, 245]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'

@@ -1,0 +1,91 @@
+part: STPS340U
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: ltwiki
+  name: STPS340U
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/DIOD/DIODE_ST_10.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5fbff1861259b242b3696034eae7e9618dee580d80ef08990e75eff81815a0f7
+    lines:
+      STPS340U: [7182, 7184]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: STPS340B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/DIOD/DIODE_ST_10.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5fbff1861259b242b3696034eae7e9618dee580d80ef08990e75eff81815a0f7
+    lines:
+      STPS340B: [7143, 7149]
+    fetched: '2026-09-14'
+  note: found under the alias STPS340; pins from comment words
+- source: ltwiki
+  name: STPS340S
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/DIOD/DIODE_ST_10.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5fbff1861259b242b3696034eae7e9618dee580d80ef08990e75eff81815a0f7
+    lines:
+      STPS340S: [7172, 7174]
+    fetched: '2026-09-14'
+  note: found under the alias STPS340
+- source: ltwiki
+  name: STPS340B-TR
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/DIOD/DIODE_ST_10.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5fbff1861259b242b3696034eae7e9618dee580d80ef08990e75eff81815a0f7
+    lines:
+      STPS340B-TR: [7159, 7165]
+    fetched: '2026-09-14'
+  note: found under the alias STPS340; pins from comment words
+- source: kicad-spice-library
+  name: STPS340U
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/diode_ST.lib
+    sha256: 5481ed55e9738303fe20e33d9889db3f5a684d384e1d83667fa178b6c99ac49d
+    lines:
+      STPS340U: [1134, 1136]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: STPS340B
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/diode_ST.lib
+    sha256: 5481ed55e9738303fe20e33d9889db3f5a684d384e1d83667fa178b6c99ac49d
+    lines:
+      STPS340B: [1114, 1116]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: found under the alias STPS340

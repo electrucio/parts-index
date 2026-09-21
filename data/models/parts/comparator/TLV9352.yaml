@@ -1,0 +1,55 @@
+part: TLV9352
+kind: comparator
+priority: 3
+models:
+- source: ti
+  name: TLV9352
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - VNSE_0
+  - VCCS_EXT_LIM_0
+  - FEMT_0
+  - VCCS_LIM_3_0
+  - VCCS_LIM_1_0
+  - VCCS_LIM_2_0
+  - VCCS_LIM_4_0
+  - VCCS_LIM_CLAW-_0
+  - CLAMP_AMP_HI_0
+  - CLAMP_AMP_LO_0
+  - OL_SENSE_0
+  - VCCS_LIM_GR_0
+  - VCCS_LIM_ZO_0
+  - VCCS_LIM_CLAW+_0
+  - VCCS_LIMIT_IQ_0
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOMB56
+    member: tlv9352.lib
+    archive_sha256: 6fac12fb8d8a951275d833c31c21a517f590ad8a24436d58ffc44087d322713d
+    sha256: 0ebf147c28b69cb64c3376b519123a97c354ee4896f20d91d3b604408b16915e
+    lines:
+      CLAMP_AMP_HI_0: [327, 331]
+      CLAMP_AMP_LO_0: [319, 323]
+      FEMT_0: [235, 256]
+      OL_SENSE_0: [389, 391]
+      TLV9352: [33, 233]
+      VCCS_EXT_LIM_0: [395, 398]
+      VCCS_LIMIT_IQ_0: [312, 315]
+      VCCS_LIM_1_0: [303, 308]
+      VCCS_LIM_2_0: [294, 299]
+      VCCS_LIM_3_0: [380, 385]
+      VCCS_LIM_4_0: [344, 349]
+      VCCS_LIM_CLAW+_0: [353, 362]
+      VCCS_LIM_CLAW-_0: [366, 375]
+      VCCS_LIM_GR_0: [335, 340]
+      VCCS_LIM_ZO_0: [285, 290]
+      VNSE_0: [260, 281]
+    fetched: '2026-09-19'
+  note: pins from names

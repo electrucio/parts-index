@@ -1,0 +1,64 @@
+part: ECC33
+kind: tube
+priority: 3
+group: audio_docs
+models:
+- source: ayumi
+  name: ECC33
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: ECC33.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: a79676ce877ba6b22a0b06babb61c23fe7ab9e22e2a5591e79d69a6cef4f011a
+    lines:
+      ECC33: [9, 22]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: suusi-tubes
+  name: ECC33
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      ECC33: [1001, 1005]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: ltwiki
+  name: ECC33
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Triode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+    lines:
+      ECC33: [3199, 3212]
+    fetched: '2026-09-14'
+  note: pins from names

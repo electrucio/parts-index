@@ -1,0 +1,97 @@
+part: PMEG4005
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: nexperia
+  name: PMEG4005EJ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG4005EJ.txt
+    sha256: 3ce85b3b6ea72e9e0da05e821b3d9fd8153ab2a3c93a9054c28ccc874cb8e822
+    lines:
+      PMEG4005EJ: [33, 49]
+    fetched: '2026-09-19'
+    note: 'PMEG4005EJ: PMEG4005EJ, PMEG4005EJ'
+  note: 'same code also in: ltwiki; pins from comment words'
+- source: bordodynov
+  name: PMEG4005AEA
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      PMEG4005AEA: [206, 206]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: PMEG4005AEA
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.dio
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+    lines:
+      PMEG4005AEA: [156, 156]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: PMEG4005AEA
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard3.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 13cb55bb7184e06a29b64a8d1991371f8414622ef1213c5b7bcb01e358ed71ee
+    lines:
+      PMEG4005AEA: [66, 66]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: PMEG4005AEA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG4005AEA.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: bd4ce9282dfb3a2a8672bc6fb883010eb814f64fab45f4ca889d0ecb60becb93
+    lines:
+      PMEG4005AEA: [2, 24]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)
+- source: ltwiki
+  name: PMEG4005ET
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG4005ET.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 1b5686d6a6eca476ee65c774e6d60fc6ac1515d97e522d98abb871f9b0cde848
+    lines:
+      PMEG4005ET: [2, 24]
+    fetched: '2026-09-14'

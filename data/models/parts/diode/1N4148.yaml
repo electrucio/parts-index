@@ -1,0 +1,139 @@
+part: 1N4148
+kind: diode
+priority: 1
+group: silicon_signal
+preferred: diodes-inc
+preferred_why: 'best datasheet agreement: 10 pass, 0 off, 0 fail of 10 judged rows (5 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with central-semi,
+  cordell on score and typical-value error, chosen as the more original source'
+models:
+- source: onsemi
+  name: 1N4148WT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n4148.lib
+    sha256: f96cb71a2bb9de8848f4069cd9f14754b5182ffb39a5c4f05a25d5113784e68c
+    lines:
+      1N4148WT: [3, 40]
+    fetched: '2026-09-14'
+    note: 'model(s): 1N4148WT (.subckt 2 1), MD1 (D .model), MDR (RES .model), MD3 (D .model), MD2 (D
+      .model), MDRBV (RES .model)'
+  verification:
+    score: 0.5
+    pass: 5
+    marginal: 5
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: pins from default order (unverified)
+- source: nexperia
+  name: 1N4148
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/1N4148.txt
+    sha256: e5eb29475758240227aaa7a171d86595340405bc0a703e54eb7a7e5927175986
+    lines:
+      1N4148: [33, 48]
+    fetched: '2026-09-14'
+    note: 'model(s): 1N4148 (.subckt 1 2), 1N4148 (D .model)'
+  verification:
+    score: 0.1
+    pass: 1
+    marginal: 5
+    fail: 4
+    not_measurable: 0
+    typical_rows: 5
+  note: pins from comment words
+- source: diodes-inc
+  name: 1N4148W
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/1589/1N4148W.spice.txt
+    sha256: eac112ab3b235eb9f54916f7f9d793ba15091a1fb6988e4eef5652aad393437a
+    lines:
+      1N4148W: [18, 19]
+    fetched: '2026-09-14'
+    note: 'model(s): 1N4148W (D .model)'
+  verification:
+    score: 1.0
+    pass: 10
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+- source: central-semi
+  name: 1N4148
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/1N4148.LIB
+    sha256: 61e9e5b7ec11b2ed3c0429ace26cf40a436b623701c8935729565b0e9c7941d0
+    lines:
+      1N4148: [24, 35]
+    fetched: '2026-09-14'
+    note: 'model(s): 1N4148 (D .model)'
+  verification:
+    score: 1.0
+    pass: 10
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+- source: ltspice-native
+  name: 1N4148
+  def: model
+  type: D
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.dio
+    sha256: 696d34dfe538966c80cfe1da259c1043f408777be79f59e4f1c47d82f3af320a
+    lines:
+      1N4148: [7, 7]
+  verification:
+    score: 1.0
+    pass: 10
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: cordell
+  name: 1N4148C
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.cordellaudio.com/book/Install-Test.zip
+    member: Install Test/Cordell Models.txt
+    archive_sha256: 332b487564a6c8eca0f8a1db26ec86109b450af5e75278e32556ad000f9bcd77
+    sha256: ae2d30efd938496e2a633e5de71d2fceae0e588c0dde475cb2ec8ff6fe9f2bba
+    lines:
+      1N4148C: [291, 291]
+    fetched: '2026-09-14'
+    note: Cordell Models 12/07/2010 (older version bundled in zip; RB=10 in small-signal BJTs)
+  verification:
+    score: 1.0
+    pass: 10
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://www.vishay.com/docs/81857/1n4148.pdf
+  maker: Vishay
+  doc: Document Number 81857, Rev. 1.6, 07-Nov-2024

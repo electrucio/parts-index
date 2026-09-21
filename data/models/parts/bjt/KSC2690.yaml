@@ -1,0 +1,55 @@
+part: KSC2690
+kind: bjt
+priority: 3
+group: driver_vas
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 1 fail of 7 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: KSC2690
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      KSC2690: [811, 811]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.714
+    pass: 5
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: KSC2690A_k
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      KSC2690A_k: [1196, 1196]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/ksc2690a-d.pdf
+  maker: onsemi
+  doc: KSC2690A/D Rev. 2
+  date: 2023-11

@@ -1,0 +1,77 @@
+part: 2SA1358
+kind: bjt
+priority: 3
+group: driver_vas
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 4 pass, 0 off, 2 fail of 6 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: 2SA1358
+  def: model
+  type: PNP
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      2SA1358: [885, 885]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: 2SA1358
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
+    lines:
+      2SA1358: [826, 826]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: Q2SA1358
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/BJT_PNP/TOSH_PWR.LIB
+    sha256: 1b6e2abc4bd76907b3e01ab4be9719410ab5dcdb3a022627e0d970a62cb14e7c
+    lines:
+      Q2SA1358: [2177, 2193]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 2
+datasheet:
+  url: https://www.pcpaudio.com/pcpfiles/transistores/2SA1358.pdf
+  maker: toshiba
+  doc: 2SA1358
+  date: '2001-10-29'

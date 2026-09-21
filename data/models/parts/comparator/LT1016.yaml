@@ -1,0 +1,140 @@
+part: LT1016
+kind: comparator
+priority: 4
+models:
+- source: ltwiki
+  name: LT1016
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  - COMP2
+  deps:
+  - COMP1016
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+    lines:
+      COMP1016: [1410, 1516]
+      LT1016: [1404, 1406]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: ltwiki
+  name: LT1016
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  - COMP2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Symbol Types For Subcircuits/ltcx_test1.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 5ca7b948e6a0217e51b78d49213e5d5720bf26d849d52a60584fedd5e133c1ce
+    lines:
+      LT1016: [633, 635]
+    fetched: '2026-09-14'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: kicad-spice-library
+  name: LT1016_TI
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '21'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+    sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+    lines:
+      LT1016_TI: [1017, 1041]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: LT1016_LT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  - COMP2
+  deps:
+  - COMP1016_LT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/linear.lib
+    sha256: 025903d9677acbc507e2eaa578ba581d9e52f17c10dbf286da658f1af22dd5ba
+    lines:
+      COMP1016_LT: [1253, 1359]
+      LT1016_LT: [1247, 1249]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: kicad-spice-library
+  name: LT1016/LT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  - COMP2
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/lin_tech.lib
+    sha256: ecf83f07a8bd4c59f1b672a6af78483039b75f982c54349f9eca7641007da6d9
+    lines:
+      LT1016/LT: [3118, 3120]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: kicad-spice-library
+  name: LT1016T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '21'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TICOMP.LIB
+    sha256: d4980b8365b4590602ff9cca722294b2ec0125e2ef169e5a6a66dab2a6411001
+    lines:
+      LT1016T: [17, 46]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

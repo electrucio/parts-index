@@ -1,0 +1,31 @@
+part: SS8550
+kind: bjt
+priority: 4
+group: small_signal_pnp
+models:
+- source: onsemi
+  name: SS8550
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/ss8550.lib
+    sha256: c663079bb2e6a66c08ec4e33ad0c33b42995fd2ece04ac63c1066755f12391c2
+    lines:
+      SS8550: [6, 17]
+    fetched: '2026-09-19'
+    note: 'SS8550: SS8550'
+- source: bordodynov
+  name: ss8550
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      ss8550: [781, 781]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

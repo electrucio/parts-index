@@ -1,0 +1,45 @@
+part: 2SK246
+kind: jfet
+priority: 3
+group: n_channel
+models:
+- source: bordodynov
+  name: J2sk246
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      J2sk246: [797, 797]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 2SK246
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      2SK246: [957, 957]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: J2SK246
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/2sk246.lib
+    sha256: ba9dc047eaeae1978815c617322dd3050c0aed9be73ef77d4e9dc8de323674d8
+    lines:
+      J2SK246: [1, 1]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

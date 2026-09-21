@@ -1,0 +1,54 @@
+part: 1N759A
+kind: zener
+priority: 3
+models:
+- source: duncanamps
+  name: D1N759
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/zener.mod
+    sha256: 53758db14bf58c6f53e5655b57def938fd7ebbaee865e81ef7ad3ba689a7f192
+    lines:
+      D1N759: [76, 77]
+    fetched: '2026-09-14'
+    note: 77 .model
+- source: bordodynov
+  name: 1N759
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N759: [1796, 1796]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: kicad-spice-library
+  name: D1N759
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/diode_1.lib
+    sha256: b7c26c0e324a48b2fec85863b141ac2f595fc0835e8e5aa44c9da8189051c5f6
+    lines:
+      D1N759: [25, 25]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: D1N759
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      D1N759: [221, 223]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

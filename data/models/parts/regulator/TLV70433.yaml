@@ -1,0 +1,40 @@
+part: TLV70433
+kind: regulator
+priority: 4
+models:
+- source: ti
+  name: TLV70433_F1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBVM592
+    member: TLV70433_TRANS.LIB
+    archive_sha256: 0deab54791d0690c4e7e7c6752c3742ca0dcd50ee429d95c55d1cffd589bd526
+    sha256: 794deb3a81a263d868302b6ed5065654514a8cbbd479e101a2de20b158ec40d5
+    lines:
+      TLV70433_F1: [97, 100]
+    fetched: '2026-09-19'
+- source: ti
+  name: TLV70433_S2
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBVM592
+    member: TLV70433_TRANS.LIB
+    archive_sha256: 0deab54791d0690c4e7e7c6752c3742ca0dcd50ee429d95c55d1cffd589bd526
+    sha256: 794deb3a81a263d868302b6ed5065654514a8cbbd479e101a2de20b158ec40d5
+    lines:
+      TLV70433_S2: [102, 106]
+    fetched: '2026-09-19'

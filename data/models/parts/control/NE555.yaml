@@ -1,0 +1,173 @@
+part: NE555
+kind: control
+priority: 2
+models:
+- source: ltspice-native
+  name: NE555
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: sub/NE555.sub
+    sha256: ec1f7b7ad7fed806a334512159956b77cdff15b698158d3cf23dc62ff506f74e
+    lines:
+      NE555: [3, 26]
+  verification:
+    score: null
+    error: 'KeyError: ''control'''
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: NE555_R
+  def: subckt
+  type: SUBCKT
+  pins:
+  - GND
+  - TRIG
+  - OUT
+  - RESET
+  - CONT
+  - THRES
+  - DISC
+  - VCC
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      NE555_R: [3023, 3073]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''control'''
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: NE555
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/timers.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5caceb6b0c16c6b684284c8598439454661f6908a926796c1459becf67fc8f85
+    lines:
+      NE555: [134, 155]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''control'''
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: NE555
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Basso/BassoBook20100103/New2/TL555.sub
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: a1cd2142091273d4325964316ca6a0f4220f67397a8fd83068be25cab435162c
+    lines:
+      NE555: [80, 101]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''control'''
+- source: ltwiki
+  name: ne555h3
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  deps:
+  - norh
+  - srff
+  - noth
+  - comp3
+  - orh
+  - D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Robertugo/PowerCir/Convert/Flyback/Tero/Tero555H3.cir
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 73934004549058646ac6ee0eb484c306b8bcc9118db8b509a2b12ff8eb8d0e9e
+    lines:
+      D: [94, 94]
+      comp3: [87, 92]
+      ne555h3: [33, 54]
+      norh: [70, 77]
+      noth: [79, 85]
+      orh: [61, 68]
+      srff: [55, 59]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''control'''
+- source: ltwiki
+  name: ne555_ab
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/ne555_ab.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 36e7495e6420405bfeec50b9c17646307cf8910314c28083bdb0e2aed086cab1
+    lines:
+      ne555_ab: [1, 57]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''control'''
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/ne555.pdf
+  maker: Texas Instruments
+  doc: SLFS022K, rev. K (first issued Sep 1973)
+  date: 2026-03

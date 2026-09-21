@@ -1,0 +1,23 @@
+part: 6G7
+kind: tube
+priority: 2
+group: audio_docs
+models:
+- source: bordodynov
+  name: 6G7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/Tube_IM.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8eed72dbd55b52f5eb6004bcaacd3d88c79e3e3df9ef28462570c887a70e0d00
+    lines:
+      6G7: [1429, 1444]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from inline comment'

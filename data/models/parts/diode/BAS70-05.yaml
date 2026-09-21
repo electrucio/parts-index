@@ -1,0 +1,98 @@
+part: BAS70-05
+kind: diode
+priority: 4
+group: silicon_signal
+models:
+- source: diodes-inc
+  name: BAS70LP
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/129/BAS70LP.spice.txt
+    sha256: b848f28d34d85b290740a7da4963c39250bf09f4c39a1946c432d9bd1ae2df9d
+    lines:
+      BAS70LP: [24, 25]
+    fetched: '2026-09-19'
+    note: 'model(s): BAS70LP'
+  note: found under the alias BAS70
+- source: bordodynov
+  name: bas70
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      bas70: [101, 101]
+    fetched: '2026-09-14'
+  note: 'found under the alias BAS70; same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BAS70H
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BAS70H: [1425, 1425]
+    fetched: '2026-09-14'
+  note: 'found under the alias BAS70; same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BAS70_05
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - K
+  - A2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      BAS70_05: [12560, 12564]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: ltwiki
+  name: BAS70-05
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/BAS70-05.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: f649670b0ca990a1b8ad887768a12234256e78d355d92e26d54b2d89c8376973
+    lines:
+      BAS70-05: [2, 25]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: BAS70-05W
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/BAS70-05W.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: eb714f2335cabff091a50b1c870a90ac9fc5ee1f88f7483188a5d37d9d2a45d2
+    lines:
+      BAS70-05W: [2, 25]
+    fetched: '2026-09-14'

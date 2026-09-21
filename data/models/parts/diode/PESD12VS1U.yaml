@@ -1,0 +1,18 @@
+part: PESD12VS1U
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: ltwiki
+  name: PESD12VS1UB
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/PESD12VS1UB.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5570ab08f38e90d8e53fcd0f9736bcd170cbde567fee082a723b7d2ea4d26464
+    lines:
+      PESD12VS1UB: [2, 11]
+    fetched: '2026-09-14'

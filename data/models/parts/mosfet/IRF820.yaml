@@ -1,0 +1,151 @@
+part: IRF820
+kind: mosfet
+priority: 3
+group: power_vertical
+preferred: infineon
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable); tied with kicad-spice-library,
+  kicad-spice-library on score and typical-value error, chosen as the more original source'
+models:
+- source: infineon
+  name: irf820
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://web.archive.org/web/19991011023437id_/http://www.irf.com:80/product-info/models/SPICE/irf820.spi
+    sha256: b2d1cf8773152a0bb383865a8249a24e5c8573c91add950b8de467ef7584278f
+    lines:
+      irf820: [1, 60]
+    fetched: '2026-09-14'
+    note: International Rectifier legacy HEXFET SPICE model; original URL http://www.irf.com:80/product-info/models/SPICE/irf820.spi
+      (Wayback capture 19991011023437)
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: IRF820
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRF820: [1095, 1095]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: IRF820
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWMOS.LIB
+    sha256: 3a158ee63ad9816d8dcdc0cad0827d2f4646c66b6296d7bbcd2c28d49bf1d219
+    lines:
+      IRF820: [3254, 3274]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 2
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: IRF820
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL1.LIB
+    sha256: 8a0af54a34c8e405d5f54f85a9836846c3926f39a0926309907c5f1c3820df13
+    lines:
+      IRF820: [370, 400]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.2
+    pass: 1
+    marginal: 2
+    fail: 2
+    not_measurable: 3
+    typical_rows: 3
+- source: kicad-spice-library
+  name: IRF820M
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+    sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+    lines:
+      IRF820M: [4256, 4301]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: irf820_IR
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+    sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+    lines:
+      irf820_IR: [4358, 4417]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: pins from default order (unverified)
+datasheet:
+  url: https://www.vishay.com/docs/91059/91059.pdf
+  maker: Vishay Siliconix
+  doc: Document Number 91059, S21-0852-Rev. D
+  date: '2021-08-16'

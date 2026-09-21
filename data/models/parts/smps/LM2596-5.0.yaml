@@ -1,0 +1,61 @@
+part: LM2596-5.0
+kind: smps
+priority: 3
+models:
+- source: bordodynov
+  name: LM2596_ADJ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - _ON/OFF
+  - FB
+  - IN
+  - OUT
+  - VGND
+  deps:
+  - regblk
+  - currentlimiterblk2
+  - switcherblk
+  - startupblk4
+  - latchblk
+  - oscdclimiterblk
+  - oa
+  - errampblk
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM2596xx.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 100425dcbbe7ba74c8afa8c003626fccb108bd05048f9ef5fd25ea34182cf1fb
+    lines:
+      LM2596_ADJ: [97, 120]
+      currentlimiterblk2: [316, 349]
+      errampblk: [249, 272]
+      latchblk: [183, 217]
+      oa: [351, 381]
+      oscdclimiterblk: [151, 181]
+      regblk: [122, 149]
+      startupblk4: [274, 314]
+      switcherblk: [219, 247]
+    fetched: '2026-09-14'
+  note: 'found under the alias LM2596; same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: LM2596_adj_
+  def: subckt
+  type: SUBCKT
+  pins:
+  - VIN
+  - FB
+  - OUT
+  - GND
+  - ON_OFF_N
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/LM2596_adj.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6f75a1a6db449f3915f97baf5d152e54c1952b4b5218382a8462bf168235a883
+    lines:
+      LM2596_adj_: [1, 154]
+    fetched: '2026-09-14'
+  note: found under the alias LM2596

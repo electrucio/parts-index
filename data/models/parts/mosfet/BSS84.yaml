@@ -1,0 +1,151 @@
+part: BSS84
+kind: mosfet
+priority: 3
+group: small_signal
+preferred: diodes-inc
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 3 not measurable); tied with bordodynov, bordodynov
+  on score and typical-value error, chosen as the more original source. Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: diodes-inc
+  name: BSS84
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/2330/BSS84.spice.txt
+    sha256: aba6d8b37d4aaf228987146112b8e811eb7a4fdf1d89877d4b10a23a21a84377
+    lines:
+      BSS84: [19, 31]
+    fetched: '2026-09-14'
+    note: 'model(s): BSS84 (.subckt 3 4 5), MOD1 (PMOS .model), DIODE1 (D .model)'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 3
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: ltspice-native
+  name: BSS84
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.mos
+    sha256: adfdcda82e1b6186f907df2dc3905659a2ea2be2a0887a016d1fd9f1b3b1b40e
+    lines:
+      BSS84: [134, 134]
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 0
+    fail: 1
+    not_measurable: 3
+    typical_rows: 0
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: bss84_AB
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      bss84_AB: [26, 26]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 3
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BSS84
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/PMOS_Philips.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ddd5efafd062e94ad879688bea4de9115bf23caaa761c0ba40ab2e63e3458a45
+    lines:
+      BSS84: [195, 207]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 3
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: BSS84
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '20'
+  - '10'
+  - '30'
+  - '50'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Fairchild/MOSFET/BSS84.mod
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 9a7bd2e0442defc53f3e599b39d153b11ccd64e415cc426449a46b54f61a2334
+    lines:
+      BSS84: [3, 48]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 9
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: BSS84
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.mos
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 0f6a0a30f327903e5b61c3764e08354839fed85c6ce2d4a8b3d708d6c2ec9533
+    lines:
+      BSS84: [23, 23]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 0
+    fail: 1
+    not_measurable: 3
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library'
+datasheet:
+  url: https://assets.nexperia.com/documents/data-sheet/BSS84.pdf
+  maker: Nexperia (NXP)
+  doc: BSS84 Product data sheet, Rev. 06
+  date: '2008-12-16'

@@ -1,0 +1,95 @@
+part: ULN2003
+kind: control
+priority: 3
+models:
+- source: bordodynov
+  name: ULN2003
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B[1]
+  - B[2]
+  - B[3]
+  - B[4]
+  - B[5]
+  - B[6]
+  - B[7]
+  - E
+  - COM
+  - C[7]
+  - C[6]
+  - C[5]
+  - C[4]
+  - C[3]
+  - C[2]
+  - C[1]
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ULN2003.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 884d04e428f9d79e7b2dfe9c6c3bf167b0770a70a148bf23037da6adfe28d604
+    lines:
+      ULN2003: [2, 69]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: ULN2003LV
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B[1]
+  - B[2]
+  - B[3]
+  - B[4]
+  - B[5]
+  - B[6]
+  - B[7]
+  - E
+  - COM
+  - C[7]
+  - C[6]
+  - C[5]
+  - C[4]
+  - C[3]
+  - C[2]
+  - C[1]
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ULN2003LV.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6600ae812ac8fa690e96715b74ea1d330e08b9d84cb45c1fe5b9703ec9207356
+    lines:
+      ULN2003LV: [2, 48]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: kicad-spice-library
+  name: ULN2003
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B[1]
+  - B[2]
+  - B[3]
+  - B[4]
+  - B[5]
+  - B[6]
+  - B[7]
+  - E
+  - COM
+  - C[7]
+  - C[6]
+  - C[75
+  - C[4]
+  - C[3]
+  - C[2]
+  - C[1]
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/ULN2003.sub
+    sha256: 7ff2e1390b081ba21dc136e5065ad8418f24e4b9bb3a947bd34a739708a0be46
+    lines:
+      ULN2003: [2, 69]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

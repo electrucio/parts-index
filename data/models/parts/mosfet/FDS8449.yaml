@@ -1,0 +1,22 @@
+part: FDS8449
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: onsemi
+  name: FDS8449
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/fds8449.lib
+    sha256: 288b909e856fd2b3336bcf121fbd5bea6776f01cf863f940188a3969b786082c
+    lines:
+      FDS8449: [3, 43]
+    fetched: '2026-09-19'
+    note: 'FDS8449: FDS8449, RbreakMOD, DbodyMOD, DbreakMOD, RdrainMOD, Bsim3'
+  note: pins from default order (unverified)

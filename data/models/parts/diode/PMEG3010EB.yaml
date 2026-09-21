@@ -1,0 +1,70 @@
+part: PMEG3010EB
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: nexperia
+  name: PMEG3010EJ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG3010EJ.txt
+    sha256: eed6c302c05424e477daf8a4f9bac4af789849e75f1c987d679ad5d58c8c6458
+    lines:
+      PMEG3010EJ: [33, 49]
+    fetched: '2026-09-19'
+    note: 'PMEG3010EJ: PMEG3010EJ, PMEG3010EJ'
+  note: 'found under the alias PMEG3010E; same code also in: ltwiki; pins from comment words'
+- source: nexperia
+  name: PMEG3010EB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG3010EB.txt
+    sha256: c4c142c2e155b4124fbeb695204cf697470efa7a20ad0db5761478e72545a3f4
+    lines:
+      PMEG3010EB: [33, 49]
+    fetched: '2026-09-19'
+    note: 'PMEG3010EB: PMEG3010EB, PMEG3010EB'
+  note: pins from comment words
+- source: nexperia
+  name: PMEG3010ER
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG3010ER.txt
+    sha256: 34f8a549ec2e6ef72b1e3f5aa0b7eda93afcb0fc9cbd056f0f86401e935995d8
+    lines:
+      PMEG3010ER: [33, 50]
+    fetched: '2026-09-19'
+    note: 'PMEG3010ER: PMEG3010ER, PMEG3010ER'
+  note: found under the alias PMEG3010E; pins from comment words
+- source: ltwiki
+  name: PMEG3010EH
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG3010EH.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: f2fd9153cc50ff95eec80702836bc95992ad4fbb6c489b37065ee1719f71bc31
+    lines:
+      PMEG3010EH: [2, 24]
+    fetched: '2026-09-14'
+  note: found under the alias PMEG3010E; pins from default order (unverified)

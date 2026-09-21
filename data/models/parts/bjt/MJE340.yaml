@@ -1,0 +1,143 @@
+part: MJE340
+kind: bjt
+priority: 1
+group: driver_vas
+preferred: cordell
+preferred_why: 'best datasheet agreement: 2 pass, 0 off, 0 fail of 2 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, bordodynov,
+  bordodynov, ltwiki, ltwiki on score and typical-value error, chosen as the more original source. WEAK
+  EVIDENCE: fewer than 5 rows, all min/max limits'
+models:
+- source: cordell
+  name: MJE340C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.cordellaudio.com/book/Cordell-Models.txt
+    sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
+    lines:
+      MJE340C: [282, 292]
+    fetched: '2026-09-14'
+    note: 'Cordell Models 04/20/2011 (current site file, HTTP Last-Modified 2024-09-15): 63 .model (BJT
+      GP, NJF, VDMOS, D)'
+  verification:
+    score: 1.0
+    pass: 2
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: bordodynov
+  name: mje340
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      mje340: [1075, 1075]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 2
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: MJE340_C
+  def: model
+  type: NPN
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      MJE340_C: [1188, 1188]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 2
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: MJE340c
+  def: model
+  type: NPN
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      MJE340c: [1372, 1372]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 2
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: mje340
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/distortion_OUTPUT_vs_bias/standard_BJT modified.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: b11d82ef9412f3285ead0b742f082d8c60ba31108d4eb85c48c7268e54aeb9a4
+    lines:
+      mje340: [501, 501]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 2
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: ltwiki
+  name: MJE340c
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/distortion_OUTPUT_vs_bias/standard_BJT modified.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: b11d82ef9412f3285ead0b742f082d8c60ba31108d4eb85c48c7268e54aeb9a4
+    lines:
+      MJE340c: [504, 504]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 2
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/mje340-d.pdf
+  maker: onsemi
+  doc: MJE340/D Rev. 15 (April 2026)

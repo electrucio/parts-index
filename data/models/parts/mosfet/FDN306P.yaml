@@ -1,0 +1,22 @@
+part: FDN306P
+kind: mosfet
+priority: 4
+group: small_signal
+models:
+- source: onsemi
+  name: FDN306P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/fdn306p.lib
+    sha256: 9cdc783f653e02c8a578f06bc479f992b34f9f95a0342f93c144bf66624f1554
+    lines:
+      FDN306P: [3, 43]
+    fetched: '2026-09-19'
+    note: 'FDN306P: FDN306P, RbreakMOD, DbodyMOD, DbreakMOD, RdrainMOD, M_MOD'
+  note: pins from default order (unverified)

@@ -1,0 +1,24 @@
+part: OPA140
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: OPA140
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPA140.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5b9e6bcbb637a4afec280c9baf010eff2d0326779d8e8567fe8b39038f5c166a
+    lines:
+      OPA140: [1, 23]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'

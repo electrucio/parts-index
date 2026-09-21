@@ -1,0 +1,138 @@
+part: EF85
+kind: tube
+priority: 3
+group: audio_docs
+models:
+- source: reefman
+  name: EF85
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PenthodeVDE
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      EF85: [604, 612]
+      PenthodeVDE: [2253, 2276]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: suusi-tubes
+  name: EF85
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE2
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      EF85: [1328, 1332]
+      PENTODE2: [2026, 2040]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  note: pins from inline comment
+- source: suusi-tubes
+  name: EF85
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE2
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      EF85: [1801, 1805]
+      PENTODE2: [3095, 3114]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: bordodynov
+  name: EF85
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - DX
+  - PENTODE2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Tubes_Koren.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 510f4c10247ba46358ff5a6b3f15189bec5cf207507ccc70922184385a66c360
+    lines:
+      DX: [1206, 1206]
+      EF85: [844, 848]
+      PENTODE2: [1174, 1187]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki, robrobinette; pins from inline comment'
+- source: bordodynov
+  name: EF85
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - S
+  - G
+  - K
+  deps:
+  - Tetrode2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/new_tetrodes.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 7d30fcbe19ab6ecdcce055525f4bb4c1d60f885a3f876f1549e245ed6f47b6e6
+    lines:
+      EF85: [303, 307]
+      Tetrode2: [72, 89]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: bordodynov
+  name: EF85
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Koren_Tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
+    lines:
+      EF85: [1357, 1361]
+      PENTODE2: [2062, 2076]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from inline comment'

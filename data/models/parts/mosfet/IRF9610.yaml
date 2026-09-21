@@ -1,0 +1,138 @@
+part: IRF9610
+kind: mosfet
+priority: 2
+group: power_vertical
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 5 pass, 0 off, 1 fail of 6 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable)'
+models:
+- source: bordodynov
+  name: IRF9610
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRF9610: [1450, 1450]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 1
+    fail: 1
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: IRF9610h
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRF9610h: [1523, 1523]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.4
+    pass: 2
+    marginal: 2
+    fail: 1
+    not_measurable: 3
+    typical_rows: 3
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: IRF9610
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/MOS/IRF/LIB/IRF9610.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 7b9a13a0b0bcce35426ca76b8cb734b622957ac7908eabbe39b990f86d3348c3
+    lines:
+      IRF9610: [1, 49]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 0
+    fail: 1
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: ltwiki; pins from default order (unverified)'
+- source: ltwiki
+  name: IRF9610__
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+    sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+    lines:
+      IRF9610__: [1108, 1108]
+    fetched: '2026-09-14'
+    note: Bordodynov VDMOS collection for LTspice IV
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 1
+    fail: 1
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: IRF9610_
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+    sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+    lines:
+      IRF9610_: [1513, 1513]
+    fetched: '2026-09-14'
+    note: Bordodynov VDMOS collection for LTspice IV
+  verification:
+    score: 0.5
+    pass: 3
+    marginal: 2
+    fail: 1
+    not_measurable: 2
+    typical_rows: 3
+- source: kicad-spice-library
+  name: IRF9610_
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+    sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+    lines:
+      IRF9610_: [1452, 1452]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 1
+    fail: 1
+    not_measurable: 2
+    typical_rows: 3
+datasheet:
+  url: https://www.vishay.com/docs/91080/91080.pdf
+  maker: Vishay Siliconix
+  doc: IRF9610, Document Number 91080, S21-0867-Rev. C
+  date: '2021-08-16'

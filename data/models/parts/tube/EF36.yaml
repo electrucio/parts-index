@@ -1,0 +1,122 @@
+part: EF36
+kind: tube
+priority: 3
+group: audio_docs
+models:
+- source: suusi-tubes
+  name: EF36
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  - EF86
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      EF36: [1675, 1679]
+      EF86: [1808, 1812]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: suusi-tubes
+  name: EF36_G3
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - G1
+  - G2
+  - G3
+  - A
+  deps:
+  - PENTODE
+  - EF86_G3
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      EF36_G3: [1216, 1220]
+      EF86_G3: [1244, 1248]
+      PENTODE: [3038, 3070]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: bordodynov
+  name: EF36
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - S
+  - G
+  - K
+  deps:
+  - Tetrode
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/new_tetrodes.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 7d30fcbe19ab6ecdcce055525f4bb4c1d60f885a3f876f1549e245ed6f47b6e6
+    lines:
+      EF36: [321, 325]
+      Tetrode: [47, 70]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from names'
+- source: bordodynov
+  name: EF36
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - U
+  - S
+  - G
+  - K
+  deps:
+  - Pentode
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/pentodes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d6266b406c88cab6fe4b2a526c77d345fa252c884b28b29826199c9b33cc3c87
+    lines:
+      EF36: [215, 217]
+      Pentode: [29, 70]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: EF36_at
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - U
+  - S
+  - G
+  - K
+  deps:
+  - PentodeT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/pentodes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d6266b406c88cab6fe4b2a526c77d345fa252c884b28b29826199c9b33cc3c87
+    lines:
+      EF36_at: [295, 297]
+      PentodeT: [263, 287]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'

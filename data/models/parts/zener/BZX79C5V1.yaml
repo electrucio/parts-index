@@ -1,0 +1,154 @@
+part: BZX79C5V1
+kind: zener
+priority: 2
+preferred: nexperia
+preferred_why: 'STAND-IN: the preferred model is of BZX84-C5V1, declared equivalent in catalog/wanted.yaml,
+  not of BZX79C5V1 itself; best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (0 against
+  typical values or curve points, the rest against min/max limits; 0 not measurable); tied with diodes-inc,
+  bordodynov, bordodynov, ltwiki on score and typical-value error, chosen as the more original source.
+  Limits only: the datasheet prints no typical values for these rows, so candidates inside the limits
+  are not told apart'
+models:
+- source: nexperia
+  name: BZX84-C5V1
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BZX84-C5V1.txt
+    sha256: 3b8626be136e11e8c77ac58a192d1fad04b69a3573776fc97394e868a2c28ec6
+    lines:
+      BZX84-C5V1: [28, 39]
+    fetched: '2026-09-14'
+    note: 'model(s): BZX84-C5V1 (D .model)'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of BZX84-C5V1, not of BZX79C5V1; equivalence declared in catalog/wanted.yaml
+    (see its note)'
+- source: diodes-inc
+  name: DI_BZX84C5V1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/885/BZX84C5V1.spice.txt
+    sha256: 6dd251f78023fce66a377586929a07906b820daf001e50610db4e98524bd7151
+    lines:
+      DI_BZX84C5V1: [19, 27]
+    fetched: '2026-09-14'
+    note: 'model(s): DI_BZX84C5V1 (.subckt 1 2), DF (D .model), DR (D .model)'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of DI_BZX84C5V1, not of BZX79C5V1; equivalence declared in catalog/wanted.yaml
+    (see its note); same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order
+    (unverified)'
+- source: bordodynov
+  name: BZX84C5V1
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BZX84C5V1: [225, 225]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of BZX84C5V1, not of BZX79C5V1; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BZX84C5V1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - DF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Zener_DiodesInc.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+    lines:
+      BZX84C5V1: [3053, 3060]
+      DF: [6016, 6016]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of BZX84C5V1, not of BZX79C5V1; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: ltwiki
+  name: BZX84C5V1
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/BZX84-C5V1.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 20255e126a927b64493c6b82d0865cec8ed306889c758bfe88983ea9db9ebd4b
+    lines:
+      BZX84C5V1: [6, 17]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of BZX84C5V1, not of BZX79C5V1; equivalence declared in catalog/wanted.yaml (see
+    its note)'
+- source: kicad-spice-library
+  name: BZX795V1
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/DIODE.LIB
+    sha256: c68f4b4a28eb0e866fb8e516b6a6a37a779ac80fed8a2ef16a3afcfb80c522e5
+    lines:
+      BZX795V1: [882, 883]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of BZX795V1, not of BZX79C5V1; equivalence declared in catalog/wanted.yaml (see
+    its note)'
+datasheet:
+  url: https://assets.nexperia.com/documents/data-sheet/BZX79.pdf
+  maker: Nexperia
+  doc: BZX79 series, Product data sheet, 2002 Feb 27 (NXP Semiconductors layout; supersedes 1999 May 25)

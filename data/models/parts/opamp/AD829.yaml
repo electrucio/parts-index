@@ -1,0 +1,129 @@
+part: AD829
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: AD829A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '30'
+  - '12'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_AD.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+    lines:
+      AD829A: [8274, 8370]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: AD829J
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '30'
+  - '12'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_AD.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+    lines:
+      AD829J: [8391, 8487]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: AD829S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '30'
+  - '12'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_AD.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+    lines:
+      AD829S: [8508, 8604]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: AD829
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '30'
+  - '12'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_AD.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+    lines:
+      AD829: [34674, 34770]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: AD829/AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '30'
+  - '12'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/anlg_dev.lib
+    sha256: 505283370bc2c5b5cb15401e3a43d58793d1598e62e1b422bb333be402ada1b9
+    lines:
+      AD829/AD: [23603, 23699]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: AD829_AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '30'
+  - '12'
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+    sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+    lines:
+      AD829_AD: [19810, 19906]
+      dx: [72212, 72212]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

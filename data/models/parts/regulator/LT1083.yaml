@@ -1,0 +1,127 @@
+part: LT1083
+kind: regulator
+priority: 3
+preferred: ltspice-native
+preferred_why: 'best datasheet agreement: 2 pass, 0 off, 0 fail of 2 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with ltwiki, kicad-spice-library,
+  kicad-spice-library on score and typical-value error, chosen as the more original source. WEAK EVIDENCE:
+  fewer than 5 rows, all min/max limits'
+models:
+- source: ltspice-native
+  name: LT1083
+  def: subckt
+  type: SUBCKT
+  pins:
+  - ADJ
+  - OUT
+  - IN
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: sub/LT1083.lib
+    sha256: 9e241b50c26e29cf3d807398af61bd0dc9291c8f03892cd58bc2f7cd245493cc
+    lines:
+      LT1083: [55, 77]
+  verification:
+    score: 1.0
+    pass: 2
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'pins from simulation: of the 6 node orders only ADJ OUT IN regulates to about 1.25 V at Vin-Vout
+    5 V / 20 mA, Vin-Vout 15 V / 20 mA, Vin-Vout 5 V / 100 mA (orders tried: IN OUT ADJ: -0.878 V, -0.867
+    V, -0.911 V; IN ADJ OUT: -0.792 V, -0.792 V, -0.966 V; OUT IN ADJ: -3.46 V, -3.46 V, -22.2 V; OUT
+    ADJ IN: -3.48 V, -3.48 V, -22.2 V; ADJ IN OUT: 2.24 V, 4.69 V, 2.21 V; ADJ OUT IN: 1.24 V, 1.24 V,
+    1.24 V)'
+- source: ltwiki
+  name: LT1083
+  def: subckt
+  type: SUBCKT
+  pins:
+  - ADJ
+  - OUT
+  - IN
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+    lines:
+      LT1083: [3231, 3287]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 2
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library; pins from simulation: of the 6 node orders only ADJ OUT
+    IN regulates to about 1.25 V at Vin-Vout 5 V / 20 mA, Vin-Vout 15 V / 20 mA, Vin-Vout 5 V / 100 mA
+    (orders tried: IN OUT ADJ: -3.55 V, -3.55 V, -22.8 V; IN ADJ OUT: -2.77 V, -2.84 V, -16.2 V; OUT IN
+    ADJ: -3.68 V, -3.73 V, -23.3 V; OUT ADJ IN: -3.59 V, -3.59 V, -23 V; ADJ IN OUT: 0.391 V, 2.08 V,
+    -6.02 V; ADJ OUT IN: 1.25 V, 1.25 V, 1.25 V)'
+- source: kicad-spice-library
+  name: LT1083_LT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - ADJ
+  - OUT
+  - IN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/linear.lib
+    sha256: 025903d9677acbc507e2eaa578ba581d9e52f17c10dbf286da658f1af22dd5ba
+    lines:
+      LT1083_LT: [3086, 3142]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 2
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'pins from simulation: of the 6 node orders only ADJ OUT IN regulates to about 1.25 V at Vin-Vout
+    5 V / 20 mA, Vin-Vout 15 V / 20 mA, Vin-Vout 5 V / 100 mA (orders tried: IN OUT ADJ: -3.55 V, -3.55
+    V, -22.8 V; IN ADJ OUT: -2.77 V, -2.84 V, -16.2 V; OUT IN ADJ: -3.68 V, -3.73 V, -23.3 V; OUT ADJ
+    IN: -3.59 V, -3.59 V, -23 V; ADJ IN OUT: 0.391 V, 2.08 V, -6.02 V; ADJ OUT IN: 1.25 V, 1.25 V, 1.25
+    V)'
+- source: kicad-spice-library
+  name: LT1083/LT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - ADJ
+  - OUT
+  - IN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/lin_tech.lib
+    sha256: ecf83f07a8bd4c59f1b672a6af78483039b75f982c54349f9eca7641007da6d9
+    lines:
+      LT1083/LT: [4261, 4317]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 2
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'pins from simulation: of the 6 node orders only ADJ OUT IN regulates to about 1.25 V at Vin-Vout
+    5 V / 20 mA, Vin-Vout 15 V / 20 mA, Vin-Vout 5 V / 100 mA (orders tried: IN OUT ADJ: -3.55 V, -3.55
+    V, -22.8 V; IN ADJ OUT: -2.77 V, -2.84 V, -16.2 V; OUT IN ADJ: -3.68 V, -3.73 V, -23.3 V; OUT ADJ
+    IN: -3.59 V, -3.59 V, -23 V; ADJ IN OUT: 0.391 V, 2.08 V, -6.02 V; ADJ OUT IN: 1.25 V, 1.25 V, 1.25
+    V)'
+datasheet:
+  url: https://www.analog.com/media/en/technical-documentation/data-sheets/108345fh.pdf
+  maker: Linear Technology (Analog Devices)
+  doc: LT1083/LT1084/LT1085 datasheet 108345fh (rev. H)

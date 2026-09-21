@@ -1,0 +1,24 @@
+part: MC7805
+kind: regulator
+priority: 4
+models:
+- source: kicad-spice-library
+  name: MC7805C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INPUT
+  - OUTPUT
+  - GROUND
+  deps:
+  - x_LM78XX
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      MC7805C: [1761, 1764]
+      x_LM78XX: [1632, 1736]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from names

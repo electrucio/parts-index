@@ -1,0 +1,57 @@
+part: TIP141
+kind: bjt
+priority: 2
+group: audio_docs
+models:
+- source: bordodynov
+  name: TIP141
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/NPNdarlington.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 807671d304dd74e6ece6d7da13675cd8730356ed292fe05efe3a611da6b98ab5
+    lines:
+      TIP141: [539, 575]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: kicad-spice-library
+  name: TIP141
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTDAR.LIB
+    sha256: 9ce6fa0baa6aaf6fdd5cce713f1d1ad2dabcd6946b97027854fc10dccb38dfb1
+    lines:
+      TIP141: [1132, 1144]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: TIP141_FC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/fairch.lib
+    sha256: 7a65c19aecd31354d0fec1166479cad2d1453948039b85b0d6d15d51ed4b963d
+    lines:
+      TIP141_FC: [8493, 8523]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

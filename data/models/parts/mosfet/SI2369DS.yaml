@@ -1,0 +1,62 @@
+part: SI2369DS
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: vishay
+  name: Si2369DS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/64553/si2369ds_ps.zip
+    member: Si2369DS_PS_RC.txt
+    archive_sha256: bb6514dccd5ba6bb6d1ece12cc68472388867882c3e26d4b582b2e3f9e307d4b
+    sha256: d7e8b84bd023c891faa02f9e47c032724bbccd9364c78975b8054302e9cc9792
+    lines:
+      Si2369DS: [106, 132]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: vishay
+  name: Si2369DS_PS_RC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  deps:
+  - Si2369DS
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/64553/si2369ds_ps.zip
+    member: Si2369DS_PS_RC.txt
+    archive_sha256: bb6514dccd5ba6bb6d1ece12cc68472388867882c3e26d4b582b2e3f9e307d4b
+    sha256: d7e8b84bd023c891faa02f9e47c032724bbccd9364c78975b8054302e9cc9792
+    lines:
+      Si2369DS: [106, 132]
+      Si2369DS_PS_RC: [9, 104]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: vishay
+  name: Si2369DS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/64553/si2369ds_ps.zip
+    member: Si2369DS_HS.TXT
+    archive_sha256: bb6514dccd5ba6bb6d1ece12cc68472388867882c3e26d4b582b2e3f9e307d4b
+    sha256: c4c9ca8e9f13bc785dfec7990e0cb0da65af5adf451778a29928acabce8b6342
+    lines:
+      Si2369DS: [7, 33]
+    fetched: '2026-09-19'
+  note: pins from names

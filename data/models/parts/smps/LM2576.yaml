@@ -1,0 +1,51 @@
+part: LM2576
+kind: smps
+priority: 3
+models:
+- source: ti
+  name: LM2576_S1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNVMB27
+    member: LM2576_TRANS.LIB
+    archive_sha256: a846515892f9711766fff5172018cfa2a05d2b6e94070c2ad5416de6b48ed794
+    sha256: f67692a92a0cd77669d6a6387c0c8bd06293ea1e1667ded24a4335142c8e267e
+    lines:
+      LM2576_S1: [132, 136]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''smps'''
+- source: ltwiki
+  name: LM2576HV_S1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/LM2576HV_TRANS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 617093c4e60a059447f9d1b9ab98f4936312577f545b3cd8c1579eccf9aa7080
+    lines:
+      LM2576HV_S1: [132, 136]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''smps'''
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm2576.pdf
+  maker: Texas Instruments (National Semiconductor)
+  doc: SNVS107G, rev. G (June 1999, revised March 2023); tables 6.9 (ADJ) and 6.10 (all versions)
+  date: 2023-03

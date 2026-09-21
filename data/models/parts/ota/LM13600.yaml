@@ -1,0 +1,104 @@
+part: LM13600
+kind: ota
+priority: 2
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 5 pass, 0 off, 0 fail of 5 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with kicad-spice-library,
+  kicad-spice-library on score and typical-value error, chosen as the more original source'
+models:
+- source: bordodynov
+  name: LM13600/NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IABC
+  - DBIAS
+  - INP
+  - INN
+  - OUT
+  - VN
+  - BUFIN
+  - BUFOUT
+  - VP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ns_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+    lines:
+      LM13600/NS: [2824, 2883]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 5
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from LM13700 DIP pin numbers'
+- source: kicad-spice-library
+  name: LM13600_NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IABC
+  - DBIAS
+  - INP
+  - INN
+  - OUT
+  - VN
+  - BUFIN
+  - BUFOUT
+  - VP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nation.lib
+    sha256: 97af188e570afc5c2b4b8246ade0670422d90c402c01a0f0383df0a6a37af9ac
+    lines:
+      LM13600_NS: [2965, 3024]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 5
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: pins from LM13700 DIP pin numbers
+- source: kicad-spice-library
+  name: LM13600N
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IABC
+  - DBIAS
+  - INP
+  - INN
+  - OUT
+  - VN
+  - BUFIN
+  - BUFOUT
+  - VP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/NATBJT.LIB
+    sha256: cf6a0a8ae76413edbbe02dda7fa5372957d07a3454547dfb80f3bff10d99492a
+    lines:
+      LM13600N: [3370, 3427]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 5
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: pins from LM13700 DIP pin numbers
+datasheet:
+  url: http://www.national.com/ds/LM/LM13600.pdf
+  maker: National Semiconductor
+  doc: DS007980 (LM13600), May 1998; OBSOLETE
+  date: 1998-05

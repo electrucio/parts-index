@@ -1,0 +1,59 @@
+part: 1N5388
+kind: zener
+priority: 3
+models:
+- source: onsemi
+  name: d1n5388b
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n5388b.lib
+    sha256: 1b23cd01e3a19014b8d9c916d8dce8ba3cbf9d4e0f500703215d575e337dccd4
+    lines:
+      d1n5388b: [1, 41]
+    fetched: '2026-09-19'
+    note: '1N5388B.LIB: d1n5388b, MD1, MDR, MD3, MD2, MDRBV'
+  note: pins from default order (unverified)
+- source: duncanamps
+  name: D1N5388B
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/zener.mod
+    sha256: 53758db14bf58c6f53e5655b57def938fd7ebbaee865e81ef7ad3ba689a7f192
+    lines:
+      D1N5388B: [385, 385]
+    fetched: '2026-09-14'
+    note: 77 .model
+- source: bordodynov
+  name: 1N5388A
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N5388A: [2043, 2043]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: 1n5388a
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Smps/HalfVm/Power456.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 9f06df533ae2edb2c14beb1b88977c99a92ad826c248ffb93ab84c151d37ac36
+    lines:
+      1n5388a: [675, 678]
+    fetched: '2026-09-14'

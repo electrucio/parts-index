@@ -1,0 +1,17 @@
+part: S1A
+kind: diode
+priority: 4
+group: rectifier
+models:
+- source: kicad-spice-library
+  name: S1A
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/gensemi.lib
+    sha256: a6cf7dd0be40fa8de86b574b20c2481a4be41a33f77d1893d66664f19e3fe8d9
+    lines:
+      S1A: [1253, 1263]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

@@ -1,0 +1,90 @@
+part: 1N60
+kind: diode-ge
+priority: 1
+preferred: germanium-apm
+preferred_why: 'best datasheet agreement: 3 pass, 4 off, 0 fail of 7 judged rows (5 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov on score and
+  typical-value error, chosen as the more original source'
+models:
+- source: germanium-apm
+  name: 1N60
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/rauschenbach/Germanium_Apm/b83d8aaa9faae6a1c4bfd5b9f07cc08cc239b64e/Germanium.lib
+    sha256: 730a441f388dfd3a78ccf06d17ecd9a8b27b9ef50b530cfce8f6411c8d6250af
+    lines:
+      1N60: [2, 2]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit b83d8aa
+  verification:
+    score: 0.429
+    pass: 3
+    marginal: 4
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+- source: bordodynov
+  name: 1N60
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N60: [88, 88]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.429
+    pass: 3
+    marginal: 4
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: D1N60
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/shinden.lib
+    sha256: 225d50d5916a2e4c6bad9ef2b986a6a5ccb62c98c0acffa1ca8c55ad7c65c350
+    lines:
+      D1N60: [25, 35]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.286
+    pass: 2
+    marginal: 5
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+- source: kicad-spice-library
+  name: D1N60/SDG
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/shindngn.lib
+    sha256: dfffb9094f50b16aa1ef22289a6d8201e447c702b5bcf27bac9e3c14391b84c9
+    lines:
+      D1N60/SDG: [48, 58]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.286
+    pass: 2
+    marginal: 5
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+datasheet:
+  url: https://www.taitroncomponents.com/catalog/Datasheet/1N60.pdf
+  maker: Taitron Components
+  doc: 1N60/1N60P Germanium Glass Diode, Rev. A/AH

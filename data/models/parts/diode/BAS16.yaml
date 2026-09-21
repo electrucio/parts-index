@@ -1,0 +1,134 @@
+part: BAS16
+kind: diode
+priority: 3
+group: silicon_signal
+preferred: nexperia
+preferred_why: 'best datasheet agreement: 13 pass, 0 off, 0 fail of 13 judged rows (4 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with ltspice-native
+  on score and typical-value error, chosen as the more original source'
+models:
+- source: onsemi
+  name: BAS16
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bas16.lib
+    sha256: 98dbf36836cc0d11feb91ef973d3bb0922a7403b1c4a4e5f41f4b1c7fb51efb2
+    lines:
+      BAS16: [7, 12]
+    fetched: '2026-09-14'
+    note: 'model(s): BAS16 (D .model)'
+  verification:
+    score: 0.923
+    pass: 12
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+- source: nexperia
+  name: BAS16
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BAS16.txt
+    sha256: 02510e2872b06562174fb315c37d5a82537b94f3e7c0d3edd78f962559b2e45f
+    lines:
+      BAS16: [33, 55]
+    fetched: '2026-09-14'
+    note: 'model(s): BAS16 (.subckt 1 2), DIODE1 (D .model), DIODE2 (D .model)'
+  verification:
+    score: 1.0
+    pass: 13
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: pins from comment words
+- source: nexperia
+  name: BAS16H
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BAS16H.txt
+    sha256: 0a4e94ced58c106954289c61fe0fcc27b3298b3bc11d528ba757d8ca6be5a5af
+    lines:
+      BAS16H: [28, 40]
+    fetched: '2026-09-14'
+    note: 'model(s): BAS16H (D .model)'
+  verification:
+    score: 1.0
+    pass: 13
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+- source: ltspice-native
+  name: BAS16HY
+  def: model
+  type: D
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.dio
+    sha256: 696d34dfe538966c80cfe1da259c1043f408777be79f59e4f1c47d82f3af320a
+    lines:
+      BAS16HY: [607, 607]
+  verification:
+    score: 1.0
+    pass: 13
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: bordodynov, ltwiki'
+- source: bordodynov
+  name: BAS16HM
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BAS16HM: [1440, 1440]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 13
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: BAS16
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/BAS16.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 60fdda82f1258461f9ce2b1b59e05656cb313554e5fd55a2cf6b3b9498a5daeb
+    lines:
+      BAS16: [5, 17]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 13
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+datasheet:
+  url: https://assets.nexperia.com/documents/data-sheet/BAS16_SER.pdf
+  maker: Nexperia
+  doc: BAS16 series, Rev. 6, 24 September 2014

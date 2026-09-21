@@ -1,0 +1,26 @@
+part: LP2985-1.8
+kind: regulator
+priority: 4
+models:
+- source: ti
+  name: LP2985-18
+  def: subckt
+  type: SUBCKT
+  pins:
+  - VIN
+  - GND
+  - ON_OFF
+  - BYPASS
+  - VOUT
+  deps:
+  - ldo_basic
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNVMB86
+    member: LP2985-18.LIB
+    archive_sha256: 32dfebba635a8701c06de2b2068095e45e3aa48d807ebf5833a3bf562c407440
+    sha256: 6e535af9f8da20b35d82f280a47d4fbfeddfcfd5d478570104415dcb72c810f9
+    lines:
+      LP2985-18: [44, 63]
+      ldo_basic: [66, 106]
+    fetched: '2026-09-19'

@@ -1,0 +1,120 @@
+part: 6BR7
+kind: tube
+priority: 2
+group: audio_docs
+models:
+- source: ayumi
+  name: 6BR7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6BR7.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 0660d58eb6d0a27583f2cc63e7850d5dd9f5fa4cd46cdfd23e3a7619ca0e9a60
+    lines:
+      6BR7: [10, 30]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: ayumi
+  name: 6BR7T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6BR7T.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: d4627ef831b7860b48a236d56fb0a3445554921cdebe10969860114aa2881434
+    lines:
+      6BR7T: [9, 22]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: bordodynov
+  name: 6BR7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G1
+  - C
+  - G2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/Tube_IM.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8eed72dbd55b52f5eb6004bcaacd3d88c79e3e3df9ef28462570c887a70e0d00
+    lines:
+      6BR7: [1317, 1334]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from inline comment'
+- source: bordodynov
+  name: 6BR7_T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/Tube_IM.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8eed72dbd55b52f5eb6004bcaacd3d88c79e3e3df9ef28462570c887a70e0d00
+    lines:
+      6BR7_T: [1337, 1352]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from inline comment'
+- source: ltwiki
+  name: 6BR7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Pentode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
+    lines:
+      6BR7: [670, 690]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: ltwiki
+  name: 6BR7T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Triode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+    lines:
+      6BR7T: [1417, 1430]
+    fetched: '2026-09-14'
+  note: pins from names

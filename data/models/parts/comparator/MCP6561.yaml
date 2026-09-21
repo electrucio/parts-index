@@ -1,0 +1,24 @@
+part: MCP6561
+kind: comparator
+priority: 3
+models:
+- source: bordodynov
+  name: MCP6561_my
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/MCP6561_my.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 42cfabc93f9f3b52d255616ebcfbf233d497edfd84e613b324297b5c9192f236
+    lines:
+      MCP6561_my: [1, 205]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'

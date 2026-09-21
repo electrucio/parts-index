@@ -1,0 +1,25 @@
+part: DMMT3906W
+kind: bjt
+priority: 4
+group: small_signal_pnp
+models:
+- source: ltwiki
+  name: DMMT3906W
+  def: subckt
+  type: SUBCKT
+  pins:
+  - b2
+  - b1
+  - c1
+  - e1
+  - e2
+  - c2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/DMMT3906W.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d2e4792bf41e259e2904a2edf5ff0b215ee4ca03e783d6aa3bbba4425c1ba837
+    lines:
+      DMMT3906W: [3, 12]
+    fetched: '2026-09-14'

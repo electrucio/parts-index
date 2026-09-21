@@ -1,0 +1,24 @@
+part: OPA381
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA381
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM380
+    member: OPA381_TINA_AIO/OPA381.LIB
+    archive_sha256: 7c07ab0a2f8566eab3084e0ffd6931de192062dc61faff42225aba3d36c814b5
+    sha256: 4a229956ba90fcc5f4f2b2a125a14fdce78adbe1d1ac9ccaed9225b81900020e
+    lines:
+      OPA381: [81, 352]
+    fetched: '2026-09-19'
+  note: pins from default order (unverified)

@@ -1,0 +1,21 @@
+part: PMEG6020
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: nexperia
+  name: PMEG6020ER
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG6020ER.txt
+    sha256: 261c94611c0134138bf2c84dec7c8097f7f565339f0111ba297619e6708ad6ea
+    lines:
+      PMEG6020ER: [33, 50]
+    fetched: '2026-09-19'
+    note: 'PMEG6020ER: PMEG6020ER, PMEG6020ER'
+  note: pins from comment words

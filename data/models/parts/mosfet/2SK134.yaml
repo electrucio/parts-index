@@ -1,0 +1,97 @@
+part: 2SK134
+kind: mosfet
+priority: 3
+group: power_lateral
+preferred: cordell
+preferred_why: 'best datasheet agreement: 4 pass, 1 off, 0 fail of 5 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov on score and
+  typical-value error, chosen as the more original source'
+models:
+- source: cordell
+  name: 2SK134C
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://www.cordellaudio.com/book/Install-Test.zip
+    member: Install Test/Cordell Models.txt
+    archive_sha256: 332b487564a6c8eca0f8a1db26ec86109b450af5e75278e32556ad000f9bcd77
+    sha256: ae2d30efd938496e2a633e5de71d2fceae0e588c0dde475cb2ec8ff6fe9f2bba
+    lines:
+      2SK134C: [273, 273]
+    fetched: '2026-09-14'
+    note: Cordell Models 12/07/2010 (older version bundled in zip; RB=10 in small-signal BJTs)
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 2SK134h
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      2SK134h: [1513, 1513]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 2SK134C
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      2SK134C: [829, 829]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: 2SK134_
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+    sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+    lines:
+      2SK134_: [1507, 1507]
+    fetched: '2026-09-14'
+    note: Bordodynov VDMOS collection for LTspice IV
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+datasheet:
+  url: https://www.bitsavers.org/components/hitachi/_dataBooks/1985_D11_Hitachi_Power_MOSFET_Data_Book.pdf
+  maker: Hitachi
+  doc: 'Hitachi Power MOS FET Data Book #D11, pages 91-92: 2SK133, 2SK134, 2SK135'
+  date: 1985.0

@@ -1,0 +1,34 @@
+part: 2SC2705
+kind: bjt
+priority: 3
+group: small_signal_npn
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: 2SC2705
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      2SC2705: [1064, 1064]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://media.digikey.com/pdf/Data%20Sheets/Toshiba%20PDFs/2SC2705.pdf
+  maker: toshiba
+  doc: 2SC2705 (Not Recommended for New Design watermark)
+  date: '2009-12-21'

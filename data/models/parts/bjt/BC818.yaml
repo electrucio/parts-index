@@ -1,0 +1,78 @@
+part: BC818
+kind: bjt
+priority: 4
+group: small_signal_pnp
+models:
+- source: kicad-spice-library
+  name: BC818s
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/S_AFBJT.LIB
+    sha256: f291616debefaec544e891373962217f0cde067ea5c516609e5605b7fa9512b0
+    lines:
+      BC818s: [513, 523]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BC818/SIE
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  deps:
+  - BC818
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/siemens.lib
+    sha256: c1318342f700741e0d97896cf4f77fe203b8923e12b1106c6c14f848c74bdd5b
+    lines:
+      BC818: [4369, 4379]
+      BC818/SIE: [4358, 4368]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: BC818
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/siemens.lib
+    sha256: c1318342f700741e0d97896cf4f77fe203b8923e12b1106c6c14f848c74bdd5b
+    lines:
+      BC818: [4369, 4379]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BC818
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTN.LIB
+    sha256: 2c85b6bbf3a7dcb9403d646a1c120714fdc7bce5c8287c8e537012a1cf3ef6c2
+    lines:
+      BC818: [388, 390]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BC818C_IN
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Infineon%20Technologies/infineon.lib
+    sha256: 06c1d0847f268f69e5d6655adae6c2942997148829254bf22af1c5202a381ed7
+    lines:
+      BC818C_IN: [2586, 2607]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

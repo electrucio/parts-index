@@ -1,0 +1,94 @@
+part: BC859
+kind: bjt
+priority: 4
+group: small_signal_pnp
+models:
+- source: nexperia
+  name: BC859B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B
+  - E
+  - C
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BC859B.txt
+    sha256: 60601a4452122811b3c440a41d7a48d87ac6b74cef6bc69f60df7605f9c8327e
+    lines:
+      BC859B: [31, 89]
+    fetched: '2026-09-14'
+    note: 'model(s): BC859B (.subckt 1 2 3), MAIN (PNP .model), DIODE (D .model)'
+  note: pins from comment words
+- source: nexperia
+  name: BC859C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B
+  - E
+  - C
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BC859C.txt
+    sha256: a60fc6c5c48286607dbd56eecb3af573e388916cec00d07d886df458914774eb
+    lines:
+      BC859C: [31, 89]
+    fetched: '2026-09-14'
+    note: 'model(s): BC859C (.subckt 1 2 3), MAIN (PNP .model), DIODE (D .model)'
+  note: pins from comment words
+- source: duncanamps
+  name: BC859A
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/bjt/pnp.mod
+    sha256: 9554024b39ab1fa861067c6af517fbe13435370dd0e78c4ed0d461fe355488a1
+    lines:
+      BC859A: [240, 242]
+    fetched: '2026-09-14'
+    note: 10 subckts, 124 .model
+  note: 'same code also in: kicad-spice-library'
+- source: bordodynov
+  name: BC859A
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC859A: [632, 632]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BC859B
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC859B: [633, 633]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BC859C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC859C: [634, 634]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

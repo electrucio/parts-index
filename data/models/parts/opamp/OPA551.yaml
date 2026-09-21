@@ -1,0 +1,25 @@
+part: OPA551
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA551
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  - COMP2
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM289
+    member: OPA551_TINA_AIO/OPA551.LIB
+    archive_sha256: 7fe514a881f371623fc4fb6c53feac9943024e0c5cc5e69b33a509d252084760
+    sha256: 39077cb3a64d7e23c0849f021068edd0e2383b0a768e56669ecb4f1223ab68a8
+    lines:
+      OPA551: [46, 425]
+    fetched: '2026-09-19'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)

@@ -1,0 +1,21 @@
+part: MSS1P4
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: vishay
+  name: mss1p4
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89878/mss1p4.txt
+    sha256: 76072915f5ef1d15116fe18590af55a4a0fa3106aa7a3a9f2250aeed0a27efc6
+    lines:
+      mss1p4: [7, 16]
+    fetched: '2026-09-19'
+    note: 'Schottky, SPICE 3 Models (*.txt): mss1p4, legd, grd'
+  note: pins from default order (unverified)

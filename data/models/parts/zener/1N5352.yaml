@@ -1,0 +1,20 @@
+part: 1N5352
+kind: zener
+priority: 3
+models:
+- source: onsemi
+  name: d1n5352b
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n5352b.lib
+    sha256: 6d648eb9ca198f56f338f169d265a4233f9801552f2e8849e740fe1eb65a24ff
+    lines:
+      d1n5352b: [1, 41]
+    fetched: '2026-09-19'
+    note: '1N5352B.LIB: d1n5352b, MD1, MDR, MD3, MD2, MDRBV'
+  note: pins from default order (unverified)

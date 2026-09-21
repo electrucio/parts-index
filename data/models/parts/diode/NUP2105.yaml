@@ -1,0 +1,62 @@
+part: NUP2105
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: onsemi
+  name: nup2105lt1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - nup2105l-tvs
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/nup2105l.lib
+    sha256: a94d6f1c5b718de016cdf5a83c0959a98776720666091e2a14198ba1c5f86135
+    lines:
+      nup2105l-tvs: [7, 41]
+      nup2105lt1: [1, 6]
+    fetched: '2026-09-19'
+    note: 'NUP2105L: nup2105lt1, nup2105l-tvs, MDD1, MDR, MDD3, MDRBV'
+- source: onsemi
+  name: nup2105l-tvs
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/nup2105l.lib
+    sha256: a94d6f1c5b718de016cdf5a83c0959a98776720666091e2a14198ba1c5f86135
+    lines:
+      nup2105l-tvs: [7, 41]
+    fetched: '2026-09-19'
+    note: 'NUP2105L: nup2105lt1, nup2105l-tvs, MDD1, MDR, MDD3, MDRBV'
+  note: pins from default order (unverified)
+- source: ltwiki
+  name: NUP2105
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - HALFNUP2105
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Discretos/Diodos/Avalancha/NUP2105TVS.sub
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: a82ca4db2591080daf6557fec6e6b169e3c383267cc79a74a6c72bc0f4e9b919
+    lines:
+      HALFNUP2105: [21, 52]
+      NUP2105: [13, 17]
+    fetched: '2026-09-14'

@@ -1,0 +1,42 @@
+part: HA4741
+kind: opamp
+priority: 3
+models:
+- source: kicad-spice-library
+  name: HA4741_HA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/harris.lib
+    sha256: 3df9ec7bb851307d4735247552477715a96e385a042ed70c567e3b275f7800dd
+    lines:
+      HA4741_HA: [127, 162]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words
+- source: kicad-spice-library
+  name: HA4741
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/HARRIS2.LIB
+    sha256: 5ff106ed7e994e503696c3aa4ab53bfe4e3aed7744504eeae26542d9f5b31648
+    lines:
+      HA4741: [1013, 1048]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words

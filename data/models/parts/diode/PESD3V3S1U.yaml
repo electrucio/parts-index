@@ -1,0 +1,18 @@
+part: PESD3V3S1U
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: ltwiki
+  name: PESD3V3S1UB
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/PESD3V3S1UB.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: b9406f2693c47ce394ea09b36143b591d53a5993d0037eed75b17825f00dbf0f
+    lines:
+      PESD3V3S1UB: [2, 11]
+    fetched: '2026-09-14'

@@ -1,0 +1,122 @@
+part: LMC7101
+kind: comparator
+priority: 3
+models:
+- source: ti
+  name: LMC7101A/NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNOM176
+    member: LMC7101A.MOD
+    archive_sha256: 871faed4145e7826abb93cadcabcbb705f295d810ac778fc211bc3f472f91829
+    sha256: 2284696bd0679362172989d50d0a03989000c78f7e974ce40e98589f8b72e5d0
+    lines:
+      LMC7101A/NS: [31, 151]
+    fetched: '2026-09-19'
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from comment words'
+- source: ti
+  name: LMC7101B/NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNOM176
+    member: LMC7101B.MOD
+    archive_sha256: 871faed4145e7826abb93cadcabcbb705f295d810ac778fc211bc3f472f91829
+    sha256: a5db7f1f6c472e1ff1cf392adb5b66ec49d386761ffc1ff4def0598e70089d74
+    lines:
+      LMC7101B/NS: [32, 175]
+    fetched: '2026-09-19'
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: LMC7101A_NSC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_NSC.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+    lines:
+      LMC7101A_NSC: [12276, 12396]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: LMC7101B_NSC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_NSC.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+    lines:
+      LMC7101B_NSC: [12407, 12550]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: kicad-spice-library
+  name: LMC7101A_NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nation.lib
+    sha256: 97af188e570afc5c2b4b8246ade0670422d90c402c01a0f0383df0a6a37af9ac
+    lines:
+      LMC7101A_NS: [18480, 18600]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words
+- source: kicad-spice-library
+  name: LMC7101B_NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nation.lib
+    sha256: 97af188e570afc5c2b4b8246ade0670422d90c402c01a0f0383df0a6a37af9ac
+    lines:
+      LMC7101B_NS: [18633, 18776]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words

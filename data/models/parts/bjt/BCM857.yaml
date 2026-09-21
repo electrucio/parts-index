@@ -1,0 +1,74 @@
+part: BCM857
+kind: bjt
+priority: 4
+group: small_signal_npn
+models:
+- source: bordodynov
+  name: BCM857BS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  deps:
+  - Q2
+  - Rb
+  - Q1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      BCM857BS: [1320, 1328]
+      Q1: [16399, 16440]
+      Q2: [16442, 16483]
+      Rb: [564, 570]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BCM857BV
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  deps:
+  - Q2
+  - Rb
+  - Q1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      BCM857BV: [1330, 1338]
+      Q1: [16399, 16440]
+      Q2: [16442, 16483]
+      Rb: [564, 570]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: bcm857bs
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Amplifier_classA_and_AB/models.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: b7a1e9b31a8dde47f8de8b4e81ee13a4d4d5d57f59a29ef1c175e0595ba418ae
+    lines:
+      bcm857bs: [1, 1]
+    fetched: '2026-09-14'

@@ -1,0 +1,41 @@
+part: 5Z4
+kind: tube
+priority: 2
+group: audio_docs
+models:
+- source: ayumi
+  name: 5Z4
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 5Z4.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 7891e7709a5f44b7e548810fdf1222467454c0f5fc18e89b856f4115ff7ad512
+    lines:
+      5Z4: [5, 7]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: ltwiki
+  name: 5Z4
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Diode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 58fd9e1eba78d4f20d75d4d1a7d289ff8f337f5e17184bcfcf27ad75aade4a1f
+    lines:
+      5Z4: [89, 91]
+    fetched: '2026-09-14'
+  note: pins from names

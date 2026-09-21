@@ -1,0 +1,37 @@
+part: IRLML6401
+kind: mosfet
+priority: 3
+group: power_vertical
+models:
+- source: bordodynov
+  name: irlml6401
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irlml6401.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31da47c077fb5d60553f7be5d008afeae3f9667c59c5da478e8d42359b4757ab
+    lines:
+      irlml6401: [1, 56]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: IRLML6401_AB
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRLML6401_AB: [1515, 1515]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

@@ -1,0 +1,33 @@
+part: PLVA650A
+kind: diode
+priority: 4
+group: silicon_signal
+models:
+- source: bordodynov
+  name: PLVA650A
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      PLVA650A: [904, 904]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: PLVA650A
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/PLVA650A.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 1c88681d074e30444723121e6c8bed0ad3fd3e20748f5fde8c62a205483849f5
+    lines:
+      PLVA650A: [5, 17]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'

@@ -1,0 +1,148 @@
+part: OPA462
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA462
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - VOS_DRIFT_OPA462
+  - GR_SRC_OPA462
+  - OL_SENSE_OPA462
+  - CL_SRC_OPA462
+  - VNSE_OPA462
+  - ESD_IN_OPA462
+  - CLAWN_OPA462
+  - ZO_SRC_OPA462
+  - CLAWP_OPA462
+  - BLOCK_DC_H3_OPA462
+  - ESD_OUT_OPA462
+  - CLAMP_AMP_HI_OPA462
+  - IQ_SRC_OPA462
+  - CLAW_SRC_OPA462
+  - AOL_1_OPA462
+  - AOL_2_OPA462
+  - SW_OL_OPA462
+  - FEMT_OPA462
+  - VCM_CLAMP_OPA462
+  - BLOCK_DC_H1_OPA462
+  - BLOCK_DC_S1_OPA462
+  - ESD_BB_OPA462
+  - CLAMP_AMP_LO_OPA462
+  - BLOCK_DC_H2_OPA462
+  - R_NOISELESS
+  - BLOCK_DC_S2_OPA462
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOMAV7
+    member: OPA462.LIB
+    archive_sha256: a01e60fe92cfa0575da50e2fc14e6b39e9222a4c83f40d385598ddaa521e8ade
+    sha256: 1da9c96dd4d1a2c7a27b9f33e69a0a06905f5eae213b6aa9e6419195f5c7e64b
+    lines:
+      AOL_1_OPA462: [281, 283]
+      AOL_2_OPA462: [285, 287]
+      BLOCK_DC_H1_OPA462: [254, 257]
+      BLOCK_DC_H2_OPA462: [259, 262]
+      BLOCK_DC_H3_OPA462: [264, 267]
+      BLOCK_DC_S1_OPA462: [269, 273]
+      BLOCK_DC_S2_OPA462: [275, 279]
+      CLAMP_AMP_HI_OPA462: [289, 292]
+      CLAMP_AMP_LO_OPA462: [294, 297]
+      CLAWN_OPA462: [299, 309]
+      CLAWP_OPA462: [311, 321]
+      CLAW_SRC_OPA462: [323, 325]
+      CL_SRC_OPA462: [327, 329]
+      ESD_BB_OPA462: [331, 335]
+      ESD_IN_OPA462: [337, 343]
+      ESD_OUT_OPA462: [345, 349]
+      FEMT_OPA462: [351, 367]
+      GR_SRC_OPA462: [369, 371]
+      IQ_SRC_OPA462: [373, 375]
+      OL_SENSE_OPA462: [377, 379]
+      OPA462: [75, 252]
+      R_NOISELESS: [416, 416]
+      SW_OL_OPA462: [381, 384]
+      VCM_CLAMP_OPA462: [386, 388]
+      VNSE_OPA462: [390, 406]
+      VOS_DRIFT_OPA462: [408, 410]
+      ZO_SRC_OPA462: [412, 414]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: ti
+  name: OPA462
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - VOS_DRIFT_OPA462
+  - GR_SRC_OPA462
+  - OL_SENSE_OPA462
+  - CL_SRC_OPA462
+  - VNSE_OPA462
+  - ESD_IN_OPA462
+  - CLAWN_OPA462
+  - ZO_SRC_OPA462
+  - CLAWP_OPA462
+  - BLOCK_DC_H3_OPA462
+  - ESD_OUT_OPA462
+  - CLAMP_AMP_HI_OPA462
+  - IQ_SRC_OPA462
+  - CLAW_SRC_OPA462
+  - AOL_1_OPA462
+  - AOL_2_OPA462
+  - SW_OL_OPA462
+  - FEMT_OPA462
+  - VCM_CLAMP_OPA462
+  - BLOCK_DC_H1_OPA462
+  - BLOCK_DC_S1_OPA462
+  - ESD_BB_OPA462
+  - CLAMP_AMP_LO_OPA462
+  - BLOCK_DC_H2_OPA462
+  - BLOCK_DC_S2_OPA462
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOMAV9
+    member: OPA462.LIB
+    archive_sha256: 0730aa85b8333aa80f51516ad379e352cee582875b36da35b23171a06ca06faa
+    sha256: 66a115944b72948befa0c0c03a4d7123a80253c1e706fca587686838b66ea4a8
+    lines:
+      AOL_1_OPA462: [286, 288]
+      AOL_2_OPA462: [290, 292]
+      BLOCK_DC_H1_OPA462: [259, 262]
+      BLOCK_DC_H2_OPA462: [264, 267]
+      BLOCK_DC_H3_OPA462: [269, 272]
+      BLOCK_DC_S1_OPA462: [274, 278]
+      BLOCK_DC_S2_OPA462: [280, 284]
+      CLAMP_AMP_HI_OPA462: [294, 297]
+      CLAMP_AMP_LO_OPA462: [299, 302]
+      CLAWN_OPA462: [304, 314]
+      CLAWP_OPA462: [316, 326]
+      CLAW_SRC_OPA462: [328, 330]
+      CL_SRC_OPA462: [332, 334]
+      ESD_BB_OPA462: [336, 340]
+      ESD_IN_OPA462: [342, 348]
+      ESD_OUT_OPA462: [350, 354]
+      FEMT_OPA462: [356, 372]
+      GR_SRC_OPA462: [374, 376]
+      IQ_SRC_OPA462: [378, 380]
+      OL_SENSE_OPA462: [382, 384]
+      OPA462: [79, 257]
+      SW_OL_OPA462: [386, 389]
+      VCM_CLAMP_OPA462: [391, 393]
+      VNSE_OPA462: [395, 411]
+      VOS_DRIFT_OPA462: [413, 415]
+      ZO_SRC_OPA462: [417, 419]
+    fetched: '2026-09-19'
+  note: pins from names

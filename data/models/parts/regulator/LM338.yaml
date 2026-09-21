@@ -1,0 +1,40 @@
+part: LM338
+kind: regulator
+priority: 3
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 1 pass, 0 off, 0 fail of 1 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable). WEAK EVIDENCE: fewer than 5 rows,
+  all min/max limits'
+models:
+- source: bordodynov
+  name: LM338
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - ADJ
+  - OUT
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM338.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: acd955748f1dea2f1a26704cc171915f2492547dcf2dbcde187bccd9103b9d1e
+    lines:
+      LM338: [10, 81]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 1
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm338.pdf
+  maker: Texas Instruments (National Semiconductor)
+  doc: SNVS771D, rev. D (May 1998, revised May 2025); table 5.5 LM338
+  date: 2025-05

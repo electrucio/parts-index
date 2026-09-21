@@ -1,0 +1,167 @@
+part: BF862
+kind: jfet
+priority: 2
+group: n_channel
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: interfet
+  name: BF862-PLP
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      BF862-PLP: [139, 139]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+- source: bordodynov
+  name: bf862
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      bf862: [127, 127]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BF862
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/BF862.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5b030bfa76931bfbb677627cbd0c8d6135230be329c814d13b4d5c5e95bcab84
+    lines:
+      BF862: [7, 33]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: BF862_x
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  deps:
+  - Di
+  - Msub
+  - Dpns
+  - Dpnd
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/njf_subthres.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 3e3e0211d414d146dbecc59788f743b54ef4ffef41c468373d03e91ba3c7753a
+    lines:
+      BF862_x: [91, 105]
+      Di: [70, 70]
+      Dpnd: [71, 71]
+      Dpns: [72, 72]
+      Msub: [69, 69]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 3
+    marginal: 2
+    fail: 1
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: ltwiki; pins from names'
+- source: ltwiki
+  name: bf862
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.jft
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: e129c65d0238559c9fe2d25e47143d11aa57115e1ff5d8747d9a45db57f83e37
+    lines:
+      bf862: [120, 120]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: BF862_x
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  deps:
+  - Di
+  - Msub
+  - Dpns
+  - Dpnd
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/njf_subthres.lib
+    sha256: 4c3628b4d8ce7a8488edaa8413a58b1139a64d7acdf3468ee6d0de9bd35d626e
+    lines:
+      BF862_x: [91, 105]
+      Di: [70, 70]
+      Dpnd: [71, 71]
+      Dpns: [72, 72]
+      Msub: [69, 69]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.333
+    pass: 2
+    marginal: 3
+    fail: 1
+    not_measurable: 0
+    typical_rows: 3
+  note: pins from names
+datasheet:
+  url: http://www.nxp.com/documents/data_sheet/BF862.pdf
+  maker: NXP Semiconductors (Philips)
+  doc: BF862 Product specification (supersedes data of 1999 Jun 29)
+  date: '2000-01-05'

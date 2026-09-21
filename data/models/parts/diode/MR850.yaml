@@ -1,0 +1,32 @@
+part: MR850
+kind: diode
+priority: 2
+group: rectifier
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 3 pass, 0 off, 0 fail of 3 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable). WEAK EVIDENCE: fewer than 5 rows,
+  all min/max limits'
+models:
+- source: kicad-spice-library
+  name: MR850
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/DIODE3.LIB
+    sha256: 88ceba16090e9038958260ddfeaada17f266d72cde791f865efa4a903dfb91d3
+    lines:
+      MR850: [1638, 1639]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 3
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://web.archive.org/web/20250612223723id_/https://www.onsemi.com/pdf/datasheet/mr850-d.pdf
+  maker: onsemi
+  doc: MR850/D Rev. 6, May 2011 (MR850, MR851, MR852, MR854, MR856 Axial Lead Fast Recovery Rectifiers)

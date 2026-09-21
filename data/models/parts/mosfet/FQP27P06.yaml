@@ -1,0 +1,22 @@
+part: FQP27P06
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: onsemi
+  name: FQP27P06
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/fqp27p06.lib
+    sha256: c4d1359e6da25820f03897dc267dee433e324607538251b6da8e7013b806644b
+    lines:
+      FQP27P06: [5, 29]
+    fetched: '2026-09-19'
+    note: 'FQP27P06: FQP27P06, DMOS, DDS, DBODY, INTER, DGD …'
+  note: pins from default order (unverified)

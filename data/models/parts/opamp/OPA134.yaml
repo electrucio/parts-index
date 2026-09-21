@@ -1,0 +1,276 @@
+part: OPA134
+kind: opamp
+priority: 3
+preferred: ti
+preferred_why: 'best datasheet agreement: 8 pass, 0 off, 0 fail of 8 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with ti, bordodynov, bordodynov,
+  bordodynov, kicad-spice-library on score and typical-value error, chosen as the more original source'
+models:
+- source: ti
+  name: OPAx134
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - BLOCK_DC_S1_OPAx134
+  - BLOCK_DC_H3_OPAx134
+  - CLAMP_AMP_LO_OPAx134
+  - VOS_DRIFT_OPAx134
+  - ESD_IN_OPAx134
+  - CLAWN_OPAx134
+  - VNSE_OPAx134
+  - BLOCK_DC_H2_OPAx134
+  - BLOCK_DC_H1_OPAx134
+  - ESD_OUT_OPAx134
+  - CLAMP_AMP_HI_OPAx134
+  - VCM_CLAMP_OPAx134
+  - AOL_1_OPAx134
+  - CL_SRC_OPAx134
+  - CLAWP_OPAx134
+  - CLAW_SRC_OPAx134
+  - AOL_2_OPAx134
+  - SW_OL_OPAx134
+  - IQ_SRC_OPAx134
+  - OL_SENSE_OPAx134
+  - GR_SRC_OPAx134
+  - BLOCK_DC_S2_OPAx134
+  - FEMT_OPAx134
+  - ZO_SRC_OPAx134
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM042
+    member: OPAx134.LIB
+    archive_sha256: 6450af76726187836718fccab539a8016e7ee67a58274c293ac915b777e668c2
+    sha256: 8ff414c678a7f8330b87504d7e0553de20ca87bdc713cecf81ab3448b4d7608f
+    lines:
+      AOL_1_OPAx134: [314, 316]
+      AOL_2_OPAx134: [318, 320]
+      BLOCK_DC_H1_OPAx134: [287, 290]
+      BLOCK_DC_H2_OPAx134: [292, 295]
+      BLOCK_DC_H3_OPAx134: [297, 300]
+      BLOCK_DC_S1_OPAx134: [302, 306]
+      BLOCK_DC_S2_OPAx134: [308, 312]
+      CLAMP_AMP_HI_OPAx134: [322, 325]
+      CLAMP_AMP_LO_OPAx134: [327, 330]
+      CLAWN_OPAx134: [332, 344]
+      CLAWP_OPAx134: [346, 358]
+      CLAW_SRC_OPAx134: [360, 362]
+      CL_SRC_OPAx134: [364, 366]
+      ESD_IN_OPAx134: [368, 374]
+      ESD_OUT_OPAx134: [376, 380]
+      FEMT_OPAx134: [382, 387]
+      GR_SRC_OPAx134: [389, 391]
+      IQ_SRC_OPAx134: [393, 395]
+      OL_SENSE_OPAx134: [397, 399]
+      OPAx134: [83, 285]
+      SW_OL_OPAx134: [401, 404]
+      VCM_CLAMP_OPAx134: [406, 408]
+      VNSE_OPAx134: [410, 426]
+      VOS_DRIFT_OPAx134: [428, 430]
+      ZO_SRC_OPAx134: [432, 434]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: found under the alias OPAx134; pins from names
+- source: ti
+  name: OPAx134
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - BLOCK_DC_S1_OPAx134
+  - BLOCK_DC_H3_OPAx134
+  - CLAMP_AMP_LO_OPAx134
+  - VOS_DRIFT_OPAx134
+  - ESD_IN_OPAx134
+  - CLAWN_OPAx134
+  - VNSE_OPAx134
+  - BLOCK_DC_H2_OPAx134
+  - R_NOISELESS
+  - BLOCK_DC_H1_OPAx134
+  - ESD_OUT_OPAx134
+  - CLAMP_AMP_HI_OPAx134
+  - VCM_CLAMP_OPAx134
+  - AOL_1_OPAx134
+  - CL_SRC_OPAx134
+  - CLAWP_OPAx134
+  - CLAW_SRC_OPAx134
+  - AOL_2_OPAx134
+  - SW_OL_OPAx134
+  - IQ_SRC_OPAx134
+  - OL_SENSE_OPAx134
+  - GR_SRC_OPAx134
+  - BLOCK_DC_S2_OPAx134
+  - FEMT_OPAx134
+  - ZO_SRC_OPAx134
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM264
+    member: OPAx134.LIB
+    archive_sha256: e5da52c4100e192041a9cd06e90c82aaf6110b204f9f2989f2e7b57cc140a43b
+    sha256: 1a8c12343099ca83065003e7205d6316861465f4d6a9d32f8dc0560ef6319e9f
+    lines:
+      AOL_1_OPAx134: [309, 311]
+      AOL_2_OPAx134: [313, 315]
+      BLOCK_DC_H1_OPAx134: [282, 285]
+      BLOCK_DC_H2_OPAx134: [287, 290]
+      BLOCK_DC_H3_OPAx134: [292, 295]
+      BLOCK_DC_S1_OPAx134: [297, 301]
+      BLOCK_DC_S2_OPAx134: [303, 307]
+      CLAMP_AMP_HI_OPAx134: [317, 320]
+      CLAMP_AMP_LO_OPAx134: [322, 325]
+      CLAWN_OPAx134: [327, 339]
+      CLAWP_OPAx134: [341, 353]
+      CLAW_SRC_OPAx134: [355, 357]
+      CL_SRC_OPAx134: [359, 361]
+      ESD_IN_OPAx134: [363, 369]
+      ESD_OUT_OPAx134: [371, 375]
+      FEMT_OPAx134: [377, 382]
+      GR_SRC_OPAx134: [384, 386]
+      IQ_SRC_OPAx134: [388, 390]
+      OL_SENSE_OPAx134: [392, 394]
+      OPAx134: [79, 280]
+      R_NOISELESS: [431, 431]
+      SW_OL_OPAx134: [396, 399]
+      VCM_CLAMP_OPAx134: [401, 403]
+      VNSE_OPAx134: [405, 421]
+      VOS_DRIFT_OPAx134: [423, 425]
+      ZO_SRC_OPAx134: [427, 429]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: found under the alias OPAx134; pins from names
+- source: bordodynov
+  name: OPA134
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      OPA134: [8307, 8343]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: OPA134
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - OPA177E
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_BB.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: fa6d5cd8b35ab749da56df425319806067559f6689dd52269751fd9609223212
+    lines:
+      OPA134: [7222, 7259]
+      OPA177E: [7281, 7401]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: OPA134
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Operational_Amplifiers.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: a23e6b6cd7f13ddcbd76cc0a88987255186bf1dca04a8349a968e4dad0daf832
+    lines:
+      OPA134: [887, 920]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: kicad-spice-library
+  name: OPA134_BB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/burrbn.lib
+    sha256: 0cf1e02a8be40a2dd64ea79ba281cf359d8b5fab59844264bee4b3ac20e97ed8
+    lines:
+      OPA134_BB: [643, 676]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: pins from comment words
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/opa134.pdf
+  maker: Texas Instruments (Burr-Brown)
+  doc: SBOS058B, rev. B, Nov 2024 (table 5.7)

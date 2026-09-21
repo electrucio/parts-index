@@ -1,0 +1,155 @@
+part: IRFP460
+kind: mosfet
+priority: 3
+group: power_vertical
+preferred: infineon
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable)'
+models:
+- source: infineon
+  name: irfp460
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://web.archive.org/web/19991008114056id_/http://www.irf.com:80/product-info/models/SPICE/irfp460.spi
+    sha256: 98204cc9c920fb5767bf877e57cb1899df392d62ae921db039c120163a0633c2
+    lines:
+      irfp460: [1, 60]
+    fetched: '2026-09-14'
+    note: International Rectifier legacy HEXFET SPICE model; original URL http://www.irf.com:80/product-info/models/SPICE/irfp460.spi
+      (Wayback capture 19991008114056)
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: IRFP460
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRFP460: [1138, 1138]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 2
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: irfp460n
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/MOS/IRF/LIB/irfp460n.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 64950bda84ffee2225bd0c567b0fb52e9d1bb0403fe2f387621714d7fceffd20
+    lines:
+      irfp460n: [1, 56]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 3
+    marginal: 2
+    fail: 1
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: irfp460lc
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/MOS/IRF/LIB/fp460lc.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0bd2ae16fb7cdc1e8aa2164aa120b09ee7a14d355cdf6da08c7d0c0f9d8f2ae9
+    lines:
+      irfp460lc: [1, 60]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.333
+    pass: 2
+    marginal: 2
+    fail: 2
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: IRFP460LC
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRFP460LC: [1139, 1139]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 3
+    marginal: 2
+    fail: 1
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: irfp460a
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/MOS/IRF/LIB/irfp460a.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 34a18546ec035adf7aa51903b9eae4c28e3685cdc3026b850beafeca93fcd95b
+    lines:
+      irfp460a: [1, 60]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 1
+    fail: 1
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+datasheet:
+  url: https://www.vishay.com/docs/91237/91237.pdf
+  maker: Vishay Siliconix
+  doc: Document Number 91237, S22-0058-Rev. B
+  date: '2022-01-31'

@@ -1,0 +1,287 @@
+part: 6L6GC
+kind: tube
+priority: 1
+group: pentode_beam
+preferred: reefman
+preferred_why: 'best datasheet agreement: 25 pass, 3 off, 0 fail of 28 judged rows (28 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: reefman
+  name: 6L6GC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - BTetrodeDE
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      6L6GC: [1758, 1765]
+      BTetrodeDE: [2232, 2249]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.893
+    pass: 25
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 28
+  note: pins from inline comment
+- source: ayumi
+  name: 6L6T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6L6T.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 8b49e7cab76ea5e6ec94d6192cc77207f530eb2c56f98df5fe2f7a5e7eab3709
+    lines:
+      6L6T: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.286
+    pass: 8
+    marginal: 20
+    fail: 0
+    not_measurable: 0
+    typical_rows: 28
+  note: found under the alias 6L6; pins from names
+- source: ayumi
+  name: 6L6
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6L6.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 2803f54af28212db69b9a7e4e4dda178650647f9f07d861694fe95799e4eb0ef
+    lines:
+      6L6: [10, 30]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.857
+    pass: 24
+    marginal: 4
+    fail: 0
+    not_measurable: 0
+    typical_rows: 28
+  note: found under the alias 6L6; pins from names
+- source: duncanamps
+  name: 6L6GC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - S
+  - G
+  - K
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice.html
+    member: 6L6GC.INC
+    archive_sha256: ad86d20e99f616f8cafeb32e594ac68c5d33ba7a39557b3ef4a7e79b549555c5
+    sha256: d5e2f164700795e8c910de98a8003734c7959e45880c267cba89ab3add1c2ae4
+    lines:
+      6L6GC: [35, 47]
+    fetched: '2026-09-14'
+    note: subckt 6L6GC (P S G K)
+  verification:
+    score: 0.679
+    pass: 19
+    marginal: 9
+    fail: 0
+    not_measurable: 0
+    typical_rows: 28
+  note: pins from names
+- source: duncanamps
+  name: 6L6
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - S
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: https://www.duncanamps.com/spice/valves/dm6l6s.inc
+    sha256: a773ae21122951f95b26e45fa50070c8679a3bc1487bb723f13a31cd4cf328b1
+    lines:
+      6L6: [31, 64]
+    fetched: '2026-09-14'
+    note: subckt 6L6 (A S G K)
+  verification:
+    score: 0.536
+    pass: 15
+    marginal: 13
+    fail: 0
+    not_measurable: 0
+    typical_rows: 28
+  note: found under the alias 6L6; pins from names
+- source: duncanamps
+  name: 6L6
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - S
+  - G
+  - K
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/valves/dm6l6.inc
+    sha256: 76abad06816879485770c5eb9ccddd93cf25836b2734685cb00b02640881d0af
+    lines:
+      6L6: [34, 65]
+    fetched: '2026-09-14'
+    note: subckt 6L6 (A S G K)
+  verification:
+    score: 0.536
+    pass: 15
+    marginal: 13
+    fail: 0
+    not_measurable: 0
+    typical_rows: 28
+  note: found under the alias 6L6; pins from names
+- source: koren
+  name: 6L6GC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G1
+  - C
+  - G2
+  verbatim: true
+  get:
+    url: https://www.normankoren.com/Audio/Tubemods.zip
+    member: Tube.lib
+    archive_sha256: 0a640ed245918dc5a349abf370f5e955ccdb6d85986fbf36b10bc720d55f8982
+    sha256: 581821af37b2669ea340b93116de46c9c4edf4c713990eea270b197c62885844
+    lines:
+      6L6GC: [207, 222]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.607
+    pass: 17
+    marginal: 11
+    fail: 0
+    not_measurable: 0
+    typical_rows: 28
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6L6GC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6L6GC: [1383, 1387]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.607
+    pass: 17
+    marginal: 11
+    fail: 0
+    not_measurable: 0
+    typical_rows: 28
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6L6GC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6L6GC: [806, 810]
+      PENTODE1: [2010, 2023]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.714
+    pass: 20
+    marginal: 8
+    fail: 0
+    not_measurable: 0
+    typical_rows: 28
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6L6GC_OLD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6L6GC_OLD: [800, 803]
+      PENTODE: [1994, 2007]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.607
+    pass: 17
+    marginal: 11
+    fail: 0
+    not_measurable: 0
+    typical_rows: 28
+  note: pins from inline comment
+datasheet:
+  url: https://frank.pocnet.net/sheets/049/6/6L6GC.pdf
+  maker: RCA
+  doc: RCA 6L6-GC data 1-5 (curves 92CM-10327, 92CM-10133, 92CM-9568)
+  date: 1960-08

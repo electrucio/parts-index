@@ -1,0 +1,18 @@
+part: BAT20J
+kind: diode
+priority: 3
+group: schottky
+models:
+- source: ltwiki
+  name: BAT20JFILM
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/DIOD/DIODE_ST_10.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5fbff1861259b242b3696034eae7e9618dee580d80ef08990e75eff81815a0f7
+    lines:
+      BAT20JFILM: [211, 212]
+    fetched: '2026-09-14'

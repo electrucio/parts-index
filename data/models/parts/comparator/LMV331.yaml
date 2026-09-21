@@ -1,0 +1,150 @@
+part: LMV331
+kind: comparator
+priority: 4
+models:
+- source: ti
+  name: LMV331
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - Vcc+
+  - GND
+  - OUT
+  deps:
+  - VINRANGE_393
+  - 4ORGATE
+  - INPUTRANGE
+  - VCC_Range
+  - Difference
+  - ORGATE
+  - Supply_Enable
+  - INVERTER
+  - Output_Stage_SHIZ
+  - MID_SUPPLY
+  - Output_Stage_SMID
+  - DIGLEVSHIFT
+  - DESD
+  - Output_Stage_SVOL
+  - Output_Stage
+  - SUPPLY_BUFFER1
+  - Input_Buffer
+  - Supply_Buffer
+  - Prop_Delay
+  - HPA_COMPHYS
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLCM016
+    member: LMV331/LMV331.LIB
+    archive_sha256: 08cf273f901d4fcf069680e2284008c9995575b26383b48db9edaade76cd354f
+    sha256: c64f28ab0c52df094639d956deec5213d49259677636e73196e1fca56cfe84a7
+    lines:
+      4ORGATE: [201, 204]
+      DESD: [206, 217]
+      DIGLEVSHIFT: [155, 160]
+      Difference: [178, 182]
+      HPA_COMPHYS: [146, 153]
+      INPUTRANGE: [110, 120]
+      INVERTER: [162, 165]
+      Input_Buffer: [72, 74]
+      LMV331: [47, 70]
+      MID_SUPPLY: [167, 170]
+      ORGATE: [172, 176]
+      Output_Stage: [92, 108]
+      Output_Stage_SHIZ: [134, 138]
+      Output_Stage_SMID: [128, 132]
+      Output_Stage_SVOL: [140, 144]
+      Prop_Delay: [122, 126]
+      SUPPLY_BUFFER1: [184, 187]
+      Supply_Buffer: [88, 90]
+      Supply_Enable: [76, 86]
+      VCC_Range: [189, 193]
+      VINRANGE_393: [195, 199]
+    fetched: '2026-09-19'
+- source: bordodynov
+  name: lmv331
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_NSC.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+    lines:
+      lmv331: [13268, 13330]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: lmv331/NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ns_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+    lines:
+      lmv331/NS: [19356, 19418]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: lmv331
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - Q2
+  - Q1
+  - Rb
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      Q1: [16399, 16440]
+      Q2: [16442, 16483]
+      Rb: [564, 570]
+      lmv331: [11601, 11663]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: kicad-spice-library
+  name: lmv331_NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nation.lib
+    sha256: 97af188e570afc5c2b4b8246ade0670422d90c402c01a0f0383df0a6a37af9ac
+    lines:
+      lmv331_NS: [26988, 27050]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words

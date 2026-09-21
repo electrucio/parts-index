@@ -1,0 +1,72 @@
+part: 1N34A
+kind: diode-ge
+priority: 1
+preferred: germanium-apm
+preferred_why: 'best datasheet agreement: 4 pass, 0 off, 0 fail of 4 judged rows (1 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: germanium-apm
+  name: 1N34A
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/rauschenbach/Germanium_Apm/b83d8aaa9faae6a1c4bfd5b9f07cc08cc239b64e/Germanium.lib
+    sha256: 730a441f388dfd3a78ccf06d17ecd9a8b27b9ef50b530cfce8f6411c8d6250af
+    lines:
+      1N34A: [10, 10]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit b83d8aa
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: germanium-apm
+  name: 1N34A_
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/rauschenbach/Germanium_Apm/b83d8aaa9faae6a1c4bfd5b9f07cc08cc239b64e/Germanium.lib
+    sha256: 730a441f388dfd3a78ccf06d17ecd9a8b27b9ef50b530cfce8f6411c8d6250af
+    lines:
+      1N34A_: [11, 11]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit b83d8aa
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: 1N34A
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard3.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 13cb55bb7184e06a29b64a8d1991371f8414622ef1213c5b7bcb01e358ed71ee
+    lines:
+      1N34A: [13, 13]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.75
+    pass: 3
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library'
+datasheet:
+  url: https://www.taitroncomponents.com/catalog/Datasheet/1N34A.pdf
+  maker: Taitron Components
+  doc: 1N34A Germanium Glass Diode, Rev. A/AH

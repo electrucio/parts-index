@@ -1,0 +1,31 @@
+part: 1N5353B
+kind: zener
+priority: 2
+preferred: duncanamps
+preferred_why: 'best datasheet agreement: 4 pass, 0 off, 1 fail of 5 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable). Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: duncanamps
+  name: D1N5353B
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/zener.mod
+    sha256: 53758db14bf58c6f53e5655b57def938fd7ebbaee865e81ef7ad3ba689a7f192
+    lines:
+      D1N5353B: [296, 297]
+    fetched: '2026-09-14'
+    note: 77 .model
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://web.archive.org/web/20260612201611id_/https://www.onsemi.com/pdf/datasheet/1n5333b-d.pdf
+  maker: onsemi
+  doc: 1N5333B/D Rev. 19, July 2024 (5 Watt Surmetic 40 Zener Voltage Regulators, 1N53 Series)

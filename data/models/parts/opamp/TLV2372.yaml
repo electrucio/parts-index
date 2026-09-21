@@ -1,0 +1,47 @@
+part: TLV2372
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: TLV2372
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOC063
+    member: TLV2372_PSPICE_AIO/TLV2372.LIB
+    archive_sha256: 6246e499f4dba60cd5078dc5f1d7c6fa1db75b4d592e37fbeef54f685e88eee9
+    sha256: c4c031dedaf6b19626fdd7577d8429da982ea94f689c16826d456f3d5e77e9e8
+    lines:
+      TLV2372: [74, 287]
+    fetched: '2026-09-19'
+  note: pins from default order (unverified)
+- source: bordodynov
+  name: TLV2372
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - TLV2371
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Opamp5.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+    lines:
+      TLV2371: [7174, 7417]
+      TLV2372: [7420, 7422]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'

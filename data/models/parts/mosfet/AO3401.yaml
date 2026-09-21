@@ -1,0 +1,32 @@
+part: AO3401
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: bordodynov
+  name: AO3401
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      AO3401: [1328, 1328]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: AO3401
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+    sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+    lines:
+      AO3401: [1331, 1331]
+    fetched: '2026-09-14'
+    note: Bordodynov VDMOS collection for LTspice IV
+  note: 'same code also in: kicad-spice-library'

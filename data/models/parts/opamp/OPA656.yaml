@@ -1,0 +1,207 @@
+part: OPA656
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA656
+  def: subckt
+  type: SUBCKT
+  pins:
+  - +
+  - '-'
+  - V+
+  - V-
+  - OUT
+  deps:
+  - Vinoffset
+  - PHASEDELAY
+  - DLSINV
+  - GmItail
+  - NONDOMPOLE
+  - CMRR_NEW
+  - CMRR
+  - FEMT
+  - Inoise
+  - VNSE
+  - Vnoise
+  - ZIN
+  - DOMPOLE
+  - DLS
+  - OutputCir_RecoveryAssist
+  - OutputCir_IscVlimit
+  - OutputCir_VOHVOL
+  - HPA_COMP_IDEAL
+  - OutputCir_ILOAD
+  - ANALOG_BUFFER
+  - HPA_OR2
+  - DiodeIdeal
+  - OutputCir_IscDiodeIdeal
+  - OutputCir_Rout
+  - OPA656_OUTPUTCIR_HT1
+  - ESDDIODES
+  - Vinrange_DiodeIdeal
+  - OPA656_VINRANGE3_HT1
+  - Iq
+  - PSRR_DUAL_NEW
+  - PSRR
+  - HPA_INV_IDEAL
+  - RECOVERYCIRCUIT
+  - Ibias
+  - OPA656_HT1
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM195
+    member: OPA656.LIB
+    archive_sha256: 188b637d22129ea371abb2c025e64df3b1758470b70cbbf86e67ebf0e251c7a4
+    sha256: d6f1dba44c15bad51f4f08f22fa892aa1b332459012d35f6e2500263339d3edd
+    lines:
+      ANALOG_BUFFER: [72, 76]
+      CMRR: [267, 277]
+      CMRR_NEW: [840, 855]
+      DLS: [859, 863]
+      DLSINV: [866, 870]
+      DOMPOLE: [154, 159]
+      DiodeIdeal: [280, 297]
+      ESDDIODES: [130, 137]
+      FEMT: [712, 733]
+      GmItail: [308, 374]
+      HPA_COMP_IDEAL: [253, 255]
+      HPA_INV_IDEAL: [248, 250]
+      HPA_OR2: [241, 245]
+      Ibias: [376, 401]
+      Inoise: [404, 409]
+      Iq: [412, 473]
+      NONDOMPOLE: [175, 182]
+      OPA656: [48, 51]
+      OPA656_HT1: [195, 236]
+      OPA656_OUTPUTCIR_HT1: [79, 127]
+      OPA656_VINRANGE3_HT1: [54, 69]
+      OutputCir_ILOAD: [476, 483]
+      OutputCir_IscDiodeIdeal: [486, 508]
+      OutputCir_IscVlimit: [511, 530]
+      OutputCir_RecoveryAssist: [533, 542]
+      OutputCir_Rout: [545, 566]
+      OutputCir_VOHVOL: [578, 608]
+      PHASEDELAY: [162, 172]
+      PSRR: [616, 633]
+      PSRR_DUAL_NEW: [792, 825]
+      RECOVERYCIRCUIT: [185, 192]
+      VNSE: [687, 708]
+      Vinoffset: [645, 657]
+      Vinrange_DiodeIdeal: [660, 666]
+      Vnoise: [669, 674]
+      ZIN: [140, 151]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: ti
+  name: OPA656_HT1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - VEE
+  - VCC
+  - VINM
+  - VINP
+  - VOUT
+  - PD
+  deps:
+  - Vinoffset
+  - PHASEDELAY
+  - DLSINV
+  - GmItail
+  - NONDOMPOLE
+  - CMRR_NEW
+  - CMRR
+  - FEMT
+  - Inoise
+  - VNSE
+  - Vnoise
+  - ZIN
+  - DOMPOLE
+  - DLS
+  - OutputCir_RecoveryAssist
+  - OutputCir_IscVlimit
+  - OutputCir_VOHVOL
+  - HPA_COMP_IDEAL
+  - OutputCir_ILOAD
+  - ANALOG_BUFFER
+  - HPA_OR2
+  - DiodeIdeal
+  - OutputCir_IscDiodeIdeal
+  - OutputCir_Rout
+  - OPA656_OUTPUTCIR_HT1
+  - ESDDIODES
+  - Vinrange_DiodeIdeal
+  - OPA656_VINRANGE3_HT1
+  - Iq
+  - PSRR_DUAL_NEW
+  - PSRR
+  - HPA_INV_IDEAL
+  - RECOVERYCIRCUIT
+  - Ibias
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM195
+    member: OPA656.LIB
+    archive_sha256: 188b637d22129ea371abb2c025e64df3b1758470b70cbbf86e67ebf0e251c7a4
+    sha256: d6f1dba44c15bad51f4f08f22fa892aa1b332459012d35f6e2500263339d3edd
+    lines:
+      ANALOG_BUFFER: [72, 76]
+      CMRR: [267, 277]
+      CMRR_NEW: [840, 855]
+      DLS: [859, 863]
+      DLSINV: [866, 870]
+      DOMPOLE: [154, 159]
+      DiodeIdeal: [280, 297]
+      ESDDIODES: [130, 137]
+      FEMT: [712, 733]
+      GmItail: [308, 374]
+      HPA_COMP_IDEAL: [253, 255]
+      HPA_INV_IDEAL: [248, 250]
+      HPA_OR2: [241, 245]
+      Ibias: [376, 401]
+      Inoise: [404, 409]
+      Iq: [412, 473]
+      NONDOMPOLE: [175, 182]
+      OPA656_HT1: [195, 236]
+      OPA656_OUTPUTCIR_HT1: [79, 127]
+      OPA656_VINRANGE3_HT1: [54, 69]
+      OutputCir_ILOAD: [476, 483]
+      OutputCir_IscDiodeIdeal: [486, 508]
+      OutputCir_IscVlimit: [511, 530]
+      OutputCir_RecoveryAssist: [533, 542]
+      OutputCir_Rout: [545, 566]
+      OutputCir_VOHVOL: [578, 608]
+      PHASEDELAY: [162, 172]
+      PSRR: [616, 633]
+      PSRR_DUAL_NEW: [792, 825]
+      RECOVERYCIRCUIT: [185, 192]
+      VNSE: [687, 708]
+      Vinoffset: [645, 657]
+      Vinrange_DiodeIdeal: [660, 666]
+      Vnoise: [669, 674]
+      ZIN: [140, 151]
+    fetched: '2026-09-19'
+- source: bordodynov
+  name: OPA656
+  def: subckt
+  type: SUBCKT
+  pins:
+  - +
+  - '-'
+  - V+
+  - V-
+  - OUT
+  deps:
+  - Rb
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      OPA656: [8638, 8700]
+      Rb: [564, 570]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'

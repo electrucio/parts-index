@@ -1,0 +1,78 @@
+part: B130-13-F
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: onsemi
+  name: D1n5818
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n5818.lib
+    sha256: 7fe589002298e196302452d362cb79c315dd744261e4a573b5f0d5f0718433f9
+    lines:
+      D1n5818: [14, 18]
+    fetched: '2026-09-14'
+    note: 'model(s): D1n5818 (D .model)'
+  note: 'STAND-IN: model of D1n5818, not of B130-13-F; equivalence declared in catalog/wanted.yaml (see
+    its note)'
+- source: central-semi
+  name: 1N5818
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/1N5818.LIB
+    sha256: 9c972064c0484056313ec8f16280ed252000f5382a19f0ef9c661ab0167ec749
+    lines:
+      1N5818: [25, 37]
+    fetched: '2026-09-14'
+    note: 'model(s): 1N5818 (D .model)'
+  note: 'STAND-IN: model of 1N5818, not of B130-13-F; equivalence declared in catalog/wanted.yaml (see
+    its note)'
+- source: bordodynov
+  name: 1N5818
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N5818: [175, 175]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 1N5818, not of B130-13-F; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: 1N5818
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard3.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 13cb55bb7184e06a29b64a8d1991371f8414622ef1213c5b7bcb01e358ed71ee
+    lines:
+      1N5818: [37, 37]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 1N5818, not of B130-13-F; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library'
+- source: ltwiki
+  name: 1N5818
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/DIOD/DIODE_ST_10.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5fbff1861259b242b3696034eae7e9618dee580d80ef08990e75eff81815a0f7
+    lines:
+      1N5818: [6389, 6390]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 1N5818, not of B130-13-F; equivalence declared in catalog/wanted.yaml (see
+    its note)'

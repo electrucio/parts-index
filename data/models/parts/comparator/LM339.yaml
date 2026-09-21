@@ -1,0 +1,183 @@
+part: LM339
+kind: comparator
+priority: 2
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 2 pass, 0 off, 2 fail of 4 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 1 not measurable); tied with bordodynov, bordodynov,
+  bordodynov, bordodynov, ltwiki on score and typical-value error, chosen as the more original source.
+  WEAK EVIDENCE: fewer than 5 rows, all min/max limits'
+models:
+- source: bordodynov
+  name: LM339
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - LM348
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_NSC.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+    lines:
+      LM339: [2997, 3016]
+      LM348: [3026, 3060]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 2
+    marginal: 0
+    fail: 2
+    not_measurable: 1
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: LM339_jim
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Occomp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d4e98ddcd8fabe3cd892bb2be1e2447639c10f9f8759ce47b8b5c101a6999049
+    lines:
+      LM339_jim: [545, 573]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 2
+    marginal: 0
+    fail: 2
+    not_measurable: 1
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: LM339A/TI
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ti_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 91cd41205c65eb69c8d88ac91cb6c5678c6bedc408aaafc9b8d047f2c3c02d60
+    lines:
+      LM339A/TI: [46, 69]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 2
+    marginal: 0
+    fail: 2
+    not_measurable: 1
+    typical_rows: 0
+  note: 'same code also in: ltwiki; pins from comment words'
+- source: bordodynov
+  name: LM339
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - LM139
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Occomp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d4e98ddcd8fabe3cd892bb2be1e2447639c10f9f8759ce47b8b5c101a6999049
+    lines:
+      LM139: [160, 184]
+      LM339: [206, 212]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 2
+    marginal: 0
+    fail: 2
+    not_measurable: 1
+    typical_rows: 0
+  note: 'same code also in: ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: LM_339
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Occomp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d4e98ddcd8fabe3cd892bb2be1e2447639c10f9f8759ce47b8b5c101a6999049
+    lines:
+      LM_339: [223, 247]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 2
+    marginal: 0
+    fail: 2
+    not_measurable: 1
+    typical_rows: 0
+  note: 'same code also in: ltwiki; pins from comment words'
+- source: ltwiki
+  name: LM339
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/images/7/72/LM339.sub
+    sha256: 911324979f54fe719f92119a4402216931c3144c7df9737b6f96b65b54b07202
+    lines:
+      LM339: [10, 31]
+    fetched: '2026-09-14'
+    note: file uploaded to the wiki (Special:ListFiles)
+  verification:
+    score: 0.5
+    pass: 2
+    marginal: 0
+    fail: 2
+    not_measurable: 1
+    typical_rows: 0
+  note: 'same code also in: electrucio; pins from comment words'
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm339.pdf
+  maker: Texas Instruments
+  doc: SLCS006Z, rev. Z (first issued Oct 1979); table 6.10 LMx39 and 6.14 switching
+  date: 2025-05

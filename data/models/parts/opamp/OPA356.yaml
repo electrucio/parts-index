@@ -1,0 +1,24 @@
+part: OPA356
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA356
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM848
+    member: OPA356_PSPICE_AIO/OPA356.LIB
+    archive_sha256: 1163c4a64caf70b0fcc10b2b3c5a96625af96ff0462f685b37e702e84860c539
+    sha256: bd3c06429aa1453df8878f21916cb67d269e5b38dbdf92d9397665dff1cf009c
+    lines:
+      OPA356: [65, 203]
+    fetched: '2026-09-19'
+  note: pins from default order (unverified)

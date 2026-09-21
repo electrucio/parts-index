@@ -1,0 +1,147 @@
+part: 2N7002
+kind: mosfet
+priority: 2
+group: small_signal
+preferred: central-semi
+preferred_why: 'best datasheet agreement: 9 pass, 0 off, 0 fail of 9 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable); tied with duncanamps on score and
+  typical-value error, chosen as the more original source. Limits only: the datasheet prints no typical
+  values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: central-semi
+  name: 2N7002
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/2N7002.LIB
+    sha256: e2c8095ddbbf4b91d1bcbd724c31ff79d14d958fd9f470d6968ad4e66bf6ef54
+    lines:
+      2N7002: [24, 27]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N7002 (NMOS .model)'
+  verification:
+    score: 1.0
+    pass: 9
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 0
+- source: ltspice-native
+  name: 2N7002
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.mos
+    sha256: adfdcda82e1b6186f907df2dc3905659a2ea2be2a0887a016d1fd9f1b3b1b40e
+    lines:
+      2N7002: [766, 766]
+  verification:
+    score: 0.778
+    pass: 7
+    marginal: 0
+    fail: 2
+    not_measurable: 2
+    typical_rows: 0
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: duncanamps
+  name: X2N7002
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/mosfets/nemossu3.sub
+    sha256: 676c26c710d7bb0207af41f7e5a4f3a35a0a10875b15ecd5ca4d308947a45bf6
+    lines:
+      X2N7002: [15, 23]
+    fetched: '2026-09-14'
+    note: 14 subckts, 32 .model
+  verification:
+    score: 1.0
+    pass: 9
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 0
+  note: pins from default order (unverified)
+- source: duncanamps
+  name: X2N7002
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '4'
+  - '5'
+  - '5'
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/mosfets/nemos3t.mod
+    sha256: 927fa85ad71152c8e20938dc7e7d15797d8626ce84f73137e1062849f663ce76
+    lines:
+      X2N7002: [46, 54]
+    fetched: '2026-09-14'
+    note: 51 subckts, 184 .model
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 11
+    typical_rows: 0
+- source: bordodynov
+  name: 2n7002new
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      2n7002new: [803, 803]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.778
+    pass: 7
+    marginal: 0
+    fail: 2
+    not_measurable: 2
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 2N7002
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/2N7002.mod
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 233908c27e8cc47e56577edac60554343afb1bc84a8f4df7127298f85c738eff
+    lines:
+      2N7002: [4, 27]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.889
+    pass: 8
+    marginal: 0
+    fail: 1
+    not_measurable: 2
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+datasheet:
+  url: https://assets.nexperia.com/documents/data-sheet/2N7002.pdf
+  maker: Nexperia
+  doc: 2N7002 Product data sheet, Rev. 7
+  date: '2011-09-08'

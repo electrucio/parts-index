@@ -1,0 +1,121 @@
+part: OP275
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: OP275
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_AD.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+    lines:
+      OP275: [37001, 37123]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: OP275G
+  def: subckt
+  type: SUBCKT
+  pins:
+  - OUT
+  - INP
+  - INN
+  - VP
+  - VN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_AD.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+    lines:
+      OP275G: [18880, 19002]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: OP275
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OP275.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 68fea7c72da5254efbc2d21052d6b8e1fe162971d5f2cd98b6bdff04a655c571
+    lines:
+      OP275: [10, 131]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: kicad-spice-library
+  name: OP275A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - OUT
+  - INP
+  - INN
+  - VP
+  - VN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/AD4.LIB
+    sha256: 14cfc53c2fd4c92ba89f0cd1cb78de7f56c3b4234bb7a73b6d27fe403b33077c
+    lines:
+      OP275A: [2653, 2775]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words
+- source: kicad-spice-library
+  name: OP275GA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/AD4.LIB
+    sha256: 14cfc53c2fd4c92ba89f0cd1cb78de7f56c3b4234bb7a73b6d27fe403b33077c
+    lines:
+      OP275GA: [2787, 2909]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words
+- source: kicad-spice-library
+  name: OP-275/AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - OUT
+  - INP
+  - INN
+  - VP
+  - VN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/anlg_dev.lib
+    sha256: 505283370bc2c5b5cb15401e3a43d58793d1598e62e1b422bb333be402ada1b9
+    lines:
+      OP-275/AD: [49483, 49605]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words

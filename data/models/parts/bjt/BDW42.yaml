@@ -1,0 +1,22 @@
+part: BDW42
+kind: bjt
+priority: 3
+group: audio_docs
+models:
+- source: onsemi
+  name: bdw42
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bdw42.lib
+    sha256: 12121729eecec7a298422cc88bdd1802d6ea83ed1e3796faf58bf8f511dad306
+    lines:
+      bdw42: [12, 50]
+    fetched: '2026-09-19'
+    note: 'BDW42.LIB: bdw42, dmodel, qmodel, q1model'
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'

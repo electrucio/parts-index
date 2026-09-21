@@ -1,0 +1,136 @@
+part: AD620
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: AD620A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '46'
+  - '20'
+  - '7'
+  - '8'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ad620a.cir
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 203444d6d246be6a836c040b50802e991a8098d307deac6b71a0fc49a8dfe2f3
+    lines:
+      AD620A: [31, 134]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: AD620S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '46'
+  - '20'
+  - '7'
+  - '8'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ad620s.cir
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0c3f35f8406f369e0988e5471d8baf6db133be5597b06f5bcd25814c388c8619
+    lines:
+      AD620S: [23, 118]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: AD620B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '46'
+  - '20'
+  - '7'
+  - '8'
+  - V1V
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Analisis/Hierarch/TEC_Servo_082505/ad620b.cir
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 9d5ff3cc3e7d9531c547a66c9c4ab62b044d95c6cb57c4dd44ee57842c3185fe
+    lines:
+      AD620B: [31, 134]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: AD620A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '46'
+  - '20'
+  - '7'
+  - '8'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/AD4A.LIB
+    sha256: 2e0cebf7aaf8debe59afc1ead869b6b82d5b198fe0a2202b8615551773615e55
+    lines:
+      AD620A: [31, 134]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: AD620S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '46'
+  - '20'
+  - '7'
+  - '8'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/AD4A.LIB
+    sha256: 2e0cebf7aaf8debe59afc1ead869b6b82d5b198fe0a2202b8615551773615e55
+    lines:
+      AD620S: [295, 390]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: AD620
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '46'
+  - '20'
+  - '7'
+  - '8'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/NONLIN.LIB
+    sha256: 69207a978c970ac7da3929409b0188fad477d4289939755abbde979c13214be7
+    lines:
+      AD620: [28, 131]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

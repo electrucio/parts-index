@@ -1,0 +1,129 @@
+part: AD844
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: AD844A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '28'
+  - '12'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ad844a.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: b25305f6aa605f48703670d0ec010f891d265934499551d340ef1461b7c504e2
+    lines:
+      AD844A: [22, 104]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: AD844
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '28'
+  - '12'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/AD/ad844.cir
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 15bd9ee32493310aed1608f587ff2d6fd2bcd1fd3ef23ce181ae3f7f4c0f7ba8
+    lines:
+      AD844: [18, 100]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: AD844B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '28'
+  - '12'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/AD/ad844b.cir
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: a8af5387e51ee2bceb64c926ed86a8bd99664b7056ddd2efbe5a57eddb03777f
+    lines:
+      AD844B: [22, 104]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: AD844S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '28'
+  - '12'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/AD/ad844s.cir
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 94c462813a384cb96ed95cde8421b27f3c43c242910dc6662e590fffb5fa216a
+    lines:
+      AD844S: [22, 104]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: AD844/AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '28'
+  - '12'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/anlg_dev.lib
+    sha256: 505283370bc2c5b5cb15401e3a43d58793d1598e62e1b422bb333be402ada1b9
+    lines:
+      AD844/AD: [25760, 25842]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: AD844_AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '28'
+  - '12'
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+    sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+    lines:
+      AD844_AD: [21689, 21771]
+      dx: [72212, 72212]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

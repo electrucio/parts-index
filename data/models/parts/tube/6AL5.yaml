@@ -1,0 +1,284 @@
+part: 6AL5
+kind: tube
+priority: 3
+group: rectifier
+preferred: suusi-tubes
+preferred_why: 'best datasheet agreement: 11 pass, 0 off, 0 fail of 11 judged rows (11 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: reefman
+  name: 6AL5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - C
+  deps:
+  - DiodeK
+  - EAA91
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      6AL5: [1388, 1391]
+      DiodeK: [2360, 2363]
+      EAA91: [195, 201]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.0
+    pass: 0
+    marginal: 11
+    fail: 0
+    not_measurable: 0
+    typical_rows: 11
+  note: pins from inline comment
+- source: ayumi
+  name: 6AL5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6AL5.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: a819bca98730d9a0a27d7af7db95586393a54040f300e50ff087155c90264075
+    lines:
+      6AL5: [5, 7]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 11
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 11
+  note: pins from names
+- source: duncanamps
+  name: 6AL5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/valves/6al5.inc
+    sha256: 61b04d53b92f823e632c3cfa53c8ba774e0eb5f3c806efadf621a679a0b702a7
+    lines:
+      6AL5: [28, 30]
+    fetched: '2026-09-14'
+    note: subckt 6AL5 (A K)
+  verification:
+    score: 1.0
+    pass: 11
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 11
+  note: pins from names
+- source: suusi-tubes
+  name: 6AL5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - A2
+  - C
+  deps:
+  - DULEREC
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6AL5: [143, 146]
+      DULEREC: [2089, 2092]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 1.0
+    pass: 11
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 11
+  note: 'same code also in: bordodynov, ltwiki; pins from inline comment'
+- source: suusi-tubes
+  name: EB91
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - A2
+  - C
+  deps:
+  - DULEREC
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      DULEREC: [2089, 2092]
+      EB91: [955, 958]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 1.0
+    pass: 11
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 11
+  note: 'found under the alias EB91; same code also in: bordodynov, ltwiki; pins from inline comment'
+- source: suusi-tubes
+  name: 6AL5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - C
+  deps:
+  - RECP2
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6AL5: [279, 282]
+      RECP2: [2999, 3004]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 11
+    typical_rows: 0
+  note: pins from inline comment
+- source: suusi-tubes
+  name: EB91
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - C
+  deps:
+  - RECP2
+  - EAA91
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      EAA91: [315, 318]
+      EB91: [345, 348]
+      RECP2: [2999, 3004]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 11
+    typical_rows: 0
+  note: found under the alias EB91; pins from inline comment
+- source: bordodynov
+  name: 6AL5RY
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - VALVE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      6AL5RY: [158, 161]
+      VALVE1: [2980, 2986]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 11
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 6AL5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - VDIODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/vdiodes.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 15a266203f60b399e8f85ba362b55ee2d88f177ba196fc97f05fcc2eb9ccb3d8
+    lines:
+      6AL5: [33, 35]
+      VDIODE: [18, 31]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 11
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 11
+  note: 'same code also in: ltwiki; pins from names'
+- source: bordodynov
+  name: 6AL5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - VRECTIFIER
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/vrectifier.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6f39b4729541ad16b04e62a45667127a910029cc5c095d49dc8622ca11a85443
+    lines:
+      6AL5: [107, 112]
+      VRECTIFIER: [19, 35]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 11
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+datasheet:
+  url: https://frank.pocnet.net/sheets/093/6/6AL5.pdf
+  maker: General Electric
+  doc: ET-T882 (6AL5 / 3AL5 / 12AL5), supersedes ET-T269C of 1-50 and ET-T703 of 12-49
+  date: 1954-08

@@ -1,0 +1,135 @@
+part: ZTX450
+kind: bjt
+priority: 3
+group: small_signal_npn
+preferred: diodes-inc
+preferred_why: 'best datasheet agreement: 7 pass, 0 off, 0 fail of 7 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, ltwiki, ltwiki,
+  kicad-spice-library, kicad-spice-library on score and typical-value error, chosen as the more original
+  source. Limits only: the datasheet prints no typical values for these rows, so candidates inside the
+  limits are not told apart'
+models:
+- source: diodes-inc
+  name: ZTX450
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/2822/ZTX450.spice.txt
+    sha256: 80916df29b01afad990452e2b2ec708cb5820def0d6ec47c82aa7462cd49f518
+    lines:
+      ZTX450: [19, 22]
+    fetched: '2026-09-14'
+    note: 'model(s): ZTX450 (NPN .model)'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: ZTX450
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      ZTX450: [1198, 1198]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: ZTX450
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/distortion_OUTPUT_vs_bias/standard_BJT modified.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: b11d82ef9412f3285ead0b742f082d8c60ba31108d4eb85c48c7268e54aeb9a4
+    lines:
+      ZTX450: [792, 792]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: ltwiki
+  name: ZTX450
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Mixer/standard.bjt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+    lines:
+      ZTX450: [1141, 1141]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: kicad-spice-library
+  name: ZTX450
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTN.LIB
+    sha256: 2c85b6bbf3a7dcb9403d646a1c120714fdc7bce5c8287c8e537012a1cf3ef6c2
+    lines:
+      ZTX450: [1050, 1053]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: kicad-spice-library
+  name: ZTX450
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Zetex%20Semiconductors/ZMODELS.LIB
+    sha256: 356f4751706278dd76767c0cbdfceab52ea806ed01a3669b26584507bf29f3e0
+    lines:
+      ZTX450: [1740, 1743]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://www.diodes.com/assets/Datasheets/ZTX450.pdf
+  maker: diodes (zetex)
+  doc: DS33267 Rev. 3 - 2
+  date: 2026-08

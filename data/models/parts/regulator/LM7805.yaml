@@ -1,0 +1,175 @@
+part: LM7805
+kind: regulator
+priority: 2
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 4 pass, 0 off, 0 fail of 4 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, ltwiki, ltwiki,
+  kicad-spice-library, kicad-spice-library on score and typical-value error, chosen as the more original
+  source. WEAK EVIDENCE: fewer than 5 rows, all min/max limits'
+models:
+- source: bordodynov
+  name: LM7805
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - GND
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/regulators.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1998b5aaba8b44019bf630a561c739ff33a83996cd6600bbaa8b8c3e02cf5bf2
+    lines:
+      LM7805: [8, 66]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from simulation: of the 6 node orders only
+    IN GND OUT regulates to about 5 V at Vin-Vout 5 V / 5 mA, Vin-Vout 15 V / 5 mA, Vin-Vout 5 V / 100
+    mA (orders tried: IN OUT GND: -5 V, -5 V, -64.7 V; IN GND OUT: 5 V, 5 V, 5 V; OUT IN GND: 7.87 V,
+    17.8 V, 7.87 V; OUT GND IN: 5.96 V, 14 V, -1.8 V; GND IN OUT: -0.717 V, -0.712 V, -0.855 V; GND OUT
+    IN: -3.24 V, -3.24 V, -55.1 V)'
+- source: bordodynov
+  name: LM7805
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - VGND
+  - OUT
+  deps:
+  - lm78xx
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM78xx.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 85a79b9c4224eedd7b333dc306ea7ae90a39a5d92242196b6fbd370eeb3300bc
+    lines:
+      LM7805: [9, 12]
+      lm78xx: [27, 70]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: ltwiki
+  name: LM7805C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - OUT
+  - V00
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Miscel/ixdd414/IXDD414lt.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 9215f7da91a8cf0b58c8a40ada17cb50cb1c12d9d886800459478aa347ca5245
+    lines:
+      LM7805C: [156, 159]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: pins from names
+- source: ltwiki
+  name: LM7805C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - VIN
+  - VOUT
+  - VCOM
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Digital/IXDN430YI/IXDN430YI_lt.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 7cbee7c2923148c93468fc0076bbd116b30f2a263e1f43dad3597e71c21ac265
+    lines:
+      LM7805C: [139, 143]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: pins from names
+- source: kicad-spice-library
+  name: LM7805C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INPUT
+  - OUTPUT
+  - GROUND
+  deps:
+  - x_LM78XX
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      LM7805C: [1740, 1743]
+      x_LM78XX: [1632, 1736]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: pins from names
+- source: kicad-spice-library
+  name: UA7805C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INPUT
+  - OUTPUT
+  - GROUND
+  deps:
+  - x_LM78XX
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      UA7805C: [1747, 1750]
+      x_LM78XX: [1632, 1736]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: found under the alias UA7805; pins from names
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm7805.pdf
+  maker: Texas Instruments (National Semiconductor)
+  doc: SNOSBT0L, rev. L (first issued Feb 2000); table 6.6 LM340/LM7805
+  date: 2016-09

@@ -1,0 +1,24 @@
+part: HEF4093B
+kind: logic
+priority: 4
+models:
+- source: bordodynov
+  name: HEF4093B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - a
+  - b
+  - out
+  - VDD
+  - VSS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/HEF4000.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 9aaa32a8a3c1be7131aa4b9cdf6b12d2364d10aadfe709c6c561abb0f73c05b9
+    lines:
+      HEF4093B: [353, 391]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

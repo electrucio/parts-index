@@ -1,0 +1,98 @@
+part: S9012
+kind: bjt
+priority: 4
+group: small_signal_pnp
+models:
+- source: onsemi
+  name: 2N4403
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/mod/2n4403.mod
+    sha256: 6f3bbe843e595c94d412d83a65ec4e217b546957e6032814f56dd796d60b4edf
+    lines:
+      2N4403: [1, 7]
+    fetched: '2026-09-19'
+    note: '2N4403.mod: 2N4403'
+  note: 'STAND-IN: model of 2N4403, not of S9012; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+- source: central-semi
+  name: 2N4403
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/2N4403.LIB
+    sha256: 8c35b2f03521050ee9794a333a4541adeb759970a24d0bef1cd38451fe905022
+    lines:
+      2N4403: [24, 49]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N4403 (PNP .model)'
+  note: 'STAND-IN: model of 2N4403, not of S9012; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+- source: duncanamps
+  name: Q2N4403
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/bjt/pnp.mod
+    sha256: 9554024b39ab1fa861067c6af517fbe13435370dd0e78c4ed0d461fe355488a1
+    lines:
+      Q2N4403: [83, 85]
+    fetched: '2026-09-14'
+    note: 10 subckts, 124 .model
+  note: 'STAND-IN: model of Q2N4403, not of S9012; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+- source: bordodynov
+  name: 2N4403
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/Standard/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 7bc3409f9eac7e6ae2f8a5643ecb2d4b0ac997241fa9a39e6074d3124497e2ce
+    lines:
+      2N4403: [18, 18]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 2N4403, not of S9012; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: ss9012
+  def: model
+  type: PNP
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      ss9012: [782, 782]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of ss9012, not of S9012; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: ltwiki'
+- source: bordodynov
+  name: 2N4403
+  def: model
+  type: PNP
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      2N4403: [278, 278]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 2N4403, not of S9012; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: ltwiki'

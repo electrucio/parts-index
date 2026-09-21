@@ -1,0 +1,30 @@
+part: P416
+kind: bjt-ge
+priority: 3
+models:
+- source: germanium-apm
+  name: P416B
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/rauschenbach/Germanium_Apm/b83d8aaa9faae6a1c4bfd5b9f07cc08cc239b64e/Germanium.lib
+    sha256: 730a441f388dfd3a78ccf06d17ecd9a8b27b9ef50b530cfce8f6411c8d6250af
+    lines:
+      P416B: [38, 38]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit b83d8aa
+- source: bordodynov
+  name: P416B
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      P416B: [164, 164]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

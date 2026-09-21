@@ -1,0 +1,27 @@
+part: AD8237
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: AD8237
+  def: subckt
+  type: SUBCKT
+  pins:
+  - BW
+  - IN+
+  - IN-
+  - -Vs
+  - +Vs
+  - REF
+  - FB
+  - VOUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/AD8237.cir
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: f3d85b1eb460a1dfeed5df2e5c1029153154485901bc8ac60362a90ab30e410d
+    lines:
+      AD8237: [47, 174]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

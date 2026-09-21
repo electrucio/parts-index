@@ -1,0 +1,69 @@
+part: THAT2162
+kind: vca
+priority: 2
+models:
+- source: thatcorp
+  name: THAT2162
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN1
+  - EC+1
+  - EC-1
+  - SYM1
+  - OUT1
+  - IN2
+  - EC+2
+  - EC-2
+  - SYM2
+  - OUT2
+  - V+
+  - GND
+  - V-
+  deps:
+  - THAT2162_VCA
+  verbatim: true
+  get:
+    url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+    archive_sha256: a5699cf253cbe2b063a03b2dd8cc2927fe1ab03903ed2f1bb9ae23a0e867733b
+    archive_inferred: true
+    sha256: 5d4b6889c2a2082953f04726d44a77fd301541cba29ec91763e1d3ede7d0d2dd
+    lines:
+      THAT2162: [40, 43]
+      THAT2162_VCA: [48, 107]
+    fetched: '2026-09-14'
+    note: file not listed in the manifest; see SOURCE.md
+  verification:
+    score: null
+    error: 'KeyError: ''vca'''
+- source: thatcorp
+  name: THAT2162_VCA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - EC+
+  - EC-
+  - V+
+  - GND
+  - V-
+  - SYM
+  - OUT
+  verbatim: true
+  get:
+    url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+    archive_sha256: a5699cf253cbe2b063a03b2dd8cc2927fe1ab03903ed2f1bb9ae23a0e867733b
+    archive_inferred: true
+    sha256: 5d4b6889c2a2082953f04726d44a77fd301541cba29ec91763e1d3ede7d0d2dd
+    lines:
+      THAT2162_VCA: [48, 107]
+    fetched: '2026-09-14'
+    note: file not listed in the manifest; see SOURCE.md
+  verification:
+    score: null
+    error: 'KeyError: ''vca'''
+datasheet:
+  url: https://www.thatcorp.com/datashts/THAT_2162_Datasheet.pdf
+  maker: THAT Corporation
+  doc: Document 600087 Rev 04
+  date: 2013

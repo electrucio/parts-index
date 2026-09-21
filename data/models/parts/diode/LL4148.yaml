@@ -1,0 +1,45 @@
+part: LL4148
+kind: diode
+priority: 3
+group: silicon_signal
+models:
+- source: onsemi
+  name: LL4148
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/ll4148.lib
+    sha256: 7912e714d4ae881dee847f106018594b7afd0b8c1bac5a3b5567f9ea3676f854
+    lines:
+      LL4148: [5, 10]
+    fetched: '2026-09-19'
+    note: 'LL4148: LL4148'
+- source: bordodynov
+  name: LL4148
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      LL4148: [1646, 1646]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: LL4148
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.dio
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+    lines:
+      LL4148: [651, 651]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'

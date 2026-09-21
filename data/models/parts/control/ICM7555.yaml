@@ -1,0 +1,53 @@
+part: ICM7555
+kind: control
+priority: 4
+models:
+- source: bordodynov
+  name: ICM7555
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  deps:
+  - ICM7555_S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/timers.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5caceb6b0c16c6b684284c8598439454661f6908a926796c1459becf67fc8f85
+    lines:
+      ICM7555: [229, 231]
+      ICM7555_S: [233, 325]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: ICM7555_S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '18'
+  - '11'
+  - '12'
+  - '13'
+  - '14'
+  - '15'
+  - '16'
+  - '10'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/timers.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5caceb6b0c16c6b684284c8598439454661f6908a926796c1459becf67fc8f85
+    lines:
+      ICM7555_S: [233, 325]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

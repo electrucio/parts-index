@@ -1,0 +1,39 @@
+part: AD8610
+kind: opamp
+priority: 3
+preferred: ltwiki
+preferred_why: 'best datasheet agreement: 2 pass, 2 off, 0 fail of 4 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 16 not measurable)'
+models:
+- source: ltwiki
+  name: AD8610
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/AD/ad8610.cir
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: dc7f9394e3f96ac3e02fe90d4bf6216d206f05539d480668d24c49ba68c6758c
+    lines:
+      AD8610: [19, 126]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 2
+    marginal: 2
+    fail: 0
+    not_measurable: 16
+    typical_rows: 2
+  note: pins from comment words
+datasheet:
+  url: https://www.analog.com/media/en/technical-documentation/data-sheets/ad8610_8620.pdf
+  maker: Analog Devices
+  doc: AD8610/AD8620 Data Sheet, Rev. F
+  date: 2008-05

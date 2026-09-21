@@ -1,0 +1,72 @@
+part: 2SA1145
+kind: bjt
+priority: 3
+group: small_signal_npn
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: 2SA1145
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      2SA1145: [1065, 1065]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: Q2SA1145
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/TRT-Electronics/2sa1145.lib
+    sha256: 3cdfb8492a5acdd0267e2c0b59c1ff0c18748a7b06b1eba1676c38fe890557c0
+    lines:
+      Q2SA1145: [1, 3]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+- source: kicad-spice-library
+  name: Q2SA1145
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/BJT_PNP/TOSH_PWR.LIB
+    sha256: 1b6e2abc4bd76907b3e01ab4be9719410ab5dcdb3a022627e0d970a62cb14e7c
+    lines:
+      Q2SA1145: [719, 735]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+datasheet:
+  url: https://media.digikey.com/pdf/Data%20Sheets/Toshiba%20PDFs/2SA1145.pdf
+  maker: toshiba
+  doc: 2SA1145
+  date: '2006-11-09'

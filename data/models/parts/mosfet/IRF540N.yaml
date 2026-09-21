@@ -1,0 +1,157 @@
+part: IRF540N
+kind: mosfet
+priority: 2
+group: power_vertical
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 5 pass, 1 off, 0 fail of 6 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 1 not measurable)'
+models:
+- source: infineon
+  name: irf540n
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://web.archive.org/web/19991008132351id_/http://www.irf.com:80/product-info/models/SPICE/irf540n.spi
+    sha256: 3f937cd565dc98f0a6466184044e2cc61587fa2315d6a73322bf157e8f1d47d9
+    lines:
+      irf540n: [1, 60]
+    fetched: '2026-09-14'
+    note: International Rectifier legacy HEXFET SPICE model; original URL http://www.irf.com:80/product-info/models/SPICE/irf540n.spi
+      (Wayback capture 19991008132351)
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 1
+    fail: 1
+    not_measurable: 1
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'
+- source: bordodynov
+  name: irf540ns
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/MOS/IRF/LIB/irf540ns.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 87dcef71e99d07ee0bafbf5bd23428063bb9f2419d67bfc2446dfc91972ce3c1
+    lines:
+      irf540ns: [1, 60]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 1
+    fail: 1
+    not_measurable: 1
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: irf540n
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/MOS/IRF/LIB/irf540n.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 9d368875d0a3a3185827e83dde737e7fcd6b75947fd3bde36df497d1548c7e65
+    lines:
+      irf540n: [1, 57]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: IRF540N
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRF540N: [1055, 1055]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 1
+    fail: 1
+    not_measurable: 1
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: irf540nt
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '0'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/MOS/IRF/LIB/irf540n.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 9d368875d0a3a3185827e83dde737e7fcd6b75947fd3bde36df497d1548c7e65
+    lines:
+      irf540nt: [60, 69]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 7
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: IRF540NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+    sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+    lines:
+      IRF540NS: [2426, 2471]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 1
+    fail: 1
+    not_measurable: 1
+    typical_rows: 3
+  note: pins from default order (unverified)
+datasheet:
+  url: https://www.infineon.com/assets/row/public/documents/24/49/infineon-irf540n-datasheet-en.pdf
+  maker: Infineon (International Rectifier)
+  doc: IRF540NPbF, Rev. 2.1
+  date: '2026-07-24'

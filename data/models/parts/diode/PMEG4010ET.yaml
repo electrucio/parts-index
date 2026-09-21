@@ -1,0 +1,55 @@
+part: PMEG4010ET
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: nexperia
+  name: PMEG4010ET
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG4010ET.txt
+    sha256: ced69cc5ca1f7ef60b901a405d1490126d0f309a02476592ee9e68506435a40f
+    lines:
+      PMEG4010ET: [33, 49]
+    fetched: '2026-09-19'
+    note: 'PMEG4010ET: PMEG4010ET, PMEG4010ET'
+  note: pins from comment words
+- source: ltwiki
+  name: PMEG4010EH
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG4010EH.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 02a71079690b3f6cc291aa6d7da9a8b7a7ec5edaf28ea54dcbe6874cd239ee32
+    lines:
+      PMEG4010EH: [2, 24]
+    fetched: '2026-09-14'
+  note: found under the alias PMEG4010E; pins from default order (unverified)
+- source: ltwiki
+  name: PMEG4010EJ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG4010EJ.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 6c6bfa0b1d3a7ddccf6bc6425c187a9682c49dfb053c27c9103d586cef303f8f
+    lines:
+      PMEG4010EJ: [2, 24]
+    fetched: '2026-09-14'
+  note: found under the alias PMEG4010E; pins from default order (unverified)

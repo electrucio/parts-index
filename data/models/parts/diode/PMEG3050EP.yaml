@@ -1,0 +1,35 @@
+part: PMEG3050EP
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: nexperia
+  name: PMEG3050EP
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG3050EP.txt
+    sha256: 4d2336f3fb90ffb76135d01c2fbf88cd47634c0cc989dfca74652b1319c7a73c
+    lines:
+      PMEG3050EP: [33, 50]
+    fetched: '2026-09-19'
+    note: 'PMEG3050EP: PMEG3050EP, PMEG3050EP'
+  note: pins from comment words
+- source: bordodynov
+  name: PMEG3050EP
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      PMEG3050EP: [212, 212]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

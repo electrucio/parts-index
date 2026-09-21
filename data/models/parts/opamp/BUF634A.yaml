@@ -1,0 +1,192 @@
+part: BUF634A
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: BUF634A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - OUT
+  - VCC
+  - VEE
+  deps:
+  - 08_OP_AMP_COMPLETE_H3_BUF634A
+  - ESD_IN_BUF634A
+  - CL_SRC_BUF634A
+  - VOS_DRIFT_BUF634A
+  - FEMT_BUF634A
+  - CLAW_SRC_BUF634A
+  - CLAWN_BUF634A
+  - VNSE_BUF634A
+  - CLAMP_AMP_LO_BUF634A
+  - ESD_OUT_BUF634A
+  - CLAWP_BUF634A
+  - AOL_2_BUF634A
+  - GR_SRC_BUF634A
+  - VCM_CLAMP_BUF634A
+  - CLAMP_AMP_HI_BUF634A
+  - IQ_SRC_BUF634A
+  - 08_OP_AMP_COMPLETE_W1_BUF634A
+  - 08_OP_AMP_COMPLETE_W2_BUF634A
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOMB63
+    member: buf634a_a.lib
+    archive_sha256: d98085cfd519b68fe5ff611bd486f01fbf268d50a0b57cc7d6c648b32d24fbb3
+    sha256: 63d75a17c849f6ac6fedf332a263505bff9a6b4d079237cfbe34d2ca4ba9a18a
+    lines:
+      08_OP_AMP_COMPLETE_H3_BUF634A: [161, 164]
+      08_OP_AMP_COMPLETE_W1_BUF634A: [166, 170]
+      08_OP_AMP_COMPLETE_W2_BUF634A: [172, 176]
+      AOL_2_BUF634A: [178, 183]
+      BUF634A: [32, 159]
+      CLAMP_AMP_HI_BUF634A: [185, 189]
+      CLAMP_AMP_LO_BUF634A: [191, 195]
+      CLAWN_BUF634A: [197, 207]
+      CLAWP_BUF634A: [209, 222]
+      CLAW_SRC_BUF634A: [224, 229]
+      CL_SRC_BUF634A: [231, 236]
+      ESD_IN_BUF634A: [238, 242]
+      ESD_OUT_BUF634A: [244, 248]
+      FEMT_BUF634A: [250, 271]
+      GR_SRC_BUF634A: [273, 278]
+      IQ_SRC_BUF634A: [280, 283]
+      VCM_CLAMP_BUF634A: [285, 288]
+      VNSE_BUF634A: [290, 311]
+      VOS_DRIFT_BUF634A: [313, 318]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: bordodynov
+  name: BUF634_AB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/BUF634_AB.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 7604e2e3641e849c33331757877f10a6570ee920599180ff4cd237dce8525e96
+    lines:
+      BUF634_AB: [23, 98]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: BUF634A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - OUT
+  - VCC
+  - VEE
+  deps:
+  - 08_OP_AMP_COMPLETE_H3_BUF634A
+  - ESD_IN_BUF634A
+  - CL_SRC_BUF634A
+  - VOS_DRIFT_BUF634A
+  - FEMT_BUF634A
+  - CLAW_SRC_BUF634A
+  - CLAWN_BUF634A
+  - VNSE_BUF634A
+  - CLAMP_AMP_LO_BUF634A
+  - ESD_OUT_BUF634A
+  - CLAWP_BUF634A
+  - AOL_2_BUF634A
+  - GR_SRC_BUF634A
+  - VCM_CLAMP_BUF634A
+  - CLAMP_AMP_HI_BUF634A
+  - IQ_SRC_BUF634A
+  - 08_OP_AMP_COMPLETE_W1_BUF634A
+  - 08_OP_AMP_COMPLETE_W2_BUF634A
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/buf634a.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: b89db0f73fe64174b7f269c2985663f6dab136c5a9a45c3f3fecadbb3696744e
+    lines:
+      08_OP_AMP_COMPLETE_H3_BUF634A: [162, 165]
+      08_OP_AMP_COMPLETE_W1_BUF634A: [167, 171]
+      08_OP_AMP_COMPLETE_W2_BUF634A: [173, 177]
+      AOL_2_BUF634A: [179, 184]
+      BUF634A: [32, 160]
+      CLAMP_AMP_HI_BUF634A: [186, 190]
+      CLAMP_AMP_LO_BUF634A: [192, 196]
+      CLAWN_BUF634A: [198, 208]
+      CLAWP_BUF634A: [210, 223]
+      CLAW_SRC_BUF634A: [225, 230]
+      CL_SRC_BUF634A: [232, 237]
+      ESD_IN_BUF634A: [239, 243]
+      ESD_OUT_BUF634A: [245, 249]
+      FEMT_BUF634A: [251, 272]
+      GR_SRC_BUF634A: [274, 279]
+      IQ_SRC_BUF634A: [281, 284]
+      VCM_CLAMP_BUF634A: [286, 289]
+      VNSE_BUF634A: [291, 312]
+      VOS_DRIFT_BUF634A: [314, 319]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: ltwiki
+  name: BUF634X
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/buf634x.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: cf602b6b1d2a07c812b885000da633815afac68a88cebb2f8a3202b9d4c83100
+    lines:
+      BUF634X: [129, 423]
+    fetched: '2026-09-14'
+  note: found under the alias BUF634; pins from default order (unverified)
+- source: kicad-spice-library
+  name: BUF634X/BB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '80'
+  - '90'
+  - '16'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/burr-brn.lib
+    sha256: 24467fdf16f7135ce54f90c7424e35ce1e6d2131c277351a4ee7276cdd6e2664
+    lines:
+      BUF634X/BB: [476, 538]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: found under the alias BUF634
+- source: kicad-spice-library
+  name: BUF634X_BB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '80'
+  - '90'
+  - '16'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/burrbn.lib
+    sha256: 0cf1e02a8be40a2dd64ea79ba281cf359d8b5fab59844264bee4b3ac20e97ed8
+    lines:
+      BUF634X_BB: [4044, 4116]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: found under the alias BUF634

@@ -1,0 +1,57 @@
+part: LM321
+kind: opamp
+priority: 2
+models:
+- source: bordodynov
+  name: LM321LV
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - VNSE_0
+  - VCCS_EXT_LIM_0
+  - VCCS_LIM_3_0
+  - VCCS_LIM_1_0
+  - VCCS_LIM_2_0
+  - VCCS_LIM_4_0
+  - FEMT_0_0
+  - VCCS_LIM_CLAW-_0
+  - CLAMP_AMP_HI_0
+  - CLAMP_AMP_LO_0
+  - OL_SENSE_0
+  - VCCS_LIM_GR_0
+  - VCCS_LIM_ZO_0
+  - VCCS_LIM_CLAW+_0
+  - VCCS_LIMIT_IQ_0
+  - LM324LV
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM324LV.cir
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 495c0f46b9ab0fd8dce13dba69ad0deef3101e42b8667134217f178981fadd04
+    lines:
+      CLAMP_AMP_HI_0: [333, 337]
+      CLAMP_AMP_LO_0: [326, 330]
+      FEMT_0_0: [280, 301]
+      LM321LV: [390, 392]
+      LM324LV: [32, 231]
+      OL_SENSE_0: [379, 381]
+      VCCS_EXT_LIM_0: [384, 387]
+      VCCS_LIMIT_IQ_0: [320, 323]
+      VCCS_LIM_1_0: [312, 317]
+      VCCS_LIM_2_0: [304, 309]
+      VCCS_LIM_3_0: [371, 376]
+      VCCS_LIM_4_0: [348, 353]
+      VCCS_LIM_CLAW+_0: [356, 368]
+      VCCS_LIM_CLAW-_0: [241, 253]
+      VCCS_LIM_GR_0: [340, 345]
+      VCCS_LIM_ZO_0: [233, 238]
+      VNSE_0: [256, 277]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'

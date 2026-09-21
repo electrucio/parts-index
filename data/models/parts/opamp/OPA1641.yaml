@@ -1,0 +1,84 @@
+part: OPA1641
+kind: opamp
+priority: 3
+models:
+- source: ltwiki
+  name: OPA1641
+  def: subckt
+  type: SUBCKT
+  pins:
+  - +IN
+  - -IN
+  - V+
+  - V-
+  - VOUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/OpAmps/By_Marks_Type/Ti_Bb_Unitrode/OpaXxx/OPA1641_test/OPA1641.sub
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: ccf543543b3facd9428168b4fe69371a64a9e8953bb7e42256c144feeb7b8ab5
+    lines:
+      OPA1641: [29, 365]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: spiceypedals
+  name: OPA1641
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - CLAMP_AMP_LO_0_OPA1641
+  - VCCS_LIM_3_0_OPA1641
+  - PSRR_CMRR_1_OPA1641
+  - VCCS_LIM_CLAW-_0_OPA1641
+  - ESD_0_OPA1641
+  - CLAMP_AMP_HI_0_OPA1641
+  - PSRR_CMRR_2_OPA1641
+  - PSRR_CMRR_0_OPA1641
+  - VCCS_LIM_CLAW+_0_OPA1641
+  - VCCS_LIM_GR_0_OPA1641
+  - VCCS_EXT_LIM_0_OPA1641
+  - VCCS_LIM_1_0_OPA1641
+  - VCCS_LIM_2_0_OPA1641
+  - VCCS_LIM_ZO_0_OPA1641
+  - AOL_ZO_0_OPA1641
+  - VNSE_0_OPA1641
+  - OL_SENSE_0_OPA1641
+  - VCCS_LIMIT_IQ_0_OPA1641
+  - FEMT_0_OPA1641
+  - VCCS_LIM_4_0_OPA1641
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/thecowgoesmoo/SPICEyPedals/60f67a6fdb14b9d7c83630b1cade358bfdd4e638/PartModels/basic_models/OpAmps/OPA1641.LIB
+    sha256: 96fdffb1e38b5f169a5e3c370d7003c7436f8fd5c433fb90343449bc7f86bb72
+    lines:
+      AOL_ZO_0_OPA1641: [266, 321]
+      CLAMP_AMP_HI_0_OPA1641: [373, 377]
+      CLAMP_AMP_LO_0_OPA1641: [367, 371]
+      ESD_0_OPA1641: [210, 216]
+      FEMT_0_OPA1641: [330, 337]
+      OL_SENSE_0_OPA1641: [428, 430]
+      OPA1641: [70, 208]
+      PSRR_CMRR_0_OPA1641: [218, 232]
+      PSRR_CMRR_1_OPA1641: [234, 241]
+      PSRR_CMRR_2_OPA1641: [243, 250]
+      VCCS_EXT_LIM_0_OPA1641: [432, 435]
+      VCCS_LIMIT_IQ_0_OPA1641: [362, 365]
+      VCCS_LIM_1_0_OPA1641: [259, 264]
+      VCCS_LIM_2_0_OPA1641: [252, 257]
+      VCCS_LIM_3_0_OPA1641: [421, 426]
+      VCCS_LIM_4_0_OPA1641: [386, 391]
+      VCCS_LIM_CLAW+_0_OPA1641: [393, 405]
+      VCCS_LIM_CLAW-_0_OPA1641: [407, 419]
+      VCCS_LIM_GR_0_OPA1641: [379, 384]
+      VCCS_LIM_ZO_0_OPA1641: [323, 328]
+      VNSE_0_OPA1641: [339, 360]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit 60f67a6 (MicroCap-LIBRARY-for-ngspice/ and modelos_subckt/ not kept)
+  note: pins from names

@@ -1,0 +1,63 @@
+part: CNY17-2
+kind: opto
+priority: 4
+models:
+- source: bordodynov
+  name: CNY17
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OptoAcop.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: afc41e67a056aadd6af70da491aedd69fb6e66a9f20ffe644c8b39d92e8ad025
+    lines:
+      CNY17: [211, 219]
+    fetched: '2026-09-14'
+  note: 'found under the alias CNY17; same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: CNY17
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CNY17.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6f5f549318ed850c85a888868fe41400d86cf532121cc9d2b6b3189ca40679a7
+    lines:
+      CNY17: [3, 11]
+    fetched: '2026-09-14'
+  note: 'found under the alias CNY17; same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: CNY17F3M
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Test_Optocoupler/CNY17F3M.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 92bb326d56ab2f4a53dce8aa2e9c4fe76de74fe4afd4921cd3eb0aa67fc74d0a
+    lines:
+      CNY17F3M: [1, 11]
+    fetched: '2026-09-14'
+  note: found under the alias CNY17

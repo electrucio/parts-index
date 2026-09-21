@@ -1,0 +1,95 @@
+part: BC857
+kind: bjt
+priority: 3
+group: small_signal_pnp
+models:
+- source: nexperia
+  name: BC857B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B
+  - E
+  - C
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BC857B.txt
+    sha256: a84606580d0f352343a186bc0f87e49a4cf21fd5a0e0f885438636a04e85a50f
+    lines:
+      BC857B: [31, 89]
+    fetched: '2026-09-14'
+    note: 'model(s): BC857B (.subckt 1 2 3), MAIN (PNP .model), DIODE (D .model)'
+  note: pins from comment words
+- source: nexperia
+  name: BC857C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B
+  - E
+  - C
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BC857C.txt
+    sha256: 7779e8619695c8e23f0906d7cd1f29e95a56a36db1c43fd96b0b93a017d84491
+    lines:
+      BC857C: [31, 89]
+    fetched: '2026-09-14'
+    note: 'model(s): BC857C (.subckt 1 2 3), MAIN (PNP .model), DIODE (D .model)'
+  note: pins from comment words
+- source: bordodynov
+  name: BC857A
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC857A: [626, 626]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BC857C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC857C: [628, 628]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BC857B
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/Standard/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 7bc3409f9eac7e6ae2f8a5643ecb2d4b0ac997241fa9a39e6074d3124497e2ce
+    lines:
+      BC857B: [44, 44]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BC857B_DI
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC857B_DI: [1363, 1363]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

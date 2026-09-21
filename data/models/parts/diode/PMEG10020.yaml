@@ -1,0 +1,21 @@
+part: PMEG10020
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: nexperia
+  name: PMEG10020ELR
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG10020ELR.txt
+    sha256: 9aeccfe32e72d5ca43b1517489a8a4f75a056b72c1a3f74f7ed9af981092c0f8
+    lines:
+      PMEG10020ELR: [38, 67]
+    fetched: '2026-09-19'
+    note: 'PMEG10020ELR: PMEG10020ELR, DIODE1, DIODE2'
+  note: pins from comment words

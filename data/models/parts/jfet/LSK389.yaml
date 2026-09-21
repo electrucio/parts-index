@@ -1,0 +1,134 @@
+part: LSK389
+kind: jfet
+priority: 2
+group: n_channel
+preferred: interfet
+preferred_why: 'best datasheet agreement: 6 pass, 1 off, 3 fail of 10 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with interfet on score and
+  typical-value error, chosen as the more original source'
+models:
+- source: interfet
+  name: LSK389A-GEN
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK389A-GEN: [473, 473]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.5
+    pass: 5
+    marginal: 2
+    fail: 3
+    not_measurable: 0
+    typical_rows: 2
+- source: interfet
+  name: LSK389A-LS
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK389A-LS: [474, 474]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.6
+    pass: 6
+    marginal: 1
+    fail: 3
+    not_measurable: 0
+    typical_rows: 2
+- source: interfet
+  name: LSK389B-GEN
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK389B-GEN: [475, 475]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.5
+    pass: 5
+    marginal: 2
+    fail: 3
+    not_measurable: 0
+    typical_rows: 2
+- source: interfet
+  name: LSK389B-LS
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK389B-LS: [476, 476]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.6
+    pass: 6
+    marginal: 1
+    fail: 3
+    not_measurable: 0
+    typical_rows: 2
+- source: interfet
+  name: LSK389C-GEN
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK389C-GEN: [477, 477]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.5
+    pass: 5
+    marginal: 2
+    fail: 3
+    not_measurable: 0
+    typical_rows: 2
+- source: interfet
+  name: LSK389C-LS
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK389C-LS: [478, 478]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.0
+    pass: 0
+    marginal: 2
+    fail: 5
+    not_measurable: 3
+    typical_rows: 2
+datasheet:
+  url: https://cms.nacsemi.com/content/AuthDatasheets/linearsys/LSK389.pdf
+  maker: Linear Integrated Systems
+  doc: LSK389 A/B/C/D, Doc 201122, Rev A27
+  date: '2023-06-23'

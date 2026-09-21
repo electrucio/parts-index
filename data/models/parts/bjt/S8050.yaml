@@ -1,0 +1,34 @@
+part: S8050
+kind: bjt
+priority: 3
+group: small_signal_npn
+models:
+- source: onsemi
+  name: SS8050
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/ss8050.lib
+    sha256: c829b0a08038171e0031cc70273f7f469c39aa9d472eb648910e3240bbc8c735
+    lines:
+      SS8050: [5, 15]
+    fetched: '2026-09-19'
+    note: 'SS8050: SS8050'
+  note: 'STAND-IN: model of SS8050, not of S8050; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+- source: bordodynov
+  name: SS8050
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      SS8050: [1596, 1596]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of SS8050, not of S8050; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: kicad-spice-library, ltwiki'

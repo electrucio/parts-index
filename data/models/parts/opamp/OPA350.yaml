@@ -1,0 +1,67 @@
+part: OPA350
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: OPA350
+  def: subckt
+  type: SUBCKT
+  pins:
+  - +
+  - '-'
+  - V+
+  - V-
+  - OUT
+  deps:
+  - Rb
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      OPA350: [6892, 6968]
+      Rb: [564, 570]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: bordodynov
+  name: OPA350
+  def: subckt
+  type: SUBCKT
+  pins:
+  - +
+  - '-'
+  - V+
+  - V-
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Operational_Amplifiers.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: a23e6b6cd7f13ddcbd76cc0a88987255186bf1dca04a8349a968e4dad0daf832
+    lines:
+      OPA350: [3524, 3600]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: ltwiki
+  name: OPA350
+  def: subckt
+  type: SUBCKT
+  pins:
+  - +
+  - '-'
+  - V+
+  - V-
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/HCNR200/Sborka.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 2eeb09296e9daaf815d0d073b696048479a10f5eb32584f09ff4d73f7093701d
+    lines:
+      OPA350: [15, 91]
+    fetched: '2026-09-14'
+  note: pins from names

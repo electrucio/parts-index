@@ -1,0 +1,76 @@
+part: LM117
+kind: regulator
+priority: 4
+models:
+- source: ltwiki
+  name: LM117_MC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - VIN
+  - ADJ
+  - VOUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/LM117_MC.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 89ab78ffbef8ec8b9c09fca5ccce269ef44ca931805bf25d6cace5f05fdaa263
+    lines:
+      LM117_MC: [1, 67]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: ltwiki
+  name: LM117
+  def: subckt
+  type: SUBCKT
+  pins:
+  - VIN
+  - ADJ
+  - VOUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/LM117.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 731daf583599ea19041e20af584012b630ab38f0db70f209dda83bdf3165c38a
+    lines:
+      LM117: [1, 70]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: ltwiki
+  name: Lm117uC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - VIN
+  - ADJ
+  - VOUT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/regulators.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: ba2105aa53d2db16001d205924af438b7c473ed9a864ce8e7ef13fcd71a7fcf7
+    lines:
+      Lm117uC: [755, 827]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: ltwiki
+  name: LM117PSp
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - ADJ
+  - OUT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/regulators.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: ba2105aa53d2db16001d205924af438b7c473ed9a864ce8e7ef13fcd71a7fcf7
+    lines:
+      LM117PSp: [836, 879]
+    fetched: '2026-09-14'
+  note: pins from names

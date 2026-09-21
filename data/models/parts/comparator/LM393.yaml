@@ -1,0 +1,194 @@
+part: LM393
+kind: comparator
+priority: 1
+preferred: ltwiki
+preferred_why: 'best datasheet agreement: 4 pass, 0 off, 0 fail of 4 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 1 not measurable). WEAK EVIDENCE: fewer than 5 rows,
+  all min/max limits'
+models:
+- source: bordodynov
+  name: LM393
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - Q1
+  - Q2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      LM393: [10972, 10994]
+      Q1: [16399, 16440]
+      Q2: [16442, 16483]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 2
+    marginal: 0
+    fail: 2
+    not_measurable: 1
+    typical_rows: 0
+  note: 'same code also in: ltwiki; pins from comment words'
+- source: bordodynov
+  name: LM393
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - LM139
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Occomp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d4e98ddcd8fabe3cd892bb2be1e2447639c10f9f8759ce47b8b5c101a6999049
+    lines:
+      LM139: [160, 184]
+      LM393: [273, 279]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 2
+    marginal: 0
+    fail: 2
+    not_measurable: 1
+    typical_rows: 0
+  note: 'same code also in: ltwiki; pins from default order (unverified)'
+- source: ltwiki
+  name: LM393
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - LM139
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/Occomp.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 43034148edb87c8b5281df8a394fb79962ff67147f9fba6349b2fcbb8346e17f
+    lines:
+      LM139: [152, 173]
+      LM393: [259, 265]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 2
+    marginal: 0
+    fail: 2
+    not_measurable: 1
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'
+- source: ltwiki
+  name: LM393
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Miscel/X1G example/lm393.sub
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 758c572a3e32aef98c36398a900f6be640ce73a5e7e40b3aeb9b28b511083eb5
+    lines:
+      LM393: [11, 31]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 2
+    marginal: 0
+    fail: 2
+    not_measurable: 1
+    typical_rows: 0
+  note: pins from comment words
+- source: ltwiki
+  name: lm393_ab
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN-
+  - IN+
+  - VCC
+  - VSS
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/LM393_AB.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 60cd4d399daa10cf09ead935fdebe9f0055dbb9c964ec1fb04928910dabf7c9c
+    lines:
+      lm393_ab: [1, 37]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 1
+    typical_rows: 0
+  note: pins from names
+- source: kicad-spice-library
+  name: LM393
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - Q1
+  - Q2
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+    sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+    lines:
+      LM393: [10855, 10875]
+      Q1: [16233, 16274]
+      Q2: [16276, 16317]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.5
+    pass: 2
+    marginal: 0
+    fail: 2
+    not_measurable: 1
+    typical_rows: 0
+  note: pins from comment words
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm393.pdf
+  maker: Texas Instruments
+  doc: SLCS005AH, rev. AH (first issued Oct 1979); table 5.8 LM193/LM293/LM393 without A suffix
+  date: 2025-04

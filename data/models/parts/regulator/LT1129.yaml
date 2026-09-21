@@ -1,0 +1,60 @@
+part: LT1129
+kind: regulator
+priority: 4
+models:
+- source: ltwiki
+  name: LT1129
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+    lines:
+      LT1129: [4240, 4295]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: LT1129_LT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/linear.lib
+    sha256: 025903d9677acbc507e2eaa578ba581d9e52f17c10dbf286da658f1af22dd5ba
+    lines:
+      LT1129_LT: [4095, 4150]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: LT1129/LT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/lin_tech.lib
+    sha256: ecf83f07a8bd4c59f1b672a6af78483039b75f982c54349f9eca7641007da6d9
+    lines:
+      LT1129/LT: [5035, 5090]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

@@ -1,0 +1,177 @@
+part: CD4053
+kind: logic
+priority: 3
+models:
+- source: bordodynov
+  name: 4053a
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - B
+  - C
+  - INH
+  - ax
+  - ay
+  - axOay
+  - bx
+  - by
+  - bxOby
+  - cx
+  - cy
+  - cxOcy
+  - V+
+  - Vss
+  - Vee
+  deps:
+  - '4066'
+  - CD40_IN_1
+  - CD40_OUT_1X
+  - Deco53
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/SwitchAna.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
+    lines:
+      4053a: [360, 369]
+      '4066': [227, 250]
+      CD40_IN_1: [499, 517]
+      CD40_OUT_1X: [520, 532]
+      Deco53: [384, 411]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''logic'''
+  note: 'found under the alias 4053; same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: '4053'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - B
+  - C
+  - INH
+  - ax
+  - ay
+  - axOay
+  - bx
+  - by
+  - bxOby
+  - cx
+  - cy
+  - cxOcy
+  - V+
+  - Vss
+  - Vee
+  deps:
+  - CD40_IN_1
+  - CD40_OUT_1X
+  - Deco53
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/SwitchAna.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
+    lines:
+      '4053': [455, 465]
+      CD40_IN_1: [499, 517]
+      CD40_OUT_1X: [520, 532]
+      Deco53: [384, 411]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''logic'''
+  note: 'found under the alias 4053; same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: 4053a
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - B
+  - C
+  - INH
+  - ax
+  - ay
+  - axOay
+  - bx
+  - by
+  - bxOby
+  - cx
+  - cy
+  - cxOcy
+  - V+
+  - Vss
+  - Vee
+  deps:
+  - '4066'
+  - CD40_IN_1
+  - CD40_OUT_1X
+  - Deco53
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/SwitchAna.Lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: bdc1ed4314c28014a88c6c98fee7934edf64321f0d1e3ff50101fce2a6793fda
+    lines:
+      4053a: [360, 369]
+      '4066': [227, 250]
+      CD40_IN_1: [499, 517]
+      CD40_OUT_1X: [520, 532]
+      Deco53: [384, 411]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''logic'''
+  note: found under the alias 4053
+- source: ltwiki
+  name: '4053'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - B
+  - C
+  - INH
+  - ax
+  - ay
+  - axOay
+  - bx
+  - by
+  - bxOby
+  - cx
+  - cy
+  - cxOcy
+  - V+
+  - Vss
+  - Vee
+  deps:
+  - CD40_IN_1
+  - CD40_OUT_1X
+  - Deco53
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/SwitchAna.Lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: bdc1ed4314c28014a88c6c98fee7934edf64321f0d1e3ff50101fce2a6793fda
+    lines:
+      '4053': [455, 465]
+      CD40_IN_1: [499, 517]
+      CD40_OUT_1X: [520, 532]
+      Deco53: [384, 411]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''logic'''
+  note: found under the alias 4053
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/cd4053b.pdf
+  maker: Texas Instruments
+  doc: SCHS047O, rev. O (CD4051B/52B/53B; first issued Aug 1998)
+  date: 2026-05

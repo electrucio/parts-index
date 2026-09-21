@@ -1,0 +1,132 @@
+part: TPA3116
+kind: ic-audio
+priority: 3
+preferred: ti
+preferred_why: 'best datasheet agreement: 0 pass, 0 off, 0 fail of 0 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 6 not measurable)'
+models:
+- source: ti
+  name: TPA3116D2
+  def: subckt
+  type: SUBCKT
+  pins:
+  - AM0
+  - AM1
+  - AM2
+  - AVCC
+  - GAINSLV
+  - GND
+  - GVDD
+  - INNL
+  - INNR
+  - INPL
+  - INPR
+  - MODSEL
+  - MUTE
+  - OUTNL
+  - OUTNR
+  - OUTPL
+  - OUTPR
+  - PLIMIT
+  - PVCC
+  - SDZ
+  deps:
+  - IV110
+  - AN310
+  - VSWITCH1
+  - AN210
+  - TPA3116D2_RAMP_HT1
+  - TPA3116D2_POWERSUPPLY_HT1
+  - DIGLEVSHIFT
+  - NO210
+  - TPA3116D2_PBTLDETECTION_HT2
+  - NO310
+  - NA210
+  - NA310
+  - TPA3116D2_DECODER1_HT1
+  - HPA_COMP_IDEAL
+  - ANALOG_BUFFER
+  - DDEFAULT
+  - TINACIR1
+  - TPA3116D2_CLASSD_FDA1_HT2
+  - HPA_MUXANALOG
+  - HPA_AND2_IDEAL
+  - TPA3116D2_CLASSD_HDRIVER_CHANNEL_DELAY_HT1
+  - HPA_INV_IDEAL
+  - TPA3116D2_CLASSD_HDRIVER_CHANNEL_HT1
+  - DCLIP
+  - DCURLIM
+  - TPA3116D2_CLASSD_FRONTEND_VCLIP_HT1
+  - TPA3116D2_CLASSD_FRONTEND_FDA_AMP_HT1
+  - TPA3116D2_CLASSD_FRONTEND_FDA_HT1
+  - SETODIFF
+  - TPA3116D2_CLASSD_FRONTEND_HT1
+  - TPA3116D2_CLASSD_HBRIDGE_TOPNMOS_HT1
+  - TPA3116D2_CLASSD_HBRIDGE_HT1
+  - TPA3116D2_CLASSD_FEEDBACKCAP_HT1
+  - TPA3116D2_CLASSD_FDA2_HT2
+  - TPA3116D2_CLASSD_HT2
+  - HPA_COMP_1ns
+  - TPA3116D2_GAINSLV_HT1
+  - TPA3116D2_LOGICSHIFT_HT1
+  - TPA3116D2_HT2
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOM299
+    member: SLOM299/TPA3116D2.LIB
+    archive_sha256: 5354ca0cb008c538cf12cdcc85a66a30d34189f5d15baff7711848872659aa6b
+    sha256: 6d9eaecb3aeccbb26abf5305744acb7fe8f934d08fdf50019d45af5d03345e50
+    lines:
+      AN210: [593, 597]
+      AN310: [600, 606]
+      ANALOG_BUFFER: [72, 76]
+      DCLIP: [645, 645]
+      DCURLIM: [646, 646]
+      DDEFAULT: [644, 644]
+      DIGLEVSHIFT: [567, 571]
+      HPA_AND2_IDEAL: [557, 559]
+      HPA_COMP_1ns: [579, 583]
+      HPA_COMP_IDEAL: [574, 576]
+      HPA_INV_IDEAL: [562, 564]
+      HPA_MUXANALOG: [57, 61]
+      IV110: [586, 590]
+      NA210: [625, 629]
+      NA310: [632, 638]
+      NO210: [609, 613]
+      NO310: [616, 622]
+      SETODIFF: [103, 106]
+      TINACIR1: [650, 652]
+      TPA3116D2: [41, 47]
+      TPA3116D2_CLASSD_FDA1_HT2: [220, 249]
+      TPA3116D2_CLASSD_FDA2_HT2: [254, 285]
+      TPA3116D2_CLASSD_FEEDBACKCAP_HT1: [156, 215]
+      TPA3116D2_CLASSD_FRONTEND_FDA_AMP_HT1: [64, 69]
+      TPA3116D2_CLASSD_FRONTEND_FDA_HT1: [79, 100]
+      TPA3116D2_CLASSD_FRONTEND_HT1: [124, 153]
+      TPA3116D2_CLASSD_FRONTEND_VCLIP_HT1: [109, 121]
+      TPA3116D2_CLASSD_HBRIDGE_HT1: [315, 320]
+      TPA3116D2_CLASSD_HBRIDGE_TOPNMOS_HT1: [305, 312]
+      TPA3116D2_CLASSD_HDRIVER_CHANNEL_DELAY_HT1: [288, 293]
+      TPA3116D2_CLASSD_HDRIVER_CHANNEL_HT1: [296, 302]
+      TPA3116D2_CLASSD_HT2: [323, 371]
+      TPA3116D2_DECODER1_HT1: [374, 394]
+      TPA3116D2_GAINSLV_HT1: [453, 484]
+      TPA3116D2_HT2: [506, 552]
+      TPA3116D2_LOGICSHIFT_HT1: [487, 497]
+      TPA3116D2_PBTLDETECTION_HT2: [444, 450]
+      TPA3116D2_POWERSUPPLY_HT1: [500, 503]
+      TPA3116D2_RAMP_HT1: [397, 441]
+      VSWITCH1: [641, 641]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 6
+    typical_rows: 0
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/tpa3116d2.pdf
+  maker: Texas Instruments
+  doc: SLOS708G, rev. G (first issued Apr 2012)
+  date: 2017-12

@@ -1,0 +1,22 @@
+part: LM78L05
+kind: regulator
+priority: 4
+models:
+- source: ti
+  name: LM78L05_F1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNVMAR7
+    member: LM78L05_TRANS.LIB
+    archive_sha256: 41e685521fb853444876cd8503cfbbccd2cc08479fee6d194433d2fd2a9cc915
+    sha256: f1f11bd29a5b3fc6d821379266cb918e88a3e91a618a6eb4fa2ee49c4d78d067
+    lines:
+      LM78L05_F1: [90, 93]
+    fetched: '2026-09-14'

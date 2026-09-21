@@ -1,0 +1,43 @@
+part: ES1D
+kind: diode
+priority: 4
+group: rectifier
+models:
+- source: vishay
+  name: es1d
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89830/es1d.txt
+    sha256: 573847762a4678c68b38f5fd46784eebeee914ba7734f773c72eb72de423b1a0
+    lines:
+      es1d: [7, 10]
+    fetched: '2026-09-19'
+    note: 'Ultrafast Recovery, PSpice Models (*.txt): es1d'
+- source: bordodynov
+  name: ES1D
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      ES1D: [94, 94]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: ES1D
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/GenSemiUltraRect.lib
+    sha256: 43f8d9ef8b0f17890590821a887eb76a131c531f450f5579fb43d62b8417c709
+    lines:
+      ES1D: [206, 220]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

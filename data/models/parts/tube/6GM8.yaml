@@ -1,0 +1,28 @@
+part: 6GM8
+kind: tube
+priority: 3
+group: audio_docs
+models:
+- source: bordodynov
+  name: 6GM8
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - Triodo
+  - 6N27P
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      6GM8: [1268, 1270]
+      6N27P: [1261, 1264]
+      Triodo: [3149, 3161]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

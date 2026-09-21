@@ -1,0 +1,134 @@
+part: J111
+kind: jfet
+priority: 3
+group: n_channel
+preferred: interfet
+preferred_why: 'best datasheet agreement: 2 pass, 0 off, 1 fail of 3 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with interfet, interfet, interfet,
+  ltspice-native, bordodynov on score and typical-value error, chosen as the more original source. WEAK
+  EVIDENCE: fewer than 5 rows, all min/max limits'
+models:
+- source: interfet
+  name: J111-LS
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J111-LS: [173, 173]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.667
+    pass: 2
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: interfet
+  name: J111-PLP
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J111-PLP: [174, 174]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.667
+    pass: 2
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: interfet
+  name: J111-L
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J111-L: [834, 834]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.667
+    pass: 2
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: interfet
+  name: J111-H
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J111-H: [835, 835]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.667
+    pass: 2
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: ltspice-native
+  name: J111
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.jft
+    sha256: 93ae8433a9412e96e81071b65d521b7f31dcb2c2f3fce714456b73586230bea0
+    lines:
+      J111: [31, 31]
+  verification:
+    score: 0.667
+    pass: 2
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: J111X
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      J111X: [729, 729]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 2
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://web.archive.org/web/2019id_/https://www.fairchildsemi.com/ds/J1/J111.pdf
+  maker: Fairchild (onsemi)
+  doc: J111/112/113/MMBFJ111/112/113, Rev A, 2001

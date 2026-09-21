@@ -1,0 +1,61 @@
+part: 2N3441
+kind: bjt
+priority: 3
+group: power_output
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 5 pass, 0 off, 0 fail of 5 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with ltwiki on score and typical-value
+  error, chosen as the more original source. Limits only: the datasheet prints no typical values for these
+  rows, so candidates inside the limits are not told apart'
+models:
+- source: bordodynov
+  name: 2N3441
+  def: model
+  type: NPN
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      2N3441: [1143, 1143]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 5
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: 2N3441
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Mixer/standard.bjt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+    lines:
+      2N3441: [1086, 1086]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 5
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library'
+datasheet:
+  url: https://archive.org/download/bitsavers_motoroladaPowerDeviceData_75404386/1978_Motorola_Power_Device_Data.pdf
+  maker: motorola
+  doc: Motorola Power Device Data (1978), 2N3441 pages 4-14..4-15 = book PDF pages 59-60; local PDF =
+    those 2 pages (book sha256 e30f789aca603bb78fd2eadddb4b54ff77a180b5f44cfbbaacfe062a9ef68232)
+  date: 1978

@@ -1,0 +1,105 @@
+part: 1N4148W
+kind: diode
+priority: 3
+group: silicon_signal
+preferred: diodes-inc
+preferred_why: 'best datasheet agreement: 12 pass, 0 off, 0 fail of 12 judged rows (3 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: onsemi
+  name: 1N4148WT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n4148.lib
+    sha256: f96cb71a2bb9de8848f4069cd9f14754b5182ffb39a5c4f05a25d5113784e68c
+    lines:
+      1N4148WT: [3, 40]
+    fetched: '2026-09-14'
+    note: 'model(s): 1N4148WT (.subckt 2 1), MD1 (D .model), MDR (RES .model), MD3 (D .model), MD2 (D
+      .model), MDRBV (RES .model)'
+  verification:
+    score: 0.5
+    pass: 6
+    marginal: 3
+    fail: 3
+    not_measurable: 0
+    typical_rows: 3
+  note: pins from default order (unverified)
+- source: diodes-inc
+  name: 1N4148W
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/1589/1N4148W.spice.txt
+    sha256: eac112ab3b235eb9f54916f7f9d793ba15091a1fb6988e4eef5652aad393437a
+    lines:
+      1N4148W: [18, 19]
+    fetched: '2026-09-14'
+    note: 'model(s): 1N4148W (D .model)'
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+- source: kicad-spice-library
+  name: 1N4148WS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - d1n4148ws
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/General%20Semiconductor/General%20Semiconductor.lb5
+    sha256: 29db97b9e48c44570530220654814e32bc2a2cb0d10d0a4a018887fb43ef592d
+    lines:
+      1N4148WS: [2781, 2783]
+      d1n4148ws: [2886, 2906]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.667
+    pass: 8
+    marginal: 3
+    fail: 1
+    not_measurable: 0
+    typical_rows: 3
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: d1n4148ws
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/General%20Semiconductor/General%20Semiconductor.lb5
+    sha256: 29db97b9e48c44570530220654814e32bc2a2cb0d10d0a4a018887fb43ef592d
+    lines:
+      d1n4148ws: [2886, 2906]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.667
+    pass: 8
+    marginal: 3
+    fail: 1
+    not_measurable: 0
+    typical_rows: 3
+  note: pins from default order (unverified)
+datasheet:
+  url: https://www.diodes.com/assets/Datasheets/ds30086.pdf
+  maker: Diodes Incorporated
+  doc: DS30086 Rev. 31 - 2 (BAV16W/1N4148W)
+  date: 2024-09

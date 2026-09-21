@@ -1,0 +1,51 @@
+part: OPA818
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA818
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - OUT
+  - VCC
+  - VEE
+  deps:
+  - AOL_1_OPA818
+  - IQ_SRC_OPA818
+  - VOS_DRIFT_OPA818
+  - 08_OP_AMP_COMPLETE_S1_OPA818
+  - VOS_VS_VCM_OPA818
+  - ESD_OUT_OPA818
+  - VNSE_OPA818
+  - CLAWN_OPA818
+  - AOL_2_OPA818
+  - VCM_CLAMP_OPA818
+  - 08_OP_AMP_COMPLETE_S2_OPA818
+  - CLAWP_OPA818
+  - 08_OP_AMP_COMPLETE_H3_OPA818
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOMB74
+    member: opa818.lib
+    archive_sha256: 061b673009df768ad5adf5091ee81e3aebcdf71662a0813abb49decd22dfedd4
+    sha256: 680572145831bb1b86c90189c78bf74909e7a59c762e50eb8ff3741bd5eed886
+    lines:
+      08_OP_AMP_COMPLETE_H3_OPA818: [191, 194]
+      08_OP_AMP_COMPLETE_S1_OPA818: [196, 200]
+      08_OP_AMP_COMPLETE_S2_OPA818: [202, 206]
+      AOL_1_OPA818: [208, 213]
+      AOL_2_OPA818: [215, 220]
+      CLAWN_OPA818: [222, 233]
+      CLAWP_OPA818: [235, 246]
+      ESD_OUT_OPA818: [248, 252]
+      IQ_SRC_OPA818: [254, 257]
+      OPA818: [32, 189]
+      VCM_CLAMP_OPA818: [259, 262]
+      VNSE_OPA818: [264, 285]
+      VOS_DRIFT_OPA818: [287, 292]
+      VOS_VS_VCM_OPA818: [294, 304]
+    fetched: '2026-09-19'
+  note: pins from names

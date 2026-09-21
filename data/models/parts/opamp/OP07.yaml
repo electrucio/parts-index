@@ -1,0 +1,166 @@
+part: OP07
+kind: opamp
+priority: 3
+preferred: ti
+preferred_why: 'best datasheet agreement: 14 pass, 4 off, 0 fail of 18 judged rows (8 against typical
+  values or curve points, the rest against min/max limits; 1 not measurable)'
+models:
+- source: ti
+  name: OP07
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOM536
+    member: op07.lib
+    archive_sha256: 98d446e563e30da86bf4ab8a084f415649c10bf061b473288a6e44b76567d120
+    sha256: 8b25deb4d937f6998782bea61a65737c0e81e7a7ac5501f7f3eb86f789eb2236
+    lines:
+      OP07: [57, 91]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.778
+    pass: 14
+    marginal: 4
+    fail: 0
+    not_measurable: 1
+    typical_rows: 8
+  note: pins from comment words
+- source: stmicro
+  name: OP07
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '3'
+  - '2'
+  - '4'
+  - '5'
+  verbatim: false
+  changes:
+  - st_analog_token
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/STMicroelectronics/Standard%20Linear%20ICs/Spice/op07.txt
+    sha256: a0608e991c396828de717a7d8b7522758cd5818f0b28c326d9f37d2d8c3578d6
+    lines:
+      OP07: [27, 74]
+    fetched: '2026-09-14'
+    note: ST "Standard Linear ICs Macromodels, 1993" (OP07), mirrored on ltwiki.org
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 19
+    typical_rows: 0
+- source: ltspice-native
+  name: OP07A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: sub/LTC.lib
+    sha256: f794e567a5d81e0a3b6682f5d1353fdcec3bb090d76c0103642633ecf6083f16
+    lines:
+      OP07A: [7933, 7974]
+  verification:
+    score: 0.722
+    pass: 13
+    marginal: 3
+    fail: 2
+    not_measurable: 1
+    typical_rows: 8
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: ltspice-native
+  name: OP07E
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: sub/LTC.lib
+    sha256: f794e567a5d81e0a3b6682f5d1353fdcec3bb090d76c0103642633ecf6083f16
+    lines:
+      OP07E: [7890, 7931]
+  verification:
+    score: 0.722
+    pass: 13
+    marginal: 3
+    fail: 2
+    not_measurable: 1
+    typical_rows: 8
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: ltspice-native
+  name: OP07
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: sub/LTC.lib
+    sha256: f794e567a5d81e0a3b6682f5d1353fdcec3bb090d76c0103642633ecf6083f16
+    lines:
+      OP07: [8667, 8708]
+  verification:
+    score: 0.722
+    pass: 13
+    marginal: 3
+    fail: 2
+    not_measurable: 1
+    typical_rows: 8
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: ltspice-native
+  name: OP07C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: sub/LTC.lib
+    sha256: f794e567a5d81e0a3b6682f5d1353fdcec3bb090d76c0103642633ecf6083f16
+    lines:
+      OP07C: [7843, 7884]
+  verification:
+    score: 0.722
+    pass: 13
+    marginal: 3
+    fail: 2
+    not_measurable: 1
+    typical_rows: 8
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/op07c.pdf
+  maker: Texas Instruments
+  doc: SLOS099H, rev. H (first issued Sep 1983)
+  date: 2023-03

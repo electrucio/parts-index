@@ -1,0 +1,17 @@
+part: MMBT5551
+kind: bjt
+priority: 3
+group: small_signal_npn
+models:
+- source: onsemi
+  name: MMBT5551
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mmbt5551.lib
+    sha256: f344a300c96fae8f338e725f2278ce7c1e23aca40b407a1bd84e9c29f83fc543
+    lines:
+      MMBT5551: [7, 57]
+    fetched: '2026-09-14'
+    note: 'model(s): MMBT5551 (NPN .model)'

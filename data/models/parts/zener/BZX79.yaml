@@ -1,0 +1,86 @@
+part: BZX79
+kind: zener
+priority: 2
+models:
+- source: nexperia
+  name: BZX79-C2V4
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BZX79-C2V4.txt
+    sha256: 61980cee5b2ae97d10a1355e3902ab81d6057d15063e91cbe39300f3edb25bf3
+    lines:
+      BZX79-C2V4: [38, 70]
+    fetched: '2026-09-14'
+    note: 'model(s): BZX79-C2V4 (.subckt 1 2), DIODE1 (D .model), DIODE2 (D .model)'
+  note: pins from comment words
+- source: bordodynov
+  name: BZX79C6V8
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BZX79C6V8: [309, 309]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BZX79C2V7
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BZX79C2V7: [938, 938]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: BZX79C6V8
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/BZX79-C6V8.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 7fc0332d574262da25f20786a4f2224a2b874018aa29757de57d6f62bc34fcb2
+    lines:
+      BZX79C6V8: [5, 16]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: BZX79A10
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/DIODE.LIB
+    sha256: c68f4b4a28eb0e866fb8e516b6a6a37a779ac80fed8a2ef16a3afcfb80c522e5
+    lines:
+      BZX79A10: [917, 918]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BZX79A11
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/DIODE.LIB
+    sha256: c68f4b4a28eb0e866fb8e516b6a6a37a779ac80fed8a2ef16a3afcfb80c522e5
+    lines:
+      BZX79A11: [922, 923]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

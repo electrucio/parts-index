@@ -1,0 +1,53 @@
+part: PMEG3020EJ
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: nexperia
+  name: PMEG3020EJ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG3020EJ.txt
+    sha256: 8242745d2d0874607818f45b24f038847f0f95509d87ec68b1d6e7d3699c5ad1
+    lines:
+      PMEG3020EJ: [33, 49]
+    fetched: '2026-09-19'
+    note: 'PMEG3020EJ: PMEG3020EJ, PMEG3020EJ'
+  note: 'same code also in: ltwiki; pins from comment words'
+- source: nexperia
+  name: PMEG3020EH
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG3020EH.txt
+    sha256: cd54d0ee2f1b5c9a2b589823257dc166537d0fb17e6a05b66da3f1371cd4c275
+    lines:
+      PMEG3020EH: [33, 49]
+    fetched: '2026-09-19'
+    note: 'PMEG3020EH: PMEG3020EH, PMEG3020EH'
+  note: 'found under the alias PMEG3020E; same code also in: ltwiki; pins from comment words'
+- source: nexperia
+  name: PMEG3020EP
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG3020EP.txt
+    sha256: 5e27facf037bb8ece70c70f9f2c44b315a5586a80803029c6c854623445e3215
+    lines:
+      PMEG3020EP: [33, 50]
+    fetched: '2026-09-19'
+    note: 'PMEG3020EP: PMEG3020EP, PMEG3020EP'
+  note: found under the alias PMEG3020E; pins from comment words

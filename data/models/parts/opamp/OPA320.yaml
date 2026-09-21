@@ -1,0 +1,75 @@
+part: OPA320
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA320S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VCC
+  - VEE
+  - OUT
+  - SHDN
+  deps:
+  - TF_OPA320S
+  - SHDN_NOT_OPA320S
+  - GBW_SLEW_OPA320S
+  - ICMR_OPA320S
+  - PSRR_OPA320S
+  - AMETER_OPA320S
+  - IQ_OPA320S
+  - IIBN_OPA320S
+  - IIBP_OPA320S
+  - VICM_OPA320S
+  - VCLAMP_W_SENSE_OPA320S
+  - VNSE_OPA320S
+  - VOS_OPA320S
+  - COMPARATOR_OPA320S
+  - FEMT_OPA320S
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM823
+    member: OPA320S_PSPICE_AIO/opa320s.txt
+    archive_sha256: 9bf0f6bdd5183dd64b85dbaf6227946325ffc112b459482dc4348be6b89fc9dc
+    sha256: c8c9983a30a4ee074173a39a9d6d924eae2e7dd34034a1f2c1dbc306ef53d6a7
+    lines:
+      AMETER_OPA320S: [179, 183]
+      COMPARATOR_OPA320S: [321, 326]
+      FEMT_OPA320S: [294, 319]
+      GBW_SLEW_OPA320S: [224, 245]
+      ICMR_OPA320S: [124, 129]
+      IIBN_OPA320S: [271, 292]
+      IIBP_OPA320S: [185, 205]
+      IQ_OPA320S: [261, 269]
+      OPA320S: [55, 95]
+      PSRR_OPA320S: [247, 259]
+      SHDN_NOT_OPA320S: [146, 165]
+      TF_OPA320S: [131, 144]
+      VCLAMP_W_SENSE_OPA320S: [167, 177]
+      VICM_OPA320S: [207, 209]
+      VNSE_OPA320S: [98, 122]
+      VOS_OPA320S: [211, 222]
+    fetched: '2026-09-19'
+- source: bordodynov
+  name: OPA320
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/opa320.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 557cb06b8761fc37e615299c20aaa7b5d2f84e9b7d653373c60a11ae83581218
+    lines:
+      OPA320: [1, 25]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'

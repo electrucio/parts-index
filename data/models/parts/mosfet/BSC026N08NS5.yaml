@@ -1,0 +1,81 @@
+part: BSC026N08NS5
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: infineon
+  name: BSC026N08NS5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  - TJ
+  - TCASE
+  deps:
+  - S5_80_e_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-80v-n-channel-simulationmodels-en.zip
+    member: OptiMOS5/OptiMOS5_80V_Cadence_PSpice.lib
+    archive_sha256: 6475fc420d511e3d6df2740031fb36d1a622bd7875069ae22658e3424698d876
+    sha256: 7186745c60c3b5c4786cc7ee7d544a8a6e56b8b470a38a9affc8589d7b8e3147
+    lines:
+      BSC026N08NS5: [1327, 1364]
+      S5_80_e_var: [208, 333]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: infineon
+  name: BSC026N08NS5_L1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  deps:
+  - S5_80_e_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-80v-n-channel-simulationmodels-en.zip
+    member: OptiMOS5/OptiMOS5_80V_Cadence_PSpice.lib
+    archive_sha256: 6475fc420d511e3d6df2740031fb36d1a622bd7875069ae22658e3424698d876
+    sha256: 7186745c60c3b5c4786cc7ee7d544a8a6e56b8b470a38a9affc8589d7b8e3147
+    lines:
+      BSC026N08NS5_L1: [3908, 3930]
+      S5_80_e_var: [208, 333]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: infineon
+  name: BSC026N08NS5_L0
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-80v-n-channel-simulationmodels-en.zip
+    member: OptiMOS5/OptiMOS5_80V_Cadence_PSpice.lib
+    archive_sha256: 6475fc420d511e3d6df2740031fb36d1a622bd7875069ae22658e3424698d876
+    sha256: 7186745c60c3b5c4786cc7ee7d544a8a6e56b8b470a38a9affc8589d7b8e3147
+    lines:
+      BSC026N08NS5_L0: [5629, 5665]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: bordodynov
+  name: BSC026N08NS5
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      BSC026N08NS5: [1577, 1577]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'

@@ -1,0 +1,24 @@
+part: LT1963A
+kind: regulator
+priority: 4
+models:
+- source: ltwiki
+  name: LT1963
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '5'
+  - '8'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+    lines:
+      LT1963: [21283, 21422]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'

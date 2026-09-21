@@ -1,0 +1,73 @@
+part: OPA1632
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA1632
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  - COMP2
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM182
+    member: OPA1632.LIB
+    archive_sha256: 2fda988cd42319a6d7f06a3a0b2e900a2e4dd2cc301aaf758c27fdf8b328431c
+    sha256: 6ac29a6ace0f8e69874118e6bc2868084162a825e6de7b65cfe1b09995928cbd
+    lines:
+      OPA1632: [47, 245]
+    fetched: '2026-09-19'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: bordodynov
+  name: OPA1632
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  - COMP2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Opa1632.mod
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4106bd828d61d504ec701a48d1810927a4265e2b56708390a90ce3b9b483fe80
+    lines:
+      OPA1632: [27, 407]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: ltwiki
+  name: OPA1632
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  - COMP2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/OpAmps/By_Marks_Type/Ti_Bb_Unitrode/OpaXxx/opa1632/Opa1632.mod
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 36a56414e8edc0c1b05807197f905c9522a4a61ea2fa26dc6740b2953e255beb
+    lines:
+      OPA1632: [27, 407]
+    fetched: '2026-09-14'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)

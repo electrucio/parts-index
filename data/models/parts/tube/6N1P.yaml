@@ -1,0 +1,303 @@
+part: 6N1P
+kind: tube
+priority: 2
+group: triode
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 15 pass, 0 off, 0 fail of 15 judged rows (15 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov on
+  score and typical-value error, chosen as the more original source'
+models:
+- source: ltspice-native
+  name: '61'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  - Tj
+  - Id
+  deps:
+  - '2'
+  - '1'
+  - '3'
+  - '4'
+  - '7'
+  - '6'
+  - '5'
+  - '13'
+  - '11'
+  - '12'
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: sub/Contrib/Wolfspeed/WS_HalfBridge.lib
+    sha256: e10f8192144c855e81d4fee236de3d332999b240939c927eca20c14deaf0da69
+    lines:
+      '1': [114, 116]
+      '11': [805, 855]
+      '12': [857, 909]
+      '13': [911, 969]
+      '2': [118, 122]
+      '3': [125, 129]
+      '4': [131, 141]
+      '5': [144, 146]
+      '6': [149, 151]
+      '61': [1635, 1685]
+      '7': [152, 155]
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 15
+    typical_rows: 0
+  note: found under the alias 6Н1П
+- source: reefman
+  name: 6N1P-EV
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - TriodeK
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      6N1P-EV: [2073, 2081]
+      TriodeK: [2345, 2357]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.267
+    pass: 4
+    marginal: 11
+    fail: 0
+    not_measurable: 0
+    typical_rows: 15
+  note: pins from inline comment
+- source: duncanamps
+  name: 6N1P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/valves/6n1p.inc
+    sha256: 0151a8fc9cb6324b0d5940e55e59cb2e62e8c30a6817ac359b3102485e94928f
+    lines:
+      6N1P: [25, 82]
+    fetched: '2026-09-14'
+    note: subckt 6N1P (A G K)
+  verification:
+    score: 0.667
+    pass: 10
+    marginal: 5
+    fail: 0
+    not_measurable: 0
+    typical_rows: 15
+  note: pins from names
+- source: suusi-tubes
+  name: 6N1P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6N1P: [687, 691]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.867
+    pass: 13
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 15
+  note: pins from inline comment
+- source: bordodynov
+  name: 6N1P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - Triodo
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      6N1P: [1132, 1135]
+      Triodo: [3149, 3161]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 12
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 15
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from inline comment'
+- source: bordodynov
+  name: 6N1P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  deps:
+  - TRIODENH
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/tube.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0eeca282ba6506a1a4826c5833c023b17df0c557ef46c9ade79abe98a9c24a3f
+    lines:
+      6N1P: [274, 281]
+      TRIODENH: [6, 66]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 15
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 15
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: bordodynov
+  name: 6N1P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/triodes.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1e31c73aba86877020a0740d279066992ad7c2cd57aed56223b59706e68a7f44
+    lines:
+      6N1P: [387, 394]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 15
+    typical_rows: 0
+  note: 'same code also in: gist-chanmix51, ltwiki; pins from names'
+- source: bordodynov
+  name: 6N1P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - DX
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/nk_triode.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 363865e784b6e6be0e0b1416cf67965cdfdc62d86f58137402e912b0066d85f0
+    lines:
+      6N1P: [185, 189]
+      DX: [205, 205]
+      TRIODE: [192, 202]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.867
+    pass: 13
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 15
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from inline comment'
+- source: bordodynov
+  name: 6N1P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/Tube_IM.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8eed72dbd55b52f5eb6004bcaacd3d88c79e3e3df9ef28462570c887a70e0d00
+    lines:
+      6N1P: [552, 567]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 12
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 15
+  note: 'same code also in: ltwiki; pins from inline comment'
+- source: bordodynov
+  name: 6N1P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  deps:
+  - TRIODENH
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/new_triodes.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c621c85eb3b9d3dd97622ff9d25c1c1dcf93bc76e9dc887a946205326f08da2
+    lines:
+      6N1P: [586, 593]
+      TRIODENH: [559, 584]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 15
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 15
+  note: 'same code also in: ltwiki; pins from names'
+datasheet:
+  url: https://frank.pocnet.net/sheets/164/6/6N1Pspec.pdf
+  maker: Svetlana
+  doc: Svetlana Technical Data 6N1P Dual Audio Triode (2 pages)

@@ -1,0 +1,23 @@
+part: REF3030
+kind: regulator
+priority: 4
+models:
+- source: ti
+  name: REF3030
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Gnd
+  - Vin
+  - Vout
+  - Texas:REF3030
+  - '[REF]'
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBVM732
+    member: REF3030.tld
+    archive_sha256: 21f07124527d73451b22ecb3c3aa8492cab173bdb61c5a30003a02c8799ab263
+    sha256: df29a9857773b3355f167f9761bd5cb53b9bac87d8d152c6ae43cd138f2e393c
+    lines:
+      REF3030: [2, 3]
+    fetched: '2026-09-19'

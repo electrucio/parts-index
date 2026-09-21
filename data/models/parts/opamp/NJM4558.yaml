@@ -1,0 +1,38 @@
+part: NJM4558
+kind: opamp
+priority: 3
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 0 pass, 0 off, 0 fail of 0 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 7 not measurable)'
+models:
+- source: bordodynov
+  name: njm4558
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/njm4558.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 37e0682461fd85f56cb5ac4c0169137499af7324710609f4dc47a887a900ef49
+    lines:
+      njm4558: [1, 76]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 7
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+datasheet:
+  url: https://www.nisshinbo-microdevices.co.jp/en/pdf/datasheet/NJM4558_E.pdf
+  maker: Nisshinbo Micro Devices (ex New Japan Radio / JRC)
+  doc: NJM4558, Ver. 20260723

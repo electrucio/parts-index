@@ -1,0 +1,55 @@
+part: SMBJ24CA
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: vishay
+  name: smbj24ca
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89598/smbj24ca.txt
+    sha256: 3241d95dcf5bdde676d8bea659e2da7ef62721d7d46bbdddd3798ffeac54fb91
+    lines:
+      smbj24ca: [8, 36]
+    fetched: '2026-09-19'
+    note: 'TransZorb®TVS, PSpice Models (*.txt): smbj24ca, DFMOD, RLMOD, DBDMOD, RBVCMOD'
+  note: pins from default order (unverified)
+- source: bordodynov
+  name: SMBJ24CA
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      SMBJ24CA: [577, 577]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: SMBJ24CA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - TRANSILB
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/transil_ST.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+    lines:
+      SMBJ24CA: [2866, 2871]
+      TRANSILB: [91, 129]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'

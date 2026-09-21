@@ -1,0 +1,40 @@
+part: IRF6645
+kind: mosfet
+priority: 3
+group: audio_docs
+models:
+- source: bordodynov
+  name: irf6645
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irf6645.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 752b40790d93ce97b8ce3da1aaec3edfeb8dafc57c47bf7e8ed0010dd7fbba9b
+    lines:
+      irf6645: [1, 57]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: irf6645t
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '5'
+  - '0'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irf6645.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 752b40790d93ce97b8ce3da1aaec3edfeb8dafc57c47bf7e8ed0010dd7fbba9b
+    lines:
+      irf6645t: [60, 73]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'

@@ -1,0 +1,53 @@
+part: MPSA05
+kind: bjt
+priority: 2
+group: small_signal_npn
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable). Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: bordodynov
+  name: MPSA05
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      MPSA05: [508, 508]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: MPSA05
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/BJT_NPN/TOSHIBA.LIB
+    sha256: 48d4fd1df68108bb9d61af444d53f63e19fc48d39cebc6bc9ff3a11eb947f336
+    lines:
+      MPSA05: [1766, 1781]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.333
+    pass: 2
+    marginal: 0
+    fail: 4
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/mpsa05-d.pdf
+  maker: onsemi
+  doc: MPSA05/D Rev. 3 (April 2007) - MPSA05, MPSA06 (NPN); MPSA55, MPSA56 (PNP)

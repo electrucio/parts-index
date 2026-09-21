@@ -1,0 +1,120 @@
+part: BF245B
+kind: jfet
+priority: 2
+group: n_channel
+preferred: interfet
+preferred_why: 'best datasheet agreement: 3 pass, 2 off, 0 fail of 5 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 1 not measurable); tied with bordodynov, ltwiki on
+  score and typical-value error, chosen as the more original source'
+models:
+- source: interfet
+  name: BF245B-PLP
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      BF245B-PLP: [115, 115]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.6
+    pass: 3
+    marginal: 2
+    fail: 0
+    not_measurable: 1
+    typical_rows: 2
+- source: bordodynov
+  name: BF245B
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      BF245B: [103, 103]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.6
+    pass: 3
+    marginal: 2
+    fail: 0
+    not_measurable: 1
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BF245BX
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      BF245BX: [686, 686]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.6
+    pass: 3
+    marginal: 2
+    fail: 0
+    not_measurable: 1
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: BF245B/PLP
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/phil_fet.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
+    lines:
+      BF245B/PLP: [126, 139]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.6
+    pass: 3
+    marginal: 2
+    fail: 0
+    not_measurable: 1
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'
+- source: kicad-spice-library
+  name: BF245B
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/JFET.LIB
+    sha256: 074ecd8e372f5b20267f32722a3c5030cbf6b25ba4588b83b8377c9cc7883a01
+    lines:
+      BF245B: [48, 49]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.6
+    pass: 3
+    marginal: 2
+    fail: 0
+    not_measurable: 1
+    typical_rows: 2
+datasheet:
+  url: http://www.nxp.com/documents/data_sheet/BF245A-B-C.pdf
+  maker: NXP Semiconductors (Philips)
+  doc: BF245A; BF245B; BF245C Product specification (supersedes data of April 1995)
+  date: '1996-07-30'

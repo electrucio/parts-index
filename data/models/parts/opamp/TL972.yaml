@@ -1,0 +1,98 @@
+part: TL972
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: TL972
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - tran_iout
+  - rnoiseless
+  - EPOLY2
+  - Zout_Uz_H1
+  - HPA_PD_I
+  - d_ideal
+  - HPA_PD_Sgnl
+  - VCCS_Limit
+  - EPOLY1
+  - Zout_Uz_S1
+  - VNSE
+  - Zout_Uz_S2
+  - VCVS_Limit
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOM245
+    member: TL972_TINA_AIO/TL972.lib
+    archive_sha256: 4409878a564d56d7d1d4c42a63671f11460ca6c86c1bc64c17cf10842b4c7c54
+    sha256: 5038ee75ce576b2977a68744bc31b75ecd03195d3346beb398b7768da5d80c4b
+    lines:
+      EPOLY1: [237, 241]
+      EPOLY2: [231, 234]
+      HPA_PD_I: [209, 215]
+      HPA_PD_Sgnl: [217, 219]
+      TL972: [37, 124]
+      VCCS_Limit: [272, 275]
+      VCVS_Limit: [278, 281]
+      VNSE: [177, 206]
+      Zout_Uz_H1: [139, 142]
+      Zout_Uz_S1: [133, 137]
+      Zout_Uz_S2: [127, 131]
+      d_ideal: [167, 174]
+      rnoiseless: [222, 228]
+      tran_iout: [145, 164]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: ti
+  name: TL972
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - tran_iout
+  - rnoiseless
+  - EPOLY2
+  - Zout_Uz_H1
+  - HPA_PD_I
+  - d_ideal
+  - HPA_PD_Sgnl
+  - VCCS_Limit
+  - EPOLY1
+  - Zout_Uz_S1
+  - VNSE
+  - Zout_Uz_S2
+  - VCVS_Limit
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOM243
+    member: TL972_PSPICE_AIO/TL972.lib
+    archive_sha256: bf663af39bcf0de871efe61ebfe2ab5516a81733384b77323e541d3d2b216b87
+    sha256: d427953ac73a0594a3a62387071f5fcd456a1172e424d120ea65131164afce2e
+    lines:
+      EPOLY1: [237, 241]
+      EPOLY2: [231, 234]
+      HPA_PD_I: [209, 215]
+      HPA_PD_Sgnl: [217, 219]
+      TL972: [37, 124]
+      VCCS_Limit: [272, 275]
+      VCVS_Limit: [278, 281]
+      VNSE: [177, 206]
+      Zout_Uz_H1: [139, 142]
+      Zout_Uz_S1: [133, 137]
+      Zout_Uz_S2: [127, 131]
+      d_ideal: [167, 174]
+      rnoiseless: [222, 228]
+      tran_iout: [145, 164]
+    fetched: '2026-09-19'
+  note: pins from names

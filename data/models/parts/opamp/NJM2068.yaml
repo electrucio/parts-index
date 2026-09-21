@@ -1,0 +1,39 @@
+part: NJM2068
+kind: opamp
+priority: 3
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 2 pass, 1 off, 2 fail of 5 judged rows (1 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable)'
+models:
+- source: bordodynov
+  name: njm2068
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/njm2068.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 45495b14033b85b3ad26bf4033fb6b07e0c01182433dfafadfa026fe7e65d601
+    lines:
+      njm2068: [13, 76]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.4
+    pass: 2
+    marginal: 1
+    fail: 2
+    not_measurable: 2
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+datasheet:
+  url: https://www.nisshinbo-microdevices.co.jp/en/pdf/datasheet/NJM2068_E.pdf
+  maker: Nisshinbo Micro Devices (ex New Japan Radio / JRC)
+  doc: NJM2068, Ver.20250218
+  date: '2025-02-18'

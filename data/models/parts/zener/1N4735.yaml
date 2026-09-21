@@ -1,0 +1,100 @@
+part: 1N4735
+kind: zener
+priority: 4
+models:
+- source: onsemi
+  name: D1N4735A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n4735a%20(spice%20model).lib
+    sha256: e8fc30028a1f91a4229ff6bffbec13f256dc0eb5f417f49b32c27fb713d299cd
+    lines:
+      D1N4735A: [6, 23]
+    fetched: '2026-09-19'
+    note: '1N4735A (Spice Model): D1N4735A, MDD1, MDR, MDD2, MDRBV'
+  note: pins from default order (unverified)
+- source: duncanamps
+  name: D1N4735
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/zener.mod
+    sha256: 53758db14bf58c6f53e5655b57def938fd7ebbaee865e81ef7ad3ba689a7f192
+    lines:
+      D1N4735: [116, 117]
+    fetched: '2026-09-14'
+    note: 77 .model
+- source: bordodynov
+  name: 1N4735A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - DF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Zener_DiodesInc.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+    lines:
+      1N4735A: [71, 78]
+      DF: [6016, 6016]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: 1N4735
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N4735: [1818, 1818]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: 1N4735A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Discretos/Diodos/Zener/1n4736.sub
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 6b064772cdb842752fbacda9b8ae1d3c027c309b96d076cc76c3f45701ee7f13
+    lines:
+      1N4735A: [42, 62]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)
+- source: ltwiki
+  name: 1N4735A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/1N4735A.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 3f6ad88b70ee30a4278a1213afefeb80165e98c3d1150847eef24d5cac4ee6cf
+    lines:
+      1N4735A: [2, 22]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)

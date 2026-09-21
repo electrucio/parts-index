@@ -1,0 +1,67 @@
+part: TLC556
+kind: control
+priority: 4
+models:
+- source: bordodynov
+  name: TLC556
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+  - '10'
+  - '11'
+  - '12'
+  - '13'
+  - '14'
+  deps:
+  - TLC555
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/timers.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5caceb6b0c16c6b684284c8598439454661f6908a926796c1459becf67fc8f85
+    lines:
+      TLC555: [174, 210]
+      TLC556: [394, 397]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: TLC556
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+  - '10'
+  - '11'
+  - '12'
+  - '13'
+  - '14'
+  deps:
+  - TLC555
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Basso/BassoBook20100103/New2/TL555.sub
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: a1cd2142091273d4325964316ca6a0f4220f67397a8fd83068be25cab435162c
+    lines:
+      TLC555: [21, 57]
+      TLC556: [71, 74]
+    fetched: '2026-09-14'

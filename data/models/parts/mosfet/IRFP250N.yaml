@@ -1,0 +1,79 @@
+part: IRFP250N
+kind: mosfet
+priority: 3
+group: power_vertical
+preferred: ltspice-native
+preferred_why: 'best datasheet agreement: 5 pass, 1 off, 0 fail of 6 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 1 not measurable); tied with ltwiki on score and typical-value
+  error, chosen as the more original source'
+models:
+- source: infineon
+  name: irfp250n
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://web.archive.org/web/20101231224527id_/http://www.irf.com/product-info/models/spice/irfp250n.spi
+    sha256: fecb03ed74ab7e7be7f519e082a834193f8e7b4f18a315b56ca1068f415f0e0d
+    lines:
+      irfp250n: [1, 56]
+    fetched: '2026-09-14'
+    note: International Rectifier legacy HEXFET SPICE model; original URL http://www.irf.com/product-info/models/spice/irfp250n.spi
+      (Wayback capture 20101231224527)
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 1
+    fail: 1
+    not_measurable: 1
+    typical_rows: 3
+  note: 'same code also in: bordodynov, ltwiki; pins from default order (unverified)'
+- source: ltspice-native
+  name: IRFP250N
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.mos
+    sha256: adfdcda82e1b6186f907df2dc3905659a2ea2be2a0887a016d1fd9f1b3b1b40e
+    lines:
+      IRFP250N: [746, 746]
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 3
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: IRFP250N
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.mos
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 0f6a0a30f327903e5b61c3764e08354839fed85c6ce2d4a8b3d708d6c2ec9533
+    lines:
+      IRFP250N: [756, 756]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library'
+datasheet:
+  url: https://www.infineon.com/assets/row/public/documents/24/49/infineon-irfp250n-datasheet-en.pdf
+  maker: Infineon (International Rectifier)
+  doc: IRFP250NPbF, Rev. 2.1
+  date: '2024-10-08'

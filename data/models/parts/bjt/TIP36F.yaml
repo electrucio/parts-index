@@ -1,0 +1,37 @@
+part: TIP36F
+kind: bjt
+priority: 3
+group: power_output
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 4 pass, 0 off, 1 fail of 5 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 3 not measurable). Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: kicad-spice-library
+  name: TIP36F
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWBJT.LIB
+    sha256: a64b2703fc28c849c7760139346aa1e0c31b83f7701a15e8e7a8d12b01c7befc
+    lines:
+      TIP36F: [3371, 3380]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 0
+    fail: 1
+    not_measurable: 3
+    typical_rows: 0
+  note: pins from default order (unverified)
+datasheet:
+  url: http://www.mospec.com.tw/pdf/power/TIP35D.pdf
+  maker: mospec
+  doc: MOSPEC TIP35D/E/F - TIP36D/E/F sheet (no revision printed)

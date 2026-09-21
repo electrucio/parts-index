@@ -1,0 +1,90 @@
+part: BC338
+kind: bjt
+priority: 4
+group: small_signal_npn
+models:
+- source: kicad-spice-library
+  name: BC338s
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/S_AFBJT.LIB
+    sha256: f291616debefaec544e891373962217f0cde067ea5c516609e5605b7fa9512b0
+    lines:
+      BC338s: [539, 549]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BC338AP_ZX
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zetex.lib
+    sha256: 453392deca3bd0ddfca565d56241c4a5bb4d2e8f14c6efa92c1c453ed434fdca
+    lines:
+      BC338AP_ZX: [3127, 3135]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: BC338AP
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+    sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+    lines:
+      BC338AP: [380, 383]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BC338AP
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Zetex%20Semiconductors/ZMODELS.LIB
+    sha256: 356f4751706278dd76767c0cbdfceab52ea806ed01a3669b26584507bf29f3e0
+    lines:
+      BC338AP: [328, 331]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BC338AP
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTN.LIB
+    sha256: 2c85b6bbf3a7dcb9403d646a1c120714fdc7bce5c8287c8e537012a1cf3ef6c2
+    lines:
+      BC338AP: [716, 719]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BC338/SIE
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  deps:
+  - BC338
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/siemens.lib
+    sha256: c1318342f700741e0d97896cf4f77fe203b8923e12b1106c6c14f848c74bdd5b
+    lines:
+      BC338: [4423, 4433]
+      BC338/SIE: [4412, 4422]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

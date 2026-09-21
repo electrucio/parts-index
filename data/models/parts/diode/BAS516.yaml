@@ -1,0 +1,48 @@
+part: BAS516
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: nexperia
+  name: BAS516
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BAS516.txt
+    sha256: 746576d765ccf1b7f0dcef749c25965bececd36e81afb44f09d4a6b28f7cb686
+    lines:
+      BAS516: [33, 55]
+    fetched: '2026-09-19'
+    note: 'BAS516: BAS516, DIODE1, DIODE2'
+  note: pins from comment words
+- source: bordodynov
+  name: BAS516
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BAS516: [865, 865]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: BAS516
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/BAS516.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 613c48d8f47f8afb83dc8a410814ca9b0549c9aff14ac60acc396e58605ab003
+    lines:
+      BAS516: [3, 15]
+    fetched: '2026-09-14'

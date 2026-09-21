@@ -1,0 +1,23 @@
+part: MJ11012
+kind: bjt
+priority: 3
+group: audio_docs
+models:
+- source: bordodynov
+  name: mj11012
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/NPNdarlington.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 807671d304dd74e6ece6d7da13675cd8730356ed292fe05efe3a611da6b98ab5
+    lines:
+      mj11012: [849, 887]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'

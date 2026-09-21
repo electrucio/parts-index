@@ -1,0 +1,21 @@
+part: PMEG2005CT
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: nexperia
+  name: PMEG2005CT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG2005CT.txt
+    sha256: 2ff86e8be912c932193f91a015004e403cc861fdd68249fa9509f862f6610f22
+    lines:
+      PMEG2005CT: [33, 49]
+    fetched: '2026-09-19'
+    note: 'PMEG2005CT: PMEG2005CT, PMEG2005CT'
+  note: pins from comment words

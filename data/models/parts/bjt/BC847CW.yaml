@@ -1,0 +1,89 @@
+part: BC847CW
+kind: bjt
+priority: 4
+group: small_signal_npn
+models:
+- source: nexperia
+  name: BC847C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BC847C.txt
+    sha256: 58719a22a6bc597d020c5071847de94afc64466b5ce00e5b893a544294a4feaa
+    lines:
+      BC847C: [34, 93]
+    fetched: '2026-09-14'
+    note: 'model(s): BC847C (.subckt 1 2 3), Transistor (NPN .model), Diode (D .model)'
+  note: found under the alias BC847C; pins from default order (unverified)
+- source: bordodynov
+  name: BC847C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/Standard/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 7bc3409f9eac7e6ae2f8a5643ecb2d4b0ac997241fa9a39e6074d3124497e2ce
+    lines:
+      BC847C: [36, 36]
+    fetched: '2026-09-14'
+  note: 'found under the alias BC847C; same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BC847C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC847C: [616, 616]
+    fetched: '2026-09-14'
+  note: 'found under the alias BC847C; same code also in: ltwiki'
+- source: ltwiki
+  name: BC847C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/distortion_OUTPUT_vs_bias/standard_BJT modified.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: b11d82ef9412f3285ead0b742f082d8c60ba31108d4eb85c48c7268e54aeb9a4
+    lines:
+      BC847C: [231, 231]
+    fetched: '2026-09-14'
+  note: 'found under the alias BC847C; same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: BC847CW
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
+    sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
+    lines:
+      BC847CW: [1521, 1559]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BC847CT
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
+    sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
+    lines:
+      BC847CT: [1269, 1307]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: found under the alias BC847C

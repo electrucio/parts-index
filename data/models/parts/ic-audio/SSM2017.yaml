@@ -1,0 +1,136 @@
+part: SSM2017
+kind: ic-audio
+priority: 2
+models:
+- source: kicad-spice-library
+  name: SSM-2017/AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '45'
+  - '19'
+  - '5'
+  - '6'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/anlg_dev.lib
+    sha256: 505283370bc2c5b5cb15401e3a43d58793d1598e62e1b422bb333be402ada1b9
+    lines:
+      SSM-2017/AD: [69802, 69905]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: SSM2017_AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '45'
+  - '19'
+  - '5'
+  - '6'
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+    sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+    lines:
+      SSM2017_AD: [50503, 50606]
+      dx: [72212, 72212]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: SSM-2017P/AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '45'
+  - '19'
+  - '5'
+  - '6'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/anlg_dev.lib
+    sha256: 505283370bc2c5b5cb15401e3a43d58793d1598e62e1b422bb333be402ada1b9
+    lines:
+      SSM-2017P/AD: [69925, 70028]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: SSM2017P_AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '45'
+  - '19'
+  - '5'
+  - '6'
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+    sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+    lines:
+      SSM2017P_AD: [50625, 50728]
+      dx: [72212, 72212]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: SSM2017
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '45'
+  - '19'
+  - '5'
+  - '6'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/AD4A.LIB
+    sha256: 2e0cebf7aaf8debe59afc1ead869b6b82d5b198fe0a2202b8615551773615e55
+    lines:
+      SSM2017: [1142, 1245]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: SSM2017P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '45'
+  - '19'
+  - '5'
+  - '6'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/AD4A.LIB
+    sha256: 2e0cebf7aaf8debe59afc1ead869b6b82d5b198fe0a2202b8615551773615e55
+    lines:
+      SSM2017P: [1261, 1364]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

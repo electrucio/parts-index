@@ -1,0 +1,293 @@
+part: EZ80
+kind: tube
+priority: 3
+group: rectifier
+preferred: reefman
+preferred_why: 'best datasheet agreement: 12 pass, 0 off, 0 fail of 12 judged rows (12 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: reefman
+  name: EZ80
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - A2
+  - C
+  deps:
+  - DiodeK
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      DiodeK: [2360, 2363]
+      EZ80: [838, 845]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 12
+  note: pins from inline comment
+- source: suusi-tubes
+  name: EZ80
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - A2
+  - C
+  deps:
+  - DULEREC
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      DULEREC: [2089, 2092]
+      EZ80: [873, 876]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 12
+  note: 'same code also in: bordodynov, ltwiki; pins from inline comment'
+- source: suusi-tubes
+  name: 6V4
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - A2
+  - C
+  deps:
+  - DULEREC
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6V4: [149, 152]
+      DULEREC: [2089, 2092]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 12
+  note: 'found under the alias 6V4; same code also in: bordodynov, ltwiki; pins from inline comment'
+- source: suusi-tubes
+  name: EZ80
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - A2
+  - C
+  deps:
+  - RECP2
+  - DULERECP2
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      DULERECP2: [3013, 3016]
+      EZ80: [185, 188]
+      RECP2: [2999, 3004]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 12
+    typical_rows: 0
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6V4
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - A2
+  - C
+  deps:
+  - RECP2
+  - DULERECP2
+  - EZ80
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6V4: [105, 108]
+      DULERECP2: [3013, 3016]
+      EZ80: [185, 188]
+      RECP2: [2999, 3004]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 12
+    typical_rows: 0
+  note: found under the alias 6V4; pins from inline comment
+- source: bordodynov
+  name: EZ80RY
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - VALVE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      EZ80RY: [173, 179]
+      VALVE1: [2980, 2986]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 12
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 6V4_RY
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - VALVE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      6V4_RY: [168, 171]
+      VALVE1: [2980, 2986]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 12
+    typical_rows: 0
+  note: 'found under the alias 6V4; same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: EZ80
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/tube.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0eeca282ba6506a1a4826c5833c023b17df0c557ef46c9ade79abe98a9c24a3f
+    lines:
+      EZ80: [635, 642]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 10
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 12
+  note: 'same code also in: ltwiki; pins from names'
+- source: bordodynov
+  name: EZ80
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - VRECTIFIER
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/vrectifier.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6f39b4729541ad16b04e62a45667127a910029cc5c095d49dc8622ca11a85443
+    lines:
+      EZ80: [72, 77]
+      VRECTIFIER: [19, 35]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 12
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: EZ80
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - VALVE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Rydel_tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+    lines:
+      EZ80: [599, 605]
+      VALVE1: [866, 872]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 12
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+datasheet:
+  url: https://frank.pocnet.net/sheets/030/e/EZ80.pdf
+  maker: Philips
+  doc: 939 4582 + sheets A, B
+  date: '1953-11-11'

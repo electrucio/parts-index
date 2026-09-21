@@ -1,0 +1,40 @@
+part: NUP2105L
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: onsemi
+  name: nup2105lt1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - nup2105l-tvs
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/nup2105l.lib
+    sha256: a94d6f1c5b718de016cdf5a83c0959a98776720666091e2a14198ba1c5f86135
+    lines:
+      nup2105l-tvs: [7, 41]
+      nup2105lt1: [1, 6]
+    fetched: '2026-09-19'
+    note: 'NUP2105L: nup2105lt1, nup2105l-tvs, MDD1, MDR, MDD3, MDRBV'
+- source: onsemi
+  name: nup2105l-tvs
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/nup2105l.lib
+    sha256: a94d6f1c5b718de016cdf5a83c0959a98776720666091e2a14198ba1c5f86135
+    lines:
+      nup2105l-tvs: [7, 41]
+    fetched: '2026-09-19'
+    note: 'NUP2105L: nup2105lt1, nup2105l-tvs, MDD1, MDR, MDD3, MDRBV'
+  note: pins from default order (unverified)

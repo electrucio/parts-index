@@ -1,0 +1,135 @@
+part: 6N2P
+kind: tube
+priority: 3
+group: triode
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 16 pass, 3 off, 0 fail of 19 judged rows (19 against typical
+  values or curve points, the rest against min/max limits; 3 not measurable)'
+models:
+- source: ltspice-native
+  name: '62'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  - Tj
+  - Id
+  deps:
+  - '2'
+  - '1'
+  - '3'
+  - '4'
+  - '7'
+  - '6'
+  - '5'
+  - '13'
+  - '11'
+  - '12'
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: sub/Contrib/Wolfspeed/WS_HalfBridge.lib
+    sha256: e10f8192144c855e81d4fee236de3d332999b240939c927eca20c14deaf0da69
+    lines:
+      '1': [114, 116]
+      '11': [805, 855]
+      '12': [857, 909]
+      '13': [911, 969]
+      '2': [118, 122]
+      '3': [125, 129]
+      '4': [131, 141]
+      '5': [144, 146]
+      '6': [149, 151]
+      '62': [1687, 1739]
+      '7': [152, 155]
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 22
+    typical_rows: 0
+  note: found under the alias 6Н2П
+- source: bordodynov
+  name: 6N2P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - Triodo
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      6N2P: [1275, 1278]
+      Triodo: [3149, 3161]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.263
+    pass: 5
+    marginal: 14
+    fail: 0
+    not_measurable: 3
+    typical_rows: 19
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from inline comment'
+- source: bordodynov
+  name: 6N2P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/Tube_IM.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8eed72dbd55b52f5eb6004bcaacd3d88c79e3e3df9ef28462570c887a70e0d00
+    lines:
+      6N2P: [1070, 1085]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.842
+    pass: 16
+    marginal: 3
+    fail: 0
+    not_measurable: 3
+    typical_rows: 19
+  note: 'same code also in: ltwiki; pins from inline comment'
+- source: ltwiki
+  name: '62'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - B
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Analisis/MonteCarlo/Monte carlo toolbox_3/vmc.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: f0ee14467ffa5948bd912d29adf4c51edd958dab020fd1685a3eb6bc338a8f18
+    lines:
+      '62': [71, 75]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 22
+    typical_rows: 0
+  note: found under the alias 6Н2П
+datasheet:
+  url: https://frank.pocnet.net/sheets/113/6/6N2P.pdf
+  maker: Soviet (bilingual receiving-tube handbook)
+  doc: 6Н2П double triode, handbook pages 16-18

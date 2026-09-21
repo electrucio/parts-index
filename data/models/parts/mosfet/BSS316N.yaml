@@ -1,0 +1,67 @@
+part: BSS316N
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: infineon
+  name: BSS316N
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  - TJ
+  - TCASE
+  deps:
+  - S3_30_l_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-30v-n-channel-simulationmodels-en.zip
+    member: 01_OptiMOS2_OptiMOS3/OptiMOS2_OptiMOS3_30V_LTSpice.lib
+    archive_sha256: c75d66679fb16128eac17f185e735a20a5e8ff20796806899f6f3df769efc07d
+    sha256: 95dfbc871e3ef2449551c7677d176900e48367a2a4bcec903944ddfd15b0a954
+    lines:
+      BSS316N: [733, 770]
+      S3_30_l_var: [90, 169]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: infineon
+  name: BSS316N_L1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  deps:
+  - S3_30_l_var1
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-30v-n-channel-simulationmodels-en.zip
+    member: 01_OptiMOS2_OptiMOS3/OptiMOS2_OptiMOS3_30V_LTSpice.lib
+    archive_sha256: c75d66679fb16128eac17f185e735a20a5e8ff20796806899f6f3df769efc07d
+    sha256: 95dfbc871e3ef2449551c7677d176900e48367a2a4bcec903944ddfd15b0a954
+    lines:
+      BSS316N_L1: [5023, 5042]
+      S3_30_l_var1: [173, 234]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: infineon
+  name: BSS316N_L0
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-30v-n-channel-simulationmodels-en.zip
+    member: 01_OptiMOS2_OptiMOS3/OptiMOS2_OptiMOS3_30V_LTSpice.lib
+    archive_sha256: c75d66679fb16128eac17f185e735a20a5e8ff20796806899f6f3df769efc07d
+    sha256: 95dfbc871e3ef2449551c7677d176900e48367a2a4bcec903944ddfd15b0a954
+    lines:
+      BSS316N_L0: [7450, 7481]
+    fetched: '2026-09-19'
+  note: pins from names

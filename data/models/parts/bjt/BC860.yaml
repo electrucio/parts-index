@@ -1,0 +1,109 @@
+part: BC860
+kind: bjt
+priority: 4
+group: small_signal_pnp
+models:
+- source: nexperia
+  name: BC860B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B
+  - E
+  - C
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BC860B.txt
+    sha256: cd8956e1ed4e2bdef58a10e73f4f0ce80f6408b51f8e4fbb84113b8e0c31694b
+    lines:
+      BC860B: [31, 89]
+    fetched: '2026-09-14'
+    note: 'model(s): BC860B (.subckt 1 2 3), MAIN (PNP .model), DIODE (D .model)'
+  note: pins from comment words
+- source: nexperia
+  name: BC860C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B
+  - E
+  - C
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BC860C.txt
+    sha256: 6660992751a6d18899b3749ef450a6c55f7e1bdde75c1d873ddd5a2fa3544715
+    lines:
+      BC860C: [31, 89]
+    fetched: '2026-09-14'
+    note: 'model(s): BC860C (.subckt 1 2 3), MAIN (PNP .model), DIODE (D .model)'
+  note: pins from comment words
+- source: bordodynov
+  name: BC860B
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC860B: [635, 635]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BC860C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC860C: [636, 636]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BC860C_SIE
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  deps:
+  - Rb
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      BC860C_SIE: [2320, 2336]
+      Rb: [564, 570]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: ltwiki
+  name: BC860C_SIE
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  deps:
+  - Rb
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Mixer/Sborka.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 1b04fc3cc8895cc99be06e9664199c7d58db0f0f00bd055186cf6f676d767e1b
+    lines:
+      BC860C_SIE: [1322, 1338]
+      Rb: [95, 100]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)

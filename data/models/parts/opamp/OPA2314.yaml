@@ -1,0 +1,126 @@
+part: OPA2314
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA2314
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - CLAW_SRC
+  - VOS_DRIFT
+  - SW_OL
+  - ESD_OUT
+  - AOL_1
+  - IQ_SRC
+  - CLAWn
+  - CLAMP_AMP_HI
+  - OL_SENSE
+  - CLAMP_AMP_LO
+  - 08_Op_Amp_Complete_H3
+  - FEMT
+  - CL_SRC
+  - CLAWp
+  - 08_Op_Amp_Complete_H2
+  - 08_Op_Amp_Complete_H1
+  - VCM_CLAMP
+  - ZO_SRC
+  - GR_SRC
+  - VNSE
+  - ESD_IN
+  - SW_OR
+  - AOL_2
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOMBU1
+    member: opa2314.lib
+    archive_sha256: 3e0fc936312ab6de2d18fd33308bb71ed7d60b27f2f3bae7dbf7fc477ef0ca3b
+    sha256: 36b70848dc6b35224529b58870803b26e5d33b0739786938c149835c03a031fe
+    lines:
+      08_Op_Amp_Complete_H1: [220, 223]
+      08_Op_Amp_Complete_H2: [215, 218]
+      08_Op_Amp_Complete_H3: [210, 213]
+      AOL_1: [226, 231]
+      AOL_2: [234, 239]
+      CLAMP_AMP_HI: [242, 247]
+      CLAMP_AMP_LO: [250, 255]
+      CLAW_SRC: [278, 283]
+      CLAWn: [258, 265]
+      CLAWp: [268, 275]
+      CL_SRC: [286, 291]
+      ESD_IN: [294, 300]
+      ESD_OUT: [303, 307]
+      FEMT: [310, 339]
+      GR_SRC: [342, 347]
+      IQ_SRC: [350, 353]
+      OL_SENSE: [356, 359]
+      OPA2314: [36, 208]
+      SW_OL: [362, 365]
+      SW_OR: [368, 372]
+      VCM_CLAMP: [375, 378]
+      VNSE: [381, 410]
+      VOS_DRIFT: [421, 426]
+      ZO_SRC: [413, 418]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: ti
+  name: OPA2314
+  def: subckt
+  type: SUBCKT
+  pins:
+  - OUT
+  - INP
+  - INN
+  - VP
+  - VN
+  deps:
+  - VNSE_0
+  - VCVS_LIMIT_6
+  - RNOISE_FREE_1
+  - FEMT_0
+  - VCVS_LIMIT_2
+  - VCVS_LIMIT_4
+  - IDEAL_D_1
+  - IDEAL_D_0
+  - VCVS_LIMIT_3
+  - RNOISE_FREE_2
+  - VCVS_LIMIT_5
+  - VCVS_LIMIT_0
+  - RNOISE_FREE_0
+  - VCCS_LIMIT_0
+  - VCCS_LIMIT_1
+  - VCVS_LIMIT_1
+  - VC_RES_0
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM464
+    member: OPA2314_TINA_AIO/OPA2314.lib
+    archive_sha256: 2e9917f156392204d436aa38f486820bd6eed47b8d5141bdeb1d0bda48135b4e
+    sha256: 855eaca27ccd67dd8a5ba2fed07ebc6420acd7a4c509a241737c489fa67cc1be
+    lines:
+      FEMT_0: [227, 261]
+      IDEAL_D_0: [315, 318]
+      IDEAL_D_1: [350, 353]
+      OPA2314: [47, 194]
+      RNOISE_FREE_0: [207, 213]
+      RNOISE_FREE_1: [217, 223]
+      RNOISE_FREE_2: [407, 413]
+      VCCS_LIMIT_0: [357, 363]
+      VCCS_LIMIT_1: [367, 373]
+      VCVS_LIMIT_0: [305, 311]
+      VCVS_LIMIT_1: [322, 326]
+      VCVS_LIMIT_2: [331, 335]
+      VCVS_LIMIT_3: [340, 346]
+      VCVS_LIMIT_4: [377, 383]
+      VCVS_LIMIT_5: [387, 393]
+      VCVS_LIMIT_6: [397, 403]
+      VC_RES_0: [198, 203]
+      VNSE_0: [266, 300]
+    fetched: '2026-09-19'
+  note: pins from comment words

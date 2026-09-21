@@ -1,0 +1,17 @@
+part: ZLLS410
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: diodes-inc
+  name: ZLLS410
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/235/ZLLS410.spice.txt
+    sha256: ff3e1bf7d5bc9d1f992ef5f265180d9533a8e43b58c4e463366040abc3d84357
+    lines:
+      ZLLS410: [23, 24]
+    fetched: '2026-09-19'
+    note: 'model(s): ZLLS410'

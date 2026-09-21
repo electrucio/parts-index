@@ -1,0 +1,135 @@
+part: 2SK117
+kind: jfet
+priority: 2
+group: n_channel
+preferred: interfet
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 2 fail of 8 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, bordodynov
+  on score and typical-value error, chosen as the more original source'
+models:
+- source: interfet
+  name: J2SK117-GEN
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J2SK117-GEN: [392, 392]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.75
+    pass: 6
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 2
+- source: bordodynov
+  name: J2sk117
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      J2sk117: [500, 500]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.75
+    pass: 6
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 2sk117
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      2sk117: [678, 678]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.75
+    pass: 6
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: J2SK117X
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      J2SK117X: [776, 776]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.75
+    pass: 6
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: J2SK117
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/2sk117.lib
+    sha256: 21e1a53cd5d80d7a43ad736c0422dfe092e8893c9e08f2b5f4a1cd5bc95168fb
+    lines:
+      J2SK117: [1, 1]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.75
+    pass: 6
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+- source: kicad-spice-library
+  name: J2SK117
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/JFET.LIB
+    sha256: 074ecd8e372f5b20267f32722a3c5030cbf6b25ba4588b83b8377c9cc7883a01
+    lines:
+      J2SK117: [1099, 1100]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.75
+    pass: 6
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+datasheet:
+  url: https://datasheet.octopart.com/2SK117-Toshiba-datasheet-181388756.pdf
+  maker: Toshiba
+  doc: 2SK117 (Toshiba data sheet)
+  date: '2007-11-01'

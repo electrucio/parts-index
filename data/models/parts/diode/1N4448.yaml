@@ -1,0 +1,73 @@
+part: 1N4448
+kind: diode
+priority: 3
+group: silicon_signal
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 10 pass, 0 off, 0 fail of 10 judged rows (4 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: 1N4448HWT
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N4448HWT: [142, 142]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.7
+    pass: 7
+    marginal: 2
+    fail: 1
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: 1N4448HWT
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: c37cd3feda2bf48e371d1b329a4f08dcedf3e90acb6a8b98ec28a8063b633c21
+    lines:
+      1N4448HWT: [102, 102]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.7
+    pass: 7
+    marginal: 2
+    fail: 1
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: 1N4448
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/fairch.lib
+    sha256: 7a65c19aecd31354d0fec1166479cad2d1453948039b85b0d6d15d51ed4b963d
+    lines:
+      1N4448: [8788, 8788]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 10
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+datasheet:
+  url: https://web.archive.org/web/2024id_/https://www.onsemi.com/pdf/datasheet/1n914-d.pdf
+  maker: onsemi
+  doc: 1N914/D, Rev. 6, September 2024 (1N91x, 1N4x48, FDLL914, FDLL4x48; ex-Fairchild)

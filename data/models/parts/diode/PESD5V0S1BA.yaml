@@ -1,0 +1,21 @@
+part: PESD5V0S1BA
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: nexperia
+  name: PESD5V0S1BA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PESD5V0S1BA.txt
+    sha256: 763cbf3967db57268f87fa644c8b201bf78ad9c0c53f85fa81ded00c7e58ac3b
+    lines:
+      PESD5V0S1BA: [32, 59]
+    fetched: '2026-09-19'
+    note: 'PESD5V0S1BA: PESD5V0S1BA, DIODE1, DIODE2'
+  note: pins from default order (unverified)

@@ -1,0 +1,41 @@
+part: SMBJ15CA
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: vishay
+  name: smbj15ca
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89523/p_smbj15.txt
+    sha256: 679e6019f3ec12333f108a6914552844b5ab273b2d62d98036428ed9aec8c448
+    lines:
+      smbj15ca: [15, 71]
+    fetched: '2026-09-19'
+    note: 'TransZorb®TVS, PSpice Models (*.txt): smbj15ca, DFMOD, RLMOD, DBDMOD, RBVCMOD'
+  note: pins from default order (unverified)
+- source: bordodynov
+  name: SMBJ15CA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - TRANSILB
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/transil_ST.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+    lines:
+      SMBJ15CA: [2802, 2807]
+      TRANSILB: [91, 129]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'

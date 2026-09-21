@@ -1,0 +1,135 @@
+part: J175
+kind: jfet
+priority: 2
+group: p_channel
+preferred: interfet
+preferred_why: 'best datasheet agreement: 3 pass, 0 off, 0 fail of 3 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with interfet, ltspice-native,
+  bordodynov, ltwiki on score and typical-value error, chosen as the more original source. WEAK EVIDENCE:
+  fewer than 5 rows, all min/max limits'
+models:
+- source: interfet
+  name: J175
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J175: [887, 887]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 1.0
+    pass: 3
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: interfet
+  name: J175-LS
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J175-LS: [182, 182]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.667
+    pass: 2
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: interfet
+  name: J175-PLP
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J175-PLP: [183, 183]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 1.0
+    pass: 3
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: ltspice-native
+  name: J175
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.jft
+    sha256: 93ae8433a9412e96e81071b65d521b7f31dcb2c2f3fce714456b73586230bea0
+    lines:
+      J175: [35, 35]
+  verification:
+    score: 1.0
+    pass: 3
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: J175X
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      J175X: [733, 733]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 3
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: J175
+  def: model
+  type: PJF
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.jft
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: e129c65d0238559c9fe2d25e47143d11aa57115e1ff5d8747d9a45db57f83e37
+    lines:
+      J175: [171, 171]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 3
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library'
+datasheet:
+  url: https://web.archive.org/web/2024id_/https://www.onsemi.com/pdf/datasheet/j175-d.pdf
+  maker: onsemi (ex-Fairchild)
+  doc: J175/D Rev. 2, October 2017

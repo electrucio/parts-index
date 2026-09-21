@@ -1,0 +1,31 @@
+part: LED-IR
+kind: led
+priority: 3
+preferred: duncanamps
+preferred_why: 'best datasheet agreement: 8 pass, 1 off, 0 fail of 9 judged rows (6 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: duncanamps
+  name: DLED0
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/led.mod
+    sha256: 595b59d32f2564722ea0494afdebed82f928759887722561135b5d4ea35eb3bc
+    lines:
+      DLED0: [6, 7]
+    fetched: '2026-09-14'
+    note: 4 .model
+  verification:
+    score: 0.889
+    pass: 8
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 6
+  note: found under the alias DLED0
+datasheet:
+  url: https://www.vishay.com/docs/81010/tsal6200.pdf
+  maker: Vishay
+  doc: TSAL6200 Document Number 81010, Rev. 2.4, 13-Mar-14

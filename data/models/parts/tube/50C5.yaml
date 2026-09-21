@@ -1,0 +1,26 @@
+part: 50C5
+kind: tube
+priority: 2
+group: audio_docs
+models:
+- source: diyaudio
+  name: 50C5_AN
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: true
+  get:
+    url: https://www.diyaudio.com/community/threads/vacuum-tube-spice-models.243950/post-3924684
+    sha256: 46848a098afac30b11fdbb08f49acaf681d6f028f6cdfc32c280980c49cd2608
+    lines:
+      50C5_AN: [15, 35]
+    fetched: '2014-05-12'
+    note: 'Modelo pentodo Ayumi 50C5_AN completo, por jazbo8 post #475, titulo "Ayumi 50C5 Model". Nota
+      del autor: inexacto para Ep<50V. Descargado a diyaudio/50C5_AN_ayumi.lib. Hilo tambien tiene post
+      dedicado "50C5 pentode LTSpice model" (threads/50c5-pentode-ltspice-model.177648) con discusion
+      adicional de Mosquito/Alain Poitras no explorada a fondo por prioridad de tiempo.'
+  note: pins from names

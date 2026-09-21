@@ -1,0 +1,132 @@
+part: 2N5485
+kind: jfet
+priority: 3
+group: n_channel
+preferred: onsemi
+preferred_why: 'best datasheet agreement: 5 pass, 0 off, 0 fail of 5 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 1 not measurable); tied with interfet on score and
+  typical-value error, chosen as the more original source. Limits only: the datasheet prints no typical
+  values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: onsemi
+  name: J2n5485
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/2n5485.lib
+    sha256: bbee8dcabe1b5256023b8eacc2db46a3199a153f7fb34286a8f003a1b394ee68
+    lines:
+      J2n5485: [13, 17]
+    fetched: '2026-09-14'
+    note: 'model(s): J2n5485 (NJF .model)'
+  verification:
+    score: 1.0
+    pass: 5
+    marginal: 0
+    fail: 0
+    not_measurable: 1
+    typical_rows: 0
+- source: interfet
+  name: 2N5485-SCX
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      2N5485-SCX: [93, 93]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 0
+    fail: 1
+    not_measurable: 1
+    typical_rows: 0
+- source: interfet
+  name: J2N5485-GEN
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J2N5485-GEN: [338, 338]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 1.0
+    pass: 5
+    marginal: 0
+    fail: 0
+    not_measurable: 1
+    typical_rows: 0
+- source: interfet
+  name: 2N5485-L
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      2N5485-L: [764, 764]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 0
+    fail: 1
+    not_measurable: 1
+    typical_rows: 0
+- source: interfet
+  name: 2N5485-H
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      2N5485-H: [765, 765]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.6
+    pass: 3
+    marginal: 0
+    fail: 2
+    not_measurable: 1
+    typical_rows: 0
+- source: ltspice-native
+  name: 2N5485
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.jft
+    sha256: 93ae8433a9412e96e81071b65d521b7f31dcb2c2f3fce714456b73586230bea0
+    lines:
+      2N5485: [28, 28]
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 0
+    fail: 1
+    not_measurable: 1
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://www.interfet.com/jfet-datasheets/jfet-2n5484-2n5485-2n5486-interfet.pdf
+  maker: InterFET
+  doc: IF35032.R00, December 2018

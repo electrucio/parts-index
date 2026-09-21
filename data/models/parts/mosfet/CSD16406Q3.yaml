@@ -1,0 +1,23 @@
+part: CSD16406Q3
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: ti
+  name: CSD16406Q3
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLLM102
+    member: CSD16406Q3.lib
+    archive_sha256: 743c5a9b20dcd04925c34f5bbe0758c0d283acf59660d77dfc2e04e4add0cab0
+    sha256: b94a9df05cc999f4e34e40fef2e55d450593e9d647bc8f54605b2bd5319cbe3d
+    lines:
+      CSD16406Q3: [41, 98]
+    fetched: '2026-09-19'
+  note: pins from default order (unverified)

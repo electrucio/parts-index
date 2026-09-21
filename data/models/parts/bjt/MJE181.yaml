@@ -1,0 +1,19 @@
+part: MJE181
+kind: bjt
+priority: 3
+group: audio_docs
+models:
+- source: bordodynov
+  name: mje181
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      mje181: [1395, 1395]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

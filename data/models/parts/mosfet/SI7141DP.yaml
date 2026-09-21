@@ -1,0 +1,62 @@
+part: SI7141DP
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: vishay
+  name: Si7141DP
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/65626/si7141dp_ps.zip
+    member: Si7141DP_PS.txt
+    archive_sha256: 367726f35b362c931223431d717d1dee98f72c584995dcf7125900a1c99c4ad6
+    sha256: 4a99d730c427696b8a9d7eea02aa1862c57a52abc83ea93d2a1400474c83fd20
+    lines:
+      Si7141DP: [9, 35]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: vishay
+  name: Si7141DP_PS_RC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  deps:
+  - Si7141DP
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/65626/si7141dp_ps.zip
+    member: Si7141DP_PS_RC.lib
+    archive_sha256: 367726f35b362c931223431d717d1dee98f72c584995dcf7125900a1c99c4ad6
+    sha256: 32ed4f072afe126bbe3f4887b62e9a3b7eb22abef1fa1553e8dd3fd598ae3b79
+    lines:
+      Si7141DP: [107, 133]
+      Si7141DP_PS_RC: [9, 104]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: vishay
+  name: Si7141DP
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/65626/si7141dp_ps.zip
+    member: Si7141DP_HS.txt
+    archive_sha256: 367726f35b362c931223431d717d1dee98f72c584995dcf7125900a1c99c4ad6
+    sha256: 9f4a8cd20ef517c3de0c16e86514893cb6165e8893d04d7ac98e7de08bc94de1
+    lines:
+      Si7141DP: [7, 33]
+    fetched: '2026-09-19'
+  note: pins from names

@@ -1,0 +1,22 @@
+part: SI7232DN
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: vishay
+  name: Si7232DN
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/64507/si7232dn.txt
+    sha256: 633e0559a192512a3422dee56d306be448ac4e5d04596478f38c25fbb26b0d94
+    lines:
+      Si7232DN: [8, 34]
+    fetched: '2026-09-19'
+    note: 'MOSFETs, PSpice Models (*.txt): Si7232DN, NMOS, PMOS, DBD'
+  note: pins from names

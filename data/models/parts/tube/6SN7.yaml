@@ -1,0 +1,289 @@
+part: 6SN7
+kind: tube
+priority: 1
+group: triode
+preferred: koren
+preferred_why: 'best datasheet agreement: 25 pass, 1 off, 0 fail of 26 judged rows (26 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with suusi-tubes, suusi-tubes,
+  suusi-tubes, suusi-tubes, suusi-tubes, suusi-tubes on score and typical-value error, chosen as the more
+  original source'
+models:
+- source: reefman
+  name: 6SN7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - TriodeK
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      6SN7: [1838, 1843]
+      TriodeK: [2345, 2357]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.423
+    pass: 11
+    marginal: 15
+    fail: 0
+    not_measurable: 0
+    typical_rows: 26
+  note: pins from inline comment
+- source: ayumi
+  name: 6SN7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6SN7.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 7fb9485597a10cdd577c35303b780723df2bdabb937863407c79d94e22bbd011
+    lines:
+      6SN7: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.923
+    pass: 24
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 26
+  note: pins from names
+- source: duncanamps
+  name: 6SN7GTB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - K
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice.html
+    member: 6SN7GTB.INC
+    archive_sha256: ad86d20e99f616f8cafeb32e594ac68c5d33ba7a39557b3ef4a7e79b549555c5
+    sha256: 987fcd1c05d5104dfb262059ad74fb42db8e888a14516747b7826481249e8209
+    lines:
+      6SN7GTB: [26, 33]
+    fetched: '2026-09-14'
+    note: subckt 6SN7GTB (P G K)
+  verification:
+    score: 0.769
+    pass: 20
+    marginal: 6
+    fail: 0
+    not_measurable: 0
+    typical_rows: 26
+  note: pins from names
+- source: koren
+  name: 6SN7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - 12AX7
+  verbatim: true
+  get:
+    url: https://www.normankoren.com/Audio/Tubemods.zip
+    member: Tube97.lib
+    archive_sha256: 0a640ed245918dc5a349abf370f5e955ccdb6d85986fbf36b10bc720d55f8982
+    sha256: f033f67125d830403bd79ad3b5438097226a90bd93b67f9efa1e18357cce1457
+    lines:
+      12AX7: [50, 69]
+      6SN7: [88, 93]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.962
+    pass: 25
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 26
+  note: pins from names
+- source: suusi-tubes
+  name: 6SN7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6SN7: [737, 741]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.962
+    pass: 25
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 26
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6SN7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6SN7: [445, 449]
+      TRIODE: [1980, 1991]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.962
+    pass: 25
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 26
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6SN7GTB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6SN7GTB: [751, 755]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.962
+    pass: 25
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 26
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6SN7GTB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6SN7GTB: [459, 463]
+      TRIODE: [1980, 1991]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.962
+    pass: 25
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 26
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6SN7GTA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6SN7GTA: [744, 748]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.962
+    pass: 25
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 26
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6SN7GTA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6SN7GTA: [452, 456]
+      TRIODE: [1980, 1991]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.962
+    pass: 25
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 26
+  note: pins from inline comment
+datasheet:
+  url: https://frank.pocnet.net/sheets/093/6/6SN7GTB.pdf
+  maker: General Electric
+  doc: ET-T899 (6SN7-GTB / 6SN7-GTA / 12SN7-GTA), p.1-2 dated 10-54, p.3 dated 1-55
+  date: 1955-01

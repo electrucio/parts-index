@@ -1,0 +1,32 @@
+part: 2SA1306B
+kind: bjt
+priority: 3
+group: driver_vas
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 4 pass, 0 off, 2 fail of 6 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: kicad-spice-library
+  name: Q2SA1306B
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/BJT_PNP/TOSHIBA.LIB
+    sha256: 4a5d1e7670eff99dfd5290383e42316cebae59769ce130e15a7f5d9a9a4cbd90
+    lines:
+      Q2SA1306B: [884, 900]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 2
+datasheet:
+  url: https://doc.platan.ru/pdf/datasheets/toshiba/2SA1306.pdf
+  maker: toshiba
+  doc: 2SA1306B, Toshiba Discrete/Opto databook page -59- (scanned; databook header '45E D 9097250 0017798
+    T TOS4', code T-33-19)

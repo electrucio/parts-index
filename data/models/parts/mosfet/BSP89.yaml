@@ -1,0 +1,115 @@
+part: BSP89
+kind: mosfet
+priority: 4
+group: small_signal
+models:
+- source: infineon
+  name: BSP89_L0
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-power-optimos-n-channel-small-signal-mosfet-240v-400v-600v-800v-spice-simulationmodels-en.zip
+    member: n_channel_small_signal_240V_250V_400V_600V.lib
+    archive_sha256: 34fec523eb3dfe2ed17a48d406de6b6d2a588aec703ce848efff6e6ff4716335
+    sha256: 663431987b9f8669d8e6f3198b983c26808800bdb41ce55f64f1ea622eb6a4e6
+    lines:
+      BSP89_L0: [1885, 1918]
+    fetched: '2026-09-19'
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from names'
+- source: infineon
+  name: BSP89
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  - TJ
+  - TCASE
+  deps:
+  - K_240_b_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-power-optimos-n-channel-small-signal-mosfet-240v-400v-600v-800v-spice-simulationmodels-en.zip
+    member: n_channel_small_signal_240V_250V_400V_600V.lib
+    archive_sha256: 34fec523eb3dfe2ed17a48d406de6b6d2a588aec703ce848efff6e6ff4716335
+    sha256: 663431987b9f8669d8e6f3198b983c26808800bdb41ce55f64f1ea622eb6a4e6
+    lines:
+      BSP89: [882, 910]
+      K_240_b_var: [145, 223]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: infineon
+  name: BSP89_L1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  deps:
+  - K_240_b_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-power-optimos-n-channel-small-signal-mosfet-240v-400v-600v-800v-spice-simulationmodels-en.zip
+    member: n_channel_small_signal_240V_250V_400V_600V.lib
+    archive_sha256: 34fec523eb3dfe2ed17a48d406de6b6d2a588aec703ce848efff6e6ff4716335
+    sha256: 663431987b9f8669d8e6f3198b983c26808800bdb41ce55f64f1ea622eb6a4e6
+    lines:
+      BSP89_L1: [1452, 1470]
+      K_240_b_var: [145, 223]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: bordodynov
+  name: BSP89
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      BSP89: [977, 977]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: BSP-89
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/BSS_L0.LIB
+    sha256: 681fe248607f8555c1d407566afd1e05bfd22de075b4f9dbba48815e18b94f0a
+    lines:
+      BSP-89: [324, 344]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: BSP89/SIE
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/siemens.lib
+    sha256: c1318342f700741e0d97896cf4f77fe203b8923e12b1106c6c14f848c74bdd5b
+    lines:
+      BSP89/SIE: [10687, 10707]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

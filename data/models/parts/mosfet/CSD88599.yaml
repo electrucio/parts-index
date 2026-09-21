@@ -1,0 +1,34 @@
+part: CSD88599
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: ti
+  name: csd88599q5dc
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  deps:
+  - cgs
+  - cgd
+  - cds
+  - n38503
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLPM325
+    member: CSD88599Q5DC.lib
+    archive_sha256: 69214bd23b33944ef2eebcc561ae83380a36bce0f057cd080d9a8f64c1ed2b1c
+    sha256: de0c5c9234b9836fd129d8cfb490c6013792c8dd41093c920a8a0c76c5ecc091
+    lines:
+      cds: [352, 483]
+      cgd: [219, 350]
+      cgs: [86, 217]
+      csd88599q5dc: [15, 37]
+      n38503: [40, 83]
+    fetched: '2026-09-19'

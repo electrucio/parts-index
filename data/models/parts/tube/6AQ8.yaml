@@ -1,0 +1,43 @@
+part: 6AQ8
+kind: tube
+priority: 3
+group: audio_docs
+models:
+- source: ayumi
+  name: 6AQ8
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6AQ8.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: f71060cd2d0b9e625d62ea411f93307bda47b28eb859d1a39ce67d13e4fe2081
+    lines:
+      6AQ8: [9, 22]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: ltwiki
+  name: 6AQ8
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Triode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+    lines:
+      6AQ8: [1197, 1210]
+    fetched: '2026-09-14'
+  note: pins from names

@@ -1,0 +1,79 @@
+part: 2SK30
+kind: jfet
+priority: 2
+group: audio_docs
+models:
+- source: bordodynov
+  name: 2SK30gr
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      2SK30gr: [956, 956]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: J2SK30gr
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/2sk30.lib
+    sha256: 3c0361b1d5bac49afbbeabb59ad3463183a28a480166b08037ab9243db7d24d6
+    lines:
+      J2SK30gr: [9, 10]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: J2SK30r
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/2sk30.lib
+    sha256: 3c0361b1d5bac49afbbeabb59ad3463183a28a480166b08037ab9243db7d24d6
+    lines:
+      J2SK30r: [3, 4]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: J2SK30o
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/2sk30.lib
+    sha256: 3c0361b1d5bac49afbbeabb59ad3463183a28a480166b08037ab9243db7d24d6
+    lines:
+      J2SK30o: [5, 6]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: J2SK30y
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/2sk30.lib
+    sha256: 3c0361b1d5bac49afbbeabb59ad3463183a28a480166b08037ab9243db7d24d6
+    lines:
+      J2SK30y: [7, 8]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: J2SK30atm
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/2sk30.lib
+    sha256: 3c0361b1d5bac49afbbeabb59ad3463183a28a480166b08037ab9243db7d24d6
+    lines:
+      J2SK30atm: [12, 12]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

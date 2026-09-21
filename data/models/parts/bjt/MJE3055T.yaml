@@ -1,0 +1,35 @@
+part: MJE3055T
+kind: bjt
+priority: 3
+group: driver_vas
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 9 pass, 0 off, 0 fail of 9 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable). Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: kicad-spice-library
+  name: MJE3055T
+  def: model
+  type: NPN
+  deps:
+  - NSC_4A
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      MJE3055T: [906, 906]
+      NSC_4A: [912, 916]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 9
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/mje2955t-d.pdf
+  maker: onsemi
+  doc: MJE2955T/D Rev. 12 (January 2015) - MJE2955T/MJE3055T

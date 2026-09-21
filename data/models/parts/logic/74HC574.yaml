@@ -1,0 +1,68 @@
+part: 74HC574
+kind: logic
+priority: 3
+models:
+- source: kicad-spice-library
+  name: 74HC574
+  def: subckt
+  type: SUBCKT
+  pins:
+  - OCBAR
+  - CLK
+  - 1D
+  - 2D
+  - 3D
+  - 4D
+  - 5D
+  - 6D
+  - 7D
+  - 8D
+  - 1Q
+  - 2Q
+  - 3Q
+  - 4Q
+  - 5Q
+  - 6Q
+  - 7Q
+  - 8Q
+  - 'optional:'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/dig381.lib
+    sha256: 5923c88eb4066881f45ac944c922b09a19cd8f81d9b8d5eb81dc12058fcfb03c
+    lines:
+      74HC574: [11845, 11873]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: 74HC574A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - CLOCK
+  - OUTENAB
+  - D0
+  - D1
+  - D2
+  - D3
+  - D4
+  - D5
+  - D6
+  - D7
+  - Q0
+  - Q1
+  - Q2
+  - Q3
+  - Q4
+  - Q5
+  - Q6
+  - Q7
+  - 'OPTIONAL:'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/dig381.lib
+    sha256: 5923c88eb4066881f45ac944c922b09a19cd8f81d9b8d5eb81dc12058fcfb03c
+    lines:
+      74HC574A: [11881, 11923]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

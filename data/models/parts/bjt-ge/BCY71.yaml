@@ -1,0 +1,30 @@
+part: BCY71
+kind: bjt-ge
+priority: 3
+models:
+- source: bordodynov
+  name: BCY71
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BCY71: [669, 669]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: BCY71
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTP.LIB
+    sha256: 3dd15df7a58d8985561b2180fc63d333ddd59c8693c4d56de506df410c3a7607
+    lines:
+      BCY71: [15, 18]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

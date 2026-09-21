@@ -1,0 +1,109 @@
+part: TIP142
+kind: bjt
+priority: 2
+group: power_output
+preferred: onsemi
+preferred_why: 'best datasheet agreement: 7 pass, 0 off, 0 fail of 7 judged rows (1 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable)'
+models:
+- source: onsemi
+  name: tip142
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/tip142.lib
+    sha256: 2906ce78af5d575f9107280b0b53219426dc36d929716e377dc11f7deff5f95b
+    lines:
+      tip142: [12, 50]
+    fetched: '2026-09-14'
+    note: 'model(s): tip142 (.subckt 1 2 3), dmodel (D .model), qmodel (NPN .model), q1model (NPN .model)'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 1
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: TIP142
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/TIP121&131.SUB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6f4f88067a664168de8c881cafc983aecacc5b918b104b92ecf2a7539d3e50c0
+    lines:
+      TIP142: [160, 190]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.889
+    pass: 8
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: kicad-spice-library
+  name: TIP142
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTDAR.LIB
+    sha256: 9ce6fa0baa6aaf6fdd5cce713f1d1ad2dabcd6946b97027854fc10dccb38dfb1
+    lines:
+      TIP142: [1149, 1161]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 1
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: TIP142_FC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/fairch.lib
+    sha256: 7a65c19aecd31354d0fec1166479cad2d1453948039b85b0d6d15d51ed4b963d
+    lines:
+      TIP142_FC: [8524, 8554]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.889
+    pass: 8
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: pins from default order (unverified)
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/tip140-d.pdf
+  maker: onsemi
+  doc: TIP140/D Rev. 8 (June 2024)

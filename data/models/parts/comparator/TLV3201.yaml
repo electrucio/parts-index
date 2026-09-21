@@ -1,0 +1,64 @@
+part: TLV3201
+kind: comparator
+priority: 4
+models:
+- source: ti
+  name: TLV3201
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - Vcc
+  - GND
+  - OUT
+  deps:
+  - VINRANGE_393
+  - 4ORGATE
+  - INPUTRANGE
+  - VCC_Range
+  - Difference
+  - ORGATE
+  - Supply_Enable
+  - Output_Stage_SVOH
+  - INVERTER
+  - Output_Stage_SHIZ
+  - MID_SUPPLY
+  - Output_Stage_SMID
+  - DIGLEVSHIFT
+  - Output_Stage_SVOL
+  - Output_Stage
+  - SUPPLY_BUFFER1
+  - Input_Buffer
+  - Supply_Buffer
+  - Prop_Delay
+  - HPA_COMPHYS
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOMBT6
+    member: tlv3201.lib
+    archive_sha256: 52c9d32a031f5b2cd83da58f396b92ef28cc4594aa81706798f7117a4d2dbb92
+    sha256: 5d65bdba03bae84be5207cb9151597e1815f96174cebcb5915d982596186f3b9
+    lines:
+      4ORGATE: [337, 340]
+      DIGLEVSHIFT: [164, 171]
+      Difference: [238, 242]
+      HPA_COMPHYS: [155, 162]
+      INPUTRANGE: [107, 117]
+      INVERTER: [206, 209]
+      Input_Buffer: [68, 70]
+      MID_SUPPLY: [211, 214]
+      ORGATE: [216, 220]
+      Output_Stage: [88, 105]
+      Output_Stage_SHIZ: [131, 135]
+      Output_Stage_SMID: [125, 129]
+      Output_Stage_SVOH: [143, 147]
+      Output_Stage_SVOL: [137, 141]
+      Prop_Delay: [119, 123]
+      SUPPLY_BUFFER1: [244, 247]
+      Supply_Buffer: [84, 86]
+      Supply_Enable: [72, 82]
+      TLV3201: [48, 66]
+      VCC_Range: [249, 253]
+      VINRANGE_393: [255, 259]
+    fetched: '2026-09-19'

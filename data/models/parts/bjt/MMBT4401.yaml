@@ -1,0 +1,81 @@
+part: MMBT4401
+kind: bjt
+priority: 4
+group: small_signal_npn
+models:
+- source: duncanamps
+  name: Q2N4401
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/bjt/npn.mod
+    sha256: 57dfef87174fc8f0310bc9527e0bf7ef3fa92d13d295ea8a504d3ba67f13ec87
+    lines:
+      Q2N4401: [91, 93]
+    fetched: '2026-09-14'
+    note: 39 subckts, 158 .model
+  note: 'STAND-IN: model of Q2N4401, not of MMBT4401; equivalence declared in catalog/wanted.yaml (see
+    its note)'
+- source: bordodynov
+  name: 2N4401
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/Standard/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 7bc3409f9eac7e6ae2f8a5643ecb2d4b0ac997241fa9a39e6074d3124497e2ce
+    lines:
+      2N4401: [17, 17]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 2N4401, not of MMBT4401; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 2N4401
+  def: model
+  type: NPN
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      2N4401: [277, 277]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 2N4401, not of MMBT4401; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: ltwiki'
+- source: ltwiki
+  name: 2N4401
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/Original_IV/standard.bjt
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 1657a1b27e3f6615d6a0d2fecb75bcfb84da0aaf4e28da0a104adaa6286de5a1
+    lines:
+      2N4401: [72, 73]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 2N4401, not of MMBT4401; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: Q2N4401
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/BJT_NPN/TOSHIBA.LIB
+    sha256: 48d4fd1df68108bb9d61af444d53f63e19fc48d39cebc6bc9ff3a11eb947f336
+    lines:
+      Q2N4401: [2579, 2596]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: 'STAND-IN: model of Q2N4401, not of MMBT4401; equivalence declared in catalog/wanted.yaml (see
+    its note)'

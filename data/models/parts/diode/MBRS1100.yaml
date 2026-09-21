@@ -1,0 +1,62 @@
+part: MBRS1100
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: bordodynov
+  name: MBRS1100
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      MBRS1100: [182, 182]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: MBRS1100
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard3.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 13cb55bb7184e06a29b64a8d1991371f8414622ef1213c5b7bcb01e358ed71ee
+    lines:
+      MBRS1100: [44, 44]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: MBRS1100
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Robertugo/PowerCir/Convert/Flyback/Tero/TeroSpice.cir
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 6059169d09703bfb237a5350ed97be2db6a25a92a026515b37313cb4d542e027
+    lines:
+      MBRS1100: [106, 106]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: MBRS1100
+  def: model
+  type: D
+  deps:
+  - D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Robertugo/PowerCir/Convert/Flyback/Tero/Tero555H3.cir
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 73934004549058646ac6ee0eb484c306b8bcc9118db8b509a2b12ff8eb8d0e9e
+    lines:
+      D: [94, 94]
+      MBRS1100: [111, 111]
+    fetched: '2026-09-14'

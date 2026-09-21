@@ -1,0 +1,56 @@
+part: PESD15VS2U
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: ltwiki
+  name: PESD15VS2UAT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/PESD15VS2UAT.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 69918f0379bf532b641c4e7b940a5cf43b3d19d56091de4824285ec4eb487d42
+    lines:
+      PESD15VS2UAT: [1, 14]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: PESD15VS2UT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/PESD15VS2UT.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 2de0b69cd3496c464b596977f5007c9ff77cffb8b182fdb0e37fab54ca532698
+    lines:
+      PESD15VS2UT: [2, 17]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: PESD15VS2UQ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/PESD15VS2UQ.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 77fa8f064008bca31c8cb040b5e7e268900b559ef9e2df934a092051881898e9
+    lines:
+      PESD15VS2UQ: [2, 17]
+    fetched: '2026-09-14'

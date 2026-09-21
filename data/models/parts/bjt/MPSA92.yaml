@@ -1,0 +1,137 @@
+part: MPSA92
+kind: bjt
+priority: 2
+group: small_signal_pnp
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 8 pass, 0 off, 0 fail of 8 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with ltwiki, ltwiki, kicad-spice-library
+  on score and typical-value error, chosen as the more original source. Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: central-semi
+  name: MPSA92
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/MPSA92.LIB
+    sha256: 41e314699592067c490db5bb2bc3b1fc089e8df13f508ae75edb8091e8c974ef
+    lines:
+      MPSA92: [24, 52]
+    fetched: '2026-09-14'
+    note: 'model(s): MPSA92 (PNP .model)'
+  verification:
+    score: 0.875
+    pass: 7
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: bordodynov
+  name: MPSA92
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      MPSA92: [558, 558]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: MPSA92
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Discretos/Bjt/MPSA14_MPSA92/mpsa14.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: ace2176ccfd4aa6ac0cc2aea199de29123f65d4231a3164f43f1e2cbf4b9b1cd
+    lines:
+      MPSA92: [9, 40]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.0
+    pass: 0
+    marginal: 0
+    fail: 4
+    not_measurable: 4
+    typical_rows: 0
+  note: pins from comment words
+- source: ltwiki
+  name: MPSA92
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/distortion_OUTPUT_vs_bias/standard_BJT modified.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: b11d82ef9412f3285ead0b742f082d8c60ba31108d4eb85c48c7268e54aeb9a4
+    lines:
+      MPSA92: [539, 539]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: ltwiki
+  name: MPSA92
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/adventures_with_analog/APT-1_amplifier/apt-1-bjt.mod
+    sha256: 61d62749810f1ee82ba7294a3d8f3a0bb90d572c708e6aa46254125ea8f45348
+    lines:
+      MPSA92: [5, 5]
+    fetched: '2026-09-14'
+    note: BJT models used in APT-1 power amp sim
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: kicad-spice-library
+  name: MPSA92
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJT.lib
+    sha256: 1f07e6e6b38c9b5d8d19dbccfd3c29741281ead66a7b48cc40eb82e9684580eb
+    lines:
+      MPSA92: [509, 509]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/mpsa92-d.pdf
+  maker: onsemi
+  doc: MPSA92/D Rev. 6 (July 2010)

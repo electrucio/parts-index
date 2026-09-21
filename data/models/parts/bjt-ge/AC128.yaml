@@ -1,0 +1,134 @@
+part: AC128
+kind: bjt-ge
+priority: 1
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (1 against typical values
+  or curve points, the rest against min/max limits; 3 not measurable); tied with kicad-spice-library on
+  score and typical-value error, chosen as the more original source'
+models:
+- source: germaniumbjts
+  name: AC128
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/grwhitehead/germaniumbjts/7838a40f939eaee39b37afef1dac031ef45c276a/germaniumbjts.lib
+    sha256: d246c840f9610bfce04d744505ce414dcae0f52d9fdffe9f1ef2ff07c441e873
+    lines:
+      AC128: [7, 7]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit 7838a40
+  verification:
+    score: 0.4
+    pass: 2
+    marginal: 1
+    fail: 2
+    not_measurable: 4
+    typical_rows: 1
+- source: hagtech
+  name: AC128
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://www.hagtech.com/pdf/ac128model.pdf
+    sha256: 5154be347ad7d1aa24bbfd67e6223bc65f8447639b03731b3e6976a482467ee7
+    lines:
+      AC128: [3, 14]
+    fetched: '2026-09-14'
+    note: .MODEL text copied from the PDF
+  verification:
+    score: 0.4
+    pass: 2
+    marginal: 1
+    fail: 2
+    not_measurable: 4
+    typical_rows: 1
+- source: germanium-apm
+  name: AC128
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/rauschenbach/Germanium_Apm/b83d8aaa9faae6a1c4bfd5b9f07cc08cc239b64e/Germanium.lib
+    sha256: 730a441f388dfd3a78ccf06d17ecd9a8b27b9ef50b530cfce8f6411c8d6250af
+    lines:
+      AC128: [14, 14]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit b83d8aa
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 0
+    fail: 1
+    not_measurable: 3
+    typical_rows: 1
+- source: bordodynov
+  name: AC128
+  def: model
+  type: PNP
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      AC128: [250, 250]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 3
+    typical_rows: 1
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: AC128
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
+    lines:
+      AC128: [225, 225]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 0
+    fail: 1
+    not_measurable: 3
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: AC128
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+    sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+    lines:
+      AC128: [241, 241]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 3
+    typical_rows: 1
+datasheet:
+  url: https://www.worldradiohistory.com/Archive-Catalogs/Suppliers/MNO/Mullard-Technical-Handbook-Book1-Part1-1974-695-pages.pdf
+  maker: mullard
+  doc: Mullard Technical Handbook Book 1 Part 1 (1974), AC128 pages 1-8 (handbook PDF pages 86-93)
+  date: 1974-06

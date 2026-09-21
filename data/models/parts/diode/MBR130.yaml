@@ -1,0 +1,29 @@
+part: MBR130
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: kicad-spice-library
+  name: mbr130prl
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_rect.lib
+    sha256: 4280e2f5339d54da1e9eda2a615c5b783b50e01b2cacde8c6bbc21649adfa347
+    lines:
+      mbr130prl: [14, 18]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: MBR130P
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/DIODE.LIB
+    sha256: c68f4b4a28eb0e866fb8e516b6a6a37a779ac80fed8a2ef16a3afcfb80c522e5
+    lines:
+      MBR130P: [757, 758]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

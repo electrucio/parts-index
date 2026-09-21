@@ -1,0 +1,128 @@
+part: THAT4301
+kind: vca
+priority: 3
+models:
+- source: thatcorp
+  name: THAT4301
+  def: subckt
+  type: SUBCKT
+  pins:
+  - VCA_IN
+  - EC+
+  - EC-
+  - SYM
+  - VCA_OUT
+  - V+
+  - V-
+  - GND
+  - +In1
+  - -In1
+  - OUT1
+  - +In2
+  - -In2
+  - OUT2
+  - OUT3
+  - RMS_IN
+  - IT
+  - CT
+  - RMS_OUT
+  deps:
+  - 4301VCA
+  - 4301RMS
+  - 4301OA2
+  - 4301OA3
+  - 4301OA1
+  verbatim: true
+  get:
+    url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+    archive_sha256: a5699cf253cbe2b063a03b2dd8cc2927fe1ab03903ed2f1bb9ae23a0e867733b
+    archive_inferred: true
+    sha256: 3fc8e958934e874a6dcc1edc2d54b5bd8bb2075cd0903d64dbfd26b4c4fe9b70
+    lines:
+      4301OA1: [108, 142]
+      4301OA2: [158, 192]
+      4301OA3: [209, 243]
+      4301RMS: [260, 299]
+      4301VCA: [53, 92]
+      THAT4301: [33, 39]
+    fetched: '2026-09-14'
+    note: file not listed in the manifest; see SOURCE.md
+  verification:
+    score: null
+    error: 'KeyError: ''vca'''
+- source: thatcorp
+  name: THAT4305
+  def: subckt
+  type: SUBCKT
+  pins:
+  - RMS_IN
+  - CT
+  - RMS_OUT
+  - GND
+  - V-
+  - V+
+  - VCA_IN
+  - VCA_OUT
+  - EC-
+  - EC+
+  deps:
+  - 4305VCA
+  - 4305RMS
+  verbatim: true
+  get:
+    url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+    archive_sha256: a5699cf253cbe2b063a03b2dd8cc2927fe1ab03903ed2f1bb9ae23a0e867733b
+    archive_inferred: true
+    sha256: 91ec782361b9adf34d73fce8e249451c1949d721709ae8f69c09e31a2cb332df
+    lines:
+      4305RMS: [49, 88]
+      4305VCA: [102, 152]
+      THAT4305: [33, 36]
+    fetched: '2026-09-14'
+    note: file not listed in the manifest; see SOURCE.md
+  verification:
+    score: null
+    error: 'KeyError: ''vca'''
+  note: found under the alias THAT4305
+- source: thatcorp
+  name: THAT4315
+  def: subckt
+  type: SUBCKT
+  pins:
+  - RMS_IN
+  - CT
+  - RMS_OUT
+  - VCA_IN
+  - VCA_OUT
+  - EC-
+  - EC+
+  - V+
+  - VREF
+  - GND
+  - FILT
+  deps:
+  - 4315REF
+  - 4315VCA
+  - 4315RMS
+  verbatim: true
+  get:
+    url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+    archive_sha256: a5699cf253cbe2b063a03b2dd8cc2927fe1ab03903ed2f1bb9ae23a0e867733b
+    archive_inferred: true
+    sha256: 27a87a3bd104634c7182211034646ce70497f69a97ba48b81fc18636310bdee6
+    lines:
+      4315REF: [159, 167]
+      4315RMS: [50, 89]
+      4315VCA: [102, 150]
+      THAT4315: [33, 37]
+    fetched: '2026-09-14'
+    note: file not listed in the manifest; see SOURCE.md
+  verification:
+    score: null
+    error: 'KeyError: ''vca'''
+  note: found under the alias THAT4315
+datasheet:
+  url: https://www.thatcorp.com/datashts/THAT_4301_Datasheet.pdf
+  maker: THAT Corporation
+  doc: Document 600069 Rev 10
+  date: 2017

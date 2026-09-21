@@ -1,0 +1,71 @@
+part: OPA314
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA314
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - CLAW_SRC
+  - VOS_DRIFT
+  - SW_OL
+  - ESD_OUT
+  - AOL_1
+  - IQ_SRC
+  - CLAWn
+  - CLAMP_AMP_HI
+  - OL_SENSE
+  - CLAMP_AMP_LO
+  - 08_Op_Amp_Complete_H3
+  - FEMT
+  - CL_SRC
+  - CLAWp
+  - 08_Op_Amp_Complete_H2
+  - 08_Op_Amp_Complete_H1
+  - VCM_CLAMP
+  - ZO_SRC
+  - GR_SRC
+  - VNSE
+  - ESD_IN
+  - SW_OR
+  - AOL_2
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOMAS7
+    member: opa314.lib
+    archive_sha256: f0d1b9937cb05af4714b11cd60d394b636561e514a9eff8fc2257b5216f95df1
+    sha256: ec5654f92752850bfff97cfa9d3abda388db9233d673070a1e1fc26ff7cae6b0
+    lines:
+      08_Op_Amp_Complete_H1: [220, 223]
+      08_Op_Amp_Complete_H2: [215, 218]
+      08_Op_Amp_Complete_H3: [210, 213]
+      AOL_1: [226, 231]
+      AOL_2: [234, 239]
+      CLAMP_AMP_HI: [242, 247]
+      CLAMP_AMP_LO: [250, 255]
+      CLAW_SRC: [278, 283]
+      CLAWn: [258, 265]
+      CLAWp: [268, 275]
+      CL_SRC: [286, 291]
+      ESD_IN: [294, 300]
+      ESD_OUT: [303, 307]
+      FEMT: [310, 339]
+      GR_SRC: [342, 347]
+      IQ_SRC: [350, 353]
+      OL_SENSE: [356, 359]
+      OPA314: [36, 208]
+      SW_OL: [362, 365]
+      SW_OR: [368, 372]
+      VCM_CLAMP: [375, 378]
+      VNSE: [381, 410]
+      VOS_DRIFT: [421, 426]
+      ZO_SRC: [413, 418]
+    fetched: '2026-09-19'
+  note: pins from names

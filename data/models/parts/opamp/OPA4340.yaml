@@ -1,0 +1,24 @@
+part: OPA4340
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA4340
+  def: subckt
+  type: SUBCKT
+  pins:
+  - +
+  - '-'
+  - V+
+  - V-
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM580
+    member: OPA4340_PSPICE_AIO/OPA4340.LIB
+    archive_sha256: 681e605f6bb1de0c75d21534ce7b83521f544d3adb45ab6dd7c1fa98a5d951fe
+    sha256: 79ca8a4a94921c7190b0a5ec29c523e8512f07b507dc4cbc32d9c90666b80e9f
+    lines:
+      OPA4340: [51, 120]
+    fetched: '2026-09-19'
+  note: pins from names

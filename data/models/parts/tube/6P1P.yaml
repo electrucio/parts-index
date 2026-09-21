@@ -1,0 +1,83 @@
+part: 6P1P
+kind: tube
+priority: 3
+group: pentode_beam
+preferred: ltspice-native
+preferred_why: 'best datasheet agreement: 0 pass, 0 off, 0 fail of 0 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 24 not measurable); tied with ltwiki on score and
+  typical-value error, chosen as the more original source'
+models:
+- source: ltspice-native
+  name: '61'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  - Tj
+  - Id
+  deps:
+  - '2'
+  - '1'
+  - '3'
+  - '4'
+  - '7'
+  - '6'
+  - '5'
+  - '13'
+  - '11'
+  - '12'
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: sub/Contrib/Wolfspeed/WS_HalfBridge.lib
+    sha256: e10f8192144c855e81d4fee236de3d332999b240939c927eca20c14deaf0da69
+    lines:
+      '1': [114, 116]
+      '11': [805, 855]
+      '12': [857, 909]
+      '13': [911, 969]
+      '2': [118, 122]
+      '3': [125, 129]
+      '4': [131, 141]
+      '5': [144, 146]
+      '6': [149, 151]
+      '61': [1635, 1685]
+      '7': [152, 155]
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 24
+    typical_rows: 0
+  note: found under the alias 6П1П
+- source: ltwiki
+  name: '61'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - B
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Analisis/MonteCarlo/Monte carlo toolbox_3/vmc.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: f0ee14467ffa5948bd912d29adf4c51edd958dab020fd1685a3eb6bc338a8f18
+    lines:
+      '61': [66, 68]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 24
+    typical_rows: 0
+  note: found under the alias 6П1П
+datasheet:
+  url: https://frank.pocnet.net/sheets/113/6/6P1P.pdf
+  maker: Soviet (bilingual receiving-tube handbook)
+  doc: 6П1П output beam tetrode, handbook pages 58-61

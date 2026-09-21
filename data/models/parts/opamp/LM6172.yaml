@@ -1,0 +1,102 @@
+part: LM6172
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: LM6172/NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNOM234
+    member: lm6172.lib
+    archive_sha256: db597eb6bb9a69dbe77d3637ec4b64cb1e7f216cf3e8e0a3e2be36cfa3815617
+    sha256: 16b5a02e9ea470c9d06c7ced18dafbf2f83968cccf3d9e8bf031bc728dcb9c60
+    lines:
+      LM6172/NS: [30, 198]
+    fetched: '2026-09-19'
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: LM6172_NSC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_NSC.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+    lines:
+      LM6172_NSC: [4977, 5145]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: ltwiki
+  name: LM6172_SN
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/OpAmp_Nazar_Shtybel.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4781654faf3d2ec54bf5acd80471ac9d119fb98d495698f460aa8839ee45e05d
+    lines:
+      LM6172_SN: [2664, 2774]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: LM6172_NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nation.lib
+    sha256: 97af188e570afc5c2b4b8246ade0670422d90c402c01a0f0383df0a6a37af9ac
+    lines:
+      LM6172_NS: [6472, 6640]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words
+- source: kicad-spice-library
+  name: LM6172
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/NAT1.LIB
+    sha256: 36ae6bd1718ddffd5578517f7ba6d9651c613972cbc5138001bf0167b5b9ad29
+    lines:
+      LM6172: [1235, 1377]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words

@@ -1,0 +1,37 @@
+part: ECX10N20
+kind: mosfet
+priority: 2
+group: power_lateral
+preferred: exicon
+preferred_why: 'best datasheet agreement: 8 pass, 3 off, 0 fail of 11 judged rows (9 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: exicon
+  name: ECX10N20
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://us.profusion.uk/media/assets/product/documents/ECX10N20.txt
+    sha256: 90ffd2339f8dc4363c0dcc77846d1e4feea6c314b5e03c6dd890a4b0d185fb7c
+    lines:
+      ECX10N20: [1, 74]
+    fetched: '2026-09-14'
+    note: ECX10N20 lateral MOSFET SPICE model (PEDC Swansea, 1999, Level-1 subckt), from Profusion (Exicon
+      distributor)
+  verification:
+    score: 0.727
+    pass: 8
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 9
+  note: 'same code also in: bordodynov, ltwiki; pins from default order (unverified)'
+datasheet:
+  url: https://www.exicon.info/PDFs/ecx10n20.pdf
+  maker: Exicon
+  doc: ECX10N20-W6, Rev 3.3

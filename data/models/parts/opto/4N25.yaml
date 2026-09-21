@@ -1,0 +1,84 @@
+part: 4N25
+kind: opto
+priority: 3
+models:
+- source: bordodynov
+  name: 4N25
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OptoAcop.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: afc41e67a056aadd6af70da491aedd69fb6e66a9f20ffe644c8b39d92e8ad025
+    lines:
+      4N25: [152, 160]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 4N27
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OptoAcop.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: afc41e67a056aadd6af70da491aedd69fb6e66a9f20ffe644c8b39d92e8ad025
+    lines:
+      4N27: [162, 170]
+    fetched: '2026-09-14'
+  note: 'found under the alias 4N27; same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 4N25
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/4N25.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: c97120393d2aafd4f1b9cf7a18f4c2a7dcc3e05810c8820c6f9247ce9a752341
+    lines:
+      4N25: [3, 11]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 4N27
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/4N27.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: e63ff0dc1e863ed4f963232729efb11d1fe774b04ce786b980e19b0a71ae4e87
+    lines:
+      4N27: [3, 11]
+    fetched: '2026-09-14'
+  note: 'found under the alias 4N27; same code also in: kicad-spice-library, ltwiki'

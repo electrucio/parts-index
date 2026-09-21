@@ -1,0 +1,79 @@
+part: TLV9102
+kind: comparator
+priority: 4
+models:
+- source: ti
+  name: TLV9102
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - VNSE_0
+  - VOS_DRIFT_0
+  - VCCS_EXT_LIM_0
+  - FEMT_0
+  - VOS_SRC_0
+  - VCCS_LIM_3_0
+  - VCCS_LIM_1_0
+  - VCCS_LIM_2_0
+  - VCCS_LIM_4_0
+  - VCCS_LIM_CLAW-_0
+  - CLAMP_AMP_HI_0
+  - CLAMP_AMP_LO_0
+  - OL_SENSE_0
+  - VCCS_LIM_GR_0
+  - VCCS_LIM_ZO_0
+  - VCCS_LIM_CLAW+_0
+  - VCCS_LIMIT_IQ_0
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOMAX1
+    member: tlv9102.lib
+    archive_sha256: 06fd9c37a23a1fb93f17c2740b5d6d9a9a74f7ff53a960873c968dfe05320391
+    sha256: cddae783dd086a11789d9816ea212e936164d030ec275aef67f354c1ba70b3f8
+    lines:
+      CLAMP_AMP_HI_0: [373, 377]
+      CLAMP_AMP_LO_0: [365, 369]
+      FEMT_0: [315, 336]
+      OL_SENSE_0: [426, 428]
+      TLV9102: [33, 237]
+      VCCS_EXT_LIM_0: [432, 435]
+      VCCS_LIMIT_IQ_0: [358, 361]
+      VCCS_LIM_1_0: [349, 354]
+      VCCS_LIM_2_0: [340, 345]
+      VCCS_LIM_3_0: [417, 422]
+      VCCS_LIM_4_0: [390, 395]
+      VCCS_LIM_CLAW+_0: [399, 413]
+      VCCS_LIM_CLAW-_0: [239, 253]
+      VCCS_LIM_GR_0: [381, 386]
+      VCCS_LIM_ZO_0: [306, 311]
+      VNSE_0: [281, 302]
+      VOS_DRIFT_0: [257, 262]
+      VOS_SRC_0: [266, 277]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: ltwiki
+  name: TLV9102
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/tlv9102.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 3de891605289f188b815d8c200e43d4bdff08d4b67a4f200168f18cd9d4aa670
+    lines:
+      TLV9102: [33, 436]
+    fetched: '2026-09-14'
+  note: pins from names

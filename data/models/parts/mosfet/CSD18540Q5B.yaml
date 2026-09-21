@@ -1,0 +1,30 @@
+part: CSD18540Q5B
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: ti
+  name: CSD18540Q5B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  deps:
+  - cgs
+  - cgd
+  - cds
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLPM129
+    member: CSD18540Q5B.lib
+    archive_sha256: a336ce2682ceca5845584dc7c9469e7c640dbed0e68d66c36923e997a2be8b88
+    sha256: 17b40b653a93b82887818b67af4a645d58317b5a8787d52e5a5916a637e36ec8
+    lines:
+      CSD18540Q5B: [319, 382]
+      cds: [247, 318]
+      cgd: [175, 246]
+      cgs: [43, 174]
+    fetched: '2026-09-19'
+  note: pins from default order (unverified)

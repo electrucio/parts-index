@@ -1,0 +1,89 @@
+part: INA129
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: INA129
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '8'
+  - '9'
+  - '10'
+  deps:
+  - A2_129E
+  - A3_129E
+  - A1_129E
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM212
+    member: INA129_TINA_AIO/INA129.LIB
+    archive_sha256: bbb6c3bfd4befa3e78f06ab798f530a7a980e2c5f0d006723ce435416b8cbb83
+    sha256: aa900305e964a956d25c69fd7f3170daa626f5e1e0022cffa6c0bdb011b92b6e
+    lines:
+      A1_129E: [114, 156]
+      A2_129E: [166, 209]
+      A3_129E: [219, 262]
+      INA129: [50, 104]
+    fetched: '2026-09-19'
+- source: kicad-spice-library
+  name: INA129/BB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '8'
+  - '9'
+  - '10'
+  deps:
+  - A2_129
+  - A1_129
+  - A3_129
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/burr-brn.lib
+    sha256: 24467fdf16f7135ce54f90c7424e35ce1e6d2131c277351a4ee7276cdd6e2664
+    lines:
+      A1_129: [6175, 6210]
+      A2_129: [6222, 6257]
+      A3_129: [6269, 6305]
+      INA129/BB: [6109, 6163]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: INA129E/BB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '8'
+  - '9'
+  - '10'
+  deps:
+  - A2_129E
+  - A3_129E
+  - A1_129E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/burr-brn.lib
+    sha256: 24467fdf16f7135ce54f90c7424e35ce1e6d2131c277351a4ee7276cdd6e2664
+    lines:
+      A1_129E: [6415, 6462]
+      A2_129E: [6474, 6521]
+      A3_129E: [6533, 6581]
+      INA129E/BB: [6322, 6403]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

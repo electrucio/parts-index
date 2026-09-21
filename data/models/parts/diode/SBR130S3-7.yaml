@@ -1,0 +1,18 @@
+part: SBR130S3-7
+kind: diode
+priority: 4
+group: rectifier
+models:
+- source: diodes-inc
+  name: SBR130S3
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/290/SBR130S3.spice.txt
+    sha256: 2251e07219134ac033ec4ec408b41574dbc1a3aa5bb761ff28154f9f7c923798
+    lines:
+      SBR130S3: [18, 19]
+    fetched: '2026-09-19'
+    note: 'model(s): SBR130S3'
+  note: found under the alias SBR130S3

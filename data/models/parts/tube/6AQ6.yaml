@@ -1,0 +1,21 @@
+part: 6AQ6
+kind: tube
+priority: 3
+group: audio_docs
+models:
+- source: kicad-spice-library
+  name: T6AQ6
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/VACUUM.LIB
+    sha256: 0472033f0b2f47bbafdd587955b3163fe983f3989575bcbeaf1794eaf2d5af9f
+    lines:
+      T6AQ6: [341, 354]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

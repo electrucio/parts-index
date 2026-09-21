@@ -1,0 +1,48 @@
+part: AD8221
+kind: opamp
+priority: 3
+models:
+- source: ltwiki
+  name: AD8221
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN-
+  - RG-
+  - RG+
+  - IN+
+  - -Vs
+  - REF
+  - VOUT
+  - +Vs
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/ADI1.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 56007b832dfb995c0072377bc98125b86a2ee7e9dd4d109d29d4c295aa6a265d
+    lines:
+      AD8221: [3832, 4001]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: AD8221
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '99'
+  - '50'
+  - '46'
+  - '20'
+  - '7'
+  - '8'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/AD8221_test/ad8221.cir
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: f258d25e6a9a1ccf4559f968ddbbdb62ac6aaf144a5d4d73a6a9830472842ff7
+    lines:
+      AD8221: [20, 139]
+    fetched: '2026-09-14'

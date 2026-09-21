@@ -1,0 +1,66 @@
+part: BSS223
+kind: mosfet
+priority: 4
+group: small_signal
+models:
+- source: infineon
+  name: BSS223PW_L1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  deps:
+  - P3_20var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-simulationmodel-optimos-powermosfet-pspice-20v-p-channel-simulationmodels-en.zip
+    member: OptiMOS_p.lib
+    archive_sha256: 1ff1c4f2a293819908f4faccf03fd2277bd0eae85d15ba4d87cd9312a143c914
+    sha256: f64b1148850ed0760260c19f27a3e7507fe6cf410d12d870d407c8063a732f0e
+    lines:
+      BSS223PW_L1: [511, 527]
+      P3_20var: [58, 166]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: infineon
+  name: BSS223PW
+  def: subckt
+  type: SUBCKT
+  pins:
+  - drain
+  - gate
+  - source
+  - Tj
+  - Tsolder_joint
+  deps:
+  - P3_20var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-simulationmodel-optimos-powermosfet-pspice-20v-p-channel-simulationmodels-en.zip
+    member: OptiMOS_p.lib
+    archive_sha256: 1ff1c4f2a293819908f4faccf03fd2277bd0eae85d15ba4d87cd9312a143c914
+    sha256: f64b1148850ed0760260c19f27a3e7507fe6cf410d12d870d407c8063a732f0e
+    lines:
+      BSS223PW: [1203, 1228]
+      P3_20var: [58, 166]
+    fetched: '2026-09-19'
+- source: infineon
+  name: BSS223PW_L0
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-simulationmodel-optimos-powermosfet-pspice-20v-p-channel-simulationmodels-en.zip
+    member: OptiMOS_p.lib
+    archive_sha256: 1ff1c4f2a293819908f4faccf03fd2277bd0eae85d15ba4d87cd9312a143c914
+    sha256: f64b1148850ed0760260c19f27a3e7507fe6cf410d12d870d407c8063a732f0e
+    lines:
+      BSS223PW_L0: [1859, 1893]
+    fetched: '2026-09-19'
+  note: pins from names

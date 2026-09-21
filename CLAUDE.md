@@ -12,14 +12,15 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
   (the one polite client), `ledger` (what has been processed), `pagesio` (OCR page records), `adfilter`,
   and `parts/` (the part-number extractor, single source of truth). **(todo)** `links`, `table`, `llm`.
 - `src/parts_index/schematics/` pillar 1. **(todo)** crawl → download → ocr → index → linkcheck → export.
-- `src/parts_index/models/` pillar 2. **(todo)** fetch, index, curate, promote, and `datasheets/`.
+- `src/parts_index/models/` pillar 2: fetch, ingest, index, recover and promote (the public recipe
+  per part). **(todo)** curate and `datasheets/`.
 - `src/parts_index/web/` builds the site's data from `data/` alone. **(todo)** `src/parts_index/bench/`
   pillar 3: simulate models (ngspice is the reference engine) and score them against datasheet rows.
 - `components/`, `circuits/` pillar 4: original LTspice components with `.asy` symbols, and reference
   circuits. The `.net` files reference model files that only exist in the private data root, so they do
   not run from a clean clone yet.
-- `data/` the public dataset: registries, ledgers, the part dictionary. **(todo)** the exported index,
-  model recipes, licence notes, verification results.
+- `data/` the public dataset: registries, ledgers, the part dictionary, and the model recipes with
+  their verification results. **(todo)** the exported schematic index and the licence notes.
 - `web/` the site (Vite + TypeScript + Preact), `docs/` the roadmap. **(todo)** the maintainer runbook.
 - `src/parts_index/migrate/` one-off steps carrying the old pipeline's state across; deleted when the
   last stage is ported.

@@ -1,0 +1,85 @@
+part: OPA4132
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: OPA4132
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_BB.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: fa6d5cd8b35ab749da56df425319806067559f6689dd52269751fd9609223212
+    lines:
+      OPA4132: [1690, 1756]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: ltwiki
+  name: OPA4132
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - OPA445
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/OpAmp_BB.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 10387ae905f6d32e3ce489dde7e491e00e03eaff919bcdf4807d63a202cfd516
+    lines:
+      OPA4132: [2206, 2272]
+      OPA445: [2312, 2376]
+    fetched: '2026-09-14'
+  note: pins from comment words
+- source: kicad-spice-library
+  name: OPA4132_BB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/burrbn.lib
+    sha256: 0cf1e02a8be40a2dd64ea79ba281cf359d8b5fab59844264bee4b3ac20e97ed8
+    lines:
+      OPA4132_BB: [586, 619]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words
+- source: kicad-spice-library
+  name: OPA4132B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/BB3.LIB
+    sha256: b5ff75b0395c283e7f86501d0454caf3012aa58ad37664d786a4a6658483c865
+    lines:
+      OPA4132B: [2211, 2244]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words

@@ -1,0 +1,122 @@
+part: LTC1050
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: LTC1050
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      LTC1050: [14239, 14293]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: bordodynov
+  name: LTC1050A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      LTC1050A: [14310, 14364]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: ltwiki
+  name: LTC1050
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Symbol Types For Subcircuits/ltcx_test1.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 5ca7b948e6a0217e51b78d49213e5d5720bf26d849d52a60584fedd5e133c1ce
+    lines:
+      LTC1050: [1863, 1917]
+    fetched: '2026-09-14'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: ltwiki
+  name: LTC1050A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Symbol Types For Subcircuits/ltcx_test1.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 5ca7b948e6a0217e51b78d49213e5d5720bf26d849d52a60584fedd5e133c1ce
+    lines:
+      LTC1050A: [1921, 1975]
+    fetched: '2026-09-14'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: kicad-spice-library
+  name: LTC1050A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/OPLTC.LIB
+    sha256: 0bb0c1e2ab47a36f3cc696d94f2944cb645528b29ffce4720f52863baacfc0d1
+    lines:
+      LTC1050A: [2990, 3042]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: kicad-spice-library
+  name: LTC1050L
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/OPLTC.LIB
+    sha256: 0bb0c1e2ab47a36f3cc696d94f2944cb645528b29ffce4720f52863baacfc0d1
+    lines:
+      LTC1050L: [2924, 2976]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)

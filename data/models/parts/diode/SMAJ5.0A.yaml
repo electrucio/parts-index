@@ -1,0 +1,43 @@
+part: SMAJ5.0A
+kind: diode
+priority: 3
+group: tvs
+models:
+- source: vishay
+  name: smaj5_0a
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/88148/smaj5a.txt
+    sha256: 4b0b7c0ca4282048c1065ced57f42a9988b2f1a943cac1be1c7203eeaa3dc673
+    lines:
+      smaj5_0a: [1, 35]
+    fetched: '2026-09-19'
+    note: 'TransZorb®TVS, PSpice Models (*.txt): smaj5_0a, MDD1, MDR, MDD3, MDRBV'
+  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'
+- source: bordodynov
+  name: SMAJ5_0A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - ANODE
+  - CATHODE
+  deps:
+  - TRANSIL
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/transil_ST.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+    lines:
+      SMAJ5_0A: [2264, 2269]
+      TRANSIL: [32, 80]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'

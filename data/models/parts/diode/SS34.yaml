@@ -1,0 +1,61 @@
+part: SS34
+kind: diode
+priority: 3
+group: schottky
+models:
+- source: onsemi
+  name: SS34
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/ss34.lib
+    sha256: 67e7ae2b231baa4e7e2bb1d0d6d9bb90451c8132f379b9f956f8a3011f754434
+    lines:
+      SS34: [6, 16]
+    fetched: '2026-09-19'
+    note: 'SS34: SS34'
+- source: bordodynov
+  name: SS34
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      SS34: [723, 723]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: SS34
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.dio
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+    lines:
+      SS34: [645, 645]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: ss34
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/General%20Semiconductor/General%20Semiconductor.lb5
+    sha256: 29db97b9e48c44570530220654814e32bc2a2cb0d10d0a4a018887fb43ef592d
+    lines:
+      ss34: [1308, 1317]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

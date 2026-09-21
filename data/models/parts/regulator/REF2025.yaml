@@ -1,0 +1,54 @@
+part: REF2025
+kind: regulator
+priority: 4
+models:
+- source: ti
+  name: REF2025
+  def: subckt
+  type: SUBCKT
+  pins:
+  - VBIAS
+  - GND
+  - EN
+  - VIN
+  - VREF
+  deps:
+  - RES
+  - GAINSET_1
+  - D1
+  - D_DNOISE
+  - Q_NMOS_OUT_L1
+  - SW1
+  - D_LIM1
+  - Q_NMOS_OUT_L1_1
+  - Q_PMOS_OUT_L1
+  - Bias
+  - Output
+  - GAINSET
+  - D2
+  - D_D2
+  - REF20XX
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM894
+    member: REF2025.txt
+    archive_sha256: dc2f7cd87eba1a256cfe8627c4f42c12686c1593b5f564d5968cf8d4c591de3c
+    sha256: b97c08b6c17cc7c3321fbbfe0c13dbf252a4b72839d6ffd2be7a7197fe131c08
+    lines:
+      Bias: [129, 159]
+      D1: [323, 323]
+      D2: [329, 329]
+      D_D2: [161, 163]
+      D_DNOISE: [208, 211]
+      D_LIM1: [312, 312]
+      GAINSET: [177, 190]
+      GAINSET_1: [193, 206]
+      Output: [71, 126]
+      Q_NMOS_OUT_L1: [292, 293]
+      Q_NMOS_OUT_L1_1: [229, 233]
+      Q_PMOS_OUT_L1: [301, 302]
+      REF2025: [30, 32]
+      REF20XX: [34, 69]
+      RES: [165, 174]
+      SW1: [282, 282]
+    fetched: '2026-09-19'

@@ -1,0 +1,122 @@
+part: MC4558
+kind: opamp
+priority: 3
+models:
+- source: stmicro
+  name: MC4558
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '3'
+  - '2'
+  - '4'
+  - '5'
+  verbatim: false
+  changes:
+  - st_analog_token
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/STMicroelectronics/Standard%20Linear%20ICs/Spice/mc4558.txt
+    sha256: e97a2ca7f4cfdf662f13b005ee1793927014e850f15d57f5af2c8cb008aa065c
+    lines:
+      MC4558: [27, 84]
+    fetched: '2026-09-14'
+    note: ST "Standard Linear ICs Macromodels, 1993" (MC4558), mirrored on ltwiki.org
+- source: bordodynov
+  name: MC4558
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      MC4558: [896, 930]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: MC4558
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INN
+  - INP
+  - OUT
+  - VP
+  - VN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_ST.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d90f4c4fd1a82f698bcdd91bde8be169c258e283648fef8a669e0d1ced09e50a
+    lines:
+      MC4558: [537, 594]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+- source: bordodynov
+  name: MC4558
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Opamp5.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+    lines:
+      MC4558: [5659, 5716]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+- source: kicad-spice-library
+  name: MC4558
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/MOTOR.LIB
+    sha256: 44f08a5cfceeb4c72d4f6e77e1eac1d108b46f7cb81dee8f3296a908b1eb53e6
+    lines:
+      MC4558: [974, 1009]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from numbered connections table
+- source: kicad-spice-library
+  name: MC4558S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/SGS2.LIB
+    sha256: de2cf3e62490babc0d41be58bf08dd647938f83af9f43fdc287064f7024c1cfa
+    lines:
+      MC4558S: [152, 208]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

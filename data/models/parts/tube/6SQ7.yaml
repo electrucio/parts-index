@@ -1,0 +1,140 @@
+part: 6SQ7
+kind: tube
+priority: 2
+group: audio_docs
+models:
+- source: reefman
+  name: 6SQ7_D1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - C
+  deps:
+  - DiodeK
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      6SQ7_D1: [1846, 1851]
+      DiodeK: [2360, 2363]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: reefman
+  name: 6SQ7_D2
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - C
+  deps:
+  - DiodeK
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      6SQ7_D2: [1853, 1858]
+      DiodeK: [2360, 2363]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: reefman
+  name: 6SQ7_C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - TriodeK
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      6SQ7_C: [1860, 1865]
+      TriodeK: [2345, 2357]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: ayumi
+  name: 6SQ7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6SQ7.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 47105f0d38831a099d212dd8387857092b821ee095347285e28598f5634ed7eb
+    lines:
+      6SQ7: [9, 22]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: ayumi
+  name: 6SQ7D
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6SQ7D.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: ac53fc7ff19bd0c5a3ec5422a31200cfca7ae119c15f2d483bb6b5e221fa4ba0
+    lines:
+      6SQ7D: [5, 7]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: ltwiki
+  name: 6SQ7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Triode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+    lines:
+      6SQ7: [2715, 2728]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: ltwiki
+  name: 6SQ7D
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Diode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 58fd9e1eba78d4f20d75d4d1a7d289ff8f337f5e17184bcfcf27ad75aade4a1f
+    lines:
+      6SQ7D: [124, 126]
+    fetched: '2026-09-14'
+  note: pins from names

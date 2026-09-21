@@ -1,0 +1,134 @@
+part: AD629
+kind: opamp
+priority: 3
+models:
+- source: ltwiki
+  name: ad629
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '20'
+  - '10'
+  - '99'
+  - '98'
+  - '70'
+  - '1'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/AD629_test/AD629A-typ.cir
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 92a2aff384fae8d50ae9526206c8fab04622939ed60c4b47ee76f8f7c768e68e
+    lines:
+      ad629: [36, 120]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: ad629
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '20'
+  - '10'
+  - '99'
+  - '98'
+  - '70'
+  - '1'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/AD629_test/AD629B-typ.cir
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: bdc1908158bc3fe3a2490ca44a61137c5ef8ea96543c14f2c80c6e2ade5f071f
+    lines:
+      ad629: [36, 114]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: ad629
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '20'
+  - '10'
+  - '99'
+  - '98'
+  - '70'
+  - '1'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/AD629_test/AD629B-min.cir
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 048c9e3cb6dc3d7fa9a8e5c1e3841b0ca08325dd315a70c05e1bbe1f6513466d
+    lines:
+      ad629: [36, 110]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: ad629
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '20'
+  - '10'
+  - '99'
+  - '98'
+  - '70'
+  - '1'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/AD629_test/AD629A-min.cir
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: c1a57c0b84403ce34cf2125d934b2a44db0717cd678ae40a8069f2f67e5289e2
+    lines:
+      ad629: [35, 114]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: AD629A_AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '20'
+  - '10'
+  - '99'
+  - '98'
+  - '70'
+  - '1'
+  - '5'
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+    sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+    lines:
+      AD629A_AD: [70311, 70379]
+      dx: [72212, 72212]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: AD629B_AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '20'
+  - '10'
+  - '99'
+  - '98'
+  - '70'
+  - '1'
+  - '5'
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+    sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+    lines:
+      AD629B_AD: [70416, 70481]
+      dx: [72212, 72212]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

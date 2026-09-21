@@ -1,0 +1,40 @@
+part: TIP105
+kind: bjt
+priority: 3
+group: audio_docs
+models:
+- source: bordodynov
+  name: TIP105
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/PNPdarlington.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 9fd13c60ed7d52561e062cddcedb28989feb03631abf73d57c95c07beae6a586
+    lines:
+      TIP105: [2, 40]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: kicad-spice-library
+  name: TIP105
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTDAR.LIB
+    sha256: 9ce6fa0baa6aaf6fdd5cce713f1d1ad2dabcd6946b97027854fc10dccb38dfb1
+    lines:
+      TIP105: [860, 872]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

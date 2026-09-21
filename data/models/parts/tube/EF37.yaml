@@ -1,0 +1,213 @@
+part: EF37
+kind: tube
+priority: 2
+group: audio_docs
+models:
+- source: reefman
+  name: EF37
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PenthodeD
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      EF37: [556, 563]
+      PenthodeD: [2326, 2342]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: suusi-tubes
+  name: EF37A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  - EF86
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      EF37A: [1689, 1693]
+      EF86: [1808, 1812]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: suusi-tubes
+  name: EF37
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  - EF86
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      EF37: [1682, 1686]
+      EF86: [1808, 1812]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: suusi-tubes
+  name: EF37A_G3
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - G1
+  - G2
+  - G3
+  - A
+  deps:
+  - PENTODE
+  - EF86_G3
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      EF37A_G3: [1223, 1227]
+      EF86_G3: [1244, 1248]
+      PENTODE: [3038, 3070]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: bordodynov
+  name: EF37A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - S
+  - G
+  - K
+  deps:
+  - Tetrode
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/new_tetrodes.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 7d30fcbe19ab6ecdcce055525f4bb4c1d60f885a3f876f1549e245ed6f47b6e6
+    lines:
+      EF37A: [332, 335]
+      Tetrode: [47, 70]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from names'
+- source: bordodynov
+  name: EF37A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - U
+  - S
+  - G
+  - K
+  deps:
+  - Pentode
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/pentodes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d6266b406c88cab6fe4b2a526c77d345fa252c884b28b29826199c9b33cc3c87
+    lines:
+      EF37A: [224, 227]
+      Pentode: [29, 70]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: EF37A-4
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - S
+  - G
+  - K
+  deps:
+  - Tetrode4
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/new_tetrodes.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 7d30fcbe19ab6ecdcce055525f4bb4c1d60f885a3f876f1549e245ed6f47b6e6
+    lines:
+      EF37A-4: [337, 340]
+      Tetrode4: [113, 144]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from names'
+- source: bordodynov
+  name: EF37A-4
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - U
+  - S
+  - G
+  - K
+  deps:
+  - Pentode4
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/pentodes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d6266b406c88cab6fe4b2a526c77d345fa252c884b28b29826199c9b33cc3c87
+    lines:
+      EF37A-4: [229, 232]
+      Pentode4: [75, 107]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: EF37A_at
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - U
+  - S
+  - G
+  - K
+  deps:
+  - PentodeT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/pentodes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d6266b406c88cab6fe4b2a526c77d345fa252c884b28b29826199c9b33cc3c87
+    lines:
+      EF37A_at: [300, 302]
+      PentodeT: [263, 287]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'

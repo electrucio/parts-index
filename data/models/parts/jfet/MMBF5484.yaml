@@ -1,0 +1,17 @@
+part: MMBF5484
+kind: jfet
+priority: 3
+group: n_channel
+models:
+- source: kicad-spice-library
+  name: mmbf5484lt1
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_small.lib
+    sha256: 03de7eeee5291d83d8017fe3dafdab3fd5afa7d3bb2da1da44bf953eb4973e5a
+    lines:
+      mmbf5484lt1: [190, 193]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

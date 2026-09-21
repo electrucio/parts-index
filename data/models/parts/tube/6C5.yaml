@@ -1,0 +1,60 @@
+part: 6C5
+kind: tube
+priority: 2
+group: audio_docs
+models:
+- source: ayumi
+  name: 6C5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6C5.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 48998f3c316781222ae8746607a34cf7dd94838150c7624287b73b552599d1d3
+    lines:
+      6C5: [9, 22]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: bordodynov
+  name: 6C5S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/Tube_IM.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8eed72dbd55b52f5eb6004bcaacd3d88c79e3e3df9ef28462570c887a70e0d00
+    lines:
+      6C5S: [1631, 1635]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from names'
+- source: ltwiki
+  name: 6C5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Triode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+    lines:
+      6C5: [1527, 1540]
+    fetched: '2026-09-14'
+  note: pins from names

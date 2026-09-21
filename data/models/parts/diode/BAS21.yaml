@@ -1,0 +1,89 @@
+part: BAS21
+kind: diode
+priority: 4
+group: silicon_signal
+models:
+- source: onsemi
+  name: BAS21
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bas21.lib
+    sha256: fefc7e5ea5d16e45df29a1d6d4dd773fd2e9d9046449b7616a76e5dbe13e799d
+    lines:
+      BAS21: [6, 16]
+    fetched: '2026-09-19'
+    note: 'BAS21 spice model: BAS21'
+- source: nexperia
+  name: BAS21
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BAS21.txt
+    sha256: 7206d141a23ff31941102b349ff76f5a024dc344a62626f10781d139ee2b964d
+    lines:
+      BAS21: [33, 57]
+    fetched: '2026-09-14'
+    note: 'model(s): BAS21 (.subckt 1 2), DIODE1 (D .model), DIODE2 (D .model)'
+  note: pins from default order (unverified)
+- source: bordodynov
+  name: BAS21HM
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BAS21HM: [1447, 1447]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BAS21VM
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BAS21VM: [1744, 1744]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: bas21lt1
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      bas21lt1: [1647, 1647]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BAS21
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BAS21: [509, 509]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'

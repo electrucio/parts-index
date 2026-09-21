@@ -1,0 +1,56 @@
+part: IPA045N10N3G
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: infineon
+  name: IPA045N10N3
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  - TJ
+  - TCASE
+  deps:
+  - S3_100_s_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-power-mosfet-spice-100-v-n-channel-simulationmodels-en.zip
+    member: OptiMOS3/OptiMOS3_100V_LTSpice.lib
+    archive_sha256: 81cad4c128e2995cd5da5dd398404bf9f4e29351c3fded5313d540d32efaad84
+    sha256: f5ab52b4a16f184c3d58bd5ababc82062a2ebf9cab6bf4afef85f6bb0b33065b
+    lines:
+      IPA045N10N3: [678, 715]
+      S3_100_s_var: [75, 159]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: bordodynov
+  name: IPA045N10N3
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IPA045N10N3: [425, 425]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: IPA045N10N3
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.mos
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 0f6a0a30f327903e5b61c3764e08354839fed85c6ce2d4a8b3d708d6c2ec9533
+    lines:
+      IPA045N10N3: [426, 426]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'

@@ -1,0 +1,60 @@
+part: MMBT3904
+kind: bjt
+priority: 3
+group: small_signal_npn
+models:
+- source: nexperia
+  name: MMBT3904
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B
+  - E
+  - C
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/MMBT3904.txt
+    sha256: 833fabe73a4f9012574008bcf40cec269bd9bbfdd78211a655e38cce9ed1e310
+    lines:
+      MMBT3904: [28, 87]
+    fetched: '2026-09-19'
+    note: 'MMBT3904: MMBT3904, MAIN, DIODE'
+  note: pins from comment words
+- source: bordodynov
+  name: MMBT3904
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      MMBT3904: [1011, 1011]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: MMBT3904
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
+    sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
+    lines:
+      MMBT3904: [7017, 7055]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: mmbt3904lt1
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_small.lib
+    sha256: 03de7eeee5291d83d8017fe3dafdab3fd5afa7d3bb2da1da44bf953eb4973e5a
+    lines:
+      mmbt3904lt1: [287, 297]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

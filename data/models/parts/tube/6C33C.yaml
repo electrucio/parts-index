@@ -1,0 +1,291 @@
+part: 6C33C
+kind: tube
+priority: 3
+group: triode
+preferred: suusi-tubes
+preferred_why: 'best datasheet agreement: 23 pass, 1 off, 0 fail of 24 judged rows (24 against typical
+  values or curve points, the rest against min/max limits; 3 not measurable); tied with suusi-tubes, bordodynov
+  on score and typical-value error, chosen as the more original source'
+models:
+- source: ayumi
+  name: 6C33CB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6C33CB.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: e790a1b606423abeb1fae278c8c5303be6ec54995c1a98502db4d20469de1194
+    lines:
+      6C33CB: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.917
+    pass: 22
+    marginal: 2
+    fail: 0
+    not_measurable: 3
+    typical_rows: 24
+  note: pins from names
+- source: koren
+  name: 6C33C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  verbatim: true
+  get:
+    url: https://www.normankoren.com/Audio/Tubemods.zip
+    member: Tube.lib
+    archive_sha256: 0a640ed245918dc5a349abf370f5e955ccdb6d85986fbf36b10bc720d55f8982
+    sha256: 581821af37b2669ea340b93116de46c9c4edf4c713990eea270b197c62885844
+    lines:
+      6C33C: [159, 173]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.917
+    pass: 22
+    marginal: 2
+    fail: 0
+    not_measurable: 3
+    typical_rows: 24
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6C33C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6C33C: [647, 651]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.958
+    pass: 23
+    marginal: 1
+    fail: 0
+    not_measurable: 3
+    typical_rows: 24
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6C33C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6C33C: [854, 858]
+      TRIODE: [1980, 1991]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.958
+    pass: 23
+    marginal: 1
+    fail: 0
+    not_measurable: 3
+    typical_rows: 24
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6C33C_OLD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - TRIODE
+  - 6C33C
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6C33C: [854, 858]
+      6C33C_OLD: [848, 851]
+      TRIODE: [1980, 1991]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.917
+    pass: 22
+    marginal: 2
+    fail: 0
+    not_measurable: 3
+    typical_rows: 24
+  note: pins from inline comment
+- source: bordodynov
+  name: 6C33C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - DX
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/nk_triode.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 363865e784b6e6be0e0b1416cf67965cdfdc62d86f58137402e912b0066d85f0
+    lines:
+      6C33C: [87, 91]
+      DX: [205, 205]
+      TRIODE: [192, 202]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.958
+    pass: 23
+    marginal: 1
+    fail: 0
+    not_measurable: 3
+    typical_rows: 24
+  note: 'same code also in: kicad-spice-library, ltwiki, robrobinette; pins from inline comment'
+- source: bordodynov
+  name: 6c33c-b
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      6c33c-b: [969, 980]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.125
+    pass: 3
+    marginal: 21
+    fail: 0
+    not_measurable: 3
+    typical_rows: 24
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: bordodynov
+  name: 6C33C-B_RY
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - Igrid
+  - TRIO3
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      6C33C-B_RY: [982, 991]
+      Igrid: [2974, 2978]
+      TRIO3: [2935, 2937]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 27
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 6C33C_OLD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - DX
+  - TRIODE
+  - 6C33C
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Tubes_Koren.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 510f4c10247ba46358ff5a6b3f15189bec5cf207507ccc70922184385a66c360
+    lines:
+      6C33C: [537, 541]
+      6C33C_OLD: [531, 534]
+      DX: [1206, 1206]
+      TRIODE: [1131, 1141]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.917
+    pass: 22
+    marginal: 2
+    fail: 0
+    not_measurable: 3
+    typical_rows: 24
+  note: 'same code also in: kicad-spice-library, ltwiki, robrobinette; pins from inline comment'
+- source: bordodynov
+  name: 6C33C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/triodes.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1e31c73aba86877020a0740d279066992ad7c2cd57aed56223b59706e68a7f44
+    lines:
+      6C33C: [248, 264]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 12
+    marginal: 12
+    fail: 0
+    not_measurable: 3
+    typical_rows: 24
+  note: 'same code also in: gist-chanmix51, ltwiki; pins from names'
+datasheet:
+  url: https://frank.pocnet.net/sheets/113/6/6S33S.pdf
+  maker: Soviet (bilingual receiving-tube handbook)
+  doc: 6С33С triode, handbook pages 132-134

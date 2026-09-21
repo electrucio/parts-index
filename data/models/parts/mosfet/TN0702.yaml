@@ -1,0 +1,50 @@
+part: TN0702
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: bordodynov
+  name: TN0702
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      TN0702: [1357, 1357]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: TN0702
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Discretos/Mos&Fet/lnd250/supertex.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: bee2ceb743df92ef4c2c95e8784a0e1bfac5674feaab21e8c42723f3c9104084
+    lines:
+      TN0702: [196, 201]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: TN0702
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWMOS4.LIB
+    sha256: d745471fb011e1b4d9def5e1fd399eecacae3852d2379f62a3f825ccd6b589b7
+    lines:
+      TN0702: [805, 827]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

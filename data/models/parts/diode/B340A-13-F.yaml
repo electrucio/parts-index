@@ -1,0 +1,93 @@
+part: B340A-13-F
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: onsemi
+  name: SS34
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/ss34.lib
+    sha256: 67e7ae2b231baa4e7e2bb1d0d6d9bb90451c8132f379b9f956f8a3011f754434
+    lines:
+      SS34: [6, 16]
+    fetched: '2026-09-19'
+    note: 'SS34: SS34'
+  note: 'STAND-IN: model of SS34, not of B340A-13-F; equivalence declared in catalog/wanted.yaml (see
+    its note)'
+- source: central-semi
+  name: 1N5822
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/1N5822.LIB
+    sha256: c6151bb89b0f32c76684028993af85a3e5774e33b4f7cb2850d13a805d553b59
+    lines:
+      1N5822: [25, 37]
+    fetched: '2026-09-14'
+    note: 'model(s): 1N5822 (D .model)'
+  note: 'STAND-IN: model of 1N5822, not of B340A-13-F; equivalence declared in catalog/wanted.yaml (see
+    its note)'
+- source: bordodynov
+  name: MBRS340
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      MBRS340: [185, 185]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of MBRS340, not of B340A-13-F; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 1N5822
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N5822: [811, 811]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 1N5822, not of B340A-13-F; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: SS34
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      SS34: [723, 723]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of SS34, not of B340A-13-F; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: 1N5822
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.dio
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+    lines:
+      1N5822: [734, 734]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 1N5822, not of B340A-13-F; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library'

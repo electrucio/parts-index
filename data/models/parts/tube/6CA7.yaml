@@ -1,0 +1,312 @@
+part: 6CA7
+kind: tube
+priority: 2
+group: pentode_beam
+preferred: suusi-tubes
+preferred_why: 'best datasheet agreement: 16 pass, 3 off, 0 fail of 19 judged rows (19 against typical
+  values or curve points, the rest against min/max limits; 4 not measurable)'
+models:
+- source: duncanamps
+  name: 6CA7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - S
+  - G
+  - K
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/valves/6ca7.inc
+    sha256: 9914abf41dba1c05997e870bfb46b6f5a6e13985885f639f72b81278203bbd8b
+    lines:
+      6CA7: [37, 65]
+    fetched: '2026-09-14'
+    note: subckt 6CA7 (A S G K)
+  verification:
+    score: 0.789
+    pass: 15
+    marginal: 4
+    fail: 0
+    not_measurable: 4
+    typical_rows: 19
+  note: 'same code also in: ltwiki; pins from names'
+- source: duncanamps
+  name: 6CA7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - S
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: https://www.duncanamps.com/spice/valves/6ca7s.inc
+    sha256: 02768bad91f6497d718e33c09493b8d471c6c3aafee92fb226b5c3376c068b01
+    lines:
+      6CA7: [31, 59]
+    fetched: '2026-09-14'
+    note: subckt 6CA7 (A S G K)
+  verification:
+    score: 0.789
+    pass: 15
+    marginal: 4
+    fail: 0
+    not_measurable: 4
+    typical_rows: 19
+  note: pins from names
+- source: suusi-tubes
+  name: 6CA7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  - EL34
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6CA7: [1324, 1327]
+      EL34: [1955, 1959]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.842
+    pass: 16
+    marginal: 3
+    fail: 0
+    not_measurable: 4
+    typical_rows: 19
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6CA7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  - EL34
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6CA7: [767, 770]
+      EL34: [1430, 1434]
+      PENTODE1: [2010, 2023]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.789
+    pass: 15
+    marginal: 4
+    fail: 0
+    not_measurable: 4
+    typical_rows: 19
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6CA7_OLD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6CA7_OLD: [761, 764]
+      PENTODE: [1994, 2007]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.632
+    pass: 12
+    marginal: 7
+    fail: 0
+    not_measurable: 4
+    typical_rows: 19
+  note: pins from inline comment
+- source: bordodynov
+  name: 6CA7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - DX
+  - PENTODE1
+  - EL34
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/nk_pentode.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: c559485a397b0b4be28e593e9cd6dd23228a07fbce5ca4e240d2421fb98a3f40
+    lines:
+      6CA7: [183, 186]
+      DX: [303, 303]
+      EL34: [189, 193]
+      PENTODE1: [272, 284]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.789
+    pass: 15
+    marginal: 4
+    fail: 0
+    not_measurable: 4
+    typical_rows: 19
+  note: 'same code also in: kicad-spice-library, ltwiki, robrobinette; pins from inline comment'
+- source: bordodynov
+  name: 6CA7TR_RY
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - Igrid
+  - TRIO1
+  - EL34TR_RY
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      6CA7TR_RY: [635, 638]
+      EL34TR_RY: [624, 633]
+      Igrid: [2974, 2978]
+      TRIO1: [2927, 2929]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 23
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 6CA7D
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  deps:
+  - EL34D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      6CA7D: [2028, 2030]
+      EL34D: [1999, 2027]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 23
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 6CA7RY
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  deps:
+  - Igrid
+  - PENTH1
+  - EL34RY
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      6CA7RY: [2044, 2047]
+      EL34RY: [2032, 2042]
+      Igrid: [2974, 2978]
+      PENTH1: [2964, 2972]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 23
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 6CA7_OLD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - DX
+  - PENTODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Tubes_Koren.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 510f4c10247ba46358ff5a6b3f15189bec5cf207507ccc70922184385a66c360
+    lines:
+      6CA7_OLD: [485, 488]
+      DX: [1206, 1206]
+      PENTODE: [1144, 1156]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.632
+    pass: 12
+    marginal: 7
+    fail: 0
+    not_measurable: 4
+    typical_rows: 19
+  note: 'same code also in: kicad-spice-library, ltwiki, robrobinette; pins from inline comment'
+datasheet:
+  url: https://frank.pocnet.net/sheets/127/6/6CA7.pdf
+  maker: Tung-Sol
+  doc: '6CA7 Tentative Data, plates #5722 ff. (11 pages)'
+  date: '1960-01-01'

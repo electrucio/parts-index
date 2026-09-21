@@ -1,0 +1,33 @@
+part: MPS751
+kind: bjt
+priority: 3
+group: audio_docs
+models:
+- source: bordodynov
+  name: mps751
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      mps751: [829, 829]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: mps751
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.bjt
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 0f87e9840e1130e025a7add442288c0f67048f9755108d0384d1594296884e82
+    lines:
+      mps751: [771, 771]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'

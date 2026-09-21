@@ -1,0 +1,30 @@
+part: CSD19533Q5A
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: ti
+  name: CSD19533Q5A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  deps:
+  - cgs
+  - cgd
+  - cds
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLPM103
+    member: CSD19533Q5A.lib
+    archive_sha256: 13d9dffba8248d3ba8db90431f6e421c2e25c4284be8c53b3be3608c029ca191
+    sha256: 181a991efc1d2fcb254fbd93e77e9cea2bece8d9a6076ea480f93febd3484bb4
+    lines:
+      CSD19533Q5A: [372, 437]
+      cds: [260, 371]
+      cgd: [148, 259]
+      cgs: [36, 147]
+    fetched: '2026-09-19'
+  note: pins from default order (unverified)

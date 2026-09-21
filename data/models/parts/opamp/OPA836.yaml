@@ -1,0 +1,108 @@
+part: OPA836
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA836
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VCC
+  - VEE
+  - OUT
+  - PD
+  deps:
+  - Dyn_Curr
+  - D_ideal
+  - rnoiseless
+  - Zout_Uz_H1
+  - HPA_PD_I
+  - HPA_PD_Sgnl
+  - VCCS_Limit
+  - Zout_Uz_S1
+  - VNSE
+  - Zout_Uz_S2
+  - VCVS_Limit
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOM219
+    member: OPA836_TINA_AIO/OPA836.lib
+    archive_sha256: 493682df6553907ca68bb1b1fe4405224e12c9a068d63f73e14e67cfea398a71
+    sha256: 091e00e16a3bcc40a106fbdac1e0bb01eb78118813daf9a4cf51341f9fee07df
+    lines:
+      D_ideal: [173, 180]
+      Dyn_Curr: [291, 301]
+      HPA_PD_I: [277, 284]
+      HPA_PD_Sgnl: [286, 288]
+      OPA836: [39, 149]
+      VCCS_Limit: [265, 268]
+      VCVS_Limit: [271, 274]
+      VNSE: [183, 216]
+      Zout_Uz_H1: [167, 170]
+      Zout_Uz_S1: [160, 164]
+      Zout_Uz_S2: [153, 157]
+      rnoiseless: [254, 260]
+    fetched: '2026-09-19'
+- source: ti
+  name: OPA836
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - OUT
+  - VCC
+  - VEE
+  - Vnot_pd
+  deps:
+  - 08_OP_AMP_COMPLETE_S10_OPA836
+  - VOS_VS_VCM_OPA836
+  - VCM_CLAMP_OPA836
+  - 08_OP_AMP_COMPLETE_F1_OPA836
+  - 08_OP_AMP_COMPLETE_S3_OPA836
+  - 08_OP_AMP_COMPLETE_S11_OPA836
+  - 08_OP_AMP_COMPLETE_S13_OPA836
+  - 08_OP_AMP_COMPLETE_S9_OPA836
+  - 08_OP_AMP_COMPLETE_S12_OPA836
+  - VOS_DRIFT_OPA836
+  - 08_OP_AMP_COMPLETE_S8_OPA836
+  - 08_OP_AMP_COMPLETE_S7_OPA836
+  - VNSE_OPA836
+  - 08_OP_AMP_COMPLETE_S14_OPA836
+  - 08_OP_AMP_COMPLETE_S4_OPA836
+  - AOL_1_OPA836
+  - IQ_SRC_OPA836
+  - ESD_OUT_OPA836
+  - FEMT_OPA836
+  - AOL_2_OPA836
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOM218
+    member: opa836_a.lib
+    archive_sha256: 91f2031bc27bba72f8d8583922b89beca5e1c70f7400ba5f5a024586086a70b8
+    sha256: 2cf371b5c6506a8eccc058879bf9f185fc40e5d490edba15eedafb0a9b281c7a
+    lines:
+      08_OP_AMP_COMPLETE_F1_OPA836: [165, 168]
+      08_OP_AMP_COMPLETE_S10_OPA836: [170, 174]
+      08_OP_AMP_COMPLETE_S11_OPA836: [176, 180]
+      08_OP_AMP_COMPLETE_S12_OPA836: [182, 186]
+      08_OP_AMP_COMPLETE_S13_OPA836: [188, 192]
+      08_OP_AMP_COMPLETE_S14_OPA836: [194, 198]
+      08_OP_AMP_COMPLETE_S3_OPA836: [200, 204]
+      08_OP_AMP_COMPLETE_S4_OPA836: [206, 210]
+      08_OP_AMP_COMPLETE_S7_OPA836: [212, 216]
+      08_OP_AMP_COMPLETE_S8_OPA836: [218, 222]
+      08_OP_AMP_COMPLETE_S9_OPA836: [224, 228]
+      AOL_1_OPA836: [230, 235]
+      AOL_2_OPA836: [237, 242]
+      ESD_OUT_OPA836: [244, 248]
+      FEMT_OPA836: [250, 271]
+      IQ_SRC_OPA836: [273, 276]
+      OPA836: [32, 163]
+      VCM_CLAMP_OPA836: [278, 281]
+      VNSE_OPA836: [283, 304]
+      VOS_DRIFT_OPA836: [306, 311]
+      VOS_VS_VCM_OPA836: [313, 323]
+    fetched: '2026-09-19'

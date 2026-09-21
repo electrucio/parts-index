@@ -1,0 +1,34 @@
+part: US1G
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: ltwiki
+  name: US1G
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - C
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Basso/BassoBook20100103/D.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 4aa55e403008035c4f0065b93108abf95382d86498e6a25c499fb9e3061e656d
+    lines:
+      US1G: [133, 137]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: kicad-spice-library
+  name: US1G
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/GenSemiUltraRect.lib
+    sha256: 43f8d9ef8b0f17890590821a887eb76a131c531f450f5579fb43d62b8417c709
+    lines:
+      US1G: [717, 731]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

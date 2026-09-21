@@ -1,0 +1,32 @@
+part: 2SK30A
+kind: jfet
+priority: 2
+group: n_channel
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 5 pass, 1 off, 3 fail of 9 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: kicad-spice-library
+  name: J2SK30atm
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/2sk30.lib
+    sha256: 3c0361b1d5bac49afbbeabb59ad3463183a28a480166b08037ab9243db7d24d6
+    lines:
+      J2SK30atm: [12, 12]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.556
+    pass: 5
+    marginal: 1
+    fail: 3
+    not_measurable: 0
+    typical_rows: 2
+datasheet:
+  url: https://datasheet.octopart.com/2SK30A-Toshiba-datasheet-101654.pdf
+  maker: Toshiba
+  doc: 2SK30ATM (961001EAA2)
+  date: '1997-04-10'

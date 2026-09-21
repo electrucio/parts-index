@@ -1,0 +1,171 @@
+part: TL052
+kind: opamp
+priority: 3
+preferred: ti
+preferred_why: 'best datasheet agreement: 13 pass, 2 off, 2 fail of 17 judged rows (7 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with kicad-spice-library
+  on score and typical-value error, chosen as the more original source'
+models:
+- source: ti
+  name: TL052
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ060
+    member: TL052.301
+    archive_sha256: 8b04d0f899c10caf74f80f0c7e2e7883d64040bf95918b14669d1c5e2e2a898c
+    sha256: 0c2ac22bb682ffca4d142281a01b56f3d7218a2b2dad95d13af287e2e6988e16
+    lines:
+      TL052: [10, 42]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.765
+    pass: 13
+    marginal: 3
+    fail: 1
+    not_measurable: 0
+    typical_rows: 7
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: ti
+  name: TL052
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ060
+    member: TL052.101
+    archive_sha256: 8b04d0f899c10caf74f80f0c7e2e7883d64040bf95918b14669d1c5e2e2a898c
+    sha256: df411daccbee20f4760c36d460c8ee2aae1b372626d1acbdcf556ae7f4b21f23
+    lines:
+      TL052: [10, 42]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.765
+    pass: 13
+    marginal: 2
+    fail: 2
+    not_measurable: 0
+    typical_rows: 7
+  note: pins from comment words
+- source: bordodynov
+  name: TL052
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      TL052: [2206, 2238]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.765
+    pass: 13
+    marginal: 3
+    fail: 1
+    not_measurable: 0
+    typical_rows: 7
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: kicad-spice-library
+  name: TL052_TI_10
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+    sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+    lines:
+      TL052_TI_10: [5751, 5783]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.765
+    pass: 13
+    marginal: 2
+    fail: 2
+    not_measurable: 0
+    typical_rows: 7
+  note: pins from comment words
+- source: kicad-spice-library
+  name: TL052_TI_30
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+    sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+    lines:
+      TL052_TI_30: [5793, 5825]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.765
+    pass: 13
+    marginal: 3
+    fail: 1
+    not_measurable: 0
+    typical_rows: 7
+  note: pins from comment words
+- source: kicad-spice-library
+  name: TL052T3
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TIA.LIB
+    sha256: 9ab15d59dfe2a0a2393f98d60244934f66a2fdae82a8815b49b7517010d7b4ac
+    lines:
+      TL052T3: [237, 269]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.765
+    pass: 13
+    marginal: 3
+    fail: 1
+    not_measurable: 0
+    typical_rows: 7
+  note: pins from comment words
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/tl052.pdf
+  maker: Texas Instruments
+  doc: SLOS178B, Jan 1997, revised Jan 2026 (TL051/TL052/TL054, table 4.4 TL05xC and TL05xAC)

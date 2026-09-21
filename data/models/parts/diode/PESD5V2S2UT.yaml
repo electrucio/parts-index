@@ -1,0 +1,34 @@
+part: PESD5V2S2UT
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: nexperia
+  name: PESD5V2S2UT
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PESD5V2S2UT.txt
+    sha256: ab80a33376b5020fca56b22fdf11781a630534bf9a8e180e705b9ed8cf77a2c1
+    lines:
+      PESD5V2S2UT: [28, 37]
+    fetched: '2026-09-19'
+    note: 'PESD5V2S2UT: PESD5V2S2UT'
+- source: ltwiki
+  name: PESD5V2S2UT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/PESD5V2S2UT.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 9416c081dc5268f11eeefbcac5712634beb8cef175208d20c09fb575c3cd8986
+    lines:
+      PESD5V2S2UT: [2, 17]
+    fetched: '2026-09-14'

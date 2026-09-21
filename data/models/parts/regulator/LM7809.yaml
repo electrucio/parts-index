@@ -1,0 +1,42 @@
+part: LM7809
+kind: regulator
+priority: 2
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 4 pass, 0 off, 0 fail of 4 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable). WEAK EVIDENCE: fewer than 5 rows,
+  all min/max limits'
+models:
+- source: bordodynov
+  name: LM7809
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - GND
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/regulators.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1998b5aaba8b44019bf630a561c739ff33a83996cd6600bbaa8b8c3e02cf5bf2
+    lines:
+      LM7809: [192, 249]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from simulation: of the 6 node orders only
+    IN GND OUT regulates to about 9 V at Vin-Vout 5 V / 5 mA, Vin-Vout 15 V / 5 mA, Vin-Vout 5 V / 100
+    mA (orders tried: IN OUT GND: -9 V, -9 V, -83.8 V; IN GND OUT: 9 V, 9 V, 9 V; OUT IN GND: 11.8 V,
+    21.8 V, 11.8 V; OUT GND IN: 9.09 V, 17.4 V, -1.78 V; GND IN OUT: -0.729 V, -0.729 V, -0.849 V; GND
+    OUT IN: -3.25 V, -3.25 V, -70.6 V)'
+datasheet:
+  url: https://www.st.com/resource/en/datasheet/l78.pdf
+  maker: STMicroelectronics
+  doc: L78 series, DS0422 Rev 38; table 14 L7809C
+  date: 2025-02

@@ -1,0 +1,17 @@
+part: DFLS130L
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: diodes-inc
+  name: DFLS130L
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/140/DFLS130L.spice.txt
+    sha256: 0967d810dbe592f9cf6894b9f87119a191049fa3fe01a1d8bb53075eddfaa269
+    lines:
+      DFLS130L: [23, 24]
+    fetched: '2026-09-19'
+    note: 'model(s): DFLS130L'

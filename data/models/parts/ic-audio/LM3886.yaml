@@ -1,0 +1,211 @@
+part: LM3886
+kind: ic-audio
+priority: 1
+models:
+- source: ti
+  name: lm3886
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Vip
+  - Vin
+  - VDD
+  - VSS
+  - Vout
+  - MUTE
+  deps:
+  - GBW_SLEW_SE_0
+  - GND_FLOAT_0
+  - CMRR_0
+  - IV110_0
+  - IQ_IOFF_0
+  - FEMT_0
+  - IDEAL_DIODE_0
+  - VCLAMP_W_SENSE_0
+  - ILOAD_PD_0
+  - PSRR_0
+  - VCLAMP_0
+  - INPUT_0
+  - VNSE_0
+  - AMETER_0
+  - TF_0
+  - OUT_CURRENT_CLAMP_PD_0
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNAM041
+    member: LM3886.lib
+    archive_sha256: e06391890174883bcd722139ecf20f017f563e25f8bac41b4914251da7018239
+    sha256: 4ed60d05cca5b0ac9a3fe8593b7fe78c7cc444ce61182be9407e87644c9484b5
+    lines:
+      AMETER_0: [257, 261]
+      CMRR_0: [300, 309]
+      FEMT_0: [313, 351]
+      GBW_SLEW_SE_0: [100, 113]
+      GND_FLOAT_0: [245, 247]
+      IDEAL_DIODE_0: [232, 236]
+      ILOAD_PD_0: [86, 90]
+      INPUT_0: [405, 411]
+      IQ_IOFF_0: [219, 222]
+      IV110_0: [132, 141]
+      OUT_CURRENT_CLAMP_PD_0: [123, 127]
+      PSRR_0: [152, 162]
+      TF_0: [165, 208]
+      VCLAMP_0: [288, 290]
+      VCLAMP_W_SENSE_0: [271, 278]
+      VNSE_0: [356, 394]
+      lm3886: [39, 83]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: LM3886
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VCC
+  - VEE
+  - GND
+  - OUT
+  - MUTE
+  deps:
+  - Zout_Uz_S2
+  - VNSE
+  - HPA_PD_Sgnl
+  - Zout_Uz_H1
+  - VCLAMP_W_SENSE_0
+  - VCCS_Limit
+  - Amp_Dyn_Iout_Siq1
+  - Amp_Dyn_Iout_Siq2
+  - Tran_Iout
+  - RNOISE_LESS_WILIM_0
+  - Zout_Uz_S1
+  - VCVS_Limit
+  - AMETER_0
+  - D_ideal
+  - HPA_PD_I
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/LM3886su.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: e571f55dae4a9515e6e392c2168d63007717fde533b6af8155049d07c6e3c286
+    lines:
+      AMETER_0: [258, 265]
+      Amp_Dyn_Iout_Siq1: [232, 236]
+      Amp_Dyn_Iout_Siq2: [239, 243]
+      D_ideal: [155, 158]
+      HPA_PD_I: [207, 213]
+      HPA_PD_Sgnl: [216, 218]
+      LM3886: [47, 117]
+      RNOISE_LESS_WILIM_0: [253, 255]
+      Tran_Iout: [221, 230]
+      VCCS_Limit: [161, 163]
+      VCLAMP_W_SENSE_0: [246, 250]
+      VCVS_Limit: [166, 168]
+      VNSE: [171, 204]
+      Zout_Uz_H1: [132, 135]
+      Zout_Uz_S1: [120, 124]
+      Zout_Uz_S2: [126, 130]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: LM3886
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '81'
+  - '101'
+  - '102'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/NS/LM3886-3.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: b20b260d8ab9e5914d1f58d0be9ed7f2266efab82c346a4599a2091df2c1bcf4
+    lines:
+      LM3886: [4, 30]
+    fetched: '2026-09-14'
+- source: groups-io
+  name: LM3886
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VCC
+  - VEE
+  - GND
+  - OUT
+  - MUTE
+  deps:
+  - Zout_Uz_S2
+  - VNSE
+  - HPA_PD_Sgnl
+  - Zout_Uz_H1
+  - VCLAMP_W_SENSE_0
+  - VCCS_Limit
+  - Amp_Dyn_Iout_Siq1
+  - Amp_Dyn_Iout_Siq2
+  - Tran_Iout
+  - RNOISE_LESS_WILIM_0
+  - Zout_Uz_S1
+  - VCVS_Limit
+  - AMETER_0
+  - D_ideal
+  - HPA_PD_I
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/LM3886_test.zip
+    sha256: 19ac83ca8acb779f30d1cce4db1d50bb730efce9619c38aa872878973c97ef8f
+    lines:
+      AMETER_0: [269, 277]
+      Amp_Dyn_Iout_Siq1: [242, 246]
+      Amp_Dyn_Iout_Siq2: [249, 253]
+      D_ideal: [162, 165]
+      HPA_PD_I: [216, 223]
+      HPA_PD_Sgnl: [226, 228]
+      LM3886: [47, 125]
+      RNOISE_LESS_WILIM_0: [264, 266]
+      Tran_Iout: [231, 240]
+      VCCS_Limit: [168, 171]
+      VCLAMP_W_SENSE_0: [256, 261]
+      VCVS_Limit: [174, 177]
+      VNSE: [180, 213]
+      Zout_Uz_H1: [140, 143]
+      Zout_Uz_S1: [128, 132]
+      Zout_Uz_S2: [134, 138]
+    fetched: '2026-09-20'
+    note: 'Seccion 4. Encontrado exactamente en la ruta indicada por el encargo: z_yahoo/Lib/LM3886_test.zip
+      contiene LM3886.lib (9509 bytes, autor original subida 2012-03-02) + simbolos LM3866_1/2.asy (typo
+      del autor: 3866 en vez de 3886, conservado tal cual) + 2 circuitos de prueba. Verificado que este
+      LM3886.lib es byte-a-byte identico al de LM3886_Upload.zip (msg_65050). Ademas se incluye como alternativa
+      un segundo modelo LM3886.lib mas pequeno (1391 bytes) de otro autor (Hiromasa Shigematsu, msg_73524,
+      2014-02-01) guardado en LM3886/alt_hiromasa/ - no verificado cual de los dos es mas preciso. Ver
+      README.txt.'
+- source: groups-io
+  name: LM3886
+  def: subckt
+  type: SUBCKT
+  pins:
+  - posin
+  - negin
+  - out
+  - posrail
+  - negrail
+  - mute
+  - gndpin
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/LM3886_test.zip
+    sha256: 27e9536d01edb24caa08f48d70b8dd5a93d05c4fcedff622db521e153f26aad9
+    lines:
+      LM3886: [1, 63]
+    fetched: '2026-09-20'
+    note: 'Seccion 4. Encontrado exactamente en la ruta indicada por el encargo: z_yahoo/Lib/LM3886_test.zip
+      contiene LM3886.lib (9509 bytes, autor original subida 2012-03-02) + simbolos LM3866_1/2.asy (typo
+      del autor: 3866 en vez de 3886, conservado tal cual) + 2 circuitos de prueba. Verificado que este
+      LM3886.lib es byte-a-byte identico al de LM3886_Upload.zip (msg_65050). Ademas se incluye como alternativa
+      un segundo modelo LM3886.lib mas pequeno (1391 bytes) de otro autor (Hiromasa Shigematsu, msg_73524,
+      2014-02-01) guardado en LM3886/alt_hiromasa/ - no verificado cual de los dos es mas preciso. Ver
+      README.txt.'

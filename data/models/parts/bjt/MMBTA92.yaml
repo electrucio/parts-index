@@ -1,0 +1,52 @@
+part: MMBTA92
+kind: bjt
+priority: 4
+group: small_signal_pnp
+models:
+- source: onsemi
+  name: MMBTA92
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mmbta92.lib
+    sha256: 7bfb8598c2730d4df39f5fd3bc0a16a86ee36cd4635bfc95840cecd8dc60e10d
+    lines:
+      MMBTA92: [6, 16]
+    fetched: '2026-09-14'
+    note: 'model(s): MMBTA92 (PNP .model)'
+- source: ltwiki
+  name: MMBTA92
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/MMBTA92.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 2afa0bdfa5e2f4a5331bb2d584d3b68020ebd497fcc60496fd46eb10c4d81119
+    lines:
+      MMBTA92: [2, 53]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: MMBTA92_PH
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
+    sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
+    lines:
+      MMBTA92_PH: [7156, 7207]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

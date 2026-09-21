@@ -1,0 +1,49 @@
+part: BAS316
+kind: diode
+priority: 4
+group: silicon_signal
+models:
+- source: nexperia
+  name: BAS316
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BAS316.txt
+    sha256: 4a43a9f77d630578ffbdd8042079a5f50286037d698822746cb8b7b7b0ab6920
+    lines:
+      BAS316: [33, 57]
+    fetched: '2026-09-14'
+    note: 'model(s): BAS316 (.subckt 1 2), DIODE1 (D .model), DIODE2 (D .model)'
+  note: pins from comment words
+- source: bordodynov
+  name: BAS316
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BAS316: [99, 99]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: BAS316
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.dio
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+    lines:
+      BAS316: [69, 69]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'

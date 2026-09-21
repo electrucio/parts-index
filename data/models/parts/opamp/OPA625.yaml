@@ -1,0 +1,124 @@
+part: OPA625
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA625
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VCC
+  - VEE
+  - OUT
+  - MODE
+  deps:
+  - COMPARATOR
+  - VICM
+  - GBW_SLEW_L
+  - TF_LOW
+  - IIBP
+  - MODE_CNTRL
+  - TF_HI
+  - AMETER
+  - VNSE
+  - IIBN
+  - PSRR
+  - FEMT
+  - dev_dis
+  - ICMR
+  - GvsIOUT
+  - GBW_SLEW_H
+  - VOS_MODE
+  - VOUTvsIOUT
+  - IQ_MODE
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM935
+    member: OPA625_TINA_AIO/opa625.lib
+    archive_sha256: f0a00352599544f6a784ea6717dfd37e4e3aefd30e6e510edb89f6e2f92b7f53
+    sha256: fb45d2e9e27a033db8ca8fc52bf0e1d526173d3b0fe1fda3f5b2043d0859e764
+    lines:
+      AMETER: [335, 339]
+      COMPARATOR: [214, 219]
+      FEMT: [124, 165]
+      GBW_SLEW_H: [418, 443]
+      GBW_SLEW_L: [343, 366]
+      GvsIOUT: [408, 414]
+      ICMR: [447, 456]
+      IIBN: [290, 310]
+      IIBP: [384, 404]
+      IQ_MODE: [370, 380]
+      MODE_CNTRL: [460, 463]
+      OPA625: [45, 120]
+      PSRR: [268, 280]
+      TF_HI: [314, 331]
+      TF_LOW: [467, 484]
+      VICM: [284, 286]
+      VNSE: [169, 210]
+      VOS_MODE: [488, 504]
+      VOUTvsIOUT: [223, 264]
+      dev_dis: [508, 530]
+    fetched: '2026-09-19'
+- source: ti
+  name: OPA625
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INM
+  - OUT
+  - MODE
+  - VCC
+  - VEE
+  deps:
+  - SCHEMATIC1_W2_OPA625
+  - SCHEMATIC1_S1_OPA625
+  - SCHEMATIC1_S28_OPA625
+  - FEMT_OPA625
+  - SCHEMATIC1_S11_OPA625
+  - SCHEMATIC1_S17_OPA625
+  - VNSE_OPA625
+  - VCM_CLAMP_OPA625
+  - SCHEMATIC1_S2_OPA625
+  - SCHEMATIC1_W5_OPA625
+  - SCHEMATIC1_S31_OPA625
+  - SCHEMATIC1_H3_OPA625
+  - SCHEMATIC1_S12_OPA625
+  - SCHEMATIC1_W4_OPA625
+  - SCHEMATIC1_S27_OPA625
+  - SCHEMATIC1_S18_OPA625
+  - R_NOISELESS
+  - SCHEMATIC1_W3_OPA625
+  - SCHEMATIC1_S29_OPA625
+  - SCHEMATIC1_S30_OPA625
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM937
+    member: opa625.lib
+    archive_sha256: c0bbd8b67c705e0e28611b1dc600b2b898b7e2a877e2f38ffe1ed6dc9f9d99e2
+    sha256: de331c42c6a2a81198c9f7000a21c30083353c1beb1eb5393b0e9a8298fab557
+    lines:
+      FEMT_OPA625: [135, 156]
+      OPA625: [32, 133]
+      R_NOISELESS: [281, 281]
+      SCHEMATIC1_H3_OPA625: [158, 161]
+      SCHEMATIC1_S11_OPA625: [169, 173]
+      SCHEMATIC1_S12_OPA625: [175, 179]
+      SCHEMATIC1_S17_OPA625: [181, 185]
+      SCHEMATIC1_S18_OPA625: [187, 191]
+      SCHEMATIC1_S1_OPA625: [163, 167]
+      SCHEMATIC1_S27_OPA625: [199, 203]
+      SCHEMATIC1_S28_OPA625: [205, 209]
+      SCHEMATIC1_S29_OPA625: [211, 215]
+      SCHEMATIC1_S2_OPA625: [193, 197]
+      SCHEMATIC1_S30_OPA625: [217, 221]
+      SCHEMATIC1_S31_OPA625: [223, 227]
+      SCHEMATIC1_W2_OPA625: [229, 233]
+      SCHEMATIC1_W3_OPA625: [235, 239]
+      SCHEMATIC1_W4_OPA625: [241, 245]
+      SCHEMATIC1_W5_OPA625: [247, 251]
+      VCM_CLAMP_OPA625: [253, 256]
+      VNSE_OPA625: [258, 279]
+    fetched: '2026-09-19'

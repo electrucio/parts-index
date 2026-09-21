@@ -1,0 +1,33 @@
+part: 2SC3263
+kind: bjt
+priority: 3
+group: power_output
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 4 pass, 0 off, 0 fail of 4 judged rows (1 against typical values
+  or curve points, the rest against min/max limits; 1 not measurable)'
+models:
+- source: bordodynov
+  name: 2SC3263-Y_kq
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      2SC3263-Y_kq: [1569, 1569]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 4
+    marginal: 0
+    fail: 0
+    not_measurable: 1
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://www.semicon.sanken-ele.co.jp/sk_content/2sc3263_ds_en.pdf
+  maker: sanken
+  doc: 2SC3263-DSE Rev.1.1 (Sep. 28, 2021)

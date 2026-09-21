@@ -1,0 +1,132 @@
+part: J309
+kind: jfet
+priority: 3
+group: n_channel
+preferred: interfet
+preferred_why: 'best datasheet agreement: 3 pass, 1 off, 1 fail of 5 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with interfet, interfet, interfet
+  on score and typical-value error, chosen as the more original source'
+models:
+- source: interfet
+  name: J309-LS
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J309-LS: [401, 401]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.6
+    pass: 3
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+- source: interfet
+  name: J309-PLP
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J309-PLP: [402, 402]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.6
+    pass: 3
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+- source: interfet
+  name: J309-L
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J309-L: [793, 793]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.6
+    pass: 3
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+- source: interfet
+  name: J309-M
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J309-M: [794, 794]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.6
+    pass: 3
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+- source: interfet
+  name: J309-H
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J309-H: [795, 795]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.6
+    pass: 3
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+- source: ltspice-native
+  name: J309
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.jft
+    sha256: 93ae8433a9412e96e81071b65d521b7f31dcb2c2f3fce714456b73586230bea0
+    lines:
+      J309: [45, 45]
+  verification:
+    score: 0.6
+    pass: 3
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+datasheet:
+  url: https://web.archive.org/web/2024id_/https://www.onsemi.com/pdf/datasheet/j309-d.pdf
+  maker: onsemi
+  doc: J309/D Rev. 1, March 2006

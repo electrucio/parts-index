@@ -1,0 +1,64 @@
+part: OPA354
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA354
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM282
+    member: OPA354_TINA_AIO/OPA354.LIB
+    archive_sha256: bfd2dce2fe1b1b592363c6c23c54b6a98d3a58476bb642629d98e50f254b2dae
+    sha256: f237a8c69a7899894a207f431c7bda2dfa06d1c3faa76e6b08ab268a65a341ed
+    lines:
+      OPA354: [87, 272]
+    fetched: '2026-09-19'
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: ti
+  name: OPA354
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOC018
+    member: OPA354-PSpiceFiles/SCHEMATIC1/TransientSimulation/OPA354.lib
+    archive_sha256: 89076b133003969023c968d7b6cb3ef315583ad675abd4ce0835f70f84329de2
+    sha256: 48aeb72c445e6387b1a68110ad508658bc263882f394c78753d56201351ccd07
+    lines:
+      OPA354: [87, 272]
+    fetched: '2026-09-19'
+  note: pins from default order (unverified)
+- source: bordodynov
+  name: opa354
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      opa354: [9558, 9776]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'

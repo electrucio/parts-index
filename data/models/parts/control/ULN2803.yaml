@@ -1,0 +1,39 @@
+part: ULN2803
+kind: control
+priority: 4
+models:
+- source: ltwiki
+  name: ULN2803A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - 1B
+  - 2B
+  - 3B
+  - 4B
+  - 5B
+  - 6B
+  - 7B
+  - 8B
+  - VEE
+  - CO
+  - 8C
+  - 7C
+  - 6C
+  - 5C
+  - 4C
+  - 3C
+  - 2C
+  - 1C
+  deps:
+  - dpchannel
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/ULN280xA.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 2d551751bc5dbb7fbb10304e345f0f7ed52ed30b1acd4c27f157e1e780901493
+    lines:
+      ULN2803A: [13, 22]
+      dpchannel: [36, 81]
+    fetched: '2026-09-14'

@@ -1,0 +1,58 @@
+part: LM66100
+kind: regulator
+priority: 4
+models:
+- source: ti
+  name: LM66100_H2
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLVMD40
+    member: LM66100_PSPICE_TRANS/LM66100_TRANS.lib
+    archive_sha256: 43801010939a0f36a6f4f5801975e3b087430929226111ef2fc273324a2be3e5
+    sha256: a2ca338fcb9fa2bece97fa55f6f0f1548d28147e0775e6110fceaa62812de7a3
+    lines:
+      LM66100_H2: [103, 106]
+    fetched: '2026-09-19'
+- source: ti
+  name: LM66100_S15
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLVMD40
+    member: LM66100_PSPICE_TRANS/LM66100_TRANS.lib
+    archive_sha256: 43801010939a0f36a6f4f5801975e3b087430929226111ef2fc273324a2be3e5
+    sha256: a2ca338fcb9fa2bece97fa55f6f0f1548d28147e0775e6110fceaa62812de7a3
+    lines:
+      LM66100_S15: [108, 112]
+    fetched: '2026-09-19'
+- source: ti
+  name: LM66100_S16
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLVMD40
+    member: LM66100_PSPICE_TRANS/LM66100_TRANS.lib
+    archive_sha256: 43801010939a0f36a6f4f5801975e3b087430929226111ef2fc273324a2be3e5
+    sha256: a2ca338fcb9fa2bece97fa55f6f0f1548d28147e0775e6110fceaa62812de7a3
+    lines:
+      LM66100_S16: [114, 118]
+    fetched: '2026-09-19'

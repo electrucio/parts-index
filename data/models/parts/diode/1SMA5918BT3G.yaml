@@ -1,0 +1,21 @@
+part: 1SMA5918BT3G
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: onsemi
+  name: 1SMA5918BT3G
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1sma59xxbt3g%20(spice%20model).lib
+    sha256: f829b3120521935f70abb19dfa03e8b4b172932345c4d534d468ac6b244b5d97
+    lines:
+      1SMA5918BT3G: [164, 183]
+    fetched: '2026-09-19'
+    note: '1SMA59xxBT3G (Spice Model): 1SMA5913BT3G, MD1, MDR, MD3, MD2, MDRBV …'
+  note: pins from comment words

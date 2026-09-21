@@ -1,0 +1,22 @@
+part: FQP30N06L
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: onsemi
+  name: FQP30N06L
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/fqp30n06l.lib
+    sha256: 50c0f383f91f0b84057c6ba7be7dac5440bf355fdf3d30608c0b23378d3741f3
+    lines:
+      FQP30N06L: [12, 84]
+    fetched: '2026-09-19'
+    note: 'FQP30N06L: FQP30N06L, DbodyMOD, DbreakMOD, DplcapMOD, MweakMOD, MmedMOD …'
+  note: pins from default order (unverified)

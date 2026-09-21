@@ -1,0 +1,17 @@
+part: MMBT2907A
+kind: bjt
+priority: 4
+group: small_signal_pnp
+models:
+- source: onsemi
+  name: MMBT2907A
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mmbt2907a.lib
+    sha256: 7594a7074432da2b001eff9fceba3287c3b43ab0fece304169a3ca9efb98255a
+    lines:
+      MMBT2907A: [6, 13]
+    fetched: '2026-09-14'
+    note: 'model(s): MMBT2907A (PNP .model)'

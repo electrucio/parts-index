@@ -1,0 +1,23 @@
+part: CSD25402Q3A
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: ti
+  name: CSD25402Q3A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLPM096
+    member: CSD25402Q3A.lib
+    archive_sha256: 374bc186829290b35b780081e577b9e8b5c9c92c7fd51c3db29d66d5cc881060
+    sha256: f44ac8dc8e41a8d497dd1ce0aec7d53b4d8a3b3ab2128dafbbc8443c763bd388
+    lines:
+      CSD25402Q3A: [45, 100]
+    fetched: '2026-09-19'
+  note: pins from default order (unverified)

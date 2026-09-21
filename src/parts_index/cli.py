@@ -37,6 +37,9 @@ def main(argv: list[str] | None = None) -> int:
     mf.add_argument("--name", help="file name to store it under")
     mf.add_argument("--note", default="")
     mf.add_argument("--curl", action="store_true", help="some vendors answer curl and nothing else")
+    mp = mod.add_parser("promote", help="write the public recipe for every curated part")
+    mp.add_argument("--kind", help="only one kind (bjt, jfet, ...)")
+    mp.add_argument("--dry", action="store_true", help="say what would be written and write nothing")
     mr = mod.add_parser("recover", help="fetch again what the catalogue says the tree has lost")
     mr.add_argument("--source")
     mr.add_argument("--limit", type=int, default=0)
@@ -85,6 +88,12 @@ def main(argv: list[str] | None = None) -> int:
         argv2 += ["--stats"] if args.stats else []
         argv2 += ["-o", args.out] if args.out else []
         return model_index.main(argv2)
+
+    if args.cmd == "models" and args.mod_cmd == "promote":
+        from parts_index.models import promote as model_promote
+        argv2 = ["--kind", args.kind] if args.kind else []
+        argv2 += ["--dry"] if args.dry else []
+        return model_promote.main(argv2)
 
     if args.cmd == "models" and args.mod_cmd in ("fetch", "recover"):
         from parts_index.models import fetch as model_fetch

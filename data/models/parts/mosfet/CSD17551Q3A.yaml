@@ -1,0 +1,23 @@
+part: CSD17551Q3A
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: ti
+  name: CSD17551Q3A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLPM211
+    member: CSD17551Q3A.lib
+    archive_sha256: fc2c22fbd9168d54248f8af9505fc84c26abb22054182b85275e1e2a5536c043
+    sha256: b4ce29b8c837d06529381c0e7abc762c42249ea1acfb5f351297dfafb23a04f3
+    lines:
+      CSD17551Q3A: [41, 110]
+    fetched: '2026-09-19'
+  note: pins from default order (unverified)

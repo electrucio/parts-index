@@ -1,0 +1,51 @@
+part: AD623
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: AD623
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - Rg+
+  - Rg-
+  - '99'
+  - '50'
+  - OUT
+  - REF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ad623.cir
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 2300b3c9f2e2a62b0c7fc08871bb68f97f79b223e6bf09d93d2dd92528a23334
+    lines:
+      AD623: [31, 216]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: AD623_AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - Rg+
+  - Rg-
+  - '99'
+  - '50'
+  - OUT
+  - REF
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+    sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+    lines:
+      AD623_AD: [70095, 70276]
+      dx: [72212, 72212]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

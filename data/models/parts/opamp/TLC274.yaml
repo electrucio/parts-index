@@ -1,0 +1,123 @@
+part: TLC274
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: TLC274
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ093
+    member: TLC274.102
+    archive_sha256: 6ef3b33a9309c7f1528766668ce02eac845955811b6d3e2d1d2fa110a51d9d1d
+    sha256: 995140597574b23d31db03af8f3a5aa9ac8b8d15b68961a823ee23fa479b3094
+    lines:
+      TLC274: [10, 58]
+    fetched: '2026-09-19'
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from comment words'
+- source: ti
+  name: TLC274
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ093
+    member: TLC274.5_2
+    archive_sha256: 6ef3b33a9309c7f1528766668ce02eac845955811b6d3e2d1d2fa110a51d9d1d
+    sha256: 4b456399a20d1b2d594c6b4bdb561ef892a6aaaa8d54625c741648c6e259d5a4
+    lines:
+      TLC274: [10, 58]
+    fetched: '2026-09-19'
+  note: pins from comment words
+- source: ti
+  name: TLC274
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ093
+    member: TLC274.5_1
+    archive_sha256: 6ef3b33a9309c7f1528766668ce02eac845955811b6d3e2d1d2fa110a51d9d1d
+    sha256: 8497280fe506e9600d90da3626f508c6624e50baa2be0b2f8de0a90b1d176fc1
+    lines:
+      TLC274: [10, 43]
+    fetched: '2026-09-19'
+  note: pins from comment words
+- source: ti
+  name: TLC274
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ093
+    member: TLC274.101
+    archive_sha256: 6ef3b33a9309c7f1528766668ce02eac845955811b6d3e2d1d2fa110a51d9d1d
+    sha256: 6e24a4220dbab90ad7d56dedcad7c968dce174c5449de1660802de1c6aeba6d8
+    lines:
+      TLC274: [10, 43]
+    fetched: '2026-09-19'
+  note: pins from comment words
+- source: ltwiki
+  name: TLC274
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/texas.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+    lines:
+      TLC274: [13887, 13919]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library; pins from comment words'
+- source: kicad-spice-library
+  name: TLC274_TI_10
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+    sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+    lines:
+      TLC274_TI_10: [10853, 10886]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words

@@ -1,0 +1,17 @@
+part: RS1J
+kind: diode
+priority: 4
+group: rectifier
+models:
+- source: vishay
+  name: rs1j
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/87887/p_rs1j.txt
+    sha256: cd8b5b1041a3023831fb83f45b6432888eddd48f6efd8488be9f199f38a690f8
+    lines:
+      rs1j: [7, 10]
+    fetched: '2026-09-19'
+    note: 'Power Rectifiers, PSpice Models (*.txt): rs1j'

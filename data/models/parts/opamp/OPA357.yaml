@@ -1,0 +1,24 @@
+part: OPA357
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA357
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM744
+    member: OPA357_PSPICE_AIO/OPA357.LIB
+    archive_sha256: 7fb4c2d6c08072e138091c12168ea6e61ce3189ac4b96489c350e3445bda2cd3
+    sha256: 3bb5c1d0bde20d9759c8509ac6a7885b8b1e7a33f48974cf321ea32696325967
+    lines:
+      OPA357: [84, 268]
+    fetched: '2026-09-19'

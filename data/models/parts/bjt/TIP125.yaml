@@ -1,0 +1,39 @@
+part: TIP125
+kind: bjt
+priority: 3
+group: audio_docs
+models:
+- source: onsemi
+  name: tip125
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/tip125.lib
+    sha256: f3b277f6eeff0b692789d349c1e0ff026c5372666786c1601beaa367624a8b22
+    lines:
+      tip125: [12, 50]
+    fetched: '2026-09-14'
+    note: 'model(s): tip125 (.subckt 1 2 3), dmodel (D .model), qmodel (PNP .model), q1model (PNP .model)'
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: kicad-spice-library
+  name: TIP125
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTDAR.LIB
+    sha256: 9ce6fa0baa6aaf6fdd5cce713f1d1ad2dabcd6946b97027854fc10dccb38dfb1
+    lines:
+      TIP125: [962, 974]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

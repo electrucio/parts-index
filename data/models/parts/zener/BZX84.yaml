@@ -1,0 +1,81 @@
+part: BZX84
+kind: zener
+priority: 4
+models:
+- source: onsemi
+  name: BZX84C15
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bzx84c15.lib
+    sha256: d925601ace660061518cd38a5b7efc1c187833f1ad3fb759908c3c6729c7a914
+    lines:
+      BZX84C15: [11, 33]
+    fetched: '2026-09-14'
+    note: 'model(s): BZX84C15 (.subckt 1 2), DF (D .model), DR (D .model)'
+  note: pins from comment words
+- source: nexperia
+  name: BZX84-C15
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BZX84-C15.txt
+    sha256: 91de9521d19802188e3742cdbf69867d74d5c554b2e0d2ad8ac2504f014fe1e1
+    lines:
+      BZX84-C15: [28, 39]
+    fetched: '2026-09-14'
+    note: 'model(s): BZX84-C15 (D .model)'
+  note: 'same code also in: spiceypedals'
+- source: nexperia
+  name: BZX84-C10
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BZX84-C10.txt
+    sha256: 798af67f3f23d2059bd406a0653bbb75e30d6c3123bee7b54431b539f9de3c7a
+    lines:
+      BZX84-C10: [28, 39]
+    fetched: '2026-09-14'
+    note: 'model(s): BZX84-C10 (D .model)'
+- source: nexperia
+  name: BZX84-C12
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BZX84-C12.txt
+    sha256: 846421a326531eb87a54dec6fa30664ba608128c6c606cd3a34d54b82cec0b98
+    lines:
+      BZX84-C12: [28, 39]
+    fetched: '2026-09-14'
+    note: 'model(s): BZX84-C12 (D .model)'
+- source: nexperia
+  name: BZX84-C18
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BZX84-C18.txt
+    sha256: 10db4ed0ca556e9c4b320004986188c47b5feb29db793f814a7f1c7f79fe52df
+    lines:
+      BZX84-C18: [28, 39]
+    fetched: '2026-09-14'
+    note: 'model(s): BZX84-C18 (D .model)'
+- source: nexperia
+  name: BZX84-C24
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BZX84-C24.txt
+    sha256: 2ee27ad16f5730132a928446d4fe1f358a2d0fe89d5a44897a19cb452b608c32
+    lines:
+      BZX84-C24: [28, 39]
+    fetched: '2026-09-14'
+    note: 'model(s): BZX84-C24 (D .model)'

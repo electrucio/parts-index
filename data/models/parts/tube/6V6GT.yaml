@@ -1,0 +1,300 @@
+part: 6V6GT
+kind: tube
+priority: 1
+group: pentode_beam
+preferred: reefman
+preferred_why: 'best datasheet agreement: 24 pass, 3 off, 0 fail of 27 judged rows (27 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with ayumi, duncanamps
+  on score and typical-value error, chosen as the more original source'
+models:
+- source: reefman
+  name: 6V6GT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - BTetrodeDE
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      6V6GT: [1868, 1877]
+      BTetrodeDE: [2232, 2249]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.889
+    pass: 24
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 27
+  note: pins from inline comment
+- source: ayumi
+  name: 6V6
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6V6.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 34132ffe3d3e2b2cff9aaf7ff81881a76f4611e51d6a99064b8bef8a5a84ed98
+    lines:
+      6V6: [10, 30]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.889
+    pass: 24
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 27
+  note: found under the alias 6V6; pins from names
+- source: ayumi
+  name: 6V6T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6V6T.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 988f2efcadc6db77df2d73673bccf1dbc2a9a8bf446700d6dac5b91d46c23dcf
+    lines:
+      6V6T: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.259
+    pass: 7
+    marginal: 20
+    fail: 0
+    not_measurable: 0
+    typical_rows: 27
+  note: found under the alias 6V6; pins from names
+- source: duncanamps
+  name: 6V6GTA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - S
+  - G
+  - K
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice.html
+    member: 6V6GTA.INC
+    archive_sha256: ad86d20e99f616f8cafeb32e594ac68c5d33ba7a39557b3ef4a7e79b549555c5
+    sha256: 4f830f9dfcc44a2d9f3d1084084542b7590c7cff39c70f7abb6aca1ad3a205f0
+    lines:
+      6V6GTA: [35, 47]
+    fetched: '2026-09-14'
+    note: subckt 6V6GTA (P S G K)
+  verification:
+    score: 0.815
+    pass: 22
+    marginal: 5
+    fail: 0
+    not_measurable: 0
+    typical_rows: 27
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from names'
+- source: duncanamps
+  name: 6V6
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - S
+  - G
+  - K
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/valves/dm6v6.inc
+    sha256: d76ed854a75b08f8e1a08af80b093100c197fb37ed46fe0ba4b7abb6c56e5991
+    lines:
+      6V6: [35, 64]
+    fetched: '2026-09-14'
+    note: subckt 6V6 (A S G K)
+  verification:
+    score: 0.889
+    pass: 24
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 27
+  note: 'found under the alias 6V6; same code also in: bordodynov, kicad-spice-library, ltwiki; pins from
+    names'
+- source: suusi-tubes
+  name: 6V6GT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  - 6V6GTA
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6V6GT: [1403, 1407]
+      6V6GTA: [1410, 1414]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.778
+    pass: 21
+    marginal: 6
+    fail: 0
+    not_measurable: 0
+    typical_rows: 27
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6V6-GT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  - 6V6-GTA
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6V6-GT: [826, 830]
+      6V6-GTA: [833, 837]
+      PENTODE1: [2010, 2023]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.852
+    pass: 23
+    marginal: 4
+    fail: 0
+    not_measurable: 0
+    typical_rows: 27
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6V6GTA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6V6GTA: [1410, 1414]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.778
+    pass: 21
+    marginal: 6
+    fail: 0
+    not_measurable: 0
+    typical_rows: 27
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6V6-GTA
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6V6-GTA: [833, 837]
+      PENTODE1: [2010, 2023]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.852
+    pass: 23
+    marginal: 4
+    fail: 0
+    not_measurable: 0
+    typical_rows: 27
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6V6
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  - 6V6GTA
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6V6: [1396, 1400]
+      6V6GTA: [1410, 1414]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.778
+    pass: 21
+    marginal: 6
+    fail: 0
+    not_measurable: 0
+    typical_rows: 27
+  note: found under the alias 6V6; pins from inline comment
+datasheet:
+  url: https://frank.pocnet.net/sheets/093/6/6V6GT.pdf
+  maker: General Electric
+  doc: ET-T914 (6V6-GT / 5V6-GT), supersedes ET-T351D of 6-53
+  date: 1955-03

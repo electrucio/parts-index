@@ -1,0 +1,143 @@
+part: '45'
+kind: tube
+priority: 3
+group: triode
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 26 pass, 0 off, 0 fail of 26 judged rows (26 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: ayumi
+  name: '45'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 45.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 3388c9a234c07feaefd1fe9eba71d14fe218c495ad9b1a66abba4024e4d328a0
+    lines:
+      '45': [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 26
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 26
+  note: pins from names
+- source: bordodynov
+  name: '45'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/tube.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0eeca282ba6506a1a4826c5833c023b17df0c557ef46c9ade79abe98a9c24a3f
+    lines:
+      '45': [724, 744]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 26
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 26
+  note: 'same code also in: ltwiki; pins from names'
+- source: bordodynov
+  name: V45
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - Igrid
+  - TRIO1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Rydel_tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+    lines:
+      Igrid: [859, 863]
+      TRIO1: [796, 798]
+      V45: [756, 765]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 26
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: '45'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - B
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Analisis/MonteCarlo/Monte carlo toolbox_3/cmc.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: dc697b6959c2a45dbaafddf9c7d94d482bd6e5418928ab1ffac9ab8618292571
+    lines:
+      '45': [99, 108]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 26
+    typical_rows: 0
+- source: ltwiki
+  name: '45'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Triode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+    lines:
+      '45': [559, 572]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 26
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 26
+  note: pins from names
+datasheet:
+  url: https://frank.pocnet.net/sheets/049/4/45.pdf
+  maker: RCA
+  doc: RCA 45 Power Amplifier Data (RCA Radiotron Division), curve 92S-506R2 (1932-11-17)
+  date: '1938-04-20'

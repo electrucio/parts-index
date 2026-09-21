@@ -1,0 +1,41 @@
+part: RMB4S
+kind: diode
+priority: 4
+group: bridge
+models:
+- source: bordodynov
+  name: RMB4S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Rect.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 3dab7411e3d6a910ab3ed22381558611ec155f6fcfdda94949e9d21907efa409
+    lines:
+      RMB4S: [1308, 1317]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: kicad-spice-library
+  name: RMB4S_GN
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/gensemi.lib
+    sha256: a6cf7dd0be40fa8de86b574b20c2481a4be41a33f77d1893d66664f19e3fe8d9
+    lines:
+      RMB4S_GN: [207, 227]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

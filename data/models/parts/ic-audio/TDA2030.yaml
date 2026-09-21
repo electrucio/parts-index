@@ -1,0 +1,64 @@
+part: TDA2030
+kind: ic-audio
+priority: 2
+preferred: ltwiki
+preferred_why: 'best datasheet agreement: 0 pass, 0 off, 0 fail of 0 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable); tied with kicad-spice-library on
+  score and typical-value error, chosen as the more original source'
+models:
+- source: ltwiki
+  name: TDA2030
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/TDA2030.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 428a504c62df0ff43638ed0cec2f845e0f81edec23456c95c8b7bf12aa35d80b
+    lines:
+      TDA2030: [1, 24]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 0
+- source: kicad-spice-library
+  name: TDA2030
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '2'
+  - '6'
+  - '7'
+  - '4'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/TDA2030.mod
+    sha256: c9633f7fcb015b4ceb68f7a5d32b363ffaa4be7c2361cb36d1b6d1e5bb4141ed
+    lines:
+      TDA2030: [1, 34]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 0
+datasheet:
+  url: https://www.st.com/resource/en/datasheet/tda2030.pdf
+  maker: STMicroelectronics
+  doc: Doc ID 1458 Rev 3; OBSOLETE
+  date: 2011-06

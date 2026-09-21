@@ -1,0 +1,140 @@
+part: OPA164
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA164x
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - BLOCK_DC_S1_OPA164x
+  - AOL_2_OPA164x
+  - CLAMP_AMP_LO_OPA164x
+  - FEMT_OPA164x
+  - ZO_SRC_OPA164x
+  - BLOCK_DC_S2_OPA164x
+  - BLOCK_DC_H2_OPA164x
+  - CLAMP_AMP_HI_OPA164x
+  - CL_SRC_OPA164x
+  - AOL_1_OPA164x
+  - OL_SENSE_OPA164x
+  - ESD_OUT_OPA164x
+  - ESD_IN_OPA164x
+  - CLAW_SRC_OPA164x
+  - GR_SRC_OPA164x
+  - BLOCK_DC_H1_OPA164x
+  - VNSE_OPA164x
+  - VCM_CLAMP_OPA164x
+  - IQ_SRC_OPA164x
+  - CLAWN_OPA164x
+  - BLOCK_DC_H3_OPA164x
+  - CLAWP_OPA164x
+  - R_NOISELESS
+  - SW_OL_OPA164x
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM407
+    member: OPA164x.LIB
+    archive_sha256: ffa87621a98b25480a98b8df6c38c15a00e0b78cb55b5885e18c16858b8c84bd
+    sha256: c3504c5bb927bd66e411e71a3b92e564cf4a6468d94cd6032724ec008938a16c
+    lines:
+      AOL_1_OPA164x: [317, 319]
+      AOL_2_OPA164x: [321, 323]
+      BLOCK_DC_H1_OPA164x: [290, 293]
+      BLOCK_DC_H2_OPA164x: [295, 298]
+      BLOCK_DC_H3_OPA164x: [300, 303]
+      BLOCK_DC_S1_OPA164x: [305, 309]
+      BLOCK_DC_S2_OPA164x: [311, 315]
+      CLAMP_AMP_HI_OPA164x: [325, 328]
+      CLAMP_AMP_LO_OPA164x: [330, 333]
+      CLAWN_OPA164x: [335, 347]
+      CLAWP_OPA164x: [349, 361]
+      CLAW_SRC_OPA164x: [363, 365]
+      CL_SRC_OPA164x: [367, 369]
+      ESD_IN_OPA164x: [371, 377]
+      ESD_OUT_OPA164x: [379, 383]
+      FEMT_OPA164x: [385, 390]
+      GR_SRC_OPA164x: [392, 394]
+      IQ_SRC_OPA164x: [396, 398]
+      OL_SENSE_OPA164x: [400, 402]
+      OPA164x: [80, 288]
+      R_NOISELESS: [435, 435]
+      SW_OL_OPA164x: [404, 407]
+      VCM_CLAMP_OPA164x: [409, 411]
+      VNSE_OPA164x: [413, 429]
+      ZO_SRC_OPA164x: [431, 433]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: ti
+  name: OPA164x
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - BLOCK_DC_S1_OPA164x
+  - AOL_2_OPA164x
+  - CLAMP_AMP_LO_OPA164x
+  - FEMT_OPA164x
+  - ZO_SRC_OPA164x
+  - BLOCK_DC_S2_OPA164x
+  - BLOCK_DC_H2_OPA164x
+  - CLAMP_AMP_HI_OPA164x
+  - CL_SRC_OPA164x
+  - AOL_1_OPA164x
+  - OL_SENSE_OPA164x
+  - ESD_OUT_OPA164x
+  - ESD_IN_OPA164x
+  - CLAW_SRC_OPA164x
+  - GR_SRC_OPA164x
+  - BLOCK_DC_H1_OPA164x
+  - VNSE_OPA164x
+  - VCM_CLAMP_OPA164x
+  - IQ_SRC_OPA164x
+  - CLAWN_OPA164x
+  - BLOCK_DC_H3_OPA164x
+  - CLAWP_OPA164x
+  - SW_OL_OPA164x
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM627
+    member: OPA164x.LIB
+    archive_sha256: a907c4baf018b63577dbec571f4da1328c25df82b0e132745ac622772f8a7cf4
+    sha256: 54b8d329c993d840c3967b111fca446cd00f2a90d29a6db84c6261e1b71d6347
+    lines:
+      AOL_1_OPA164x: [322, 324]
+      AOL_2_OPA164x: [326, 328]
+      BLOCK_DC_H1_OPA164x: [295, 298]
+      BLOCK_DC_H2_OPA164x: [300, 303]
+      BLOCK_DC_H3_OPA164x: [305, 308]
+      BLOCK_DC_S1_OPA164x: [310, 314]
+      BLOCK_DC_S2_OPA164x: [316, 320]
+      CLAMP_AMP_HI_OPA164x: [330, 333]
+      CLAMP_AMP_LO_OPA164x: [335, 338]
+      CLAWN_OPA164x: [340, 352]
+      CLAWP_OPA164x: [354, 366]
+      CLAW_SRC_OPA164x: [368, 370]
+      CL_SRC_OPA164x: [372, 374]
+      ESD_IN_OPA164x: [376, 382]
+      ESD_OUT_OPA164x: [384, 388]
+      FEMT_OPA164x: [390, 395]
+      GR_SRC_OPA164x: [397, 399]
+      IQ_SRC_OPA164x: [401, 403]
+      OL_SENSE_OPA164x: [405, 407]
+      OPA164x: [84, 293]
+      SW_OL_OPA164x: [409, 412]
+      VCM_CLAMP_OPA164x: [414, 416]
+      VNSE_OPA164x: [418, 434]
+      ZO_SRC_OPA164x: [436, 438]
+    fetched: '2026-09-19'
+  note: pins from names

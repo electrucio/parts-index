@@ -1,0 +1,18 @@
+part: BCM847
+kind: bjt
+priority: 4
+group: small_signal_npn
+models:
+- source: ltwiki
+  name: bcm847bs
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Amplifier_classA_and_AB/models.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: b7a1e9b31a8dde47f8de8b4e81ee13a4d4d5d57f59a29ef1c175e0595ba418ae
+    lines:
+      bcm847bs: [2, 2]
+    fetched: '2026-09-14'

@@ -1,0 +1,130 @@
+part: BSS123
+kind: mosfet
+priority: 3
+group: small_signal
+models:
+- source: onsemi
+  name: BSS123
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '20'
+  - '10'
+  - '30'
+  - '50'
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bss123(spice%20model).lib
+    sha256: 0d0ab09ac8e3e8acef9fac51861676ccfdbc005382ccea828bec2ea2b16278ea
+    lines:
+      BSS123: [6, 51]
+    fetched: '2026-09-19'
+    note: 'BSS123(Spice Model): BSS123, DMOS, DDS, DBODY, INTER, DGD …'
+  note: 'same code also in: bordodynov, ltwiki'
+- source: onsemi
+  name: BSS123LT1G
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bss123lt1g%20(pspice%20model).lib
+    sha256: 62b69fdff16b9c018216decd7ff535cbe72d3324a76496a1133211b09af0b85c
+    lines:
+      BSS123LT1G: [8, 50]
+    fetched: '2026-09-19'
+    note: 'BSS123LT1G (PSpice Model): BSS123LT1G, Bsim3, MD, RdrainMOD, MD1, MD2 …'
+  note: pins from default order (unverified)
+- source: infineon
+  name: BSS123
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  - TJ
+  - TCASE
+  deps:
+  - K_100_b_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-power-mosfet-spice-100-v-n-channel-simulationmodels-en.zip
+    member: OptiMOS_small_signal/small_signal_100V.lib
+    archive_sha256: 81cad4c128e2995cd5da5dd398404bf9f4e29351c3fded5313d540d32efaad84
+    sha256: db4182bab058e8b2ef06f78aeaacf51b8db1b126d0050c7d65c7fa309620ff91
+    lines:
+      BSS123: [429, 457]
+      K_100_b_var: [145, 223]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: infineon
+  name: BSS123_L1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  deps:
+  - K_100_b_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-power-mosfet-spice-100-v-n-channel-simulationmodels-en.zip
+    member: OptiMOS_small_signal/small_signal_100V.lib
+    archive_sha256: 81cad4c128e2995cd5da5dd398404bf9f4e29351c3fded5313d540d32efaad84
+    sha256: db4182bab058e8b2ef06f78aeaacf51b8db1b126d0050c7d65c7fa309620ff91
+    lines:
+      BSS123_L1: [650, 668]
+      K_100_b_var: [145, 223]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: infineon
+  name: BSS123N
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  - TJ
+  - TCASE
+  deps:
+  - K_100_y_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-power-mosfet-spice-100-v-n-channel-simulationmodels-en.zip
+    member: OptiMOS_small_signal/small_signal_100V.lib
+    archive_sha256: 81cad4c128e2995cd5da5dd398404bf9f4e29351c3fded5313d540d32efaad84
+    sha256: db4182bab058e8b2ef06f78aeaacf51b8db1b126d0050c7d65c7fa309620ff91
+    lines:
+      BSS123N: [1055, 1083]
+      K_100_y_var: [868, 941]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: infineon
+  name: BSS123I
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  - TJ
+  - TCASE
+  deps:
+  - K_100_y_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-power-mosfet-spice-100-v-n-channel-simulationmodels-en.zip
+    member: OptiMOS_small_signal/small_signal_100V.lib
+    archive_sha256: 81cad4c128e2995cd5da5dd398404bf9f4e29351c3fded5313d540d32efaad84
+    sha256: db4182bab058e8b2ef06f78aeaacf51b8db1b126d0050c7d65c7fa309620ff91
+    lines:
+      BSS123I: [1087, 1115]
+      K_100_y_var: [868, 941]
+    fetched: '2026-09-19'
+  note: pins from names

@@ -1,0 +1,37 @@
+part: BDX54C
+kind: bjt
+priority: 3
+group: power_output
+preferred: onsemi
+preferred_why: 'best datasheet agreement: 7 pass, 0 off, 0 fail of 7 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable). Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: onsemi
+  name: bdx54c
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bdx54c.lib
+    sha256: 35855411633bdbe299a0b5f5b4611e3bea38fd80c9a680eef6f35555be876f61
+    lines:
+      bdx54c: [12, 50]
+    fetched: '2026-09-14'
+    note: 'model(s): bdx54c (.subckt 1 2 3), dmodel (D .model), qmodel (PNP .model), q1model (PNP .model)'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: pins from default order (unverified)
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/bdx53b-d.pdf
+  maker: onsemi
+  doc: BDX53B/D Rev. 16 (November 2024) (covers BDX53B/C, BDX54B/C)

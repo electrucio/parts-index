@@ -1,0 +1,51 @@
+part: SI1308
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: vishay
+  name: Si1308EDL
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  deps:
+  - Si1308EDL_esd
+  - Si1308EDL_mos
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/64539/si1308edl_ps.zip
+    member: Si1308EDL_PS_RC.txt
+    archive_sha256: adb91c4a07af675ea8a2d699c36767a5f0146fab5deda18d5959e5371807bda4
+    sha256: d3a6bab548d9862420582957ec4aa6d0c7101d62ed5c19fa891cf8a1c400f55d
+    lines:
+      Si1308EDL: [106, 109]
+      Si1308EDL_esd: [137, 147]
+      Si1308EDL_mos: [110, 136]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: vishay
+  name: Si1308EDL
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  deps:
+  - Si1308EDL_esd
+  - Si1308EDL_mos
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/64539/si1308edl_ps.zip
+    member: Si1308EDL_HS.TXT
+    archive_sha256: adb91c4a07af675ea8a2d699c36767a5f0146fab5deda18d5959e5371807bda4
+    sha256: abd9c4b57aa61f53ee3011a754a1d9b45dd9879accc213277b1232d8aa3e7868
+    lines:
+      Si1308EDL: [7, 10]
+      Si1308EDL_esd: [38, 48]
+      Si1308EDL_mos: [11, 37]
+    fetched: '2026-09-19'
+  note: pins from names

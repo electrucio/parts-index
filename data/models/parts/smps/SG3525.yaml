@@ -1,0 +1,77 @@
+part: SG3525
+kind: smps
+priority: 3
+models:
+- source: bordodynov
+  name: sg3525a
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INV
+  - NI
+  - SYN
+  - OSC
+  - CT
+  - RT
+  - DCH
+  - SS
+  - CMP
+  - SHD
+  - OUA
+  - GND
+  - VC
+  - OUB
+  - VIN
+  - VRF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/ValVol.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: c12415c540e806c1348c9c16e84708c84fe8c9c6cb59b5ade3420c0fbb85e44d
+    lines:
+      sg3525a: [163, 248]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''smps'''
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: sg3525a
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INV
+  - NI
+  - SYN
+  - OSC
+  - CT
+  - RT
+  - DCH
+  - SS
+  - CMP
+  - SHD
+  - OUA
+  - GND
+  - VC
+  - OUB
+  - VIN
+  - VRF
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/ValVol/ValVol.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 26e23b7fac523d6244507aedbdb38fe2fbf74fa181532bfb792d5db75f06245c
+    lines:
+      sg3525a: [183, 268]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''smps'''
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/sg3525a-d.pdf
+  maker: onsemi (Motorola)
+  doc: SG3525A/D data sheet

@@ -1,0 +1,71 @@
+part: MCP6N11
+kind: opamp
+priority: 3
+models:
+- source: ltwiki
+  name: MCP6N11
+  def: subckt
+  type: SUBCKT
+  pins:
+  - EN/CAL
+  - VDD
+  - VFG
+  - VIM
+  - VIP
+  - VOUT
+  - VREF
+  - VSS
+  deps:
+  - DC_1mV_1A_1V_1nA
+  - COMP_HYS
+  - COMPARATOR
+  - AND
+  - MCP6N11_S1
+  - ANALOG_BUFFER
+  - VC_CAPACITOR
+  - OUTX
+  - COMPARATOR2
+  - ANALOG_MULTI
+  - VC_INDUCTOR
+  - GMX
+  - INVERTER
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/MCP6N11_001.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: b5599f7062aecfbd7c7709e1a5f7b9e6134d0f0d547343290937e2725a08ec5c
+    lines:
+      ANALOG_BUFFER: [207, 210]
+      ANALOG_MULTI: [230, 232]
+      AND: [234, 236]
+      COMPARATOR: [226, 228]
+      COMPARATOR2: [212, 215]
+      COMP_HYS: [217, 224]
+      DC_1mV_1A_1V_1nA: [203, 205]
+      GMX: [240, 349]
+      INVERTER: [199, 201]
+      MCP6N11: [60, 184]
+      MCP6N11_S1: [192, 196]
+      OUTX: [352, 472]
+      VC_CAPACITOR: [474, 481]
+      VC_INDUCTOR: [483, 488]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: MCP6N11_S1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/MCP6N11_001.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: b5599f7062aecfbd7c7709e1a5f7b9e6134d0f0d547343290937e2725a08ec5c
+    lines:
+      MCP6N11_S1: [192, 196]
+    fetched: '2026-09-14'

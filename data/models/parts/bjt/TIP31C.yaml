@@ -1,0 +1,138 @@
+part: TIP31C
+kind: bjt
+priority: 2
+group: driver_vas
+preferred: central-semi
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with cordell on score and
+  typical-value error, chosen as the more original source. Limits only: the datasheet prints no typical
+  values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: central-semi
+  name: TIP31C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/TIP31C.LIB
+    sha256: 3617fd1e918cbb333027a05c3fedb150e07e2c3eae95869ed280218f52e0c4c9
+    lines:
+      TIP31C: [24, 49]
+    fetched: '2026-09-14'
+    note: 'model(s): TIP31C (NPN .model)'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: cordell
+  name: TIP31C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    how: unknown
+    sha256: eee2b330ada2b89057d41e4dc2107ba39d4eaf9aa2335e7bb94cd5e1e0b8f48c
+    lines:
+      TIP31C: [655, 655]
+    fetched: '2026-09-14'
+    note: 'local copy from ~/Documents/LTspice: site file + 2 appended non-Cordell lines (TIP31C, TIP32C
+      .model)'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: bordodynov
+  name: TIP31C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      TIP31C: [518, 518]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 2
+    marginal: 0
+    fail: 2
+    not_measurable: 2
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: TIP31C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/bjt/TIP31C/TIP31C.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 93725063848d2489e94153db9af529ff284e1ed9bf886b5a561c1437a363970a
+    lines:
+      TIP31C: [108, 126]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 2
+    marginal: 0
+    fail: 1
+    not_measurable: 3
+    typical_rows: 0
+- source: ltwiki
+  name: TIP31C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
+    lines:
+      TIP31C: [474, 474]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 2
+    marginal: 0
+    fail: 2
+    not_measurable: 2
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: tip31c/ON
+  def: model
+  type: NPN
+  deps:
+  - TIP31C
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/bjt/TIP31C/TIP31C.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 93725063848d2489e94153db9af529ff284e1ed9bf886b5a561c1437a363970a
+    lines:
+      TIP31C: [108, 126]
+      tip31c/ON: [13, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/tip31a-d.pdf
+  maker: onsemi
+  doc: TIP31A/D Rev. 17 (June 2024) - TIP31/31A/31B/31C, TIP32/32A/32B/32C

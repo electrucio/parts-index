@@ -1,0 +1,68 @@
+part: CD4066
+kind: logic
+priority: 2
+models:
+- source: bordodynov
+  name: CD4066
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/SwitchAna.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
+    lines:
+      CD4066: [187, 224]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: CD4066B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '11'
+  - '4'
+  - '2'
+  - '10'
+  - '7'
+  deps:
+  - CD4066_INVERT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4066B.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: fecc7d5e8ebb2c5dda40c8cf09165c26ec63ec452bfe0f2c8020c2acf049298a
+    lines:
+      CD4066B: [2, 23]
+      CD4066_INVERT: [25, 41]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: CD4066B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '11'
+  - '4'
+  - '2'
+  - '10'
+  - '7'
+  deps:
+  - INVERT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/SWITCH.LIB
+    sha256: 13e7f106ceb9b1e2e0d481e4d6c556c1c566d078f72b27ff85a48397c185f23e
+    lines:
+      CD4066B: [78, 93]
+      INVERT: [94, 104]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

@@ -1,0 +1,133 @@
+part: 2N3904
+kind: bjt
+priority: 1
+group: small_signal_npn
+preferred: onsemi
+preferred_why: 'best datasheet agreement: 12 pass, 0 off, 0 fail of 12 judged rows (0 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with ltspice-native,
+  cordell, cordell on score and typical-value error, chosen as the more original source. Limits only:
+  the datasheet prints no typical values for these rows, so candidates inside the limits are not told
+  apart'
+models:
+- source: onsemi
+  name: Q2n3904
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/2n3904.lib
+    sha256: 5608c109b8d68d57798557991cee506661d031916f589325fad5ed10d82ccbf7
+    lines:
+      Q2n3904: [15, 25]
+    fetched: '2026-09-14'
+    note: 'model(s): Q2n3904 (NPN .model)'
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: central-semi
+  name: 2N3904
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/2N3904.LIB
+    sha256: 97764c845cad8e3c2becc9fdb7fb05dd69ac26e55259ba381660d05116788e6c
+    lines:
+      2N3904: [24, 49]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N3904 (NPN .model)'
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: ltspice-native
+  name: 2N3904
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.bjt
+    sha256: 15e7c7fa149dbdc97bb647f77681999a38fb4c324928beb4f1fa2a589288f587
+    lines:
+      2N3904: [14, 17]
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library'
+- source: cordell
+  name: 2N3904C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.cordellaudio.com/book/Install-Test.zip
+    member: Install Test/Cordell Models.txt
+    archive_sha256: 332b487564a6c8eca0f8a1db26ec86109b450af5e75278e32556ad000f9bcd77
+    sha256: ae2d30efd938496e2a633e5de71d2fceae0e588c0dde475cb2ec8ff6fe9f2bba
+    lines:
+      2N3904C: [9, 18]
+    fetched: '2026-09-14'
+    note: Cordell Models 12/07/2010 (older version bundled in zip; RB=10 in small-signal BJTs)
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: cordell
+  name: 2N3904C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.cordellaudio.com/book/Cordell-Models.txt
+    sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
+    lines:
+      2N3904C: [28, 37]
+    fetched: '2026-09-14'
+    note: 'Cordell Models 04/20/2011 (current site file, HTTP Last-Modified 2024-09-15): 63 .model (BJT
+      GP, NJF, VDMOS, D)'
+  verification:
+    score: 1.0
+    pass: 12
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: duncanamps
+  name: Q2N3904
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/bjt/npn.mod
+    sha256: 57dfef87174fc8f0310bc9527e0bf7ef3fa92d13d295ea8a504d3ba67f13ec87
+    lines:
+      Q2N3904: [80, 81]
+    fetched: '2026-09-14'
+    note: 39 subckts, 158 .model
+  verification:
+    score: 0.833
+    pass: 10
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/2n3903-d.pdf
+  maker: onsemi
+  doc: 2N3903/D Rev. 9 (August 2021)

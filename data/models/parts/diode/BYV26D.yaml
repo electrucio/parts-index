@@ -1,0 +1,32 @@
+part: BYV26D
+kind: diode
+priority: 2
+group: rectifier
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 2 pass, 0 off, 2 fail of 4 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable). WEAK EVIDENCE: fewer than 5 rows,
+  all min/max limits'
+models:
+- source: kicad-spice-library
+  name: BYV26D
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/GenSemiUltraRect.lib
+    sha256: 43f8d9ef8b0f17890590821a887eb76a131c531f450f5579fb43d62b8417c709
+    lines:
+      BYV26D: [60, 74]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.5
+    pass: 2
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://www.vishay.com/docs/86040/byv26.pdf
+  maker: Vishay Semiconductors
+  doc: BYV26A..BYV26E, Document Number 86040, Rev. 1.8, 21-Feb-18

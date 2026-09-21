@@ -1,0 +1,290 @@
+part: '6550'
+kind: tube
+priority: 1
+group: pentode_beam
+preferred: ayumi
+preferred_why: 'best datasheet agreement: 15 pass, 6 off, 0 fail of 21 judged rows (21 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with suusi-tubes on
+  score and typical-value error, chosen as the more original source'
+models:
+- source: ayumi
+  name: 6550A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6550A.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 2d79c9ef12fa2348828ed3323303037eead778ef5d784db5d0b18fb90f1e3b0a
+    lines:
+      6550A: [10, 30]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.714
+    pass: 15
+    marginal: 6
+    fail: 0
+    not_measurable: 0
+    typical_rows: 21
+  note: pins from names
+- source: ayumi
+  name: 6550AT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6550AT.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: b8587c3a562990fb93858ba3ae21afd2c967c83977a8ed26cd0b2dee2e8c5fb2
+    lines:
+      6550AT: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.143
+    pass: 3
+    marginal: 18
+    fail: 0
+    not_measurable: 0
+    typical_rows: 21
+  note: pins from names
+- source: koren
+  name: '6550'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G1
+  - C
+  - G2
+  verbatim: true
+  get:
+    url: https://www.normankoren.com/Audio/Tubemods.zip
+    member: Tube.lib
+    archive_sha256: 0a640ed245918dc5a349abf370f5e955ccdb6d85986fbf36b10bc720d55f8982
+    sha256: 581821af37b2669ea340b93116de46c9c4edf4c713990eea270b197c62885844
+    lines:
+      '6550': [23, 39]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.619
+    pass: 13
+    marginal: 8
+    fail: 0
+    not_measurable: 0
+    typical_rows: 21
+  note: pins from inline comment
+- source: koren
+  name: '6550'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - CS
+  verbatim: true
+  get:
+    url: https://www.normankoren.com/Audio/Tubemods.zip
+    member: Tube97.lib
+    archive_sha256: 0a640ed245918dc5a349abf370f5e955ccdb6d85986fbf36b10bc720d55f8982
+    sha256: f033f67125d830403bd79ad3b5438097226a90bd93b67f9efa1e18357cce1457
+    lines:
+      '6550': [23, 48]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 21
+    typical_rows: 0
+- source: suusi-tubes
+  name: 6550A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6550A: [1472, 1476]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 14
+    marginal: 7
+    fail: 0
+    not_measurable: 0
+    typical_rows: 21
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6550A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6550A: [689, 693]
+      PENTODE1: [2010, 2023]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.667
+    pass: 14
+    marginal: 7
+    fail: 0
+    not_measurable: 0
+    typical_rows: 21
+  note: pins from inline comment
+- source: suusi-tubes
+  name: '6550'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      '6550': [1465, 1469]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 14
+    marginal: 7
+    fail: 0
+    not_measurable: 0
+    typical_rows: 21
+  note: pins from inline comment
+- source: suusi-tubes
+  name: '6550'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      '6550': [682, 686]
+      PENTODE1: [2010, 2023]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.714
+    pass: 15
+    marginal: 6
+    fail: 0
+    not_measurable: 0
+    typical_rows: 21
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6550_OLD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6550_OLD: [676, 679]
+      PENTODE: [1994, 2007]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.619
+    pass: 13
+    marginal: 8
+    fail: 0
+    not_measurable: 0
+    typical_rows: 21
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6550C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6550C: [1479, 1483]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.571
+    pass: 12
+    marginal: 9
+    fail: 0
+    not_measurable: 0
+    typical_rows: 21
+  note: pins from inline comment
+datasheet:
+  url: https://frank.pocnet.net/sheets/127/6/6550.pdf
+  maker: Tung-Sol
+  doc: '6550, plates #6755 ff. (8 pages)'
+  date: '1963-07-01'

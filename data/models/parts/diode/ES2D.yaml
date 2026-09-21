@@ -1,0 +1,17 @@
+part: ES2D
+kind: diode
+priority: 4
+group: rectifier
+models:
+- source: vishay
+  name: es2d
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89834/es2d.txt
+    sha256: 210be022c7dd2c2b22c932dc748485558a79aec381731a0d2a038e04c796263c
+    lines:
+      es2d: [7, 10]
+    fetched: '2026-09-19'
+    note: 'Ultrafast Recovery, PSpice Models (*.txt): es2d'

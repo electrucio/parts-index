@@ -1,0 +1,91 @@
+part: BAV70
+kind: diode
+priority: 3
+group: silicon_signal
+models:
+- source: onsemi
+  name: bav70tt1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bav70tt1.lib
+    sha256: 43a63002fc06bf4057120a7c758246346da484eaeae2db76bb720149966d4c8e
+    lines:
+      bav70tt1: [1, 47]
+    fetched: '2026-09-19'
+    note: 'BAV70TT1.LIB: bav70tt1, dqemod, dqmod, diomod, dmod'
+  note: pins from default order (unverified)
+- source: bordodynov
+  name: BAV70HM
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BAV70HM: [1441, 1441]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BAV70HY
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BAV70HY: [2249, 2249]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: BAV70
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - K
+  - A2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/BAV70.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: fb617607480bd09d70d62b4ba063921d1637633d268249c418188b8405e27a9a
+    lines:
+      BAV70: [1, 6]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from names'
+- source: kicad-spice-library
+  name: BAV70
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+    sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+    lines:
+      BAV70: [173, 174]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BAV70
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/DIODE3.LIB
+    sha256: 88ceba16090e9038958260ddfeaada17f266d72cde791f865efa4a903dfb91d3
+    lines:
+      BAV70: [1705, 1706]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

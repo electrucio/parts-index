@@ -1,0 +1,66 @@
+part: EL817
+kind: opto
+priority: 3
+models:
+- source: bordodynov
+  name: 4N25
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OptoAcop.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: afc41e67a056aadd6af70da491aedd69fb6e66a9f20ffe644c8b39d92e8ad025
+    lines:
+      4N25: [152, 160]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 4N25, not of EL817; equivalence declared in catalog/wanted.yaml (see its note);
+    same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: PC817
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/PC817.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0c80f3110eb3c20c73e940201df25f5ef96bd7397c389eca5d9e2d036fa038e1
+    lines:
+      PC817: [3, 11]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of PC817, not of EL817; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 4N25
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/4N25.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: c97120393d2aafd4f1b9cf7a18f4c2a7dcc3e05810c8820c6f9247ce9a752341
+    lines:
+      4N25: [3, 11]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 4N25, not of EL817; equivalence declared in catalog/wanted.yaml (see its note);
+    same code also in: kicad-spice-library, ltwiki'

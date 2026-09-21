@@ -1,0 +1,54 @@
+part: REF2033A
+kind: regulator
+priority: 4
+models:
+- source: ti
+  name: REF2033
+  def: subckt
+  type: SUBCKT
+  pins:
+  - VBIAS
+  - GND
+  - EN
+  - VIN
+  - VREF
+  deps:
+  - RES
+  - GAINSET_1
+  - D1
+  - D_DNOISE
+  - Q_NMOS_OUT_L1
+  - SW1
+  - D_LIM1
+  - Q_NMOS_OUT_L1_1
+  - Q_PMOS_OUT_L1
+  - Bias
+  - Output
+  - GAINSET
+  - D2
+  - D_D2
+  - REF20XX
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM900
+    member: REF2033.txt
+    archive_sha256: 65b76926742d15ff1ca9db1ccce888b747540df88a9e9526672a627fcfac97f2
+    sha256: fb3b5088c0925eb6d328a30541f02564ae2f3c5aa8516af4d9f3432ff78d7089
+    lines:
+      Bias: [129, 159]
+      D1: [323, 323]
+      D2: [329, 329]
+      D_D2: [161, 163]
+      D_DNOISE: [208, 211]
+      D_LIM1: [312, 312]
+      GAINSET: [177, 190]
+      GAINSET_1: [193, 206]
+      Output: [71, 126]
+      Q_NMOS_OUT_L1: [292, 293]
+      Q_NMOS_OUT_L1_1: [229, 233]
+      Q_PMOS_OUT_L1: [301, 302]
+      REF2033: [30, 32]
+      REF20XX: [34, 69]
+      RES: [165, 174]
+      SW1: [282, 282]
+    fetched: '2026-09-19'

@@ -1,0 +1,28 @@
+part: MCT6
+kind: opto
+priority: 4
+models:
+- source: kicad-spice-library
+  name: MCT6
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  deps:
+  - LED
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/OPTO.LIB
+    sha256: de13798c1d664facfc67f361a50276868da48515614896cc6195c623e56b51f6
+    lines:
+      LED: [920, 935]
+      MCT6: [678, 703]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

@@ -1,0 +1,22 @@
+part: MUN5214
+kind: bjt
+priority: 4
+group: small_signal_npn
+models:
+- source: kicad-spice-library
+  name: mun5214t1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_small.lib
+    sha256: 03de7eeee5291d83d8017fe3dafdab3fd5afa7d3bb2da1da44bf953eb4973e5a
+    lines:
+      mun5214t1: [853, 883]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

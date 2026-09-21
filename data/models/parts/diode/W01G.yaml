@@ -1,0 +1,24 @@
+part: W01G
+kind: diode
+priority: 4
+group: bridge
+models:
+- source: bordodynov
+  name: W01G
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/BridgeRectifier.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: fbfb3a0f1eea17cd703938e0e44356ba1a3307af63e67ba4bd963a0596fd1d94
+    lines:
+      W01G: [781, 787]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

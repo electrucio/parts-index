@@ -1,0 +1,183 @@
+part: OPA695
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA695
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - OPA695_model_F1
+  - OPA695_model
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOJ015
+    member: OPA695_ADS_AIO/netlists/OPA695.lib
+    archive_sha256: 255c57e678a6ad9271e4d5b2c151d3444a72e69868d235de0c0fa7be5164bda8
+    sha256: 4d0f992920121d8595a0c23b10c812009c571152e7404e759e3004bba270f37d
+    lines:
+      OPA695: [35, 38]
+      OPA695_model: [40, 160]
+      OPA695_model_F1: [169, 172]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: ti
+  name: OPA695
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - OUT
+  - VCC
+  - VEE
+  deps:
+  - CLAWP_OPA695
+  - VOS_DRIFT_OPA695
+  - AOL_1_OPA695
+  - CLAMP_AMP_LO_OPA695
+  - IQ_SRC_OPA695
+  - VOS_VS_VCM_OPA695
+  - VNSE_OPA695
+  - AOL_2_OPA695
+  - VCM_CLAMP_OPA695
+  - FEMTB_OPA695
+  - CLAW_SRC_OPA695
+  - 08_OP_AMP_COMPLETE_H3_OPA695
+  - CLAWN_OPA695
+  - FEMT_OPA695
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOC036
+    member: opa695_a.lib
+    archive_sha256: fd3bd41dd35e18d181145d6d8f3d0b6652613f7b9cf8c446adcb40a73ce826c2
+    sha256: a6f0098d03d96d460659e456ad1f5b007a56fb82a3fb40bb9eeb26c700c8345b
+    lines:
+      08_OP_AMP_COMPLETE_H3_OPA695: [133, 136]
+      AOL_1_OPA695: [138, 143]
+      AOL_2_OPA695: [145, 150]
+      CLAMP_AMP_LO_OPA695: [152, 156]
+      CLAWN_OPA695: [158, 165]
+      CLAWP_OPA695: [167, 174]
+      CLAW_SRC_OPA695: [176, 181]
+      FEMTB_OPA695: [206, 227]
+      FEMT_OPA695: [183, 204]
+      IQ_SRC_OPA695: [229, 232]
+      OPA695: [32, 131]
+      VCM_CLAMP_OPA695: [234, 237]
+      VNSE_OPA695: [239, 260]
+      VOS_DRIFT_OPA695: [262, 267]
+      VOS_VS_VCM_OPA695: [269, 279]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: ltwiki
+  name: OPA695
+  def: subckt
+  type: SUBCKT
+  pins:
+  - +
+  - '-'
+  - V+
+  - V-
+  - Out
+  - DisA
+  deps:
+  - Da
+  - DN3
+  - DN1
+  - OPA695_F1
+  - PNP8
+  - NPN8
+  - OPA695_F4
+  - OPA695_F2
+  - OPA695_F3
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/OpAmps/By_Marks_Type/Ti_Bb_Unitrode/OpaXxx/opa695/opa695.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: fb2449f3f76f82eb549a6fdda435e32ff4208b7341f5ff482197c31799a07fd9
+    lines:
+      DN1: [143, 143]
+      DN3: [144, 144]
+      Da: [142, 142]
+      NPN8: [146, 156]
+      OPA695: [48, 118]
+      OPA695_F1: [120, 123]
+      OPA695_F2: [125, 128]
+      OPA695_F3: [130, 133]
+      OPA695_F4: [135, 138]
+      PNP8: [158, 168]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: OPA695_F1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '*comment'
+  - out
+  - for
+  - Spice3
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/OpAmps/By_Marks_Type/Ti_Bb_Unitrode/OpaXxx/opa695/opa695.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: fb2449f3f76f82eb549a6fdda435e32ff4208b7341f5ff482197c31799a07fd9
+    lines:
+      OPA695_F1: [120, 123]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: OPA695_F2
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '*comment'
+  - out
+  - for
+  - Spice3
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/OpAmps/By_Marks_Type/Ti_Bb_Unitrode/OpaXxx/opa695/opa695.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: fb2449f3f76f82eb549a6fdda435e32ff4208b7341f5ff482197c31799a07fd9
+    lines:
+      OPA695_F2: [125, 128]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: OPA695_F3
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '*comment'
+  - out
+  - for
+  - Spice3
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/OpAmps/By_Marks_Type/Ti_Bb_Unitrode/OpaXxx/opa695/opa695.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: fb2449f3f76f82eb549a6fdda435e32ff4208b7341f5ff482197c31799a07fd9
+    lines:
+      OPA695_F3: [130, 133]
+    fetched: '2026-09-14'

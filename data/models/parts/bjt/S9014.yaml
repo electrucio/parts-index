@@ -1,0 +1,20 @@
+part: S9014
+kind: bjt
+priority: 4
+group: small_signal_npn
+models:
+- source: bordodynov
+  name: ss9014
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      ss9014: [784, 784]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of ss9014, not of S9014; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: kicad-spice-library, ltwiki'

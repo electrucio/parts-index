@@ -1,0 +1,24 @@
+part: LM2941
+kind: regulator
+priority: 4
+models:
+- source: bordodynov
+  name: LM2941
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - ON_OFF
+  - GND_
+  - ADJ
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM2941.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 3f1868d462a465ecee12379e1f4a7e1a9586d1e211ae243e64c0dc81459dbac4
+    lines:
+      LM2941: [1, 101]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

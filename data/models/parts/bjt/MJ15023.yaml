@@ -1,0 +1,56 @@
+part: MJ15023
+kind: bjt
+priority: 2
+group: power_output
+preferred: ltwiki
+preferred_why: 'best datasheet agreement: 7 pass, 0 off, 0 fail of 7 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 1 not measurable). Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: ltwiki
+  name: MJ15023
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/adventures_with_analog/APT-1_amplifier/apt-1-bjt.mod
+    sha256: 61d62749810f1ee82ba7294a3d8f3a0bb90d572c708e6aa46254125ea8f45348
+    lines:
+      MJ15023: [4, 4]
+    fetched: '2026-09-14'
+    note: BJT models used in APT-1 power amp sim
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 1
+    typical_rows: 0
+- source: kicad-spice-library
+  name: MJ15023
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWBJT.LIB
+    sha256: a64b2703fc28c849c7760139346aa1e0c31b83f7701a15e8e7a8d12b01c7befc
+    lines:
+      MJ15023: [117, 126]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 0
+    fail: 1
+    not_measurable: 1
+    typical_rows: 0
+  note: pins from default order (unverified)
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/mj15023-d.pdf
+  maker: onsemi
+  doc: MJ15023/D Rev. 12 (August 2013) (covers MJ15023, MJ15025)

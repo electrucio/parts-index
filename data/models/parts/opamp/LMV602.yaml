@@ -1,0 +1,24 @@
+part: LMV602
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: LMV602
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNOJ002
+    member: LMV602.TXT
+    archive_sha256: 9b19705fe695f897d6c1b1a8bc77d86847d462ad64f646de1112b58afce4a1cd
+    sha256: 80e3c65591e3d8cfecf564b8bc25c6aef77f673671cf4dabea7cdb2b04df676e
+    lines:
+      LMV602: [42, 181]
+    fetched: '2026-09-19'
+  note: pins from default order (unverified)

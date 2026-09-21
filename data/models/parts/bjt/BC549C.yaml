@@ -1,0 +1,33 @@
+part: BC549C
+kind: bjt
+priority: 1
+group: small_signal_npn
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 10 pass, 2 off, 0 fail of 12 judged rows (4 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: BC549C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC549C: [588, 588]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 10
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://www.nxp.com/documents/data_sheet/BC549_550.pdf
+  maker: nxp (philips)
+  doc: BC549; BC550 product data sheet 2004 Oct 11

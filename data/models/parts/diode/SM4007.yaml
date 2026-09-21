@@ -1,0 +1,91 @@
+part: SM4007
+kind: diode
+priority: 3
+group: rectifier
+models:
+- source: onsemi
+  name: D1n4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n4007.rev0.lib
+    sha256: 1812debe13912e9f9d5d0f66535ec6f8eabc2e64c0a9d8f4f50a2cb0601db80d
+    lines:
+      D1n4007: [14, 18]
+    fetched: '2026-09-19'
+    note: '1N4007.LIB: D1n4007'
+  note: 'STAND-IN: model of D1n4007, not of SM4007; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: ltwiki'
+- source: vishay
+  name: d1n4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/88000/1n4007.txt
+    sha256: 35bcfe8b95639d32ad519afa26d2dd3f69ed8958822334fa6c8be5535d46c38f
+    lines:
+      d1n4007: [11, 14]
+    fetched: '2026-09-14'
+    note: 'model(s): d1n4007 (D .model)'
+  note: 'STAND-IN: model of d1n4007, not of SM4007; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: kicad-spice-library'
+- source: vishay
+  name: d1n4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89789/1n4007.txt
+    sha256: 00aa704a24609b189b0f0b54be9de295b22767374a28a3ed06939ba5cda9fdfb
+    lines:
+      d1n4007: [7, 10]
+    fetched: '2026-09-14'
+    note: 'model(s): d1n4007 (D .model)'
+  note: 'STAND-IN: model of d1n4007, not of SM4007; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+- source: duncanamps
+  name: D1N4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/diode.mod
+    sha256: bb58d6a99a7204cfa89803598a0331243f10c11afb1b6279fb56fec2ae14c941
+    lines:
+      D1N4007: [51, 52]
+    fetched: '2026-09-14'
+    note: 34 .model
+  note: 'STAND-IN: model of D1N4007, not of SM4007; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+- source: suusi-tubes
+  name: 1N4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: MotorolaRectifiers.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: 88449ae88e2f751e584a6c2a079ded8a074d765cee37ce146ad1fd34182c5b35
+    lines:
+      1N4007: [9, 9]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 1N4007, not of SM4007; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+- source: bordodynov
+  name: 1N4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N4007: [151, 151]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 1N4007, not of SM4007; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: ltwiki'

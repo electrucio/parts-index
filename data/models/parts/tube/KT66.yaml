@@ -1,0 +1,305 @@
+part: KT66
+kind: tube
+priority: 2
+group: pentode_beam
+preferred: ayumi
+preferred_why: 'best datasheet agreement: 12 pass, 3 off, 0 fail of 15 judged rows (15 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: ayumi
+  name: KT66T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: KT66T.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 47732e5aa2b7540bf71a33d91a153c2584e160399c24f385e8eca7ae6f377125
+    lines:
+      KT66T: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.133
+    pass: 2
+    marginal: 13
+    fail: 0
+    not_measurable: 0
+    typical_rows: 15
+  note: pins from names
+- source: ayumi
+  name: KT66
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: KT66.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 84c0c8717f8f0b2911d5fe33b4d2686b2d64a9b58cfff898936dc2b779ebc5ae
+    lines:
+      KT66: [10, 30]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 12
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 15
+  note: pins from names
+- source: suusi-tubes
+  name: KT66
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      KT66: [2123, 2127]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.733
+    pass: 11
+    marginal: 4
+    fail: 0
+    not_measurable: 0
+    typical_rows: 15
+  note: pins from inline comment
+- source: suusi-tubes
+  name: KT66
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      KT66: [1521, 1525]
+      PENTODE1: [2010, 2023]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.733
+    pass: 11
+    marginal: 4
+    fail: 0
+    not_measurable: 0
+    typical_rows: 15
+  note: pins from inline comment
+- source: bordodynov
+  name: KT66
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - DX
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/nk_pentode.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: c559485a397b0b4be28e593e9cd6dd23228a07fbce5ca4e240d2421fb98a3f40
+    lines:
+      DX: [303, 303]
+      KT66: [229, 233]
+      PENTODE1: [272, 284]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.733
+    pass: 11
+    marginal: 4
+    fail: 0
+    not_measurable: 0
+    typical_rows: 15
+  note: 'same code also in: kicad-spice-library, ltwiki, robrobinette; pins from inline comment'
+- source: bordodynov
+  name: KT66TR_RY
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - Igrid
+  - TRIO1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      Igrid: [2974, 2978]
+      KT66TR_RY: [673, 682]
+      TRIO1: [2927, 2929]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 15
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: KT66RY
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  deps:
+  - Igrid
+  - TETRO1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      Igrid: [2974, 2978]
+      KT66RY: [2887, 2897]
+      TETRO1: [2939, 2949]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 15
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: KT66
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  deps:
+  - Igrid
+  - TETRO1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Rydel_tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+    lines:
+      Igrid: [859, 863]
+      KT66: [632, 642]
+      TETRO1: [811, 825]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 15
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: KT66
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  deps:
+  - Triode
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/new_triodes.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c621c85eb3b9d3dd97622ff9d25c1c1dcf93bc76e9dc887a946205326f08da2
+    lines:
+      KT66: [329, 333]
+      Triode: [31, 49]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.2
+    pass: 3
+    marginal: 12
+    fail: 0
+    not_measurable: 0
+    typical_rows: 15
+  note: 'same code also in: ltwiki; pins from names'
+- source: bordodynov
+  name: KT66
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Koren_Tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
+    lines:
+      KT66: [1550, 1554]
+      PENTODE1: [2046, 2059]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.733
+    pass: 11
+    marginal: 4
+    fail: 0
+    not_measurable: 0
+    typical_rows: 15
+  note: 'same code also in: ltwiki; pins from inline comment'
+datasheet:
+  url: https://frank.pocnet.net/sheets/086/k/KT66.pdf
+  maker: M-O Valve Co (GEC)
+  doc: KT66 Issue 5
+  date: 1977-04

@@ -1,0 +1,55 @@
+part: LME49710
+kind: opamp
+priority: 2
+models:
+- source: ltwiki
+  name: LME49710
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - VNSE
+  - D_ideal
+  - Rnoiseless
+  - Amp_Dyn_Iout_Siq2
+  - Amp_Dyn_Iout_Siq1
+  - Tran_Iout
+  - Zout_Uz_H1
+  - HPA_PD_I
+  - FEMT
+  - VCCS_Limit
+  - EPOLY1
+  - Zout_Uz_S1
+  - HPA_PD_Sgnl
+  - Zout_Uz_S2
+  - VCVS_Limit
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/LME49710.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: e51ea249e16ceeae9cd38d8a756bdc347b9a3ba9e96bb5b9b9047905bf85298a
+    lines:
+      Amp_Dyn_Iout_Siq1: [266, 270]
+      Amp_Dyn_Iout_Siq2: [273, 277]
+      D_ideal: [176, 180]
+      EPOLY1: [313, 318]
+      FEMT: [219, 252]
+      HPA_PD_I: [292, 299]
+      HPA_PD_Sgnl: [301, 303]
+      LME49710: [49, 155]
+      Rnoiseless: [321, 323]
+      Tran_Iout: [255, 264]
+      VCCS_Limit: [280, 283]
+      VCVS_Limit: [286, 289]
+      VNSE: [183, 216]
+      Zout_Uz_H1: [170, 173]
+      Zout_Uz_S1: [164, 168]
+      Zout_Uz_S2: [158, 162]
+    fetched: '2026-09-14'
+  note: pins from names

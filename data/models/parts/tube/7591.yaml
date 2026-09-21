@@ -1,0 +1,320 @@
+part: '7591'
+kind: tube
+priority: 3
+group: pentode_beam
+preferred: ayumi
+preferred_why: 'best datasheet agreement: 17 pass, 2 off, 0 fail of 19 judged rows (19 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with ltwiki on score
+  and typical-value error, chosen as the more original source'
+models:
+- source: ayumi
+  name: 7591T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 7591T.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: d559fb151114c64f9b20447afac2e23471f74e9f9774f0f738c3b4dcb6b5b776
+    lines:
+      7591T: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.263
+    pass: 5
+    marginal: 14
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from names
+- source: ayumi
+  name: '7591'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 7591.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 7784cfd7250eb57ac5b89fa4aa332ddc54cbf78ff583a2f8e088d5ce023982e5
+    lines:
+      '7591': [10, 30]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.895
+    pass: 17
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from names
+- source: suusi-tubes
+  name: 7591A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  - 6L6GC
+  - 7581A
+  - '7868'
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6L6GC: [1383, 1387]
+      7581A: [1509, 1512]
+      7591A: [1515, 1518]
+      '7868': [1521, 1525]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.895
+    pass: 17
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 7591A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  - 6L6GC
+  - 7581A
+  - '7868'
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6L6GC: [806, 810]
+      7581A: [735, 738]
+      7591A: [741, 744]
+      '7868': [747, 751]
+      PENTODE1: [2010, 2023]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.842
+    pass: 16
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from inline comment
+- source: bordodynov
+  name: 7591DB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G1
+  - C
+  - G2
+  deps:
+  - Tetro
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      7591DB: [2214, 2218]
+      Tetro: [3163, 3176]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.0
+    pass: 0
+    marginal: 19
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from inline comment'
+- source: bordodynov
+  name: 7591Pent
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '5'
+  - '4'
+  - '3'
+  - '2'
+  - '1'
+  deps:
+  - Pento
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      7591Pent: [2361, 2368]
+      Pento: [3178, 3191]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 19
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 7591A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  - 6L6GC
+  - 7581A
+  - '7868'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Koren_Tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
+    lines:
+      6L6GC: [835, 839]
+      7581A: [764, 767]
+      7591A: [770, 773]
+      '7868': [776, 780]
+      PENTODE1: [2046, 2059]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.842
+    pass: 16
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: 'same code also in: ltwiki; pins from inline comment'
+- source: ltwiki
+  name: 7591T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Triode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+    lines:
+      7591T: [2869, 2882]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.263
+    pass: 5
+    marginal: 14
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from names
+- source: ltwiki
+  name: '7591'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Pentode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
+    lines:
+      '7591': [1780, 1800]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.895
+    pass: 17
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from names
+- source: robrobinette
+  name: 7591A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - DX
+  - PENTODE1
+  - 6L6GC
+  - 7581A
+  - '7868'
+  verbatim: true
+  get:
+    url: https://robrobinette.com/images/Guitar/Spice_Analysis/Deluxe_LTSpice.zip
+    member: Koren_Tubes.INC
+    archive_sha256: eda5b2ebae0d88f997ddc7c80acbba4d363d9a2b359df8751ea12114faad3a12
+    sha256: 9e27abd35e5f4c28d8e5197292a14af264bfe4d2d8a2747b8bddccb7c1a3a949
+    lines:
+      6L6GC: [571, 575]
+      7581A: [507, 510]
+      7591A: [513, 516]
+      '7868': [519, 523]
+      DX: [1364, 1364]
+      PENTODE1: [1317, 1329]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.842
+    pass: 16
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from inline comment
+datasheet:
+  url: https://frank.pocnet.net/sheets/168/7/7591.pdf
+  maker: Sylvania
+  doc: Sylvania Engineering Data Service 7591, pages 1-5 (Receiving Tube Operations, Emporium PA)
+  date: 1961-10

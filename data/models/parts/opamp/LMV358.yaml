@@ -1,0 +1,136 @@
+part: LMV358
+kind: opamp
+priority: 2
+models:
+- source: ti
+  name: LMV358A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - VNSE_0
+  - VCCS_EXT_LIM_0
+  - VOS_SRC_0
+  - VCCS_LIM_3_0
+  - VCCS_LIM_1_0
+  - VCCS_LIM_2_0
+  - VCCS_LIM_4_0
+  - FEMT_0_0
+  - VCCS_LIM_CLAW-_0
+  - CLAMP_AMP_HI_0
+  - CLAMP_AMP_LO_0
+  - OL_SENSE_0
+  - VCCS_LIM_GR_0
+  - VCCS_LIM_ZO_0
+  - VCCS_LIM_CLAW+_0
+  - VCCS_LIMIT_IQ_0
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOMAM9
+    member: lmv358a.lib
+    archive_sha256: 469a37a3f1de5ef1171b094bfc4ef5564c590890360d1dc28b79aed703a70ca8
+    sha256: a4f1ab887577687071a82e99ec73d2d6737a57953d635be0a190e49d7ba59f06
+    lines:
+      CLAMP_AMP_HI_0: [359, 363]
+      CLAMP_AMP_LO_0: [351, 355]
+      FEMT_0_0: [301, 322]
+      LMV358A: [33, 234]
+      OL_SENSE_0: [410, 412]
+      VCCS_EXT_LIM_0: [416, 419]
+      VCCS_LIMIT_IQ_0: [344, 347]
+      VCCS_LIM_1_0: [335, 340]
+      VCCS_LIM_2_0: [326, 331]
+      VCCS_LIM_3_0: [401, 406]
+      VCCS_LIM_4_0: [376, 381]
+      VCCS_LIM_CLAW+_0: [385, 397]
+      VCCS_LIM_CLAW-_0: [260, 272]
+      VCCS_LIM_GR_0: [367, 372]
+      VCCS_LIM_ZO_0: [251, 256]
+      VNSE_0: [276, 297]
+      VOS_SRC_0: [236, 247]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: bordodynov
+  name: lmv358
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_NSC.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+    lines:
+      lmv358: [13455, 13596]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: lmv358/NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ns_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+    lines:
+      lmv358/NS: [19544, 19685]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: lmv358
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Opamp5.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+    lines:
+      lmv358: [4735, 4876]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: kicad-spice-library
+  name: lmv358_NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nation.lib
+    sha256: 97af188e570afc5c2b4b8246ade0670422d90c402c01a0f0383df0a6a37af9ac
+    lines:
+      lmv358_NS: [26650, 26791]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from comment words

@@ -1,0 +1,22 @@
+part: MMBF170
+kind: jfet
+priority: 3
+group: n_channel
+models:
+- source: onsemi
+  name: mmbf170lt1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mmbf170lt1.lib
+    sha256: 4ed394d0401f9bcc6cfc46130f49f1f2c4e2e8d81a43295b969dc87f0dc959f0
+    lines:
+      mmbf170lt1: [1, 60]
+    fetched: '2026-09-19'
+    note: 'MMBF170: mmbf170lt1, MM, MD, MD1, MD2, MD3'
+  note: pins from default order (unverified)

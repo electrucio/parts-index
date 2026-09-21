@@ -1,0 +1,57 @@
+part: 74HC4051
+kind: logic
+priority: 3
+models:
+- source: ltwiki
+  name: 74HC4051
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Ei
+  - S0
+  - S1
+  - S2
+  - Z
+  - Y0
+  - Y1
+  - Y2
+  - Y3
+  - Y4
+  - Y5
+  - Y6
+  - Y7
+  - VCC
+  - VEE
+  - VGND
+  deps:
+  - HC_OUTPROT
+  - MHCPEN
+  - MHCNEN
+  - HC_SWITCH1N
+  - HC_INP2N
+  - HC_NAND4
+  - HC_INV
+  - HC_AND4
+  - HC4051_1OF8DECODER
+  - HC_INPROT
+  - HC_LLCN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/74HC4051-52-53.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bfbb7f749acac99ec8e8a7d8bb9641a401decb0e4b63b72d2170cf9ae5a9e232
+    lines:
+      74HC4051: [11, 42]
+      HC4051_1OF8DECODER: [45, 69]
+      HC_AND4: [277, 280]
+      HC_INP2N: [289, 296]
+      HC_INPROT: [209, 216]
+      HC_INV: [228, 231]
+      HC_LLCN: [299, 311]
+      HC_NAND4: [265, 274]
+      HC_OUTPROT: [219, 225]
+      HC_SWITCH1N: [314, 325]
+      MHCNEN: [333, 350]
+      MHCPEN: [358, 375]
+    fetched: '2026-09-14'

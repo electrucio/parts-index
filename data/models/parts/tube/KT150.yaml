@@ -1,0 +1,42 @@
+part: KT150
+kind: tube
+priority: 3
+group: pentode_beam
+preferred: suusi-tubes
+preferred_why: 'best datasheet agreement: 18 pass, 7 off, 0 fail of 25 judged rows (25 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: suusi-tubes
+  name: KT150
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      KT150: [2151, 2155]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.72
+    pass: 18
+    marginal: 7
+    fail: 0
+    not_measurable: 0
+    typical_rows: 25
+  note: pins from inline comment
+datasheet:
+  url: https://frank.pocnet.net/sheets/084/k/KT150.pdf
+  maker: Tung-Sol (New Sensor)
+  doc: Tung-Sol KT150 Pentode, 2 data pages (New Sensor, drawn by R.Hull) + Electro-Harmonix curve page
+    (grid-plate characteristics, TUBE#1 / TUBE#2)

@@ -1,0 +1,68 @@
+part: LM4562
+kind: opamp
+priority: 2
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 11 pass, 0 off, 0 fail of 11 judged rows (5 against typical
+  values or curve points, the rest against min/max limits; 1 not measurable)'
+models:
+- source: bordodynov
+  name: LM4562
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - VCLAMP
+  - RNOISE_LESS_WILIM
+  - IDEAL_DIODE
+  - INPUT
+  - TF
+  - PSRR
+  - VCLAMP_W_SENSE
+  - GND_FLOAT
+  - VNSE
+  - FEMT
+  - AMETER
+  - GBW_SLEW_SE
+  - CMRR
+  - AMP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM4562.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ecc4e5fc6bac10d9c6c672e6d49067a13daf390d103737b5f68871787c0b659f
+    lines:
+      AMETER: [166, 170]
+      AMP: [50, 133]
+      CMRR: [350, 359]
+      FEMT: [388, 426]
+      GBW_SLEW_SE: [260, 272]
+      GND_FLOAT: [155, 157]
+      IDEAL_DIODE: [142, 146]
+      INPUT: [485, 491]
+      LM4562: [42, 48]
+      PSRR: [368, 378]
+      RNOISE_LESS_WILIM: [292, 294]
+      TF: [195, 251]
+      VCLAMP: [281, 283]
+      VCLAMP_W_SENSE: [180, 185]
+      VNSE: [437, 475]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 11
+    marginal: 0
+    fail: 0
+    not_measurable: 1
+    typical_rows: 5
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm4562.pdf
+  maker: Texas Instruments (National Semiconductor)
+  doc: SNAS326K, rev. K (first issued Aug 2006)
+  date: 2013-12

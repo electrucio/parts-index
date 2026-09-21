@@ -1,0 +1,133 @@
+part: LSK170
+kind: jfet
+priority: 1
+group: n_channel
+preferred: linear-systems
+preferred_why: 'best datasheet agreement: 6 pass, 1 off, 4 fail of 11 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: linear-systems
+  name: LSK170A
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.linearsystems.com/_files/ugd/4be30b_c1ab091e16024893879338ec7c8c1db4.pdf
+    sha256: 4c10d7b5b17fa1b6543a9f1ddbb61518a01a9da188977f5b7378d559b796b0b3
+    lines:
+      LSK170A: [10, 12]
+    fetched: '2026-09-14'
+    note: 'transcribed: .model LSK170A NJF, from page 1 of raw/4be30b_c1ab091e16024893879338ec7c8c1db4.pdf
+      (text layer, values unchanged, ''+'' continuation marks added)'
+  verification:
+    score: 0.545
+    pass: 6
+    marginal: 1
+    fail: 4
+    not_measurable: 0
+    typical_rows: 2
+- source: interfet
+  name: LSK170A-GEN
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK170A-GEN: [464, 464]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.455
+    pass: 5
+    marginal: 2
+    fail: 4
+    not_measurable: 0
+    typical_rows: 2
+- source: interfet
+  name: LSK170A-LS
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK170A-LS: [465, 465]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.545
+    pass: 6
+    marginal: 1
+    fail: 4
+    not_measurable: 0
+    typical_rows: 2
+- source: interfet
+  name: LSK170B-GEN
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK170B-GEN: [466, 466]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.455
+    pass: 5
+    marginal: 2
+    fail: 4
+    not_measurable: 0
+    typical_rows: 2
+- source: interfet
+  name: LSK170B-LS
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK170B-LS: [467, 467]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.545
+    pass: 6
+    marginal: 1
+    fail: 4
+    not_measurable: 0
+    typical_rows: 2
+- source: interfet
+  name: LSK170C-GEN
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK170C-GEN: [468, 468]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.455
+    pass: 5
+    marginal: 2
+    fail: 4
+    not_measurable: 0
+    typical_rows: 2
+datasheet:
+  url: https://www.linearsystems.com/_files/ugd/7e8069_a086ff7323054b5da3b91e364c90b3d4.pdf
+  maker: Linear Integrated Systems
+  doc: LSK170 A/B/C/D, Doc 201110, Rev A22 (file LSK170SeriesDSRevA22.pdf)
+  date: '2019-11-19'

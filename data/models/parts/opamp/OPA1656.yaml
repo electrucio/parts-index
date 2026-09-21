@@ -1,0 +1,171 @@
+part: OPA1656
+kind: opamp
+priority: 1
+preferred: ti
+preferred_why: 'best datasheet agreement: 9 pass, 1 off, 0 fail of 10 judged rows (4 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable); tied with ti on score and typical-value
+  error, chosen as the more original source'
+models:
+- source: ti
+  name: OPA1656
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - ESD_BB_OPA1656
+  - BLOCK_DC_S2_OPA1656
+  - VOS_DRIFT_OPA1656
+  - CLAW_SRC_OPA1656
+  - VNSE_OPA1656
+  - BLOCK_DC_S1_OPA1656
+  - SW_OL_OPA1656
+  - CLAMP_AMP_LO_OPA1656
+  - BLOCK_DC_H2_OPA1656
+  - AOL_2_OPA1656
+  - CLAWN_OPA1656
+  - GR_SRC_OPA1656
+  - ZO_SRC_OPA1656
+  - IQ_SRC_OPA1656
+  - BLOCK_DC_H3_OPA1656
+  - AOL_1_OPA1656
+  - VCM_CLAMP_OPA1656
+  - FEMT_OPA1656
+  - ESD_OUT_OPA1656
+  - ESD_IN_OPA1656
+  - CLAWP_OPA1656
+  - CL_SRC_OPA1656
+  - BLOCK_DC_H1_OPA1656
+  - OL_SENSE_OPA1656
+  - CLAMP_AMP_HI_OPA1656
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOMAW6
+    member: OPA1656.LIB
+    archive_sha256: 8f696ee73bfb9a5d7d15b70ed27629dfe5b92ba54e8da894aa25fe51d3cb312f
+    sha256: 9847ed60c62e792ee6f1c84899278a3c11ce71a6d21804bdd88f51199f1ba055
+    lines:
+      AOL_1_OPA1656: [344, 346]
+      AOL_2_OPA1656: [348, 350]
+      BLOCK_DC_H1_OPA1656: [317, 320]
+      BLOCK_DC_H2_OPA1656: [322, 325]
+      BLOCK_DC_H3_OPA1656: [327, 330]
+      BLOCK_DC_S1_OPA1656: [332, 336]
+      BLOCK_DC_S2_OPA1656: [338, 342]
+      CLAMP_AMP_HI_OPA1656: [352, 355]
+      CLAMP_AMP_LO_OPA1656: [357, 360]
+      CLAWN_OPA1656: [362, 369]
+      CLAWP_OPA1656: [371, 381]
+      CLAW_SRC_OPA1656: [383, 385]
+      CL_SRC_OPA1656: [387, 389]
+      ESD_BB_OPA1656: [391, 395]
+      ESD_IN_OPA1656: [397, 403]
+      ESD_OUT_OPA1656: [405, 409]
+      FEMT_OPA1656: [411, 416]
+      GR_SRC_OPA1656: [418, 420]
+      IQ_SRC_OPA1656: [422, 424]
+      OL_SENSE_OPA1656: [426, 428]
+      OPA1656: [96, 315]
+      SW_OL_OPA1656: [430, 433]
+      VCM_CLAMP_OPA1656: [435, 437]
+      VNSE_OPA1656: [439, 455]
+      VOS_DRIFT_OPA1656: [457, 459]
+      ZO_SRC_OPA1656: [461, 463]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.9
+    pass: 9
+    marginal: 1
+    fail: 0
+    not_measurable: 2
+    typical_rows: 4
+  note: 'same code also in: ltwiki; pins from names'
+- source: ti
+  name: OPA1656
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - ESD_BB_OPA1656
+  - BLOCK_DC_S2_OPA1656
+  - VOS_DRIFT_OPA1656
+  - CLAW_SRC_OPA1656
+  - VNSE_OPA1656
+  - BLOCK_DC_S1_OPA1656
+  - SW_OL_OPA1656
+  - CLAMP_AMP_LO_OPA1656
+  - BLOCK_DC_H2_OPA1656
+  - AOL_2_OPA1656
+  - CLAWN_OPA1656
+  - GR_SRC_OPA1656
+  - ZO_SRC_OPA1656
+  - R_NOISELESS
+  - IQ_SRC_OPA1656
+  - BLOCK_DC_H3_OPA1656
+  - AOL_1_OPA1656
+  - VCM_CLAMP_OPA1656
+  - FEMT_OPA1656
+  - ESD_OUT_OPA1656
+  - ESD_IN_OPA1656
+  - CLAWP_OPA1656
+  - CL_SRC_OPA1656
+  - BLOCK_DC_H1_OPA1656
+  - OL_SENSE_OPA1656
+  - CLAMP_AMP_HI_OPA1656
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOMAW8
+    member: OPA1656.LIB
+    archive_sha256: a702113427f9f7e7ccdbf113cd4d70cfeb6c54ff24a116cf9f3e26588c165858
+    sha256: bced33ad3d86413e7acbb5e53e727dea0bbf7819792d75aff91e085ba4a36bb1
+    lines:
+      AOL_1_OPA1656: [339, 341]
+      AOL_2_OPA1656: [343, 345]
+      BLOCK_DC_H1_OPA1656: [312, 315]
+      BLOCK_DC_H2_OPA1656: [317, 320]
+      BLOCK_DC_H3_OPA1656: [322, 325]
+      BLOCK_DC_S1_OPA1656: [327, 331]
+      BLOCK_DC_S2_OPA1656: [333, 337]
+      CLAMP_AMP_HI_OPA1656: [347, 350]
+      CLAMP_AMP_LO_OPA1656: [352, 355]
+      CLAWN_OPA1656: [357, 364]
+      CLAWP_OPA1656: [366, 376]
+      CLAW_SRC_OPA1656: [378, 380]
+      CL_SRC_OPA1656: [382, 384]
+      ESD_BB_OPA1656: [386, 390]
+      ESD_IN_OPA1656: [392, 398]
+      ESD_OUT_OPA1656: [400, 404]
+      FEMT_OPA1656: [406, 411]
+      GR_SRC_OPA1656: [413, 415]
+      IQ_SRC_OPA1656: [417, 419]
+      OL_SENSE_OPA1656: [421, 423]
+      OPA1656: [92, 310]
+      R_NOISELESS: [460, 460]
+      SW_OL_OPA1656: [425, 428]
+      VCM_CLAMP_OPA1656: [430, 432]
+      VNSE_OPA1656: [434, 450]
+      VOS_DRIFT_OPA1656: [452, 454]
+      ZO_SRC_OPA1656: [456, 458]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.9
+    pass: 9
+    marginal: 1
+    fail: 0
+    not_measurable: 2
+    typical_rows: 4
+  note: pins from names
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/opa1656.pdf
+  maker: Texas Instruments (Burr-Brown)
+  doc: SBOS901C (OPA1655, OPA1656), rev. C
+  date: 2022-09

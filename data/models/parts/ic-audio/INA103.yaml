@@ -1,0 +1,180 @@
+part: INA103
+kind: ic-audio
+priority: 2
+models:
+- source: bordodynov
+  name: INA103
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '8'
+  - '9'
+  - '10'
+  - '109'
+  - '110'
+  - '11'
+  - '12'
+  - '105'
+  - '111'
+  deps:
+  - A3_103
+  - A2_103
+  - A1_103
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ina.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 526200d0189cd3bc5865e5e4c37dc2f7f9f264dcf636497cca8177d9b00a8763
+    lines:
+      A1_103: [123, 155]
+      A2_103: [166, 198]
+      A3_103: [209, 241]
+      INA103: [31, 112]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: INA103
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '8'
+  - '9'
+  - '10'
+  deps:
+  - A3_103
+  - A2_103
+  - A1_103
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/BB.LIB
+    sha256: 39cd5f745971a0eef7c5b3a564fadfe85c38348218e6ba9e9875032dcb3a8044
+    lines:
+      A1_103: [560, 592]
+      A2_103: [1017, 1049]
+      A3_103: [1469, 1501]
+      INA103: [2227, 2284]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: INA103/BB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '8'
+  - '9'
+  - '10'
+  deps:
+  - A3_103
+  - A2_103
+  - A1_103
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/burr-brn.lib
+    sha256: 24467fdf16f7135ce54f90c7424e35ce1e6d2131c277351a4ee7276cdd6e2664
+    lines:
+      A1_103: [1549, 1581]
+      A2_103: [1592, 1624]
+      A3_103: [1635, 1667]
+      INA103/BB: [1487, 1538]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: INA103_BB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '8'
+  - '9'
+  - '10'
+  deps:
+  - A1_103_BB
+  - A2_103_BB
+  - A3_103_BB
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/burrbn.lib
+    sha256: 0cf1e02a8be40a2dd64ea79ba281cf359d8b5fab59844264bee4b3ac20e97ed8
+    lines:
+      A1_103_BB: [13829, 13861]
+      A2_103_BB: [13871, 13903]
+      A3_103_BB: [13913, 13945]
+      INA103_BB: [13762, 13819]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: INA103E/BB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '8'
+  - '9'
+  - '10'
+  deps:
+  - A3_103E
+  - A2_103E
+  - A1_103E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/burr-brn.lib
+    sha256: 24467fdf16f7135ce54f90c7424e35ce1e6d2131c277351a4ee7276cdd6e2664
+    lines:
+      A1_103E: [1751, 1804]
+      A2_103E: [1816, 1869]
+      A3_103E: [1881, 1934]
+      INA103E/BB: [1685, 1739]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: INA103E_BB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '8'
+  - '9'
+  - '10'
+  deps:
+  - A1_103E_BB
+  - A3_103E_BB
+  - A2_103E_BB
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/burrbn.lib
+    sha256: 0cf1e02a8be40a2dd64ea79ba281cf359d8b5fab59844264bee4b3ac20e97ed8
+    lines:
+      A1_103E_BB: [6921, 6974]
+      A2_103E_BB: [6985, 7038]
+      A3_103E_BB: [7049, 7102]
+      INA103E_BB: [6849, 6910]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

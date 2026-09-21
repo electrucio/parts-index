@@ -1,0 +1,41 @@
+part: 1N5225
+kind: zener
+priority: 2
+preferred: bordodynov
+preferred_why: 'STAND-IN: the preferred model is of MMSZ5225B, declared equivalent in catalog/wanted.yaml,
+  not of 1N5225 itself; best datasheet agreement: 4 pass, 0 off, 1 fail of 5 judged rows (0 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable). Limits only: the datasheet
+  prints no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: bordodynov
+  name: MMSZ5225B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - DF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Zener_DiodesInc.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+    lines:
+      DF: [6016, 6016]
+      MMSZ5225B: [7490, 7497]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of MMSZ5225B, not of 1N5225; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+datasheet:
+  url: https://web.archive.org/web/2024id_/https://www.onsemi.com/pdf/datasheet/1n5221b-d.pdf
+  maker: onsemi
+  doc: 1N5221B - 1N5252B, Publication Order Number 1N5221B/D, Rev. 5, November 2023

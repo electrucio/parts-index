@@ -1,0 +1,43 @@
+part: SMAJ26A
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: vishay
+  name: smaj26a
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89522/p_smaj26.txt
+    sha256: 8402e9581047a27fcacdd5c17cac97ed932497465f9b221d2668a17e3531f394
+    lines:
+      smaj26a: [17, 59]
+    fetched: '2026-09-19'
+    note: 'TransZorb®TVS, PSpice Models (*.txt): smaj26a, DFMOD, RLMOD, DBDMOD, RBVCMOD'
+  note: pins from comment words
+- source: bordodynov
+  name: SMAJ26A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - ANODE
+  - CATHODE
+  deps:
+  - TRANSIL
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/transil_ST.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+    lines:
+      SMAJ26A: [2456, 2461]
+      TRANSIL: [32, 80]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'

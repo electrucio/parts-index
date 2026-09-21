@@ -1,0 +1,40 @@
+part: LM3171
+kind: regulator
+priority: 3
+models:
+- source: bordodynov
+  name: LM317-1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - ADJ
+  - OUT
+  - IN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/regulators.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1998b5aaba8b44019bf630a561c739ff33a83996cd6600bbaa8b8c3e02cf5bf2
+    lines:
+      LM317-1: [1738, 1810]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from LM317 package pin numbers (unverified)'
+- source: ltwiki
+  name: LM317-1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - ADJ
+  - OUT
+  - IN
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/VolReg/regulators.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 3a5a237a61cd02955ecdd4e705bbce05b7983f9ff1c8ba1c060cf6ae30015c3d
+    lines:
+      LM317-1: [279, 351]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library; pins from LM317 package pin numbers (unverified)'

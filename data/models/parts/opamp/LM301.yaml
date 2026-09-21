@@ -1,0 +1,163 @@
+part: LM301
+kind: opamp
+priority: 2
+models:
+- source: bordodynov
+  name: LM301A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  - COMP1
+  - COMP2
+  deps:
+  - TL074
+  - TL072
+  - TL071
+  - TL070
+  - TL064
+  - TL062
+  - TL061
+  - TL060
+  - TL022C
+  - MC3403
+  - LM358
+  - LM348
+  - LM324
+  - LM318
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_TI.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+    lines:
+      LM301A: [244, 281]
+      LM318: [297, 356]
+      LM324: [366, 400]
+      LM348: [410, 444]
+      LM358: [454, 487]
+      MC3403: [497, 531]
+      TL022C: [541, 575]
+      TL060: [586, 618]
+      TL061: [628, 660]
+      TL062: [670, 702]
+      TL064: [712, 744]
+      TL070: [755, 787]
+      TL071: [796, 828]
+      TL072: [837, 869]
+      TL074: [878, 910]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: bordodynov
+  name: LM301A/LT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  - COMP1
+  - COMP2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM301A_LT.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: a6aa8131c2f637ccddbdb06974c6198500e7875b7bbccaaad76916e370eff58d
+    lines:
+      LM301A/LT: [4, 41]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: bordodynov
+  name: LM301A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM301A.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 24be4b7269f380a98437671625208c8d9d9e2dd8434e76ffc5440592ca519dd0
+    lines:
+      LM301A: [9, 43]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: ltwiki
+  name: LM301A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  - COMP1
+  - COMP2
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+    lines:
+      LM301A: [22410, 22447]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: kicad-spice-library
+  name: LM301A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Texas%20Instruments/lm301a.mod
+    sha256: 803bdc857adc98d0d50ec13fd380ccf8522f63e0ab38df1e676aa01ce65b2f69
+    lines:
+      LM301A: [11, 44]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: kicad-spice-library
+  name: LM301A_LT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  - COMP1
+  - COMP2
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/linear.lib
+    sha256: 025903d9677acbc507e2eaa578ba581d9e52f17c10dbf286da658f1af22dd5ba
+    lines:
+      LM301A_LT: [14163, 14200]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)

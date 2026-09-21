@@ -1,0 +1,97 @@
+part: BC183
+kind: bjt
+priority: 3
+group: small_signal_npn
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 10 pass, 0 off, 0 fail of 10 judged rows (0 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with kicad-spice-library,
+  kicad-spice-library, kicad-spice-library on score and typical-value error, chosen as the more original
+  source. Limits only: the datasheet prints no typical values for these rows, so candidates inside the
+  limits are not told apart'
+models:
+- source: kicad-spice-library
+  name: BC183BP
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTN.LIB
+    sha256: 2c85b6bbf3a7dcb9403d646a1c120714fdc7bce5c8287c8e537012a1cf3ef6c2
+    lines:
+      BC183BP: [679, 681]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 10
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: kicad-spice-library
+  name: BC183BP
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Zetex%20Semiconductors/ZMODELS.LIB
+    sha256: 356f4751706278dd76767c0cbdfceab52ea806ed01a3669b26584507bf29f3e0
+    lines:
+      BC183BP: [267, 269]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 10
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: kicad-spice-library
+  name: BC183BP
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+    sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+    lines:
+      BC183BP: [299, 301]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 10
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: kicad-spice-library
+  name: BC183BP_ZX
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zetex.lib
+    sha256: 453392deca3bd0ddfca565d56241c4a5bb4d2e8f14c6efa92c1c453ed434fdca
+    lines:
+      BC183BP_ZX: [3016, 3023]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 10
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: pins from default order (unverified)
+datasheet:
+  url: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/642/BC183.pdf
+  maker: fairchild
+  doc: BC183 Rev. A
+  date: 2007-06

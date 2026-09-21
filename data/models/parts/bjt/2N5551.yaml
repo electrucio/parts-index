@@ -1,0 +1,142 @@
+part: 2N5551
+kind: bjt
+priority: 1
+group: small_signal_npn
+preferred: central-semi
+preferred_why: 'best datasheet agreement: 11 pass, 0 off, 0 fail of 11 judged rows (0 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov on
+  score and typical-value error, chosen as the more original source. Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: central-semi
+  name: 2N5551
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/2N5551.LIB
+    sha256: cc0911255a41d4e2ca1749b2e6b9474cb89dbed8f526d84c6057e656db9a65c2
+    lines:
+      2N5551: [24, 48]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N5551 (NPN .model)'
+  verification:
+    score: 1.0
+    pass: 11
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+- source: cordell
+  name: 2N5551C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.cordellaudio.com/book/Install-Test.zip
+    member: Install Test/Cordell Models.txt
+    archive_sha256: 332b487564a6c8eca0f8a1db26ec86109b450af5e75278e32556ad000f9bcd77
+    sha256: ae2d30efd938496e2a633e5de71d2fceae0e588c0dde475cb2ec8ff6fe9f2bba
+    lines:
+      2N5551C: [74, 83]
+    fetched: '2026-09-14'
+    note: Cordell Models 12/07/2010 (older version bundled in zip; RB=10 in small-signal BJTs)
+  verification:
+    score: 0.909
+    pass: 10
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: cordell
+  name: 2N5551C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.cordellaudio.com/book/Cordell-Models.txt
+    sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
+    lines:
+      2N5551C: [132, 141]
+    fetched: '2026-09-14'
+    note: 'Cordell Models 04/20/2011 (current site file, HTTP Last-Modified 2024-09-15): 63 .model (BJT
+      GP, NJF, VDMOS, D)'
+  verification:
+    score: 0.909
+    pass: 10
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: duncanamps
+  name: Q2N5551
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/bjt/npn.mod
+    sha256: 57dfef87174fc8f0310bc9527e0bf7ef3fa92d13d295ea8a504d3ba67f13ec87
+    lines:
+      Q2N5551: [97, 99]
+    fetched: '2026-09-14'
+    note: 39 subckts, 158 .model
+  verification:
+    score: 0.818
+    pass: 9
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 0
+- source: bordodynov
+  name: 2N5551
+  def: model
+  type: NPN
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      2N5551: [380, 380]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 11
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: 2N5551_C
+  def: model
+  type: NPN
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      2N5551_C: [1209, 1209]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.909
+    pass: 10
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+datasheet:
+  url: https://www.nxp.com/documents/data_sheet/2N5550_5551.pdf
+  maker: philips (nxp)
+  doc: 2N5550; 2N5551 Product specification 2004 Oct 28

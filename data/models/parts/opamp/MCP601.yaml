@@ -1,0 +1,84 @@
+part: MCP601
+kind: opamp
+priority: 3
+models:
+- source: ltwiki
+  name: MCP601
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/OpAmps/Filtros/FilterLab Example/microchip_conv_solution/microchip.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: fcf9f73a4588bfa6d11727c2fd34ca2bda1b4e469de4a4c954781f95bc101801
+    lines:
+      MCP601: [169, 343]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)
+- source: ltwiki
+  name: MCP601_AB0
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/MCP601_AB.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bfe216754ca0e95922573e21865b5289888a85aeb3014720ea0a79b1b3cdfefa
+    lines:
+      MCP601_AB0: [1, 30]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)
+- source: ltwiki
+  name: mcp601_AB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/MCP601_AB.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bfe216754ca0e95922573e21865b5289888a85aeb3014720ea0a79b1b3cdfefa
+    lines:
+      mcp601_AB: [32, 41]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)
+- source: ltwiki
+  name: MCP601
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/mcp601.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4b3cca0ed090787a6a0548569c0c2eb70c35b89813075050d0d17a8c9ff2ba14
+    lines:
+      MCP601: [1, 175]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)

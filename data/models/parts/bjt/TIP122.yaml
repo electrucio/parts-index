@@ -1,0 +1,83 @@
+part: TIP122
+kind: bjt
+priority: 3
+group: power_output
+models:
+- source: onsemi
+  name: tip122
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/tip122.lib
+    sha256: afc5e16e6b3e65314a665c4ca54acd98c0b9a0701c2f99458b04ab674c9a7e47
+    lines:
+      tip122: [1, 50]
+    fetched: '2026-09-19'
+    note: 'TIP122: tip122, dmodel, qmodel, q1model'
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: TIP122
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  deps:
+  - Rb
+  - Q1
+  - Q2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      Q1: [16399, 16440]
+      Q2: [16442, 16483]
+      Rb: [564, 570]
+      TIP122: [13348, 13360]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: TIP122_AB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Tip122_AB.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6e6ba770558b77a6e78f2010da491b09959d2d926a7db3fb550fab00c200de94
+    lines:
+      TIP122_AB: [2, 32]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: ltwiki
+  name: TIP122
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Darlington/Sborka.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 91aa798c8b8a7a83698b2fab0fcc70a30e5b712372f83fcd632ff426617126c5
+    lines:
+      TIP122: [51, 63]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'

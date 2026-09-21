@@ -1,0 +1,74 @@
+part: BC547C
+kind: bjt
+priority: 2
+group: small_signal_npn
+preferred: ltspice-native
+preferred_why: 'best datasheet agreement: 10 pass, 2 off, 0 fail of 12 judged rows (3 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with ltwiki, ltwiki
+  on score and typical-value error, chosen as the more original source'
+models:
+- source: ltspice-native
+  name: BC547C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.bjt
+    sha256: 15e7c7fa149dbdc97bb647f77681999a38fb4c324928beb4f1fa2a589288f587
+    lines:
+      BC547C: [90, 90]
+  verification:
+    score: 0.833
+    pass: 10
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: BC547C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
+    lines:
+      BC547C: [368, 368]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 10
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: bc547c
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/AmpliferAB/models.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: a8b7a15655a8ba40b18db15c13881fd06688e7e4ab223f2b3549f55834013495
+    lines:
+      bc547c: [9, 9]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 10
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+datasheet:
+  url: https://www.nxp.com/documents/data_sheet/BC847_BC547_SER.pdf
+  maker: nxp (philips/nexperia lineage)
+  doc: BC847/BC547 series product data sheet Rev. 07
+  date: '2008-12-10'

@@ -1,0 +1,93 @@
+part: BSS83P
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: infineon
+  name: BSS83P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  - TJ
+  - TCASE
+  deps:
+  - P_60_l_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-p-channel-simulationmodels-en.zip
+    member: PFET_60V.lib
+    archive_sha256: 4379de08425f66db93152b54d46fc15bdb89cde7fa3933ee24c7845ef783214f
+    sha256: ced67279b86f185176f71a3cb622eec175b3a5d6d2d9eadc28b5930e5e970747
+    lines:
+      BSS83P: [184, 221]
+      P_60_l_var: [60, 117]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: infineon
+  name: BSS83P_L1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  deps:
+  - P_60_l_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-p-channel-simulationmodels-en.zip
+    member: PFET_60V.lib
+    archive_sha256: 4379de08425f66db93152b54d46fc15bdb89cde7fa3933ee24c7845ef783214f
+    sha256: ced67279b86f185176f71a3cb622eec175b3a5d6d2d9eadc28b5930e5e970747
+    lines:
+      BSS83P_L1: [1254, 1273]
+      P_60_l_var: [60, 117]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: infineon
+  name: BSS83P_L0
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-p-channel-simulationmodels-en.zip
+    member: PFET_60V.lib
+    archive_sha256: 4379de08425f66db93152b54d46fc15bdb89cde7fa3933ee24c7845ef783214f
+    sha256: ced67279b86f185176f71a3cb622eec175b3a5d6d2d9eadc28b5930e5e970747
+    lines:
+      BSS83P_L0: [1854, 1888]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: ltwiki
+  name: BSS83/PLP
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/phil_fet.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
+    lines:
+      BSS83/PLP: [2343, 2355]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: BSS83_PH
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_fet.lib
+    sha256: 36f1889d3f9333d570d781d32641ae906508f4365fe9158d7341714639b922f0
+    lines:
+      BSS83_PH: [940, 952]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

@@ -1,0 +1,54 @@
+part: OA95
+kind: diode-ge
+priority: 3
+preferred: germanium-apm
+preferred_why: 'best datasheet agreement: 10 pass, 0 off, 4 fail of 14 judged rows (0 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov on
+  score and typical-value error, chosen as the more original source. Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: germanium-apm
+  name: OA95
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/rauschenbach/Germanium_Apm/b83d8aaa9faae6a1c4bfd5b9f07cc08cc239b64e/Germanium.lib
+    sha256: 730a441f388dfd3a78ccf06d17ecd9a8b27b9ef50b530cfce8f6411c8d6250af
+    lines:
+      OA95: [9, 9]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit b83d8aa
+  verification:
+    score: 0.714
+    pass: 10
+    marginal: 0
+    fail: 4
+    not_measurable: 0
+    typical_rows: 0
+- source: bordodynov
+  name: OA95
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      OA95: [87, 87]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.714
+    pass: 10
+    marginal: 0
+    fail: 4
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://www.rf-microwave.com/resources/products_attachments/5e38366a252a2.pdf
+  maker: Philips
+  doc: OA95 Point contact diode (Philips data handbook sheets; page 1 dated June 1975, page 2 March 1968)
+  date: 1975-06

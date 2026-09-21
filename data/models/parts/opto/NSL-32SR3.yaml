@@ -1,0 +1,42 @@
+part: NSL-32SR3
+kind: opto
+priority: 3
+models:
+- source: viva-analog
+  name: NSL32-SR3
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://viva-analog.com/nsl32-sr3-updated-modeling-jcm-c-2020/
+    sha256: 500328c5b1b492b4e6e2f9aa5a81ab4e631986595ea398ddcad40ea6bd530c3b
+    lines:
+      NSL32-SR3: [6, 15]
+    fetched: '2026-09-14'
+    note: TRANSCRIPTION of updated-model-txt.png (made here)
+- source: bordodynov
+  name: nsl-32sr3
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  - '1'
+  - '2'
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/NSL-32SR3.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 84edacb753f896ebfedab540cc5d44420567fdb1ed725d624b8ce509c16de0ba
+    lines:
+      nsl-32sr3: [1, 13]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

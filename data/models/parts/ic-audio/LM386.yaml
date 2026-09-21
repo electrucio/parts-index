@@ -1,0 +1,72 @@
+part: LM386
+kind: ic-audio
+priority: 1
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 2 pass, 0 off, 1 fail of 3 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: Lm386
+  def: subckt
+  type: SUBCKT
+  pins:
+  - GAN_1
+  - -IN_2
+  - +IN_3
+  - GND_4
+  - OUT_5
+  - V+_6
+  - DESA_7
+  - GAN_8
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Lm386.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 48e0a60d0773e7a12faee30c43916269f53f1dad16d077e6e0053c2a6911d8d2
+    lines:
+      Lm386: [1, 26]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.333
+    pass: 1
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: bordodynov
+  name: Lm386_
+  def: subckt
+  type: SUBCKT
+  pins:
+  - G1
+  - INN
+  - INP
+  - GND
+  - OUT
+  - VS
+  - BYP
+  - G8
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Lm386.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 48e0a60d0773e7a12faee30c43916269f53f1dad16d077e6e0053c2a6911d8d2
+    lines:
+      Lm386_: [27, 88]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 2
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm386.pdf
+  maker: Texas Instruments (National Semiconductor)
+  doc: SNAS545D, rev. D (first issued May 2004)
+  date: 2023-08

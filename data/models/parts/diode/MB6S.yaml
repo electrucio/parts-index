@@ -1,0 +1,89 @@
+part: MB6S
+kind: diode
+priority: 4
+group: bridge
+models:
+- source: onsemi
+  name: MB6S
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mb6s.lib
+    sha256: fa39ec7968015d35bad968cc3ed9e2f1b3d08b6f6af43ed572a075488eb33492
+    lines:
+      MB6S: [6, 9]
+    fetched: '2026-09-19'
+    note: 'MB6S: MB6S'
+- source: vishay
+  name: mb6s
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/88269/p_mb6s.txt
+    sha256: 7663ee816298af41026c49d3821f13c439a853e78104d61ec909aaa75a97a3ba
+    lines:
+      mb6s: [11, 19]
+    fetched: '2026-09-19'
+    note: 'Bridge, PSpice Models (*.txt): mb6s, legd'
+- source: bordodynov
+  name: MB6S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/diode_fullbridge.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 2e0399bfb1c1da49c79e1aa6fffe5fac3c723bb9e1a559d02d15e385ccf8376f
+    lines:
+      MB6S: [1444, 1463]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: MB6S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Rect.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 3dab7411e3d6a910ab3ed22381558611ec155f6fcfdda94949e9d21907efa409
+    lines:
+      MB6S: [335, 344]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: kicad-spice-library
+  name: MB6S_GN
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/gensemi.lib
+    sha256: a6cf7dd0be40fa8de86b574b20c2481a4be41a33f77d1893d66664f19e3fe8d9
+    lines:
+      MB6S_GN: [176, 196]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

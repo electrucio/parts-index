@@ -1,0 +1,22 @@
+part: PESD15VL2BT
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: ltwiki
+  name: PESD15VL2BT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/PESD15VL2BT.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 992f2efdf3a2271be299e7ff02b210107c75569ac3a648875dec6a5b24f10825
+    lines:
+      PESD15VL2BT: [2, 19]
+    fetched: '2026-09-14'

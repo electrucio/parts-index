@@ -1,0 +1,130 @@
+part: 1N914
+kind: diode
+priority: 1
+group: silicon_signal
+preferred: onsemi
+preferred_why: 'best datasheet agreement: 11 pass, 0 off, 0 fail of 11 judged rows (6 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: onsemi
+  name: D1N914
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n914.lib
+    sha256: 558f99082a6a9197abf646fd9e54ac12836dcb2f580747c07f16434fc70670c5
+    lines:
+      D1N914: [5, 19]
+    fetched: '2026-09-14'
+    note: 'model(s): D1N914 (D .model)'
+  verification:
+    score: 1.0
+    pass: 11
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 6
+- source: central-semi
+  name: 1N914
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/1N914.LIB
+    sha256: 3b9a0db01f2d6ce870a43e07493aa9f4ffd2cb93a858223b5dcbc0d827087413
+    lines:
+      1N914: [24, 35]
+    fetched: '2026-09-14'
+    note: 'model(s): 1N914 (D .model)'
+  verification:
+    score: 1.0
+    pass: 11
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 6
+  note: 'same code also in: spiceypedals'
+- source: ltspice-native
+  name: 1N914
+  def: model
+  type: D
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.dio
+    sha256: 696d34dfe538966c80cfe1da259c1043f408777be79f59e4f1c47d82f3af320a
+    lines:
+      1N914: [6, 6]
+  verification:
+    score: 1.0
+    pass: 11
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 6
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: duncanamps
+  name: D1N914
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/diode.mod
+    sha256: bb58d6a99a7204cfa89803598a0331243f10c11afb1b6279fb56fec2ae14c941
+    lines:
+      D1N914: [16, 17]
+    fetched: '2026-09-14'
+    note: 34 .model
+  verification:
+    score: 1.0
+    pass: 11
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 6
+- source: ltwiki
+  name: 1N914
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard3.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 13cb55bb7184e06a29b64a8d1991371f8414622ef1213c5b7bcb01e358ed71ee
+    lines:
+      1N914: [14, 14]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 11
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 6
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: 1N914
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Robertugo/PowerCir/Convert/Flyback/Tero/TeroSpice.cir
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 6059169d09703bfb237a5350ed97be2db6a25a92a026515b37313cb4d542e027
+    lines:
+      1N914: [107, 107]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 11
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 6
+datasheet:
+  url: https://web.archive.org/web/2024id_/https://www.onsemi.com/pdf/datasheet/1n914-d.pdf
+  maker: onsemi
+  doc: 1N914/D, Rev. 6, September 2024 (1N91x, 1N4x48, FDLL914, FDLL4x48; ex-Fairchild)

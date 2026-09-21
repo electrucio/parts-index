@@ -1,0 +1,54 @@
+part: REF2030
+kind: regulator
+priority: 4
+models:
+- source: ti
+  name: REF2030
+  def: subckt
+  type: SUBCKT
+  pins:
+  - VBIAS
+  - GND
+  - EN
+  - VIN
+  - VREF
+  deps:
+  - RES
+  - GAINSET_1
+  - D1
+  - D_DNOISE
+  - Q_NMOS_OUT_L1
+  - SW1
+  - D_LIM1
+  - Q_NMOS_OUT_L1_1
+  - Q_PMOS_OUT_L1
+  - Bias
+  - Output
+  - GAINSET
+  - D2
+  - D_D2
+  - REF20XX
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM899
+    member: REF2030.txt
+    archive_sha256: 66ae776a780f271d54268d049a1650c45181490612f394c92844f29e9635c72a
+    sha256: f7c79e50d8746de2b9a512845b7efb659542ab2043b847b15cbbfc2e7354b0e6
+    lines:
+      Bias: [129, 159]
+      D1: [323, 323]
+      D2: [329, 329]
+      D_D2: [161, 163]
+      D_DNOISE: [208, 211]
+      D_LIM1: [312, 312]
+      GAINSET: [177, 190]
+      GAINSET_1: [193, 206]
+      Output: [71, 126]
+      Q_NMOS_OUT_L1: [292, 293]
+      Q_NMOS_OUT_L1_1: [229, 233]
+      Q_PMOS_OUT_L1: [301, 302]
+      REF2030: [30, 32]
+      REF20XX: [34, 69]
+      RES: [165, 174]
+      SW1: [282, 282]
+    fetched: '2026-09-19'

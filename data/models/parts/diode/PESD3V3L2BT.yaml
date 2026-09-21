@@ -1,0 +1,22 @@
+part: PESD3V3L2BT
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: ltwiki
+  name: PESD3V3L2BT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/PESD3V3L2BT.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 9e58b915933c2f60b160b1025b161c1021c95e934e87146f203fc1196c2ddf9d
+    lines:
+      PESD3V3L2BT: [2, 20]
+    fetched: '2026-09-14'

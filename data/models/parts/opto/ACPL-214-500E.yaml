@@ -1,0 +1,28 @@
+part: ACPL-214-500E
+kind: opto
+priority: 4
+models:
+- source: ltwiki
+  name: ACPL-K30T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - AN
+  - CA
+  - VOUT-
+  - VOUT+
+  deps:
+  - pdnoc
+  - vbu
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/ACPL-K30T.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: aca31d86e6be8b052ef6791c9f7c964c5ae2b9bbeb8b293ee1ca3ba96a0bcb51
+    lines:
+      ACPL-K30T: [2, 27]
+      pdnoc: [50, 54]
+      vbu: [29, 48]
+    fetched: '2026-09-14'
+  note: found under the alias ACPL

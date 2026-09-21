@@ -1,0 +1,24 @@
+part: TLVH431
+kind: regulator
+priority: 4
+models:
+- source: ti
+  name: TLVH431
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  - Fdbk
+  deps:
+  - DC_1mV_1A_1V_1nA
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLVM672
+    member: TLVH431_PSPICE_TRANS/TLVH431.lib
+    archive_sha256: b658a78537ed2ba314fcfadf053686280c74e234f3e2ea6c2d846db245def7a6
+    sha256: 0d20d90cac24da817afd0b8848f1e1fa6bf8a9f0b0849464ff765d6d277de146
+    lines:
+      DC_1mV_1A_1V_1nA: [47, 49]
+      TLVH431: [31, 45]
+    fetched: '2026-09-19'

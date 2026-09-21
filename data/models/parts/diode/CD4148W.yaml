@@ -1,0 +1,95 @@
+part: CD4148W
+kind: diode
+priority: 4
+group: silicon_signal
+models:
+- source: onsemi
+  name: D1N4148
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/mod/1n4148.mod
+    sha256: 1058b126a4cf19193c5d643543897b541c186d2146668907ede767fe24fd5414
+    lines:
+      D1N4148: [3, 5]
+    fetched: '2026-09-19'
+    note: '1N4148.mod: D1N4148'
+  note: 'STAND-IN: model of D1N4148, not of CD4148W; equivalence declared in catalog/wanted.yaml (see
+    its note)'
+- source: nexperia
+  name: 1N4148
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/1N4148.txt
+    sha256: e5eb29475758240227aaa7a171d86595340405bc0a703e54eb7a7e5927175986
+    lines:
+      1N4148: [33, 48]
+    fetched: '2026-09-14'
+    note: 'model(s): 1N4148 (.subckt 1 2), 1N4148 (D .model)'
+  note: 'STAND-IN: model of 1N4148, not of CD4148W; equivalence declared in catalog/wanted.yaml (see its
+    note); pins from comment words'
+- source: ti
+  name: D1N4148
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLUM724
+    member: LMR50410X_PSPICE_TRANS/LMR50410X_TRANS.LIB
+    archive_sha256: ae6674a329be41b9efe146a78f47bca99c9d32e58bba01218c46a119a7c99fe8
+    sha256: d8bd9b0df65b336b450be095cad8b2d1148c32b973c23d7e115f38a68c78863c
+    lines:
+      D1N4148: [662, 677]
+    fetched: '2026-09-19'
+  note: 'STAND-IN: model of D1N4148, not of CD4148W; equivalence declared in catalog/wanted.yaml (see
+    its note)'
+- source: central-semi
+  name: 1N4148
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/1N4148.LIB
+    sha256: 61e9e5b7ec11b2ed3c0429ace26cf40a436b623701c8935729565b0e9c7941d0
+    lines:
+      1N4148: [24, 35]
+    fetched: '2026-09-14'
+    note: 'model(s): 1N4148 (D .model)'
+  note: 'STAND-IN: model of 1N4148, not of CD4148W; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+- source: bordodynov
+  name: 1N4148
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N4148: [140, 140]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 1N4148, not of CD4148W; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: D1N4148
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/UCC28C42_TRANS.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4f4f067a3fb2767f56d49660426fa5074ea3a72b68d5ba5e469b681a936980f0
+    lines:
+      D1N4148: [299, 300]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of D1N4148, not of CD4148W; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library, ltwiki'

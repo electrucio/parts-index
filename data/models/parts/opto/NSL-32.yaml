@@ -1,0 +1,105 @@
+part: NSL-32
+kind: opto
+priority: 2
+models:
+- source: viva-analog
+  name: NSL32-SR3
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://viva-analog.com/nsl32-sr3-updated-modeling-jcm-c-2020/
+    sha256: 500328c5b1b492b4e6e2f9aa5a81ab4e631986595ea398ddcad40ea6bd530c3b
+    lines:
+      NSL32-SR3: [6, 15]
+    fetched: '2026-09-14'
+    note: TRANSCRIPTION of updated-model-txt.png (made here)
+- source: bordodynov
+  name: nsl-32sr3
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  - '1'
+  - '2'
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/NSL-32SR3.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 84edacb753f896ebfedab540cc5d44420567fdb1ed725d624b8ce509c16de0ba
+    lines:
+      nsl-32sr3: [1, 13]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: Nsl32Sr2
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  - Ldr1
+  - Ldr2
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Led_Ldr.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: dac7fb7c7353483c93343abc0558911694fe11e3f8f116a17303334fcdc84c14
+    lines:
+      Nsl32Sr2: [19, 39]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: Nsl32Sr2
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  - Ldr1
+  - Ldr2
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/Led_Ldr.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 3282f51dcda8ec47106974df1d114030dbeec07fad904d0abb4b2734f4d88bff
+    lines:
+      Nsl32Sr2: [18, 37]
+    fetched: '2026-09-14'
+- source: groups-io
+  name: NSL-32
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_groups.io/Files-sorted-by-message-number/msg_ZZZZZZ/OptocouplerModelTestJig/
+    sha256: ad04b948c802b768806c86512c3be86d05b41bea7011c4ff02dac10e1ccbfe16
+    lines:
+      NSL-32: [2, 16]
+    fetched: '2026-09-20'
+    note: Seccion 4 del encargo. Busqueda por nombre exacto 'NSL-32' en el buscador de ficheros del grupo
+      groups.io/g/LTspice. La ubicacion ya NO es z_yahoo/Lib (como indicaba el encargo) sino una subcarpeta
+      'OptocouplerModelTestJig' dentro de z_groups.io/Files-sorted-by-message-number/msg_ZZZZZZ/ (carpeta
+      temporal real del grupo, no un enlace roto). Autor Noguffay, subido 2022-05-11. Modelo .sub + simbolo
+      .asy del optoacoplador/vactrol NSL-32. Ver README.txt en la carpeta groupsio-ltspice para detalles
+      y ficheros relacionados no descargados (test jig corregido, PDF explicativo).

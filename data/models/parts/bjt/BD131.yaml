@@ -1,0 +1,34 @@
+part: BD131
+kind: bjt
+priority: 3
+group: driver_vas
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 9 pass, 0 off, 0 fail of 9 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable). Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: bordodynov
+  name: BD131
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BD131: [427, 427]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 9
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://www.silicon-ark.co.uk/datasheets/bd131-datasheet-philips.pdf
+  maker: philips
+  doc: BD131 Product specification 1999 Apr 12 (supersedes 1997 Mar 04)

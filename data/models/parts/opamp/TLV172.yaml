@@ -1,0 +1,110 @@
+part: TLV172
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: TLV172
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - VCCS_LIM_GR_TLV172
+  - VCVS_LIM_1_TLV172
+  - FEMT_TLV172
+  - VCCS_LIM_1_TLV172
+  - VCCS_LIM_IQ_TLV172
+  - OL_SENSE_TLV172
+  - VCCS_LIM_2_TLV172
+  - VCCS_LIM_4_TLV172
+  - CLAMP_AMP_HI_TLV172
+  - VCCS_EXT_LIM_TLV172
+  - VOS_DRIFT_TLV172
+  - VCCS_LIM_3_TLV172
+  - VNSE_TLV172
+  - CLAMP_AMP_LO_TLV172
+  - VCCS_LIM_CLAWp_TLV172
+  - VCCS_LIM_CLAWn_TLV172
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOMA93
+    member: TLV172.LIB
+    archive_sha256: c37cdd3ff6b67d6433aab701c3aa500969074b2d6d13740177045248c126bed7
+    sha256: 0a5368ca5b4ddcb0e495640986ff7a26f130c94c1da0dff00b036f34ef10e52c
+    lines:
+      CLAMP_AMP_HI_TLV172: [268, 272]
+      CLAMP_AMP_LO_TLV172: [355, 359]
+      FEMT_TLV172: [278, 285]
+      OL_SENSE_TLV172: [274, 276]
+      TLV172: [70, 259]
+      VCCS_EXT_LIM_TLV172: [287, 290]
+      VCCS_LIM_1_TLV172: [368, 373]
+      VCCS_LIM_2_TLV172: [375, 380]
+      VCCS_LIM_3_TLV172: [292, 297]
+      VCCS_LIM_4_TLV172: [299, 304]
+      VCCS_LIM_CLAWn_TLV172: [316, 325]
+      VCCS_LIM_CLAWp_TLV172: [306, 314]
+      VCCS_LIM_GR_TLV172: [361, 366]
+      VCCS_LIM_IQ_TLV172: [327, 330]
+      VCVS_LIM_1_TLV172: [382, 387]
+      VNSE_TLV172: [332, 353]
+      VOS_DRIFT_TLV172: [261, 266]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: ti
+  name: TLV172
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - VCCS_LIM_GR_TLV172
+  - VCVS_LIM_1_TLV172
+  - FEMT_TLV172
+  - VCCS_LIM_1_TLV172
+  - VCCS_LIM_IQ_TLV172
+  - OL_SENSE_TLV172
+  - VCCS_LIM_2_TLV172
+  - VCCS_LIM_4_TLV172
+  - CLAMP_AMP_HI_TLV172
+  - VCCS_EXT_LIM_TLV172
+  - VOS_DRIFT_TLV172
+  - VCCS_LIM_3_TLV172
+  - VNSE_TLV172
+  - CLAMP_AMP_LO_TLV172
+  - VCCS_LIM_CLAWp_TLV172
+  - VCCS_LIM_CLAWn_TLV172
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOMA92
+    member: tlv172.lib
+    archive_sha256: 74fff41e37aa972cf694032f3e0d839870ed402133f4448fbf3fdf699068b71f
+    sha256: a2b909c8cef87d98370135f03cc1481d3d9678305b7948fcc0d7050181df4997
+    lines:
+      CLAMP_AMP_HI_TLV172: [268, 272]
+      CLAMP_AMP_LO_TLV172: [355, 359]
+      FEMT_TLV172: [278, 285]
+      OL_SENSE_TLV172: [274, 276]
+      TLV172: [70, 259]
+      VCCS_EXT_LIM_TLV172: [287, 290]
+      VCCS_LIM_1_TLV172: [368, 373]
+      VCCS_LIM_2_TLV172: [375, 380]
+      VCCS_LIM_3_TLV172: [292, 297]
+      VCCS_LIM_4_TLV172: [299, 304]
+      VCCS_LIM_CLAWn_TLV172: [316, 325]
+      VCCS_LIM_CLAWp_TLV172: [306, 314]
+      VCCS_LIM_GR_TLV172: [361, 366]
+      VCCS_LIM_IQ_TLV172: [327, 330]
+      VCVS_LIM_1_TLV172: [382, 387]
+      VNSE_TLV172: [332, 353]
+      VOS_DRIFT_TLV172: [261, 266]
+    fetched: '2026-09-19'
+  note: pins from names

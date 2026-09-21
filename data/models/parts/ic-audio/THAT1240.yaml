@@ -1,0 +1,31 @@
+part: THAT1240
+kind: ic-audio
+priority: 3
+models:
+- source: thatcorp
+  name: THAT1240
+  def: subckt
+  type: SUBCKT
+  pins:
+  - In+
+  - In-
+  - V+
+  - V-
+  - Out
+  - Ref
+  - Sens
+  deps:
+  - DPROT
+  - OA_33X36706
+  verbatim: true
+  get:
+    url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+    archive_sha256: a5699cf253cbe2b063a03b2dd8cc2927fe1ab03903ed2f1bb9ae23a0e867733b
+    archive_inferred: true
+    sha256: ae77f1b43731c387cfed7de047ce8d1c4a4e8a2c0f91f4c808aaa78b07aa996f
+    lines:
+      DPROT: [169, 169]
+      OA_33X36706: [126, 162]
+      THAT1240: [21, 42]
+    fetched: '2026-09-14'
+    note: file not listed in the manifest; see SOURCE.md

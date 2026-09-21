@@ -1,0 +1,118 @@
+part: SSM2135
+kind: ic-audio
+priority: 3
+models:
+- source: kicad-spice-library
+  name: SSM-2135/AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '2'
+  - '7'
+  - '4'
+  - '6'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/anlg_dev.lib
+    sha256: 505283370bc2c5b5cb15401e3a43d58793d1598e62e1b422bb333be402ada1b9
+    lines:
+      SSM-2135/AD: [70192, 70305]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: SSM2135_AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '2'
+  - '7'
+  - '4'
+  - '6'
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+    sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+    lines:
+      SSM2135_AD: [50890, 51003]
+      dx: [72212, 72212]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: SSM-2135P/AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '2'
+  - '7'
+  - '4'
+  - '6'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/anlg_dev.lib
+    sha256: 505283370bc2c5b5cb15401e3a43d58793d1598e62e1b422bb333be402ada1b9
+    lines:
+      SSM-2135P/AD: [70324, 70437]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: SSM2135P_AD
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '2'
+  - '7'
+  - '4'
+  - '6'
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+    sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+    lines:
+      SSM2135P_AD: [51021, 51134]
+      dx: [72212, 72212]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: SSM2135
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '2'
+  - '7'
+  - '4'
+  - '6'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/AD6.LIB
+    sha256: 1b6ccdf92b1929cf08d596e4b2e22d290dd705a5c2effc66f289983988f44566
+    lines:
+      SSM2135: [6536, 6649]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: SSM2135P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '2'
+  - '7'
+  - '4'
+  - '6'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/AD6.LIB
+    sha256: 1b6ccdf92b1929cf08d596e4b2e22d290dd705a5c2effc66f289983988f44566
+    lines:
+      SSM2135P: [6670, 6783]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

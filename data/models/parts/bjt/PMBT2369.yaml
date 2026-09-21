@@ -1,0 +1,57 @@
+part: PMBT2369
+kind: bjt
+priority: 4
+group: small_signal_npn
+models:
+- source: nexperia
+  name: PMBT2369
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B
+  - E
+  - C
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMBT2369.txt
+    sha256: 2a54fb5db227e3e9f96001a5de7fc36c511dc62c6158dfc8d9ee5dafd5e8b247
+    lines:
+      PMBT2369: [28, 69]
+    fetched: '2026-09-14'
+    note: 'model(s): PMBT2369 (.subckt 1 2 3), MAIN (NPN .model)'
+  note: pins from comment words
+- source: ltwiki
+  name: PMBT2369
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/PMBT2369.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 3f8117617a37cf787b3e6f778bfd6d315675096e8c561c226cd5e78ec30b07b5
+    lines:
+      PMBT2369: [2, 51]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: PMBT2369_PH
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
+    sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
+    lines:
+      PMBT2369_PH: [11602, 11651]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

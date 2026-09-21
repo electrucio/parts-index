@@ -1,0 +1,31 @@
+part: 74LVC1G53
+kind: control
+priority: 4
+models:
+- source: bordodynov
+  name: 74LVC1G53
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Y0
+  - Y1
+  - Z
+  - S
+  - _EN
+  - VCC
+  - VGND
+  deps:
+  - 74lvc_bisw
+  - 74lvc_in
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/74LVC1G.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 7a307b09f44c5744dde4bcfec72f690509c8b921a12fb97c6d6bd13fea134102
+    lines:
+      74LVC1G53: [301, 318]
+      74lvc_bisw: [744, 772]
+      74lvc_in: [586, 606]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'

@@ -1,0 +1,31 @@
+part: 2N3442
+kind: bjt
+priority: 3
+group: power_output
+preferred: onsemi
+preferred_why: 'best datasheet agreement: 2 pass, 0 off, 0 fail of 2 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 4 not measurable). WEAK EVIDENCE: fewer than 5 rows,
+  all min/max limits'
+models:
+- source: onsemi
+  name: Q2n3442
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/2n3442.lib
+    sha256: fbc657e7120a68b152644bf9f3f6ae044b4130960e25771aecf1257ddc6cbfaa
+    lines:
+      Q2n3442: [12, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 2
+    marginal: 0
+    fail: 0
+    not_measurable: 4
+    typical_rows: 0
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/2n3442-d.pdf
+  maker: onsemi
+  doc: 2N3442/D Rev. 11 (February 2006)

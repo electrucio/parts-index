@@ -1,0 +1,134 @@
+part: 1N4001
+kind: diode
+priority: 1
+group: rectifier
+preferred: onsemi
+preferred_why: 'best datasheet agreement: 6 pass, 1 off, 0 fail of 7 judged rows (4 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with suusi-tubes on score
+  and typical-value error, chosen as the more original source'
+models:
+- source: onsemi
+  name: D1n4001rl
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n4001rl.lib
+    sha256: 2535302d2890d238056a114fde8caa7eda70509299dc01b4826022b60418559d
+    lines:
+      D1n4001rl: [12, 16]
+    fetched: '2026-09-14'
+    note: 'model(s): D1n4001rl (D .model)'
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+- source: duncanamps
+  name: D1N4001
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/diode.mod
+    sha256: bb58d6a99a7204cfa89803598a0331243f10c11afb1b6279fb56fec2ae14c941
+    lines:
+      D1N4001: [21, 22]
+    fetched: '2026-09-14'
+    note: 34 .model
+  verification:
+    score: 0.714
+    pass: 5
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 4
+- source: suusi-tubes
+  name: 1N4001
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: MotorolaRectifiers.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: 88449ae88e2f751e584a6c2a079ded8a074d765cee37ce146ad1fd34182c5b35
+    lines:
+      1N4001: [3, 3]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+- source: bordodynov
+  name: D1N4001
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      D1N4001: [153, 153]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 1N4001
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N4001: [149, 149]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.714
+    pass: 5
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: 1N4001
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard3.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 13cb55bb7184e06a29b64a8d1991371f8414622ef1213c5b7bcb01e358ed71ee
+    lines:
+      1N4001: [22, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.714
+    pass: 5
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: kicad-spice-library'
+datasheet:
+  url: https://www.vishay.com/docs/88503/1n4001.pdf
+  maker: Vishay
+  doc: Document Number 88503, Revision 29-Apr-2020 (1N4001 thru 1N4007)

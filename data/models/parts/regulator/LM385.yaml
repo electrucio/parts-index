@@ -1,0 +1,22 @@
+part: LM385
+kind: regulator
+priority: 4
+models:
+- source: ltwiki
+  name: LM385
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - REF
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/regulators.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: ba2105aa53d2db16001d205924af438b7c473ed9a864ce8e7ef13fcd71a7fcf7
+    lines:
+      LM385: [1749, 1780]
+    fetched: '2026-09-14'
+  note: pins from comment words

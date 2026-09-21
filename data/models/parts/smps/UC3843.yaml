@@ -1,0 +1,116 @@
+part: UC3843
+kind: smps
+priority: 3
+models:
+- source: bordodynov
+  name: uc3843
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Err
+  - Vfb
+  - Ifb
+  - Osc
+  - Com
+  - Out
+  - Vcc
+  - Ref
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/UC3843.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 848325988c7c674c1acbd70069925b008ba6c5d062792360cbf7db57febb4373
+    lines:
+      uc3843: [1, 41]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''smps'''
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: UC3843B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '14'
+  - '15'
+  - '1'
+  - '18'
+  - '4'
+  - '20'
+  - '2'
+  deps:
+  - SWhyste
+  - NAND3_0
+  - INV
+  - NAND3_1
+  - FFLOP
+  - 1845AMP
+  - 1845OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/UC384xB.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 94006e2482dc5254c8121e572eecd40e9ed102888b6624b3ca8b73a8bc9b8df2
+    lines:
+      1845AMP: [273, 297]
+      1845OUT: [299, 316]
+      FFLOP: [318, 328]
+      INV: [342, 346]
+      NAND3_0: [330, 334]
+      NAND3_1: [336, 340]
+      SWhyste: [348, 358]
+      UC3843B: [94, 131]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''smps'''
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: UC3843B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '14'
+  - '15'
+  - '1'
+  - '18'
+  - '4'
+  - '20'
+  - '2'
+  deps:
+  - SWhyste
+  - NAND3_0
+  - INV
+  - NAND3_1
+  - FFLOP
+  - 1845AMP
+  - 1845OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/UC3844A&B/uc384x.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 0fe8a81fe2482c450ee7df0d988df7140eee83a5db1314bbb8c173945db1f020
+    lines:
+      1845AMP: [545, 593]
+      1845OUT: [597, 631]
+      FFLOP: [635, 655]
+      INV: [683, 691]
+      NAND3_0: [659, 667]
+      NAND3_1: [671, 679]
+      SWhyste: [695, 715]
+      UC3843B: [187, 261]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''smps'''
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/uc3842.pdf
+  maker: Texas Instruments (Unitrode)
+  doc: SLUS223H, rev. H (April 1997, revised October 2024); UC384x limits
+  date: 2024-10

@@ -1,0 +1,129 @@
+part: BSS806
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: infineon
+  name: BSS806N
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  - TJ
+  - TCASE
+  deps:
+  - S3_20_u_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-simulationmodel-optimos-powermosfet-pspice-20v-n-channel-simulationmodels-en.zip
+    member: OptiMOS2_20V_LTSpice.lib
+    archive_sha256: a8306bb8838304c29e3a07a92e82cc293d449635a7441e362e39c01b69c8fcf4
+    sha256: edc9437d59ad9fd31b1c2c28fff4b1e36cc8e1b7a8330c026c8aca6f2e2e5993
+    lines:
+      BSS806N: [981, 1018]
+      S3_20_u_var: [162, 242]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: infineon
+  name: BSS806NE
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  - TJ
+  - TCASE
+  deps:
+  - S3_20_u_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-simulationmodel-optimos-powermosfet-pspice-20v-n-channel-simulationmodels-en.zip
+    member: OptiMOS2_20V_LTSpice.lib
+    archive_sha256: a8306bb8838304c29e3a07a92e82cc293d449635a7441e362e39c01b69c8fcf4
+    sha256: edc9437d59ad9fd31b1c2c28fff4b1e36cc8e1b7a8330c026c8aca6f2e2e5993
+    lines:
+      BSS806NE: [1022, 1059]
+      S3_20_u_var: [162, 242]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: infineon
+  name: BSS806N_L1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  deps:
+  - S3_20_u_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-simulationmodel-optimos-powermosfet-pspice-20v-n-channel-simulationmodels-en.zip
+    member: OptiMOS2_20V_LTSpice.lib
+    archive_sha256: a8306bb8838304c29e3a07a92e82cc293d449635a7441e362e39c01b69c8fcf4
+    sha256: edc9437d59ad9fd31b1c2c28fff4b1e36cc8e1b7a8330c026c8aca6f2e2e5993
+    lines:
+      BSS806N_L1: [1641, 1660]
+      S3_20_u_var: [162, 242]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: infineon
+  name: BSS806NE_L1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  deps:
+  - S3_20_u_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-simulationmodel-optimos-powermosfet-pspice-20v-n-channel-simulationmodels-en.zip
+    member: OptiMOS2_20V_LTSpice.lib
+    archive_sha256: a8306bb8838304c29e3a07a92e82cc293d449635a7441e362e39c01b69c8fcf4
+    sha256: edc9437d59ad9fd31b1c2c28fff4b1e36cc8e1b7a8330c026c8aca6f2e2e5993
+    lines:
+      BSS806NE_L1: [1664, 1683]
+      S3_20_u_var: [162, 242]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: infineon
+  name: BSS806N_L0
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-simulationmodel-optimos-powermosfet-pspice-20v-n-channel-simulationmodels-en.zip
+    member: OptiMOS2_20V_LTSpice.lib
+    archive_sha256: a8306bb8838304c29e3a07a92e82cc293d449635a7441e362e39c01b69c8fcf4
+    sha256: edc9437d59ad9fd31b1c2c28fff4b1e36cc8e1b7a8330c026c8aca6f2e2e5993
+    lines:
+      BSS806N_L0: [2345, 2375]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: infineon
+  name: BSS806NE_L0
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-simulationmodel-optimos-powermosfet-pspice-20v-n-channel-simulationmodels-en.zip
+    member: OptiMOS2_20V_LTSpice.lib
+    archive_sha256: a8306bb8838304c29e3a07a92e82cc293d449635a7441e362e39c01b69c8fcf4
+    sha256: edc9437d59ad9fd31b1c2c28fff4b1e36cc8e1b7a8330c026c8aca6f2e2e5993
+    lines:
+      BSS806NE_L0: [2379, 2409]
+    fetched: '2026-09-19'
+  note: pins from names

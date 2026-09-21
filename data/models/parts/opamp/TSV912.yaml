@@ -1,0 +1,109 @@
+part: TSV912
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: TSV912
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - VNSE_0
+  - VCCS_EXT_LIM_0
+  - FEMT_0
+  - VOS_SRC_0
+  - VCCS_LIM_3_0
+  - VCCS_LIM_1_0
+  - VCCS_LIM_2_0
+  - VCCS_LIM_4_0
+  - CLAMP_AMP_HI_0
+  - CLAMP_AMP_LO_0
+  - OL_SENSE_0
+  - VCCS_LIM_CLAWN_0
+  - VCCS_LIM_CLAWP_0
+  - VCCS_LIM_GR_0
+  - VCCS_LIM_ZO_0
+  - VCCS_LIMIT_IQ_0
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/TSV912.cir
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bbfc04849d90538a2d20812b063689922c631de7ab1cf7af0dd8b97e66fba58a
+    lines:
+      CLAMP_AMP_HI_0: [346, 350]
+      CLAMP_AMP_LO_0: [338, 342]
+      FEMT_0: [263, 284]
+      OL_SENSE_0: [413, 415]
+      TSV912: [32, 237]
+      VCCS_EXT_LIM_0: [419, 422]
+      VCCS_LIMIT_IQ_0: [331, 334]
+      VCCS_LIM_1_0: [322, 327]
+      VCCS_LIM_2_0: [313, 318]
+      VCCS_LIM_3_0: [404, 409]
+      VCCS_LIM_4_0: [363, 368]
+      VCCS_LIM_CLAWN_0: [388, 400]
+      VCCS_LIM_CLAWP_0: [372, 384]
+      VCCS_LIM_GR_0: [354, 359]
+      VCCS_LIM_ZO_0: [254, 259]
+      VNSE_0: [288, 309]
+      VOS_SRC_0: [239, 250]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from names'
+- source: kicad-spice-library
+  name: TSV912
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - VNSE_0
+  - VCCS_EXT_LIM_0
+  - FEMT_0
+  - VOS_SRC_0
+  - VCCS_LIM_3_0
+  - VCCS_LIM_1_0
+  - VCCS_LIM_2_0
+  - VCCS_LIM_4_0
+  - CLAMP_AMP_HI_0
+  - CLAMP_AMP_LO_0
+  - OL_SENSE_0
+  - VCCS_LIM_CLAWN_0
+  - VCCS_LIM_CLAWP_0
+  - VCCS_LIM_GR_0
+  - VCCS_LIM_ZO_0
+  - VCCS_LIMIT_IQ_0
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/TSV912.cir
+    sha256: 60fd763d482f50d96d4babf14d78ede5f03a7d957c44aa971d1081e1cc394966
+    lines:
+      CLAMP_AMP_HI_0: [350, 354]
+      CLAMP_AMP_LO_0: [342, 346]
+      FEMT_0: [267, 288]
+      OL_SENSE_0: [417, 419]
+      TSV912: [33, 241]
+      VCCS_EXT_LIM_0: [423, 426]
+      VCCS_LIMIT_IQ_0: [335, 338]
+      VCCS_LIM_1_0: [326, 331]
+      VCCS_LIM_2_0: [317, 322]
+      VCCS_LIM_3_0: [408, 413]
+      VCCS_LIM_4_0: [367, 372]
+      VCCS_LIM_CLAWN_0: [392, 404]
+      VCCS_LIM_CLAWP_0: [376, 388]
+      VCCS_LIM_GR_0: [358, 363]
+      VCCS_LIM_ZO_0: [258, 263]
+      VNSE_0: [292, 313]
+      VOS_SRC_0: [243, 254]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from names

@@ -226,6 +226,44 @@ def fetch(source: str, url: str, *, name: str | None = None, rel: str | None = N
 
 
 # --- getting back what the tree has lost ------------------------------------------------------------
+ARCHIVE_SUFFIXES = (".zip", ".7z", ".rar", ".tgz", ".gz")
+
+
+def source_files(source: str) -> list[dict]:
+    """A source's manifest entries, or none when it has no manifest."""
+    mf = spice_source_manifest(source)
+    return json.loads(mf.read_text(encoding="utf-8")).get("files", []) if mf.exists() else []
+
+
+def archive_for(files: list[dict], folder: str, *, strict: bool = False) -> dict | None:
+    """The manifest entry for the archive that was unpacked into `extracted/<folder>/`.
+
+    The folder is named after the archive, but not always the same way: sometimes after its stem
+    (`Install-Test.zip` -> `Install-Test/`) and sometimes after the whole file name (`spice.zip/`), so
+    both spellings are tried, against the recorded path first and then against the URL.
+
+    Failing that, a source that recorded exactly one archive answers with it — the common case for a
+    source delivered as a single bundle, and right often enough to be worth trying when the cost of
+    being wrong is one wasted download. `strict` refuses that last step, for callers where a wrong
+    answer is published rather than checked against a checksum.
+    """
+    with_url = [f for f in files if f.get("url")]
+    archives = [f for f in with_url
+                if not f.get("path") or Path(f["path"]).suffix.lower() in ARCHIVE_SUFFIXES]
+    names = {folder.lower(), Path(folder).stem.lower()}
+    for f in with_url:
+        p = f.get("path")
+        if p and {Path(p).name.lower(), Path(p).stem.lower()} & names:
+            return f
+    for f in archives:
+        u = Path(unquote(f["url"].split("?")[0]))
+        if {u.name.lower(), u.stem.lower()} & names:
+            return f
+    if strict:
+        return None
+    return archives[0] if len(archives) == 1 else None
+
+
 def recovery_targets(gone: list[dict]) -> tuple[list[tuple[str, dict]], list[dict]]:
     """Map missing files onto the manifest entries that would restore them.
 
@@ -247,11 +285,8 @@ def recovery_targets(gone: list[dict]) -> tuple[list[tuple[str, dict]], list[dic
         by_source.setdefault(g["source"], []).append(g)
 
     for source, items in by_source.items():
-        mf = spice_source_manifest(source)
-        files = json.loads(mf.read_text(encoding="utf-8")).get("files", []) if mf.exists() else []
+        files = source_files(source)
         with_url = [f for f in files if f.get("url")]
-        archives = [f for f in with_url if not f.get("path")
-                    or Path(f["path"]).suffix.lower() in (".zip", ".7z", ".rar", ".tgz", ".gz")]
         by_name: dict[str, list[dict]] = {}
         for f in with_url:
             by_name.setdefault(unquote(Path(f["url"].split("?")[0]).name).lower(), []).append(f)
@@ -260,13 +295,7 @@ def recovery_targets(gone: list[dict]) -> tuple[list[tuple[str, dict]], list[dic
             rel = "/".join(parts[2:])
             hit = next((f for f in with_url if f.get("path") == rel), None)
             if hit is None and len(parts) > 3 and parts[2] == "extracted":
-                stem = parts[3].lower()
-                hit = next((f for f in with_url if f.get("path") and Path(f["path"]).stem.lower() == stem), None)
-                if hit is None:
-                    hit = next((f for f in archives
-                                if Path(f["url"].split("?")[0]).stem.lower() == stem), None)
-                if hit is None and len(archives) == 1:
-                    hit = archives[0]                      # the one archive this source ever recorded
+                hit = archive_for(files, parts[3])
                 rel = hit["path"] if hit and hit.get("path") else None   # fetch the archive, not the member
             elif hit is None:
                 same = by_name.get(Path(rel).name.lower(), [])

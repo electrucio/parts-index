@@ -1,0 +1,91 @@
+part: BC856
+kind: bjt
+priority: 4
+group: small_signal_pnp
+models:
+- source: onsemi
+  name: bc856bwt1
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/sp3/bc856bwt1.sp3
+    sha256: dc22a9d6829da1b1ac0afd3f133bf2d4c77cb029c36ea1a8a9bd585f317e2d00
+    lines:
+      bc856bwt1: [14, 24]
+    fetched: '2026-09-19'
+    note: 'BC856BWT1.SP3: bc856bwt1'
+- source: nexperia
+  name: BC856A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B
+  - E
+  - C
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BC856A.txt
+    sha256: dbc284a42b25163d4b27c4a75db95a7059b075e29e7ee6a83f0134bcb4b8dc1a
+    lines:
+      BC856A: [29, 89]
+    fetched: '2026-09-14'
+    note: 'model(s): BC856A (.subckt 1 2 3), MAIN (PNP .model), DIODE (D .model)'
+  note: pins from comment words
+- source: nexperia
+  name: BC856B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B
+  - E
+  - C
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BC856B.txt
+    sha256: 580ae98768fa1b6fc66d0e3e1daaaf5745d63f8cff4614fcef840055789b7b33
+    lines:
+      BC856B: [31, 89]
+    fetched: '2026-09-14'
+    note: 'model(s): BC856B (.subckt 1 2 3), MAIN (PNP .model), DIODE (D .model)'
+  note: pins from comment words
+- source: diodes-inc
+  name: BC856B
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/2702/BC856B.spice.txt
+    sha256: f9fa1a711f832a60218091f95f68ed39d079236d210f6357e7bbfb5a89322594
+    lines:
+      BC856B: [23, 25]
+    fetched: '2026-09-14'
+    note: 'model(s): BC856B (PNP .model)'
+- source: bordodynov
+  name: BC856B
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC856B: [625, 625]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BC856A
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC856A: [624, 624]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

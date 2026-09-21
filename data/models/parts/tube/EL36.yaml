@@ -1,0 +1,45 @@
+part: EL36
+kind: tube
+priority: 2
+group: audio_docs
+models:
+- source: suusi-tubes
+  name: EL36
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G1
+  - C
+  - G2
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      EL36: [1969, 1973]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: bordodynov
+  name: EL36_T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/triodes.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1e31c73aba86877020a0740d279066992ad7c2cd57aed56223b59706e68a7f44
+    lines:
+      EL36_T: [1117, 1132]
+    fetched: '2026-09-14'
+  note: 'same code also in: gist-chanmix51, ltwiki; pins from inline comment'

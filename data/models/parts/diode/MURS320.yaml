@@ -1,0 +1,72 @@
+part: MURS320
+kind: diode
+priority: 2
+group: rectifier
+preferred: ltspice-native
+preferred_why: 'best datasheet agreement: 5 pass, 0 off, 1 fail of 6 judged rows (1 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with ltwiki, kicad-spice-library
+  on score and typical-value error, chosen as the more original source'
+models:
+- source: ltspice-native
+  name: MURS320
+  def: model
+  type: D
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.dio
+    sha256: 696d34dfe538966c80cfe1da259c1043f408777be79f59e4f1c47d82f3af320a
+    lines:
+      MURS320: [23, 23]
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: MURS320
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard3.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 13cb55bb7184e06a29b64a8d1991371f8414622ef1213c5b7bcb01e358ed71ee
+    lines:
+      MURS320: [19, 19]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: murs320t3
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_rect.lib
+    sha256: 4280e2f5339d54da1e9eda2a615c5b783b50e01b2cacde8c6bbc21649adfa347
+    lines:
+      murs320t3: [1261, 1275]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 1
+datasheet:
+  url: https://web.archive.org/web/2024id_/https://www.onsemi.com/pdf/datasheet/murs320t3-d.pdf
+  maker: onsemi
+  doc: MURS320T3/D Rev. 21, June 2024 (MURS320/340/360, SURS83x0)

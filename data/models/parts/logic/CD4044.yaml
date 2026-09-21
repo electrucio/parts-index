@@ -1,0 +1,31 @@
+part: CD4044
+kind: logic
+priority: 2
+models:
+- source: kicad-spice-library
+  name: CD4044B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - R1
+  - R2
+  - R3
+  - R4
+  - S1
+  - S2
+  - S3
+  - S4
+  - Q1
+  - Q2
+  - Q3
+  - Q4
+  - EN
+  - 'optional:'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cmos.lib
+    sha256: 4ee830d7932c2cdfcd5d21972f96c0387c3440d5d449c6554a0016f8b0f4f5b0
+    lines:
+      CD4044B: [2551, 2647]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

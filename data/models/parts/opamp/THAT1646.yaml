@@ -1,0 +1,27 @@
+part: THAT1646
+kind: opamp
+priority: 2
+models:
+- source: thatcorp
+  name: THAT1646
+  def: subckt
+  type: SUBCKT
+  pins:
+  - OUT-
+  - SNS-
+  - GND
+  - IN
+  - Vee
+  - Vcc
+  - SNS+
+  - OUT+
+  verbatim: true
+  get:
+    url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+    archive_sha256: a5699cf253cbe2b063a03b2dd8cc2927fe1ab03903ed2f1bb9ae23a0e867733b
+    archive_inferred: true
+    sha256: 9abb4f6762935415db6f485de62687fe98b2ef7ea015ed4a320bd158ff264159
+    lines:
+      THAT1646: [37, 149]
+    fetched: '2026-09-14'
+    note: file not listed in the manifest; see SOURCE.md

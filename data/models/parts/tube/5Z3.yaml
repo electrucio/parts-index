@@ -1,0 +1,66 @@
+part: 5Z3
+kind: tube
+priority: 3
+group: audio_docs
+models:
+- source: ayumi
+  name: 5Z3
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 5Z3.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 36a9d496ad9a322c557ee2b0573359c3996426cb49758b844ea38ce1e9e1d918
+    lines:
+      5Z3: [5, 7]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: suusi-tubes
+  name: 5Z3
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A1
+  - A2
+  - C
+  deps:
+  - RECP2
+  - DULERECP2
+  - 5U4GB
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      5U4GB: [27, 30]
+      5Z3: [81, 84]
+      DULERECP2: [3013, 3016]
+      RECP2: [2999, 3004]
+    fetched: '2026-09-14'
+  note: pins from inline comment
+- source: ltwiki
+  name: 5Z3
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Diode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 58fd9e1eba78d4f20d75d4d1a7d289ff8f337f5e17184bcfcf27ad75aade4a1f
+    lines:
+      5Z3: [82, 84]
+    fetched: '2026-09-14'
+  note: pins from names

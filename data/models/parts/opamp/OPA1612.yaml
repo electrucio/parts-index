@@ -1,0 +1,171 @@
+part: OPA1612
+kind: opamp
+priority: 2
+preferred: ti
+preferred_why: 'best datasheet agreement: 11 pass, 0 off, 0 fail of 11 judged rows (3 against typical
+  values or curve points, the rest against min/max limits; 1 not measurable); tied with ti on score and
+  typical-value error, chosen as the more original source'
+models:
+- source: ti
+  name: OPA161x
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - BLOCK_DC_S1_OPA161x
+  - AOL_1_OPA161x
+  - CL_SRC_OPA161x
+  - ZO_SRC_OPA161x
+  - CLAW_SRC_OPA161x
+  - BLOCK_DC_S2_OPA161x
+  - AOL_2_OPA161x
+  - ESD_BB_OPA161x
+  - ESD_IN_OPA161x
+  - CLAWN_OPA161x
+  - CLAWP_OPA161x
+  - BLOCK_DC_H2_OPA161x
+  - GR_SRC_OPA161x
+  - R_NOISELESS
+  - FEMT_OPA161x
+  - SW_OL_OPA161x
+  - VOS_DRIFT_OPA161x
+  - CLAMP_AMP_LO_OPA161x
+  - VCM_CLAMP_OPA161x
+  - IQ_SRC_OPA161x
+  - ESD_OUT_OPA161x
+  - OL_SENSE_OPA161x
+  - BLOCK_DC_H1_OPA161x
+  - BLOCK_DC_H3_OPA161x
+  - CLAMP_AMP_HI_OPA161x
+  - VNSE_OPA161x
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM397
+    member: OPA161x.LIB
+    archive_sha256: bca7273daca4f907a5f29e0be41bfb12eb052d2ad0578c23807084bf234b6368
+    sha256: 47cdc313d333f1104933fd6cca770ea79a76b5e53c70f1241edfc2840a0f3980
+    lines:
+      AOL_1_OPA161x: [310, 312]
+      AOL_2_OPA161x: [314, 316]
+      BLOCK_DC_H1_OPA161x: [283, 286]
+      BLOCK_DC_H2_OPA161x: [288, 291]
+      BLOCK_DC_H3_OPA161x: [293, 296]
+      BLOCK_DC_S1_OPA161x: [298, 302]
+      BLOCK_DC_S2_OPA161x: [304, 308]
+      CLAMP_AMP_HI_OPA161x: [318, 321]
+      CLAMP_AMP_LO_OPA161x: [323, 326]
+      CLAWN_OPA161x: [328, 334]
+      CLAWP_OPA161x: [336, 342]
+      CLAW_SRC_OPA161x: [344, 346]
+      CL_SRC_OPA161x: [348, 350]
+      ESD_BB_OPA161x: [352, 356]
+      ESD_IN_OPA161x: [358, 364]
+      ESD_OUT_OPA161x: [366, 370]
+      FEMT_OPA161x: [372, 388]
+      GR_SRC_OPA161x: [390, 392]
+      IQ_SRC_OPA161x: [394, 396]
+      OL_SENSE_OPA161x: [398, 400]
+      OPA161x: [84, 281]
+      R_NOISELESS: [437, 437]
+      SW_OL_OPA161x: [402, 405]
+      VCM_CLAMP_OPA161x: [407, 409]
+      VNSE_OPA161x: [411, 427]
+      VOS_DRIFT_OPA161x: [429, 431]
+      ZO_SRC_OPA161x: [433, 435]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 11
+    marginal: 0
+    fail: 0
+    not_measurable: 1
+    typical_rows: 3
+  note: found under the alias OPA161x; pins from names
+- source: ti
+  name: OPA161x
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - BLOCK_DC_S1_OPA161x
+  - AOL_1_OPA161x
+  - CL_SRC_OPA161x
+  - ZO_SRC_OPA161x
+  - CLAW_SRC_OPA161x
+  - BLOCK_DC_S2_OPA161x
+  - AOL_2_OPA161x
+  - ESD_BB_OPA161x
+  - ESD_IN_OPA161x
+  - CLAWN_OPA161x
+  - CLAWP_OPA161x
+  - BLOCK_DC_H2_OPA161x
+  - GR_SRC_OPA161x
+  - FEMT_OPA161x
+  - SW_OL_OPA161x
+  - VOS_DRIFT_OPA161x
+  - CLAMP_AMP_LO_OPA161x
+  - VCM_CLAMP_OPA161x
+  - IQ_SRC_OPA161x
+  - ESD_OUT_OPA161x
+  - OL_SENSE_OPA161x
+  - BLOCK_DC_H1_OPA161x
+  - BLOCK_DC_H3_OPA161x
+  - CLAMP_AMP_HI_OPA161x
+  - VNSE_OPA161x
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM396
+    member: OPA161x.LIB
+    archive_sha256: 8b567b729dd8bdc459650d41a5af84a5f7082a7ea06ea77406ba8a9db1348440
+    sha256: c86df5d4b2d26ec196c0a6158a61004a6747aec5440fcc2031674ad62a448ef7
+    lines:
+      AOL_1_OPA161x: [315, 317]
+      AOL_2_OPA161x: [319, 321]
+      BLOCK_DC_H1_OPA161x: [288, 291]
+      BLOCK_DC_H2_OPA161x: [293, 296]
+      BLOCK_DC_H3_OPA161x: [298, 301]
+      BLOCK_DC_S1_OPA161x: [303, 307]
+      BLOCK_DC_S2_OPA161x: [309, 313]
+      CLAMP_AMP_HI_OPA161x: [323, 326]
+      CLAMP_AMP_LO_OPA161x: [328, 331]
+      CLAWN_OPA161x: [333, 339]
+      CLAWP_OPA161x: [341, 347]
+      CLAW_SRC_OPA161x: [349, 351]
+      CL_SRC_OPA161x: [353, 355]
+      ESD_BB_OPA161x: [357, 361]
+      ESD_IN_OPA161x: [363, 369]
+      ESD_OUT_OPA161x: [371, 375]
+      FEMT_OPA161x: [377, 393]
+      GR_SRC_OPA161x: [395, 397]
+      IQ_SRC_OPA161x: [399, 401]
+      OL_SENSE_OPA161x: [403, 405]
+      OPA161x: [88, 286]
+      SW_OL_OPA161x: [407, 410]
+      VCM_CLAMP_OPA161x: [412, 414]
+      VNSE_OPA161x: [416, 432]
+      VOS_DRIFT_OPA161x: [434, 436]
+      ZO_SRC_OPA161x: [438, 440]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 11
+    marginal: 0
+    fail: 0
+    not_measurable: 1
+    typical_rows: 3
+  note: found under the alias OPA161x; pins from names
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/opa1612.pdf
+  maker: Texas Instruments (Burr-Brown)
+  doc: SBOS450C, rev. C (first issued Jul 2009)
+  date: 2014-08

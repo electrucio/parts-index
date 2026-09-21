@@ -249,9 +249,14 @@ def spice_source_manifest(source: str) -> Path:
     return spice_source(source) / "manifest.json"
 
 
+def spice_curated() -> Path:
+    """Where the curation lives: one directory per part, holding its candidates and `part.json`."""
+    return spice_models_root() / "models"
+
+
 def spice_model_dir(kind: str, part: str) -> Path:
     """Curated model text for one part. Published only where its source allows redistribution."""
-    return spice_models_root() / "models" / kind / part
+    return spice_curated() / kind / part
 
 
 def spice_part_json(kind: str, part: str) -> Path:
@@ -348,6 +353,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("spice_source", "private", ("onsemi",)),
     ("spice_source_doc", "private", ("onsemi",)),
     ("spice_source_manifest", "private", ("onsemi",)),
+    ("spice_curated", "private", ()),
     ("spice_model_dir", "private", ("bjt", "2N3904")),
     ("spice_part_json", "private", ("bjt", "2N3904")),
     ("spice_definitions", "private", ()),

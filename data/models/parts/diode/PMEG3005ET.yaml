@@ -1,0 +1,70 @@
+part: PMEG3005ET
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: bordodynov
+  name: PMEG3005EB
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      PMEG3005EB: [201, 201]
+    fetched: '2026-09-14'
+  note: 'found under the alias PMEG3005E; same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: PMEG3005ET
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG3005ET.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 59f779fa3226468805059fe7f73b27892ade31c08579121e1f1fa2568ce84624
+    lines:
+      PMEG3005ET: [2, 24]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: PMEG3005EH
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG3005EH.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 2ac6962096d824cc78c3e9298e026f01b951c7db0de264d49865cda15cd9c1bf
+    lines:
+      PMEG3005EH: [2, 24]
+    fetched: '2026-09-14'
+  note: found under the alias PMEG3005E; pins from default order (unverified)
+- source: ltwiki
+  name: PMEG3005EJ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG3005EJ.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 419808d092940d2dec87f9a5bc16bfb6e787317a3e5025262541a37e6eaa231e
+    lines:
+      PMEG3005EJ: [2, 24]
+    fetched: '2026-09-14'
+  note: found under the alias PMEG3005E; pins from default order (unverified)

@@ -1,0 +1,174 @@
+part: LM337
+kind: regulator
+priority: 2
+preferred: ti
+preferred_why: 'best datasheet agreement: 2 pass, 0 off, 0 fail of 2 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with kicad-spice-library on
+  score and typical-value error, chosen as the more original source. WEAK EVIDENCE: fewer than 5 rows,
+  all min/max limits'
+models:
+- source: ti
+  name: LM337_N_F1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNVMAP4
+    member: LM337_N_TRANS.LIB
+    archive_sha256: b011e3cfeab581e1fd40d57a8681cee5eb26938b57133dba8834a5e550071ffc
+    sha256: dc9fd0b650ce944f69654e7c5ebe1bb68dae541b25d92633825973afe2c7d4ff
+    lines:
+      LM337_N_F1: [84, 87]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 1
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: ti
+  name: LM337_N_H1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNVMAP4
+    member: LM337_N_TRANS.LIB
+    archive_sha256: b011e3cfeab581e1fd40d57a8681cee5eb26938b57133dba8834a5e550071ffc
+    sha256: dc9fd0b650ce944f69654e7c5ebe1bb68dae541b25d92633825973afe2c7d4ff
+    lines:
+      LM337_N_H1: [89, 92]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 1
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: ti
+  name: LM337_N_TRANS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - ADJ
+  - OUT
+  deps:
+  - LM337_N_H1
+  - COMPHYS_BASIC_GEN
+  - LM337_N_F1
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNVMAP4
+    member: LM337_N_TRANS.LIB
+    archive_sha256: b011e3cfeab581e1fd40d57a8681cee5eb26938b57133dba8834a5e550071ffc
+    sha256: dc9fd0b650ce944f69654e7c5ebe1bb68dae541b25d92633825973afe2c7d4ff
+    lines:
+      COMPHYS_BASIC_GEN: [94, 101]
+      LM337_N_F1: [84, 87]
+      LM337_N_H1: [89, 92]
+      LM337_N_TRANS: [46, 83]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 2
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: found under the alias LM337_N_TRANS; pins from names
+- source: ltwiki
+  name: LM337
+  def: subckt
+  type: SUBCKT
+  pins:
+  - ADJ
+  - IN
+  - OUT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/VolReg/t
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 73d9201f129e190f852423a29fc5c1dc1f2a42cbda4080147c4cecddcd31435e
+    lines:
+      LM337: [27, 302]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 0
+  note: pins from LM337 package pin numbers (unverified)
+- source: ltwiki
+  name: LM337
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/regulators.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: ba2105aa53d2db16001d205924af438b7c473ed9a864ce8e7ef13fcd71a7fcf7
+    lines:
+      LM337: [1209, 1453]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 1
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: kicad-spice-library
+  name: LM337K
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - ADJ
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/REG.LIB
+    sha256: 2581c0d0d57c3f5d13826e1be3608d8c05c6b9d033ddf76d398df2bd7dbd98bc
+    lines:
+      LM337K: [347, 371]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 2
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'pins from simulation: of the 6 node orders only IN ADJ OUT regulates to about -1.25 V at Vin-Vout
+    5 V / 20 mA, Vin-Vout 15 V / 20 mA, Vin-Vout 5 V / 100 mA (not at the 100 mA point) (orders tried:
+    IN OUT ADJ: 3.57 V, 3.57 V, 22.8 V; IN ADJ OUT: -1.25 V, -1.25 V, 9.18 V; OUT IN ADJ: 1.73 V, 1.73
+    V, 6.19 V; OUT ADJ IN: -2.84 V, -6.13 V, -2.58 V; ADJ IN OUT: 0.924 V, 0.922 V, 1.03 V; ADJ OUT IN:
+    3.57 V, 3.57 V, 22.8 V)'
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm337.pdf
+  maker: Texas Instruments
+  doc: SLVS047L, rev. L (first issued Nov 1981)
+  date: 2015-01

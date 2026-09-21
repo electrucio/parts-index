@@ -1,0 +1,34 @@
+part: PMBT2222A
+kind: bjt
+priority: 4
+group: small_signal_npn
+models:
+- source: nexperia
+  name: PMBT2222A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B
+  - E
+  - C
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMBT2222A.txt
+    sha256: 8bd8672fdf15ee10b0feabe777ccb4d774dfee81c7b8f2698987f37e2cfb455b
+    lines:
+      PMBT2222A: [32, 90]
+    fetched: '2026-09-14'
+    note: 'model(s): PMBT2222A (.subckt 1 2 3), MAIN (NPN .model), DIODE (D .model)'
+  note: pins from comment words
+- source: kicad-spice-library
+  name: PMBT2222A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
+    sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
+    lines:
+      PMBT2222A: [11560, 11598]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

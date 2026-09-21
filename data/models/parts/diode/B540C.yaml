@@ -1,0 +1,31 @@
+part: B540C
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: diodes-inc
+  name: B540C
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/126/B540C.spice.txt
+    sha256: a0af7d0288f8a3e4ae5ed7ee090b323bd93dd203aadf2943495b0277044f6199
+    lines:
+      B540C: [19, 24]
+    fetched: '2026-09-19'
+    note: 'model(s): B540C'
+- source: bordodynov
+  name: B540C
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      B540C: [170, 170]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

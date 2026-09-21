@@ -1,0 +1,235 @@
+part: LM324
+kind: opamp
+priority: 2
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 7 pass, 1 off, 0 fail of 8 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 1 not measurable); tied with bordodynov on score and
+  typical-value error, chosen as the more original source'
+models:
+- source: ti
+  name: LMX24_LM2902
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - VCCS_LIM_4_0
+  - PHASEREV_0
+  - VCCS_LIM_1_0
+  - OL_SENSE_0
+  - VCCS_EXT_LIM_0
+  - CRS_DIST_0
+  - VCCS_LIMIT_IQ_0
+  - CLAMP_AMP_HI_0
+  - VCCS_LIM_CLAW-_0
+  - VCCS_LIM_ZO_0
+  - FEMT_0
+  - VCCS_LIM_2_EN_0
+  - VCCS_LIM_CLAW+_0
+  - CLAMP_AMP_LO_0
+  - VCCS_LIM_GR_0
+  - VCCS_LIM_3_0
+  - VNSE_0
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SGLM009
+    member: lmx24_lm2902.lib
+    archive_sha256: dfdae2b8f22ad13d2ca34bd4647e9c83a8f7b4da825a9c47d9053ae4a986f901
+    sha256: 816b9a73a5cdd5986c783000acfc276dcbf8f2e6427e3a26fcc148f026c337ec
+    lines:
+      CLAMP_AMP_HI_0: [338, 342]
+      CLAMP_AMP_LO_0: [330, 334]
+      CRS_DIST_0: [234, 242]
+      FEMT_0: [264, 285]
+      LMX24_LM2902: [33, 225]
+      OL_SENSE_0: [407, 409]
+      PHASEREV_0: [227, 230]
+      VCCS_EXT_LIM_0: [413, 416]
+      VCCS_LIMIT_IQ_0: [323, 326]
+      VCCS_LIM_1_0: [314, 319]
+      VCCS_LIM_2_EN_0: [255, 260]
+      VCCS_LIM_3_0: [398, 403]
+      VCCS_LIM_4_0: [355, 360]
+      VCCS_LIM_CLAW+_0: [364, 374]
+      VCCS_LIM_CLAW-_0: [378, 393]
+      VCCS_LIM_GR_0: [346, 351]
+      VCCS_LIM_ZO_0: [246, 251]
+      VNSE_0: [289, 310]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.429
+    pass: 3
+    marginal: 0
+    fail: 4
+    not_measurable: 2
+    typical_rows: 1
+  note: found under the alias LMX24_LM2902; pins from names
+- source: bordodynov
+  name: LM324/NS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/ns_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+    lines:
+      LM324/NS: [3678, 3765]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.25
+    pass: 2
+    marginal: 2
+    fail: 4
+    not_measurable: 1
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: LM324
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      LM324: [443, 477]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.429
+    pass: 3
+    marginal: 0
+    fail: 4
+    not_measurable: 2
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: LM324/MC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/on_amp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+    lines:
+      LM324/MC: [1799, 1835]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.875
+    pass: 7
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+- source: bordodynov
+  name: LM324
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  deps:
+  - TL074
+  - TL072
+  - TL071
+  - TL070
+  - TL064
+  - TL062
+  - TL061
+  - TL060
+  - TL022C
+  - MC3403
+  - LM358
+  - LM348
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_TI.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+    lines:
+      LM324: [366, 400]
+      LM348: [410, 444]
+      LM358: [454, 487]
+      MC3403: [497, 531]
+      TL022C: [541, 575]
+      TL060: [586, 618]
+      TL061: [628, 660]
+      TL062: [670, 702]
+      TL064: [712, 744]
+      TL070: [755, 787]
+      TL071: [796, 828]
+      TL072: [837, 869]
+      TL074: [878, 910]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.429
+    pass: 3
+    marginal: 0
+    fail: 4
+    not_measurable: 2
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: bordodynov
+  name: LM324/ON
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/on_amp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+    lines:
+      LM324/ON: [321, 357]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.875
+    pass: 7
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/lm324.pdf
+  maker: Texas Instruments
+  doc: SLOS066AE, Aug 1975, revised Sep 2025 (LMx24/LM2902 family); table 6.7 LM324/LM324K (legacy die,
+    not the LM324B)

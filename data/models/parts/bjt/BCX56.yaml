@@ -1,0 +1,95 @@
+part: BCX56
+kind: bjt
+priority: 4
+group: small_signal_pnp
+models:
+- source: nexperia
+  name: BCX56
+  def: subckt
+  type: SUBCKT
+  pins:
+  - E
+  - C
+  - B
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BCX56.txt
+    sha256: 20cc4bb7ac7590108095667fbb57e7282b7583ab142e32fe4eea1f2fcd6c1a65
+    lines:
+      BCX56: [28, 69]
+    fetched: '2026-09-19'
+    note: 'BCX56: BCX56, MAIN'
+  note: pins from comment words
+- source: bordodynov
+  name: BCX56Z
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BCX56Z: [424, 424]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BCX56S
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BCX56S: [423, 423]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BCX56
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BCX56: [1608, 1608]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: BCX56
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ZETEX/LIB/zmodels.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 8d3fb488666b5f813a666d5c589ac6c7779a2c44a4b38799b2a41ca0006368e7
+    lines:
+      BCX56: [5826, 5830]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: BCX56
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/BCX56.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 72bdbccb2547610977f63500b7a59544de1917c2ce382ff68cd82c448821e9dc
+    lines:
+      BCX56: [2, 45]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)

@@ -1,0 +1,91 @@
+part: BC849
+kind: bjt
+priority: 4
+group: small_signal_npn
+models:
+- source: nexperia
+  name: BC849B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BC849B.txt
+    sha256: 810cf036df881e5b3043351afbe038fee67892e1dfa85b0adc32f32d37b545e7
+    lines:
+      BC849B: [34, 92]
+    fetched: '2026-09-14'
+    note: 'model(s): BC849B (.subckt 1 2 3), MAIN (NPN .model), DIODE (D .model)'
+  note: pins from default order (unverified)
+- source: nexperia
+  name: BC849C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BC849C.txt
+    sha256: 9ac21de376a4bcdae3e293c87688359868bdd789da5aadb25ceca8e7244807f7
+    lines:
+      BC849C: [34, 93]
+    fetched: '2026-09-14'
+    note: 'model(s): BC849C (.subckt 1 2 3), Transistor (NPN .model), Diode (D .model)'
+  note: pins from default order (unverified)
+- source: bordodynov
+  name: BC849B
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC849B: [620, 620]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BC849C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC849C: [621, 621]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: BC849B
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+    sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+    lines:
+      BC849B: [543, 545]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BC849B
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Zetex%20Semiconductors/ZMODELS.LIB
+    sha256: 356f4751706278dd76767c0cbdfceab52ea806ed01a3669b26584507bf29f3e0
+    lines:
+      BC849B: [453, 455]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

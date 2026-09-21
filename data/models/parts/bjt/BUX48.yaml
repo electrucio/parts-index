@@ -1,0 +1,61 @@
+part: BUX48
+kind: bjt
+priority: 3
+group: audio_docs
+models:
+- source: bordodynov
+  name: BUX48
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BUX48: [750, 750]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BUX48A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BUX48A: [751, 751]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: microcap12
+  name: BUX48
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: mpbjt.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 809a83e6faeda5c9408c63742c5b83c822ce0dfb08886e6178b44281a94ac21b
+    lines:
+      BUX48: [1430, 1436]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: BUX48A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: mpbjt.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 809a83e6faeda5c9408c63742c5b83c822ce0dfb08886e6178b44281a94ac21b
+    lines:
+      BUX48A: [1438, 1444]
+    fetched: '2026-09-20'

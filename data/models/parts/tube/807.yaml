@@ -1,0 +1,122 @@
+part: '807'
+kind: tube
+priority: 3
+group: pentode_beam
+preferred: reefman
+preferred_why: 'best datasheet agreement: 11 pass, 1 off, 0 fail of 12 judged rows (12 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: reefman
+  name: '807'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - BTetrodeD
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      '807': [1288, 1296]
+      BTetrodeD: [2211, 2228]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.917
+    pass: 11
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 12
+  note: pins from inline comment
+- source: suusi-tubes
+  name: '807'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      '807': [1417, 1421]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.0
+    pass: 0
+    marginal: 12
+    fail: 0
+    not_measurable: 0
+    typical_rows: 12
+  note: pins from inline comment
+- source: bordodynov
+  name: '807'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      '807': [401, 412]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.167
+    pass: 2
+    marginal: 10
+    fail: 0
+    not_measurable: 0
+    typical_rows: 12
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: bordodynov
+  name: '807'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - S
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/tetrodes_pentodes.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 165fae3b104add1b7940b82d806c5bf00ced5f8d21273fce8fe98ad45c793af2
+    lines:
+      '807': [242, 257]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 10
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 12
+  note: 'same code also in: gist-chanmix51, ltwiki; pins from names'
+datasheet:
+  url: https://frank.pocnet.net/sheets/049/8/807.pdf
+  maker: RCA
+  doc: RCA 807 Beam Power Tube, Data 1-9 (Tube Division, 1954-11-05); curve 92CM-4676R3 (1953-04-07)
+  date: '1954-11-05'

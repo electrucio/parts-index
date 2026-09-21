@@ -1,0 +1,32 @@
+part: 1N5353
+kind: zener
+priority: 3
+models:
+- source: onsemi
+  name: d1n5353b
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n5353b.lib
+    sha256: b20b9ee82dd8ae64f686cee73625c23a342a177a7970ec03bc647fe110007342
+    lines:
+      d1n5353b: [1, 41]
+    fetched: '2026-09-19'
+    note: '1N5353B.LIB: d1n5353b, MD1, MDR, MD3, MD2, MDRBV'
+  note: pins from default order (unverified)
+- source: duncanamps
+  name: D1N5353B
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/zener.mod
+    sha256: 53758db14bf58c6f53e5655b57def938fd7ebbaee865e81ef7ad3ba689a7f192
+    lines:
+      D1N5353B: [296, 297]
+    fetched: '2026-09-14'
+    note: 77 .model

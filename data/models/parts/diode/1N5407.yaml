@@ -1,0 +1,42 @@
+part: 1N5407
+kind: diode
+priority: 4
+group: rectifier
+models:
+- source: onsemi
+  name: D1n5407rl
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n5407rl.lib
+    sha256: 875c3ccff4d0cf709d8281f0f387fc3c34e8e41e86372036ed659fb93997df55
+    lines:
+      D1n5407rl: [12, 16]
+    fetched: '2026-09-19'
+    note: '1N5407: D1n5407rl'
+- source: suusi-tubes
+  name: 1N5407
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: MotorolaRectifiers.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: 88449ae88e2f751e584a6c2a079ded8a074d765cee37ce146ad1fd34182c5b35
+    lines:
+      1N5407: [24, 24]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: D1N5407
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/DIODE/INTERNAT.LIB
+    sha256: 88b223c4822ca05eea2a85a0c7614ba68845bf7d93fba971f22409c4b8322943
+    lines:
+      D1N5407: [223, 238]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

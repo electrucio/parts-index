@@ -1,0 +1,20 @@
+part: 1N5366
+kind: zener
+priority: 3
+models:
+- source: onsemi
+  name: d1n5366b
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n5366b.lib
+    sha256: 21b6ed792486468d9e59644cc042ea4b96a19e2d80dcbc229a9ca89c3f01d77d
+    lines:
+      d1n5366b: [1, 41]
+    fetched: '2026-09-19'
+    note: '1N5366B.LIB: d1n5366b, MD1, MDR, MD3, MD2, MDRBV'
+  note: pins from default order (unverified)

@@ -1,0 +1,311 @@
+part: 6AU6
+kind: tube
+priority: 3
+group: pentode_beam
+preferred: ayumi
+preferred_why: 'best datasheet agreement: 14 pass, 0 off, 0 fail of 14 judged rows (14 against typical
+  values or curve points, the rest against min/max limits; 12 not measurable)'
+models:
+- source: ayumi
+  name: 6AU6
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6AU6.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 6fde57b3757abd56903cd9bcf944eacbecb01feea7482a8a0a8b4db8cd7faf86
+    lines:
+      6AU6: [10, 30]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 14
+    marginal: 0
+    fail: 0
+    not_measurable: 12
+    typical_rows: 14
+  note: pins from names
+- source: ayumi
+  name: 6AU6T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6AU6T.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 315e9da5108744fa7954e6e5344f3386e65431bb5af151a894fbe93d131594f8
+    lines:
+      6AU6T: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.071
+    pass: 1
+    marginal: 13
+    fail: 0
+    not_measurable: 12
+    typical_rows: 14
+  note: pins from names
+- source: suusi-tubes
+  name: 6AU6
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6AU6: [1285, 1289]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.429
+    pass: 6
+    marginal: 8
+    fail: 0
+    not_measurable: 12
+    typical_rows: 14
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6AU6
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6AU6: [590, 594]
+      PENTODE1: [2010, 2023]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.429
+    pass: 6
+    marginal: 8
+    fail: 0
+    not_measurable: 12
+    typical_rows: 14
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6AU6A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  - 6AU6
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6AU6: [1285, 1289]
+      6AU6A: [1292, 1296]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.429
+    pass: 6
+    marginal: 8
+    fail: 0
+    not_measurable: 12
+    typical_rows: 14
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6AU6A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  - 6AU6
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6AU6: [590, 594]
+      6AU6A: [597, 601]
+      PENTODE1: [2010, 2023]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.429
+    pass: 6
+    marginal: 8
+    fail: 0
+    not_measurable: 12
+    typical_rows: 14
+  note: pins from inline comment
+- source: bordodynov
+  name: 6AU6
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - DX
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/nk_pentode.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: c559485a397b0b4be28e593e9cd6dd23228a07fbce5ca4e240d2421fb98a3f40
+    lines:
+      6AU6: [42, 46]
+      DX: [303, 303]
+      PENTODE1: [272, 284]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.429
+    pass: 6
+    marginal: 8
+    fail: 0
+    not_measurable: 12
+    typical_rows: 14
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from inline comment'
+- source: bordodynov
+  name: 6AU6A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - DX
+  - PENTODE1
+  - 6AU6
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/nk_pentode.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: c559485a397b0b4be28e593e9cd6dd23228a07fbce5ca4e240d2421fb98a3f40
+    lines:
+      6AU6: [42, 46]
+      6AU6A: [49, 53]
+      DX: [303, 303]
+      PENTODE1: [272, 284]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.429
+    pass: 6
+    marginal: 8
+    fail: 0
+    not_measurable: 12
+    typical_rows: 14
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from inline comment'
+- source: bordodynov
+  name: 6AU6
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Koren_Tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
+    lines:
+      6AU6: [619, 623]
+      PENTODE1: [2046, 2059]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.429
+    pass: 6
+    marginal: 8
+    fail: 0
+    not_measurable: 12
+    typical_rows: 14
+  note: 'same code also in: ltwiki; pins from inline comment'
+- source: bordodynov
+  name: 6AU6A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  - 6AU6
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Koren_Tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
+    lines:
+      6AU6: [619, 623]
+      6AU6A: [626, 630]
+      PENTODE1: [2046, 2059]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.429
+    pass: 6
+    marginal: 8
+    fail: 0
+    not_measurable: 12
+    typical_rows: 14
+  note: 'same code also in: ltwiki; pins from inline comment'
+datasheet:
+  url: https://frank.pocnet.net/sheets/127/6/6AU6.pdf
+  maker: Tung-Sol
+  doc: 'Tung-Sol 6AU6-6AU6A, plate #6531 (1962-08-01) pages 1-2; ''Tentative data'' curves plate #4763
+    (1956-09-01) pages 3-4'
+  date: '1962-08-01'

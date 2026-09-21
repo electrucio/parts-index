@@ -1,0 +1,33 @@
+part: NJW0281G
+kind: bjt
+priority: 1
+group: power_output
+preferred: ltwiki
+preferred_why: 'best datasheet agreement: 8 pass, 0 off, 0 fail of 8 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable). Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: ltwiki
+  name: njw0281g
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/distortion_OUTPUT_vs_bias/standard_BJT modified.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: b11d82ef9412f3285ead0b742f082d8c60ba31108d4eb85c48c7268e54aeb9a4
+    lines:
+      njw0281g: [575, 575]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/njw0281-d.pdf
+  maker: onsemi
+  doc: NJW0281/D Rev. 1 (September 2013)

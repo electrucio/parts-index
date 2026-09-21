@@ -1,0 +1,41 @@
+part: 12DW7
+kind: tube
+priority: 3
+group: triode
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 0 pass, 0 off, 0 fail of 0 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 23 not measurable)'
+models:
+- source: bordodynov
+  name: 12DW7A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - 12AU7A
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      12AU7A: [1484, 1491]
+      12DW7A: [1501, 1503]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 23
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://frank.pocnet.net/sheets/106/1/12DW7.pdf
+  maker: Sylvania
+  doc: Sylvania Type 12DW7 AF Amplifier and Phase Inverter, 2 pages (code 111-6-1-61)
+  date: 1961-06

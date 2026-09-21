@@ -1,0 +1,71 @@
+part: LM319
+kind: comparator
+priority: 4
+models:
+- source: bordodynov
+  name: LM319
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  deps:
+  - LM119
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Occomp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d4e98ddcd8fabe3cd892bb2be1e2447639c10f9f8759ce47b8b5c101a6999049
+    lines:
+      LM119: [64, 86]
+      LM319: [146, 152]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: LM319
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  deps:
+  - LM119
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/Occomp.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 43034148edb87c8b5281df8a394fb79962ff67147f9fba6349b2fcbb8346e17f
+    lines:
+      LM119: [62, 81]
+      LM319: [138, 144]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: LM319S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/SGS.LIB
+    sha256: 9dca4e312e997d808a21cfa05a667948fe085291fa3433406b85d9d7e53a4832
+    lines:
+      LM319S: [245, 289]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

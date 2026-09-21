@@ -1,0 +1,180 @@
+part: LM308
+kind: opamp
+priority: 1
+preferred: ltspice-native
+preferred_why: 'best datasheet agreement: 7 pass, 3 off, 0 fail of 10 judged rows (5 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with ltspice-native, bordodynov,
+  ltwiki, kicad-spice-library on score and typical-value error, chosen as the more original source'
+models:
+- source: ltspice-native
+  name: LM308
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  - COMP1
+  - COMP2
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: sub/LTC.lib
+    sha256: f794e567a5d81e0a3b6682f5d1353fdcec3bb090d76c0103642633ecf6083f16
+    lines:
+      LM308: [6762, 6800]
+  verification:
+    score: 0.7
+    pass: 7
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: ltspice-native
+  name: LM308A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  - COMP1
+  - COMP2
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: sub/LTC.lib
+    sha256: f794e567a5d81e0a3b6682f5d1353fdcec3bb090d76c0103642633ecf6083f16
+    lines:
+      LM308A: [6803, 6841]
+  verification:
+    score: 0.7
+    pass: 7
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: bordodynov
+  name: LM308
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  - COMP1
+  - COMP2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM308.cir
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 69653e2e549089d340349f80e45873f737882c3db6c882879865b8af5fff91ca
+    lines:
+      LM308: [5, 44]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.7
+    pass: 7
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: ltwiki
+  name: LM308A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  - COMP1
+  - COMP2
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+    lines:
+      LM308A: [22273, 22312]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.7
+    pass: 7
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: 'same code also in: kicad-spice-library; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: kicad-spice-library
+  name: LM308
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Texas%20Instruments/lm308.mod
+    sha256: 1a07ffda8dcedc3ff8d444b485d97fd892df8b1cc03f76b4efaa760bfad38b91
+    lines:
+      LM308: [11, 44]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.0
+    pass: 0
+    marginal: 3
+    fail: 5
+    not_measurable: 2
+    typical_rows: 3
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: kicad-spice-library
+  name: LM308_LT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  - COMP1
+  - COMP2
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/linear.lib
+    sha256: 025903d9677acbc507e2eaa578ba581d9e52f17c10dbf286da658f1af22dd5ba
+    lines:
+      LM308_LT: [13981, 14020]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.7
+    pass: 7
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 5
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+datasheet:
+  url: https://www.ti.com/product/LM308-N
+  maker: Texas Instruments (National Semiconductor)
+  doc: SNOSBS5B, Apr 1998 rev. Apr 2013 (LM108/LM208/LM308), OBSOLETE

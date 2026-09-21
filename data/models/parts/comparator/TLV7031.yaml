@@ -1,0 +1,65 @@
+part: TLV7031
+kind: comparator
+priority: 4
+models:
+- source: ti
+  name: TLV7031
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - V+
+  - V-
+  - OUT
+  deps:
+  - VINRANGE_393
+  - 4ORGATE
+  - INPUTRANGE
+  - VCC_Range
+  - Difference
+  - ORGATE
+  - Supply_Enable
+  - Output_Stage_SVOH
+  - INVERTER
+  - Output_Stage_SHIZ
+  - MID_SUPPLY
+  - Output_Stage_SMID
+  - DIGLEVSHIFT
+  - Output_Stage_SVOL
+  - Output_Stage
+  - SUPPLY_BUFFER1
+  - Input_Buffer
+  - Supply_Buffer
+  - Prop_Delay
+  - HPA_COMPHYS
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLVMDG0
+    member: tlv7031.lib
+    archive_sha256: e596c2ebc5d439b383d45d4f70329f91b44feed3dde2b66f10becb8754217b76
+    sha256: ac312efa51955862a0a1b9f66b8bcabbeca1ad385ef6dbe816d6eef1ce5350a2
+    lines:
+      4ORGATE: [182, 185]
+      DIGLEVSHIFT: [144, 149]
+      Difference: [163, 167]
+      HPA_COMPHYS: [136, 143]
+      INPUTRANGE: [100, 110]
+      INVERTER: [150, 153]
+      Input_Buffer: [65, 67]
+      MID_SUPPLY: [154, 157]
+      ORGATE: [158, 162]
+      Output_Stage: [82, 99]
+      Output_Stage_SHIZ: [121, 125]
+      Output_Stage_SMID: [116, 120]
+      Output_Stage_SVOH: [131, 135]
+      Output_Stage_SVOL: [126, 130]
+      Prop_Delay: [111, 115]
+      SUPPLY_BUFFER1: [168, 171]
+      Supply_Buffer: [79, 81]
+      Supply_Enable: [68, 78]
+      TLV7031: [45, 64]
+      VCC_Range: [172, 176]
+      VINRANGE_393: [177, 181]
+    fetched: '2026-09-19'
+  note: pins from names

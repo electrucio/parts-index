@@ -67,7 +67,10 @@ def git(*args: str) -> list[str]:
 def candidates(mode: str) -> list[str]:
     if mode == "--staged":
         return git("diff", "--cached", "--name-only", "--diff-filter=ACMR", "-z")
-    return git("ls-files", "-z")
+    # Tracked files, and anything new that is not ignored. Leaving the second half out made `--all`
+    # blind to exactly the files about to be published for the first time: a generated tree passed
+    # `make check` and was refused by the pre-commit hook a moment later.
+    return git("ls-files", "-z") + git("ls-files", "-z", "--others", "--exclude-standard")
 
 
 def check(path: str) -> list[str]:

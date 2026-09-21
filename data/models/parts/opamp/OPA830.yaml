@@ -1,0 +1,53 @@
+part: OPA830
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA830
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - VOUT
+  deps:
+  - VNSE_0
+  - RNOISE_FREE_1
+  - FEMT_0
+  - VCVS_LIMIT_2
+  - VCVS_LIMIT_4
+  - IDEAL_D_0
+  - VCVS_LIMIT_3
+  - RNOISE_FREE_2
+  - VCVS_LIMIT_5
+  - VCVS_LIMIT_0
+  - RNOISE_FREE_0
+  - VCCS_LIMIT_0
+  - VCCS_LIMIT_1
+  - VCVS_LIMIT_1
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOC224
+    member: opa830.lib
+    archive_sha256: 39cf635a076c030e25cc86ce6f10b401282ba348eece491ca974523f74147960
+    sha256: 48f876c86278284d223cc4d4a15e8c839eb85246b7072058b82dd0da643d5398
+    lines:
+      FEMT_0: [238, 272]
+      IDEAL_D_0: [181, 184]
+      OPA830: [38, 177]
+      RNOISE_FREE_0: [188, 194]
+      RNOISE_FREE_1: [198, 204]
+      RNOISE_FREE_2: [366, 372]
+      VCCS_LIMIT_0: [316, 322]
+      VCCS_LIMIT_1: [326, 332]
+      VCVS_LIMIT_0: [208, 214]
+      VCVS_LIMIT_1: [218, 224]
+      VCVS_LIMIT_2: [228, 234]
+      VCVS_LIMIT_3: [336, 342]
+      VCVS_LIMIT_4: [346, 352]
+      VCVS_LIMIT_5: [356, 362]
+      VNSE_0: [277, 311]
+    fetched: '2026-09-19'
+  note: pins from names

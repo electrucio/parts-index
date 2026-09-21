@@ -1,0 +1,41 @@
+part: 6J5
+kind: tube
+priority: 3
+group: triode
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 22 pass, 4 off, 0 fail of 26 judged rows (26 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: 6J5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  deps:
+  - Triode
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/new_triodes.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c621c85eb3b9d3dd97622ff9d25c1c1dcf93bc76e9dc887a946205326f08da2
+    lines:
+      6J5: [158, 161]
+      Triode: [31, 49]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.846
+    pass: 22
+    marginal: 4
+    fail: 0
+    not_measurable: 0
+    typical_rows: 26
+  note: 'same code also in: ltwiki; pins from names'
+datasheet:
+  url: https://frank.pocnet.net/sheets/093/6/6J5.pdf
+  maker: General Electric
+  doc: GE ET-T299A, 6J5 General-Purpose Triode, pages 1-4 (supersedes ET-T299 dated 5-46)
+  date: 1952-06

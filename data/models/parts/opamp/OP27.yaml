@@ -1,0 +1,175 @@
+part: OP27
+kind: opamp
+priority: 2
+preferred: ltspice-native
+preferred_why: 'best datasheet agreement: 13 pass, 0 off, 1 fail of 14 judged rows (0 against typical
+  values or curve points, the rest against min/max limits; 2 not measurable). Limits only: the datasheet
+  prints no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: ltspice-native
+  name: OP27
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: false
+  changes:
+  - ascii
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: sub/ADI.lib
+    sha256: f737657a8ad5acca2817afb00a6942769a8d26f9be06c3daa64ccd92682d605e
+    lines:
+      OP27: [8747, 8781]
+  verification:
+    score: 0.929
+    pass: 13
+    marginal: 0
+    fail: 1
+    not_measurable: 2
+    typical_rows: 0
+  note: pins from default order (unverified)
+- source: bordodynov
+  name: OP27A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_AD.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+    lines:
+      OP27A: [19140, 19276]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.846
+    pass: 11
+    marginal: 0
+    fail: 2
+    not_measurable: 3
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: bordodynov
+  name: OP27A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      OP27A: [15791, 15848]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.615
+    pass: 8
+    marginal: 0
+    fail: 5
+    not_measurable: 3
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: bordodynov
+  name: OP27C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      OP27C: [15883, 15940]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.538
+    pass: 7
+    marginal: 0
+    fail: 6
+    not_measurable: 3
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: bordodynov
+  name: OP27C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_AD.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+    lines:
+      OP27C: [19470, 19606]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.462
+    pass: 6
+    marginal: 0
+    fail: 7
+    not_measurable: 3
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: bordodynov
+  name: OP27E
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      OP27E: [15853, 15855]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 16
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+datasheet:
+  url: https://www.analog.com/media/en/technical-documentation/data-sheets/op27.pdf
+  maker: Analog Devices (PMI)
+  doc: OP27 Data Sheet, Rev. H
+  date: 2015-10

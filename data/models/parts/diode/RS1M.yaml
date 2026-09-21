@@ -1,0 +1,53 @@
+part: RS1M
+kind: diode
+priority: 4
+group: rectifier
+models:
+- source: diodes-inc
+  name: RS1MSWF
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/729/RS1MSWF.spice.txt
+    sha256: 722950459aab0da6407f02af65f1070591fb08e6152c50c8fda5f25efbf8eb0a
+    lines:
+      RS1MSWF: [22, 27]
+    fetched: '2026-09-19'
+    note: 'model(s): RS1MSWF, DF, DR'
+  note: pins from default order (unverified)
+- source: diodes-inc
+  name: RS1MWF
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/728/RS1MWF.spice.txt
+    sha256: a348e38443676d39fe0a6a4f00bb104ca87617a8a6f5a3f88af390123c76398b
+    lines:
+      RS1MWF: [22, 27]
+    fetched: '2026-09-19'
+    note: 'model(s): RS1MWF, DF, DR'
+  note: pins from default order (unverified)
+- source: diodes-inc
+  name: RS1MSWFQ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/730/RS1MSWFQ.spice.txt
+    sha256: 5fb2bcd92b9180164ac4a4cd098c87f99a17929b41bee42ada74022860e0444c
+    lines:
+      RS1MSWFQ: [22, 27]
+    fetched: '2026-09-19'
+    note: 'model(s): RS1MSWFQ, DF, DR'
+  note: pins from default order (unverified)

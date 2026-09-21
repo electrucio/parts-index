@@ -1,0 +1,172 @@
+part: MC1458
+kind: opamp
+priority: 2
+preferred: ti
+preferred_why: 'best datasheet agreement: 12 pass, 1 off, 0 fail of 13 judged rows (3 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, kicad-spice-library
+  on score and typical-value error, chosen as the more original source'
+models:
+- source: ti
+  name: MC1458
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ047
+    member: MC1458.301
+    archive_sha256: d9ab4e36feff40b47e7a28a2d43b4aec4329e46fa246e12fd227b8b6ccc598bd
+    sha256: 08e3bd48f7c3a35c171506cb9499285922f986c9f97a8de8a019005f69f54df7
+    lines:
+      MC1458: [10, 44]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.923
+    pass: 12
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+- source: stmicro
+  name: MC1458
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '3'
+  - '2'
+  - '4'
+  - '5'
+  verbatim: false
+  changes:
+  - st_analog_token
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/STMicroelectronics/Standard%20Linear%20ICs/Spice/mc1458.txt
+    sha256: 077020722f5e7861e19bd73aa9669757e561c335fd34f558f220052bae80a4aa
+    lines:
+      MC1458: [27, 74]
+    fetched: '2026-09-14'
+    note: ST "Standard Linear ICs Macromodels, 1993" (MC1458), mirrored on ltwiki.org
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 13
+    typical_rows: 0
+- source: bordodynov
+  name: MC1458
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      MC1458: [698, 732]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.923
+    pass: 12
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: kicad-spice-library
+  name: MC1458
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/MOTOR.LIB
+    sha256: 44f08a5cfceeb4c72d4f6e77e1eac1d108b46f7cb81dee8f3296a908b1eb53e6
+    lines:
+      MC1458: [735, 770]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.923
+    pass: 12
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: pins from numbered connections table
+- source: kicad-spice-library
+  name: MC1458_TI
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+    sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+    lines:
+      MC1458_TI: [3903, 3937]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.923
+    pass: 12
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: pins from comment words
+- source: kicad-spice-library
+  name: MC1458_MC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_opamp.lib
+    sha256: bfbf4e51462367a37800fa5c0f5a2b3190a30da3e6321416caa3e14b91ff274a
+    lines:
+      MC1458_MC: [832, 867]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.923
+    pass: 12
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: pins from numbered connections table
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/mc1458.pdf
+  maker: Texas Instruments
+  doc: SLOS069C, rev. C (first issued Feb 1971)
+  date: 2010-08

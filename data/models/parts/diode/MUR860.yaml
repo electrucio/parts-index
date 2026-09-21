@@ -1,0 +1,54 @@
+part: MUR860
+kind: diode
+priority: 3
+group: rectifier
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 1 pass, 0 off, 3 fail of 4 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with kicad-spice-library on
+  score and typical-value error, chosen as the more original source. WEAK EVIDENCE: fewer than 5 rows,
+  all min/max limits'
+models:
+- source: bordodynov
+  name: MUR860
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      MUR860: [1431, 1431]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.25
+    pass: 1
+    marginal: 0
+    fail: 3
+    not_measurable: 0
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: MUR860
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/DIODE.LIB
+    sha256: c68f4b4a28eb0e866fb8e516b6a6a37a779ac80fed8a2ef16a3afcfb80c522e5
+    lines:
+      MUR860: [392, 393]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.25
+    pass: 1
+    marginal: 0
+    fail: 3
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://web.archive.org/web/2024id_/https://www.onsemi.com/pdf/datasheet/mur820-d.pdf
+  maker: onsemi
+  doc: MUR820/D, Rev. 13, February 2014 (MUR805G ... MUR860G, MURF860G, SUR8820G, SUR8840G)

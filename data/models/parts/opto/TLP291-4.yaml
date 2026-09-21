@@ -1,0 +1,24 @@
+part: TLP291-4
+kind: opto
+priority: 4
+models:
+- source: bordodynov
+  name: PC817
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/PC817.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0c80f3110eb3c20c73e940201df25f5ef96bd7397c389eca5d9e2d036fa038e1
+    lines:
+      PC817: [3, 11]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of PC817, not of TLP291-4; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: kicad-spice-library, ltwiki'

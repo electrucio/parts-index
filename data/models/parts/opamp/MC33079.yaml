@@ -1,0 +1,173 @@
+part: MC33079
+kind: opamp
+priority: 3
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 8 pass, 1 off, 0 fail of 9 judged rows (1 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov, bordodynov,
+  kicad-spice-library, kicad-spice-library on score and typical-value error, chosen as the more original
+  source'
+models:
+- source: stmicro
+  name: MC33079
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '3'
+  - '2'
+  - '4'
+  - '5'
+  verbatim: false
+  changes:
+  - st_analog_token
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/STMicroelectronics/Standard%20Linear%20ICs/Spice/mc33079.txt
+    sha256: e1091454fb799a81057ce1d9e4c4da68ca9f05726f3cf718e2347ca2f896fdf3
+    lines:
+      MC33079: [25, 92]
+    fetched: '2026-09-14'
+    note: ST "Standard Linear ICs Macromodels, 1993" (MC33079), mirrored on ltwiki.org
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 9
+    typical_rows: 0
+- source: bordodynov
+  name: MC33079/MC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/on_amp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+    lines:
+      MC33079/MC: [2225, 2259]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.889
+    pass: 8
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: MC33079
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPAMPS.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+    lines:
+      MC33079: [1230, 1263]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.889
+    pass: 8
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: MC33079/ON
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/on_amp.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+    lines:
+      MC33079/ON: [747, 781]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.889
+    pass: 8
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: kicad-spice-library
+  name: MC33079_MC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_opamp.lib
+    sha256: bfbf4e51462367a37800fa5c0f5a2b3190a30da3e6321416caa3e14b91ff274a
+    lines:
+      MC33079_MC: [1453, 1487]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.889
+    pass: 8
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: pins from default order (unverified)
+- source: kicad-spice-library
+  name: MC33079
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/MOTOR.LIB
+    sha256: 44f08a5cfceeb4c72d4f6e77e1eac1d108b46f7cb81dee8f3296a908b1eb53e6
+    lines:
+      MC33079: [1370, 1404]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.889
+    pass: 8
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: pins from numbered connections table
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/mc33078-d.pdf
+  maker: onsemi (ex Motorola)
+  doc: MC33078/D Rev. 10, July 2025 (MC33078, MC33079, NCV33078, NCV33079)

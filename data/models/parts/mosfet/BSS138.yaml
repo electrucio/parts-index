@@ -1,0 +1,169 @@
+part: BSS138
+kind: mosfet
+priority: 2
+group: small_signal
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 8 pass, 0 off, 0 fail of 8 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable)'
+models:
+- source: onsemi
+  name: BSS138/FAI
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  deps:
+  - BSS138
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bss138.lib
+    sha256: 3430c14c9103823af088aeb7682aa4d618816213bab7dbfcf5f2680fa8eb23c7
+    lines:
+      BSS138: [3, 48]
+      BSS138/FAI: [54, 78]
+    fetched: '2026-09-14'
+    note: 'model(s): BSS138 (.subckt 20 10 30 50), DMOS (NMOS .model), DDS (D .model), DBODY (D .model),
+      INTER (NMOS .model), DGD (D .model) ...'
+  verification:
+    score: 0.625
+    pass: 5
+    marginal: 3
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: pins from default order (unverified)
+- source: onsemi
+  name: BSS138
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '20'
+  - '10'
+  - '30'
+  - '50'
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bss138.lib
+    sha256: 3430c14c9103823af088aeb7682aa4d618816213bab7dbfcf5f2680fa8eb23c7
+    lines:
+      BSS138: [3, 48]
+    fetched: '2026-09-14'
+    note: 'model(s): BSS138 (.subckt 20 10 30 50), DMOS (NMOS .model), DDS (D .model), DBODY (D .model),
+      INTER (NMOS .model), DGD (D .model) ...'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 10
+    typical_rows: 0
+- source: diodes-inc
+  name: BSS138/ZTX
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/1838/BSS138.spice.txt
+    sha256: 1511b753432c78e0b077665e24240c2ebc58b2bc53f51f48b9ffeb96a91f0f0d
+    lines:
+      BSS138/ZTX: [19, 39]
+    fetched: '2026-09-14'
+    note: 'model(s): BSS138/ZTX (.subckt 3 4 5), MOD1 (NMOS .model), Dmod1 (D .model), Dmod2 (D .model),
+      SMOD1a (VSWITCH .model), SMOD1b (VSWITCH .model)'
+  verification:
+    score: 0.75
+    pass: 6
+    marginal: 2
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: pins from default order (unverified)
+- source: bordodynov
+  name: BSS138
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      BSS138: [14561, 14573]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: BSS138/FAI
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  deps:
+  - BSS138
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      BSS138: [14561, 14573]
+      BSS138/FAI: [14533, 14557]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.625
+    pass: 5
+    marginal: 3
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: BSS138/FAI
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/fairchild_NMOS.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1a975526cba57c9199b644b4b6a662a0dbb285a7e2b7b89a01dd05c50e9bc2f0
+    lines:
+      BSS138/FAI: [90, 114]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.625
+    pass: 5
+    marginal: 3
+    fail: 0
+    not_measurable: 2
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/bss138-d.pdf
+  maker: onsemi (ex-Fairchild)
+  doc: BSS138/D, Rev. 3
+  date: 2017-09

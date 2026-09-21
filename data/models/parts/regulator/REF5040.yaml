@@ -1,0 +1,23 @@
+part: REF5040
+kind: regulator
+priority: 4
+models:
+- source: ti
+  name: REF5040
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLIM169
+    member: REF5040_PSPICE_AIO/REF5040.LIB
+    archive_sha256: dffd04e05152c520ed9482bf5186479a5d46b9cdd5b32c28e88637cb1bbe0fa7
+    sha256: 4b30a93fb875c982ebbe5682a0a92a43486b128d29511ce253466bdaca0dc9dc
+    lines:
+      REF5040: [69, 338]
+    fetched: '2026-09-19'

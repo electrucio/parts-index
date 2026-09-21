@@ -1,0 +1,62 @@
+part: SUD50P04-08
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: vishay
+  name: SUD50P04-08
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/65631/sud50p04.zip
+    member: SUD50P04-08_PS.lib
+    archive_sha256: 0815555b6bb3bef604a0f2961efa2405de9ebac6639301a0fb70e22b82a3790a
+    sha256: 4643282d340d507ad27e8c709bd77533e36df8c822ba3ef7ee37a551570d5f98
+    lines:
+      SUD50P04-08: [8, 34]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: vishay
+  name: SUD50P04-08_PS_RC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  deps:
+  - SUD50P04-08
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/65631/sud50p04.zip
+    member: sud50p04-08_ps_rc.txt
+    archive_sha256: 0815555b6bb3bef604a0f2961efa2405de9ebac6639301a0fb70e22b82a3790a
+    sha256: 0efee8e2722fce2acde1d8a27506ed7b384dd4e71f6460e2db5ad24e9811ea16
+    lines:
+      SUD50P04-08: [113, 139]
+      SUD50P04-08_PS_RC: [9, 104]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: vishay
+  name: SUD50P04-08
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/65631/sud50p04.zip
+    member: SUD50P04-08_HS.txt
+    archive_sha256: 0815555b6bb3bef604a0f2961efa2405de9ebac6639301a0fb70e22b82a3790a
+    sha256: 12d08b20d73aa5f08060d020d979fdf0d86c8a27ce5e70061aa160407503729d
+    lines:
+      SUD50P04-08: [7, 33]
+    fetched: '2026-09-19'
+  note: pins from names

@@ -1,0 +1,35 @@
+part: '7404'
+kind: logic
+priority: 4
+models:
+- source: kicad-spice-library
+  name: '7404'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - 1A
+  - 1Y
+  - 'optional:'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/Digdemo.lib
+    sha256: b7ab1358a8efaedd185ca5711baa8575cfd38323b80e46595be9fc4a9f312dd3
+    lines:
+      '7404': [84, 94]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: '7404'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - in
+  - out
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Digital%20Logic/7400.LIB
+    sha256: 7e433d8e83e759aa2eca1214d803925b982dcb3b5299fe4e7d9ec31997346a2d
+    lines:
+      '7404': [51, 58]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

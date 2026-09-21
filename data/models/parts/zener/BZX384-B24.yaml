@@ -1,0 +1,90 @@
+part: BZX384-B24
+kind: zener
+priority: 4
+models:
+- source: nexperia
+  name: BZX384-B30
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BZX384-B30.txt
+    sha256: 5fb0f922a416f92252cd77180792bb6d67b1f47ee0067962507ae0b2e152c927
+    lines:
+      BZX384-B30: [37, 67]
+    fetched: '2026-09-19'
+    note: 'BZX384-B30: BZX384-B30, DIODE1, DIODE2'
+  note: found under the alias BZX384; pins from comment words
+- source: bordodynov
+  name: BZX384B24
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BZX384B24: [268, 268]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BZX384B7V5
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BZX384B7V5: [256, 256]
+    fetched: '2026-09-14'
+  note: 'found under the alias BZX384; same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BZX384B8V2
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BZX384B8V2: [257, 257]
+    fetched: '2026-09-14'
+  note: 'found under the alias BZX384; same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BZX384B9V1
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BZX384B9V1: [258, 258]
+    fetched: '2026-09-14'
+  note: 'found under the alias BZX384; same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BZX384B10
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BZX384B10: [259, 259]
+    fetched: '2026-09-14'
+  note: 'found under the alias BZX384; same code also in: kicad-spice-library, ltwiki'

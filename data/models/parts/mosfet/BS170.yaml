@@ -1,0 +1,157 @@
+part: BS170
+kind: mosfet
+priority: 1
+group: small_signal
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 5 pass, 1 off, 0 fail of 6 judged rows (1 against typical values
+  or curve points, the rest against min/max limits; 1 not measurable); tied with ltwiki on score and typical-value
+  error, chosen as the more original source'
+models:
+- source: diodes-inc
+  name: BS170P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/4537/BS170P.spice.txt
+    sha256: 8e240e73cb25bad46117ef4013113882bb6ba4ccccc486ebb8ac58cc97f8f9e4
+    lines:
+      BS170P: [19, 31]
+    fetched: '2026-09-14'
+    note: 'model(s): BS170P (.subckt 3 4 5), N3306M (NMOS .model), N3306D (D .model)'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 1
+  note: 'same code also in: ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: BS170
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      BS170: [946, 946]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BS170PLP
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/NMOS_Philips.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ed3135fdb4ff7044442d0bc22b9c7076a200c2ba671011b9cacf98d84e134602
+    lines:
+      BS170PLP: [45, 57]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: ltwiki
+  name: BS170
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: https://ltwiki.org/index.php?title=BS170
+    sha256: 1ff2b65d1adb8c1245cc8574a999215be8d916905b675ba15093d7216e47777a
+    lines:
+      BS170: [19, 30]
+    fetched: '2026-09-14'
+    note: inline models from wiki page BS170
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 7
+    typical_rows: 0
+- source: ltwiki
+  name: BS170/PLP
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/phil_fet.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
+    lines:
+      BS170/PLP: [1435, 1447]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 1
+  note: pins from default order (unverified)
+- source: ltwiki
+  name: BS170
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ZETEX/LIB/zetex.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: a2c5fea585734aeb8bb765366c746aa808fbd61711b88908402f40cbdcb3cd8e
+    lines:
+      BS170: [3, 11]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 1
+  note: pins from default order (unverified)
+datasheet:
+  url: http://www.fairchildsemi.com/ds/BS/BS170.pdf
+  maker: Fairchild Semiconductor (now onsemi)
+  doc: BS170 / MMBF170 Rev. E2
+  date: 2010-03

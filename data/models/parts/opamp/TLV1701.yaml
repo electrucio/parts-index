@@ -1,0 +1,67 @@
+part: TLV1701
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: TLV1701
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - V+
+  - V-
+  - OUT
+  deps:
+  - VINRANGE_393
+  - 4ORGATE
+  - INPUTRANGE
+  - VCC_Range
+  - Difference
+  - ORGATE
+  - Supply_Enable
+  - INVERTER
+  - Output_Stage_SHIZ
+  - MID_SUPPLY
+  - Output_Stage_SMID
+  - DIGLEVSHIFT
+  - Output_Stage_SVOL
+  - Output_Stage
+  - Top_Level_S2
+  - SUPPLY_BUFFER1
+  - Input_Buffer
+  - Supply_Buffer
+  - Prop_Delay
+  - HPA_COMPHYS
+  - Top_Level_S1
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM859
+    member: tlv1701.lib
+    archive_sha256: 805c667bd40c289dfc7599cd554db50e2e4f79a1eae71d4a4cd6275db8c567b5
+    sha256: e606ad9020c40cbbf23feacfa512a3c32954bedc4a8bcf34c9b420f4566aeca7
+    lines:
+      4ORGATE: [337, 340]
+      DIGLEVSHIFT: [167, 173]
+      Difference: [240, 244]
+      HPA_COMPHYS: [158, 165]
+      INPUTRANGE: [104, 114]
+      INVERTER: [208, 211]
+      Input_Buffer: [67, 69]
+      MID_SUPPLY: [213, 216]
+      ORGATE: [218, 222]
+      Output_Stage: [87, 102]
+      Output_Stage_SHIZ: [140, 144]
+      Output_Stage_SMID: [134, 138]
+      Output_Stage_SVOL: [146, 150]
+      Prop_Delay: [116, 120]
+      SUPPLY_BUFFER1: [246, 249]
+      Supply_Buffer: [83, 85]
+      Supply_Enable: [71, 81]
+      TLV1701: [42, 65]
+      Top_Level_S1: [122, 126]
+      Top_Level_S2: [128, 132]
+      VCC_Range: [251, 255]
+      VINRANGE_393: [257, 261]
+    fetched: '2026-09-19'
+  note: pins from names

@@ -1,0 +1,154 @@
+part: BS250
+kind: mosfet
+priority: 2
+group: small_signal
+preferred: diodes-inc
+preferred_why: 'best datasheet agreement: 3 pass, 1 off, 0 fail of 4 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 1 not measurable); tied with bordodynov, bordodynov,
+  ltwiki on score and typical-value error, chosen as the more original source'
+models:
+- source: diodes-inc
+  name: BS250P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/2308/BS250P.spice.txt
+    sha256: 6dce10b333380d2215cb40957891b6ea353ad435deda0b50f6dea1217528fc0e
+    lines:
+      BS250P: [19, 31]
+    fetched: '2026-09-14'
+    note: 'model(s): BS250P (.subckt 3 4 5), MBS250 (PMOS .model), DBS250 (D .model)'
+  verification:
+    score: 0.75
+    pass: 3
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 2
+  note: 'same code also in: ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: BS250P
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      BS250P: [947, 947]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.75
+    pass: 3
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 2
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: BS250PLP
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/PMOS_Philips.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ddd5efafd062e94ad879688bea4de9115bf23caaa761c0ba40ab2e63e3458a45
+    lines:
+      BS250PLP: [1, 13]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.75
+    pass: 3
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: BS250P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      BS250P: [16620, 16632]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.75
+    pass: 3
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: ltwiki
+  name: BS250P
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+    sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+    lines:
+      BS250P: [943, 943]
+    fetched: '2026-09-14'
+    note: Bordodynov VDMOS collection for LTspice IV
+  verification:
+    score: 0.75
+    pass: 3
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: BS250/PLP
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/phil_fet.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
+    lines:
+      BS250/PLP: [1451, 1463]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.75
+    pass: 3
+    marginal: 1
+    fail: 0
+    not_measurable: 1
+    typical_rows: 2
+  note: pins from default order (unverified)
+datasheet:
+  url: https://www.diodes.com/assets/Datasheets/BS250P.pdf
+  maker: Diodes Incorporated (ex-Zetex)
+  doc: BS250P, DS33014 Rev. 3 - 2
+  date: 2019-10

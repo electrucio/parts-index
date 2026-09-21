@@ -1,0 +1,160 @@
+part: CD4050
+kind: logic
+priority: 4
+models:
+- source: ti
+  name: CD4050B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Y
+  - A
+  - VCC
+  - AGND
+  deps:
+  - LOGIC_ICC_AHC_1i_NAND_PP_CMOS_CD4050B
+  - LOGIC_INPUT_AHC_1i_NAND_PP_CMOS_CD4050B
+  - TPD_AHC_1i_NAND_PP_CMOS_CD4050B
+  - LOGIC_PP_OUTPUT_AHC_1i_NAND_PP_CMOS_CD4050B
+  - LOGIC_FUNCTION_2_AHC_1i_NAND_PP_CMOS_CD4050B
+  - LOGIC_GATE_2PIN_OD_AHC_1i_NAND_PP_CMOS_CD4050B
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: https://www.ti.com/lit/zip/SCHM018
+    member: CD4050B.cir
+    archive_sha256: 51870d3bcfd3b070400cc67dbb31e129b4a364e66bd3b9686d956a4873ca5f58
+    sha256: e8266016c89735465990a1a26fd2811425e1d0e2a17c4db3e6c76f18e7c93712
+    lines:
+      CD4050B: [35, 37]
+      LOGIC_FUNCTION_2_AHC_1i_NAND_PP_CMOS_CD4050B: [141, 156]
+      LOGIC_GATE_2PIN_OD_AHC_1i_NAND_PP_CMOS_CD4050B: [43, 76]
+      LOGIC_ICC_AHC_1i_NAND_PP_CMOS_CD4050B: [252, 260]
+      LOGIC_INPUT_AHC_1i_NAND_PP_CMOS_CD4050B: [77, 140]
+      LOGIC_PP_OUTPUT_AHC_1i_NAND_PP_CMOS_CD4050B: [171, 182]
+      TPD_AHC_1i_NAND_PP_CMOS_CD4050B: [157, 170]
+    fetched: '2026-09-19'
+- source: bordodynov
+  name: CD4050B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - Y
+  - VDD
+  - VGND
+  deps:
+  - CD40_IN_1
+  - CD40_OUT_2X
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4000_v.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: a814b0ca1e4ced9b7963913afd06147754592c9002010ecc1beb635b45e222eb
+    lines:
+      CD4050B: [567, 575]
+      CD40_IN_1: [920, 937]
+      CD40_OUT_2X: [987, 998]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: CD4050B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - Y
+  - VDD
+  - VGND
+  deps:
+  - CD40DIO1
+  - CD40_IN_1
+  - DIO2
+  - CD40_OUT_2X
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4000_Don.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 47fa60aec4237b21d853cfde5dffd06191f4bd16165aaab6bf2ac16c64839a0d
+    lines:
+      CD4050B: [511, 519]
+      CD40DIO1: [785, 785]
+      CD40_IN_1: [799, 815]
+      CD40_OUT_2X: [863, 873]
+      DIO2: [845, 845]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: CD4050B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - Y
+  - VDD
+  - VGND
+  deps:
+  - CD40DIO1
+  - CD40_IN_1
+  - CD40_OUT_2X
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/cd4000.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 794f3386c6ab888d2abf2f2c54ec97b6af582b14e138de0252059e9f07107f08
+    lines:
+      CD4050B: [564, 572]
+      CD40DIO1: [902, 902]
+      CD40_IN_1: [917, 930]
+      CD40_OUT_2X: [981, 992]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: CD4050B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - Y
+  - VDD
+  - VGND
+  deps:
+  - CD40_IN_1
+  - CD40_OUT_2X
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Digital/cd4xxx/Test Circuit CD4029B/cd4000.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: db071ddc0bc4fe1e6050e259bd9d1917dbbee47101187031e8f27ad1039b5cf1
+    lines:
+      CD4050B: [511, 519]
+      CD40_IN_1: [863, 879]
+      CD40_OUT_2X: [927, 937]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: CD4050B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - Y
+  - VDD
+  - VGND
+  deps:
+  - CD40_IN_1
+  - CD40_OUT_2X
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/cd4000.lib
+    sha256: b30e91bc7f5937fcd4b64fa5f37eabd91619b78de506c64ec29100404f0e5060
+    lines:
+      CD4050B: [564, 572]
+      CD40_IN_1: [917, 934]
+      CD40_OUT_2X: [984, 995]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

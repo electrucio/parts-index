@@ -1,0 +1,57 @@
+part: BAS20
+kind: diode
+priority: 3
+group: audio_docs
+models:
+- source: onsemi
+  name: bas20ht1g
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/sp3/bas20ht1g.sp3.sp3
+    sha256: 0fb743b543aedf2a93cdd7bd125b3031541731cc72c3f76a2fa3cc4fe47f6b32
+    lines:
+      bas20ht1g: [14, 18]
+    fetched: '2026-09-19'
+    note: 'BAS20HT1G.SP3: bas20ht1g'
+- source: kicad-spice-library
+  name: BAS20
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+    sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+    lines:
+      BAS20: [147, 148]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BAS20
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/DIODE3.LIB
+    sha256: 88ceba16090e9038958260ddfeaada17f266d72cde791f865efa4a903dfb91d3
+    lines:
+      BAS20: [1695, 1696]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BAS20_ZX
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zetex.lib
+    sha256: 453392deca3bd0ddfca565d56241c4a5bb4d2e8f14c6efa92c1c453ed434fdca
+    lines:
+      BAS20_ZX: [2832, 2842]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

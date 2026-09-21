@@ -1,0 +1,37 @@
+part: SS1P3L
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: vishay
+  name: ss1p3l
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89505/p_ss1p3l.txt
+    sha256: d75ac45179ffc803d8aec77f41a5cdc59db1d6022da69facba79c05b6b0d174b
+    lines:
+      ss1p3l: [7, 16]
+    fetched: '2026-09-19'
+    note: 'Schottky, PSpice Models (*.txt): ss1p3l, legd, grd'
+  note: 'same code also in: ltwiki; pins from default order (unverified)'
+- source: vishay
+  name: ss1p3l
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89504/ss1p3l.txt
+    sha256: 1c766631cdf5c1fb4da7bf05b9c709da25fff4d162a386ea40193d010a4037f3
+    lines:
+      ss1p3l: [7, 16]
+    fetched: '2026-09-19'
+    note: 'Schottky, SPICE 3 Models (*.txt): ss1p3l, legd, grd'
+  note: pins from default order (unverified)

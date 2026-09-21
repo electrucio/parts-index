@@ -1,0 +1,97 @@
+part: PMEG2010AEH
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: nexperia
+  name: PMEG2010AEH
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG2010AEH.txt
+    sha256: 58e5a541d25d70be8f52f4447603b7a595f5ad8e169d4b01adc4c4338c468456
+    lines:
+      PMEG2010AEH: [33, 49]
+    fetched: '2026-09-14'
+    note: 'model(s): PMEG2010AEH (.subckt 1 2), PMEG2010AEH (D .model)'
+  note: 'same code also in: ltwiki; pins from comment words'
+- source: bordodynov
+  name: PMEG2010AEB
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      PMEG2010AEB: [207, 207]
+    fetched: '2026-09-14'
+  note: 'found under the alias PMEG2010A; same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: PMEG2010AEB
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.dio
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+    lines:
+      PMEG2010AEB: [157, 157]
+    fetched: '2026-09-14'
+  note: 'found under the alias PMEG2010A; same code also in: kicad-spice-library'
+- source: ltwiki
+  name: PMEG2010AEB
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard3.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 13cb55bb7184e06a29b64a8d1991371f8414622ef1213c5b7bcb01e358ed71ee
+    lines:
+      PMEG2010AEB: [67, 67]
+    fetched: '2026-09-14'
+  note: 'found under the alias PMEG2010A; same code also in: kicad-spice-library'
+- source: ltwiki
+  name: PMEG2010AEB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG2010AEB.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 87730290d65f0132344aa72c2cac002590484c3b701caaaccb47988fd211f60c
+    lines:
+      PMEG2010AEB: [2, 24]
+    fetched: '2026-09-14'
+  note: found under the alias PMEG2010A; pins from default order (unverified)
+- source: ltwiki
+  name: PMEG2010AEJ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG2010AEJ.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: f47ea8161a99bfd51c3b740cdde5e39f6066cdf74a3c5889eacbe00735af7e73
+    lines:
+      PMEG2010AEJ: [2, 24]
+    fetched: '2026-09-14'
+  note: found under the alias PMEG2010A; pins from default order (unverified)

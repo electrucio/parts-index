@@ -1,0 +1,53 @@
+part: 2SC945
+kind: bjt
+priority: 3
+group: small_signal_npn
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 5 pass, 0 off, 0 fail of 5 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: 2sc945
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      2sc945: [826, 826]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 5
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: Q2SC945
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/TRT-Electronics/2sc945.lib
+    sha256: a4da4b84ceb27d96f0f56a2f131e18013e736b09bea1bf80c7b47c06293b6068
+    lines:
+      Q2SC945: [1, 3]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/ksc945-d.pdf
+  maker: fairchild (onsemi-hosted), KSC945
+  doc: KSC945 Rev. 1.1.0
+  date: 2014-11

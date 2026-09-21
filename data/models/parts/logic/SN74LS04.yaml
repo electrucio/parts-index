@@ -1,0 +1,70 @@
+part: SN74LS04
+kind: logic
+priority: 4
+models:
+- source: ti
+  name: SN74LS04
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Y
+  - A
+  - VCC
+  - AGND
+  deps:
+  - TPD_LVC_1i_NAND_PP_CMOS_SN74LS04
+  - LOGIC_ICC_LVC_1i_NAND_PP_CMOS_SN74LS04
+  - LOGIC_FUNCTION_2_LVC_1i_NAND_PP_CMOS_SN74LS04
+  - LOGIC_PP_OUTPUT_LVC_1i_NAND_PP_CMOS_SN74LS04
+  - LOGIC_INPUT_LVC_1i_NAND_PP_CMOS_SN74LS04
+  - LOGIC_GATE_2PIN_OD_LVC_1i_NAND_PP_CMOS_SN74LS04
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: https://www.ti.com/lit/zip/SDLM057
+    member: SN74LS04.cir
+    archive_sha256: 9cdb67cc19f5085edf76e085125696e3fb3fe57ae7b9530a22b14c8b9c2d7afd
+    sha256: a27e3bb460556527e8f79dd041a48f535a914d86f852a3441bd57860e227bc32
+    lines:
+      LOGIC_FUNCTION_2_LVC_1i_NAND_PP_CMOS_SN74LS04: [144, 159]
+      LOGIC_GATE_2PIN_OD_LVC_1i_NAND_PP_CMOS_SN74LS04: [43, 79]
+      LOGIC_ICC_LVC_1i_NAND_PP_CMOS_SN74LS04: [183, 191]
+      LOGIC_INPUT_LVC_1i_NAND_PP_CMOS_SN74LS04: [80, 143]
+      LOGIC_PP_OUTPUT_LVC_1i_NAND_PP_CMOS_SN74LS04: [173, 182]
+      SN74LS04: [35, 37]
+      TPD_LVC_1i_NAND_PP_CMOS_SN74LS04: [160, 172]
+    fetched: '2026-09-19'
+- source: kicad-spice-library
+  name: 74LS04
+  def: subckt
+  type: SUBCKT
+  pins:
+  - 1A
+  - 1Y
+  - 'optional:'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/dig000.lib
+    sha256: 4dcd1b5764cd8e069c91e0a9c93d16e0ea6a638f01dbf39fdba8805ef3d0c0ac
+    lines:
+      74LS04: [965, 975]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: found under the alias 74LS04
+- source: kicad-spice-library
+  name: 74LS04
+  def: subckt
+  type: SUBCKT
+  pins:
+  - in
+  - out
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Digital%20Logic/74LS.LIB
+    sha256: 0a2ff4e3c383374b23688a26c5653c8324b1ec14e703ce604cfa201863e589ca
+    lines:
+      74LS04: [91, 99]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: found under the alias 74LS04

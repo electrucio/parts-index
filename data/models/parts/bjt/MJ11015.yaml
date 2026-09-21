@@ -1,0 +1,37 @@
+part: MJ11015
+kind: bjt
+priority: 3
+group: power_output
+preferred: onsemi
+preferred_why: 'best datasheet agreement: 8 pass, 0 off, 0 fail of 8 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable). Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: onsemi
+  name: mj11015
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mj11015.lib
+    sha256: 25996d54b72175185e8b9ec816980ddf7833b807bec788108f8f637e10b1f281
+    lines:
+      mj11015: [12, 50]
+    fetched: '2026-09-14'
+    note: 'model(s): mj11015 (.subckt 1 2 3), dmodel (D .model), qmodel (PNP .model), q1model (PNP .model)'
+  verification:
+    score: 1.0
+    pass: 8
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: pins from default order (unverified)
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/mj11012-d.pdf
+  maker: onsemi
+  doc: MJ11012/D Rev. 5 (September 2008) (covers MJ11012, MJ11016 NPN; MJ11015 PNP)

@@ -1,0 +1,36 @@
+part: NE556
+kind: control
+priority: 4
+models:
+- source: bordodynov
+  name: NE556
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+  - '10'
+  - '11'
+  - '12'
+  - '13'
+  - '14'
+  deps:
+  - NE555
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/timers.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 5caceb6b0c16c6b684284c8598439454661f6908a926796c1459becf67fc8f85
+    lines:
+      NE555: [134, 155]
+      NE556: [389, 392]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

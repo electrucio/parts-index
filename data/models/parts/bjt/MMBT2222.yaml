@@ -1,0 +1,29 @@
+part: MMBT2222
+kind: bjt
+priority: 3
+group: small_signal_npn
+models:
+- source: onsemi
+  name: MMBT2222A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mmbt2222a.lib
+    sha256: 17e5418ed2608a2b158facf30e3dc2a4d187d5a6aa23e51bdb41d24cc82a363b
+    lines:
+      MMBT2222A: [6, 17]
+    fetched: '2026-09-14'
+    note: 'model(s): MMBT2222A (NPN .model)'
+- source: kicad-spice-library
+  name: MMBT2222A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
+    sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
+    lines:
+      MMBT2222A: [6975, 7013]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

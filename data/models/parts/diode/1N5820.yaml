@@ -1,0 +1,69 @@
+part: 1N5820
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: onsemi
+  name: D1n5820rl
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n5820rl.lib
+    sha256: 257710a88eb5de196da2ef0ce580a1bae99ec0bd24162af45d533d39f4e0d09e
+    lines:
+      D1n5820rl: [12, 16]
+    fetched: '2026-09-19'
+    note: '1N5820: D1n5820rl'
+- source: ltwiki
+  name: 1n5820
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Smps/HalfVm/Power456.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 9f06df533ae2edb2c14beb1b88977c99a92ad826c248ffb93ab84c151d37ac36
+    lines:
+      1n5820: [680, 684]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: 1n5820
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Basso/BassoBook20100103/application.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 5d29041032ba900f2d5cf36b92bfc8f65ba9f0fef305040427717fbfc1135ea3
+    lines:
+      1n5820: [112, 116]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: 1N5820
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/DIOD/DIODE_ST_10.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5fbff1861259b242b3696034eae7e9618dee580d80ef08990e75eff81815a0f7
+    lines:
+      1N5820: [6202, 6203]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: 1N5820RL
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/DIOD/DIODE_ST_10.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5fbff1861259b242b3696034eae7e9618dee580d80ef08990e75eff81815a0f7
+    lines:
+      1N5820RL: [6211, 6212]
+    fetched: '2026-09-14'

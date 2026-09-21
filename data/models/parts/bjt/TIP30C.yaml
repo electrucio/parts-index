@@ -1,0 +1,37 @@
+part: TIP30C
+kind: bjt
+priority: 3
+group: driver_vas
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 5 pass, 0 off, 1 fail of 6 judged rows (0 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable). Limits only: the datasheet prints
+  no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: kicad-spice-library
+  name: TIP30C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWBJT.LIB
+    sha256: a64b2703fc28c849c7760139346aa1e0c31b83f7701a15e8e7a8d12b01c7befc
+    lines:
+      TIP30C: [2574, 2583]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+  note: pins from default order (unverified)
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/tip29b-d.pdf
+  maker: onsemi
+  doc: TIP29B/D Rev. 14 (June 2024) - TIP29, A, B, C (NPN), TIP30, A, B, C (PNP)

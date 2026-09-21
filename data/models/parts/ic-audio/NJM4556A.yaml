@@ -1,0 +1,48 @@
+part: NJM4556A
+kind: ic-audio
+priority: 3
+models:
+- source: ltwiki
+  name: NJM4556A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - OUT1
+  - -IN1
+  - +IN1
+  - V-
+  - +IN2
+  - -IN2
+  - OUT2
+  - V+
+  deps:
+  - njm4556a_s
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/njm4556.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 471044ec09b7bef68cb13fccfcaa4ab25f12ca1abefb5047ac95d5b262981864
+    lines:
+      NJM4556A: [13, 16]
+      njm4556a_s: [25, 88]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: njm4556a_s
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/njm4556.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 471044ec09b7bef68cb13fccfcaa4ab25f12ca1abefb5047ac95d5b262981864
+    lines:
+      njm4556a_s: [25, 88]
+    fetched: '2026-09-14'

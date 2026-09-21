@@ -1,0 +1,96 @@
+part: B240
+kind: diode
+priority: 4
+group: bridge
+models:
+- source: central-semi
+  name: 1N5822
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/1N5822.LIB
+    sha256: c6151bb89b0f32c76684028993af85a3e5774e33b4f7cb2850d13a805d553b59
+    lines:
+      1N5822: [25, 37]
+    fetched: '2026-09-14'
+    note: 'model(s): 1N5822 (D .model)'
+  note: 'STAND-IN: model of 1N5822, not of B240; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+- source: bordodynov
+  name: SS24
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      SS24: [95, 95]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of SS24, not of B240; equivalence declared in catalog/wanted.yaml (see its note);
+    same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 1N5822
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N5822: [811, 811]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 1N5822, not of B240; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: 1N5822
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.dio
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+    lines:
+      1N5822: [734, 734]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 1N5822, not of B240; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: kicad-spice-library'
+- source: ltwiki
+  name: 1N5822
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/DIOD/DIODE_ST_10.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5fbff1861259b242b3696034eae7e9618dee580d80ef08990e75eff81815a0f7
+    lines:
+      1N5822: [7122, 7123]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 1N5822, not of B240; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+- source: kicad-spice-library
+  name: ss24
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/General%20Semiconductor/General%20Semiconductor.lb5
+    sha256: 29db97b9e48c44570530220654814e32bc2a2cb0d10d0a4a018887fb43ef592d
+    lines:
+      ss24: [1266, 1275]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: 'STAND-IN: model of ss24, not of B240; equivalence declared in catalog/wanted.yaml (see its note);
+    pins from default order (unverified)'

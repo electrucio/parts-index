@@ -1,0 +1,84 @@
+part: TIP121
+kind: bjt
+priority: 3
+group: audio_docs
+models:
+- source: bordodynov
+  name: TIP121
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/NPNdarlington.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 807671d304dd74e6ece6d7da13675cd8730356ed292fe05efe3a611da6b98ab5
+    lines:
+      TIP121: [381, 417]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: TIP121
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  deps:
+  - Rb
+  - Q1
+  - Q2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      Q1: [16399, 16440]
+      Q2: [16442, 16483]
+      Rb: [564, 570]
+      TIP121: [13334, 13346]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: tip121
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/TIP121&131.SUB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6f4f88067a664168de8c881cafc983aecacc5b918b104b92ecf2a7539d3e50c0
+    lines:
+      tip121: [12, 50]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: ltwiki
+  name: TIP121
+  def: subckt
+  type: SUBCKT
+  pins:
+  - C
+  - B
+  - E
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/HV/Sborka.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: c79f9c421383fd7410f382fb77f25aed1de487ed6783430c448ec2b20bb1130f
+    lines:
+      TIP121: [1, 13]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'

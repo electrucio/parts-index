@@ -1,0 +1,73 @@
+part: OPA454
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA454
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  - COMP2
+  - COMP1
+  - NC
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM311
+    member: OPA454_TINA_AIO/OPA454.LIB
+    archive_sha256: 91dc845b1deeccd5524198551810162b3423f10c199fe42b599de2807b63bd17
+    sha256: 2afa5a0761b39796da5855f61db9c2be1ae3712933c0733b431e5af64c5caa65
+    lines:
+      OPA454: [42, 407]
+    fetched: '2026-09-19'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: ti
+  name: OPA454
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  - COMP2
+  - COMP1
+  - NC
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOC274
+    member: OPA454.LIB
+    archive_sha256: 4e77fc682058a46734117fc54f6b93c6386585f9d27d8427af92894655063507
+    sha256: 2c2d3a8a06e0b6dabd2c7391d830466663edf014d35aeec6c92c8c48ae50cafc
+    lines:
+      OPA454: [81, 410]
+    fetched: '2026-09-19'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: ltwiki
+  name: OPA454
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  - COMP2
+  - COMP1
+  - NC
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/OPA454.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: a12b44fe2332a084704d3118fb2de08de4bb6a8ab25a279ab0861309f77a2c80
+    lines:
+      OPA454: [19, 381]
+    fetched: '2026-09-14'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)

@@ -1,0 +1,55 @@
+part: OPA197
+kind: opamp
+priority: 3
+models:
+- source: bordodynov
+  name: OPA197
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - VCCS_LIM_GR
+  - VCCS_LIM_3
+  - VCCS_EXT_LIM
+  - CLAMP_AMP_HI
+  - OL_SENSE
+  - CLAMP_AMP_LO
+  - FEMT
+  - VCCS_LIM_ZO
+  - VCCS_LIM_IQ
+  - VCCS_LIM_4
+  - VCCS_LIM_2
+  - VCCS_LIM_CLAWn
+  - VNSE
+  - VCCS_LIM_1
+  - VCCS_LIM_CLAWp
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OPA197.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 734f214117fdd6fc7da9b053bca9e665630393446235e226877629020fab4121
+    lines:
+      CLAMP_AMP_HI: [223, 227]
+      CLAMP_AMP_LO: [320, 324]
+      FEMT: [233, 252]
+      OL_SENSE: [229, 231]
+      OPA197: [33, 221]
+      VCCS_EXT_LIM: [254, 257]
+      VCCS_LIM_1: [333, 338]
+      VCCS_LIM_2: [340, 345]
+      VCCS_LIM_3: [259, 264]
+      VCCS_LIM_4: [266, 271]
+      VCCS_LIM_CLAWn: [285, 292]
+      VCCS_LIM_CLAWp: [273, 283]
+      VCCS_LIM_GR: [326, 331]
+      VCCS_LIM_IQ: [294, 297]
+      VCCS_LIM_ZO: [347, 352]
+      VNSE: [299, 318]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'

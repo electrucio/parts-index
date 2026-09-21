@@ -1,0 +1,33 @@
+part: CD4047B
+kind: control
+priority: 2
+models:
+- source: bordodynov
+  name: CD4047B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - xCt
+  - xRt
+  - xRCt
+  - xAstable
+  - _xAstable
+  - xNegTrig
+  - xPosTrig
+  - xReTrig
+  - xExtRst
+  - xQ
+  - _xQ
+  - xOscOut
+  - VDD
+  - VGND
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4047B.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: acb801163827e41919749a47a87338c7b5d80140486e10e0f07712136cd98470
+    lines:
+      CD4047B: [20, 98]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

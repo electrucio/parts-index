@@ -1,0 +1,289 @@
+part: 12BH7
+kind: tube
+priority: 2
+group: triode
+preferred: ayumi
+preferred_why: 'best datasheet agreement: 15 pass, 6 off, 0 fail of 21 judged rows (21 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: reefman
+  name: 12BH7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - TriodeK
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      12BH7: [1978, 1986]
+      TriodeK: [2345, 2357]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.143
+    pass: 3
+    marginal: 18
+    fail: 0
+    not_measurable: 0
+    typical_rows: 21
+  note: pins from inline comment
+- source: ayumi
+  name: 12BH7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 12BH7.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: cf7282e8355be187f3bdb144ccf9e3fdeb9a6f5d7ff7565cfb2b12582a694f27
+    lines:
+      12BH7: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.714
+    pass: 15
+    marginal: 6
+    fail: 0
+    not_measurable: 0
+    typical_rows: 21
+  note: pins from names
+- source: duncanamps
+  name: 12BH7A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - K
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice.html
+    member: 12BH7A.INC
+    archive_sha256: ad86d20e99f616f8cafeb32e594ac68c5d33ba7a39557b3ef4a7e79b549555c5
+    sha256: ebd0a284ea3fc12101b20a8a60a01051e70bef615a3058eaace367628325d48b
+    lines:
+      12BH7A: [26, 33]
+    fetched: '2026-09-14'
+    note: subckt 12BH7A (P G K)
+  verification:
+    score: 0.286
+    pass: 6
+    marginal: 15
+    fail: 0
+    not_measurable: 0
+    typical_rows: 21
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from names'
+- source: suusi-tubes
+  name: 12BH7A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      12BH7A: [821, 825]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 14
+    marginal: 7
+    fail: 0
+    not_measurable: 0
+    typical_rows: 21
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 12BH7A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      12BH7A: [552, 556]
+      TRIODE: [1980, 1991]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.667
+    pass: 14
+    marginal: 7
+    fail: 0
+    not_measurable: 0
+    typical_rows: 21
+  note: pins from inline comment
+- source: bordodynov
+  name: 12BH7A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - DX
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Tubes_Koren.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 510f4c10247ba46358ff5a6b3f15189bec5cf207507ccc70922184385a66c360
+    lines:
+      12BH7A: [345, 349]
+      DX: [1206, 1206]
+      TRIODE: [1131, 1141]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 14
+    marginal: 7
+    fail: 0
+    not_measurable: 0
+    typical_rows: 21
+  note: 'same code also in: kicad-spice-library, ltwiki, robrobinette; pins from inline comment'
+- source: bordodynov
+  name: 12BH7A_RY
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - Igrid
+  - TRIO3
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      12BH7A_RY: [756, 765]
+      Igrid: [2974, 2978]
+      TRIO3: [2935, 2937]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 21
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 12BH7A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/triodes.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1e31c73aba86877020a0740d279066992ad7c2cd57aed56223b59706e68a7f44
+    lines:
+      12BH7A: [541, 548]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.286
+    pass: 6
+    marginal: 15
+    fail: 0
+    not_measurable: 0
+    typical_rows: 21
+  note: 'same code also in: gist-chanmix51, ltwiki; pins from names'
+- source: bordodynov
+  name: 12BH7A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ValVol/Tubes/tube.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0eeca282ba6506a1a4826c5833c023b17df0c557ef46c9ade79abe98a9c24a3f
+    lines:
+      12BH7A: [396, 403]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.286
+    pass: 6
+    marginal: 15
+    fail: 0
+    not_measurable: 0
+    typical_rows: 21
+  note: 'same code also in: ltwiki; pins from names'
+- source: bordodynov
+  name: 12BH7A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - Igrid
+  - TRIO3
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Rydel_tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+    lines:
+      12BH7A: [415, 424]
+      Igrid: [859, 863]
+      TRIO3: [806, 808]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 21
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+datasheet:
+  url: https://frank.pocnet.net/sheets/049/1/12BH7A.pdf
+  maker: RCA
+  doc: RCA 12BH7-A Tentative Data 1-3 (Tube Division, Harrison NJ), curve 92CM-7429R1
+  date: '1955-03-01'

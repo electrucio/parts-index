@@ -1,0 +1,96 @@
+part: MPSA18
+kind: bjt
+priority: 1
+group: small_signal_npn
+preferred: ltwiki
+preferred_why: 'best datasheet agreement: 9 pass, 1 off, 1 fail of 11 judged rows (1 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: MPSA18
+  def: model
+  type: NPN
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      MPSA18: [510, 510]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.545
+    pass: 6
+    marginal: 1
+    fail: 4
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: MPSA18
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
+    lines:
+      MPSA18: [465, 465]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.545
+    pass: 6
+    marginal: 1
+    fail: 4
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library'
+- source: ltwiki
+  name: MPSA18
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/distortion_OUTPUT_vs_bias/standard_BJT modified.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: b11d82ef9412f3285ead0b742f082d8c60ba31108d4eb85c48c7268e54aeb9a4
+    lines:
+      MPSA18: [533, 533]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.818
+    pass: 9
+    marginal: 1
+    fail: 1
+    not_measurable: 0
+    typical_rows: 1
+- source: kicad-spice-library
+  name: MPSA18
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTN.LIB
+    sha256: 2c85b6bbf3a7dcb9403d646a1c120714fdc7bce5c8287c8e537012a1cf3ef6c2
+    lines:
+      MPSA18: [128, 130]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.455
+    pass: 5
+    marginal: 1
+    fail: 5
+    not_measurable: 0
+    typical_rows: 1
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/mpsa18-d.pdf
+  maker: onsemi
+  doc: MPSA18/D Rev. 4 (April 2007)

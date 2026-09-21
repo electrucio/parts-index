@@ -1,0 +1,21 @@
+part: PMEG4010CEJ
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: nexperia
+  name: PMEG4010CEJ
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG4010CEJ.txt
+    sha256: c6aee2ca01ce610e8c20c9ca503389faad270a9d5168e09f448ec7edee0249e6
+    lines:
+      PMEG4010CEJ: [33, 48]
+    fetched: '2026-09-19'
+    note: 'PMEG4010CEJ: PMEG4010CEJ, PMEG4010CEJ'
+  note: 'same code also in: ltwiki; pins from comment words'

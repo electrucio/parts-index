@@ -1,0 +1,42 @@
+part: 6SF5
+kind: tube
+priority: 2
+group: audio_docs
+models:
+- source: diyaudio
+  name: 6SF5_AN
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: https://www.diyaudio.com/community/threads/vacuum-tube-spice-models.243950/post-5194609
+    sha256: 18fdc63b082d952edabe70acacb8d7bb7f0ca5bb55d8dfd9f66072b46eb35066
+    lines:
+      6SF5_AN: [13, 26]
+    fetched: '2017-09-24'
+    note: 'Modelo Ayumi 6SF5_AN (formato BGG/BM1/BM2), por jazbo8 post #1475, presentado como correccion
+      de version defectuosa anterior (confirmado por rongon post #19 en otro hilo). Descargado a diyaudio/6SF5_AN_ayumi.lib.
+      Nota: linea BIG tiene parentesis de cierre sobrante tal cual en el original.'
+  note: pins from names
+- source: diyaudio
+  name: 6SF5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  verbatim: true
+  get:
+    url: https://www.diyaudio.com/community/threads/vacuum-tube-spice-models.243950/post-5418832
+    sha256: 424f34a54b6bb833ee6122f34db2a0e25dc9fd4665aa8ef057add9c7773f4d50
+    lines:
+      6SF5: [4, 18]
+    fetched: '2018-04-29'
+    note: 'Modelo Koren completo .SUBCKT 6SF5, por jelanier post #1670 en hilo "Vacuum Tube SPICE Models".
+      Texto completo verificado (zoom screenshot, formula balanceada). Descargado a diyaudio/6SF5_koren.lib'
+  note: pins from inline comment

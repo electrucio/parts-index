@@ -1,0 +1,131 @@
+part: J202
+kind: jfet
+priority: 3
+group: n_channel
+preferred: interfet
+preferred_why: 'best datasheet agreement: 4 pass, 2 off, 0 fail of 6 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: onsemi
+  name: J202
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/j202.lib
+    sha256: 575b730afce93bf6241a45e54dbe18c98332c9f7edab60b721e95941e1f22dad
+    lines:
+      J202: [6, 24]
+    fetched: '2026-09-14'
+    note: 'model(s): J202 (NJF .model)'
+  verification:
+    score: 0.5
+    pass: 3
+    marginal: 2
+    fail: 1
+    not_measurable: 0
+    typical_rows: 3
+- source: interfet
+  name: J202
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J202: [734, 734]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+- source: interfet
+  name: J202-GEN
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J202-GEN: [190, 190]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+- source: interfet
+  name: J202-LS
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      J202-LS: [191, 191]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2608-NSC (PJF .model), 2N3370-NSC (NJF .model), 2N3458-NSC (NJF .model), 2N3459-NSC
+      (NJF .model), 2N3684-NSC (NJF .model), 2N3685-NSC (NJF .model) ...'
+  verification:
+    score: 0.5
+    pass: 3
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+- source: ltspice-native
+  name: J202
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.jft
+    sha256: 93ae8433a9412e96e81071b65d521b7f31dcb2c2f3fce714456b73586230bea0
+    lines:
+      J202: [39, 39]
+  verification:
+    score: 0.5
+    pass: 3
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: J202X
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      J202X: [737, 737]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 3
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://www.interfet.com/jfet-datasheets/jfet-j201-j202-interfet.pdf
+  maker: InterFET
+  doc: IF35018.R00, June 2019

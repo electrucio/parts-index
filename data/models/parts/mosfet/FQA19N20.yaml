@@ -1,0 +1,37 @@
+part: FQA19N20
+kind: mosfet
+priority: 2
+group: power_vertical
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 4 pass, 1 off, 1 fail of 6 judged rows (1 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable)'
+models:
+- source: kicad-spice-library
+  name: FQA19N20_FC
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/fairch.lib
+    sha256: 7a65c19aecd31354d0fec1166479cad2d1453948039b85b0d6d15d51ed4b963d
+    lines:
+      FQA19N20_FC: [4673, 4697]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.667
+    pass: 4
+    marginal: 1
+    fail: 1
+    not_measurable: 2
+    typical_rows: 1
+  note: pins from default order (unverified)
+datasheet:
+  url: http://fairchildsemi.com:80/ds/FQ/FQA19N20.pdf
+  maker: Fairchild Semiconductor
+  doc: FQA19N20 QFET, April 2000
+  date: 2000-04

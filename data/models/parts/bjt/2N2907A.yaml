@@ -1,0 +1,70 @@
+part: 2N2907A
+kind: bjt
+priority: 2
+group: small_signal_pnp
+preferred: kicad-spice-library
+preferred_why: 'best datasheet agreement: 14 pass, 0 off, 0 fail of 14 judged rows (0 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable). Limits only: the datasheet
+  prints no typical values for these rows, so candidates inside the limits are not told apart'
+models:
+- source: central-semi
+  name: 2N2907A
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/2N2907A.LIB
+    sha256: 921762aab99f9607cced6c32cce454affcc6ffa30cd13bf988a16203e1c1c746
+    lines:
+      2N2907A: [24, 49]
+    fetched: '2026-09-14'
+    note: 'model(s): 2N2907A (PNP .model)'
+  verification:
+    score: 0.929
+    pass: 13
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+- source: duncanamps
+  name: Q2N2907A
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/bjt/pnp.mod
+    sha256: 9554024b39ab1fa861067c6af517fbe13435370dd0e78c4ed0d461fe355488a1
+    lines:
+      Q2N2907A: [22, 24]
+    fetched: '2026-09-14'
+    note: 10 subckts, 124 .model
+  verification:
+    score: 0.786
+    pass: 11
+    marginal: 0
+    fail: 3
+    not_measurable: 0
+    typical_rows: 0
+- source: kicad-spice-library
+  name: Q2N2907A
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/TRT-Electronics/2n2907a.lib
+    sha256: 8b07a6e7ca0b43702ca0abf0ff17e302ad6200d3e84f7b4bd78938a0a0f6e99b
+    lines:
+      Q2N2907A: [1, 4]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 14
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/p2n2907a-d.pdf
+  maker: onsemi
+  doc: P2N2907A/D Rev. 6 (April 2007)

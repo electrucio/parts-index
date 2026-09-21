@@ -1,0 +1,58 @@
+part: SI2323
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: vishay
+  name: Si2323DDS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/65629/si2323dds_ps.zip
+    member: Si2323DDS_PS_RC.txt
+    archive_sha256: e373f7b4f671e352f7fefd9daa9bedf4d4e9650e71d1b2573235ad7f71e1b4fc
+    sha256: 278454923bd56fae7a888db5b9f434fe9f0798ade79fa2c22293e3ace1432373
+    lines:
+      Si2323DDS: [106, 132]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: vishay
+  name: Si2323DS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/75749/Si2323DS.txt
+    sha256: 5782fc02b456fce3c5da375e7f7d1cad8c5871782186f9bd56fbed99bc5bc346
+    lines:
+      Si2323DS: [4, 28]
+    fetched: '2026-09-19'
+    note: 'MOSFETs, PSpice Models (*.txt): Si2323DS, PMOS, NMOS, DBD, RTEMP'
+  note: pins from default order (unverified)
+- source: vishay
+  name: Si2323DDS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/65629/si2323dds_ps.zip
+    member: Si2323DDS_HS.TXT
+    archive_sha256: e373f7b4f671e352f7fefd9daa9bedf4d4e9650e71d1b2573235ad7f71e1b4fc
+    sha256: 38ec199ac58a655579ba5581435cd76ec422b77704e094fbb8afda36afcfa5cf
+    lines:
+      Si2323DDS: [7, 33]
+    fetched: '2026-09-19'
+  note: pins from names

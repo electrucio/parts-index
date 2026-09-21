@@ -1,0 +1,17 @@
+part: MURS360
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: kicad-spice-library
+  name: murs360t3_ON
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/onsemi.lib
+    sha256: ab36300f668bd5cba477d9d9d5c9f2cd9b6cf3535b5988bf1643121ac05899d4
+    lines:
+      murs360t3_ON: [3314, 3318]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

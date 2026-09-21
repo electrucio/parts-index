@@ -1,0 +1,23 @@
+part: CSD16301Q2
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: ti
+  name: CSD16301Q2A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLLM099
+    member: CSD16301Q2A.lib
+    archive_sha256: 05ba351dbb92adb56b3286683644350d5769bad4ac5d8ee96b25a054fa7c2cb8
+    sha256: 0a18b1dbb5929802eb6539185023e7d183163f8302b4921c1ee094835f3a5d62
+    lines:
+      CSD16301Q2A: [41, 100]
+    fetched: '2026-09-19'
+  note: pins from default order (unverified)

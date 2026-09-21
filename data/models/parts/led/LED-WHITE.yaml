@@ -1,0 +1,94 @@
+part: LED-WHITE
+kind: led
+priority: 2
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (4 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with ltwiki, ltwiki on score
+  and typical-value error, chosen as the more original source'
+models:
+- source: ltspice-native
+  name: NSPW500BS
+  def: model
+  type: D
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.dio
+    sha256: 696d34dfe538966c80cfe1da259c1043f408777be79f59e4f1c47d82f3af320a
+    lines:
+      NSPW500BS: [40, 40]
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'found under the alias NSPW500BS; same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: LedWHITE
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      LedWHITE: [126, 126]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: NSPW500BS
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/standard3.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 13cb55bb7184e06a29b64a8d1991371f8414622ef1213c5b7bcb01e358ed71ee
+    lines:
+      NSPW500BS: [8, 8]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'found under the alias NSPW500BS; same code also in: kicad-spice-library'
+- source: ltwiki
+  name: NSPW500BS
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/cmp/Original_IV/standard.dio
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 4e0554bdaf142e7e9ba803406136235d5a40a3524f8dc902855578244b8fb05e
+    lines:
+      NSPW500BS: [39, 39]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'found under the alias NSPW500BS; same code also in: kicad-spice-library'
+datasheet:
+  url: https://www.vishay.com/docs/81159/vlhw5100.pdf
+  maker: Vishay
+  doc: VLHW5100 Document Number 81159, Rev. 1.3, 20-May-2019

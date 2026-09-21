@@ -1,0 +1,24 @@
+part: LP5907-2.5
+kind: regulator
+priority: 4
+models:
+- source: bordodynov
+  name: LP5907
+  def: subckt
+  type: SUBCKT
+  pins:
+  - EN
+  - VIN
+  - VOUT
+  - N_C
+  - GND
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LP5907.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 10f90b6db9c4aba767704c9e4e1aefe259a72cba18f8ba6d3c389c8fce20d29c
+    lines:
+      LP5907: [15, 128]
+    fetched: '2026-09-14'
+  note: 'found under the alias LP5907; same code also in: ltwiki'

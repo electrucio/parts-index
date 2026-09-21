@@ -1,0 +1,143 @@
+part: BC560
+kind: bjt
+priority: 2
+group: small_signal_pnp
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 9 pass, 1 off, 0 fail of 10 judged rows (3 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: cordell
+  name: BC560C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.cordellaudio.com/book/Cordell-Models.txt
+    sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
+    lines:
+      BC560C: [214, 223]
+    fetched: '2026-09-14'
+    note: 'Cordell Models 04/20/2011 (current site file, HTTP Last-Modified 2024-09-15): 63 .model (BJT
+      GP, NJF, VDMOS, D)'
+  verification:
+    score: 0.8
+    pass: 8
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+- source: bordodynov
+  name: BC560A
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC560A: [312, 312]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.9
+    pass: 9
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BC560B
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC560B: [597, 597]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.9
+    pass: 9
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BC560C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC560C: [598, 598]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 8
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BC560C_C
+  def: model
+  type: PNP
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      BC560C_C: [1211, 1211]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 8
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: BC560C_Ck
+  def: model
+  type: PNP
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      '2': [519, 519]
+      BC560C_Ck: [1213, 1213]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.9
+    pass: 9
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 3
+  note: 'same code also in: ltwiki'
+datasheet:
+  url: http://www.fairchildsemi.com/ds/BC/BC560.pdf
+  maker: fairchild
+  doc: BC556/557/558/559/560 Rev. B0 (October 2012)

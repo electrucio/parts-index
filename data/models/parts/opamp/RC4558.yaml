@@ -1,0 +1,65 @@
+part: RC4558
+kind: opamp
+priority: 1
+preferred: ti
+preferred_why: 'best datasheet agreement: 7 pass, 1 off, 0 fail of 8 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with kicad-spice-library on
+  score and typical-value error, chosen as the more original source'
+models:
+- source: ti
+  name: RC4558
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ053
+    member: RC4558.301
+    archive_sha256: 15924fc7473e70321cea819630034c6f1e53975760acf9fc9495350598aa5b8f
+    sha256: 6ff2f51ab04648973e87a854fc0a1ad0dc8ada7c9c3dcc6869c2ab64030246f6
+    lines:
+      RC4558: [10, 44]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.875
+    pass: 7
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from comment words'
+- source: kicad-spice-library
+  name: RC4558_TI
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+    sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+    lines:
+      RC4558_TI: [4343, 4377]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.875
+    pass: 7
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: pins from comment words
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/rc4558.pdf
+  maker: Texas Instruments
+  doc: SLOS073G, rev. G, Oct 2014 (classic spec; tables 6.5, 6.6)

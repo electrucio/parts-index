@@ -1,0 +1,64 @@
+part: REF3025
+kind: regulator
+priority: 4
+models:
+- source: ti
+  name: REF3025_AIO
+  def: subckt
+  type: SUBCKT
+  pins:
+  - GND
+  - VIN
+  - VOUT
+  deps:
+  - COMP_BASIC_GEN_0
+  - VNSE_0
+  - AND2_BASIC_GEN_SAN_0
+  - VCVS_LIMIT_2
+  - IDEAL_D_1
+  - IDEAL_D_0
+  - VCCS_IQ_0
+  - VCVS_LIMIT_0
+  - VCCS_LIMIT_0
+  - VCVS_LIMIT_1
+  - DROPOUT_0
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBVM727
+    member: REF3025_AIO.LIB
+    archive_sha256: d49d07b7f5568d59fd95ccc71d4af783a55ef9c01ffc3412dc6789e95c1b159e
+    sha256: 541f6d27c70fb16810c3f886624b66429ffdb704808c3bf13500834c9f2f6013
+    lines:
+      AND2_BASIC_GEN_SAN_0: [133, 135]
+      COMP_BASIC_GEN_0: [129, 131]
+      DROPOUT_0: [156, 158]
+      IDEAL_D_0: [137, 140]
+      IDEAL_D_1: [151, 154]
+      REF3025_AIO: [60, 97]
+      VCCS_IQ_0: [142, 145]
+      VCCS_LIMIT_0: [147, 149]
+      VCVS_LIMIT_0: [99, 101]
+      VCVS_LIMIT_1: [160, 162]
+      VCVS_LIMIT_2: [164, 167]
+      VNSE_0: [103, 127]
+    fetched: '2026-09-19'
+  note: pins from names
+- source: ti
+  name: REF3025_AIO
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Gnd
+  - Vin
+  - Vout
+  - Texas:REF3025
+  - '[REF]'
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBVM727
+    member: REF3025_AIO.TLD
+    archive_sha256: d49d07b7f5568d59fd95ccc71d4af783a55ef9c01ffc3412dc6789e95c1b159e
+    sha256: d6c1f38d8799011959265781f9b212726477447616693ab60db1c927674013bc
+    lines:
+      REF3025_AIO: [2, 2]
+    fetched: '2026-09-19'

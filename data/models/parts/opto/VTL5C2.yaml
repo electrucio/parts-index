@@ -1,0 +1,59 @@
+part: VTL5C2
+kind: opto
+priority: 2
+models:
+- source: bordodynov
+  name: Vtl5c2
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  - Ldr1
+  - Ldr2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Vtl5c2.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 731bbb43758ba649dcea5417e99f53c72f2d4fee5d085f6f42890ed5526a40d0
+    lines:
+      Vtl5c2: [1, 20]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: Vtl5c2_A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  - Ldr1
+  - Tab
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/Led_Ldr.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 3282f51dcda8ec47106974df1d114030dbeec07fad904d0abb4b2734f4d88bff
+    lines:
+      Vtl5c2_A: [39, 57]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: Vtl5c2_B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  - Ldr1
+  - Ldr2
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/Led_Ldr.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 3282f51dcda8ec47106974df1d114030dbeec07fad904d0abb4b2734f4d88bff
+    lines:
+      Vtl5c2_B: [58, 76]
+    fetched: '2026-09-14'

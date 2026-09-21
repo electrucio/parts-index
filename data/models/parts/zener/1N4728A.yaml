@@ -1,0 +1,32 @@
+part: 1N4728A
+kind: zener
+priority: 3
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 4 pass, 1 off, 0 fail of 5 judged rows (1 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: 1N4728A
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N4728A: [1430, 1430]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://www.vishay.com/docs/85816/1n4728a.pdf
+  maker: Vishay
+  doc: 1N4728A to 1N4761A, Document Number 85816, Rev. 2.7, 07-Nov-2024

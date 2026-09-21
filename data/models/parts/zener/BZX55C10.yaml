@@ -1,0 +1,153 @@
+part: BZX55C10
+kind: zener
+priority: 2
+preferred: nexperia
+preferred_why: 'STAND-IN: the preferred model is of BZX84-C10, declared equivalent in catalog/wanted.yaml,
+  not of BZX55C10 itself; best datasheet agreement: 6 pass, 0 off, 0 fail of 6 judged rows (0 against
+  typical values or curve points, the rest against min/max limits; 0 not measurable); tied with bordodynov,
+  kicad-spice-library on score and typical-value error, chosen as the more original source. Limits only:
+  the datasheet prints no typical values for these rows, so candidates inside the limits are not told
+  apart'
+models:
+- source: nexperia
+  name: BZX84-C10
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/BZX84-C10.txt
+    sha256: 798af67f3f23d2059bd406a0653bbb75e30d6c3123bee7b54431b539f9de3c7a
+    lines:
+      BZX84-C10: [28, 39]
+    fetched: '2026-09-14'
+    note: 'model(s): BZX84-C10 (D .model)'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of BZX84-C10, not of BZX55C10; equivalence declared in catalog/wanted.yaml (see
+    its note)'
+- source: diodes-inc
+  name: DI_BZX84C10
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/859/BZX84C10.spice.txt
+    sha256: 33c3ef9cb6e1464e203483fcaad5032131b3ad59b0347550bfc02eaee728b551
+    lines:
+      DI_BZX84C10: [19, 27]
+    fetched: '2026-09-14'
+    note: 'model(s): DI_BZX84C10 (.subckt 1 2), DF (D .model), DR (D .model)'
+  verification:
+    score: 0.5
+    pass: 3
+    marginal: 0
+    fail: 3
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of DI_BZX84C10, not of BZX55C10; equivalence declared in catalog/wanted.yaml
+    (see its note); same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order
+    (unverified)'
+- source: bordodynov
+  name: BZX84C10
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BZX84C10: [232, 232]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of BZX84C10, not of BZX55C10; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: BZX84C10
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - DF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Zener_DiodesInc.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+    lines:
+      BZX84C10: [1873, 1880]
+      DF: [6016, 6016]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.5
+    pass: 3
+    marginal: 0
+    fail: 3
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of BZX84C10, not of BZX55C10; equivalence declared in catalog/wanted.yaml (see
+    its note); same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: kicad-spice-library
+  name: BZX79A10
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/DIODE.LIB
+    sha256: c68f4b4a28eb0e866fb8e516b6a6a37a779ac80fed8a2ef16a3afcfb80c522e5
+    lines:
+      BZX79A10: [917, 918]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.833
+    pass: 5
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of BZX79A10, not of BZX55C10; equivalence declared in catalog/wanted.yaml (see
+    its note)'
+- source: kicad-spice-library
+  name: BZX84C10
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zetex.lib
+    sha256: 453392deca3bd0ddfca565d56241c4a5bb4d2e8f14c6efa92c1c453ed434fdca
+    lines:
+      BZX84C10: [1940, 1942]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 6
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of BZX84C10, not of BZX55C10; equivalence declared in catalog/wanted.yaml (see
+    its note)'
+datasheet:
+  url: https://www.vishay.com/docs/85604/bzx55.pdf
+  maker: Vishay
+  doc: BZX55-Series, Document Number 85604, Rev. 2.0, 07-Nov-2024

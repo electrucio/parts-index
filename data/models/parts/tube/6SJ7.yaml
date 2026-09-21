@@ -1,0 +1,183 @@
+part: 6SJ7
+kind: tube
+priority: 3
+group: pentode_beam
+preferred: ayumi
+preferred_why: 'best datasheet agreement: 22 pass, 0 off, 0 fail of 22 judged rows (22 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with ltwiki on score
+  and typical-value error, chosen as the more original source'
+models:
+- source: ayumi
+  name: 6SJ7T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6SJ7T.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 6798b1a5d915af0d568fd55100e99226f36fddf3eb7e37c26df03447cf9d42c1
+    lines:
+      6SJ7T: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.0
+    pass: 0
+    marginal: 22
+    fail: 0
+    not_measurable: 0
+    typical_rows: 22
+  note: pins from names
+- source: ayumi
+  name: 6SJ7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6SJ7.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 6a74875212ea4c16e6087fe8ff4b3b6ecbe355c8befdb699cf00e973b7843de5
+    lines:
+      6SJ7: [10, 30]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 22
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 22
+  note: pins from names
+- source: bordodynov
+  name: 6SJ7GT_RY
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  deps:
+  - Igrid
+  - PENTH1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      6SJ7GT_RY: [2540, 2550]
+      Igrid: [2974, 2978]
+      PENTH1: [2964, 2972]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 22
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 6SJ7GT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  deps:
+  - Igrid
+  - PENTH1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Rydel_tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+    lines:
+      6SJ7GT: [311, 321]
+      Igrid: [859, 863]
+      PENTH1: [845, 856]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 22
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: 6SJ7T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Triode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+    lines:
+      6SJ7T: [2649, 2662]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.0
+    pass: 0
+    marginal: 22
+    fail: 0
+    not_measurable: 0
+    typical_rows: 22
+  note: pins from names
+- source: ltwiki
+  name: 6SJ7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Pentode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
+    lines:
+      6SJ7: [1660, 1680]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 22
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 22
+  note: pins from names
+datasheet:
+  url: https://frank.pocnet.net/sheets/049/6/6SJ7.pdf
+  maker: RCA
+  doc: RCA 6SJ7, 6SJ7-GT Sharp-Cutoff Pentode, data pages dated 1948-06-15; curves 92CM-4939R1 (1947-10-16),
+    92CM-6443R1 / -6444R1 / -4937R1 (1948-03-05), 92CM-6409R1 (1948-05-12)
+  date: '1948-06-15'

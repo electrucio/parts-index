@@ -1,0 +1,313 @@
+part: '5881'
+kind: tube
+priority: 2
+group: pentode_beam
+preferred: suusi-tubes
+preferred_why: 'best datasheet agreement: 21 pass, 6 off, 0 fail of 27 judged rows (27 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with suusi-tubes, bordodynov,
+  bordodynov, bordodynov on score and typical-value error, chosen as the more original source'
+models:
+- source: suusi-tubes
+  name: '5881'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      '5881': [1445, 1449]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.778
+    pass: 21
+    marginal: 6
+    fail: 0
+    not_measurable: 0
+    typical_rows: 27
+  note: pins from inline comment
+- source: suusi-tubes
+  name: '5881'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      '5881': [669, 673]
+      PENTODE1: [2010, 2023]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.778
+    pass: 21
+    marginal: 6
+    fail: 0
+    not_measurable: 0
+    typical_rows: 27
+  note: pins from inline comment
+- source: bordodynov
+  name: '5881'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  deps:
+  - Tetro
+  - 6L6GC
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      '5881': [2052, 2054]
+      6L6GC: [2049, 2051]
+      Tetro: [3163, 3176]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 27
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: '5881'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - DX
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Tubes_Koren.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 510f4c10247ba46358ff5a6b3f15189bec5cf207507ccc70922184385a66c360
+    lines:
+      '5881': [420, 424]
+      DX: [1206, 1206]
+      PENTODE1: [1159, 1171]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.778
+    pass: 21
+    marginal: 6
+    fail: 0
+    not_measurable: 0
+    typical_rows: 27
+  note: 'same code also in: kicad-spice-library, ltwiki, robrobinette; pins from inline comment'
+- source: bordodynov
+  name: 5881TR_RY
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - Igrid
+  - TRIO1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      5881TR_RY: [640, 649]
+      Igrid: [2974, 2978]
+      TRIO1: [2927, 2929]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 27
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: 5881RY
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  deps:
+  - Igrid
+  - TETRO2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Valves.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+    lines:
+      5881RY: [2528, 2538]
+      Igrid: [2974, 2978]
+      TETRO2: [2951, 2962]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 27
+    typical_rows: 0
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: '5881'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  deps:
+  - Igrid
+  - TETRO2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Rydel_tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+    lines:
+      '5881': [28, 38]
+      Igrid: [859, 863]
+      TETRO2: [828, 842]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 27
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: '5881'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Koren_Tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
+    lines:
+      '5881': [698, 702]
+      PENTODE1: [2046, 2059]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.778
+    pass: 21
+    marginal: 6
+    fail: 0
+    not_measurable: 0
+    typical_rows: 27
+  note: 'same code also in: ltwiki; pins from inline comment'
+- source: bordodynov
+  name: '5881'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - S
+  - G
+  - K
+  deps:
+  - Tetrode
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/new_tetrodes.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 7d30fcbe19ab6ecdcce055525f4bb4c1d60f885a3f876f1549e245ed6f47b6e6
+    lines:
+      '5881': [273, 277]
+      Tetrode: [47, 70]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.778
+    pass: 21
+    marginal: 6
+    fail: 0
+    not_measurable: 0
+    typical_rows: 27
+  note: 'same code also in: ltwiki; pins from names'
+- source: bordodynov
+  name: 5881TR
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  deps:
+  - Igrid
+  - TRIO1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Rydel_tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+    lines:
+      5881TR: [41, 50]
+      Igrid: [859, 863]
+      TRIO1: [796, 798]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 27
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+datasheet:
+  url: https://frank.pocnet.net/sheets/127/5/5881.pdf
+  maker: Tung-Sol
+  doc: '5881 Beam Pentode, plates #6462 ff. (6 pages)'
+  date: '1962-06-01'

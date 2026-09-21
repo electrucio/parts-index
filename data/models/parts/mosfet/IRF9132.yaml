@@ -1,0 +1,22 @@
+part: IRF9132
+kind: mosfet
+priority: 3
+group: audio_docs
+models:
+- source: kicad-spice-library
+  name: IRF9132
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWMOS2.LIB
+    sha256: 29782c795f27c0f4133dea75e4a80c7985135f8ddc6d7392134bfac58a00ee10
+    lines:
+      IRF9132: [3392, 3415]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: pins from default order (unverified)

@@ -1,0 +1,53 @@
+part: OPA2830
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: OPA2830
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - VOUT
+  deps:
+  - VNSE_0
+  - RNOISE_FREE_1
+  - FEMT_0
+  - VCVS_LIMIT_2
+  - VCVS_LIMIT_4
+  - IDEAL_D_0
+  - VCVS_LIMIT_3
+  - RNOISE_FREE_2
+  - VCVS_LIMIT_5
+  - VCVS_LIMIT_0
+  - RNOISE_FREE_0
+  - VCCS_LIMIT_0
+  - VCCS_LIMIT_1
+  - VCVS_LIMIT_1
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOMA48
+    member: OPA2830.lib
+    archive_sha256: a03fa5934e3e1c482c4584121bb3c4ea01d66a1bac1ec66b58f8fa983920cc37
+    sha256: c5a2a2c9fec86127150e052529981a2e36e606ad42181c88e8ebe94d83428eab
+    lines:
+      FEMT_0: [239, 273]
+      IDEAL_D_0: [182, 185]
+      OPA2830: [39, 178]
+      RNOISE_FREE_0: [189, 195]
+      RNOISE_FREE_1: [199, 205]
+      RNOISE_FREE_2: [367, 373]
+      VCCS_LIMIT_0: [317, 323]
+      VCCS_LIMIT_1: [327, 333]
+      VCVS_LIMIT_0: [209, 215]
+      VCVS_LIMIT_1: [219, 225]
+      VCVS_LIMIT_2: [229, 235]
+      VCVS_LIMIT_3: [337, 343]
+      VCVS_LIMIT_4: [347, 353]
+      VCVS_LIMIT_5: [357, 363]
+      VNSE_0: [278, 312]
+    fetched: '2026-09-19'
+  note: pins from names

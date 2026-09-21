@@ -1,0 +1,39 @@
+part: PESD1CAN-UX
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: nexperia
+  name: PESD1CAN
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PESD1CAN.txt
+    sha256: 7b91dbc46cb7a48ebc58cbb86851cb39b3ea52ddbaa2f85a79e4b5d16798ba58
+    lines:
+      PESD1CAN: [33, 65]
+    fetched: '2026-09-19'
+    note: 'PESD1CAN: PESD1CAN, DIODE1, DIODE2'
+  note: found under the alias PESD1CAN; pins from default order (unverified)
+- source: ltwiki
+  name: PESD1CAN
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/PESD1CAN.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: f9ee849849b4037154f48896c0364a3e8fa28fc8b016988ad42d3e7c969ca8f2
+    lines:
+      PESD1CAN: [2, 19]
+    fetched: '2026-09-14'
+  note: found under the alias PESD1CAN

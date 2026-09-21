@@ -1,0 +1,73 @@
+part: INA326
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: INA326
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  - COMP1
+  - COMP2
+  - NC
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM150
+    member: INA326.LIB
+    archive_sha256: 25fcbe3357775a86e2394771ac9459f0e9c68121fa3d449017f99624b7ade6e8
+    sha256: 2687e8ab0e2de09750fd53b7564108d90f30c1e8bf278b2f26b42bd50436d722
+    lines:
+      INA326: [57, 438]
+    fetched: '2026-09-19'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: ti
+  name: INA326
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  - COMP2
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM248
+    member: INA326_TINA_AIO/INA326.LIB
+    archive_sha256: e981dae8bfbfb0be60da0f8e4d82abc8541c2d9455967da45c1fcf148bf3fbf0
+    sha256: 92949eb16a2d8a0c3e1cf715778f760fe7fa7a85f9c4f907e9742a8b8b8f568f
+    lines:
+      INA326: [93, 473]
+    fetched: '2026-09-19'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: ti
+  name: INA326T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  - COMP2
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM249
+    member: INA326_TINA_AIO/INA326T.LIB
+    archive_sha256: 77f60a618f4817071fa2b86b6b29506288533d2f1348db7e004ab806dea80c75
+    sha256: a9a6e3059885760fcbaf43c996b5bd82bcc4c93f0f4da5e338aba01a81dc3e19
+    lines:
+      INA326T: [76, 454]
+    fetched: '2026-09-19'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)

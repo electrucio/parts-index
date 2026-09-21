@@ -1,0 +1,296 @@
+part: 12AY7
+kind: tube
+priority: 2
+group: triode
+preferred: reefman
+preferred_why: 'best datasheet agreement: 19 pass, 0 off, 0 fail of 19 judged rows (19 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with ayumi on score
+  and typical-value error, chosen as the more original source'
+models:
+- source: reefman
+  name: 12AY7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - TriodeK
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      12AY7: [1951, 1957]
+      TriodeK: [2345, 2357]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 19
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from inline comment
+- source: ayumi
+  name: 12AY7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 12AY7.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: a4f3141d9df977c46a58e7b814b633ab783383603f85541e885f442d82dffb35
+    lines:
+      12AY7: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 19
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from names
+- source: ayumi
+  name: '6072'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6072.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 89a228b0d27aa1e824fbeef608d447214f43f74d68c456ec61e7e6868138e040
+    lines:
+      '6072': [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.947
+    pass: 18
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: found under the alias 6072; pins from names
+- source: suusi-tubes
+  name: 12AY7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      12AY7: [800, 804]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.895
+    pass: 17
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 12AY7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      12AY7: [538, 542]
+      TRIODE: [1980, 1991]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.895
+    pass: 17
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: pins from inline comment
+- source: suusi-tubes
+  name: '6072'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  - 12AY7
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      12AY7: [800, 804]
+      '6072': [613, 617]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 19
+    typical_rows: 0
+  note: found under the alias 6072; pins from inline comment
+- source: suusi-tubes
+  name: '6072'
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  - 12AY7
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      12AY7: [538, 542]
+      '6072': [399, 403]
+      TRIODE: [1980, 1991]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 19
+    typical_rows: 0
+  note: found under the alias 6072; pins from inline comment
+- source: bordodynov
+  name: 12AY7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - DX
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/nk_triode.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 363865e784b6e6be0e0b1416cf67965cdfdc62d86f58137402e912b0066d85f0
+    lines:
+      12AY7: [80, 84]
+      DX: [205, 205]
+      TRIODE: [192, 202]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.895
+    pass: 17
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: 'same code also in: kicad-spice-library, ltwiki, robrobinette; pins from inline comment'
+- source: bordodynov
+  name: 12AY7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  deps:
+  - Triode
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/new_triodes.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4c621c85eb3b9d3dd97622ff9d25c1c1dcf93bc76e9dc887a946205326f08da2
+    lines:
+      12AY7: [130, 134]
+      Triode: [31, 49]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.895
+    pass: 17
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: 'same code also in: ltwiki; pins from names'
+- source: bordodynov
+  name: 12AY7
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Koren_Tubes.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
+    lines:
+      12AY7: [567, 571]
+      TRIODE: [2016, 2027]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.895
+    pass: 17
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 19
+  note: 'same code also in: ltwiki; pins from inline comment'
+datasheet:
+  url: https://frank.pocnet.net/sheets/049/1/12AY7.pdf
+  maker: RCA
+  doc: RCA 12AY7 Tentative Data (Tube Dept., Harrison NJ), pages 1-2; curve 92CM-7881 dated 1952-11-05
+  date: '1953-04-01'

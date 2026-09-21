@@ -1,0 +1,29 @@
+part: LMR16006
+kind: smps
+priority: 4
+models:
+- source: ti
+  name: LMR16006Y_AVG
+  def: subckt
+  type: SUBCKT
+  pins:
+  - CB
+  - FB
+  - GND
+  - SHDN
+  - SW
+  - VIN
+  deps:
+  - D_D1
+  - LMR16006Y_AVG_H1
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNVMC01
+    member: LMR16006Y_PSPICE_AVG/LMR16006Y_AVG.LIB
+    archive_sha256: 781203702f3a643dd17d3788618f84caec0badceb5a909b3d9ee228cd8def3cf
+    sha256: 027c2869c78858d4bdbf5ad79e715a2964842d0cde446bcce61cc733736ecb1e
+    lines:
+      D_D1: [96, 101]
+      LMR16006Y_AVG: [60, 89]
+      LMR16006Y_AVG_H1: [91, 94]
+    fetched: '2026-09-19'

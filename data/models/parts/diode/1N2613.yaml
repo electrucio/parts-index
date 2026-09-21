@@ -1,0 +1,145 @@
+part: 1N2613
+kind: diode
+priority: 2
+group: rectifier
+preferred: vishay
+preferred_why: 'STAND-IN: the preferred model is of 1N4004, declared equivalent in catalog/wanted.yaml,
+  not of 1N2613 itself; best datasheet agreement: 0 pass, 0 off, 0 fail of 0 judged rows (0 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable); tied with duncanamps, suusi-tubes,
+  bordodynov, bordodynov, kicad-spice-library on score and typical-value error, chosen as the more original
+  source'
+models:
+- source: vishay
+  name: 1N4004
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/98980/p_1n4004.txt
+    sha256: 71c81fe4fd02ec6569f534d2df806f3b4e56a421246fe9094a826a6a39145a47
+    lines:
+      1N4004: [6, 12]
+    fetched: '2026-09-14'
+    note: 'model(s): 1N4004 (D .model)'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of 1N4004, not of 1N2613; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+- source: duncanamps
+  name: D1N4004
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/diode.mod
+    sha256: bb58d6a99a7204cfa89803598a0331243f10c11afb1b6279fb56fec2ae14c941
+    lines:
+      D1N4004: [36, 37]
+    fetched: '2026-09-14'
+    note: 34 .model
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of D1N4004, not of 1N2613; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+- source: suusi-tubes
+  name: 1N4004
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: MotorolaRectifiers.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: 88449ae88e2f751e584a6c2a079ded8a074d765cee37ce146ad1fd34182c5b35
+    lines:
+      1N4004: [6, 6]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of 1N4004, not of 1N2613; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+- source: bordodynov
+  name: 1N4004
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N4004: [1406, 1406]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of 1N4004, not of 1N2613; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: D1N4004
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      D1N4004: [156, 156]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of D1N4004, not of 1N2613; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: ltwiki'
+- source: kicad-spice-library
+  name: D1N4004
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.dio
+    sha256: 85043335b56cc10779c03bcd2c237472827cf28c004628c9ddacb6fb3d8705c7
+    lines:
+      D1N4004: [125, 125]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 0
+  note: 'STAND-IN: model of D1N4004, not of 1N2613; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+datasheet:
+  url: https://www.bitsavers.org/components/motorola/_dataBooks/1985_DL125r2_Motorola_Rectifiers_and_Zener_Diodes_Data.pdf
+  maker: Motorola (cross-reference only)
+  doc: Motorola DL125 R2 Rectifiers and Zener Diodes Data (1985), Rectifier Index Cross-Reference (continued),
+    PDF page 10

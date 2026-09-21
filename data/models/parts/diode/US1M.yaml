@@ -1,0 +1,47 @@
+part: US1M
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: nexperia
+  name: US1M
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/US1M.txt
+    sha256: 2080f6096f93bec840e46b43bcfc3d2f46bc1a7bc6ef150a38c48ef6fa332922
+    lines:
+      US1M: [37, 66]
+    fetched: '2026-09-19'
+    note: 'US1M: US1M, DIODE1, DIODE2'
+  note: pins from comment words
+- source: bordodynov
+  name: US1M
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      US1M: [323, 323]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'
+- source: kicad-spice-library
+  name: US1M
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.dio
+    sha256: 85043335b56cc10779c03bcd2c237472827cf28c004628c9ddacb6fb3d8705c7
+    lines:
+      US1M: [292, 292]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

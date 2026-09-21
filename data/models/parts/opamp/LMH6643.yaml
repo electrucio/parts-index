@@ -1,0 +1,64 @@
+part: LMH6643
+kind: opamp
+priority: 3
+models:
+- source: ti
+  name: LMH6643
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INN
+  - INP
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNOM136
+    member: LMH6643.MOD
+    archive_sha256: ef48c2b80f85df7407ed30f7343f0a91836d1abb9ba8e039f23ab04244217756
+    sha256: 287e2215907b1f6a8fe161ebd6357bc34c7bfecd54c9a4b1aa49713f85db7197
+    lines:
+      LMH6643: [15, 126]
+    fetched: '2026-09-19'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: bordodynov
+  name: LMH6643
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INN
+  - INP
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/nationalhighspeed.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: c6298db6b8e8d12c131dcf39a79d4c069d84ce3655ed0a01e7da05b5df958f21
+    lines:
+      LMH6643: [753, 859]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: bordodynov
+  name: LMH6643
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Opamp5.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+    lines:
+      LMH6643: [3745, 3851]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'

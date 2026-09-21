@@ -1,0 +1,23 @@
+part: CSD17527Q5A
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: ti
+  name: CSD17527Q5A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLPM028
+    member: CSD17527Q5A.lib
+    archive_sha256: 4f3b1e8d4d41d8f5d42ac33b639440392c38370482f1d2f7b51c5626bf66b619
+    sha256: 3cfd9477254b444da7c87606c098c555f650ba52e5465a8760ca027499f506cc
+    lines:
+      CSD17527Q5A: [41, 104]
+    fetched: '2026-09-19'
+  note: pins from default order (unverified)

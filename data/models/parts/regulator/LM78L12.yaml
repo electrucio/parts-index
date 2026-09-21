@@ -1,0 +1,22 @@
+part: LM78L12
+kind: regulator
+priority: 4
+models:
+- source: bordodynov
+  name: LM78L12
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN
+  - GND
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/78L.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: dfb3ec9c6cb754eab048039b0b93b500a97a8401c5bfc1c975ac3915b1f402b2
+    lines:
+      LM78L12: [108, 152]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from LM78 package pin numbers (unverified)'

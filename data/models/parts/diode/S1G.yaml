@@ -1,0 +1,29 @@
+part: S1G
+kind: diode
+priority: 4
+group: silicon_signal
+models:
+- source: vishay
+  name: s1g
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89655/s1g.txt
+    sha256: ffd79ea06d6ab712987b44e577c8787dbe54d25a90de58e3f6901a1b89642ed4
+    lines:
+      s1g: [7, 10]
+    fetched: '2026-09-19'
+    note: 'Power Rectifiers, PSpice Models (*.txt): s1g'
+- source: kicad-spice-library
+  name: S1G
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/gensemi.lib
+    sha256: a6cf7dd0be40fa8de86b574b20c2481a4be41a33f77d1893d66664f19e3fe8d9
+    lines:
+      S1G: [1286, 1296]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

@@ -1,0 +1,111 @@
+part: CA3130
+kind: opamp
+priority: 3
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 2 pass, 7 off, 4 fail of 13 judged rows (7 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: ca3130
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  - COMP2
+  deps:
+  - PMOS
+  - NPN
+  - D
+  - BZX84C8V2L
+  - NMOS
+  - 1N750
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CA3130.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6987c331be55d2800574a18b4b98410eedb0d802635bd54c8dbb6cca63ee2428
+    lines:
+      1N750: [66, 69]
+      BZX84C8V2L: [70, 71]
+      D: [61, 61]
+      NMOS: [64, 64]
+      NPN: [62, 62]
+      PMOS: [65, 65]
+      ca3130: [2, 29]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.154
+    pass: 2
+    marginal: 7
+    fail: 4
+    not_measurable: 0
+    typical_rows: 7
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: ltwiki
+  name: ca3130
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '36'
+  - '15'
+  - '20'
+  - '12'
+  - '11'
+  - '6'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Ca3130/ca3130.sub
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: abc2504ee6ee4900660424e68744bfe0a31f1f7fd6ae3d1c0b3e3a05bc0ba902
+    lines:
+      ca3130: [1, 79]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 13
+    typical_rows: 0
+- source: ltwiki
+  name: ca3130a
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '36'
+  - '15'
+  - '20'
+  - '12'
+  - '11'
+  - '6'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Ca3130/ca3130.sub
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: abc2504ee6ee4900660424e68744bfe0a31f1f7fd6ae3d1c0b3e3a05bc0ba902
+    lines:
+      ca3130a: [81, 159]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 13
+    typical_rows: 0
+datasheet:
+  url: https://www.renesas.com/us/en/document/dst/ca3130-ca3130a-datasheet
+  maker: Intersil / Renesas
+  doc: FN817 Rev.6.00
+  date: '2005-08-01'

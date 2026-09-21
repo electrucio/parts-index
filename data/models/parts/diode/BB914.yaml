@@ -1,0 +1,89 @@
+part: BB914
+kind: diode
+priority: 4
+group: silicon_signal
+models:
+- source: bordodynov
+  name: BB914/SIE
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BB914/SIE: [608, 608]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: BB914/SIE
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.dio
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+    lines:
+      BB914/SIE: [533, 533]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library'
+- source: kicad-spice-library
+  name: BB914/SIE
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '100'
+  - '200'
+  - '300'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/siemens.lib
+    sha256: c1318342f700741e0d97896cf4f77fe203b8923e12b1106c6c14f848c74bdd5b
+    lines:
+      BB914/SIE: [7397, 7417]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BB914s
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/S_DIODE.LIB
+    sha256: c9fda6f359d82175cc33b2d5022078515b6c97969631ba29cf77d12a36f704d1
+    lines:
+      BB914s: [193, 195]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BB914
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Infineon%20Technologies/infineon.lib
+    sha256: 06c1d0847f268f69e5d6655adae6c2942997148829254bf22af1c5202a381ed7
+    lines:
+      BB914: [4213, 4215]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: BB914_IN
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '100'
+  - '200'
+  - '300'
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Infineon%20Technologies/infineon.lib
+    sha256: 06c1d0847f268f69e5d6655adae6c2942997148829254bf22af1c5202a381ed7
+    lines:
+      BB914_IN: [10130, 10150]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

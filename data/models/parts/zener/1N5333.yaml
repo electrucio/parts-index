@@ -1,0 +1,20 @@
+part: 1N5333
+kind: zener
+priority: 4
+models:
+- source: onsemi
+  name: d1n5333b
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n5333b.lib
+    sha256: 2bedf1aba6c8348a8ed9d8fd21d723df702757aa7eb9b3251cbd72c7aa75418c
+    lines:
+      d1n5333b: [1, 41]
+    fetched: '2026-09-19'
+    note: '1N5333B.LIB: d1n5333b, MD1, MDR, MD3, MD2, MDRBV'
+  note: pins from default order (unverified)

@@ -1,0 +1,22 @@
+part: BAT760-115
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: ltwiki
+  name: BAT760
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/BAT760.PRM
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 2e97eae2f293d6bc7a02376005e88bbcc831eb5dbd2fdd89af43d0b554b8fb53
+    lines:
+      BAT760: [2, 25]
+    fetched: '2026-09-14'
+  note: found under the alias BAT760; pins from default order (unverified)

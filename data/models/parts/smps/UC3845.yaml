@@ -1,0 +1,101 @@
+part: UC3845
+kind: smps
+priority: 3
+models:
+- source: bordodynov
+  name: UC3845B
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '3'
+  - '14'
+  - '15'
+  - '1'
+  - '18'
+  - '4'
+  - '20'
+  - '2'
+  deps:
+  - SWhyste
+  - NAND3_0
+  - INV
+  - NAND3_1
+  - FFLOP
+  - 1845AMP
+  - 1845OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/UC384xB.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 94006e2482dc5254c8121e572eecd40e9ed102888b6624b3ca8b73a8bc9b8df2
+    lines:
+      1845AMP: [273, 297]
+      1845OUT: [299, 316]
+      FFLOP: [318, 328]
+      INV: [342, 346]
+      NAND3_0: [330, 334]
+      NAND3_1: [336, 340]
+      SWhyste: [348, 358]
+      UC3845B: [230, 271]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''smps'''
+  note: 'same code also in: ltwiki'
+- source: bordodynov
+  name: uc3845a
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Com
+  - Err
+  - Vfb
+  - Ref
+  - Osc
+  - Ifb
+  - Out
+  - Vcc
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/uc3845a.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0b34dbac699c79d8c20b6eac0bc253f881f638a60b77cbeaa458efd7b5d07ccd
+    lines:
+      uc3845a: [1, 37]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''smps'''
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: UC3845A1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - Err
+  - Vfb
+  - Ifb
+  - Osc
+  - COM
+  - Out
+  - Vcc
+  - Ref
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/UC/UC384xA/OLD/UC3845A1.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 7479589fdc2875dcf76892d115f55b8db70cd3b85dcd1bac72f5d4b57c7aacc1
+    lines:
+      UC3845A1: [3, 47]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''smps'''
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/uc3842.pdf
+  maker: Texas Instruments (Unitrode)
+  doc: SLUS223H, rev. H (April 1997, revised October 2024); UC384x limits
+  date: 2024-10

@@ -1,0 +1,127 @@
+part: MCP6001
+kind: opamp
+priority: 2
+models:
+- source: bordodynov
+  name: MCP6001_AB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/MCP6001_AB.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 2ae64051e963077b7f6e42cde175cdc272d968aa22974c745f3c31cf283bda8c
+    lines:
+      MCP6001_AB: [1, 27]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: MCP6001
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/MCP6001.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: c2b9b7f6b80d25f2c3b587c39143477962c7b78d0446d8562e124158cfeda722
+    lines:
+      MCP6001: [2, 178]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: MCP6001_JT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - OUT
+  - VP
+  - VN
+  deps:
+  - OpAmpCore
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/MCP6001_JT.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bccc80a76dc6e4384cfd5bb73de55dfc944a7b5b355d50a011dac32a84bf7ae1
+    lines:
+      MCP6001_JT: [6, 13]
+      OpAmpCore: [15, 24]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+- source: ltwiki
+  name: MCP6001
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/OpAmps/Filtros/FilterLab Example/microchip_conv_solution/microchip.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: fcf9f73a4588bfa6d11727c2fd34ca2bda1b4e469de4a4c954781f95bc101801
+    lines:
+      MCP6001: [2, 165]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)
+- source: ltwiki
+  name: MCP6001
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/MCP6001/MCP6001.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 920bd49ad713af2ed41da2175c6b5361cfe78826182b22a8a6db9bea0eb61285
+    lines:
+      MCP6001: [2, 171]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)
+- source: ltwiki
+  name: MCP6001
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/test_MCP6001_bap/MCP6001_bap.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: a15b69da3f5701dbe509ed7b0e37e304502aaed8fa41c67dd0811b491a5e149b
+    lines:
+      MCP6001: [2, 181]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)

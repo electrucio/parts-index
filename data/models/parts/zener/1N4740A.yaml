@@ -1,0 +1,38 @@
+part: 1N4740A
+kind: zener
+priority: 2
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 4 pass, 1 off, 0 fail of 5 judged rows (1 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: 1N4740A
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  deps:
+  - DF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Zener_DiodesInc.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+    lines:
+      1N4740A: [121, 128]
+      DF: [6016, 6016]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.8
+    pass: 4
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 1
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+datasheet:
+  url: https://www.vishay.com/docs/85816/1n4728a.pdf
+  maker: Vishay
+  doc: 1N4728A to 1N4761A, Document Number 85816, Rev. 2.7, 07-Nov-2024

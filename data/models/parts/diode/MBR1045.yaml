@@ -1,0 +1,21 @@
+part: MBR1045
+kind: diode
+priority: 4
+group: schottky
+models:
+- source: vishay
+  name: MBR1045
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/95293/mbr1045.txt
+    sha256: b604b8dceeb94f45385ec115f25ad105b9a33b738b12ffbb10572e1abeb722b8
+    lines:
+      MBR1045: [28, 41]
+    fetched: '2026-09-19'
+    note: 'Schottky, PSpice Models (*.txt): MBR1045, DMOD, TRES, MBR1045'
+  note: pins from default order (unverified)

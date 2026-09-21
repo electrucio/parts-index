@@ -1,0 +1,27 @@
+part: LMC555
+kind: control
+priority: 4
+models:
+- source: bordodynov
+  name: LMC555
+  def: subckt
+  type: SUBCKT
+  pins:
+  - VN
+  - TRIGGERbar
+  - OUTPUT
+  - RESETbar
+  - CONTROL
+  - THRESHOLD
+  - DISCHARGE
+  - VP
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      LMC555: [3141, 3337]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

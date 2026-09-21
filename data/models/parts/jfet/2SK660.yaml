@@ -1,0 +1,19 @@
+part: 2SK660
+kind: jfet
+priority: 3
+group: audio_docs
+models:
+- source: bordodynov
+  name: J2sk660
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      J2sk660: [848, 848]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'

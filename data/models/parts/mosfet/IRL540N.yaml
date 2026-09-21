@@ -1,0 +1,104 @@
+part: IRL540N
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: infineon
+  name: irl540ns
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-spice-irl540n-simulationmodels-en.zip
+    member: irl540ns.spi
+    archive_sha256: afc1f7b8b5a2db91dd630fb56708557e01ea16656fc78109481cb87b6cd28f28
+    sha256: 36af99ed392e17282a0878c13042b37143676c2582bda42956f11cfcc9825ce8
+    lines:
+      irl540ns: [1, 56]
+    fetched: '2026-09-19'
+  note: 'same code also in: bordodynov, ltwiki; pins from default order (unverified)'
+- source: bordodynov
+  name: irl540
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irl540.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 2a4a00a2b4626d52c83aab3eb685919ee70f4683e9ae6f26fa26bfe8641a584b
+    lines:
+      irl540: [1, 60]
+    fetched: '2026-09-14'
+  note: 'found under the alias IRL540; same code also in: kicad-spice-library, ltwiki; pins from default
+    order (unverified)'
+- source: bordodynov
+  name: IRL540N
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRL540N: [1168, 1168]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: IRL540
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRL540: [1167, 1167]
+    fetched: '2026-09-14'
+  note: 'found under the alias IRL540; same code also in: kicad-spice-library, ltwiki'
+- source: kicad-spice-library
+  name: IRL540
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWMOS3.LIB
+    sha256: 15daa43bae301f0f87935f96d7a7634586ef2319657a3f622e47f56ae492d6d7
+    lines:
+      IRL540: [5464, 5486]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: found under the alias IRL540; pins from default order (unverified)
+- source: kicad-spice-library
+  name: irl540_IR
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+    sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+    lines:
+      irl540_IR: [9284, 9343]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  note: found under the alias IRL540; pins from default order (unverified)

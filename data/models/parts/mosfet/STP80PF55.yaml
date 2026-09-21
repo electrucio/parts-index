@@ -1,0 +1,63 @@
+part: STP80PF55
+kind: mosfet
+priority: 3
+group: audio_docs
+models:
+- source: bordodynov
+  name: STP80PF55
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  deps:
+  - DBS
+  - DGD
+  - DBD
+  - DID
+  - MOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Pmos_ST.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae53d4557963ecee3f1f392acd6b9208e893d1b04797ef4084ee2e2f87556ce0
+    lines:
+      DBD: [551, 555]
+      DBS: [556, 561]
+      DGD: [546, 550]
+      DID: [562, 565]
+      MOS: [536, 544]
+      STP80PF55: [331, 386]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+- source: ltwiki
+  name: STP80PF55
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  deps:
+  - DBS
+  - DGD
+  - DBD
+  - DID
+  - MOS
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/PMOSFET/Pmos_ST.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 0767159e40767e62bfdddfaf78017cb1eb9848804562feab760610ee5ae08c66
+    lines:
+      DBD: [551, 555]
+      DBS: [556, 561]
+      DGD: [546, 550]
+      DID: [562, 565]
+      MOS: [536, 544]
+      STP80PF55: [331, 386]
+    fetched: '2026-09-14'
+  note: pins from default order (unverified)

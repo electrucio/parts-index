@@ -1,0 +1,213 @@
+part: TLC2272
+kind: opamp
+priority: 3
+preferred: ti
+preferred_why: 'best datasheet agreement: 16 pass, 2 off, 0 fail of 18 judged rows (8 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: ti
+  name: TLC2272
+  def: subckt
+  type: SUBCKT
+  pins:
+  - IN+
+  - IN-
+  - VCC
+  - VEE
+  - OUT
+  deps:
+  - VCCS_EXT_LIM_0_TLC2272
+  - VCCS_LIM_CLAW+_0_TLC2272
+  - VCCS_LIM_ZO_0_TLC2272
+  - VCCS_LIM_1_0_TLC2272
+  - VCCS_LIM_2_0_TLC2272
+  - AOL_ZO_0_TLC2272
+  - PSRR_CMRR_1_TLC2272
+  - PSRR_CMRR_0_TLC2272
+  - CLAMP_AMP_HI_0_TLC2272
+  - VNSE_0_TLC2272
+  - VCCS_LIMIT_IQ_0_TLC2272
+  - CLAMP_AMP_LO_0_TLC2272
+  - PSRR_CMRR_2_TLC2272
+  - VCCS_LIM_4_0_TLC2272
+  - VOS_DRIFT_TLC2272
+  - OL_SENSE_0_TLC2272
+  - VCCS_LIM_GR_0_TLC2272
+  - VCCS_LIM_3_0_TLC2272
+  - ESD_0_TLC2272
+  - FEMT_0_TLC2272
+  - VCCS_LIM_CLAW-_0_TLC2272
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ080
+    member: TLC2272.LIB
+    archive_sha256: 36f981f8b42083b28da89e9e0541b7a73d90e7744d5b94d90c24be11b2333c2e
+    sha256: 9be2bb176980921c9fb03c761d0334f814b5cd32f83ebad10a6e1db05d8531ab
+    lines:
+      AOL_ZO_0_TLC2272: [288, 336]
+      CLAMP_AMP_HI_0_TLC2272: [388, 392]
+      CLAMP_AMP_LO_0_TLC2272: [382, 386]
+      ESD_0_TLC2272: [218, 224]
+      FEMT_0_TLC2272: [345, 352]
+      OL_SENSE_0_TLC2272: [443, 445]
+      PSRR_CMRR_0_TLC2272: [226, 240]
+      PSRR_CMRR_1_TLC2272: [242, 256]
+      PSRR_CMRR_2_TLC2272: [258, 272]
+      TLC2272: [71, 209]
+      VCCS_EXT_LIM_0_TLC2272: [447, 450]
+      VCCS_LIMIT_IQ_0_TLC2272: [377, 380]
+      VCCS_LIM_1_0_TLC2272: [281, 286]
+      VCCS_LIM_2_0_TLC2272: [274, 279]
+      VCCS_LIM_3_0_TLC2272: [436, 441]
+      VCCS_LIM_4_0_TLC2272: [401, 406]
+      VCCS_LIM_CLAW+_0_TLC2272: [408, 420]
+      VCCS_LIM_CLAW-_0_TLC2272: [422, 434]
+      VCCS_LIM_GR_0_TLC2272: [394, 399]
+      VCCS_LIM_ZO_0_TLC2272: [338, 343]
+      VNSE_0_TLC2272: [354, 375]
+      VOS_DRIFT_TLC2272: [211, 216]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.889
+    pass: 16
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 8
+  note: pins from names
+- source: ltwiki
+  name: TLC2272
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/texas.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+    lines:
+      TLC2272: [10060, 10108]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.889
+    pass: 16
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 8
+  note: pins from comment words
+- source: kicad-spice-library
+  name: TLC2272T1
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TI3.LIB
+    sha256: afc339a85f89634ba18ad3c5c99a8ec481d9e3a16fcf10d3a9181a3f66be00a8
+    lines:
+      TLC2272T1: [646, 679]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.778
+    pass: 14
+    marginal: 4
+    fail: 0
+    not_measurable: 0
+    typical_rows: 8
+  note: pins from comment words
+- source: kicad-spice-library
+  name: TLC2272T5
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TI3.LIB
+    sha256: afc339a85f89634ba18ad3c5c99a8ec481d9e3a16fcf10d3a9181a3f66be00a8
+    lines:
+      TLC2272T5: [692, 725]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.778
+    pass: 14
+    marginal: 4
+    fail: 0
+    not_measurable: 0
+    typical_rows: 8
+  note: pins from comment words
+- source: kicad-spice-library
+  name: TLC2272_TI_10
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+    sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+    lines:
+      TLC2272_TI_10: [7714, 7747]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.778
+    pass: 14
+    marginal: 4
+    fail: 0
+    not_measurable: 0
+    typical_rows: 8
+  note: pins from comment words
+- source: kicad-spice-library
+  name: TLC2272_TI_5_2
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+    sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+    lines:
+      TLC2272_TI_5_2: [7758, 7806]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.889
+    pass: 16
+    marginal: 2
+    fail: 0
+    not_measurable: 0
+    typical_rows: 8
+  note: pins from comment words
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/tlc2272.pdf
+  maker: Texas Instruments
+  doc: SLOS190H, rev. H (first issued Feb 1997); tables 6.5 (VDD = 5 V) and 6.6 (VDD = +-5 V)
+  date: 2016-03

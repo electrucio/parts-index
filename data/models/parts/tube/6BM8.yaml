@@ -1,0 +1,293 @@
+part: 6BM8
+kind: tube
+priority: 3
+group: pentode_beam
+preferred: ayumi
+preferred_why: 'best datasheet agreement: 28 pass, 3 off, 0 fail of 31 judged rows (31 against typical
+  values or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: reefman
+  name: ECL82_C
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - C
+  deps:
+  - TriodeK
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      ECL82_C: [475, 480]
+      TriodeK: [2345, 2357]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.0
+    pass: 0
+    marginal: 31
+    fail: 0
+    not_measurable: 0
+    typical_rows: 31
+  note: found under the alias ECL82; pins from inline comment
+- source: reefman
+  name: ECL82_L
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - BTetrodeD
+  verbatim: true
+  get:
+    url: https://www.dos4ever.com/uTracer3/ExtractModel4.msi
+    member: TubeLib.inc
+    archive_sha256: a381d1cf91b3e07fd7f16bce501915a8ba29597344d0fd32f6c34cfd6f87b1ae
+    sha256: 3f03b9795e2299d7215c32dd0b0f47a55887da56168d96d715aba506590b374e
+    lines:
+      BTetrodeD: [2211, 2228]
+      ECL82_L: [482, 489]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.871
+    pass: 27
+    marginal: 4
+    fail: 0
+    not_measurable: 0
+    typical_rows: 31
+  note: found under the alias ECL82; pins from inline comment
+- source: ayumi
+  name: 6BM8P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6BM8P.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 7fde8917ee3a63814c2dea2e8c16dcb6e2b05c647a7f1b57328d6022dc32a0b5
+    lines:
+      6BM8P: [10, 30]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.903
+    pass: 28
+    marginal: 3
+    fail: 0
+    not_measurable: 0
+    typical_rows: 31
+  note: pins from names
+- source: ayumi
+  name: 6BM8T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6BM8T.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 467893230100c5bc8da3b13d0a3a32dfc9662c8b5a43e607694cfe05d33172b3
+    lines:
+      6BM8T: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.0
+    pass: 0
+    marginal: 31
+    fail: 0
+    not_measurable: 0
+    typical_rows: 31
+  note: pins from names
+- source: ayumi
+  name: 6BM8PT
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6BM8PT.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 0dceb41785cfbe6f33893653cdde09ba7e21c0fca8feaff1cafb93ea4411d277
+    lines:
+      6BM8PT: [9, 22]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.0
+    pass: 0
+    marginal: 31
+    fail: 0
+    not_measurable: 0
+    typical_rows: 31
+  note: pins from names
+- source: duncanamps
+  name: 6BM8P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - S
+  - G
+  - K
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/valves/6bm8p.inc
+    sha256: 5b7c72f64ebd22520ebff60e0399cf181e780171cc1138b6c62a5a9a4157d66e
+    lines:
+      6BM8P: [32, 56]
+    fetched: '2026-09-14'
+    note: subckt 6BM8P (A S G K)
+  verification:
+    score: 0.419
+    pass: 13
+    marginal: 18
+    fail: 0
+    not_measurable: 0
+    typical_rows: 31
+  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from names'
+- source: duncanamps
+  name: 6BM8T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/valves/6bm8t.inc
+    sha256: b383ff02b37897e4dba407828b709a8dd6a029a03c9c1400a8c9c8d91b06c6db
+    lines:
+      6BM8T: [31, 51]
+    fetched: '2026-09-14'
+    note: subckt 6BM8T (A G K)
+  verification:
+    score: 0.0
+    pass: 0
+    marginal: 31
+    fail: 0
+    not_measurable: 0
+    typical_rows: 31
+  note: pins from names
+- source: suusi-tubes
+  name: 6BM8P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  - ECL82P
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6BM8P: [2435, 2438]
+      ECL82P: [2620, 2624]
+      PENTODE1: [3073, 3092]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.774
+    pass: 24
+    marginal: 7
+    fail: 0
+    not_measurable: 0
+    typical_rows: 31
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6BM8P
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - C
+  deps:
+  - PENTODE1
+  - ECL82P
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/Koren_Tubes.cir
+    sha256: de683ef82e04a208d04a3bbab30f7a37346048923e98aa32c380e0295bb40e90
+    lines:
+      6BM8P: [197, 200]
+      ECL82P: [1011, 1015]
+      PENTODE1: [2010, 2023]
+    fetched: '2026-09-14'
+    note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
+  verification:
+    score: 0.71
+    pass: 22
+    marginal: 9
+    fail: 0
+    not_measurable: 0
+    typical_rows: 31
+  note: pins from inline comment
+- source: suusi-tubes
+  name: 6BM8T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - P
+  - G
+  - C
+  deps:
+  - TRIODE
+  - ECL82T
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: SuusiTubes_V1.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: f3d8f666f1dfe515a010e4383dcd86edf26a090c11d01e6e0ebf4f0f0bce6148
+    lines:
+      6BM8T: [2429, 2432]
+      ECL82T: [2613, 2617]
+      TRIODE: [3019, 3033]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.0
+    pass: 0
+    marginal: 31
+    fail: 0
+    not_measurable: 0
+    typical_rows: 31
+  note: pins from inline comment
+datasheet:
+  url: https://frank.pocnet.net/sheets/030/e/ECL82.pdf
+  maker: Philips
+  doc: ECL82 handbook sheets 939 1897 (1), 939 1893 (2), 939 1899 (6); graphs B (7R04884) and D (7R04888)
+    dated 17-2-56
+  date: '1956-11-11'

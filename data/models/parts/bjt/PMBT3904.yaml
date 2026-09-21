@@ -1,0 +1,46 @@
+part: PMBT3904
+kind: bjt
+priority: 4
+group: small_signal_npn
+models:
+- source: nexperia
+  name: PMBT3904
+  def: subckt
+  type: SUBCKT
+  pins:
+  - B
+  - E
+  - C
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMBT3904.txt
+    sha256: 64726923b0d10e88bd284744403b18f0b96edfc88978354aa289f8c2029f8851
+    lines:
+      PMBT3904: [29, 88]
+    fetched: '2026-09-14'
+    note: 'model(s): PMBT3904 (.subckt 1 2 3), MAIN (NPN .model), DIODE (D .model)'
+  note: pins from comment words
+- source: kicad-spice-library
+  name: PMBT3904
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
+    sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
+    lines:
+      PMBT3904: [11739, 11777]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+- source: kicad-spice-library
+  name: PMBT3904D
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
+    sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
+    lines:
+      PMBT3904D: [11785, 11823]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895

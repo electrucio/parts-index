@@ -1,0 +1,179 @@
+part: NE5534
+kind: opamp
+priority: 2
+preferred: ltwiki
+preferred_why: 'best datasheet agreement: 8 pass, 4 off, 0 fail of 12 judged rows (6 against typical values
+  or curve points, the rest against min/max limits; 2 not measurable)'
+models:
+- source: ti
+  name: NE5534
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ049
+    member: NE5534.301
+    archive_sha256: 2a9dc4eb85cbf477aae44c6b94697d5edb612b70d3b04e761239c484749f57aa
+    sha256: 4baa66d3898669fcadf8b9ee417fbea840a06463c389ea46bd9bcaf6262e1fdc
+    lines:
+      NE5534: [11, 44]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.167
+    pass: 2
+    marginal: 5
+    fail: 5
+    not_measurable: 2
+    typical_rows: 6
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: bordodynov
+  name: NE5534
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '50'
+  - '6'
+  - '7'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/NE553x.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0b90f4ac73ed328341114e02953781ab5106be95fb2e65cc4ff6535bd0e08564
+    lines:
+      NE5534: [14, 50]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    pass: 0
+    marginal: 0
+    fail: 0
+    not_measurable: 14
+    typical_rows: 0
+  note: 'same code also in: ltwiki'
+- source: ltwiki
+  name: NE5534
+  def: subckt
+  type: SUBCKT
+  pins:
+  - COMP1
+  - INN
+  - INP
+  - VN
+  - NC
+  - OUT
+  - VP
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/TI/NE553x.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 7b937dff803cc78a682d8e71deed484d90f657584406f255beec85b67fd697f8
+    lines:
+      NE5534: [14, 48]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.167
+    pass: 2
+    marginal: 5
+    fail: 5
+    not_measurable: 2
+    typical_rows: 6
+  note: 'same code also in: kicad-spice-library; pins from DIP-8 pin numbers (single op-amp pin-out)'
+- source: ltwiki
+  name: NE5534ON_SN
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/OpAmp_Nazar_Shtybel.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4781654faf3d2ec54bf5acd80471ac9d119fb98d495698f460aa8839ee45e05d
+    lines:
+      NE5534ON_SN: [685, 806]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.583
+    pass: 7
+    marginal: 5
+    fail: 0
+    not_measurable: 2
+    typical_rows: 6
+  note: pins from default order (unverified)
+- source: ltwiki
+  name: NE5534PH_SN
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/OpAmp_Nazar_Shtybel.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4781654faf3d2ec54bf5acd80471ac9d119fb98d495698f460aa8839ee45e05d
+    lines:
+      NE5534PH_SN: [809, 930]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 8
+    marginal: 4
+    fail: 0
+    not_measurable: 2
+    typical_rows: 6
+  note: pins from default order (unverified)
+- source: ltwiki
+  name: NE5534TI_SN
+  def: subckt
+  type: SUBCKT
+  pins:
+  - INP
+  - INN
+  - VP
+  - VN
+  - OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/OpAmp_Nazar_Shtybel.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4781654faf3d2ec54bf5acd80471ac9d119fb98d495698f460aa8839ee45e05d
+    lines:
+      NE5534TI_SN: [932, 1053]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.667
+    pass: 8
+    marginal: 4
+    fail: 0
+    not_measurable: 2
+    typical_rows: 6
+  note: pins from default order (unverified)
+datasheet:
+  url: https://www.ti.com/lit/ds/symlink/ne5534.pdf
+  maker: Texas Instruments
+  doc: SLOS070D, rev. D, Nov 2014 (tables 7.5, 7.6)

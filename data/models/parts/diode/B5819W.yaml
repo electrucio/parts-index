@@ -1,0 +1,95 @@
+part: B5819W
+kind: diode
+priority: 3
+group: schottky
+models:
+- source: onsemi
+  name: D1n5819
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n5819.lib
+    sha256: 493ee34f39d98e370f3177c030f11da55e9b86da644d53a79cc1bd2a49735f13
+    lines:
+      D1n5819: [14, 18]
+    fetched: '2026-09-14'
+    note: 'model(s): D1n5819 (D .model)'
+  note: 'STAND-IN: model of D1n5819, not of B5819W; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+- source: vishay
+  name: ss14
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - K
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89656/ss14.txt
+    sha256: 3288afb62761edfc9e9095127e92e5f9d0e52cd79c1ec948db82bec9ed1f8ae2
+    lines:
+      ss14: [7, 16]
+    fetched: '2026-09-19'
+    note: 'Schottky, PSpice Models (*.txt): ss14, legd, grd'
+  note: 'STAND-IN: model of ss14, not of B5819W; equivalence declared in catalog/wanted.yaml (see its
+    note); pins from default order (unverified)'
+- source: central-semi
+  name: 1N5819
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/1N5819.LIB
+    sha256: bfe233cc2e21066b546b3a0ccaac6b4e3c58f9308eb416098b9ae8579d93c868
+    lines:
+      1N5819: [25, 37]
+    fetched: '2026-09-14'
+    note: 'model(s): 1N5819 (D .model)'
+  note: 'STAND-IN: model of 1N5819, not of B5819W; equivalence declared in catalog/wanted.yaml (see its
+    note)'
+- source: bordodynov
+  name: 1N5819
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N5819: [176, 176]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of 1N5819, not of B5819W; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: MBRS140
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      MBRS140: [184, 184]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of MBRS140, not of B5819W; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: SS14
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      SS14: [715, 715]
+    fetched: '2026-09-14'
+  note: 'STAND-IN: model of SS14, not of B5819W; equivalence declared in catalog/wanted.yaml (see its
+    note); same code also in: kicad-spice-library, ltwiki'

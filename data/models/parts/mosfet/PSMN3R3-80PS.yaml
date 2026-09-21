@@ -1,0 +1,23 @@
+part: PSMN3R3-80PS
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: bordodynov
+  name: PSMN3R3-80PS
+  def: subckt
+  type: SUBCKT
+  pins:
+  - DRAIN
+  - GATE
+  - SOURCE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/PSMNxx.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ada45e06c49830748b805afea7223fc285f5328b106490087e218f50ce51824e
+    lines:
+      PSMN3R3-80PS: [9726, 9787]
+    fetched: '2026-09-14'
+  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'

@@ -1,0 +1,34 @@
+part: 2SK209
+kind: jfet
+priority: 3
+group: n_channel
+preferred: bordodynov
+preferred_why: 'best datasheet agreement: 6 pass, 0 off, 2 fail of 8 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: bordodynov
+  name: 2SK209BL
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      2SK209BL: [524, 524]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.75
+    pass: 6
+    marginal: 0
+    fail: 2
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://toshiba.semicon-storage.com/info/2SK209_datasheet_en_20140301.pdf?did=19662&prodName=2SK209
+  maker: Toshiba
+  doc: 2SK209 (Toshiba data sheet)
+  date: '2014-03-01'

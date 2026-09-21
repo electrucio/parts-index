@@ -1,0 +1,22 @@
+part: NTD5867NL
+kind: mosfet
+priority: 4
+group: power_vertical
+models:
+- source: onsemi
+  name: ntd5867nl
+  def: subckt
+  type: SUBCKT
+  pins:
+  - D
+  - G
+  - S
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/ntd5867nl.lib
+    sha256: c428a8620de47a7e81cb9c1aa7638f20fd98c362943c92fd1bd63636acba078a
+    lines:
+      ntd5867nl: [1, 60]
+    fetched: '2026-09-19'
+    note: 'NTD5867NL: ntd5867nl, MM, MD, MD1, MD2, MD3 …'
+  note: pins from default order (unverified)

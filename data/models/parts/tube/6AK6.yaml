@@ -1,0 +1,83 @@
+part: 6AK6
+kind: tube
+priority: 3
+group: audio_docs
+models:
+- source: ayumi
+  name: 6AK6
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6AK6.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: c6e0eb9b8eaf5cb2a03403ede6492d0862634b778c5f463632b1998a9f3094c2
+    lines:
+      6AK6: [10, 30]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: ayumi
+  name: 6AK6T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: false
+  changes:
+  - caret_power
+  get:
+    url: http://ayumi.cava.jp/audio/tubemodel_3.20_win.zip
+    member: 6AK6T.inc
+    archive_sha256: 2d205c892acbe5f71238789325c808ea2a13a785685509bcc90bd011c0b63c83
+    sha256: 03e1fc23e3a1df60090d2455173b3f4bd9f4e73b1112886925208506d4559f3b
+    lines:
+      6AK6T: [9, 22]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: ltwiki
+  name: 6AK6
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G2
+  - G1
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Pentode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
+    lines:
+      6AK6: [460, 480]
+    fetched: '2026-09-14'
+  note: pins from names
+- source: ltwiki
+  name: 6AK6T
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - G
+  - K
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: lib/sub/Triode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+    lines:
+      6AK6T: [1131, 1144]
+    fetched: '2026-09-14'
+  note: pins from names

@@ -1,0 +1,21 @@
+part: PMEG3030
+kind: diode
+priority: 4
+group: tvs
+models:
+- source: nexperia
+  name: PMEG3030EP
+  def: subckt
+  type: SUBCKT
+  pins:
+  - K
+  - A
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG3030EP.txt
+    sha256: 8a5f4c7fa03ed39a251c22bf50269858c070fafc705330559ff4c74096874a03
+    lines:
+      PMEG3030EP: [33, 56]
+    fetched: '2026-09-19'
+    note: 'PMEG3030EP: PMEG3030EP, PMEG3030EP'
+  note: pins from comment words

@@ -1,0 +1,129 @@
+part: 1N4007
+kind: diode
+priority: 1
+group: rectifier
+preferred: vishay
+preferred_why: 'best datasheet agreement: 7 pass, 0 off, 0 fail of 7 judged rows (4 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable)'
+models:
+- source: vishay
+  name: d1n4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/88000/1n4007.txt
+    sha256: 35bcfe8b95639d32ad519afa26d2dd3f69ed8958822334fa6c8be5535d46c38f
+    lines:
+      d1n4007: [11, 14]
+    fetched: '2026-09-14'
+    note: 'model(s): d1n4007 (D .model)'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: kicad-spice-library'
+- source: vishay
+  name: d1n4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89789/1n4007.txt
+    sha256: 00aa704a24609b189b0f0b54be9de295b22767374a28a3ed06939ba5cda9fdfb
+    lines:
+      d1n4007: [7, 10]
+    fetched: '2026-09-14'
+    note: 'model(s): d1n4007 (D .model)'
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+- source: ltspice-native
+  name: 1N4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    installed_with: LTspice 17.2.4 installed library (Analog Devices)
+    file: cmp/standard.dio
+    sha256: 696d34dfe538966c80cfe1da259c1043f408777be79f59e4f1c47d82f3af320a
+    lines:
+      1N4007: [931, 931]
+  verification:
+    score: 1.0
+    pass: 7
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+- source: duncanamps
+  name: D1N4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/diode.mod
+    sha256: bb58d6a99a7204cfa89803598a0331243f10c11afb1b6279fb56fec2ae14c941
+    lines:
+      D1N4007: [51, 52]
+    fetched: '2026-09-14'
+    note: 34 .model
+  verification:
+    score: 0.571
+    pass: 4
+    marginal: 1
+    fail: 2
+    not_measurable: 0
+    typical_rows: 4
+- source: suusi-tubes
+  name: 1N4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://tubes.tubeampdesign.com/other/docs/SuusiTubes_V1.zip
+    member: MotorolaRectifiers.net
+    archive_sha256: 31163c3e81addb4a81a8b156d90a72b62c5c0fa93cd262a832b49d3e064f6f21
+    sha256: 88449ae88e2f751e584a6c2a079ded8a074d765cee37ce146ad1fd34182c5b35
+    lines:
+      1N4007: [9, 9]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+- source: bordodynov
+  name: 1N4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      1N4007: [151, 151]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.857
+    pass: 6
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 4
+  note: 'same code also in: ltwiki'
+datasheet:
+  url: https://www.vishay.com/docs/88503/1n4001.pdf
+  maker: Vishay
+  doc: Document Number 88503, Revision 29-Apr-2020 (1N4001 thru 1N4007)

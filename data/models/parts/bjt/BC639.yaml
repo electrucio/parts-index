@@ -1,0 +1,130 @@
+part: BC639
+kind: bjt
+priority: 2
+group: driver_vas
+preferred: ltwiki
+preferred_why: 'best datasheet agreement: 9 pass, 0 off, 0 fail of 9 judged rows (2 against typical values
+  or curve points, the rest against min/max limits; 0 not measurable); tied with kicad-spice-library,
+  kicad-spice-library on score and typical-value error, chosen as the more original source'
+models:
+- source: bordodynov
+  name: BC639
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.bjt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+    lines:
+      BC639: [908, 908]
+    fetched: '2026-09-14'
+  verification:
+    score: 0.889
+    pass: 8
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: ltwiki
+  name: BC639
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ZETEX/LIB/zmodels.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 8d3fb488666b5f813a666d5c589ac6c7779a2c44a4b38799b2a41ca0006368e7
+    lines:
+      BC639: [5806, 5810]
+    fetched: '2026-09-14'
+  verification:
+    score: 1.0
+    pass: 9
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+- source: kicad-spice-library
+  name: BC639
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTN.LIB
+    sha256: 2c85b6bbf3a7dcb9403d646a1c120714fdc7bce5c8287c8e537012a1cf3ef6c2
+    lines:
+      BC639: [516, 518]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.889
+    pass: 8
+    marginal: 0
+    fail: 1
+    not_measurable: 0
+    typical_rows: 2
+- source: kicad-spice-library
+  name: BC639
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+    sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+    lines:
+      BC639: [4032, 4036]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 9
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+- source: kicad-spice-library
+  name: BC639_ZX
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zetex.lib
+    sha256: 453392deca3bd0ddfca565d56241c4a5bb4d2e8f14c6efa92c1c453ed434fdca
+    lines:
+      BC639_ZX: [5867, 5871]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 1.0
+    pass: 9
+    marginal: 0
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+- source: kicad-spice-library
+  name: BC639/SIE
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/siemens.lib
+    sha256: c1318342f700741e0d97896cf4f77fe203b8923e12b1106c6c14f848c74bdd5b
+    lines:
+      BC639/SIE: [6223, 6233]
+    fetched: '2026-09-14'
+    note: git clone --depth 1, commit a868895
+  verification:
+    score: 0.889
+    pass: 8
+    marginal: 1
+    fail: 0
+    not_measurable: 0
+    typical_rows: 2
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/bc637-d.pdf
+  maker: onsemi
+  doc: BC637/D Rev. 1 (February 2011) - BC637, BC639, BC639-16

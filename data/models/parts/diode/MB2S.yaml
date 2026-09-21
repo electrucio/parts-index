@@ -1,0 +1,36 @@
+part: MB2S
+kind: diode
+priority: 4
+group: bridge
+models:
+- source: onsemi
+  name: MB2S
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mb2s.lib
+    sha256: 066a3988d51126c1644f1d9b3714fe12c66501deb700b866f57f4920ece3d5f9
+    lines:
+      MB2S: [6, 9]
+    fetched: '2026-09-19'
+    note: 'MB2S: MB2S'
+- source: bordodynov
+  name: MB2S
+  def: subckt
+  type: SUBCKT
+  pins:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/diode_fullbridge.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 2e0399bfb1c1da49c79e1aa6fffe5fac3c723bb9e1a559d02d15e385ccf8376f
+    lines:
+      MB2S: [1486, 1505]
+    fetched: '2026-09-14'
+  note: 'same code also in: ltwiki'

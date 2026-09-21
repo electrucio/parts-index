@@ -1,0 +1,53 @@
+part: H11F1
+kind: opto
+priority: 3
+models:
+- source: bordodynov
+  name: H11F1M
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - C
+  - R1
+  - R2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/H11F1M.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: b217e8ab4a1f18fe1eb3e4fe2a13396d26a0cb0cb8cd1946a9ff99439116770b
+    lines:
+      H11F1M: [1, 9]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''opto'''
+  note: 'same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: H11F1M_AB
+  def: subckt
+  type: SUBCKT
+  pins:
+  - A
+  - C
+  - R1
+  - R2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/H11F1M_AB.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1007a60ff1a193f5d94ac7c9020ae6035788c79026824878122bc8f7c714474a
+    lines:
+      H11F1M_AB: [1, 12]
+    fetched: '2026-09-14'
+  verification:
+    score: null
+    error: 'KeyError: ''opto'''
+  note: 'same code also in: kicad-spice-library, ltwiki'
+datasheet:
+  url: https://www.onsemi.com/pdf/datasheet/h11f1m-d.pdf
+  maker: Fairchild Semiconductor (now onsemi)
+  doc: H11F1M, H11F2M, H11F3M Rev. 1.0.5
+  date: 2012-05
