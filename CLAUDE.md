@@ -10,7 +10,8 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
 
 - `src/parts_index/core/` shared code: `config` (every location in the project — see rule 4), `http`
   (the one polite client), `ledger` (what has been processed), `pagesio` (OCR page records), `adfilter`,
-  and `parts/` (the part-number extractor, single source of truth). **(todo)** `links`, `table`, `llm`.
+  `links` (the deep link, with `web/src/links.ts` as its other half and one golden fixture over both),
+  and `parts/` (the part-number extractor, single source of truth). **(todo)** `table`, `llm`.
 - `src/parts_index/schematics/` pillar 1. **(todo)** crawl → download → ocr → index → linkcheck → export.
 - `src/parts_index/models/` pillar 2: fetch, ingest, index, recover and promote (the public recipe
   per part). **(todo)** curate and `datasheets/`.
@@ -60,7 +61,7 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
 
 ```
 make setup      # install dependencies and enable the pre-commit guard, once per clone
-make check      # guard + lint + test — what CI runs
+make check      # guard + lint + tests, Python and web — what CI runs
 make status     # what has been processed and what comes next, per source
 make paths      # where everything is, and which side of the public/private line
 make backup     # pack the private trees into one archive to carry off this machine

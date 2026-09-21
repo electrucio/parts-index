@@ -1,0 +1,151 @@
+{
+  "note": "Checked by tests/core/test_links.py and by web/src/links.test.ts. There are two implementations of one URL, in two languages, and they must not drift apart. Add a case here before fixing either.",
+  "zoom": 200,
+  "margin": 0.06,
+  "cases": [
+    {
+      "name": "a document with no page template links to the document",
+      "doc": { "public_url": "https://example.org/amp.html", "page_url_tpl": null },
+      "page": 1,
+      "expect": "https://example.org/amp.html"
+    },
+    {
+      "name": "a PDF gets a page anchor",
+      "doc": { "public_url": "https://example.org/bassman.pdf", "page_url_tpl": "{url}#page={n}" },
+      "page": 2,
+      "expect": "https://example.org/bassman.pdf#page=2"
+    },
+    {
+      "name": "with a box and a page size, the viewer is told where to look",
+      "doc": {
+        "public_url": "https://example.org/bassman.pdf",
+        "page_url_tpl": "{url}#page={n}",
+        "w_pt": 612, "h_pt": 792
+      },
+      "page": 2,
+      "boxes": [[150, 720, 210, 745]],
+      "expect": "https://example.org/bassman.pdf#page=2&zoom=200,55,523&h=792"
+    },
+    {
+      "name": "a box against the top-left edge is clamped, never negative",
+      "doc": {
+        "public_url": "https://example.org/sheet.pdf",
+        "page_url_tpl": "{url}#page={n}",
+        "w_pt": 612, "h_pt": 792
+      },
+      "page": 1,
+      "boxes": [[10, 20, 60, 45]],
+      "expect": "https://example.org/sheet.pdf#page=1&zoom=200,0,0&h=792"
+    },
+    {
+      "name": "only the first box counts, and only its top-left corner",
+      "doc": {
+        "public_url": "https://example.org/sheet.pdf",
+        "page_url_tpl": "{url}#page={n}",
+        "w_pt": 612, "h_pt": 792
+      },
+      "page": 3,
+      "boxes": [[500, 100, 560, 130], [100, 700, 160, 730]],
+      "expect": "https://example.org/sheet.pdf#page=3&zoom=200,269,32&h=792"
+    },
+    {
+      "name": "boxes arriving as JSON text are read the same way",
+      "doc": {
+        "public_url": "https://example.org/sheet.pdf",
+        "page_url_tpl": "{url}#page={n}",
+        "w_pt": 612, "h_pt": 792
+      },
+      "page": 3,
+      "boxes": "[[500, 100, 560, 130]]",
+      "expect": "https://example.org/sheet.pdf#page=3&zoom=200,269,32&h=792"
+    },
+    {
+      "name": "a page whose size was never recorded gets the plain page link, not a guess",
+      "doc": {
+        "public_url": "https://example.org/sheet.pdf",
+        "page_url_tpl": "{url}#page={n}",
+        "w_pt": null, "h_pt": null
+      },
+      "page": 4,
+      "boxes": [[150, 720, 210, 745]],
+      "expect": "https://example.org/sheet.pdf#page=4"
+    },
+    {
+      "name": "a page with a size but no box gets the plain page link",
+      "doc": {
+        "public_url": "https://example.org/sheet.pdf",
+        "page_url_tpl": "{url}#page={n}",
+        "w_pt": 612, "h_pt": 792
+      },
+      "page": 4,
+      "boxes": [],
+      "expect": "https://example.org/sheet.pdf#page=4"
+    },
+    {
+      "name": "archive.org counts leaves from zero",
+      "doc": {
+        "public_url": "https://archive.org/details/radio-handbook",
+        "page_url_tpl": "{url}/page/n{leaf}/mode/2up",
+        "page_offset": 0
+      },
+      "page": 5,
+      "expect": "https://archive.org/details/radio-handbook/page/n4/mode/2up"
+    },
+    {
+      "name": "a scan with front matter needs its offset, or every link is wrong by that much",
+      "doc": {
+        "public_url": "https://archive.org/details/radio-handbook",
+        "page_url_tpl": "{url}/page/n{leaf}/mode/2up",
+        "page_offset": 12
+      },
+      "page": 5,
+      "expect": "https://archive.org/details/radio-handbook/page/n16/mode/2up"
+    },
+    {
+      "name": "a reader with no page anchor is sent a search instead",
+      "doc": {
+        "public_url": "https://example.org/reader/tube-amps",
+        "page_url_tpl": "{url}?q={q}"
+      },
+      "page": 7,
+      "q": "12AX7",
+      "expect": "https://example.org/reader/tube-amps?q=12AX7"
+    },
+    {
+      "name": "a box on an archive.org link is ignored: its reader takes no zoom",
+      "doc": {
+        "public_url": "https://archive.org/details/radio-handbook",
+        "page_url_tpl": "{url}/page/n{leaf}/mode/2up",
+        "w_pt": 612, "h_pt": 792
+      },
+      "page": 2,
+      "boxes": [[150, 720, 210, 745]],
+      "expect": "https://archive.org/details/radio-handbook/page/n1/mode/2up"
+    }
+  ],
+  "firefox_flip": {
+    "note": "Chrome measures top downwards from the top of the page, Firefox upwards from the bottom, so one URL cannot satisfy both. The link is written Chrome's way and carries the page height as &h=, which both viewers ignore, so the browser can flip it: top_firefox = h - top_chrome.",
+    "cases": [
+      {
+        "name": "a Chrome link becomes a Firefox link",
+        "url": "https://example.org/bassman.pdf#page=2&zoom=200,55,523&h=792",
+        "expect": "https://example.org/bassman.pdf#page=2&zoom=200,55,269"
+      },
+      {
+        "name": "a link with no zoom is left alone",
+        "url": "https://example.org/bassman.pdf#page=2",
+        "expect": "https://example.org/bassman.pdf#page=2"
+      },
+      {
+        "name": "a link with no height cannot be flipped, so it is left alone",
+        "url": "https://example.org/bassman.pdf#page=2&zoom=200,55,523",
+        "expect": "https://example.org/bassman.pdf#page=2&zoom=200,55,523"
+      },
+      {
+        "name": "the flip never produces a negative top",
+        "url": "https://example.org/bassman.pdf#page=2&zoom=200,55,900&h=792",
+        "expect": "https://example.org/bassman.pdf#page=2&zoom=200,55,0"
+      }
+    ]
+  }
+}

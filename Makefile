@@ -7,7 +7,7 @@ UV := uv
 RUN := $(UV) run --quiet
 
 .DEFAULT_GOAL := help
-.PHONY: help setup test lint guard check status status-write paths models-index models-missing models-recover models-promote backup migrate-datasets migrate clean web web-data web-deps serve
+.PHONY: help setup test test-web lint guard check status status-write paths models-index models-missing models-recover models-promote backup migrate-datasets migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -27,13 +27,17 @@ setup:  ## install dependencies and enable the pre-commit guard
 test:  ## run the test suite
 	$(RUN) pytest -q
 
+test-web:  ## run the website's tests (the other half of the link builder)
+	@test -d web/node_modules || { echo "skipping: run 'make web-deps' first"; exit 0; }
+	cd web && npx vitest run
+
 lint:  ## check code style
 	$(RUN) ruff check src scripts tests
 
 guard:  ## refuse anything that must not be published (what CI runs)
 	python3 scripts/licence_guard.py --all
 
-check: guard lint test  ## guard + lint + test, in that order
+check: guard lint test test-web  ## guard + lint + tests, in that order
 
 # --- looking at the project ---------------------------------------------------------------------
 status:  ## what has been processed and what comes next, per source
