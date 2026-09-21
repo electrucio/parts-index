@@ -32,8 +32,13 @@ BLOCKED_SUFFIXES = {
 SAVED_PAGE_SUFFIXES = {".htm", ".html", ".mht", ".jpg", ".jpeg", ".png", ".gif", ".webp", ".tif", ".tiff"}
 SAVED_PAGE_ALLOWED_PREFIXES = ("web/", "docs/", "tests/fixtures/")
 MODEL_SUFFIXES = {".lib", ".mod", ".cir", ".sub", ".inc", ".spi", ".ckt", ".mdl"}
-# SPICE text is allowed only where it is original work or carries an allow-listed licence.
-MODEL_ALLOWED_PREFIXES = ("components/", "circuits/", "data/models/files/", "tests/fixtures/")
+# A suffix list only catches the file names we thought of. A patch against a model file carries the
+# vendor's surrounding lines and has none of these suffixes, so the text itself is looked for too.
+MODEL_TEXT = re.compile(r"^[-+ ]?\s*\.(?:model|subckt)\s+\S", re.I | re.M)
+# SPICE text is allowed only where it is original work or carries an allow-listed licence. Everything
+# under tests/ is written for the test suite — a plausible-looking .MODEL line there is invented, not a
+# vendor's — so the whole directory is allowed rather than only its fixtures.
+MODEL_ALLOWED_PREFIXES = ("components/", "circuits/", "data/models/files/", "tests/")
 # gz fixtures are tiny OCR page records used by the tests
 SUFFIX_EXCEPTIONS = ("tests/fixtures/",)
 
@@ -97,6 +102,12 @@ def check(path: str) -> list[str]:
         text = p.read_text(encoding="utf-8")
     except (UnicodeDecodeError, OSError):
         return problems
+    if not path.startswith(MODEL_ALLOWED_PREFIXES):
+        m = MODEL_TEXT.search(text)
+        if m:
+            line = text.count("\n", 0, m.start()) + 1
+            problems.append(f"{path}:{line}: SPICE model text outside "
+                            f"{', '.join(MODEL_ALLOWED_PREFIXES)}")
     text = PUBLIC_URL.sub(lambda m: " " * len(m.group()), text)
     for label, pattern in CONTENT_PATTERNS + local_patterns():
         m = pattern.search(text)

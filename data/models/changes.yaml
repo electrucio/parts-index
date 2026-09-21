@@ -1,0 +1,11 @@
+changes:
+- id: ascii
+  why: non-ASCII characters (µ, Ω, °, accents, Cyrillic) transliterated so LTspice and text tools read
+    the file the same way; values like 0.33µ become 0.33u
+- id: caret_power
+  why: 'The author uses ''^'' as the power operator. In LTspice (17.2.4, default settings, checked: B=2^3
+    evaluates to 0) ''^'' is Boolean XOR, which silently zeroes the model''s currents; ''**'' is LTspice''s
+    power operator.'
+- id: st_analog_token
+  why: ST's 1993 macromodels end the .subckt line with '(analog)', a PSpice/ELDO tag; LTspice would take
+    it as an extra pin.

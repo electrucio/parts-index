@@ -29,6 +29,7 @@ from pathlib import Path
 import yaml
 
 from parts_index.core.config import (
+    model_changes,
     model_part,
     model_sources,
     model_symbol,
@@ -243,6 +244,22 @@ def recipe(data: dict, syms: dict[str, str] | None = None) -> dict:
     return out
 
 
+def change_kinds(root: Path) -> dict[str, str]:
+    """Every fixup the curation names, with the reason recorded once instead of at each use.
+
+    The reason is the valuable half and it is our own writing: that LTspice reads `^` as Boolean XOR,
+    so an author's `2^3` silently evaluates to zero, is the kind of thing this project exists to record.
+    The patch itself stays private — a diff carries the vendor's surrounding lines, which is model text.
+    """
+    out: dict[str, str] = {}
+    for p in parts(root):
+        for c in json.loads(p.read_text(encoding="utf-8")).get("candidates") or []:
+            for ch in c.get("changes") or []:
+                if isinstance(ch, dict) and ch.get("id"):
+                    out.setdefault(ch["id"], unsigned(ch.get("why", "")))
+    return out
+
+
 def write(path: Path, doc: dict) -> int:
     path.parent.mkdir(parents=True, exist_ok=True)
     text = yaml.safe_dump(doc, sort_keys=False, allow_unicode=True, width=100)
@@ -285,6 +302,13 @@ def promote(only: str | None = None, dry: bool = False) -> dict:
                 unknown.add(m["source"])
         if not dry:
             counts["bytes"] += write(model_part(doc["kind"], doc["part"]), doc)
+    kinds = change_kinds(root)
+    counts["change_kinds"] = len(kinds)
+    if kinds and not dry:
+        model_changes().parent.mkdir(parents=True, exist_ok=True)
+        model_changes().write_text(yaml.safe_dump(
+            {"changes": [{"id": k, "why": kinds[k]} for k in sorted(kinds)]},
+            sort_keys=False, allow_unicode=True, width=100), encoding="utf-8")
     counts["unknown_sources"] = len(unknown)
     if unknown:
         counts["unknown"] = sorted(unknown)
@@ -301,6 +325,7 @@ def main(argv=None) -> int:
     print(f"{counts['parts']:,} parts, {counts['models']:,} candidate models "
           f"({counts['verified']:,} scored against a datasheet, {counts['with_datasheet']:,} parts "
           f"with a datasheet link)" + (" — dry run" if a.dry else ""))
+    print(f"{counts['change_kinds']} kinds of fixup, each with its reason, in {model_changes().name}")
     print(f"{counts['symbols']:,} LTspice symbols published"
           + (f", {counts['orphan_symbols']:,} left behind for candidates the curation dropped"
              if counts["orphan_symbols"] else ""))

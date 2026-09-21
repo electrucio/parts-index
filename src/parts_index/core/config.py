@@ -138,6 +138,11 @@ def model_files(source: str) -> Path:
     return models_dir() / "files" / source
 
 
+def model_changes() -> Path:
+    """The fixups we apply to a model's text, named once with the reason for each."""
+    return models_dir() / "changes.yaml"
+
+
 def model_links() -> Path:
     return models_dir() / "links.csv"
 
@@ -332,6 +337,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("model_state", "public", ("onsemi",)),
     ("model_part", "public", ("bjt", "2N3904")),
     ("model_symbol", "public", ("bjt", "2N3904", "2N3904_acme.asy")),
+    ("model_changes", "public", ()),
     ("model_licence", "public", ("onsemi",)),
     ("model_files", "public", ("germaniumbjts",)),
     ("model_links", "public", ()),
