@@ -28,6 +28,8 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
   drawn for them, and what was distilled from the research datasets. **(todo)** the licence notes.
 - `web/` the site (Vite + TypeScript + Preact): the parts browser and the coverage record. Its look
   is the previous project's site, carried over. `docs/` the roadmap. **(todo)** the maintainer runbook.
+- `src/parts_index/datasets/` what is kept from the research datasets: `repos` reads how much
+  attention each open-source project has, through the `gh` command's own login.
 - `src/parts_index/migrate/` one-off steps carrying the old pipeline's state across; deleted when the
   last stage is ported.
 - `private_uncommitted/` local, git-ignored data root: `ocr/` the page records with their map, and

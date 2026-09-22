@@ -11,7 +11,7 @@ WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
 
 .DEFAULT_GOAL := help
-.PHONY: help setup test test-web lint guard check status status-write paths models-index models-missing models-recover models-promote schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
+.PHONY: help setup test test-web lint guard check status status-write paths models-index models-missing models-recover models-promote datasets-repos schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -65,6 +65,9 @@ models-recover:  ## (maintainer) fetch those files again, checking each against 
 
 models-promote:  ## (maintainer) write the public recipe for every curated part into data/models/parts/
 	$(RUN) pidx models promote
+
+datasets-repos:  ## (maintainer) read stars, forks and watchers for every open-source project (needs `gh`)
+	$(RUN) pidx datasets repos
 
 schematics-export:  ## (maintainer) write the schematic index into data/, where the site is built from
 	$(RUN) pidx schematics export

@@ -157,14 +157,27 @@ def repos() -> dict[str, list[list]]:
     """Open-source projects that place each part, from the dataset distilled in `data/datasets/`.
 
     The third answer to "where is it used", and the only one that points at a board somebody is working
-    on rather than at a document about one.
+    on rather than at a document about one. Ordered by stars, because 287 projects place a TL072 and
+    what a reader wants is the five of them anybody has looked at. A project that has been deleted is
+    dropped; one that has been renamed travels under the name it answers to now.
     """
-    path = dataset_table("part_repos")
+    host = "https://github.com/"
+    stats = {r["url"].replace(host, "").lower(): r for r in rows(dataset_table("repo_stats"))}
     out: dict[str, list[list]] = defaultdict(list)
-    for r in rows(path):
-        out[r["part"]].append([r["url"].replace("https://github.com/", ""), int(r["sheets"] or 1)])
+    for r in rows(dataset_table("part_repos")):
+        repo = r["url"].replace(host, "").strip("/")
+        s = stats.get(repo.lower())
+        if s and s["status"] == "gone":
+            continue
+        out[r["part"]].append([
+            ((s or {}).get("moved_to") or "").replace(host, "") or repo,
+            int(r["sheets"] or 1),
+            int((s or {}).get("stars") or 0),
+            int((s or {}).get("forks") or 0),
+            int((s or {}).get("watchers") or 0),
+        ])
     for v in out.values():
-        v.sort(key=lambda x: (-x[1], x[0]))
+        v.sort(key=lambda x: (-x[2], -x[1], x[0]))
     return out
 
 

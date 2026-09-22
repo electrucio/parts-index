@@ -283,9 +283,14 @@ function Repos({ page }: { page: PartPage }) {
     <Fold summary={summary} level={1}>
       {() => (
       <ul class="uselist cols">
-        {repos.map(([repo, sheets], i) => (
+        {repos.map(([repo, sheets, stars, forks, watchers], i) => (
           <li key={i}>
             <a href={`https://github.com/${repo}`} target="_blank" rel="noopener">{repo}</a>
+            {stars > 0 && (
+              <span class="muted small" title={`${n(stars)} stars, ${n(forks)} forks, ${n(watchers)} watching`}>
+                {' '}★{n(stars)}
+              </span>
+            )}
             {sheets > 1 && <span class="muted small"> · {sheets} sheets</span>}
           </li>
         ))}

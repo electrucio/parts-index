@@ -108,8 +108,8 @@ export interface PartPage {
   }[]
   /** Who vouches for this part: a shop that sells it, a databook, an article. */
   listed?: { source: string; category?: string; note?: string }[]
-  /** `owner/repo` and how many of its sheets place the part. */
-  repos?: [string, number][]
+  /** `owner/repo`, sheets that place the part, then stars, forks and watchers. */
+  repos?: [string, number, number, number, number][]
   n: { documents: number; shown: number; copies: number; repos?: number }
   models?: {
     kind: string

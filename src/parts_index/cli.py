@@ -51,6 +51,13 @@ def main(argv: list[str] | None = None) -> int:
     se.add_argument("--source", action="append", help="only these sources (repeatable)")
     se.add_argument("--dry", action="store_true", help="count what would be written and write nothing")
 
+    ds = sub.add_parser("datasets", help="the distilled research datasets").add_subparsers(
+        dest="ds_cmd", required=True)
+    dr = ds.add_parser("repos", help="read how much attention each open-source project has")
+    dr.add_argument("--all", action="store_true", help="read every repository again, however recent")
+    dr.add_argument("--limit", type=int, default=0)
+    dr.add_argument("--days", type=int, default=30, help="how old a reading may be")
+
     bk = sub.add_parser("backup", help="pack the private trees into one archive to carry off this machine")
     bk.add_argument("--level", choices=("essential", "full", "all"), default="essential")
     bk.add_argument("--out", help="where to write it")
@@ -123,6 +130,12 @@ def main(argv: list[str] | None = None) -> int:
         from parts_index.schematics import export as sch_export
         argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
         return sch_export.main(argv2 + (["--dry"] if args.dry else []))
+
+    if args.cmd == "datasets" and args.ds_cmd == "repos":
+        from parts_index.datasets import repos as ds_repos
+        argv2 = ["--days", str(args.days)] + (["--all"] if args.all else [])
+        argv2 += ["--limit", str(args.limit)] if args.limit else []
+        return ds_repos.main(argv2)
 
     if args.cmd == "backup":
         from parts_index import backup

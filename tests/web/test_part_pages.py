@@ -118,7 +118,8 @@ def test_a_part_carries_the_open_source_projects_that_place_it(data, monkeypatch
                      "12AX7,1,https://github.com/b/two\n", encoding="utf-8")
     page = P.part_payload("12AX7", P.index(), None)
     assert page["n"]["repos"] == 2
-    assert page["repos"][0] == ["a/one", 3]        # the one that places it most, first
+    # with no attention read yet, the one that places it on most sheets leads
+    assert page["repos"][0][:2] == ["a/one", 3]
 
 
 def test_the_index_says_what_kind_of_thing_each_source_is(data):
@@ -187,3 +188,21 @@ def test_the_menu_ships_whole_so_a_bit_always_means_the_same_device(data):
     assert [d["key"] for d in menu] == [k for k, _ in P.DEVICES]
     at = {d["key"]: i for i, d in enumerate(menu)}
     assert dict((r[0], r[4]) for r in rows)["TL072"] & (1 << at["opamp"])
+
+
+def test_the_projects_are_ordered_by_stars_and_the_dead_ones_dropped(data):
+    """287 projects place a TL072; what a reader wants is the five anybody has looked at."""
+    config.dataset_table("part_repos").parent.mkdir(parents=True, exist_ok=True)
+    config.dataset_table("part_repos").write_text(
+        "part,sheets,url\n"
+        "12AX7,1,https://github.com/a/small\n"
+        "12AX7,9,https://github.com/b/big\n"
+        "12AX7,1,https://github.com/c/gone\n", encoding="utf-8")
+    config.dataset_table("repo_stats").write_text(
+        "url,status,stars,forks,watchers,pushed,archived,moved_to,checked\n"
+        "https://github.com/a/small,live,3,0,1,2026-01-01,0,,2026-09-22\n"
+        "https://github.com/b/big,live,900,50,30,2026-01-01,0,https://github.com/b/renamed,2026-09-22\n"
+        "https://github.com/c/gone,gone,,,,,,,2026-09-22\n", encoding="utf-8")
+    page = P.part_payload("12AX7", P.index(), None)
+    assert [r[0] for r in page["repos"]] == ["b/renamed", "a/small"]   # stars first, renamed followed
+    assert page["repos"][0][2] == 900
