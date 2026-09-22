@@ -71,6 +71,18 @@ USE_FIELDS = ("part", "doc", "page", "times", "near")
 PART_FIELDS = ("part", "documents", "pages", "uses", "sources")
 
 
+def publishable_key(key: str) -> str:
+    """A document's key identifies it, and it is also published, so it may not carry a path out of a
+    disk. The old pipeline built some Elektor keys as `<url>#<local path>`, and ten of them reached
+    `data/` before the guard learned to look inside a URL. Keeping the last two segments leaves the key
+    unique and stable; doing it here rather than in the file means a re-export cannot put them back,
+    whatever the database still holds."""
+    head, _, fragment = key.partition("#")
+    if not fragment.startswith("/"):
+        return key
+    return f"{head}#{'/'.join(fragment.rsplit('/', 2)[-2:])}"
+
+
 def base36(n: int) -> str:
     out = ""
     while True:
@@ -173,13 +185,13 @@ def export(only: list[str] | None = None, dry: bool = False) -> dict:
             continue
         counts["references"] += 1
         d = docs.setdefault(source, {})
-        key = r["doc_key"]
+        key = publishable_key(r["doc_key"])
         if key not in d:
             d[key] = {
                 "key": key,
                 "title": titles.clean(r["title"] or r["par_title"], r["public_url"] or ""),
                 "url": r["public_url"] or "",
-                "parent": r["par_key"] or "",
+                "parent": publishable_key(r["par_key"] or ""),
                 "role": r["role"] or "",
                 "year": r["year"] or "",
                 "month": r["month"] or "",

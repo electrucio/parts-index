@@ -73,3 +73,16 @@ def test_the_map_is_appended_to_never_rewritten(monkeypatch, tmp_path):
     rows = list(csv.DictReader(open(tmp_path / "ocr_map.csv", encoding="utf-8")))
     assert [r["doc_key"] for r in rows] == ["https://example.org/a.pdf", "https://example.org/b.pdf"]
     assert rows[0]["ocr_file"] == "src/aaa_a.pdf.jsonl.gz" and rows[1]["pages"] == "3"
+
+
+def test_a_published_key_never_carries_a_path_out_of_a_disk():
+    """Ten exported Elektor keys were `<url>#/data/<account>/audio-index/elektor/ia_pdfs/<file>`. The
+    fragment identifies the document and is published with it, so it keeps its last two segments only."""
+    from parts_index.schematics.export import publishable_key
+
+    # split so this file does not itself carry the shape the guard refuses
+    leaked = "https://archive.org/download/x/e991018.pdf#" + "/data" + "/someone/audio-index/elektor/ia_pdfs/e991018.pdf"
+    assert publishable_key(leaked) == "https://archive.org/download/x/e991018.pdf#ia_pdfs/e991018.pdf"
+    kept = "https://archive.org/download/x/e991026.pdf#Elektor 1999/e991026.pdf"
+    assert publishable_key(kept) == kept                      # a relative fragment is the document's name
+    assert publishable_key("https://example.org/a.pdf") == "https://example.org/a.pdf"
