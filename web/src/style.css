@@ -142,3 +142,15 @@ details.uses summary { cursor: pointer; display: flex; gap: 10px; align-items: b
 .toolbar input { flex: 1 1 220px; }
 @media (prefers-reduced-motion: reduce) { .live { animation: none; } }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+
+/* Added for this site: the previous one had no list long enough to page through, and no group that
+   folded three deep. Everything above is its stylesheet as it was. */
+button.more { font: 600 0.82rem var(--body); padding: 5px 11px; margin: 8px 4px; border-radius: 999px;
+  border: 1px solid var(--rule); background: var(--surface); color: var(--muted); cursor: pointer; }
+button.more:hover { border-color: var(--accent); color: var(--accent-ink); }
+details.uses > summary::marker { color: var(--faint); }
+details.uses[open] > summary { margin-bottom: 6px; }
+details.uses .uses { border-top: 1px solid var(--rule); }
+details.uses .uses .uses { border-top: 0; }
+details.uses summary strong { font-weight: 600; }
+.plist a .dot { margin-right: 2px; }

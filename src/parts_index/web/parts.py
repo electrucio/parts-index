@@ -17,6 +17,11 @@ that the one that shows it most.
 
 **Uses are one row per page, and a reader wants one row per document.** Twelve pages of one service
 manual is one result with twelve page links, not twelve results.
+
+And three answers to "where is it used" are three different questions, so they travel apart: a project
+page or a factory sheet is a circuit somebody built, a magazine page is an article about one, and a
+GitHub repository is a board somebody is making now. The site folds each group on its own, and each
+source inside it on its own, which is what keeps a part with three thousand hits readable.
 """
 from __future__ import annotations
 
@@ -26,10 +31,12 @@ from collections import defaultdict
 import yaml
 
 from parts_index.core.config import (
+    dataset_table,
     model_part,
     schematics_documents,
     schematics_pages,
     schematics_parts,
+    schematics_registry,
     schematics_uses,
 )
 
@@ -40,6 +47,7 @@ PAGE_CAP = 24        # page links inside one document, when there is room for th
 # document of a diode that is in everything is not a result anybody reads. Spread the same budget and
 # the heavy parts get a few pages each while the 89 % that fit in 4 KB are untouched.
 LINK_BUDGET = 600
+REPO_CAP = 60         # GitHub projects listed for one part
 MODEL_KEYS = ("source", "name", "def", "type", "pins", "verbatim", "changes", "symbol")
 
 
@@ -48,6 +56,30 @@ def rows(path):
         return []
     with open(path, encoding="utf-8") as f:
         return list(csv.DictReader(f))
+
+
+def kinds() -> dict[str, str]:
+    """What each source is — a site, a factory archive, a magazine, a book — from the public registry."""
+    reg = schematics_registry()
+    if not reg.exists():
+        return {}
+    entries = yaml.safe_load(reg.read_text(encoding="utf-8")) or {}
+    return {k: (v or {}).get("kind", "") for k, v in entries.items()}
+
+
+def repos() -> dict[str, list[list]]:
+    """Open-source projects that place each part, from the dataset distilled in `data/datasets/`.
+
+    The third answer to "where is it used", and the only one that points at a board somebody is working
+    on rather than at a document about one.
+    """
+    path = dataset_table("part_repos")
+    out: dict[str, list[list]] = defaultdict(list)
+    for r in rows(path):
+        out[r["part"]].append([r["url"].replace("https://github.com/", ""), int(r["sheets"] or 1)])
+    for v in out.values():
+        v.sort(key=lambda x: (-x[1], x[0]))
+    return out
 
 
 def sources() -> list[str]:
@@ -65,7 +97,8 @@ def index() -> dict:
         pages[s] = {(r["doc"], r["page"]): r for r in rows(schematics_pages(s))}
         for u in rows(schematics_uses(s)):
             uses[u["part"]].append((i, u))
-    return {"sources": sources(), "documents": docs, "pages": pages, "uses": uses}
+    return {"sources": sources(), "kinds": kinds(), "documents": docs, "pages": pages,
+            "uses": uses, "repos": repos()}
 
 
 def model_recipes() -> dict[str, dict]:
@@ -153,6 +186,10 @@ def part_payload(part: str, idx: dict, recipe: dict | None) -> dict:
     out = {"part": part, "docs": shown,
            "n": {"documents": len(merged), "shown": len(shown),
                  "copies": len(by_doc) - len(merged)}}
+    gh = idx["repos"].get(part) or []
+    if gh:
+        out["repos"] = gh[:REPO_CAP]
+        out["n"]["repos"] = len(gh)
     if recipe:
         out["models"] = trim_models(recipe)
     return out

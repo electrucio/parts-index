@@ -35,6 +35,10 @@ def data(tmp_path, monkeypatch):
     put(config.schematics_uses("esp"), ("part", "doc", "page", "times", "near"),
         [["12AX7", "0", "1", "2", "V1 V2"], ["TL072", "1", "1", "1", "IC1"]])
 
+    (root / "schematics" / "sources.yaml").write_text(
+        "esp: {kind: site, title: ESP, home_url: 'https://e.org/', status: active}\n"
+        "el34world: {kind: factory, title: El34World, home_url: 'https://el34.example/', status: active}\n",
+        encoding="utf-8")
     put(config.schematics_documents("el34world"),
         ("id", "key", "title", "url", "parent", "role", "year", "month", "pages", "sha"),
         [["0", "k3", "Fender Bassman", "https://el34.example/bassman.pdf", "", "schematic", "1959", "", "1", "deadbeef"]])
@@ -100,3 +104,23 @@ def test_a_part_in_everything_is_capped_and_says_so(data, monkeypatch):
     monkeypatch.setattr(P, "CAP", 1)
     page = P.part_payload("12AX7", P.index(), None)
     assert page["n"]["shown"] == 1 and page["n"]["documents"] == 1
+
+
+def test_a_part_carries_the_open_source_projects_that_place_it(data, monkeypatch):
+    """The third answer to "where is it used", and the only one pointing at a live board."""
+    table = config.dataset_table("part_repos")
+    table.parent.mkdir(parents=True, exist_ok=True)
+    table.write_text("part,sheets,url\n"
+                     "12AX7,3,https://github.com/a/one\n"
+                     "12AX7,1,https://github.com/b/two\n", encoding="utf-8")
+    page = P.part_payload("12AX7", P.index(), None)
+    assert page["n"]["repos"] == 2
+    assert page["repos"][0] == ["a/one", 3]        # the one that places it most, first
+
+
+def test_the_index_says_what_kind_of_thing_each_source_is(data):
+    """A factory sheet, a magazine page and a GitHub board are three different answers, so the page
+    groups them apart — which it can only do if it knows which is which."""
+    idx = P.index()
+    assert idx["kinds"]["esp"] == "site"
+    assert idx["kinds"]["el34world"] == "factory"

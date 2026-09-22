@@ -79,7 +79,10 @@ def build(out: Path | None = None) -> dict:
     search = part_pages.search_index(idx, recipes)
     if search:
         sizes["parts.json"] = write_json(out, "parts.json", {
-            "schema": SCHEMA, "sources": idx["sources"], "parts": search})
+            "schema": SCHEMA, "sources": idx["sources"],
+            # what each source is, so a part page can group its uses by the kind of thing they are
+            "kinds": [idx["kinds"].get(s, "") for s in idx["sources"]],
+            "parts": search})
         total = 0
         for name, *_ in search:
             total += write_json(out / "part", f"{name}.json",

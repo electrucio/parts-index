@@ -61,6 +61,8 @@ export interface PartIndex {
   schema: number
   /** The source names, once. A document names its source by position in this list. */
   sources: string[]
+  /** What each of those sources is — site, factory, magazine, book — by the same position. */
+  kinds: string[]
   parts: PartRow[]
 }
 
@@ -94,7 +96,9 @@ export interface PartPage {
     more?: number
     also?: string[]
   }[]
-  n: { documents: number; shown: number; copies: number }
+  /** `owner/repo` and how many of its sheets place the part. */
+  repos?: [string, number][]
+  n: { documents: number; shown: number; copies: number; repos?: number }
   models?: {
     kind: string
     preferred: string

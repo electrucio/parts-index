@@ -142,8 +142,101 @@ function Models({ page }: { page: PartPage }) {
   )
 }
 
-function Uses({ page, sources }: { page: PartPage; sources: string[] }) {
-  if (page.docs.length === 0) return null
+/** One page of one document, with what was beside the part on it. */
+function PageLink({ p }: { p: [number, string, string, number] }) {
+  return (
+    <li>
+      <a href={forViewer(p[1])} target="_blank" rel="noopener">page {p[0]}</a>
+      {p[2] && <span class="muted small"> beside {p[2]}</span>}
+    </li>
+  )
+}
+
+function Document({ d, source }: { d: PartPage['docs'][0]; source: string }) {
+  return (
+    <details class="uses sub">
+      <summary>
+        <strong>{d.t || d.u}</strong>
+        <span class="count">{n(d.p.length + (d.more ?? 0))}</span>
+        {d.schematic ? <span class="pill acc">schematic</span> : null}
+        {d.y ? <span class="small muted">{d.y}</span> : null}
+        {d.also ? <span class="small muted">also at {d.also.join(', ')}</span> : null}
+      </summary>
+      <ul class="uselist cols">
+        {d.p.map((p, j) => <PageLink key={j} p={p} />)}
+        {d.more ? <li class="muted small">and {n(d.more)} more pages</li> : null}
+      </ul>
+      <p class="small"><a href={d.u} target="_blank" rel="noopener">the document itself</a> · {source}</p>
+    </details>
+  )
+}
+
+/** A group of documents, folded by source: a part with three thousand hits has to stay readable. */
+function Group({
+  title, note, docs, sources, open,
+}: {
+  title: string; note: string; docs: PartPage['docs']; sources: string[]; open: boolean
+}) {
+  if (docs.length === 0) return null
+  const bySource = new Map<string, PartPage['docs']>()
+  for (const d of docs) {
+    const k = sources[d.s] ?? '?'
+    const g = bySource.get(k)
+    if (g) g.push(d)
+    else bySource.set(k, [d])
+  }
+  const groups = [...bySource.entries()].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]))
+  const pages = docs.reduce((t, d) => t + d.p.length + (d.more ?? 0), 0)
+  return (
+    <details class="uses" open={open}>
+      <summary>
+        <strong>{title}</strong>
+        <span class="count">{n(docs.length)} · {n(pages)} pages</span>
+        <span class="small muted">{note}</span>
+      </summary>
+      {groups.map(([source, ds]) => (
+        <details class="uses sub" key={source} open={groups.length === 1}>
+          <summary><strong>{source}</strong> <span class="count">{n(ds.length)}</span></summary>
+          {ds.map((d, i) => <Document key={i} d={d} source={source} />)}
+        </details>
+      ))}
+    </details>
+  )
+}
+
+function Repos({ page }: { page: PartPage }) {
+  const repos = page.repos
+  if (!repos?.length) return null
+  const total = page.n.repos ?? repos.length
+  return (
+    <details class="uses">
+      <summary>
+        <strong>Open-source projects</strong>
+        <span class="count">{n(total)}</span>
+        <span class="small muted">KiCad and Eagle sheets that place this part</span>
+      </summary>
+      <ul class="uselist cols">
+        {repos.map(([repo, sheets], i) => (
+          <li key={i}>
+            <a href={`https://github.com/${repo}`} target="_blank" rel="noopener">{repo}</a>
+            {sheets > 1 && <span class="muted small"> · {sheets} sheets</span>}
+          </li>
+        ))}
+        {total > repos.length && <li class="muted small">and {n(total - repos.length)} more</li>}
+      </ul>
+    </details>
+  )
+}
+
+const SITE_KINDS = new Set(['site', 'factory', 'reference'])
+const PAPER_KINDS = new Set(['magazine', 'book'])
+
+function Uses({ page, sources, kinds }: { page: PartPage; sources: string[]; kinds: string[] }) {
+  const kindOf = (d: PartPage['docs'][0]) => kinds[d.s] ?? ''
+  const built = page.docs.filter((d) => SITE_KINDS.has(kindOf(d)))
+  const paper = page.docs.filter((d) => PAPER_KINDS.has(kindOf(d)))
+  const rest = page.docs.filter((d) => !SITE_KINDS.has(kindOf(d)) && !PAPER_KINDS.has(kindOf(d)))
+  if (page.docs.length === 0 && !page.repos?.length) return null
   const { documents, shown, copies } = page.n
   return (
     <section class="stack-s">
@@ -154,33 +247,26 @@ function Uses({ page, sources }: { page: PartPage; sources: string[] }) {
         {copies > 0 && <> · {n(copies)} duplicate cop{copies === 1 ? 'y' : 'ies'} folded in</>}
         {' '}· a page link opens the sheet where the part is, not at the front.
       </p>
-      {page.docs.map((d, i) => (
-        <details class="uses" key={i} open={i < 8}>
-          <summary>
-            <span>{d.t || d.u}</span>
-            <span class="count">
-              {sources[d.s]}{d.y ? ` · ${d.y}` : ''}
-              {d.schematic ? ' · schematic' : ''}
-              {d.also ? ` · also at ${d.also.join(', ')}` : ''}
-            </span>
-          </summary>
-          <ul class="uselist cols">
-            {d.p.map((p, j) => (
-              <li key={j}>
-                <a href={forViewer(p[1])}>page {p[0]}</a>
-                {p[2] && <span class="muted"> beside {p[2]}</span>}
-              </li>
-            ))}
-            {d.more ? <li class="muted">and {n(d.more)} more pages</li> : null}
-          </ul>
-          <p class="small"><a href={d.u}>the document</a></p>
-        </details>
-      ))}
+      <Group
+        title="Projects and factory schematics" open
+        note="project sites, factory archives and reference works"
+        docs={built} sources={sources}
+      />
+      <Group
+        title="Magazines and books" open={built.length === 0}
+        note="the exact page of the PDF; pages with a schematic first"
+        docs={paper} sources={sources}
+      />
+      <Group
+        title="Other sources" open={false} note=""
+        docs={rest} sources={sources}
+      />
+      <Repos page={page} />
     </section>
   )
 }
 
-export function Detail({ part, sources }: { part: string; sources: string[] }) {
+export function Detail({ part, sources, kinds }: { part: string; sources: string[]; kinds: string[] }) {
   const [page, setPage] = useState<PartPage | null>(null)
   const [error, setError] = useState(false)
 
@@ -204,7 +290,7 @@ export function Detail({ part, sources }: { part: string; sources: string[] }) {
       {page && (
         <>
           <Models page={page} />
-          <Uses page={page} sources={sources} />
+          <Uses page={page} sources={sources} kinds={kinds} />
           {page.docs.length === 0 && !page.models && (
             <p class="muted">This part is in the dictionary, but nothing is published for it yet.</p>
           )}
@@ -225,7 +311,7 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
     fetch(`${DATA}/parts.json`)
       .then((r) => r.json() as Promise<PartIndex>)
       .then(setIndex)
-      .catch(() => setIndex({ schema: 0, sources: [], parts: [] }))
+      .catch(() => setIndex({ schema: 0, sources: [], kinds: [], parts: [] }))
   }, [])
 
   const searching = q.trim().length >= 2
@@ -293,7 +379,7 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
       </aside>
 
       {part ? (
-        <Detail part={part} sources={index?.sources ?? []} />
+        <Detail part={part} sources={index?.sources ?? []} kinds={index?.kinds ?? []} />
       ) : (
         <section class="evidence stack-s prose">
           <p class="eyebrow">All parts</p>
