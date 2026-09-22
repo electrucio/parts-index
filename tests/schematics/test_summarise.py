@@ -147,3 +147,20 @@ def test_a_page_whose_parts_have_changed_is_asked_again():
     one_more_part = dict(page, parts=page["parts"] + [{"part": "6V6"}])
     assert summarise.key_of(page) == summarise.key_of(same_parts_other_order)
     assert summarise.key_of(page) != summarise.key_of(one_more_part)
+
+
+def test_the_one_json_mistake_this_model_makes_is_repaired():
+    """A trailing comma before a closing brace, in about one answer in fifty — thousands of pages over
+    the corpus, and no reason to spend the call again."""
+    answer = summarise.read_answer(
+        '{"page": "a parts list", "parts": [\n'
+        '{"part": "TL072", "kind": "reference", "line": "op-amps IC1 and IC2 in the parts list",},\n'
+        '{"part": "1N914", "kind": "reference", "line": "diodes D2 and D4 in the parts list",},\n'
+        ']}', ["TL072", "1N914"])
+    assert set(answer["parts"]) == {"TL072", "1N914"}
+
+
+def test_nothing_else_is_guessed_at():
+    """Only that one repair: an answer broken some other way is asked again, not patched."""
+    with pytest.raises(Exception):
+        summarise.read_answer('{"page": "p", "parts": [{"part": "TL072" "kind": "reference"}]}', ["TL072"])

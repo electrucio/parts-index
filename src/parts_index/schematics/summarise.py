@@ -182,13 +182,30 @@ def prompt(page: dict, names: dict | None = None) -> str:
 
 
 # --- the answer -------------------------------------------------------------------------------------
+TRAILING_COMMA = re.compile(r",(\s*[}\]])")
+
+
+def loads(text: str) -> dict:
+    """The JSON object in the model's answer, repaired if it needs the one repair models need.
+
+    A trailing comma before a closing brace is the mistake this model actually makes, in about one
+    answer in fifty — enough to lose a couple of thousand pages over the corpus, and not a reason to
+    ask again. Nothing else is repaired: an answer that is wrong in some other way should fail loudly
+    and be asked again rather than be guessed at."""
+    body = text[text.index("{"):text.rindex("}") + 1]
+    try:
+        return json.loads(body)
+    except json.JSONDecodeError:
+        return json.loads(TRAILING_COMMA.sub(r"\1", body))
+
+
 def read_answer(text: str, asked: list[str]) -> dict:
     """The model's text -> {"page": line, "parts": {PART: {kind, line}}}, or raise so it is asked again.
 
     Lenient about what came back and strict about what is kept: an entry for a part nobody asked about
     is dropped, a kind this project does not use becomes `none`, and a line longer than a line is cut.
     An answer that names none of the parts asked about is not an answer."""
-    body = json.loads(text[text.index("{"):text.rindex("}") + 1])
+    body = loads(text)
     want = {p.upper(): p for p in asked}
     parts = {}
     for entry in body.get("parts") or []:
