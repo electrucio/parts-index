@@ -80,6 +80,12 @@ schematics-download-bg:  ## (maintainer) the same, detached under a lock with a 
 	@test -n "$(SOURCE)" || { echo "give the source: make schematics-download-bg SOURCE='tagboard dirtbox'"; exit 1; }
 	$(RUN) pidx schematics download $(foreach s,$(SOURCE),--source $(s)) $(if $(LIMIT),--limit $(LIMIT),) --detach
 
+schematics-list:  ## (maintainer) gather a source's file URLs again from the site's listing; SOURCE='a b' [DRY=1]
+	uv run pidx schematics list $(foreach s,$(SOURCE),--source $(s)) $(if $(LIMIT),--limit $(LIMIT)) $(if $(DRY),--dry)
+
+parts-census:  ## (maintainer) read the lists that say which part numbers exist; [SOURCE='a b'] [READ=1]
+	uv run pidx parts census $(foreach s,$(SOURCE),--source $(s)) $(if $(READ),--read)
+
 schematics-crawl:  ## (maintainer) walk a site and take what it shows; SOURCE='a b' [MAX=n]
 	@test -n "$(SOURCE)" || { echo "give the source: make schematics-crawl SOURCE=tubecad"; exit 1; }
 	$(RUN) pidx schematics crawl $(foreach s,$(SOURCE),--source $(s)) $(if $(MAX),--max $(MAX),)

@@ -60,6 +60,12 @@ def main(argv: list[str] | None = None) -> int:
     sd.add_argument("--detach", action="store_true", help="run it in the background, under a lock, into a log")
     sd.add_argument("--after", help="wait for that job to finish first (its name, as its log is called)")
 
+    sl = sch.add_parser("list", help="gather a source's file URLs again from the site's own listing")
+    sl.add_argument("--source", action="append", required=True, help="a source with a lister (repeatable)")
+    sl.add_argument("--limit", type=int, default=0, help="at most this many listing pages fetched")
+    sl.add_argument("--delay", type=float, default=0.0, help="seconds between two requests to one host")
+    sl.add_argument("--dry", action="store_true", help="say what would be added and add nothing")
+
     sc = sch.add_parser("crawl", help="walk a site from its start pages and take what it shows")
     sc.add_argument("--source", action="append", required=True, help="a source with a `crawl:` block (repeatable)")
     sc.add_argument("--max", type=int, default=None, help="pages to fetch before stopping; 0 runs until the queue is empty")
@@ -176,6 +182,13 @@ def main(argv: list[str] | None = None) -> int:
         argv2 += ["--dry"] if args.dry else []
         argv2 += ["--after", args.after] if args.after else []
         return sch_download.main(argv2 + (["--detach"] if args.detach else []))
+
+    if args.cmd == "schematics" and args.sch_cmd == "list":
+        from parts_index.schematics import listing as sch_listing
+        argv2 = [x for pair in (("--source", s) for s in args.source) for x in pair]
+        argv2 += ["--limit", str(args.limit)] if args.limit else []
+        argv2 += ["--delay", str(args.delay)] if args.delay else []
+        return sch_listing.main(argv2 + (["--dry"] if args.dry else []))
 
     if args.cmd == "schematics" and args.sch_cmd == "crawl":
         from parts_index.schematics import crawl as sch_crawl
