@@ -50,7 +50,9 @@ def test_a_detached_job_outlives_the_shell_that_started_it(monkeypatch):
     pid = jobs.detach("parts_index.schematics.crawl", ["--source", "tubecad"], "crawl_tubecad")
 
     assert pid == 4242
-    assert started["cmd"][1:] == ["-m", "parts_index.schematics.crawl", "--source", "tubecad"]
+    # -u because the log is the only window into a job that runs for days: block-buffered, a progress
+    # line sits unseen for hours and a live job is indistinguishable from a hung one
+    assert started["cmd"][1:] == ["-u", "-m", "parts_index.schematics.crawl", "--source", "tubecad"]
     assert started["kw"]["start_new_session"] is True
     assert started["kw"]["stdin"] is jobs.subprocess.DEVNULL       # nothing is ever waiting for a terminal
     assert jobs.run_log("crawl_tubecad").exists()

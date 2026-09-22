@@ -84,9 +84,13 @@ def wait_for(name: str, timeout: float = 86400, poll: float = POLL, sleep=time.s
 
 
 def detach(module: str, args: list[str], name: str) -> int:
-    """Start `python -m <module> <args>` in its own session, writing to this job's log. Returns its pid."""
+    """Start `python -m <module> <args>` in its own session, writing to this job's log. Returns its pid.
+
+    Unbuffered (`-u`), because the log is the only window into a job that runs for days: with the usual
+    block buffering a progress line sits in a 4 KB buffer for hours and `tail -f` shows nothing, which
+    is indistinguishable from a job that has hung."""
     logs().mkdir(parents=True, exist_ok=True)
     with open(run_log(name), "a", encoding="utf-8") as out:
-        child = subprocess.Popen([sys.executable, "-m", module, *args], stdin=subprocess.DEVNULL,
+        child = subprocess.Popen([sys.executable, "-u", "-m", module, *args], stdin=subprocess.DEVNULL,
                                  stdout=out, stderr=subprocess.STDOUT, start_new_session=True)
     return child.pid
