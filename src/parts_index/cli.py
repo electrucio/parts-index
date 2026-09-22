@@ -47,6 +47,12 @@ def main(argv: list[str] | None = None) -> int:
 
     sch = sub.add_parser("schematics", help="the schematic index").add_subparsers(
         dest="sch_cmd", required=True)
+    sd = sch.add_parser("download", help="fetch a source whose URLs are already listed")
+    sd.add_argument("--source", action="append", required=True, help="a source with a `list:` block (repeatable)")
+    sd.add_argument("--limit", type=int, default=0, help="only the first N URLs of the list")
+    sd.add_argument("--delay", type=float, default=0.0, help="seconds between two requests to one host")
+    sd.add_argument("--dry", action="store_true", help="say what would be fetched and fetch nothing")
+    sd.add_argument("--detach", action="store_true", help="run it in the background, under a lock, into a log")
     se = sch.add_parser("export", help="write the index into data/, where the site is built from")
     se.add_argument("--source", action="append", help="only these sources (repeatable)")
     se.add_argument("--dry", action="store_true", help="count what would be written and write nothing")
@@ -125,6 +131,14 @@ def main(argv: list[str] | None = None) -> int:
             argv2 += ["--limit", str(args.limit)] if args.limit else []
             argv2 += ["--dry"] if args.dry else []
         return model_fetch.main(argv2)
+
+    if args.cmd == "schematics" and args.sch_cmd == "download":
+        from parts_index.schematics import download as sch_download
+        argv2 = [x for pair in (("--source", s) for s in args.source) for x in pair]
+        argv2 += ["--limit", str(args.limit)] if args.limit else []
+        argv2 += ["--delay", str(args.delay)] if args.delay else []
+        argv2 += ["--dry"] if args.dry else []
+        return sch_download.main(argv2 + (["--detach"] if args.detach else []))
 
     if args.cmd == "schematics" and args.sch_cmd == "export":
         from parts_index.schematics import export as sch_export

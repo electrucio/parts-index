@@ -245,6 +245,12 @@ def page_sizes() -> Path:
     return material_root() / "pagesizes.csv.gz"
 
 
+def downloads(source: str) -> Path:
+    """What the download stage fetched for a source, `<type>/<sha1(url)[:10]>_<name>`. In transit by the
+    retention rule — download, extract, verify, delete — so only the OCR of it is kept."""
+    return material_root() / "downloads" / source
+
+
 def download_manifest(source: str) -> Path:
     """What the crawler already has for a source, so it resumes instead of starting again."""
     return material_root() / "manifests" / f"{source}.csv"
@@ -376,6 +382,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("linkchecks", "private", ()),
     ("index_db", "private", ()),
     ("page_sizes", "private", ()),
+    ("downloads", "private", ("esp",)),
     ("download_manifest", "private", ("esp",)),
     ("source_list", "private", ("diyaudio",)),
     ("spice_models_root", "private", ()),

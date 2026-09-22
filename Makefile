@@ -69,6 +69,14 @@ models-promote:  ## (maintainer) write the public recipe for every curated part 
 datasets-repos:  ## (maintainer) read stars, forks and watchers for every open-source project (needs `gh`)
 	$(RUN) pidx datasets repos
 
+schematics-download:  ## (maintainer) fetch sources whose URLs are already listed; SOURCE='a b' [LIMIT=n]
+	@test -n "$(SOURCE)" || { echo "give the source: make schematics-download SOURCE=audiocircuit"; exit 1; }
+	$(RUN) pidx schematics download $(foreach s,$(SOURCE),--source $(s)) $(if $(LIMIT),--limit $(LIMIT),)
+
+schematics-download-bg:  ## (maintainer) the same, detached under a lock with a log — for the long ones
+	@test -n "$(SOURCE)" || { echo "give the source: make schematics-download-bg SOURCE='tagboard dirtbox'"; exit 1; }
+	$(RUN) pidx schematics download $(foreach s,$(SOURCE),--source $(s)) $(if $(LIMIT),--limit $(LIMIT),) --detach
+
 schematics-export:  ## (maintainer) write the schematic index into data/, where the site is built from
 	$(RUN) pidx schematics export
 

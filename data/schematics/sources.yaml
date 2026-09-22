@@ -28,6 +28,16 @@ amz-muzique:
   status: proposed
   notes: 'pedal design: buffers, boosters, clipping, MOSFET stages. Proposed: set status to active and run `pidx schematics
     run --source amz-muzique`.'
+audiocircuit:
+  kind: factory
+  title: AudioCircuit
+  home_url: https://audiocircuit.dk/
+  status: active
+  list:
+    role: schematic
+  notes: '11,791 factory PDFs over 357 brands, their URLs gathered on 2026-09-18. robots.txt allows
+    everything and the site publishes a sitemap, which is how the list is refreshed when it ages.
+    Re-checked on 2026-09-22: six files taken at random all answered, averaging 623 KB.'
 bartola:
   kind: site
   title: Bartola Valves
@@ -47,6 +57,18 @@ books:
   notes: '50 of 78 are indexed: 23 link to a page of a public PDF, 11 to the archive.org page, 16 to its search inside. The
     other 28 keep their OCR but are not indexed, because their only URL is a publisher''s landing page, which the reader cannot
     check on the spot.'
+dirtbox:
+  kind: site
+  title: Dirtbox Layouts
+  home_url: https://dirtboxlayouts.blogspot.com/
+  status: active
+  list:
+    role: layout
+    figures: true
+    cdn: '(bp\.blogspot\.com|blogger\.googleusercontent\.com)$'
+  notes: 'Vero layouts published as blog posts: the drawing is an image on Blogger''s own host, so the
+    post is fetched and its images with it. robots.txt allows everything but /search and /share-widget.
+    1,784 posts listed on 2026-09-18.'
 diyaudioheaven:
   kind: site
   title: DIY-Audio-Heaven
@@ -76,6 +98,16 @@ drtube:
   title: Dr. Tube
   home_url: https://www.drtube.com/
   status: active
+effectslayouts:
+  kind: site
+  title: Effects Layouts
+  home_url: https://effectslayouts.blogspot.com/
+  status: active
+  list:
+    role: layout
+    figures: true
+    cdn: '(bp\.blogspot\.com|blogger\.googleusercontent\.com)$'
+  notes: '877 posts listed on 2026-09-18; same shape as the other two layout blogs.'
 el34world:
   kind: factory
   title: EL34 World — schematics
@@ -138,6 +170,15 @@ expanon:
   title: Experimentalists Anonymous
   home_url: https://www.experimentalistsanonymous.com/
   status: active
+fendersupport:
+  kind: factory
+  title: Fender service manuals
+  home_url: https://support.fender.com/hc/en-us/sections/42423674805531-INSTRUMENT-SERVICE-MANUALS
+  status: active
+  list:
+    role: service_manual
+  notes: 'The index page is served only to a browser, but the manuals themselves sit on the content
+    network and answer normally (checked 2026-09-22). 281 URLs gathered on 2026-09-19.'
 firstwatt:
   kind: site
   title: First Watt
@@ -424,6 +465,16 @@ synfo:
   home_url: https://www.synfo.nl/pages/servicemanuals.html
   status: active
   notes: 56 links in its index return 404.
+tagboard:
+  kind: site
+  title: Tagboard Effects
+  home_url: https://tagboardeffects.blogspot.com/
+  status: active
+  list:
+    role: layout
+    figures: true
+    cdn: '(bp\.blogspot\.com|blogger\.googleusercontent\.com)$'
+  notes: '1,254 posts listed on 2026-09-18, many of them commercial pedals that exist nowhere else.'
 techlib:
   kind: site
   title: Techlib — Charles Wenzel
