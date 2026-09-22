@@ -38,7 +38,7 @@ from urllib.parse import urldefrag, urljoin, urlparse
 from parts_index.core import http
 from parts_index.core.config import downloads, schematics_state
 from parts_index.core.jobs import detach, only_one, run_log, wait_for
-from parts_index.core.ledger import Ledger
+from parts_index.core.ledger import Ledger, today
 from parts_index.schematics.download import Downloader, registry_entry, safe_name, say, summary
 
 MODULE = "parts_index.schematics.crawl"
@@ -105,8 +105,29 @@ def same_page(url: str) -> str:
     return re.sub(r"^https?://(www\.)?", "", url).rstrip("/")
 
 
+def remember(led: Ledger, url: str) -> None:
+    """Write down a page this crawl found and has not reached, so a later run starts from it.
+
+    The queue used to live in memory and die with the run, which is why resuming meant walking the site
+    again from its front page. A row with nothing stamped on it is exactly what the ledger already means
+    by "known, not downloaded", so the frontier is kept where everything else about an item is kept.
+    """
+    if led.get(url) is None:
+        led.row(url)["role"] = "page"
+
+
+def frontier(led: Ledger) -> list[str]:
+    """What a previous run left in the queue."""
+    return [key for key, r in led.rows.items()
+            if r["role"] == "page" and not r["download_at"] and not r["skip_reason"]]
+
+
 def body_of(job: Downloader, source: str, url: str) -> tuple[bytes, int]:
-    """The page, from the copy we keep when there is one. Returns (body, requests spent)."""
+    """The page, from the copy we keep when there is one. Returns (body, requests spent).
+
+    Asking again for a page whose file has gone is the last resort, and after this run it stops being
+    needed: the page is marked as walked and its links are in the ledger.
+    """
     kept = downloads(source) / "html" / safe_name(url, "html")
     if kept.exists():
         return kept.read_bytes(), 0
@@ -114,7 +135,8 @@ def body_of(job: Downloader, source: str, url: str) -> tuple[bytes, int]:
     return (body if kind == "html" else b""), 1
 
 
-def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, log=say) -> dict:
+def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, refresh: bool = False,
+          log=say) -> dict:
     entry = registry_entry(source)
     if entry.get("status") != "active":
         raise SystemExit(f"{source} is '{entry.get('status')}' in the registry; set it to active to crawl it")
@@ -132,11 +154,13 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
 
     led = Ledger(schematics_state(source))
     job = Downloader(source, cfg, led, delay=delay, min_image=MIN_IMAGE, log=log)
-    queue = deque(without_fragment(u) for u in cfg["start"])
-    seen: set[str] = set()
+    waiting = frontier(led)
+    queue = deque([without_fragment(u) for u in cfg["start"]] + waiting)
+    # A page whose links are already written down is never opened again, with or without its file.
+    seen: set[str] = set() if refresh else {same_page(k) for k, r in led.rows.items() if r["crawl_at"]}
     read = fetched = 0
-    log(f"{source}: starting from {len(queue)}, {len(led)} already in the ledger"
-        f"{f', budget {budget} pages' if budget else ''}")
+    log(f"{source}: {len(waiting)} pages waiting from last time, {len(seen)} already walked, "
+        f"{len(led)} rows in the ledger{f', budget {budget} pages' if budget else ''}")
 
     try:
         while queue and (not budget or fetched < budget):
@@ -155,6 +179,7 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
             for src in page.frames:                       # a frameset keeps its content one hop further
                 u = without_fragment(urljoin(url, src))
                 if urlparse(u).netloc in hosts and same_page(u) not in seen and not NEVER.search(u):
+                    remember(led, u)
                     queue.appendleft(u)
 
             for href in page.links:
@@ -171,6 +196,7 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
                     if figures and not JUNK_IMAGE.search(p.path):
                         job.item(u, "figure")             # the full-size image behind a thumbnail
                 elif allow.search(tail) and same_page(u) not in seen and len(p.query) < 80:
+                    remember(led, u)
                     queue.append(u)
 
             for attrs in page.images if figures else []:
@@ -190,6 +216,8 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
                     u = BLOGGER_SIZE.sub("/s1600/", u)
                 job.item(u, "figure")
 
+            led.row(url)["crawl_at"] = today()       # its links are in the ledger now; never ask again
+            led.dirty = True
             if read % SAVE_EVERY == 0:
                 led.save()
                 log(f"  {read} pages read, {len(queue)} queued  {summary(job.counts)}")
@@ -208,6 +236,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--source", action="append", required=True, help="a source with a `crawl:` block (repeatable)")
     ap.add_argument("--max", type=int, default=None, help="pages to fetch before stopping; 0 runs until the queue is empty")
     ap.add_argument("--delay", type=float, default=http.DELAY, help=f"seconds between requests to one host (default {http.DELAY})")
+    ap.add_argument("--refresh", action="store_true", help="walk pages already walked, to find what a site has added")
     ap.add_argument("--detach", action="store_true", help="run it in the background, under a lock, into a log")
     ap.add_argument("--after", help="wait for that job to finish first (its name, as its log is called)")
     args = ap.parse_args(argv)
@@ -222,7 +251,7 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit(f"{args.after} is still running after the wait ran out; nothing was crawled")
     with only_one(name):
         for source in args.source:
-            crawl(source, budget=args.max, delay=args.delay)
+            crawl(source, budget=args.max, delay=args.delay, refresh=args.refresh)
     return 0
 
 

@@ -36,6 +36,11 @@ SCHEMATIC_FIELDS = (
     "key", "url", "role", "type", "http", "bytes", "sha256", "download_at",
     "n_pages", "text_method", "ocr_at", "ocr_v", "index_at", "index_v",
     "linkcheck_at", "link_ok", "skip_reason",
+    # Not a stage: the crawler's own note that it has read this page's links and written what they
+    # pointed at into this ledger. A page with it is never asked for again, even when the file it was
+    # read from has been deleted — which it will be, since a downloaded document is temporary and the
+    # OCR of it is what the project keeps. Clear it to walk a site again looking for what is new.
+    "crawl_at",
 )
 
 # pillar 2: a model file of a model source, or the attempt to find the model of one part at that source.

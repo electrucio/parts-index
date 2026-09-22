@@ -1,6 +1,8 @@
 """Walking a site: where it goes, what it takes, and what a resumed crawl costs."""
 from __future__ import annotations
 
+import shutil
+
 import pytest
 
 from parts_index.core import config
@@ -101,32 +103,45 @@ def test_it_takes_the_documents_a_page_shows(site, monkeypatch):
     assert led.get("https://elsewhere.example/img/other.png") is None      # somebody else's image
 
 
-def test_a_resumed_crawl_pays_only_for_what_it_no_longer_has(site, monkeypatch):
+def test_what_was_walked_stays_known_after_its_files_are_deleted(site, monkeypatch):
+    """A downloaded document is temporary — OCR reads it and it goes. What was scraped is not."""
     serve(monkeypatch)
     C.crawl("tubecad", log=lambda *a: None)
 
+    shutil.rmtree(config.downloads("tubecad"))          # the retention rule, applied
+
     again = serve(monkeypatch)
     out = C.crawl("tubecad", log=lambda *a: None)
-    assert again.asked == []                     # every page is read from the copy kept on disk
-    assert out["pages"] == 3 and out["fetched"] == 0
-
-    # the same crawl after the page files are lost, which is what the old pipeline left behind
-    for f in (config.downloads("tubecad") / "html").iterdir():
-        f.unlink()
-    third = serve(monkeypatch)
-    out = C.crawl("tubecad", log=lambda *a: None)
-    assert out["fetched"] == 3 and sorted(third.asked) == sorted(
-        ["https://tc.example/", "https://tc.example/2024/aikido.html", "https://tc.example/articles/list.html"])
+    assert again.asked == []                            # not one request to learn what we already knew
+    assert out["pages"] == 0 and out["queued"] == 0
 
 
-def test_a_budget_stops_the_run_and_the_next_one_carries_on(site, monkeypatch):
+def test_a_budget_leaves_the_rest_of_the_queue_in_the_ledger(site, monkeypatch):
     server = serve(monkeypatch)
     out = C.crawl("tubecad", budget=1, log=lambda *a: None)
     assert out["fetched"] == 1 and out["queued"] >= 1
     assert "https://tc.example/2024/aikido.html" not in server.asked
 
+    waiting = C.frontier(Ledger(config.schematics_state("tubecad")))
+    assert "https://tc.example/2024/aikido.html" in waiting       # the queue outlives the process
+    shutil.rmtree(config.downloads("tubecad"))
+
+    next_run = serve(monkeypatch)
     C.crawl("tubecad", budget=0, log=lambda *a: None)
-    assert "https://tc.example/2024/aikido.html" in server.asked
+    assert "https://tc.example/" not in next_run.asked            # walked in the first run
+    assert "https://tc.example/2024/aikido.html" in next_run.asked
+
+
+def test_a_site_is_walked_again_only_when_asked(site, monkeypatch):
+    """A site crawled to the end still publishes new articles; `--refresh` is how they are found."""
+    serve(monkeypatch)
+    C.crawl("tubecad", log=lambda *a: None)
+
+    assert C.crawl("tubecad", log=lambda *a: None)["pages"] == 0      # done means done
+
+    again = serve(monkeypatch)
+    out = C.crawl("tubecad", refresh=True, log=lambda *a: None)
+    assert out["pages"] == 3 and again.asked == []                    # re-read from the copies kept
 
 
 def test_a_frameset_is_one_hop_further(site, monkeypatch):
