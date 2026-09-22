@@ -32,6 +32,7 @@ from pathlib import Path
 from parts_index.core.config import (
     REPO_ROOT,
     backups,
+    census_cache,
     datasheets,
     download_manifest,
     guard_extra_patterns,
@@ -74,6 +75,8 @@ def contents(level: str) -> list[tuple[Path, str]]:
         out += [
             (spice_models_root() / "sources", "the downloaded vendor files themselves"),
             (datasheets(), "manufacturer datasheets, still needed by the simulation phase"),
+            (census_cache("x").parent, "the index pages the part census was read from: small, and "
+                                       "re-reading them costs a volunteer's site half an hour of crawling"),
             (simulators(), "simulator installers and tools"),
         ]
     if level == "all":
