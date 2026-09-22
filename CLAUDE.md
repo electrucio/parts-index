@@ -32,8 +32,11 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
   attention each open-source project has, through the `gh` command's own login.
 - `src/parts_index/migrate/` one-off steps carrying the old pipeline's state across; deleted when the
   last stage is ported.
-- `private_uncommitted/` local, git-ignored data root: `ocr/` the page records with their map, and
+- `private_material/` local, git-ignored, in transit: `ocr/` the page records with their map, `census/`
+  the index pages the part census was read from, `downloads/` documents waiting to be read, and
   `staging/` the old code still to be ported. Port from there, never edit the old repositories.
+  `private_web_spice_models/` is the other private tree, and it is permanent: the vendor model text and
+  symbols the site serves in private mode. `core.config` names both and nothing else may.
 
 ## Hard rules
 
@@ -44,19 +47,22 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
    For non-redistributable sources publish measured results, not a dump of the `.model` parameters.
 3. **Never bypass** a CAPTCHA, login, paywall or click-through licence. Respect robots.txt and per-host
    delays (use `core.http`). A blocked source is recorded as blocked, with the human-facing URL, because
-   a link a person can follow is still worth publishing. User forums are out of scope **as schematic
-   sources** (noise, and arguable terms); a SPICE model posted on one is still a model.
+   a link a person can follow is still worth publishing. **On a forum, index the attachments and never
+   the conversation**, and among attachments only schematics or projects worked out to some degree — a
+   thread page is read to find what it links to and is never itself a document. A SPICE model posted on
+   one is still a model.
 4. **Precision over recall.** A wrong link is worse than no link. When a part read is doubtful, drop it.
    Every extractor fix comes with a test case.
 5. **Never reprocess what is done.** Every pipeline stage goes through `core.ledger`: an item is skipped
    when its stamp matches (input sha256, stage version). Reprocess by bumping the stage version, not by
    deleting state. New site or vendor = new registry entry, then run that source only.
-6. **Nothing under `private_uncommitted/` is ever added to git**, and nothing public may depend on a local
-   absolute path, a personal e-mail address or a secret. **Every location in the project is named in
+6. **Nothing under `private_material/` or `private_web_spice_models/` is ever added to git**, and nothing
+   public may depend on a local absolute path, a personal e-mail address or a secret — including inside a
+   published URL, where ten exported links hid one for months. **Every location in the project is named in
    `core.config` and nowhere else** — no other module joins a path (`tests/core/test_config.py` fails if one
    does, and `pidx paths` prints the map). Credentials live outside the repository tree.
    `scripts/licence_guard.py` enforces the rest in the pre-commit hook and in CI.
-7. **Move first, refactor later.** When porting from `private_uncommitted/staging/`, copy behaviour exactly
+7. **Move first, refactor later.** When porting from `private_material/staging/`, copy behaviour exactly
    and prove it with a golden test before cleaning up.
 8. Everything public is in **English**.
 9. Commit in small, reviewable steps. The maintainer approves each commit; do not push without being asked.

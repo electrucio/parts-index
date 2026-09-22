@@ -46,6 +46,9 @@ SUFFIX_EXCEPTIONS = ("tests/fixtures/",)
 # Machine-specific names (user, host, data mount) go in the local pattern file, not here.
 CONTENT_PATTERNS = [
     ("local absolute path", re.compile(r"/(?:home|Users)" + r"/[A-Za-z0-9_.-]+/")),
+    # Where a corpus lives, next to home directories. Anchored on a field or fragment boundary, so an
+    # ordinary URL whose own path happens to contain the same segment does not match.
+    ("local corpus path", re.compile(r"""(?:^|[\s,"'#=])/(?:data|mnt|srv|opt)/[A-Za-z0-9_.-]+/""")),
     ("personal e-mail address", re.compile(r"[A-Za-z0-9._%+-]+@" + r"(?:gmail|hotmail|outlook|yahoo)\.")),
     ("API-key shaped string", re.compile(r"\bsk-" + r"[A-Za-z0-9_-]{24,}")),
 ]
@@ -108,6 +111,17 @@ def check(path: str) -> list[str]:
             line = text.count("\n", 0, m.start()) + 1
             problems.append(f"{path}:{line}: SPICE model text outside "
                             f"{', '.join(MODEL_ALLOWED_PREFIXES)}")
+    # URLs are blanked before the content patterns run, because a page on somebody else's site can be
+    # called anything, including things that read like a private path: one source publishes URLs whose
+    # own path begins with a home directory. What can never be legitimate is a *fragment* that is an
+    # absolute path: that is this machine's disk layout glued to the end of a link. Ten exported Elektor
+    # links ended in an absolute path under the corpus directory for months, invisible here precisely
+    # because a URL is where it sat.
+    for url in PUBLIC_URL.findall(text):
+        fragment = url.partition("#")[2]
+        if fragment.startswith("/"):
+            line = text.count("\n", 0, text.index(url)) + 1
+            problems.append(f"{path}:{line}: a published link ends in a path out of a disk ({fragment[:40]})")
     text = PUBLIC_URL.sub(lambda m: " " * len(m.group()), text)
     for label, pattern in CONTENT_PATTERNS + local_patterns():
         m = pattern.search(text)

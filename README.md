@@ -36,8 +36,10 @@ components/        extra LTspice components (original work, MIT)
 circuits/          reference circuits used to compare models
 data/              the public dataset (CC BY 4.0): source registries, processing ledgers, the part
                    dictionary, and — as the migration proceeds — the index itself and model recipes
-private_uncommitted/   local only, git-ignored: downloaded documents, OCR text, vendor model files,
-                   datasheet PDFs. `pidx paths` prints what is public and what is not.
+private_material/  local only, git-ignored and in transit: downloaded documents, the OCR of them with
+                   its map, datasheet PDFs, and what is not ported or exported yet
+private_web_spice_models/  local only, git-ignored and permanent: the vendor model text and symbols
+                   whose licences forbid publishing them. `pidx paths` prints which side each is on.
 ```
 
 The website (`web/`) and the documentation (`docs/`) are not in the repository yet.
