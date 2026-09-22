@@ -38,6 +38,10 @@ def main(argv: list[str] | None = None) -> int:
     mf.add_argument("--note", default="")
     mf.add_argument("--curl", action="store_true", help="some vendors answer curl and nothing else")
     mf.add_argument("--force", action="store_true", help="fetch it again even if this source already holds it")
+    mv = mod.add_parser("verify", help="whether this tree still holds every model file it was given")
+    mv.add_argument("--source", action="append", help="only these sources (repeatable)")
+    mv.add_argument("--repair", action="store_true", help="fetch back what is lost or no longer matches")
+    mv.add_argument("--limit", type=int, default=0, help="at most this many repairs per source")
     mp = mod.add_parser("promote", help="write the public recipe for every curated part")
     mp.add_argument("--kind", help="only one kind (bjt, jfet, ...)")
     mp.add_argument("--dry", action="store_true", help="say what would be written and write nothing")
@@ -62,6 +66,11 @@ def main(argv: list[str] | None = None) -> int:
     sc.add_argument("--delay", type=float, default=0.0, help="seconds between two requests to one host")
     sc.add_argument("--detach", action="store_true", help="run it in the background, under a lock, into a log")
     sc.add_argument("--after", help="wait for that job to finish first (its name, as its log is called)")
+    sv = sch.add_parser("verify", help="whether the tree still holds what was downloaded, and whether it matters")
+    sv.add_argument("--source", action="append", help="only these sources (repeatable)")
+    sv.add_argument("--deep", action="store_true", help="read every file and check it against its checksum")
+    sv.add_argument("--repair", action="store_true", help="fetch back what was lost before anything read it")
+    sv.add_argument("--limit", type=int, default=0, help="at most this many repairs")
     se = sch.add_parser("export", help="write the index into data/, where the site is built from")
     se.add_argument("--source", action="append", help="only these sources (repeatable)")
     se.add_argument("--dry", action="store_true", help="count what would be written and write nothing")
@@ -122,6 +131,13 @@ def main(argv: list[str] | None = None) -> int:
         argv2 += ["-o", args.out] if args.out else []
         return model_index.main(argv2)
 
+    if args.cmd == "models" and args.mod_cmd == "verify":
+        from parts_index.models import verify as model_verify
+        argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
+        argv2 += ["--repair"] if args.repair else []
+        argv2 += ["--limit", str(args.limit)] if args.limit else []
+        return model_verify.main(argv2)
+
     if args.cmd == "models" and args.mod_cmd == "promote":
         from parts_index.models import promote as model_promote
         argv2 = ["--kind", args.kind] if args.kind else []
@@ -158,6 +174,14 @@ def main(argv: list[str] | None = None) -> int:
         argv2 += ["--delay", str(args.delay)] if args.delay else []
         argv2 += ["--after", args.after] if args.after else []
         return sch_crawl.main(argv2 + (["--detach"] if args.detach else []))
+
+    if args.cmd == "schematics" and args.sch_cmd == "verify":
+        from parts_index.schematics import verify as sch_verify
+        argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
+        argv2 += ["--deep"] if args.deep else []
+        argv2 += ["--repair"] if args.repair else []
+        argv2 += ["--limit", str(args.limit)] if args.limit else []
+        return sch_verify.main(argv2)
 
     if args.cmd == "schematics" and args.sch_cmd == "export":
         from parts_index.schematics import export as sch_export

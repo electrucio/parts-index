@@ -43,3 +43,6 @@ select = ["E4", "E7", "E9", "F", "I"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+# Two areas may name a test after the same stage — tests/models/test_verify.py and
+# tests/schematics/test_verify.py — and the default import mode cannot hold both.
+addopts = "--import-mode=importlib"

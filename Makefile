@@ -11,7 +11,7 @@ WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
 
 .DEFAULT_GOAL := help
-.PHONY: help setup test test-web lint guard check status status-write paths models-index models-missing models-recover models-promote datasets-repos schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
+.PHONY: help setup test test-web lint guard check status status-write paths models-index models-missing models-recover models-verify models-promote datasets-repos schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -63,6 +63,9 @@ models-missing:  ## (maintainer) what the catalogue recorded that the sources no
 models-recover:  ## (maintainer) fetch those files again, checking each against the checksum we had
 	$(RUN) pidx models recover
 
+models-verify:  ## (maintainer) check the tree still holds every model file, byte for byte
+	$(RUN) pidx models verify
+
 models-promote:  ## (maintainer) write the public recipe for every curated part into data/models/parts/
 	$(RUN) pidx models promote
 
@@ -85,6 +88,9 @@ schematics-crawl-bg:  ## (maintainer) the same, detached under a lock with a log
 	@test -n "$(SOURCE)" || { echo "give the source: make schematics-crawl-bg SOURCE=tubecad"; exit 1; }
 	$(RUN) pidx schematics crawl $(foreach s,$(SOURCE),--source $(s)) $(if $(MAX),--max $(MAX),) \
 	  $(if $(AFTER),--after $(AFTER),) --detach
+
+schematics-verify:  ## (maintainer) find documents lost before anything read them; REPAIR=1 fetches them back
+	$(RUN) pidx schematics verify $(if $(SOURCE),$(foreach s,$(SOURCE),--source $(s)),) $(if $(REPAIR),--repair,)
 
 schematics-export:  ## (maintainer) write the schematic index into data/, where the site is built from
 	$(RUN) pidx schematics export
