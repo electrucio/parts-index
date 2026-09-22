@@ -86,6 +86,12 @@ schematics-list:  ## (maintainer) gather a source's file URLs again from the sit
 explain:  ## why a part gives nothing — the extractor, or no document that has it; PART='6V6 TTC004B'
 	uv run pidx parts explain $(PART)
 
+parts-benchmark:  ## score today's extractor against the labelled pages; BUILD=1 labels more (spends money)
+	uv run pidx parts benchmark $(if $(BUILD),--build) $(if $(PER_SOURCE),--per-source $(PER_SOURCE)) $(if $(BUDGET),--budget $(BUDGET))
+
+parts-judge:  ## decide which census names mean a component here; COLLECT=1 then ASK=1 (ASK spends money)
+	uv run pidx parts judge $(if $(COLLECT),--collect) $(if $(ASK),--ask) $(if $(BUDGET),--budget $(BUDGET))
+
 parts-census:  ## (maintainer) read the lists that say which part numbers exist; [SOURCE='a b'] [READ=1]
 	uv run pidx parts census $(foreach s,$(SOURCE),--source $(s)) $(if $(READ),--read)
 
@@ -107,6 +113,9 @@ schematics-ocr-docker:  ## (maintainer) the same inside the CUDA image, one shar
 
 schematics-verify:  ## (maintainer) find documents lost before anything read them; REPAIR=1 fetches them back
 	$(RUN) pidx schematics verify $(if $(SOURCE),$(foreach s,$(SOURCE),--source $(s)),) $(if $(REPAIR),--repair,)
+
+schematics-reindex:  ## (maintainer) read the corpus again with the current extractor; [SOURCE='a b'] [WORKERS=n]
+	uv run pidx schematics reindex $(foreach s,$(SOURCE),--source $(s)) $(if $(WORKERS),--workers $(WORKERS)) $(if $(LIMIT),--limit $(LIMIT)) $(if $(DRY),--dry)
 
 schematics-export:  ## (maintainer) write the schematic index into data/, where the site is built from
 	$(RUN) pidx schematics export

@@ -175,6 +175,17 @@ def parts_census() -> Path:
     return PUBLIC_DATA / "parts" / "census.csv"
 
 
+def parts_benchmark() -> Path:
+    """Labelled decisions on real pages: does this token, on this page, name a component. What every
+    change to the extractor is measured against."""
+    return PUBLIC_DATA / "parts" / "benchmark.csv"
+
+
+def parts_verdicts() -> Path:
+    """What each census name means *in this corpus*, judged once with the evidence, with the reason."""
+    return PUBLIC_DATA / "parts" / "verdicts.csv"
+
+
 def census_registry() -> Path:
     """The lists the census is read from: what each one covers, and on whose authority."""
     return PUBLIC_DATA / "parts" / "census_sources.yaml"
@@ -388,6 +399,8 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("wanted_parts", "public", ()),
     ("rejected_tokens", "public", ()),
     ("parts_census", "public", ()),
+    ("parts_benchmark", "public", ()),
+    ("parts_verdicts", "public", ()),
     ("census_registry", "public", ()),
     ("census_state", "public", ("frank_pocnet",)),
     ("datasets_registry", "public", ()),

@@ -59,6 +59,7 @@ def main(argv: list[str] | None = None) -> int:
     sd.add_argument("--dry", action="store_true", help="say what would be fetched and fetch nothing")
     sd.add_argument("--detach", action="store_true", help="run it in the background, under a lock, into a log")
     sd.add_argument("--after", help="wait for that job to finish first (its name, as its log is called)")
+    sd.add_argument("--wait-hours", type=float, default=24.0, help="how long to wait for it before giving up")
 
     sl = sch.add_parser("list", help="gather a source's file URLs again from the site's own listing")
     sl.add_argument("--source", action="append", required=True, help="a source with a lister (repeatable)")
@@ -72,6 +73,7 @@ def main(argv: list[str] | None = None) -> int:
     sc.add_argument("--delay", type=float, default=0.0, help="seconds between two requests to one host")
     sc.add_argument("--detach", action="store_true", help="run it in the background, under a lock, into a log")
     sc.add_argument("--after", help="wait for that job to finish first (its name, as its log is called)")
+    sc.add_argument("--wait-hours", type=float, default=24.0, help="how long to wait for it before giving up")
     so = sch.add_parser("ocr", help="read what is downloaded and not read yet, page by page, with boxes")
     so.add_argument("--source", action="append", required=True, help="a source with documents downloaded (repeatable)")
     so.add_argument("--limit", type=int, default=0, help="at most this many documents")
@@ -86,12 +88,31 @@ def main(argv: list[str] | None = None) -> int:
     sv.add_argument("--retry", action="append", metavar="REASON",
                     help="first forget refusals recorded under this reason (repeatable)")
     sv.add_argument("--limit", type=int, default=0, help="at most this many repairs")
+    sr = sch.add_parser("reindex", help="read the corpus again with the current extractor, from the OCR on disk")
+    sr.add_argument("--source", action="append", help="only these sources (repeatable)")
+    sr.add_argument("--limit", type=int, default=0, help="at most this many documents")
+    sr.add_argument("--workers", type=int, default=12, help="how many processes read at once")
+    sr.add_argument("--dry", action="store_true", help="say how much there is to read and write nothing")
+
     se = sch.add_parser("export", help="write the index into data/, where the site is built from")
     se.add_argument("--source", action="append", help="only these sources (repeatable)")
     se.add_argument("--dry", action="store_true", help="count what would be written and write nothing")
 
     pt = sub.add_parser("parts", help="the part vocabulary: which numbers exist and what they are").add_subparsers(
         dest="pt_cmd", required=True)
+    pj = pt.add_parser("judge", help="decide which census names mean a component in this corpus")
+    pj.add_argument("--collect", action="store_true", help="walk the corpus and gather the evidence")
+    pj.add_argument("--ask", action="store_true", help="put the evidence to a model (spends money)")
+    pj.add_argument("--per-source", type=int, default=60)
+    pj.add_argument("--budget", type=float, default=15.0)
+    pj.add_argument("--model", default="gpt-5-mini")
+
+    pb = pt.add_parser("benchmark", help="labelled decisions on real pages, and today's score against them")
+    pb.add_argument("--build", action="store_true", help="sample pages and label them (spends money)")
+    pb.add_argument("--per-source", type=int, default=6, help="documents sampled per source")
+    pb.add_argument("--budget", type=float, default=12.0, help="dollars this run may spend")
+    pb.add_argument("--model", default="gpt-5")
+
     pe = pt.add_parser("explain", help="why a part gives nothing: the extractor, or no document that has it")
     pe.add_argument("part", nargs="+")
 
@@ -190,7 +211,7 @@ def main(argv: list[str] | None = None) -> int:
         argv2 += ["--limit", str(args.limit)] if args.limit else []
         argv2 += ["--delay", str(args.delay)] if args.delay else []
         argv2 += ["--dry"] if args.dry else []
-        argv2 += ["--after", args.after] if args.after else []
+        argv2 += ["--after", args.after, "--wait-hours", str(args.wait_hours)] if args.after else []
         return sch_download.main(argv2 + (["--detach"] if args.detach else []))
 
     if args.cmd == "schematics" and args.sch_cmd == "list":
@@ -205,7 +226,7 @@ def main(argv: list[str] | None = None) -> int:
         argv2 = [x for pair in (("--source", s) for s in args.source) for x in pair]
         argv2 += ["--max", str(args.max)] if args.max is not None else []
         argv2 += ["--delay", str(args.delay)] if args.delay else []
-        argv2 += ["--after", args.after] if args.after else []
+        argv2 += ["--after", args.after, "--wait-hours", str(args.wait_hours)] if args.after else []
         return sch_crawl.main(argv2 + (["--detach"] if args.detach else []))
 
     if args.cmd == "schematics" and args.sch_cmd == "ocr":
@@ -225,10 +246,28 @@ def main(argv: list[str] | None = None) -> int:
         argv2 += ["--limit", str(args.limit)] if args.limit else []
         return sch_verify.main(argv2)
 
+    if args.cmd == "schematics" and args.sch_cmd == "reindex":
+        from parts_index.schematics import reindex as sch_reindex
+        argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
+        argv2 += ["--limit", str(args.limit)] if args.limit else []
+        argv2 += ["--workers", str(args.workers)]
+        return sch_reindex.main(argv2 + (["--dry"] if args.dry else []))
+
     if args.cmd == "schematics" and args.sch_cmd == "export":
         from parts_index.schematics import export as sch_export
         argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
         return sch_export.main(argv2 + (["--dry"] if args.dry else []))
+
+    if args.cmd == "parts" and args.pt_cmd == "judge":
+        from parts_index.core.parts import judge
+        argv2 = ["--per-source", str(args.per_source), "--budget", str(args.budget), "--model", args.model]
+        argv2 += ["--collect"] if args.collect else []
+        return judge.main(argv2 + (["--ask"] if args.ask else []))
+
+    if args.cmd == "parts" and args.pt_cmd == "benchmark":
+        from parts_index.core.parts import benchmark
+        argv2 = ["--per-source", str(args.per_source), "--budget", str(args.budget), "--model", args.model]
+        return benchmark.main(argv2 + (["--build"] if args.build else []))
 
     if args.cmd == "parts" and args.pt_cmd == "explain":
         from parts_index.core.parts import explain
