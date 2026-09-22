@@ -128,3 +128,25 @@ describe('filtering by kind of device', () => {
     expect(ofDevice(rows, 'opto', MENU)).toEqual([])
   })
 })
+
+describe('the chosen order survives typing in the box', () => {
+  // A part with no use at all and one model used to come above a part on hundreds of documents,
+  // because typing anything dropped the sort and fell back to a weight that counted a model as 25 uses.
+  const rows: PartRow[] = [
+    ['TL071', 3, 0, 4, 0],
+    ['TL072', 900, 0, 1, 0],
+    ['TL07', 0, 0, 9, 0],
+  ]
+
+  it('orders the matches by uses when that is what was asked for', () => {
+    expect(search(rows, 'TL07', 'documents').map((r) => r[0])).toEqual(['TL07', 'TL072', 'TL071'])
+  })
+
+  it('orders them by models when that is what was asked for', () => {
+    expect(search(rows, 'TL07', 'models').map((r) => r[0])).toEqual(['TL07', 'TL071', 'TL072'])
+  })
+
+  it('still puts an exact match first, whatever the order', () => {
+    expect(search(rows, 'TL072', 'models')[0][0]).toBe('TL072')
+  })
+})

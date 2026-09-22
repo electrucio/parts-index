@@ -33,8 +33,19 @@ const FILTERS: { key: Filter; label: string }[] = [
 ]
 const PAGE = 300
 
-/** What a query matches, best first: the part itself, then what starts with it, then what contains it. */
-export function search(rows: PartRow[], q: string): PartRow[] {
+const COMPARE: Record<Sort, (a: PartRow, b: PartRow) => number> = {
+  documents: (a, b) => b[1] - a[1] || b[3] - a[3] || a[0].localeCompare(b[0]),
+  models: (a, b) => b[3] - a[3] || b[1] - a[1] || a[0].localeCompare(b[0]),
+  name: (a, b) => a[0].localeCompare(b[0]),
+}
+
+/**
+ * What a query matches, best first: the part itself, then what starts with it, then what contains it —
+ * and inside each of those, whatever order was asked for. The chosen sort used to be dropped as soon as
+ * anything was typed, which put parts with no use at all above parts with hundreds of them, because the
+ * relevance weight it fell back to counted one SPICE model as twenty-five documents.
+ */
+export function search(rows: PartRow[], q: string, by: Sort = 'documents'): PartRow[] {
   const needle = q.trim().toUpperCase().replace(/[^A-Z0-9]/g, '')
   if (needle.length < 2) return []
   const exact: PartRow[] = []
@@ -46,19 +57,13 @@ export function search(rows: PartRow[], q: string): PartRow[] {
     else if (key.startsWith(needle)) starts.push(r)
     else if (key.includes(needle)) has.push(r)
   }
-  const weight = (r: PartRow) => -(r[1] * 2 + r[3] * 50)
-  for (const g of [starts, has]) g.sort((a, b) => weight(a) - weight(b) || a[0].localeCompare(b[0]))
+  for (const g of [exact, starts, has]) g.sort(COMPARE[by])
   return [...exact, ...starts, ...has]
 }
 
 /** All the parts, in the order asked for. Sorting 15,558 rows is cheap; rendering them is not. */
 export function order(rows: PartRow[], by: Sort): PartRow[] {
-  const cmp: Record<Sort, (a: PartRow, b: PartRow) => number> = {
-    documents: (a, b) => b[1] - a[1] || b[3] - a[3] || a[0].localeCompare(b[0]),
-    models: (a, b) => b[3] - a[3] || b[1] - a[1] || a[0].localeCompare(b[0]),
-    name: (a, b) => a[0].localeCompare(b[0]),
-  }
-  return [...rows].sort(cmp[by])
+  return [...rows].sort(COMPARE[by])
 }
 
 export function keep(rows: PartRow[], f: Filter): PartRow[] {
@@ -424,7 +429,7 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
   const list = useMemo(() => {
     if (!index) return []
     const kept = keep(ofDevice(index.parts, device, index.deviceKinds), filter)
-    return searching ? search(kept, q) : order(kept, by)
+    return searching ? search(kept, q, by) : order(kept, by)
   }, [index, q, by, filter, device, searching])
   useEffect(() => setShown(PAGE), [q, by, filter, device])
 
