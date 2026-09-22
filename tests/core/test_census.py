@@ -54,3 +54,12 @@ def test_load_keys_a_part_the_way_the_extractor_spells_it(monkeypatch, tmp_path)
     loaded = census.load()
     assert loaded["6V6"] == ("6V6", "tube")
     assert loaded["622AM"] == ("6-22AM", "tube")                # norm() drops the punctuation
+
+
+def test_every_row_carries_the_page_that_vouches_for_it():
+    """A census row is a fact and its evidence. Without a public link it is neither something a reader
+    can check nor something the site can offer, so it is not a row."""
+    rows = census.load_rows()
+    if not rows:
+        return                                              # no census built here
+    assert not [r for r in rows if not r["url"].startswith("http")]

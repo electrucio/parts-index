@@ -102,7 +102,10 @@ def _model_file_urls() -> dict[tuple[str, str], str]:
         with open(led, newline="", encoding="utf-8") as f:
             for r in csv.DictReader(f):
                 url = r.get("key") or r.get("url") or ""
-                if url:
+                # A ledger key is a URL for anything fetched, but a model copied in by hand is keyed
+                # `manual:raw/...`, which is a local path and may never be published (rule 6). Such a
+                # file falls back to the vendor's own page, or the part leaves the census.
+                if url.startswith("http"):
                     out[(source, url.rsplit("/", 1)[-1].lower())] = url
     return out
 
@@ -225,6 +228,14 @@ def build(only: list[str] | None = None, *, fetch: bool = True, limit: int = 0,
     counts = {}
     for source in active(only):
         found = read_source(source, fetch=fetch, limit=limit, delay=delay)
+        dropped = sum(1 for e in found if not e.url)
+        found = [e for e in found if e.url]
+        # A census row is two things at once: a fact, and the page that vouches for it. Without the
+        # second it is neither evidence a reader can check nor a link the site can offer, so it is not
+        # a row. 442 came out this way on 2026-09-22, all from model sources with no home_url recorded;
+        # filling those in `data/models/sources/` brings the parts back on the next build.
+        if dropped:
+            counts[f"{source}: no public link, left out"] = dropped
         counts[source] = len({e.part for e in found})
         for e in found:
             rows.setdefault((e.part.upper(), source), e)
