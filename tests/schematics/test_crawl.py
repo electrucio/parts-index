@@ -163,3 +163,13 @@ def test_a_page_that_never_says_html_is_still_a_page(site, monkeypatch):
     server = serve(monkeypatch, dict(ANSWERS, **{"https://tc.example/": Response(200, "https://tc.example/", "text/plain", old)}))
     C.crawl("tubecad", log=lambda *a: None)
     assert "https://tc.example/2024/aikido.html" in server.asked
+
+
+def test_a_queued_crawl_waits_as_long_as_it_was_told(site, monkeypatch):
+    """The default is a day. A download of eleven thousand files can outlast that, so it is a number."""
+    waited = {}
+    monkeypatch.setattr(C, "wait_for", lambda name, timeout: waited.update(name=name, timeout=timeout) or True)
+    monkeypatch.setattr(C, "crawl", lambda *a, **k: {})
+
+    C.main(["--source", "tubecad", "--after", "download_audiocircuit", "--wait-hours", "48"])
+    assert waited == {"name": "download_audiocircuit", "timeout": 48 * 3600}

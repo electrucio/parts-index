@@ -222,6 +222,16 @@ def with_text(pages: list[dict], say=print) -> list[dict]:
     return out
 
 
+def room_for(parts: int) -> int:
+    """How long an answer about this many parts is allowed to be.
+
+    An answer cut off in the middle is an answer thrown away, asked again on the next run and thrown
+    away again, so the cap is generous: it costs nothing unless it is used, and the model stops when it
+    has said what it has to say. A page of two dozen parts needs several times the answer of a page
+    with one, and a page with one still needs room for the page line and the JSON around it."""
+    return min(300 + 60 * parts, 2000)
+
+
 def key_of(page: dict) -> str:
     return f"{VERSION}|{page['source']}|{page['key']}|{page['page']}"
 
@@ -250,10 +260,8 @@ def run(which: list[str] | None = None, limit: int = 0, workers: int = 4, dry: b
         counts["pages"] += len(pages)
         counts["uses"] += uses
         counts["absent"] += sum(len(p["absent"]) for p in pages)
-        # Room for the page line and one line per part. A page of two dozen parts needs four times the
-        # answer of a page with three, and an answer cut off in the middle is an answer thrown away.
         items = [{"key": key_of(p), "prompt": prompt(p), "asked": [q["part"] for q in p["parts"]],
-                  "max_tokens": 120 + 45 * len(p["parts"])} for p in pages]
+                  "max_tokens": room_for(len(p["parts"]))} for p in pages]
         have = llm.cached(TASK, MODEL)
         todo = [it for it in items if it["key"] not in have]
         say(f"{source}: {len(pages)} pages, {uses} uses, {len(todo)} pages to ask")

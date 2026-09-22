@@ -86,3 +86,10 @@ def test_the_prompt_names_the_document_the_parts_and_their_designators():
                              "parts": [{"part": "12AX7", "times": 2, "near": "V1 V2"}]})
     assert "Trainwreck express" in text and "12AX7" in text and "beside V1 V2" in text
     assert "read 2x" in text
+
+
+def test_a_page_with_one_part_still_gets_room_for_a_whole_answer():
+    # a 165-token cap cut a one-part answer in half, and a cut-off answer is asked again for ever
+    assert summarise.room_for(1) >= 350
+    assert summarise.room_for(24) > summarise.room_for(4)
+    assert summarise.room_for(500) <= 2000

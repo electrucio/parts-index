@@ -72,11 +72,22 @@ SCHEMA = {"name": "verdicts", "strict": True, "schema": {"type": "object", "addi
                              "kind": {"type": "string"}, "why": {"type": "string"}}}}}}}
 
 
-def census_only(token: str) -> bool:
-    """A name the extractor would publish on the census's word alone: no family knows its shape and the
-    dictionary has never heard of it. Every false link measured so far was one of these."""
-    return (parts.norm(token) in parts.CENSUS and not parts.family_of(token)
-            and parts.norm(token) not in parts.KNOWN)
+def needs_judging(token: str) -> bool:
+    """A name that would not be published without the census, so the census's word is what carries it.
+
+    Not only the names no family covers — that was the first definition here, and it let 6V3 through on
+    105 documents. 6V3 *has* a family (valve, American), and so does 6V6; the family is not strict, so
+    neither of them reaches the gate on its own and both are published because the census confirms them.
+    One is a valve and the other is the 6.3 V heater printed on every valve drawing, and only the
+    evidence separates them. So: in the census, not in the dictionary, and with no strict family behind
+    it."""
+    if parts.norm(token) not in parts.CENSUS or parts.norm(token) in parts.KNOWN:
+        return False
+    family = parts.family_of(token)
+    return not family or not family[2]
+
+
+census_only = needs_judging          # the name it had when it meant less
 
 
 def collect(per_source: int = 60, say=print) -> dict:
@@ -108,7 +119,7 @@ def collect(per_source: int = 60, say=print) -> dict:
                     for m in re.finditer(r"(?<![A-Za-z0-9])([A-Za-z0-9][A-Za-z0-9/\-]{2,15})(?![A-Za-z0-9])",
                                          text.upper()):
                         tok = parts.canonical(m.group(1).strip("-/")) or ""
-                        if not tok or not census_only(tok):
+                        if not tok or not needs_judging(tok):
                             continue
                         d = found.setdefault(tok, {"n": 0, "alone": 0, "sources": collections.Counter(),
                                                    "contexts": [], "near": collections.Counter()})

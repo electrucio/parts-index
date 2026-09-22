@@ -288,6 +288,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--dry", action="store_true", help="say what would be fetched and fetch nothing")
     ap.add_argument("--detach", action="store_true", help="run it in the background, under a lock, into a log")
     ap.add_argument("--after", help="wait for that job to finish first (its name, as its log is called)")
+    ap.add_argument("--wait-hours", type=float, default=24.0, help="how long to wait for it before giving up")
     args = ap.parse_args(argv)
 
     # Sources given together run in one process, in order, because they usually share a host.
@@ -297,7 +298,7 @@ def main(argv: list[str] | None = None) -> int:
         pid = detach(MODULE, [a for a in given if a != "--detach"], name)
         say(f"{name}: running as {pid}. Watch it with  tail -f {run_log(name)}")
         return 0
-    if args.after and not wait_for(args.after):
+    if args.after and not wait_for(args.after, timeout=args.wait_hours * 3600):
         raise SystemExit(f"{args.after} is still running after the wait ran out; nothing was fetched")
     with only_one(name):
         for source in args.source:

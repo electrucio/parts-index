@@ -38,6 +38,7 @@ LONG = 4000                          # the long side in pixels a page is rendere
 MAX_PAGES = 600                      # 80 cut thirty service manuals short: their schematics are at the end
 TEXT_WORDS = 50                      # a page with this many words in its text layer is read, not rendered
 IMAGE_TYPES = {"gif", "png", "jpeg", "tiff"}
+OCR_MODELS = "PP-OCRv5"              # see _reader(): v6 needs a newer paddle than the one that is here
 
 
 def _reader(gpu: int | None):
@@ -48,8 +49,11 @@ def _reader(gpu: int | None):
     import numpy as np
     from paddleocr import PaddleOCR
 
-    engine = PaddleOCR(lang="en", use_doc_orientation_classify=False, use_doc_unwarping=False,
-                       use_textline_orientation=False, text_det_limit_side_len=LONG, text_det_limit_type="max")
+    # The model family is pinned. Left to itself PaddleOCR 3.x fetches PP-OCRv6, which a paddle 3.0
+    # build refuses with "Type of attribute: strides is not right" on the first page it is given.
+    engine = PaddleOCR(lang="en", ocr_version=OCR_MODELS, use_doc_orientation_classify=False,
+                       use_doc_unwarping=False, use_textline_orientation=False,
+                       text_det_limit_side_len=LONG, text_det_limit_type="max")
 
     def read(img):
         blocks = []

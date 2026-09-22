@@ -180,7 +180,7 @@ def ask_local(task: str, system: str, items: list[dict], *, model: str, parse=No
     answers, ledger = _paths(task)
     have = cached(task, model)
     todo = [it for it in items if it["key"] not in have]
-    say(f"{task}: {len(items)} items, {len(have)} already answered, {len(todo)} to ask, "
+    say(f"{task}: {len(items)} items, {len(items) - len(todo)} already answered, {len(todo)} to ask, "
         f"{model} at {url.split('/v1')[0]}")
     if not todo:
         return have
@@ -229,10 +229,11 @@ def ask_local(task: str, system: str, items: list[dict], *, model: str, parse=No
             if state["done"] % every == 0:
                 rate = (time.time() - state["started"]) / state["done"]
                 left = rate * (len(todo) - state["done"]) / 3600
-                say(f"  {len(have)}/{len(items)} answered, {rate:.2f}s each, {left:.1f} h to go")
+                say(f"  {state['done']}/{len(todo)} asked this run, {rate:.2f}s each, {left:.1f} h to go")
 
     with ThreadPoolExecutor(max_workers=workers) as pool:
         list(pool.map(one, todo))
     wall = (time.time() - state["started"]) / 3600
-    say(f"{task}: {len(have)}/{len(items)} answered, {state['failed']} unanswered, {wall:.2f} h this run")
+    done = sum(1 for it in items if it["key"] in have)
+    say(f"{task}: {done}/{len(items)} answered, {state['failed']} unanswered, {wall:.2f} h this run")
     return have
