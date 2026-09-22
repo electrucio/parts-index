@@ -1,5 +1,13 @@
 # Registry of schematic/reference sources. status: proposed | active | paused | blocked | excluded
 # Add a site here (status: proposed) to have it crawled; its progress is in state/<id>.csv and STATUS.md.
+adi_appnotes:
+  kind: site
+  title: Analog Devices application notes
+  home_url: https://www.analog.com/
+  status: proposed
+  notes: 'As above. robots.txt was empty on 2026-09-22, so nothing is disallowed; use the default delay
+    anyway. Linear Technology notes now live here too, which is where much of the discrete analogue
+    material is.'
 aion:
   kind: site
   title: Aion FX
@@ -28,6 +36,37 @@ amz-muzique:
   status: proposed
   notes: 'pedal design: buffers, boosters, clipping, MOSFET stages. Proposed: set status to active and run `pidx schematics
     run --source amz-muzique`.'
+archive_databooks:
+  kind: reference
+  title: Semiconductor databooks (bitsavers mirror on archive.org)
+  home_url: https://archive.org/details/bitsavers
+  status: proposed
+  notes: '1,040 databook items on 2026-09-22. Wanted for two things at once: the numerical index pages are
+    the semiconductor half of data/parts/census.csv, and the book itself is a reference a search can link
+    to when no schematic uses the part. The 1982 D.A.T.A. Book Transistor Edition
+    (bitsavers_derivationates1982DATABookTransistorEdition53Volum_111125681) is open and already carries a
+    _djvu.txt, so it needs no OCR pass at all.'
+archive_instruments:
+  kind: reference
+  title: Test and instrumentation manuals (bitsavers mirror on archive.org)
+  home_url: https://archive.org/details/bitsavers
+  status: proposed
+  notes: 'Oscilloscope, generator and meter manuals: discrete analogue design, thoroughly archived, sharing
+    almost all of its vocabulary with audio. 565 Tektronix items on 2026-09-22. Go through the archive.org
+    mirror, never bitsavers.org directly — that host answers 403 to robots.txt, which core.http reads as
+    "everything disallowed", and it is right to.'
+archive_service_manuals:
+  kind: factory
+  title: Service manuals on archive.org
+  home_url: https://archive.org/
+  status: proposed
+  notes: 'Hi-fi and pro-audio service manuals held as open archive.org items, reached through the same
+    metadata API the Elektor work used, with per-page deep links. Counted on 2026-09-22 with deliberately
+    naive queries: 721 items under subject "service manual" for amplifier/receiver/tuner, 167 by title for
+    Sansui, Pioneer, Marantz, Technics and Luxman together. The Elektor lesson says a proper sweep by
+    title, subject and identifier pattern finds several times that. Brings the solid-state hi-fi vocabulary
+    the corpus is thinnest in (2SC3334, KSA1220, 2SK1298 are all absent today). Proposed: set active and
+    write its lister.'
 audiocircuit:
   kind: factory
   title: AudioCircuit
@@ -283,6 +322,15 @@ neurochrome:
     allow: ^/(products|pages|blogs|collections)/
     max: 250
     cdn: cdn\.shopify\.com|neurochrome\.com
+onsemi_appnotes:
+  kind: site
+  title: onsemi application notes
+  home_url: https://www.onsemi.com/
+  status: blocked
+  blocked_reason: 'robots.txt answers 403, which means no permission can be read; treated as disallowed'
+  notes: 'Their model files are already held through data/models/sources/onsemi.yaml, fetched from the
+    download paths their own product pages point at. The web documents are a different matter and stay
+    out until robots.txt can be read. Reach the same devices through archive_databooks instead.'
 passdiy:
   kind: site
   title: Pass DIY
@@ -490,6 +538,15 @@ thetubestore:
   title: The Tube Store — schematics
   home_url: https://www.thetubestore.com/
   status: active
+ti_appnotes:
+  kind: site
+  title: Texas Instruments application notes
+  home_url: https://www.ti.com/
+  status: proposed
+  notes: 'Application notes are schematics with real part numbers in them, and they are the natural
+    companion to the SPICE model pillar — the same vendor vouches for both. robots.txt on 2026-09-22
+    allows the document paths and asks for Crawl-delay 1. Needs a lister: there is no sitemap of notes,
+    so it goes through the product pages or the search index.'
 tonepad:
   kind: site
   title: Tonepad

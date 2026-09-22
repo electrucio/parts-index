@@ -83,6 +83,9 @@ schematics-download-bg:  ## (maintainer) the same, detached under a lock with a 
 schematics-list:  ## (maintainer) gather a source's file URLs again from the site's listing; SOURCE='a b' [DRY=1]
 	uv run pidx schematics list $(foreach s,$(SOURCE),--source $(s)) $(if $(LIMIT),--limit $(LIMIT)) $(if $(DRY),--dry)
 
+explain:  ## why a part gives nothing — the extractor, or no document that has it; PART='6V6 TTC004B'
+	uv run pidx parts explain $(PART)
+
 parts-census:  ## (maintainer) read the lists that say which part numbers exist; [SOURCE='a b'] [READ=1]
 	uv run pidx parts census $(foreach s,$(SOURCE),--source $(s)) $(if $(READ),--read)
 

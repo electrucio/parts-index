@@ -85,6 +85,9 @@ def main(argv: list[str] | None = None) -> int:
 
     pt = sub.add_parser("parts", help="the part vocabulary: which numbers exist and what they are").add_subparsers(
         dest="pt_cmd", required=True)
+    pe = pt.add_parser("explain", help="why a part gives nothing: the extractor, or no document that has it")
+    pe.add_argument("part", nargs="+")
+
     pc = pt.add_parser("census", help="read the lists that say which part numbers exist, and link them")
     pc.add_argument("--source", action="append", help="only these sources (repeatable)")
     pc.add_argument("--read", action="store_true", help="parse the pages already cached; fetch nothing")
@@ -211,6 +214,10 @@ def main(argv: list[str] | None = None) -> int:
         from parts_index.schematics import export as sch_export
         argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
         return sch_export.main(argv2 + (["--dry"] if args.dry else []))
+
+    if args.cmd == "parts" and args.pt_cmd == "explain":
+        from parts_index.core.parts import explain
+        return explain.main(args.part)
 
     if args.cmd == "parts" and args.pt_cmd == "census":
         from parts_index.core.parts import census
