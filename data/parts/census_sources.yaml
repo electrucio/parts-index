@@ -21,3 +21,16 @@ frank_pocnet:
     at the default one request every three seconds. It settles the class the extractor is weakest at —
     numeric valve names, which were a hand-written list of about twenty types (5687, 6336A, 6528 and
     7236 were all invisible), and names that collide with a resistor value (6V6 read as 6.6 V).'
+spice_definitions:
+  kind: model library
+  title: The SPICE model libraries this project already holds
+  home_url: https://github.com/electrucio/parts-index
+  covers: bjt, jfet, mosfet, diode, ic
+  status: active
+  notes: 'Read from the definition index built for the model pillar — 75 vendors, 986,872 definitions —
+    so it costs no network at all. A library also holds internal sub-circuits, passives and test
+    fixtures, so a name is taken as a part only on one of three signals: the definition has a real device
+    type, or the vendor named the file after it, or the extractor''s own families recognise the shape.
+    Passive-component vendors are excluded whole. It is the semiconductor half of the census: the tube
+    half is frank_pocnet. The evidence URL is the vendor file the definition came from, or that vendor''s
+    home page when the ledger cannot name the file.'

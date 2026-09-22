@@ -123,7 +123,7 @@ def test_numeric_valve_names_come_from_the_census_not_a_hand_written_list():
 def test_the_census_does_not_overrule_the_family():
     """7815 and 7995 are valve types as well as regulators. On a regulator page they are regulators."""
     assert got("a 7815 regulator") == ["7815"]
-    assert [h.kind for h in parts.extract("a 7815 regulator")] == ["regulator"]
+    assert [h.kind for h in parts.extract("a 7815 regulator")] == ["regulator"]      # not a valve
 
 
 def test_the_census_overrules_the_reject_list():
@@ -134,3 +134,72 @@ def test_the_census_overrules_the_reject_list():
 def test_a_census_part_is_high_only_when_something_else_on_the_page_agrees():
     page = mkpage("6336A R1 R2 C1 C2".split())                  # one valve name, nothing else valve-like
     assert [h.part for h in parts.extract_page(page)] == []
+
+
+def with_census(monkeypatch, rows):
+    monkeypatch.setattr(parts, "CENSUS", {parts.norm(k): (k, v) for k, v in rows.items()})
+
+
+def test_a_loose_family_the_census_confirms_becomes_publishable(monkeypatch):
+    """MC33274 and MC33078 are the same vendor and the same numbering. Only one was in the dictionary,
+    so only one was ever published; a loose family plus a list that says the part exists is enough."""
+    with_census(monkeypatch, {})
+    assert [h.conf for h in parts.extract("MC33274", isolated=True)] == ["medium"]      # family alone
+    with_census(monkeypatch, {"MC33274": "ic"})
+    assert [(h.part, h.conf) for h in parts.extract("MC33274", isolated=True)] == [("MC33274", "high")]
+
+
+def test_a_semiconductor_list_does_not_settle_a_valve_reading(monkeypatch):
+    """The one distinction that matters: 7815 is a regulator and a valve type. A list of semiconductors
+    may not decide a token the valve family claimed, nor a tube list one the regulator family claimed."""
+    with_census(monkeypatch, {"7815": "tube"})
+    assert [(h.part, h.kind) for h in parts.extract("a 7815 regulator")] == [("7815", "regulator")]
+    with_census(monkeypatch, {"6CB6": "bjt"})              # a valve, miscalled a transistor by the list
+    hits = {h.part: h.conf for h in parts.extract_page(mkpage("V1 V2 6CB6 12AX7".split()))}
+    assert hits["6CB6"] == "medium" and hits["12AX7"] == "high"     # the page settles it, not the wrong list
+
+
+def test_the_census_never_diverts_a_token_the_old_rules_already_settled(monkeypatch):
+    with_census(monkeypatch, {"4N25": "opto", "1N4148": "diode"})
+    assert got("1N4148 2N3055 4N25") == ["1N4148", "2N3055", "4N25"]
+
+
+def test_a_part_no_family_covers_at_all(monkeypatch):
+    with_census(monkeypatch, {})
+    assert got("TTC004B") == []                              # no family in the world covers Toshiba's TT-
+    with_census(monkeypatch, {"TTC004B": "bjt"})
+    assert [(h.part, h.conf) for h in parts.extract("TTC004B", isolated=True)] == [("TTC004B", "high")]
+
+
+def test_the_census_alone_does_not_speak_for_a_three_character_token():
+    """AB1 and AB2 are real Philips valves. 'Class AB1' is what the books say, on every other page."""
+    assert got("operating in class AB1 with a pair of 6L6") == ["6L6"]
+    assert got("class AB2 push-pull") == []
+    assert got("a DL92 and a DF91") == ["DL92", "DF91"]              # four characters, and only the census knows them
+    assert got("a 1T4 and a 3S4") == ["1T4", "3S4"]                  # three, but digit-letter-digit is a valve name
+
+
+def test_the_stray_stroke_rule_does_not_eat_the_germanium_transistors():
+    """0D3 among D1 D2 D4 is the diode D3 with a stroke of its symbol read as a 0 — that stays. But the
+    same rule was dropping OC44 and OC71 on every page with two capacitor designators on it, which is
+    every schematic, and those are the transistors half of fuzz pedals are built from."""
+    page = mkpage("OC71 OC44 C70 C72 R1 Q1 2N3904".split())
+    assert [h.part for h in parts.extract_page(page)] == ["OC71", "OC44", "2N3904"]
+    assert [h.part for h in parts.extract_page(mkpage("D1 D2 D4 0D3 R1 R2 12AX7".split()))] == ["12AX7"]
+
+
+def test_a_numeric_part_in_a_closed_numbering_scheme_can_reach_the_gate():
+    """7805 is the most used regulator there is and was in no document: numeric tokens were capped at
+    medium, and only high is published. The regulator scheme is closed, so let the page decide."""
+    assert [h.part for h in parts.extract_page(mkpage("7805 7812 C1 C2 R1".split()))] == ["7805", "7812"]
+    assert [h.part for h in parts.extract_page(mkpage("IC1 7805 100n 10k".split()))] == ["7805"]   # regulator words
+    assert [h.part for h in parts.extract_page(mkpage("R1 R2 7805 4k7".split()))] == []            # nothing agrees
+    assert got("costs 7815") == [] and got("a 7815 regulator") == ["7815"]
+
+
+def test_a_truth_table_is_not_a_page_full_of_valves():
+    """1010 and 1110 are both real valve type numbers and both rows of a truth table. Two tokens that are
+    each waiting for the page to agree may not agree with one another — only a part that is already
+    settled counts as evidence. A closed numbering scheme is different: its shape is vetted already."""
+    assert [h.part for h in parts.extract_page(mkpage("1010 1110 0101 0011 A B C OUT".split()))] == []
+    assert [h.part for h in parts.extract_page(mkpage("V1 1010 12AX7 6SN7".split()))] == ["1010", "12AX7", "6SN7"]

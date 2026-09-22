@@ -81,8 +81,8 @@ def explain(part: str) -> list[str]:
     fam = ex.family_of(tok)
     label = ex.extract(part, isolated=True, pending=True)
     prose = ex.extract(f"the {part} in the circuit")
-    if label and label[0].family == ex.PENDING:
-        read = "on its own, nothing — the census knows it, so a page that agrees publishes it as high"
+    if label and label[0].family in ex.WAITING:
+        read = "on its own, nothing — it is read, and a page that agrees with it publishes it as high"
     elif label:
         read = f"{label[0].conf} ({label[0].family})" + (f", in prose {prose[0].conf}" if prose else ", nothing in prose")
     else:
@@ -113,7 +113,7 @@ def explain(part: str) -> list[str]:
 
     if idx and int(idx["documents"]) > 0:
         verdict = "fine — the index has it"
-    elif label and label[0].family == ex.PENDING:
+    elif label and label[0].family in ex.WAITING:
         verdict = "coverage: it reads on a page that agrees, no document here does"
     elif label and label[0].conf == "high":
         verdict = "coverage: it reads correctly, no document here contains it"

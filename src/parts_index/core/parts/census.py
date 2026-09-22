@@ -21,6 +21,7 @@ reference link the index can offer when somebody searches for that part.
 from __future__ import annotations
 
 import csv
+import json
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -29,7 +30,15 @@ from urllib.parse import unquote, urljoin
 import yaml
 
 from parts_index.core import http
-from parts_index.core.config import census_cache, census_registry, census_state, parts_census
+from parts_index.core.config import (
+    census_cache,
+    census_registry,
+    census_state,
+    model_sources,
+    model_state,
+    parts_census,
+    spice_definitions,
+)
 from parts_index.core.ledger import CENSUS_FIELDS, CENSUS_STAGES, CENSUS_VERSIONED, Ledger
 
 READ_VERSION = "census_read-1"
@@ -69,6 +78,88 @@ def _frank_entries(url: str, html: str) -> list[Entry]:
     return out
 
 
+
+# --- the SPICE model libraries already held here -----------------------------------------------------
+# 75 vendors' model files, indexed for the model pillar: every top-level definition is named after the
+# part it models, so the index of them is a semiconductor vocabulary this project already owns. It needs
+# filtering, because a library also holds internal sub-circuits, passives and test fixtures. Three signals
+# say a name is a part: the definition has a real device type, or the vendor named the file after it, or
+# the extractor's own families recognise the shape. Anything without one of the three is left out.
+PASSIVE_SOURCES = {"murata", "tdk", "coilcraft", "wurth", "nichicon", "nichia", "littelfuse",
+                   "z101-led-spice-model", "tedyapo-led-modeling"}
+DEVICE_KIND = {"NPN": "bjt", "PNP": "bjt", "NJF": "jfet", "PJF": "jfet", "VDMOS": "mosfet",
+               "NMOS": "mosfet", "PMOS": "mosfet", "D": "diode"}
+SHAPE = re.compile(r"^(?=.*\d)(?=.*[A-Z])[A-Z0-9][A-Z0-9/.-]{3,17}$")   # letters and digits both, never a word
+INTERNAL = re.compile(r"^(?:DI|PH|X|XX|SW|LIB|TMP|TEST)[_-]|[_-]$")
+DEVICE_LETTER = re.compile(r"^[QDJMX](?=[0-9]?[A-Z]{1,3}\d)")           # LTspice writes Q2N6544 for 2N6544
+
+
+def _model_file_urls() -> dict[tuple[str, str], str]:
+    """(source, file name) -> the vendor URL it was fetched from, so a census row can carry its evidence."""
+    out = {}
+    for led in sorted(model_state("*").parent.glob("*.csv")):
+        source = led.stem
+        with open(led, newline="", encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                url = r.get("key") or r.get("url") or ""
+                if url:
+                    out[(source, url.rsplit("/", 1)[-1].lower())] = url
+    return out
+
+
+def _source_homes() -> dict[str, str]:
+    out = {}
+    for f in sorted(model_sources().glob("*.yaml")):
+        try:
+            out[f.stem] = (yaml.safe_load(f.read_text(encoding="utf-8")) or {}).get("home_url", "")
+        except Exception:                                        # noqa: BLE001 - a broken entry is not fatal here
+            continue
+    return out
+
+
+def spice_definitions_entries(entry: dict) -> list[Entry]:
+    from parts_index.core.parts.extractor import family_of
+
+    path = spice_definitions()
+    if not path.exists():
+        return []
+    urls, homes = _model_file_urls(), _source_homes()
+    found: dict[str, dict] = {}
+    with open(path, encoding="utf-8", errors="replace") as f:
+        for line in f:
+            try:
+                d = json.loads(line)
+            except ValueError:
+                continue
+            if d.get("parent") is not None:
+                continue
+            source = d.get("source") or ""
+            name = (d.get("name") or "").strip().upper()
+            if source in PASSIVE_SOURCES or not SHAPE.match(name) or INTERNAL.search(name):
+                continue
+            file_name = (d.get("file") or "").rsplit("/", 1)[-1]
+            stem = file_name.rsplit(".", 1)[0].upper()
+            names = [name]
+            if DEVICE_LETTER.match(name) and family_of(name[1:]):
+                names.append(name[1:])
+            for n in names:
+                r = found.setdefault(n, {"kinds": set(), "stem": False, "url": ""})
+                r["kinds"].add(DEVICE_KIND.get(d.get("type") or "", ""))
+                r["stem"] = r["stem"] or norm(stem) == norm(n)
+                r["url"] = r["url"] or urls.get((source, file_name.lower())) or homes.get(source, "")
+    out = []
+    for name, r in found.items():
+        kinds = {k for k in r["kinds"] if k}
+        if not (kinds or r["stem"] or family_of(name)):
+            continue
+        out.append(Entry(name, sorted(kinds)[0] if len(kinds) == 1 else ("ic" if not kinds else "semiconductor"),
+                         r["url"]))
+    return out
+
+
+LOCAL_ADAPTERS = {"spice_definitions": spice_definitions_entries}
+
+
 ADAPTERS = {
     "frank_pocnet": (_frank_seeds, _frank_more, _frank_entries),
 }
@@ -93,6 +184,8 @@ def read_source(source: str, *, fetch: bool = True, limit: int = 0, delay: float
     """Walk one source's index pages — from the cache when they are there, from the site when they are
     not — and return everything it vouches for. Stamps the ledger so a second run asks for nothing."""
     entry = registry()[source]
+    if source in LOCAL_ADAPTERS:
+        return LOCAL_ADAPTERS[source](entry)              # already here: nothing to fetch, nothing to cache
     seeds, more, parse = ADAPTERS[source]
     led = Ledger(census_state(source), stages=CENSUS_STAGES, fields=CENSUS_FIELDS, versioned=CENSUS_VERSIONED)
     queue, seen, fetched, found = list(seeds(entry)), set(), 0, []

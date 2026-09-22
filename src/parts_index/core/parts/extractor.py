@@ -106,18 +106,38 @@ def _load_census():
 
 
 CENSUS = _load_census()            # norm(part) -> (part as written, kind), from a list that had to be complete
-PENDING = "census, needs the page"  # a census part whose token shape is also something else; settle_census() decides
+PENDING = "census, needs the page"        # a census part whose token shape is also something else
+PENDING_SCHEME = "closed scheme, needs the page"   # a number inside a strict numbering scheme, 7805
+WAITING = (PENDING, PENDING_SCHEME)                # both are settled by settle_census(), on different evidence
+
+
+GENERIC_KINDS = {"ic", "semiconductor"}     # a model library says a part exists, not always what it is
 
 
 def _kind_agrees(family_kind, census_kind):
-    """'bjt/jfet/mosfet' agrees with 'bjt'. A family guess and a census kind are both slash-separated."""
-    return bool(set(family_kind.split("/")) & set(census_kind.split("/")))
+    """'bjt/jfet/mosfet' agrees with 'bjt'. A census kind that only says "a semiconductor" agrees with any
+    family but a valve, which is the distinction that matters: 7815 is a valve type and a regulator, and
+    a semiconductor list must not be what settles a token the valve family claimed, or the other way."""
+    fam, cen = set(family_kind.split("/")), set(census_kind.split("/"))
+    if cen & GENERIC_KINDS or fam & GENERIC_KINDS:
+        return ("tube" in fam) == ("tube" in cen)
+    return bool(fam & cen)
 
 
 def _ambiguous(tok):
     """A token the census knows, whose shape is also a resistor value, a designator, a circuit code or a
     bare number. 6V6 is a valve and 6.6 V; 1R5 is a valve and 1.5 ohm; 7805 is a regulator and a year."""
     return bool(VALUE.match(tok) or NOISE.match(tok) or NUMERIC_VALVE.match(tok))
+
+
+# Which ambiguous tokens the census may argue about at all. Digit-letter-digit is how American and
+# European valve names are built — 6V6, 1R5, 12BE6, 35W4 — and it is not how a designator or a value is
+# built. Measured: without this line the census resurrected R10, R12, C10 and C12 as valve types on every
+# valve schematic (they are real type names, and Frank lists them), along with 400, 800, 105 and the year
+# 1960, which between them outnumbered every real part it recovered. A designator, a plain value and a
+# bare number keep the behaviour they had before there was a census.
+RESCUABLE = re.compile(r"^\d{1,2}[A-Z]{1,3}\d{1,2}[A-Z]{0,3}$|^(?!19|20)\d{4}[A-C]?$")
+#                          6V6, 1R5, 12BE6, 35W4          5687, 6336A, 6528 — but never a year
 
 
 def family_of(tok):
@@ -236,16 +256,23 @@ def _judge(tok, text, pos, isolated, raw=""):
         return tok, "JFET / MOSFET", "jfet", "high" if isolated or k else "medium", False
     if REAL_X.match(tok):
         k = k or (tok, "tube")
+    sure = (k and not re.fullmatch(r"\d+[RKM]\d+", tok)) or (fam and fam[2]) or re.fullmatch(r"4N[23]\d", tok)     # 1N4148, 2N3055, 4N25 look like "1n..." values to VALUE
     # The census speaks last, and only where nothing else has settled the token. It says which type
     # numbers exist, never which one this token is, so it stays quiet when it contradicts the family:
     # 7815 is a regulator here and a valve type in the census, and the regulator is what this page means.
     if cen is None and not k and not _ambiguous(tok):
         cen = CENSUS.get(norm(base_part(tok)))                     # 6L6GCX: the census has the type, not the selection
     if cen and not k and (not fam or _kind_agrees(fam[1], cen[1])):
-        if _ambiguous(tok):
-            return tok, PENDING, cen[1], "low", fixed              # 6V6 on a page of resistor values is 6.6 V
-        k = cen                                                    # the shape is unmistakable and the part exists
-    sure = (k and not re.fullmatch(r"\d+[RKM]\d+", tok)) or (fam and fam[2]) or re.fullmatch(r"4N[23]\d", tok)     # 1N4148, 2N3055, 4N25 look like "1n..." values to VALUE
+        if _ambiguous(tok) and not sure:
+            if RESCUABLE.match(tok):
+                return tok, PENDING, cen[1], "low", fixed          # 6V6 on a page of resistor values is 6.6 V
+        elif len(tok) >= 4 or RESCUABLE.match(tok):
+            k, sure = cen, True                                    # the shape is settled and the part exists
+        # Three characters is not enough for the census alone to speak unless the shape is a valve name:
+        # AB1 and AB2 are real Philips valves and "class AB1" is what a valve amplifier book says on every
+        # other page, S22 is a valve and a section number. Measured: AB1 came out top of everything the
+        # census recovered, on three documents. 1T4, 3S4 and 1S5 are digit-letter-digit, which is how a
+        # valve is named and not how anything else on a schematic is, so those still come through.
     if len(tok) < 3 or (not sure and (VALUE.match(tok) or (NOISE.match(tok) and not FENDER_OK.match(tok)))):
         return None
     if NOISE.match(tok) and not FENDER_OK.match(tok) and not k:
@@ -264,6 +291,14 @@ def _judge(tok, text, pos, isolated, raw=""):
         words = VALVE_WORDS if kind == "tube" else REG_WORDS
         if not isolated and not words.search(text[max(0, pos - 70): pos + 70]):
             return None
+        if strict:
+            # 7805, 7812, 7912: the regulator numbering is a closed scheme, so the number itself is not
+            # the doubt — whether this page is about regulators is. Answer it where the answer is: in the
+            # words beside it, or, for a label on a drawing, by asking the page. Until now these were
+            # capped at medium and the gate publishes only high, so 7805 was in no document at all while
+            # LM7805 was in 155.
+            near = words.search(text[max(0, pos - 70): pos + 70])
+            return (tok, family, kind, "high", fixed) if near else (tok, PENDING_SCHEME, kind, "low", fixed)
         return tok, family, kind, "medium" if k or kind != "tube" else "low", fixed
     if LOOSE.match(tok) and not k:
         return (tok, family, kind, "low", fixed) if isolated else None
@@ -297,7 +332,7 @@ def extract(text, isolated=False, allow_bare=False, block=None, pending=False):
             j = _judge(tok, up, m.start(), isolated, piece)
             if j:
                 part, family, kind, conf, fixed = j
-                if family == PENDING and not pending:
+                if family in WAITING and not pending:
                     continue
                 hits.append(Hit(part, base_part(part), piece, family, kind, conf, fixed, block))
     if allow_bare:
@@ -327,10 +362,17 @@ def drop_designator_misreads(hits, labels):
         m = re.fullmatch(r"(I?[A-Z]{1,2})(\d{1,3})[A-Za-z]?", t.strip())
         if m:
             letters.setdefault(m.group(1), set()).add(m.group(2))
+    present = {t.strip().upper() for t in labels}
     def misread(p):
         m = re.fullmatch(r"([0O1I])([A-Z])(\d{1,2})", p)
         if not m or (m.group(1) in "1I" and m.group(2) != "C"):
             return False
+        fam = family_of(p)
+        if fam and fam[2]:
+            return False                        # OC44, OC71: a strict numbering scheme is not a stray stroke
+        meant = ("IC" if m.group(1) in "1I" else m.group(2)) + m.group(3)
+        if meant in present:
+            return False                        # the designator it would be is already on the page in its own right
         sib = letters.get(m.group(2), set()) | (letters.get("IC", set()) if m.group(2) == "C" else set())
         return len(sib - {m.group(3)}) >= 2
     jacks = {t.strip().upper().replace("-", "") for t in labels if re.fullmatch(r"[JUP]-?\d{3,4}", t.strip().upper())} - DESIGNATOR_LIKE
@@ -357,13 +399,19 @@ def settle_census(hits, page_text):
     about that kind of part: two other parts of the same kind on it, or the words for one."""
     out = []
     for h in hits:
-        if h.family != PENDING:
+        if h.family not in WAITING:
             out.append(h)
             continue
         words = KIND_WORDS.get(h.kind)
-        same = {x.base for x in hits if x.kind == h.kind and x.family != PENDING}
+        # What may corroborate depends on what the doubt is. A number inside a closed numbering scheme is
+        # already vetted by its shape, so two of them make a page about that kind of part: 7805 beside
+        # 7812 is not a coincidence. A census name has no such vetting, so it needs evidence that is not
+        # itself waiting — otherwise the binary patterns 1010 and 1110 in a truth table, both of which are
+        # valve type numbers, vouch for one another on a page with no valve on it at all.
+        same = {x.base for x in hits if x.kind == h.kind
+                and (h.family == PENDING_SCHEME or x.family != PENDING)}
         if len(same) >= 2 or (words and words.search(page_text)):
-            out.append(h._replace(family="census", conf="high"))
+            out.append(h._replace(family="census" if h.family == PENDING else "closed scheme", conf="high"))
     return out
 
 
