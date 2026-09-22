@@ -74,9 +74,11 @@ PAGE_FIELDS = ("doc", "page", "url", "schematic", "parts")
 USE_FIELDS = ("part", "doc", "page", "times", "near")
 LINE_FIELDS = ("doc", "page", "part", "kind", "line")
 SUSPECT_FIELDS = ("part", "uses", "read_as", "share", "example")
-# A part most of whose uses the model reads as an advert, or cannot place at all, is probably not a
-# component: BD315 is a gramophone record, 6K8 a resistor value, 1A3 a designator. Below this share it
-# is noise; at or above it, it is worth a look before the next export (rule 4).
+# A part most of whose uses the model cannot read as a reference to a component at all is probably not
+# one: BD315 is a gramophone record, 6K8 a resistor value, 1A3 a designator, BC221 a frequency meter
+# somebody is selling. `none` is the kind that means exactly that, and it is the only one counted here —
+# a `mention` is a real part offered as an alternative, and an `advert` is a real part being sold.
+# Below this share it is noise; at or above it, it is worth a look before the next export (rule 4).
 SUSPECT_SHARE = 0.6
 SUSPECT_MIN_USES = 3
 PART_FIELDS = ("part", "documents", "pages", "uses", "sources")
@@ -191,15 +193,13 @@ def suspects(lines: dict) -> list[list]:
         for part, entry in parts_here.items():
             c = seen.setdefault(part, Counter())
             c[entry["kind"]] += 1
-            if entry["kind"] in ("advert", "none"):
+            if entry["kind"] == "none":
                 example.setdefault(part, entry["line"])
     out = []
     for part, c in seen.items():
         total = sum(c.values())
-        odd = c["advert"] + c["none"]
-        if total >= SUSPECT_MIN_USES and odd / total >= SUSPECT_SHARE:
-            read_as = "advert" if c["advert"] >= c["none"] else "unplaceable"
-            out.append([part, total, read_as, round(odd / total, 2), example.get(part, "")])
+        if total >= SUSPECT_MIN_USES and c["none"] / total >= SUSPECT_SHARE:
+            out.append([part, total, "not a component", round(c["none"] / total, 2), example.get(part, "")])
     return sorted(out, key=lambda r: (-r[1], r[0]))
 
 

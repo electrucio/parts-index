@@ -175,15 +175,30 @@ def test_one_odd_reading_is_not_enough_to_doubt_a_part():
     assert E.suspects(lines) == []
 
 
-def test_a_part_read_as_an_advert_again_and_again_is_probably_not_a_part():
+def test_a_part_read_again_and_again_as_not_a_component_is_probably_not_one():
     # BD315 is a gramophone record number in Practical Wireless, and Pro Electron says it is a transistor
-    lines = {("s", "d", n): {"BD315": {"kind": "advert",
+    lines = {("s", "d", n): {"BD315": {"kind": "none",
                                        "line": "H.M.V. record number for a film song"}} for n in range(4)}
     lines[("s", "d", 9)] = {"BD315": {"kind": "reference", "line": "in a list of records"}}
     got = E.suspects(lines)
     assert got and got[0][0] == "BD315"
-    assert got[0][2] in ("advert", "unplaceable") and got[0][3] >= E.SUSPECT_SHARE
+    assert got[0][3] >= E.SUSPECT_SHARE
     assert "record number" in got[0][4]
+
+
+def test_a_part_offered_as_an_alternative_is_not_a_suspect():
+    """`mention` is a real component somebody suggested; only `none` says the number is not one."""
+    lines = {("s", "d", n): {"LT1037": {"kind": "mention",
+                                        "line": "suggested in a comment to replace the TLE2141"}}
+             for n in range(6)}
+    assert E.suspects(lines) == []
+
+
+def test_a_part_on_a_price_list_is_not_a_suspect_either():
+    """An advert is a real part being sold; that it is never used here is the ad filter's business."""
+    lines = {("s", "d", n): {"OC71": {"kind": "advert", "line": "in a transistor price list"}}
+             for n in range(6)}
+    assert E.suspects(lines) == []
 
 
 def test_a_part_with_too_few_uses_is_not_judged():

@@ -53,11 +53,11 @@ from parts_index.core.config import (
 )
 from parts_index.core.jobs import detach, only_one, run_log
 
-VERSION = "summarise-1"
+VERSION = "summarise-2"
 TASK = "summarise-pages"
 MODEL = os.environ.get("PIDX_LLM_MODEL", "local")
 MODULE = "parts_index.schematics.summarise"
-KINDS = ("project", "technique", "reference", "advert", "none")
+KINDS = ("project", "technique", "reference", "advert", "mention", "none")
 MAX_PARTS = 24                     # a page with more than this is a catalogue; asking about all of it
                                    # spends the answer on a list nobody reads to the end
 
@@ -65,9 +65,14 @@ SYSTEM = """You are given one page of an electronics document and the parts that
 each part write one line, to be shown to somebody searching for that part under the link to this page, \
 telling them whether this use is worth opening.
 
-The text is OCR and is noisy: schematic labels arrive scrambled and out of order, a parts list arrives \
-as a run of numbers, and [...] marks text left out. The designators printed beside each part are given \
-where they are known.
+**The header says how the page was read, and it changes what you are looking at.** A scan read by OCR \
+gives words roughly in order but broken, and a schematic's labels arrive scrambled. A page whose text was \
+taken from the file is not a scan: it reads in order, and it is a web page or a born-digital document, so \
+it arrives wrapped in the furniture around the article - a navigation menu, a sidebar, a blogroll, a list \
+of tags or labels, links to other posts, and readers' comments underneath. [...] marks text left out.
+
+The bracket after each part says how many times it was read on the page. A part read once, where the \
+parts of the circuit are read several times each, is usually a mention rather than a use.
 
 **A page often holds more than one circuit** - a magazine page of circuit ideas, a book of small \
 circuits, a service manual sheet with several boards, an article with adverts around it. Work out what \
@@ -77,6 +82,20 @@ the same line.
 **Say where the part sits, not what kind of device it is.** You may be wrong about the device, and the \
 reader already knows it. Write "input stage of the C-299 preamplifier", not "JFET in the input stage". \
 Name its function only where the page says it - a label, a designator, a sentence.
+
+**Ask first where on the page the number is.** Two situations are not a use of a component in a circuit \
+on this page, and they are not the same thing:
+
+  * kind `none` - the number is not a reference to a component at all: it sits in a navigation menu, a \
+sidebar, a blogroll, a tag or label list, an index or contents list, a readers' requests column; or it is \
+a piece of equipment, a loudspeaker, a record or an instrument named by its model number; or it is a \
+marking on a drawing - a resistor value, a test point, a step number - that happens to read like a type \
+number. Say where it really appears.
+  * kind `mention` - a real component, named on this page but not used in the circuit here: an \
+alternative, a substitute, a comparison, something the author decided against, or a part suggested in a \
+comment. Say what it is offered as, and for what. These lines are worth having.
+
+A line that puts a part in a circuit it is not in is worse than no line.
 
 Answer with one JSON object, nothing else:
 {"page": "...", "parts": [{"part": "...", "kind": "...", "line": "..."}, ...]}
@@ -88,8 +107,8 @@ One entry per part given, in the order given, using exactly the part number as g
 
 kind is one of: project (a circuit somebody built or can build), technique (how a circuit works, a \
 measurement, a design method), reference (a table, a parts list, a datasheet page, an index, a \
-catalogue), advert (an advertisement or a price list - including equipment for sale listed by its type \
-number), none (the page does not say what this part is doing there).
+catalogue), advert (an advertisement or a price list), mention (a real part named here but not used in the circuit on this page), none (the number is \
+not a reference to a component at all).
 
 line: at most 14 words. The circuit or section it sits in, and what that circuit is for. Do not begin \
 by repeating the part number. Never write "this page", "the article" or "the circuit shown". Where the \
@@ -139,11 +158,26 @@ def excerpt(text: str, parts, head: int = 110, around: int = 70, cap: int = 6000
     return joined, missing
 
 
-def prompt(page: dict) -> str:
+READ_AS = {"text": "text taken from the file - a web page or a born-digital document, not a scan",
+           "ocr": "a scan read by OCR"}
+
+
+def source_names() -> dict:
+    """What each source is, from the registry. `el34world` tells the model nothing; "EL34 World -
+    schematics, a factory-schematic site" tells it what kind of page it is about to read."""
+    with open(schematics_registry(), encoding="utf-8") as f:
+        reg = yaml.safe_load(f) or {}
+    return {k: f"{(v or {}).get('title', k)} - {(v or {}).get('kind', 'site')}" for k, v in reg.items()}
+
+
+def prompt(page: dict, names: dict | None = None) -> str:
     listed = "\n".join(
         f"  {p['part']}  (read {p['times']}x{', beside ' + p['near'] if p['near'] else ''})"
         for p in page["parts"])
-    return (f"DOCUMENT: {page['title']}\nSOURCE: {page['source']} ({page['role']})\nPAGE: {page['page']}\n"
+    source = (names or {}).get(page["source"], page["source"])
+    return (f"DOCUMENT: {page['title']}\nURL: {page['key']}\n"
+            f"SOURCE: {source} ({page['role']})\nPAGE: {page['page']}\n"
+            f"READ AS: {READ_AS.get(page.get('read_as'), READ_AS['ocr'])}\n"
             f"PARTS TO WRITE A LINE FOR:\n{listed}\n\nPAGE TEXT:\n{page['excerpt']}")
 
 
@@ -206,16 +240,19 @@ def with_text(pages: list[dict], say=print) -> list[dict]:
     out, notext = [], 0
     db = sqlite3.connect(index_db_uri(), uri=True)
     for key, group in by_key.items():
-        rows = dict(db.execute(
-            "select p.page_no, t.text from pages p join documents d on d.doc_id = p.doc_id "
-            "join page_text t on t.page_id = p.page_id where d.source = ? and d.doc_key = ?",
-            (group[0]["source"], key)).fetchall())
+        rows, method = {}, None
+        for page_no, text, text_method in db.execute(
+                "select p.page_no, t.text, d.text_method from pages p join documents d on d.doc_id = p.doc_id "
+                "join page_text t on t.page_id = p.page_id where d.source = ? and d.doc_key = ?",
+                (group[0]["source"], key)):
+            rows[page_no], method = text, text_method
         for page in group:
             text = rows.get(page["page"])
             if not text:
                 notext += 1
                 continue
             page["parts"] = page["parts"][:MAX_PARTS]
+            page["read_as"] = "text" if method == "text" else "ocr"
             page["excerpt"], page["absent"] = excerpt(text, [p["part"] for p in page["parts"]])
             out.append(page)
     db.close()
@@ -259,6 +296,7 @@ def cached_lines() -> dict:
 def run(which: list[str] | None = None, limit: int = 0, workers: int = 4, dry: bool = False,
         say=print) -> dict:
     require(index_db(), "summarising pages")
+    names = source_names()
     counts = {"pages": 0, "uses": 0, "asked": 0, "answered": 0, "absent": 0}
     for source in which or sources():
         pages = with_text(published(source), say=say)
@@ -270,7 +308,7 @@ def run(which: list[str] | None = None, limit: int = 0, workers: int = 4, dry: b
         counts["pages"] += len(pages)
         counts["uses"] += uses
         counts["absent"] += sum(len(p["absent"]) for p in pages)
-        items = [{"key": key_of(p), "prompt": prompt(p), "asked": [q["part"] for q in p["parts"]],
+        items = [{"key": key_of(p), "prompt": prompt(p, names), "asked": [q["part"] for q in p["parts"]],
                   "max_tokens": room_for(len(p["parts"]))} for p in pages]
         have = llm.cached(TASK, MODEL)
         todo = [it for it in items if it["key"] not in have]

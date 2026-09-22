@@ -74,19 +74,51 @@ def test_bumping_the_version_asks_the_corpus_again():
     page = {"source": "esp", "key": "https://example.invalid/a.pdf", "page": 3,
             "parts": [{"part": "ECC83"}]}
     was = summarise.key_of(page)
-    summarise.VERSION, old = "summarise-2", summarise.VERSION
+    summarise.VERSION, old = summarise.VERSION + "-changed", summarise.VERSION
     try:
         assert summarise.key_of(page) != was
     finally:
         summarise.VERSION = old
 
 
+PAGE = {"title": "Trainwreck express", "key": "https://el34world.invalid/tw.pdf", "source": "el34world",
+        "role": "schematic", "page": 9, "excerpt": "V1A 12AX7 preamp",
+        "parts": [{"part": "12AX7", "times": 2, "near": "V1 V2"}]}
+
+
 def test_the_prompt_names_the_document_the_parts_and_their_designators():
-    text = summarise.prompt({"title": "Trainwreck express", "source": "el34world", "role": "schematic",
-                             "page": 9, "excerpt": "V1A 12AX7 preamp",
-                             "parts": [{"part": "12AX7", "times": 2, "near": "V1 V2"}]})
+    text = summarise.prompt(PAGE)
     assert "Trainwreck express" in text and "12AX7" in text and "beside V1 V2" in text
     assert "read 2x" in text
+    assert "https://el34world.invalid/tw.pdf" in text          # the URL often says more than the title
+
+
+def test_the_prompt_says_what_the_source_is_rather_than_its_id():
+    """`el34world` tells the model nothing about what it is reading."""
+    plain = summarise.prompt(PAGE)
+    named = summarise.prompt(PAGE, {"el34world": "EL34 World - factory"})
+    assert "SOURCE: el34world" in plain
+    assert "SOURCE: EL34 World - factory" in named
+
+
+def test_the_prompt_says_whether_the_page_is_a_scan_or_a_file():
+    """Telling the model a blog page is scrambled OCR is false, and it is how a sidebar came to be read
+    as a circuit. Saying which it is was the single change that caught the most non-uses."""
+    scanned = summarise.prompt(dict(PAGE, read_as="ocr"))
+    typed = summarise.prompt(dict(PAGE, read_as="text"))
+    assert "scan read by OCR" in scanned
+    assert "not a scan" in typed and "born-digital" in typed
+    assert "scan read by OCR" in summarise.prompt(PAGE)        # no answer: assume the harder case
+
+
+def test_a_part_that_is_named_but_not_used_has_a_kind_of_its_own():
+    answer = summarise.read_answer(
+        '{"page": "p", "parts": ['
+        '{"part": "LT1037", "kind": "mention", "line": "suggested in a comment to replace the TLE2141"},'
+        '{"part": "BD315", "kind": "none", "line": "an H.M.V. record number in a list of records"}]}',
+        ["LT1037", "BD315"])
+    assert answer["parts"]["LT1037"]["kind"] == "mention"      # a real part, offered as an alternative
+    assert answer["parts"]["BD315"]["kind"] == "none"          # not a component at all
 
 
 def test_a_page_with_one_part_still_gets_room_for_a_whole_answer():
