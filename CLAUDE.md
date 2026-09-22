@@ -12,8 +12,8 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
   (the one polite client), `ledger` (what has been processed), `pagesio` (OCR page records), `adfilter`,
   `links` (the deep link, with `web/src/links.ts` as its other half and one golden fixture over both),
   and `parts/` (the part-number extractor, single source of truth). **(todo)** `table`, `llm`.
-- `src/parts_index/schematics/` pillar 1: `export` (the index into `data/`) and `titles`.
-  **(todo)** crawl → download → ocr → index → linkcheck.
+- `src/parts_index/schematics/` pillar 1: `download` (the sources whose URLs are already listed),
+  `export` (the index into `data/`) and `titles`. **(todo)** crawl → ocr → index → linkcheck.
 - `src/parts_index/models/` pillar 2: fetch, ingest, index, recover and promote (the public recipe
   per part). **(todo)** curate and `datasheets/`.
 - `src/parts_index/web/` builds the site's data from `data/` alone: `build` and `parts` (one file
