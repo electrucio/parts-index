@@ -28,23 +28,20 @@ transient failure leaves no stamp at all, so the next run picks it up. Nothing i
 from __future__ import annotations
 
 import argparse
-import fcntl
 import hashlib
 import json
 import re
-import subprocess
 import sys
 from collections import Counter
-from contextlib import contextmanager
 from dataclasses import dataclass, field
 from html.parser import HTMLParser
-from pathlib import Path
 from urllib.parse import unquote, urljoin, urlparse
 
 import yaml
 
 from parts_index.core import http
-from parts_index.core.config import downloads, logs, schematics_registry, schematics_state, source_list
+from parts_index.core.config import downloads, schematics_registry, schematics_state, source_list
+from parts_index.core.jobs import detach, only_one, run_log, wait_for
 from parts_index.core.ledger import Ledger
 
 DOCUMENT_KINDS = ("pdf", "gif", "jpeg", "png", "tiff")
@@ -54,6 +51,7 @@ IMAGE_EXT = re.compile(r"\.(gif|jpe?g|png|tiff?)(\?|$)", re.I)
 FURNITURE = re.compile(r"(?i)(logo|icon|sprite|banner|button|avatar|spacer|pixel|badge|emoji|gravatar|"
                        r"paypal|donate|facebook|twitter|rss|arrow|bullet|smiley)")
 MIN_IMAGE = 2500          # under this an image is a bullet or a spacer, not a drawing
+MARKUP = re.compile(rb"<(a|body|frame|table|p)\b", re.I)   # a page that never says <html>, as old sites do
 MIN_SIDE = 400            # a drawing published smaller than this is a preview of one, not the drawing
 # Blogger puts the size it serves an image at in the path: /s1600/, /s320/, /w72-h72-p-k-no-nu/. The
 # layout blogs show a preview that links the full-size file, and a strip of other posts' thumbnails.
@@ -130,49 +128,6 @@ def say(*args) -> None:
     print(*args, flush=True)
 
 
-def run_log(name: str) -> Path:
-    """Where a detached run writes. Appended to, so relaunching a source keeps the history of the last try."""
-    return logs() / f"download_{name}.log"
-
-
-def run_lock(name: str) -> Path:
-    return logs() / f"download_{name}.lock"
-
-
-@contextmanager
-def only_one(name: str):
-    """Refuse to start when the same launch is already running.
-
-    This is the failure the project has actually had: two sessions starting the same job within a second
-    of each other and both writing one ledger. The lock makes the second launch a no-op rather than a race.
-    """
-    logs().mkdir(parents=True, exist_ok=True)
-    handle = open(run_lock(name), "w", encoding="utf-8")
-    try:
-        fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
-    except OSError:
-        handle.close()
-        raise SystemExit(f"{name} is already running; its lock is held ({run_lock(name)})") from None
-    try:
-        yield
-    finally:
-        fcntl.flock(handle, fcntl.LOCK_UN)
-        handle.close()
-
-
-def detach(args: list[str], name: str) -> int:
-    """Start this same command in a session of its own, so it outlives the shell that launched it.
-
-    A source of ten thousand files takes hours at one request every few seconds, which is too long for a
-    terminal job: it dies with the session. Returns the process id; the run holds the lock itself.
-    """
-    logs().mkdir(parents=True, exist_ok=True)
-    with open(run_log(name), "a", encoding="utf-8") as out:
-        child = subprocess.Popen([sys.executable, "-m", MODULE, *args], stdin=subprocess.DEVNULL,
-                                 stdout=out, stderr=subprocess.STDOUT, start_new_session=True)
-    return child.pid
-
-
 def registry_entry(source: str) -> dict:
     registry = yaml.safe_load(schematics_registry().read_text(encoding="utf-8")) or {}
     if source not in registry:
@@ -210,13 +165,23 @@ class Downloader:
     cfg: dict
     led: Ledger
     delay: float = http.DELAY
+    min_image: int = MIN_IMAGE
     dry: bool = False
     log: object = say
     counts: Counter = field(default_factory=Counter)
 
-    def item(self, url: str, role: str) -> tuple[str, bytes]:
-        """Fetch one URL. Returns (type, body), so the caller can look inside an HTML page."""
-        if self.led.done(url, "download"):
+    def item(self, url: str, role: str, force: bool = False) -> tuple[str, bytes]:
+        """Fetch one URL. Returns (type, body), so the caller can look inside an HTML page.
+
+        `force` asks again for something the ledger has, which the crawl stage needs when a page it
+        already holds is no longer on disk and its links have to be read again. A refusal recorded
+        against that URL still stands: `force` overrides the stamp, never the `skip_reason`.
+        """
+        row = self.led.get(url)
+        if row and row["skip_reason"]:
+            self.counts["refused before"] += 1
+            return "", b""
+        if not force and self.led.done(url, "download"):
             self.counts["already had"] += 1
             return "", b""
         if self.dry:
@@ -233,10 +198,10 @@ class Downloader:
             self.log(f"  later: {r.status or r.why}  {url}")
             return "", b""
 
-        kind = r.kind
+        kind = r.kind or ("html" if MARKUP.search(r.body[:20000]) else "")
         if not r.body:
             return self._skip(url, role, "empty", r)
-        if role == "figure" and len(r.body) < MIN_IMAGE:
+        if role == "figure" and len(r.body) < self.min_image:
             return self._skip(url, role, "small image", r, kind)
         if FILE_EXT.search(urlparse(url).path) and kind not in DOCUMENT_KINDS:
             return self._skip(url, role, "not the declared file type", r, kind)      # a soft 404 served as a page
@@ -319,15 +284,18 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--delay", type=float, default=http.DELAY, help=f"seconds between requests to one host (default {http.DELAY})")
     ap.add_argument("--dry", action="store_true", help="say what would be fetched and fetch nothing")
     ap.add_argument("--detach", action="store_true", help="run it in the background, under a lock, into a log")
+    ap.add_argument("--after", help="wait for that job to finish first (its name, as its log is called)")
     args = ap.parse_args(argv)
 
     # Sources given together run in one process, in order, because they usually share a host.
-    name = "-".join(args.source)
+    name = "download_" + "-".join(args.source)
     if args.detach:
         given = list(argv) if argv is not None else sys.argv[1:]
-        pid = detach([a for a in given if a != "--detach"], name)
+        pid = detach(MODULE, [a for a in given if a != "--detach"], name)
         say(f"{name}: running as {pid}. Watch it with  tail -f {run_log(name)}")
         return 0
+    if args.after and not wait_for(args.after):
+        raise SystemExit(f"{args.after} is still running after the wait ran out; nothing was fetched")
     with only_one(name):
         for source in args.source:
             run(source, limit=args.limit or None, delay=args.delay, dry=args.dry)

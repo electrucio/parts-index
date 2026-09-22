@@ -53,6 +53,14 @@ def main(argv: list[str] | None = None) -> int:
     sd.add_argument("--delay", type=float, default=0.0, help="seconds between two requests to one host")
     sd.add_argument("--dry", action="store_true", help="say what would be fetched and fetch nothing")
     sd.add_argument("--detach", action="store_true", help="run it in the background, under a lock, into a log")
+    sd.add_argument("--after", help="wait for that job to finish first (its name, as its log is called)")
+
+    sc = sch.add_parser("crawl", help="walk a site from its start pages and take what it shows")
+    sc.add_argument("--source", action="append", required=True, help="a source with a `crawl:` block (repeatable)")
+    sc.add_argument("--max", type=int, default=None, help="pages to fetch before stopping; 0 runs until the queue is empty")
+    sc.add_argument("--delay", type=float, default=0.0, help="seconds between two requests to one host")
+    sc.add_argument("--detach", action="store_true", help="run it in the background, under a lock, into a log")
+    sc.add_argument("--after", help="wait for that job to finish first (its name, as its log is called)")
     se = sch.add_parser("export", help="write the index into data/, where the site is built from")
     se.add_argument("--source", action="append", help="only these sources (repeatable)")
     se.add_argument("--dry", action="store_true", help="count what would be written and write nothing")
@@ -138,7 +146,16 @@ def main(argv: list[str] | None = None) -> int:
         argv2 += ["--limit", str(args.limit)] if args.limit else []
         argv2 += ["--delay", str(args.delay)] if args.delay else []
         argv2 += ["--dry"] if args.dry else []
+        argv2 += ["--after", args.after] if args.after else []
         return sch_download.main(argv2 + (["--detach"] if args.detach else []))
+
+    if args.cmd == "schematics" and args.sch_cmd == "crawl":
+        from parts_index.schematics import crawl as sch_crawl
+        argv2 = [x for pair in (("--source", s) for s in args.source) for x in pair]
+        argv2 += ["--max", str(args.max)] if args.max is not None else []
+        argv2 += ["--delay", str(args.delay)] if args.delay else []
+        argv2 += ["--after", args.after] if args.after else []
+        return sch_crawl.main(argv2 + (["--detach"] if args.detach else []))
 
     if args.cmd == "schematics" and args.sch_cmd == "export":
         from parts_index.schematics import export as sch_export

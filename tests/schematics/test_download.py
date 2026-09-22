@@ -204,40 +204,13 @@ def test_a_preview_and_a_neighbour_s_thumbnail_are_not_the_drawing(site, monkeyp
     assert ledger("layouts").get(big)["type"] == "png"
 
 
-def test_a_second_launch_of_the_same_job_is_refused(site):
-    """Two sessions starting one source is how a ledger gets two writers; the lock stops the second."""
-    with D.only_one("audiocircuit"):
-        with pytest.raises(SystemExit, match="already running"):
-            with D.only_one("audiocircuit"):
-                pass
-    with D.only_one("audiocircuit"):       # and the lock is free again once the first run ends
-        pass
-
-
-def test_a_detached_run_starts_itself_again_in_its_own_session(site, monkeypatch):
-    started = {}
-
-    class Child:
-        pid = 4242
-
-    def fake_popen(cmd, **kw):
-        started.update(cmd=cmd, kw=kw)
-        return Child()
-
-    monkeypatch.setattr(D.subprocess, "Popen", fake_popen)
-    pid = D.detach(["--source", "tagboard", "--source", "dirtbox"], "tagboard-dirtbox")
-
-    assert pid == 4242
-    assert started["cmd"][1:] == ["-m", D.MODULE, "--source", "tagboard", "--source", "dirtbox"]
-    assert started["kw"]["start_new_session"] is True        # it outlives the shell that launched it
-    assert D.run_log("tagboard-dirtbox").exists()
-
-
 def test_detaching_hands_the_work_over_and_does_none_of_it(site, monkeypatch):
+    """The launcher lives in core.jobs; what matters here is what this stage hands it."""
     handed = {}
-    monkeypatch.setattr(D, "detach", lambda args, name: handed.update(args=args, name=name) or 999)
+    monkeypatch.setattr(D, "detach", lambda module, args, name: handed.update(module=module, args=args, name=name) or 999)
     monkeypatch.setattr(D, "run", lambda *a, **k: pytest.fail("the parent must not download anything"))
 
     assert D.main(["--source", "tagboard", "--source", "dirtbox", "--detach"]) == 0
-    assert handed["name"] == "tagboard-dirtbox"
+    assert handed["name"] == "download_tagboard-dirtbox"
+    assert handed["module"] == D.MODULE
     assert "--detach" not in handed["args"]                  # or the child would detach again, forever
