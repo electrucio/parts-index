@@ -171,8 +171,9 @@ def read_answer(text: str, asked: list[str]) -> dict:
 
 # --- what to ask about ------------------------------------------------------------------------------
 def sources() -> list[str]:
+    """Every source in the registry, which is a flat mapping of id to entry."""
     with open(schematics_registry(), encoding="utf-8") as f:
-        return sorted((yaml.safe_load(f) or {}).get("sources", {}))
+        return sorted(yaml.safe_load(f) or {})
 
 
 def published(source: str) -> list[dict]:

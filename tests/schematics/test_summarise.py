@@ -93,3 +93,13 @@ def test_a_page_with_one_part_still_gets_room_for_a_whole_answer():
     assert summarise.room_for(1) >= 350
     assert summarise.room_for(24) > summarise.room_for(4)
     assert summarise.room_for(500) <= 2000
+
+
+def test_the_registry_is_read_the_way_it_is_written(tmp_path, monkeypatch):
+    # it is a flat mapping of id to entry, and reading it as if the entries hung under a `sources:` key
+    # gave a run over the whole corpus that quietly did nothing
+    registry = tmp_path / "sources.yaml"
+    registry.write_text("esp: {kind: site, title: ESP}\nbooks: {kind: book, title: Books}\n",
+                        encoding="utf-8")
+    monkeypatch.setattr(summarise, "schematics_registry", lambda: registry)
+    assert summarise.sources() == ["books", "esp"]
