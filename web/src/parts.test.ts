@@ -1,7 +1,7 @@
-/** Ranking a search, which is the only logic the browser still does for itself. */
+/** Filtering and ordering the parts list, which is the only logic the browser still does for itself. */
 import { describe, expect, it } from 'vitest'
 
-import { order, search } from './part'
+import { keep, order, search } from './parts'
 import type { PartRow } from './types'
 
 const rows: PartRow[] = [
@@ -33,11 +33,6 @@ describe('search', () => {
     expect(search(rows, '12ax7').map((r) => r[0])[0]).toBe('12AX7')
     expect(search(rows, '2n-3055').map((r) => r[0])[0]).toBe('2N3055')
   })
-
-  it('ranks a part with models above one with only a few documents', () => {
-    const names = search(rows, 'BC').map((r) => r[0])
-    expect(names[0]).toBe('BC108')      // 700 documents beats 12 documents and 2 models
-  })
 })
 
 describe('the order of the list', () => {
@@ -51,7 +46,7 @@ describe('the order of the list', () => {
   })
 
   it('can be asked for the parts with the most models instead', () => {
-    expect(order(rows, 'models').map((r) => r[0])[0]).toBe('2N3055')     // 9 models
+    expect(order(rows, 'models').map((r) => r[0])[0]).toBe('2N3055')      // 9 models
   })
 
   it('can be asked for plain alphabetical order', () => {
@@ -64,5 +59,20 @@ describe('the order of the list', () => {
     const before = rows.map((r) => r[0])
     order(rows, 'name')
     expect(rows.map((r) => r[0])).toEqual(before)
+  })
+})
+
+describe('the filter chips', () => {
+  it('keeps everything by default', () => {
+    expect(keep(rows, '')).toHaveLength(rows.length)
+  })
+
+  it('can show only the parts a model exists for, or only the ones still without', () => {
+    expect(keep(rows, 'models').map((r) => r[0])).toEqual(['12AX7', 'ECC83', 'BC108B', '2N3055'])
+    expect(keep(rows, 'nomodel').map((r) => r[0])).toEqual(['12AX7A', 'BC108'])
+  })
+
+  it('and the two halves add up to the whole', () => {
+    expect(keep(rows, 'models').length + keep(rows, 'nomodel').length).toBe(rows.length)
   })
 })

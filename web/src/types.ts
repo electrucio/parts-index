@@ -38,6 +38,8 @@ export interface Sources {
 export interface Manifest {
   schema: number
   built: string
+  /** How many parts have a page. */
+  parts?: number
   totals: {
     sources: number
     items: number
@@ -69,6 +71,8 @@ export interface PartModel {
   type?: string
   pins?: string[]
   verbatim?: boolean
+  /** Our named fixups, when the text was not used as published. */
+  changes?: string[]
   symbol?: string
   get: { url?: string; member?: string; installed_with?: string; file?: string; how?: string }
   score?: number

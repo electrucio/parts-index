@@ -25,8 +25,8 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
 - `data/` the public dataset: registries, ledgers, the part dictionary, the exported schematic index
   (documents, pages, uses), the model recipes with their verification results, the LTspice symbols
   drawn for them, and what was distilled from the research datasets. **(todo)** the licence notes.
-- `web/` the site (Vite + TypeScript + Preact): search by part number and the part page.
-  `docs/` the roadmap. **(todo)** the maintainer runbook.
+- `web/` the site (Vite + TypeScript + Preact): the parts browser and the coverage record. Its look
+  is the previous project's site, carried over. `docs/` the roadmap. **(todo)** the maintainer runbook.
 - `src/parts_index/migrate/` one-off steps carrying the old pipeline's state across; deleted when the
   last stage is ported.
 - `private_uncommitted/` local, git-ignored data root: `ocr/` the page records with their map, and

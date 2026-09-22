@@ -40,7 +40,7 @@ PAGE_CAP = 24        # page links inside one document, when there is room for th
 # document of a diode that is in everything is not a result anybody reads. Spread the same budget and
 # the heavy parts get a few pages each while the 89 % that fit in 4 KB are untouched.
 LINK_BUDGET = 600
-MODEL_KEYS = ("source", "name", "def", "type", "pins", "verbatim", "symbol")
+MODEL_KEYS = ("source", "name", "def", "type", "pins", "verbatim", "changes", "symbol")
 
 
 def rows(path):
