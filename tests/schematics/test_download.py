@@ -214,3 +214,24 @@ def test_detaching_hands_the_work_over_and_does_none_of_it(site, monkeypatch):
     assert handed["name"] == "download_tagboard-dirtbox"
     assert handed["module"] == D.MODULE
     assert "--detach" not in handed["args"]                  # or the child would detach again, forever
+
+
+def test_the_size_floor_is_for_images_and_not_for_documents(site, monkeypatch):
+    """A truncated PDF is not a small image: it is a document the source is serving badly."""
+    url = "https://ac.example/truncated.pdf"
+    write_list("audiocircuit", [{"url": url, "kind": "figure"}])
+    tiny_pdf = b"%PDF-1.2\n" + b"x" * 200
+    serve(monkeypatch, {url: Response(200, url, "application/pdf", tiny_pdf)})
+
+    D.run("audiocircuit", log=lambda *a: None)
+    row = ledger("audiocircuit").get(url)
+    assert row["type"] == "pdf" and not row["skip_reason"]      # kept, and the OCR stage will say what it holds
+
+
+def test_a_vector_drawing_is_refused_by_name(site, monkeypatch):
+    url = "https://ac.example/index.php?pf=smile.svg"
+    write_list("audiocircuit", [{"url": url, "kind": "figure"}])
+    serve(monkeypatch, {url: Response(200, url, "image/svg+xml", b"<svg viewBox='0 0 32 32'></svg>")})
+
+    D.run("audiocircuit", log=lambda *a: None)
+    assert "svg" in ledger("audiocircuit").get(url)["skip_reason"]

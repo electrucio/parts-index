@@ -45,6 +45,7 @@ from parts_index.core.jobs import detach, only_one, run_log, wait_for
 from parts_index.core.ledger import Ledger
 
 DOCUMENT_KINDS = ("pdf", "gif", "jpeg", "png", "tiff")
+IMAGE_KINDS = ("gif", "jpeg", "png", "tiff")
 FILE_EXT = re.compile(r"\.(pdf|gif|jpe?g|png|tiff?|zip)(\?|$)", re.I)
 IMAGE_EXT = re.compile(r"\.(gif|jpe?g|png|tiff?)(\?|$)", re.I)
 # Names that belong to the furniture of a page, never to a schematic.
@@ -201,8 +202,10 @@ class Downloader:
         kind = r.kind or ("html" if MARKUP.search(r.body[:20000]) else "")
         if not r.body:
             return self._skip(url, role, "empty", r)
-        if role == "figure" and len(r.body) < self.min_image:
-            return self._skip(url, role, "small image", r, kind)
+        if kind in IMAGE_KINDS and role == "figure" and len(r.body) < self.min_image:
+            return self._skip(url, role, "small image", r, kind)      # a bullet or a spacer, not a drawing
+        if "svg" in r.ctype.lower() or url.lower().split("?")[-1].endswith(".svg"):
+            return self._skip(url, role, "svg, which nothing here reads", r, kind)
         if FILE_EXT.search(urlparse(url).path) and kind not in DOCUMENT_KINDS:
             return self._skip(url, role, "not the declared file type", r, kind)      # a soft 404 served as a page
         if kind not in DOCUMENT_KINDS and kind != "html":

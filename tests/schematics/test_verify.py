@@ -105,3 +105,16 @@ def test_repair_reports_a_source_that_now_serves_something_else(source, monkeypa
 
     row = Ledger(config.schematics_state("esp")).get("https://e.org/lost.pdf")
     assert row["ocr_at"] == "" and row["index_at"] == ""     # the input changed: later stages run again
+
+
+def test_a_refusal_a_changed_rule_wrote_can_be_forgotten(source, monkeypatch):
+    """A rule that was wrong leaves rows refused for a reason that no longer applies."""
+    record("https://e.org/truncated.pdf")
+    led = Ledger(config.schematics_state("esp"))
+    led.skip("https://e.org/truncated.pdf", "small image")
+    led.save()
+    assert V.look("esp")["counts"]["lost"] == 0            # a refusal is not a hole
+
+    report = V.look("esp", retry=["small image"])
+    assert report["counts"]["lost"] == 1                   # asked about again, now that the rule has changed
+    assert Ledger(config.schematics_state("esp")).get("https://e.org/truncated.pdf")["skip_reason"] == ""

@@ -55,9 +55,28 @@ def state_of(source: str, row: dict, deep: bool = False) -> tuple[str, str]:
     return "held", str(path)
 
 
-def look(source: str, deep: bool = False) -> dict:
+def clear(led: Ledger, reasons: list[str]) -> int:
+    """Forget a refusal that a rule we have since changed wrote, so the item is asked about again.
+
+    The ledger says a `skip_reason` stands until somebody clears it. This is somebody clearing it, by
+    the reason it was written under, rather than by hand in the file.
+    """
+    n = 0
+    for row in led.rows.values():
+        if row["skip_reason"] in reasons:
+            row["skip_reason"] = ""
+            n += 1
+    if n:
+        led.dirty = True
+        led.save()
+    return n
+
+
+def look(source: str, deep: bool = False, retry: list[str] | None = None) -> dict:
     """What state every item of one source is in, and which keys are the holes."""
     led = Ledger(schematics_state(source))
+    if retry:
+        clear(led, retry)
     counts = dict.fromkeys(STATES, 0)
     broken: list[str] = []
     for row in led.rows.values():
@@ -105,6 +124,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--source", action="append", help="only these sources (repeatable)")
     ap.add_argument("--deep", action="store_true", help="read every file and check it against its checksum")
     ap.add_argument("--repair", action="store_true", help="fetch back what was lost before anything read it")
+    ap.add_argument("--retry", action="append", metavar="REASON",
+                    help="first forget refusals recorded under this reason (repeatable)")
     ap.add_argument("--limit", type=int, default=0, help="at most this many repairs")
     ap.add_argument("--delay", type=float, default=http.DELAY)
     args = ap.parse_args(argv)
@@ -112,7 +133,7 @@ def main(argv: list[str] | None = None) -> int:
     total = dict.fromkeys(STATES, 0)
     holes = 0
     for source in args.source or sources():
-        report = look(source, deep=args.deep)
+        report = look(source, deep=args.deep, retry=args.retry)
         counts = report["counts"]
         for state, n in counts.items():
             total[state] += n

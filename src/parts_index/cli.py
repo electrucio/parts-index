@@ -70,6 +70,8 @@ def main(argv: list[str] | None = None) -> int:
     sv.add_argument("--source", action="append", help="only these sources (repeatable)")
     sv.add_argument("--deep", action="store_true", help="read every file and check it against its checksum")
     sv.add_argument("--repair", action="store_true", help="fetch back what was lost before anything read it")
+    sv.add_argument("--retry", action="append", metavar="REASON",
+                    help="first forget refusals recorded under this reason (repeatable)")
     sv.add_argument("--limit", type=int, default=0, help="at most this many repairs")
     se = sch.add_parser("export", help="write the index into data/, where the site is built from")
     se.add_argument("--source", action="append", help="only these sources (repeatable)")
@@ -179,6 +181,7 @@ def main(argv: list[str] | None = None) -> int:
         from parts_index.schematics import verify as sch_verify
         argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
         argv2 += ["--deep"] if args.deep else []
+        argv2 += [x for pair in (("--retry", r) for r in args.retry or []) for x in pair]
         argv2 += ["--repair"] if args.repair else []
         argv2 += ["--limit", str(args.limit)] if args.limit else []
         return sch_verify.main(argv2)
