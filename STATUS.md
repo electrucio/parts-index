@@ -85,7 +85,7 @@ OCR'd counts only items that need OCR (scans and images); HTML pages and born-di
 
 ## SPICE model sources
 
-80 sources · 13,710 files downloaded · 13,706 scanned by the indexer, of which 12,901 hold definitions (705,191 in all) · part look-ups: 846 not available, 970 not tried yet
+81 sources · 17,743 files downloaded · 17,743 scanned by the indexer, of which 15,918 hold definitions (737,422 in all) · part look-ups: 1,107 not available, 584 not tried yet
 
 Registry: `data/models/sources/<id>.yaml`. Ledgers: `data/models/state/<id>.csv`, one row per downloaded file
 (URL + sha256) and one per part looked up at that vendor. **Scanned** is how many the indexer has read;
@@ -96,9 +96,9 @@ is marked `redistributable: true`.
 | Source | Status | Fetch | Files | Scanned | With models | Definitions | Parts not available | Parts not tried | Licence | Last activity | Next |
 |---|---|---|--:|--:|--:|--:|--:|--:|---|---|---|
 | onsemi | active | adapter | 4,742 | 4,742 | 4,740 | 33,903 | 172 | 165 | unreviewed | 2026-09-21 | fetch 165 parts |
+| spice-model-cd | active | manual | 4,302 | 4,302 | 3,282 | 31,266 | 0 | 0 | unreviewed | 2026-09-21 | write manifest |
 | diodes-inc | active | adapter | 4,219 | 4,219 | 4,157 | 35,009 | 0 | 255 | unreviewed | 2026-09-21 | fetch 255 parts |
 | kicad-spice-library | active | manual | 2,083 | 2,083 | 2,027 | 154,194 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
-| spice-model-cd | active | manual | 493 | 489 | 486 | 1,677 | 0 | 0 | unreviewed | 2026-09-21 | write manifest |
 | ti | active | adapter | 451 | 451 | 444 | 9,169 | 321 | 8 | unreviewed | 2026-09-21 | fetch 8 parts |
 | tdk | active | adapter | 280 | 280 | 278 | 49,531 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | ltwiki | active | manual | 223 | 223 | 116 | 253,638 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
@@ -106,25 +106,28 @@ is marked `redistributable: true`.
 | duncanamps | active | manual | 131 | 131 | 91 | 1,535 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | nexperia | active | adapter | 124 | 124 | 124 | 300 | 263 | 100 | unreviewed | 2026-09-21 | fetch 100 parts |
 | spiceypedals | active | manual | 112 | 112 | 49 | 309 | 0 | 0 | MIT | 2026-09-21 | up to date |
-| infineon | active | adapter | 104 | 104 | 104 | 47,835 | 42 | 12 | unreviewed | 2026-09-21 | fetch 12 parts |
+| sanken | active | manual | 108 | 108 | 107 | 569 | 0 | 0 | accepted-private | 2026-09-21 | up to date |
+| infineon | active | adapter | 105 | 105 | 105 | 47,841 | 53 | 0 | vendor-terms | 2026-09-21 | up to date |
 | wurth | active | manual | 67 | 67 | 63 | 11,821 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
+| adi | link_only | manual | 57 | 57 | 57 | 423 | 85 | 1 | accepted-private | 2026-09-21 | manual: link only |
 | central-semi | active | manual | 50 | 50 | 50 | 52 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | germaniumbjts | active | manual | 50 | 50 | 5 | 6 | 0 | 0 | MIT | 2026-09-21 | up to date |
 | loosweb-relay | active | manual | 37 | 37 | 2 | 6 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
+| toshiba | active | manual | 36 | 36 | 28 | 114 | 20 | 0 | accepted-private | 2026-09-21 | up to date |
+| rohm | link_only | manual | 34 | 34 | 33 | 167 | 20 | 0 | vendor-terms | 2026-09-21 | manual: link only |
 | tedyapo-led-modeling | active | manual | 32 | 32 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | electrucio | active | manual | 28 | 28 | 14 | 299 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | murata | active | manual | 25 | 25 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
+| stmicro | active | manual | 22 | 22 | 22 | 1,354 | 55 | 0 | vendor-terms | 2026-09-21 | up to date |
 | diyaudio | active | url | 21 | 21 | 15 | 97 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | groups-io | active | manual | 21 | 21 | 7 | 66 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
-| stmicro | active | manual | 18 | 18 | 18 | 38 | 0 | 62 | unreviewed | 2026-09-21 | fetch 62 parts |
-| adi | link_only | manual | 15 | 15 | 15 | 116 | 0 | 139 | unreviewed | 2026-09-21 | manual: link only |
+| microchip | link_only | manual | 18 | 18 | 18 | 135 | 35 | 0 | vendor-terms | 2026-09-21 | manual: link only |
 | groupsio-ltspice | active | manual | 15 | 15 | 3 | 277 | 0 | 0 | unreviewed | 2026-09-21 | write manifest |
-| rohm | link_only | manual | 15 | 15 | 14 | 57 | 0 | 41 | unreviewed | 2026-09-21 | manual: link only |
 | ltspice-guitar-pedals | active | manual | 14 | 14 | 1 | 6 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | nisshinbo | link_only | manual | 12 | 12 | 12 | 76 | 0 | 6 | unreviewed | 2026-09-21 | manual: link only |
 | linear-systems | active | manual | 11 | 11 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
-| toshiba | active | manual | 11 | 11 | 5 | 70 | 0 | 34 | unreviewed | 2026-09-21 | fetch 34 parts |
 | nichicon | active | adapter | 10 | 10 | 10 | 253 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
+| vishay | active | adapter | 10 | 10 | 10 | 171 | 45 | 0 | vendor-terms | 2026-09-21 | write manifest |
 | audio-effects-ltspice | active | manual | 7 | 7 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | germanium-apm | active | manual | 7 | 7 | 2 | 41 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | pnp-fuzz-simulation | active | manual | 7 | 7 | 0 | 0 | 0 | 0 | GPL-2.0-only | 2026-09-21 | up to date |
@@ -138,7 +141,6 @@ is marked `redistributable: true`.
 | koren | active | manual | 5 | 5 | 1 | 106 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | ayumi | active | manual | 4 | 4 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | diystompboxes | active | manual | 3 | 3 | 3 | 12 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
-| microchip | link_only | manual | 3 | 3 | 3 | 16 | 0 | 61 | unreviewed | 2026-09-21 | manual: link only |
 | reefman | active | manual | 3 | 3 | 1 | 241 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | z101-led-spice-model | active | manual | 3 | 3 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | coilcraft | pending_manual | manual | 2 | 2 | 2 | 10,068 | 0 | 0 | unreviewed | 2026-09-21 | manual download |
@@ -167,11 +169,10 @@ is marked `redistributable: true`.
 | diyaudio-autores | active | manual | 0 | 0 | 0 | 0 | 1 | 0 | unreviewed |  | write manifest |
 | immler | active | manual | 0 | 0 | 0 | 0 | 0 | 0 | unreviewed |  | write manifest |
 | kemet | pending_manual | manual | 0 | 0 | 0 | 0 | 0 | 0 | unreviewed |  | manual download |
-| littelfuse | link_only | manual | 0 | 0 | 0 | 0 | 0 | 17 | unreviewed |  | manual: link only |
+| littelfuse | link_only | manual | 0 | 0 | 0 | 0 | 17 | 0 | not_applicable |  | manual: link only |
 | ltspice-native | active | installed | 0 | 0 | 0 | 0 | 0 | 0 | proprietary |  | write manifest |
 | mps | link_only | manual | 0 | 0 | 0 | 0 | 0 | 2 | unreviewed |  | manual: link only |
 | panasonic | pending_manual | manual | 0 | 0 | 0 | 0 | 0 | 0 | unreviewed |  | manual download |
 | renesas | link_only | manual | 0 | 0 | 0 | 0 | 0 | 6 | unreviewed |  | manual: link only |
 | richtek | link_only | manual | 0 | 0 | 0 | 0 | 0 | 8 | unreviewed |  | manual: link only |
-| torex | link_only | manual | 0 | 0 | 0 | 0 | 0 | 15 | unreviewed |  | manual: link only |
-| vishay | active | adapter | 0 | 0 | 0 | 0 | 42 | 6 | unreviewed | 2026-09-19 | write manifest |
+| torex | link_only | manual | 0 | 0 | 0 | 0 | 15 | 0 | not_applicable |  | manual: link only |
