@@ -161,6 +161,11 @@ def known_parts() -> Path:
     return PUBLIC_DATA / "parts" / "known_parts.csv"
 
 
+def wanted_parts() -> Path:
+    """Parts worth having that the index has nothing for yet, and who says so."""
+    return PUBLIC_DATA / "parts" / "wanted.csv"
+
+
 def rejected_tokens() -> Path:
     return PUBLIC_DATA / "parts" / "rejected_tokens.txt"
 
@@ -354,6 +359,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("datasheets_table", "public", ()),
     ("verification", "public", ("bjt", "2N3904")),
     ("known_parts", "public", ()),
+    ("wanted_parts", "public", ()),
     ("rejected_tokens", "public", ()),
     ("datasets_registry", "public", ()),
     ("dataset_table", "public", ("part_repos",)),

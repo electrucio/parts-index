@@ -106,6 +106,8 @@ export interface PartPage {
     more?: number
     also?: string[]
   }[]
+  /** Who vouches for this part: a shop that sells it, a databook, an article. */
+  listed?: { source: string; category?: string; note?: string }[]
   /** `owner/repo` and how many of its sheets place the part. */
   repos?: [string, number][]
   n: { documents: number; shown: number; copies: number; repos?: number }

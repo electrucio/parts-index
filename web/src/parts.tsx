@@ -336,6 +336,32 @@ function Uses({ page, sources, kinds }: { page: PartPage; sources: string[]; kin
   )
 }
 
+/**
+ * Who vouches for a part the index has nothing of its own for.
+ *
+ * Without this a reader who looks up an EFT83 is told nothing at all. "Sold by musikding.de under
+ * Transistoren / Germanium Transistoren / Selektiert, PNP, hFE 40–50" is an answer, and it is also this
+ * project's own note of what to look for next.
+ */
+function Listed({ page }: { page: PartPage }) {
+  const listed = page.listed
+  if (!listed?.length) return null
+  return (
+    <section class="stack-s">
+      <h3>Who lists this part</h3>
+      <ul class="uselist">
+        {listed.map((l, i) => (
+          <li key={i}>
+            <strong>{l.source}</strong>
+            {l.category && <span class="muted"> · {l.category}</span>}
+            {l.note && <span class="muted"> · {l.note}</span>}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
 export function Detail({ part, sources, kinds }: { part: string; sources: string[]; kinds: string[] }) {
   const [page, setPage] = useState<PartPage | null>(null)
   const [error, setError] = useState(false)
@@ -359,10 +385,14 @@ export function Detail({ part, sources, kinds }: { part: string; sources: string
       {!error && !page && <p class="muted">Loading…</p>}
       {page && (
         <>
+          <Listed page={page} />
           <Models page={page} />
           <Uses page={page} sources={sources} kinds={kinds} />
           {page.docs.length === 0 && !page.models && (
-            <p class="muted">This part is in the dictionary, but nothing is published for it yet.</p>
+            <p class="muted">
+              No SPICE model published and no schematic indexed yet
+              {page.listed?.length ? ', which makes it one to look for.' : '.'}
+            </p>
           )}
         </>
       )}

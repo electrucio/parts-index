@@ -22,7 +22,8 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
 - `components/`, `circuits/` pillar 4: original LTspice components with `.asy` symbols, and reference
   circuits. The `.net` files reference model files that only exist in the private data root, so they do
   not run from a clean clone yet.
-- `data/` the public dataset: registries, ledgers, the part dictionary, the exported schematic index
+- `data/` the public dataset: registries, ledgers, the part dictionary and the parts worth having,
+  the exported schematic index
   (documents, pages, uses), the model recipes with their verification results, the LTspice symbols
   drawn for them, and what was distilled from the research datasets. **(todo)** the licence notes.
 - `web/` the site (Vite + TypeScript + Preact): the parts browser and the coverage record. Its look

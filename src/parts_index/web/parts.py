@@ -40,6 +40,7 @@ from parts_index.core.config import (
     schematics_parts,
     schematics_registry,
     schematics_uses,
+    wanted_parts,
 )
 from parts_index.core.parts.extractor import canonical, family_of
 
@@ -124,6 +125,20 @@ def part_kind(part: str, recipes: dict, dictionary: dict[str, str]) -> str:
     return fam[1] if fam else ""
 
 
+def wanted() -> dict[str, list[dict]]:
+    """Parts somebody vouches for that the index has nothing of its own for, by part.
+
+    A shop that still sells it, a factory databook that published it, an article that discusses it.
+    Without these a reader who looks one up is told nothing at all, and "sold by musikding.de under
+    Transistoren / Germanium Transistoren / Selektiert" is an answer. They are also the project's own
+    list of what to look for next.
+    """
+    out: dict[str, list[dict]] = defaultdict(list)
+    for r in rows(wanted_parts()):
+        out[r["part"]].append({k: r[k] for k in ("source", "category", "note") if r.get(k)})
+    return out
+
+
 def dictionary_kinds() -> dict[str, str]:
     """The kind a human gave each part in the dictionary."""
     return {r["name"]: r["kind"] for r in rows(known_parts()) if r.get("kind")}
@@ -169,7 +184,8 @@ def index() -> dict:
         for u in rows(schematics_uses(s)):
             uses[u["part"]].append((i, u))
     return {"sources": sources(), "kinds": kinds(), "documents": docs, "pages": pages,
-            "uses": uses, "repos": repos()}
+            "uses": uses, "repos": repos(), "wanted": wanted(),
+            "wanted_kind": {r["part"]: r["kind"] for r in rows(wanted_parts()) if r.get("kind")}}
 
 
 def model_recipes() -> tuple[dict[str, dict], list[str]]:
@@ -277,10 +293,15 @@ def part_payload(part: str, idx: dict, recipe: dict | None) -> dict:
     out = {"part": part, "docs": shown,
            "n": {"documents": len(merged), "shown": len(shown),
                  "copies": len(by_doc) - len(merged)}}
+    listed = idx["wanted"].get(part) or []
+    if listed:
+        out_listed = listed
     gh = idx["repos"].get(part) or []
     if gh:
         out["repos"] = gh[:REPO_CAP]
         out["n"]["repos"] = len(gh)
+    if listed:
+        out["listed"] = out_listed
     if recipe:
         out["models"] = trim_models(recipe)
     return out
@@ -307,12 +328,13 @@ def search_index(idx: dict, recipes: dict) -> tuple[list[list], list[dict]]:
     counts = {r["part"]: (int(r["documents"]), int(r["uses"]))
               for r in rows(schematics_parts())}
     dictionary = dictionary_kinds()
+    listed_kind = idx.get("wanted_kind", {})
     cache: dict[str, int] = {}
     out = []
     tally = Counter()
-    for part in sorted(set(counts) | set(recipes)):
+    for part in sorted(set(counts) | set(recipes) | set(listed_kind)):
         docs, uses = counts.get(part, (0, 0))
-        kind = part_kind(part, recipes, dictionary)
+        kind = part_kind(part, recipes, dictionary) or listed_kind.get(part, "")
         if kind not in cache:
             cache[kind] = device_bits(kind)
         bits = cache[kind]

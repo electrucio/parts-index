@@ -11,7 +11,7 @@ WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
 
 .DEFAULT_GOAL := help
-.PHONY: help setup test test-web lint guard check status status-write paths models-index models-missing models-recover models-promote schematics-export backup migrate-datasets migrate clean web web-data web-deps serve
+.PHONY: help setup test test-web lint guard check status status-write paths models-index models-missing models-recover models-promote schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -90,6 +90,10 @@ serve: web-data  ## bring the site up with live reload, at http://0.0.0.0:8026/p
 migrate-datasets:  ## (maintainer, one-off) distil the research datasets; needs FROM=/path/to/sch-datasets
 	@test -n "$(FROM)" || { echo "give the dataset tree: make migrate-datasets FROM=/path/to/sch-datasets"; exit 1; }
 	$(RUN) --extra datasets python -m parts_index.migrate.datasets --from "$(FROM)"
+
+migrate-wanted:  ## (maintainer, one-off) publish the parts worth having; needs FROM=<catalog dir>
+	@test -n "$(FROM)" || { echo "give the catalog directory: make migrate-wanted FROM=<dir>"; exit 1; }
+	$(RUN) python -m parts_index.migrate.wanted --from "$(FROM)"
 
 migrate:  ## (maintainer, one-off) carry the old pipeline's state across — see src/parts_index/migrate/
 	$(RUN) python -m parts_index.migrate.model_ledgers
