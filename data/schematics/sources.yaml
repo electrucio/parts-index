@@ -108,6 +108,26 @@ dirtbox:
   notes: 'Vero layouts published as blog posts: the drawing is an image on Blogger''s own host, so the
     post is fetched and its images with it. robots.txt allows everything but /search and /share-widget.
     1,784 posts listed on 2026-09-18.'
+diyaudio:
+  kind: forum
+  title: diyAudio (attachments only)
+  home_url: https://www.diyaudio.com/
+  status: proposed
+  crawl:
+    start:
+    - https://www.diyaudio.com/community/forums/pass-labs.18/
+    allow: ^/community/
+  notes: 'Forums were out of scope until 2026-09-22, when the maintainer reversed it: the Pass Labs
+    subforum alone carries Nelson Pass''s own project PDFs, and none of them is held — 2SA992 is on one
+    document here, and the DIY Front End 2022 sheet that uses it is not among them. The reversal comes
+    with his rule, and it is the whole of the entry: **index the attachments, never the conversation**,
+    and among attachments only schematics or projects worked out to some degree — not breadboard photos,
+    not measurement plots without a circuit, not chat. The signals for that already exist and are
+    measured, not guessed: count_designators() and count_values() in core.parts say whether a page has a
+    circuit on it, and core.adfilter drops the rest. A thread page is fetched to find what it links to
+    and is never itself a document. robots.txt on 2026-09-22 is "Allow: /" with a sitemap, so nothing is
+    being worked around. Proposed: needs its own crawler (attachment links, not thread text), a labelled
+    sample to set the "worked out" threshold, and the maintainer''s go on the scale before it runs.'
 diyaudioheaven:
   kind: site
   title: DIY-Audio-Heaven

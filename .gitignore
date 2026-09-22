@@ -39,3 +39,10 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 *.swp
+
+# Credentials never live in the tree; they belong in ~/.config/parts-index/. This is a net under the
+# guard, not a place to keep them: a file matched here is still a file to move out and delete.
+example_decodo.txt
+*_key.txt
+*credential*
+*.env
