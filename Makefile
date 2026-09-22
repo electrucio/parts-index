@@ -6,6 +6,10 @@
 UV := uv
 RUN := $(UV) run --quiet
 
+# Where `make serve` puts the site. Every interface, so it can be opened from another machine.
+WEB_HOST ?= 0.0.0.0
+WEB_PORT ?= 8026
+
 .DEFAULT_GOAL := help
 .PHONY: help setup test test-web lint guard check status status-write paths models-index models-missing models-recover models-promote schematics-export backup migrate-datasets migrate clean web web-data web-deps serve
 
@@ -78,8 +82,9 @@ web-data:  ## write the site's data from data/ — reads nothing private
 web: web-data  ## build the site into web/dist
 	cd web && npm run build
 
-serve: web-data  ## bring the site up locally with live reload, at http://localhost:5173
-	cd web && npm run dev
+serve: web-data  ## bring the site up with live reload, at http://0.0.0.0:8026/parts-index/
+	@echo "  http://$(WEB_HOST):$(WEB_PORT)/parts-index/"
+	cd web && PIDX_WEB_HOST=$(WEB_HOST) PIDX_WEB_PORT=$(WEB_PORT) npm run dev
 
 # --- maintainer only ----------------------------------------------------------------------------
 migrate-datasets:  ## (maintainer, one-off) distil the research datasets; needs FROM=/path/to/sch-datasets
