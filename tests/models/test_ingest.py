@@ -117,3 +117,42 @@ def test_a_delivery_without_a_log_still_lands(delivery, trees):
     (delivery / "descargas.csv").unlink()
     counts = I.ingest(delivery)
     assert counts["files"] == 3 and counts["into:tubes"] == 3      # the folder names the source
+
+
+def test_an_archive_is_unpacked_so_the_indexer_can_see_inside_it(tmp_path, trees):
+    """A delivery of zips is a delivery of nothing until they are opened.
+
+    The indexer walks files, not zip members, so a vendor collection that arrives compressed lands with
+    every model inside it invisible -- which is how a source can show a full ledger and no definitions.
+    """
+    import zipfile
+    root = tmp_path / "round2"
+    (root / "vendor").mkdir(parents=True)
+    with zipfile.ZipFile(root / "vendor" / "pack.zip", "w") as z:
+        z.writestr("inner/PART1.lib", ".model PART1 D(IS=1e-14)\n")
+        z.writestr("inner/PART2.lib", ".SUBCKT PART2 1 2\n.ENDS\n")
+    (root / "log.csv").write_text(
+        "source_id,pieza,fichero,url_descarga,url_pagina,fecha,estado,notas\n"
+        "vendor,PART1,pack.zip,https://v.example/pack.zip,,2026-09-21,encontrado,la coleccion\n",
+        encoding="utf-8")
+
+    counts = I.ingest(root)
+
+    assert counts["unpacked"] == 2
+    out = trees / "models/sources/vendor/extracted/pack/inner"
+    assert (out / "PART1.lib").read_text().startswith(".model")
+    assert (out / "PART2.lib").read_text().startswith(".SUBCKT")
+
+
+def test_a_part_whose_file_arrived_is_no_longer_waiting_to_be_looked_for(delivery, trees):
+    """The file's row is not the whole story: the part has a row of its own.
+
+    Leaving it at not_tried makes the ledger say both "we hold this model" and "nobody has looked",
+    and the second is what decides whether the search is run again.
+    """
+    I.ingest(delivery)
+    by_key = {r["key"]: r for r in rows(trees / "state/tubes.csv")}
+    assert by_key["part:6SF5"]["status"] == "downloaded"
+    assert by_key["part:6SF5"]["skip_reason"] == ""
+    assert by_key["part:6Y6GA"]["status"] == "downloaded"      # answered by a shared collection
+    assert by_key["part:6BW6"]["status"] == "downloaded"       # and so was this one

@@ -30,7 +30,7 @@ import yaml
 
 from parts_index.core.config import model_sources, model_state, spice_source
 from parts_index.core.ledger import MODEL_FIELDS, MODEL_STAGES, MODEL_VERSIONED, Ledger
-from parts_index.models.fetch import Manifest
+from parts_index.models.fetch import Manifest, unpack, unpack_base
 
 # What a hand-written log says, and what it means for the ledger. `searched` is final: somebody looked
 # and there is nothing there for us, which is worth exactly as much as a file.
@@ -155,6 +155,15 @@ def ingest(root: Path, dry: bool = False) -> dict:
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(p, target)
 
+        # An archive is not readable where it lies: the indexer walks files, not zip members, so a
+        # delivery of zips would land with every model inside it invisible. `fetch` unpacks what it
+        # downloads for exactly this reason; a hand-gathered delivery has to be treated the same.
+        if data[:2] == b"PK":
+            try:
+                counts["unpacked"] += unpack(target, spice_source(source) / unpack_base(target, source))
+            except (zipfile.BadZipFile, OSError):
+                counts["unpack_failed"] += 1
+
         m = manifests.setdefault(source, Manifest(source))
         m.add(url, rel, data, (row or {}).get("notas", "")[:200])   # the manifest is private: prose is fine here
         led = ledgers.setdefault(source, ledger(source))
@@ -165,7 +174,17 @@ def ingest(root: Path, dry: bool = False) -> dict:
     # What was looked for and not found is worth keeping: it is what stops the search being repeated.
     for r in rows:
         if id(r) in satisfied:
-            continue                                  # its file arrived and is already recorded
+            # Its file arrived and the file's own row carries the provenance. But a part looked up at a
+            # vendor has a row of its own, and leaving that at not_tried makes the ledger say both "we
+            # hold this model" and "nobody has looked for it" -- and the second is what decides whether
+            # the part is searched again.
+            answered = piece_name((r.get("pieza") or "").strip())
+            if answered and not dry:
+                led = ledgers.setdefault(r["source_id"], ledger(r["source_id"]))
+                led.stamp(f"part:{answered}", "fetch", part=answered, status="downloaded",
+                          url=real_url(r.get("url_descarga", "")) or real_url(r.get("url_pagina", "")))
+            counts["outcome:answered"] += 1
+            continue
         status = STATUS.get((r.get("estado") or "").strip(), "not_tried")
         part = (r.get("pieza") or "").strip()
         url = real_url(r.get("url_descarga", "")) or real_url(r.get("url_pagina", ""))
