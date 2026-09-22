@@ -16,6 +16,9 @@ datasets = ["pyarrow>=15"]
 # it is CUDA-bound and belongs in the container, `docker/ocr.Dockerfile`. Without it this still reads
 # every page that has a text layer. Install with `uv sync --extra ocr`.
 ocr = ["pymupdf>=1.24", "pillow>=10", "numpy>=1.26"]
+# `pidx parts benchmark --build` and `pidx parts judge` ask a model to label a vocabulary once, and
+# commit what it said. Nothing the site serves goes near it. Install with `uv sync --extra llm`.
+llm = ["openai>=1.40"]
 
 [project.scripts]
 pidx = "parts_index.cli:main"
