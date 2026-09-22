@@ -47,7 +47,7 @@ FAMILIES = [(f, k, re.compile(rx), strict) for f, k, rx, strict in FAMILIES]
 
 TOKEN = re.compile(r"(?<![A-Za-z0-9])([A-Za-z0-9][A-Za-z0-9/\-]{2,15})(?![A-Za-z0-9])")
 BARE = re.compile(r"(?<![A-Za-z0-9.,/\-])(\d{3,5})(?![A-Za-z0-9.,/\-])")
-VALUE = re.compile(r"^\d+[RKMUNPVWAHF]\d*$|^\d+(?:K|M|R|UF|NF|PF|MH|UH|V|VA|W|MA|HZ|KHZ|DB|MM|CM)\d*$|^\d{1,2}V\d$|^[RCLQDVTUJPM]\d{1,3}[A-Z]?$|^(?:19|20)\d\d$"
+VALUE = re.compile(r"^\d+[RKMUNPVWAHF]\d*$|^\d+(?:K|M|R|UF|NF|PF|MH|UH|V|VA|W|MA|HZ|KHZ|DB|MM|CM)\d*$|^\d{1,2}V\d$|^[RCLQDVTUJPMS]\d{1,3}[A-Z]?$|^(?:19|20)\d\d$"
                    r"|^\d+[RKM]\d*(?:M|W|SM|SW|UF|NF|PF|V|MW|KW|W\d)$|^\d+X\d+[A-Z]{0,2}$|^\d+[A-Z]?\d*(?:UF|NF|PF|MFD|OHM|OHMS|VAC|VDC|WATT|MEG)$|^[AD]C\d{2,3}V$"
                    r"|^(?:IC|TR|VR|RV|SW|TP|CN|CON|JP|PL|SK|TH|LP|FS|RL|RLA|RLY|LS|ZD|LED|VC|TC|FB|TS|XTAL)\d{1,3}[A-Z]?$|^VT\d{1,2}$")
 NOISE = re.compile(r"^[5-7][A-HJ-L]\d{1,2}(?:-?[A-C])?$|^A[AB]\d{3,4}$|^AC[02-9]\d{2,3}$|^AC-?(?:4|10|15|30|50|100|120)(?:/\d)?[A-Z]{0,2}$|^\d+X[A-Z]|^PL[12]\d$")     # Fender circuit codes (5E3, 6G15, AA764, AB763, AC568 — but AC1xx is germanium), Vox AC30..AC100, "2xEL84"
@@ -106,9 +106,22 @@ def _load_census():
 
 
 CENSUS = _load_census()            # norm(part) -> (part as written, kind), from a list that had to be complete
+
+
+def _load_verdicts():
+    """Names the census lists that this corpus prints for something else. Judged once, with the evidence,
+    and committed — see core.parts.judge. Optional: without the file the census speaks for itself."""
+    try:
+        from parts_index.core.parts.judge import load
+        return {norm(name) for name, r in load().items() if r["verdict"] != "component"}
+    except (ImportError, OSError, KeyError):
+        return set()
+
+
+NOT_HERE = _load_verdicts()        # the census knows the type; this corpus means something else by it
 PENDING = "census, needs the page"        # a census part whose token shape is also something else
 PENDING_SCHEME = "closed scheme, needs the page"   # a number inside a strict numbering scheme, 7805
-WAITING = (PENDING, PENDING_SCHEME)                # both are settled by settle_census(), on different evidence
+WAITING = (PENDING, PENDING_SCHEME)                # settled by settle_census(), on different evidence
 
 
 GENERIC_KINDS = {"ic", "semiconductor"}     # a model library says a part exists, not always what it is
@@ -138,6 +151,13 @@ def _ambiguous(tok):
 # bare number keep the behaviour they had before there was a census.
 RESCUABLE = re.compile(r"^\d{1,2}[A-Z]{1,3}\d{1,2}[A-Z]{0,3}$|^(?!19|20)\d{4}[A-C]?$")
 #                          6V6, 1R5, 12BE6, 35W4          5687, 6336A, 6528 — but never a year
+#
+# What is NOT here, deliberately: the lists of particular strings this file grew in one afternoon —
+# heater voltages, placeholder model names, ordinals, bus names. Each came from one observed mistake and
+# each missed the next one: four full passes over the corpus and the errors kept arriving, all of them
+# the same shape (a real type number that in *this* corpus means something else). That is a judgement
+# about a vocabulary, not a pattern, so it is made once per string, with the evidence, and committed in
+# data/parts/verdicts.csv — see core.parts.judge. This module stays deterministic and testable.
 
 
 def family_of(tok):
@@ -148,7 +168,7 @@ def canonical(tok):
     """EL34s -> EL34, MN-3005 -> MN3005, 2SA1943-O -> 2SA1943, IRF610-ND -> IRF610. None: not a part-like token."""
     t = tok.upper()
     t = re.sub(r"(?<=\d)S$", "", t) if re.fullmatch(r"[A-Z0-9]*\d[A-Z]{0,2}\dS|[A-Z]{1,4}\d{2,5}S", t) else t      # plurals: EL34s, 12AX7s, BC109s
-    t = re.sub(r"^([A-Z]{1,5})-(?=\d)", r"\1", t)             # MN-3005, KSA-2240A, IRFP-240R
+    t = re.sub(r"^([A-Z]{2,5})-(?=\d)", r"\1", t)             # MN-3005, KSA-2240A, IRFP-240R — but not S-100, the bus
     t = re.sub(r"-(?:ND|T|TR|TP|AP|BU|G|E3|PBF)$", "", t)       # distributor / lead-free suffixes
     m = GRADE.match(t)
     if m:
@@ -247,7 +267,7 @@ def _judge(tok, text, pos, isolated, raw=""):
     if re.fullmatch(r"B[A-Z]\d{1,2}[A-Z]?", tok) and not k:           # BD23 5AA, BS1 4DJ: UK postcodes; Pro Electron numbers have three digits
         return None
     fam = family_of(tok)
-    cen = CENSUS.get(norm(tok))
+    cen = None if norm(tok) in NOT_HERE else CENSUS.get(norm(tok))
     if tok in REJECTED and not k and not cen and not (fam and fam[2]):         # the LLM pass also threw away a few strict type numbers (AC187)
         return None
     if tok in DESIGNATOR_LIKE:
@@ -260,19 +280,34 @@ def _judge(tok, text, pos, isolated, raw=""):
     # The census speaks last, and only where nothing else has settled the token. It says which type
     # numbers exist, never which one this token is, so it stays quiet when it contradicts the family:
     # 7815 is a regulator here and a valve type in the census, and the regulator is what this page means.
-    if cen is None and not k and not _ambiguous(tok):
+    if cen is None and not k and not _ambiguous(tok) and norm(tok) not in NOT_HERE:
         cen = CENSUS.get(norm(base_part(tok)))                     # 6L6GCX: the census has the type, not the selection
-    if cen and not k and (not fam or _kind_agrees(fam[1], cen[1])):
+    if cen and not k and not sure and len(tok) >= 3 and (not fam or _kind_agrees(fam[1], cen[1])):
         if _ambiguous(tok) and not sure:
             if RESCUABLE.match(tok):
                 return tok, PENDING, cen[1], "low", fixed          # 6V6 on a page of resistor values is 6.6 V
-        elif len(tok) >= 4 or RESCUABLE.match(tok):
-            k, sure = cen, True                                    # the shape is settled and the part exists
-        # Three characters is not enough for the census alone to speak unless the shape is a valve name:
-        # AB1 and AB2 are real Philips valves and "class AB1" is what a valve amplifier book says on every
-        # other page, S22 is a valve and a section number. Measured: AB1 came out top of everything the
-        # census recovered, on three documents. 1T4, 3S4 and 1S5 are digit-letter-digit, which is how a
-        # valve is named and not how anything else on a schematic is, so those still come through.
+        else:
+            # Whatever its length. A census name is evidence that the type exists, never that this token
+            # is it, so the page always has to agree. Measured on the second full export: MH40 and MC1-50
+            # are real valves and they came out 228 and 225 times off one headphone site's index page,
+            # which lists product models and carries no circuit at all — MC1-50 out of a raw "MC-150".
+            # A family that already recognises the shape keeps its own verdict and is raised by the page
+            # instead (settle_census); only a name nothing else knows waits here. The length floor above
+            # is this branch's too: Frank's archive holds valves called 10, 50, E and CA, and without it
+            # they came out on 1,129, 844, 633 and 1,121 documents.
+            if fam:
+                k = None
+            elif len(tok) >= 4 or RESCUABLE.match(tok):
+                return tok, PENDING, cen[1], "low", fixed
+            # Three characters that are not shaped like a valve name: the census alone may not speak.
+            # CH1 is channel 1, PA1 and LD1 and AD1 are designators, and Frank's archive holds a valve
+            # called each of them. 1T4 and 3S4 are digit-letter-digit, which nothing else on a drawing is.
+        # Three characters is never enough for the census to speak alone. AB1 and AB2 are real Philips
+        # valves and "class AB1" is what a valve amplifier book says on every other page; S22 is a valve
+        # and a section number; 1C4 and 1C6 are valves and they are also IC4 and IC6 with the I read as a
+        # one, which is how they came out published beside a CA3130 on a page with no valve on it. A name
+        # shaped like a valve — digit-letter-digit — may still come through, but only where the page
+        # agrees; anything else needs its family or the dictionary.
     if len(tok) < 3 or (not sure and (VALUE.match(tok) or (NOISE.match(tok) and not FENDER_OK.match(tok)))):
         return None
     if NOISE.match(tok) and not FENDER_OK.match(tok) and not k:
@@ -394,12 +429,30 @@ def settle_valves(hits, page_text):
 KIND_WORDS = {"tube": VALVE_WORDS, "regulator": REG_WORDS}
 
 
-def settle_census(hits, page_text):
+CIRCUIT_DESIGNATORS = 5      # what `allow_bare` already calls "there is a circuit on this page"
+
+
+def settle_census(hits, page_text, n_desig=0):
     """A census part whose token is also a value or a bare number is published only on a page that is
-    about that kind of part: two other parts of the same kind on it, or the words for one."""
+    about that kind of part: two other parts of the same kind on it, or the words for one.
+
+    A token that is *only* digits asks more: a circuit on the page. Measured on 200 magazine issues —
+    1007, 1010, 1048, 1049, 1110, 1138, 1221, 1229, 1231, a run of four-digit numbers off a reader
+    service card in Radio-TV Experimenter, every one of them also a valve type in the census, on pages
+    with no designator at all. 12BE6 and 5687 keep their letters and their evidence; a number alone
+    keeps neither."""
     out = []
     for h in hits:
         if h.family not in WAITING:
+            # A family read the shape and said medium, because its numbering scheme is open. If a list
+            # that had to be complete also holds the part, and the page carries another of its kind,
+            # that is three pieces of evidence and the gate can have it: MC33274 and MC33078 are one
+            # vendor and one scheme, and only the one in the dictionary was ever published.
+            if h.conf == "medium" and norm(h.part) in CENSUS and _kind_agrees(h.kind, CENSUS[norm(h.part)][1]):
+                company = {x.base for x in hits if x.base != h.base and _kind_agrees(x.kind, h.kind)
+                           and (x.conf == "high" or x.family not in WAITING)}
+                if company:
+                    h = h._replace(conf="high")
             out.append(h)
             continue
         words = KIND_WORDS.get(h.kind)
@@ -408,10 +461,19 @@ def settle_census(hits, page_text):
         # 7812 is not a coincidence. A census name has no such vetting, so it needs evidence that is not
         # itself waiting — otherwise the binary patterns 1010 and 1110 in a truth table, both of which are
         # valve type numbers, vouch for one another on a page with no valve on it at all.
-        same = {x.base for x in hits if x.kind == h.kind
-                and (h.family == PENDING_SCHEME or x.family != PENDING)}
-        if len(same) >= 2 or (words and words.search(page_text)):
-            out.append(h._replace(family="census" if h.family == PENDING else "closed scheme", conf="high"))
+        circuit = n_desig >= CIRCUIT_DESIGNATORS
+        if h.family == PENDING and h.part.isdigit() and not circuit:
+            continue
+        # Company is counted by kind the same way the census is trusted by kind: a model library that
+        # says only "a semiconductor" is company for another semiconductor, and never for a valve.
+        settled = {x.base for x in hits if _kind_agrees(x.kind, h.kind) and x.family not in WAITING}
+        if h.family == PENDING_SCHEME:
+            enough = len({x.base for x in hits if _kind_agrees(x.kind, h.kind)}) >= 2   # 7805 beside 7812
+        else:
+            enough = len(settled) >= 2 or (circuit and len(settled) >= 1)     # only the census knows it
+        if enough or (words and words.search(page_text)):
+            out.append(h._replace(family="closed scheme" if h.family == PENDING_SCHEME else "census",
+                                  conf="high"))
     return out
 
 
@@ -432,7 +494,7 @@ def extract_page(page, min_conf=0.85):
             continue
         hits += extract(t, isolated=_short(b), allow_bare=allow_bare, block=i, pending=True)
     page_text = " ".join(b["text"] for b in blocks)
-    hits = settle_census(hits, page_text)
+    hits = settle_census(hits, page_text, count_designators(blocks))
     hits = drop_designator_misreads(drop_hex_dumps(hits), [b["text"] for b in blocks if _short(b)])
     return settle_valves(hits, page_text)
 
