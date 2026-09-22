@@ -122,3 +122,21 @@ a { color: var(--accent); }
 .pages a:hover { border-color: var(--accent); }
 .near { color: var(--muted); }
 tr.preferred { background: var(--card); }
+
+/* --- the parts list, which is the front page ---------------------------------------------- */
+.controls { display: flex; gap: .6rem; align-items: stretch; }
+.controls input { flex: 1 1 auto; }
+.controls select {
+  font: inherit; padding: 0 .6rem; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--card); color: var(--fg);
+}
+.controls select:disabled { opacity: .45; }
+.more {
+  margin-top: .8rem; padding: .5rem .9rem; font: inherit; cursor: pointer;
+  background: var(--card); color: var(--fg); border: 1px solid var(--line); border-radius: 6px;
+}
+.more:hover { border-color: var(--accent); }
+/* Everything that is not a part: present, but not in the way. */
+.behind { margin-top: 2.5rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+.behind > summary { cursor: pointer; color: var(--muted); font-size: .92rem; }
+.behind > summary:hover { color: var(--accent); }

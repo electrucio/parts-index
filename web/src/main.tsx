@@ -1,6 +1,6 @@
 import { render } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
-import { Part, Search } from './part'
+import { Browse, Part } from './part'
 import type { Manifest, SchematicSource, Sources } from './types'
 import './style.css'
 
@@ -183,11 +183,14 @@ function App() {
         <Part part={part} onBack={() => goPart(null)} />
       ) : (
         <>
-          {data.m.have.parts && <Search onPick={goPart} />}
-          <Totals m={data.m} />
+          {data.m.have.parts && <Browse onPick={goPart} />}
           <Missing have={data.m.have} />
-          <Schematics rows={data.s.schematics} />
-          <Models rows={data.s.models} />
+          <details class="behind">
+            <summary>Where all this comes from</summary>
+            <Totals m={data.m} />
+            <Schematics rows={data.s.schematics} />
+            <Models rows={data.s.models} />
+          </details>
         </>
       )}
       <footer>

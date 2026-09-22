@@ -1,7 +1,7 @@
 /** Ranking a search, which is the only logic the browser still does for itself. */
 import { describe, expect, it } from 'vitest'
 
-import { search } from './part'
+import { order, search } from './part'
 import type { PartRow } from './types'
 
 const rows: PartRow[] = [
@@ -37,5 +37,32 @@ describe('search', () => {
   it('ranks a part with models above one with only a few documents', () => {
     const names = search(rows, 'BC').map((r) => r[0])
     expect(names[0]).toBe('BC108')      // 700 documents beats 12 documents and 2 models
+  })
+})
+
+describe('the order of the list', () => {
+  it('puts the most used first by default, which is what the front page shows', () => {
+    expect(order(rows, 'documents').map((r) => r[0])[0]).toBe('12AX7')    // 2,478 documents
+  })
+
+  it('breaks a tie on documents by models, and then by name', () => {
+    const tied: PartRow[] = [['B', 10, 0, 1], ['A', 10, 0, 1], ['C', 10, 0, 5]]
+    expect(order(tied, 'documents').map((r) => r[0])).toEqual(['C', 'A', 'B'])
+  })
+
+  it('can be asked for the parts with the most models instead', () => {
+    expect(order(rows, 'models').map((r) => r[0])[0]).toBe('2N3055')     // 9 models
+  })
+
+  it('can be asked for plain alphabetical order', () => {
+    expect(order(rows, 'name').map((r) => r[0])).toEqual(
+      [...rows].map((r) => r[0]).sort((a, b) => a.localeCompare(b)),
+    )
+  })
+
+  it('leaves the rows it was given alone', () => {
+    const before = rows.map((r) => r[0])
+    order(rows, 'name')
+    expect(rows.map((r) => r[0])).toEqual(before)
   })
 })

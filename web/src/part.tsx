@@ -160,33 +160,91 @@ export function Part({ part, onBack }: { part: string; onBack: () => void }) {
   )
 }
 
-export function Search({ onPick }: { onPick: (p: string) => void }) {
+type Sort = 'documents' | 'models' | 'name'
+
+const SORTS: { key: Sort; label: string }[] = [
+  { key: 'documents', label: 'Most used first' },
+  { key: 'models', label: 'Most SPICE models first' },
+  { key: 'name', label: 'By part number' },
+]
+
+/** All the parts, in the order asked for. Sorting 15,558 rows is cheap; rendering them is not. */
+export function order(rows: PartRow[], by: Sort): PartRow[] {
+  const cmp: Record<Sort, (a: PartRow, b: PartRow) => number> = {
+    documents: (a, b) => b[1] - a[1] || b[3] - a[3] || a[0].localeCompare(b[0]),
+    models: (a, b) => b[3] - a[3] || b[1] - a[1] || a[0].localeCompare(b[0]),
+    name: (a, b) => a[0].localeCompare(b[0]),
+  }
+  return [...rows].sort(cmp[by])
+}
+
+const PAGE = 100
+
+/**
+ * The landing view: every part, most used first.
+ *
+ * A search box that answers nothing until you type is a worse front page than the list itself — the
+ * question "what is in here" is asked more often than any single part number. Typing filters the same
+ * list, so search is a narrowing of what is already on screen rather than a different mode.
+ */
+export function Browse({ onPick }: { onPick: (p: string) => void }) {
   const [rows, setRows] = useState<PartRow[] | null>(null)
   const [q, setQ] = useState('')
+  const [by, setBy] = useState<Sort>('documents')
+  const [shown, setShown] = useState(PAGE)
+
   useEffect(() => {
     fetch(`${DATA}/parts.json`)
       .then((r) => r.json() as Promise<PartIndex>)
       .then((i) => setRows(i.parts))
       .catch(() => setRows([]))
   }, [])
-  const hits = useMemo(() => (rows ? search(rows, q) : []), [rows, q])
+
+  const searching = q.trim().length >= 2
+  const list = useMemo(() => {
+    if (!rows) return []
+    return searching ? search(rows, q) : order(rows, by)
+  }, [rows, q, by, searching])
+  useEffect(() => setShown(PAGE), [q, by])
 
   return (
-    <section class="search">
-      <input
-        type="search"
-        value={q}
-        placeholder="Part number — 12AX7, BC108, TL072…"
-        aria-label="Search by part number"
-        onInput={(e) => setQ((e.target as HTMLInputElement).value)}
-      />
-      {rows && rows.length > 0 && q.trim().length < 2 && (
-        <p class="note">{n(rows.length)} parts indexed. Type at least two characters.</p>
+    <section class="browse">
+      <div class="controls">
+        <input
+          type="search"
+          value={q}
+          placeholder="Part number — 12AX7, BC108, TL072…"
+          aria-label="Search by part number"
+          onInput={(e) => setQ((e.target as HTMLInputElement).value)}
+        />
+        <select
+          aria-label="Order of the list"
+          value={by}
+          disabled={searching}
+          onChange={(e) => setBy((e.target as HTMLSelectElement).value as Sort)}
+        >
+          {SORTS.map((s) => <option key={s.key} value={s.key}>{s.label}</option>)}
+        </select>
+      </div>
+
+      {!rows && <p class="note">Loading…</p>}
+      {rows && (
+        <p class="note">
+          {searching
+            ? `${n(list.length)} of ${n(rows.length)} parts match ${q}`
+            : `${n(rows.length)} parts. Most used first: how many documents show the part.`}
+        </p>
       )}
-      {q.trim().length >= 2 && hits.length === 0 && <p class="note">Nothing matches {q}.</p>}
+
       <ul class="results">
-        {hits.map((r) => <Result key={r[0]} row={r} onPick={onPick} />)}
+        {list.slice(0, shown).map((r) => <Result key={r[0]} row={r} onPick={onPick} />)}
       </ul>
+
+      {list.length > shown && (
+        <button class="more" onClick={() => setShown((v) => v + PAGE * 2)}>
+          Show {n(Math.min(PAGE * 2, list.length - shown))} more of {n(list.length - shown)}
+        </button>
+      )}
     </section>
   )
 }
