@@ -1,0 +1,23 @@
+# The lists the part-number census is read from: which vocabulary each one settles, and on whose
+# authority. status: proposed | active | paused | blocked | excluded
+#
+# A source earns its place by having had to be complete about something. A data sheet archive knows
+# every valve type that shipped; a manufacturer's numerical index knows every device in that book. The
+# corpus cannot settle this on its own: a type number is not real because it was read often, and the
+# reads that are wrong are often the frequent ones (1N007 is on nineteen documents and does not exist).
+#
+# Each entry names the public URL that vouches for every part it contributes. That URL is published in
+# data/parts/census.csv next to the part, so the evidence for the fact and the reference link the site
+# offers for that part are the same link.
+frank_pocnet:
+  kind: datasheet archive
+  title: Frank Philipse's electron Tube Data sheets
+  home_url: https://frank.pocnet.net/
+  index_url: https://frank.pocnet.net/sheets0.html
+  covers: tube
+  status: active
+  notes: 'A-Z index of every valve type with a data sheet, each entry linking to the PDF whose file name
+    is the type number: no OCR in the path at all. Serves no robots.txt, so everything is allowed; read
+    at the default one request every three seconds. It settles the class the extractor is weakest at —
+    numeric valve names, which were a hand-written list of about twenty types (5687, 6336A, 6528 and
+    7236 were all invisible), and names that collide with a resistor value (6V6 read as 6.6 V).'

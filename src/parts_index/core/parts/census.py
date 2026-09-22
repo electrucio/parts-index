@@ -1,0 +1,190 @@
+"""The census: which part numbers exist, according to somebody whose job was to list them all.
+
+The extractor knows the *shape* of a type number. It cannot know that 6V6 is a valve and 4K7 a resistor,
+that 5687 and 6336A exist while BCS47 does not, or that the K1298 on a Japanese sheet means 2SK1298.
+That is not pattern knowledge, it is vocabulary, and it has to come from a document that had to be
+complete: a data sheet archive, a manufacturer's numerical index, a selector book.
+
+    pidx parts census                       read every active source, then rewrite data/parts/census.csv
+    pidx parts census --source frank_pocnet --limit 20      try one source, twenty pages of it
+    pidx parts census --read                parse the pages already cached; ask the network for nothing
+
+A source is an entry in `data/parts/census_sources.yaml` plus an adapter below. An adapter says where to
+start (`seeds`), which further index pages a page points at (`more`), and which type numbers a page
+vouches for (`entries`). Politeness, the ledger, the cache and the merge are shared.
+
+The fetched pages are third-party content and stay in the private cache (rule 1). What is committed is
+the census: a list of facts — this type number exists, this kind of part it is — each with the public URL
+of the page that says so. That URL is the point twice over: it is the evidence for the fact, and it is a
+reference link the index can offer when somebody searches for that part.
+"""
+from __future__ import annotations
+
+import csv
+import re
+from dataclasses import dataclass
+from pathlib import Path
+from urllib.parse import unquote, urljoin
+
+import yaml
+
+from parts_index.core import http
+from parts_index.core.config import census_cache, census_registry, census_state, parts_census
+from parts_index.core.ledger import CENSUS_FIELDS, CENSUS_STAGES, CENSUS_VERSIONED, Ledger
+
+READ_VERSION = "census_read-1"
+FIELDS = ("part", "kind", "source", "url")
+
+
+@dataclass(frozen=True)
+class Entry:
+    part: str        # the type number as the list writes it
+    kind: str        # tube, bjt, jfet, diode, opamp ... the vocabulary of known_parts.csv
+    url: str         # the public page that vouches for it
+
+
+# --- frank.pocnet.net: Frank Philipse's electron tube data sheets ------------------------------------
+# An A-Z index (sheets0.html ... sheetsZ.html), each letter cut into pages of 500 entries that link on to
+# one another (sheets6.html -> sheets61.html ... sheets66.html). Every entry is a link to the data sheet
+# PDF, and the file name is the type number: no OCR anywhere in this, which is why it is the first source.
+FRANK_INDEX = re.compile(r'href="(sheets[0-9A-Za-z]+\.html)"')
+FRANK_SHEET = re.compile(r'href="(sheets/[^"]+/([^"/]+)\.pdf)"', re.I)
+
+
+def _frank_seeds(entry: dict) -> list[str]:
+    base = entry["index_url"]
+    return [urljoin(base, f"sheets{c}.html") for c in "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
+
+
+def _frank_more(url: str, html: str) -> list[str]:
+    return [urljoin(url, m) for m in FRANK_INDEX.findall(html)]
+
+
+def _frank_entries(url: str, html: str) -> list[Entry]:
+    out = []
+    for href, name in FRANK_SHEET.findall(html):
+        part = unquote(name).strip()
+        if part:
+            out.append(Entry(part, "tube", urljoin(url, href)))
+    return out
+
+
+ADAPTERS = {
+    "frank_pocnet": (_frank_seeds, _frank_more, _frank_entries),
+}
+
+
+# --- the shared half --------------------------------------------------------------------------------
+def registry() -> dict:
+    return yaml.safe_load(census_registry().read_text(encoding="utf-8")) or {}
+
+
+def active(only: list[str] | None = None) -> list[str]:
+    reg = registry()
+    return [s for s, e in reg.items() if (only and s in only) or (not only and e.get("status") == "active")]
+
+
+def _cache_file(source: str, url: str) -> Path:
+    name = re.sub(r"[^A-Za-z0-9._-]", "_", url.rsplit("/", 1)[-1] or "index.html")
+    return census_cache(source) / name
+
+
+def read_source(source: str, *, fetch: bool = True, limit: int = 0, delay: float = http.DELAY) -> list[Entry]:
+    """Walk one source's index pages — from the cache when they are there, from the site when they are
+    not — and return everything it vouches for. Stamps the ledger so a second run asks for nothing."""
+    entry = registry()[source]
+    seeds, more, parse = ADAPTERS[source]
+    led = Ledger(census_state(source), stages=CENSUS_STAGES, fields=CENSUS_FIELDS, versioned=CENSUS_VERSIONED)
+    queue, seen, fetched, found = list(seeds(entry)), set(), 0, []
+    while queue:
+        url = queue.pop(0)
+        if url in seen or led.get(url) and led.get(url)["skip_reason"]:
+            continue
+        seen.add(url)
+        path = _cache_file(source, url)
+        if path.exists():
+            html = path.read_text(encoding="utf-8", errors="replace")
+        elif not fetch or (limit and fetched >= limit):
+            continue
+        else:
+            r = http.get(url, delay=delay)
+            fetched += 1
+            if not r.ok or r.kind != "html":
+                led.skip(url, (r.why or f"http {r.status}")[:60], url=url, http=r.status)
+                continue
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(r.body)
+            html = r.text()
+            led.stamp(url, "fetch", url=url, http=r.status, bytes=len(r.body), sha256=r.sha256)
+        here = parse(url, html)
+        found += here
+        led.stamp(url, "read", version=READ_VERSION, n_parts=len(here))
+        queue += [u for u in more(url, html) if u not in seen]
+    led.save()
+    return found
+
+
+def build(only: list[str] | None = None, *, fetch: bool = True, limit: int = 0,
+          delay: float = http.DELAY) -> dict[str, int]:
+    """Read every active source and rewrite the census. One row per (part, source): two lists that both
+    know a type is a fact worth more than one that only appears in the corpus."""
+    rows: dict[tuple[str, str], Entry] = {}
+    counts = {}
+    for source in active(only):
+        found = read_source(source, fetch=fetch, limit=limit, delay=delay)
+        counts[source] = len({e.part for e in found})
+        for e in found:
+            rows.setdefault((e.part.upper(), source), e)
+    if only:                                        # keep what the sources we did not run had said
+        keep = [r for r in load_rows() if r["source"] not in counts]
+        for r in keep:
+            rows.setdefault((r["part"].upper(), r["source"]), Entry(r["part"], r["kind"], r["url"]))
+    out = parts_census()
+    out.parent.mkdir(parents=True, exist_ok=True)
+    with open(out, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=FIELDS, lineterminator="\n")
+        w.writeheader()
+        for (_, source), e in sorted(rows.items()):
+            w.writerow({"part": e.part, "kind": e.kind, "source": source, "url": e.url})
+    counts["total rows"] = len(rows)
+    counts["distinct parts"] = len({p for p, _ in rows})
+    return counts
+
+
+def load_rows() -> list[dict]:
+    f = parts_census()
+    if not f.exists():
+        return []
+    with open(f, newline="", encoding="utf-8") as fh:
+        return list(csv.DictReader(fh))
+
+
+def norm(s: str) -> str:
+    """The extractor's own spelling of a token. Defined here too, and deliberately: the extractor imports
+    this module, so this module imports nothing from it. One line is cheaper than a cycle."""
+    return re.sub(r"[^A-Z0-9]", "", s.upper())
+
+
+def load() -> dict[str, tuple[str, str]]:
+    """norm(part) -> (part as written, kind), for the extractor. Absent census: an empty dict, and
+    everything still works the way it did before there was one."""
+    out = {}
+    for r in load_rows():
+        out.setdefault(norm(r["part"]), (r["part"], r["kind"]))
+    return out
+
+
+def main(argv: list[str] | None = None) -> int:
+    import argparse
+
+    ap = argparse.ArgumentParser(prog="pidx parts census", description=__doc__.splitlines()[0])
+    ap.add_argument("--source", action="append", help="only these sources (repeatable)")
+    ap.add_argument("--read", action="store_true", help="parse the pages already cached; fetch nothing")
+    ap.add_argument("--limit", type=int, default=0, help="at most this many pages fetched, per source")
+    ap.add_argument("--delay", type=float, default=http.DELAY, help="seconds between two requests to one host")
+    a = ap.parse_args(argv)
+    counts = build(a.source, fetch=not a.read, limit=a.limit, delay=a.delay)
+    for name, n in counts.items():
+        print(f"  {n:8}  {name}")
+    print(f"written to {parts_census()}")
+    return 0

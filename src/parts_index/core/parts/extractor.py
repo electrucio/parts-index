@@ -96,6 +96,30 @@ def _load():
 KNOWN, REJECTED = _load()          # norm(name or alias) -> (canonical part, kind) ; tokens an LLM pass judged not to be components
 
 
+def _load_census():
+    """Optional. Without it the extractor behaves exactly as it did before there was a census."""
+    try:
+        from parts_index.core.parts import census
+        return census.load()
+    except (ImportError, OSError, KeyError):
+        return {}
+
+
+CENSUS = _load_census()            # norm(part) -> (part as written, kind), from a list that had to be complete
+PENDING = "census, needs the page"  # a census part whose token shape is also something else; settle_census() decides
+
+
+def _kind_agrees(family_kind, census_kind):
+    """'bjt/jfet/mosfet' agrees with 'bjt'. A family guess and a census kind are both slash-separated."""
+    return bool(set(family_kind.split("/")) & set(census_kind.split("/")))
+
+
+def _ambiguous(tok):
+    """A token the census knows, whose shape is also a resistor value, a designator, a circuit code or a
+    bare number. 6V6 is a valve and 6.6 V; 1R5 is a valve and 1.5 ohm; 7805 is a regulator and a year."""
+    return bool(VALUE.match(tok) or NOISE.match(tok) or NUMERIC_VALVE.match(tok))
+
+
 def family_of(tok):
     return next(((f, k, strict) for f, k, rx, strict in FAMILIES if rx.fullmatch(tok)), None)
 
@@ -203,7 +227,8 @@ def _judge(tok, text, pos, isolated, raw=""):
     if re.fullmatch(r"B[A-Z]\d{1,2}[A-Z]?", tok) and not k:           # BD23 5AA, BS1 4DJ: UK postcodes; Pro Electron numbers have three digits
         return None
     fam = family_of(tok)
-    if tok in REJECTED and not k and not (fam and fam[2]):         # the LLM pass also threw away a few strict type numbers (AC187)
+    cen = CENSUS.get(norm(tok))
+    if tok in REJECTED and not k and not cen and not (fam and fam[2]):         # the LLM pass also threw away a few strict type numbers (AC187)
         return None
     if tok in DESIGNATOR_LIKE:
         if "-" in raw:
@@ -211,6 +236,15 @@ def _judge(tok, text, pos, isolated, raw=""):
         return tok, "JFET / MOSFET", "jfet", "high" if isolated or k else "medium", False
     if REAL_X.match(tok):
         k = k or (tok, "tube")
+    # The census speaks last, and only where nothing else has settled the token. It says which type
+    # numbers exist, never which one this token is, so it stays quiet when it contradicts the family:
+    # 7815 is a regulator here and a valve type in the census, and the regulator is what this page means.
+    if cen is None and not k and not _ambiguous(tok):
+        cen = CENSUS.get(norm(base_part(tok)))                     # 6L6GCX: the census has the type, not the selection
+    if cen and not k and (not fam or _kind_agrees(fam[1], cen[1])):
+        if _ambiguous(tok):
+            return tok, PENDING, cen[1], "low", fixed              # 6V6 on a page of resistor values is 6.6 V
+        k = cen                                                    # the shape is unmistakable and the part exists
     sure = (k and not re.fullmatch(r"\d+[RKM]\d+", tok)) or (fam and fam[2]) or re.fullmatch(r"4N[23]\d", tok)     # 1N4148, 2N3055, 4N25 look like "1n..." values to VALUE
     if len(tok) < 3 or (not sure and (VALUE.match(tok) or (NOISE.match(tok) and not FENDER_OK.match(tok)))):
         return None
@@ -248,8 +282,10 @@ def _judge(tok, text, pos, isolated, raw=""):
     return tok, family, kind if not k else k[1], conf, fixed
 
 
-def extract(text, isolated=False, allow_bare=False, block=None):
-    """Hits in one string, in order, duplicates included (the caller counts). `isolated`: the string is a short label, not prose."""
+def extract(text, isolated=False, allow_bare=False, block=None, pending=False):
+    """Hits in one string, in order, duplicates included (the caller counts). `isolated`: the string is a
+    short label, not prose. `pending`: also return the census hits that need a page to settle them, which
+    is what extract_page does — on its own a string cannot say whether 6V6 is a valve or 6.6 volts."""
     text = prepare(text)
     up = text.upper()
     hits = []
@@ -261,6 +297,8 @@ def extract(text, isolated=False, allow_bare=False, block=None):
             j = _judge(tok, up, m.start(), isolated, piece)
             if j:
                 part, family, kind, conf, fixed = j
+                if family == PENDING and not pending:
+                    continue
                 hits.append(Hit(part, base_part(part), piece, family, kind, conf, fixed, block))
     if allow_bare:
         for m in BARE.finditer(up):
@@ -311,6 +349,24 @@ def settle_valves(hits, page_text):
     return [h for h in hits if h not in pending]
 
 
+KIND_WORDS = {"tube": VALVE_WORDS, "regulator": REG_WORDS}
+
+
+def settle_census(hits, page_text):
+    """A census part whose token is also a value or a bare number is published only on a page that is
+    about that kind of part: two other parts of the same kind on it, or the words for one."""
+    out = []
+    for h in hits:
+        if h.family != PENDING:
+            out.append(h)
+            continue
+        words = KIND_WORDS.get(h.kind)
+        same = {x.base for x in hits if x.kind == h.kind and x.family != PENDING}
+        if len(same) >= 2 or (words and words.search(page_text)):
+            out.append(h._replace(family="census", conf="high"))
+    return out
+
+
 def drop_hex_dumps(hits):
     """Memory listings in the computing pages (1C00 1C80 1D20 ...) read as American valves: five or more on a page and none of them is one."""
     hexy = {h.part for h in hits if h.family == "valve, American" and re.fullmatch(r"[0-9A-F]{4}", h.part) and norm(h.base) not in KNOWN}
@@ -326,9 +382,11 @@ def extract_page(page, min_conf=0.85):
         t = b["text"].strip()
         if b.get("conf", 1) < (0.90 if len(t) <= 4 else min_conf):
             continue
-        hits += extract(t, isolated=_short(b), allow_bare=allow_bare, block=i)
+        hits += extract(t, isolated=_short(b), allow_bare=allow_bare, block=i, pending=True)
+    page_text = " ".join(b["text"] for b in blocks)
+    hits = settle_census(hits, page_text)
     hits = drop_designator_misreads(drop_hex_dumps(hits), [b["text"] for b in blocks if _short(b)])
-    return settle_valves(hits, " ".join(b["text"] for b in blocks))
+    return settle_valves(hits, page_text)
 
 
 def snapshot():

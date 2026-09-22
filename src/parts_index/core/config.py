@@ -170,6 +170,20 @@ def rejected_tokens() -> Path:
     return PUBLIC_DATA / "parts" / "rejected_tokens.txt"
 
 
+def parts_census() -> Path:
+    """Which part numbers exist, according to a document whose job was to list them all."""
+    return PUBLIC_DATA / "parts" / "census.csv"
+
+
+def census_registry() -> Path:
+    """The lists the census is read from: what each one covers, and on whose authority."""
+    return PUBLIC_DATA / "parts" / "census_sources.yaml"
+
+
+def census_state(source: str) -> Path:
+    return PUBLIC_DATA / "parts" / "state" / f"{source}.csv"
+
+
 def datasets_registry() -> Path:
     return PUBLIC_DATA / "datasets" / "registry.yaml"
 
@@ -222,6 +236,12 @@ def ocr_root() -> Path:
 def ocr_map() -> Path:
     """Which OCR file holds each document. Lives inside the tree, so copying it takes its index along."""
     return ocr_root() / "ocr_map.csv"
+
+
+def census_cache(source: str) -> Path:
+    """The index pages a census source was read from. Third-party content, so it never leaves this tree;
+    keeping it means a parser fix costs a re-read, not a re-crawl."""
+    return material_root() / "census" / source
 
 
 def linkchecks() -> Path:
@@ -367,6 +387,9 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("known_parts", "public", ()),
     ("wanted_parts", "public", ()),
     ("rejected_tokens", "public", ()),
+    ("parts_census", "public", ()),
+    ("census_registry", "public", ()),
+    ("census_state", "public", ("frank_pocnet",)),
     ("datasets_registry", "public", ()),
     ("dataset_table", "public", ("part_repos",)),
     ("components_dir", "public", ()),
@@ -380,6 +403,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("ocr_root", "private", ()),
     ("ocr_map", "private", ()),
     ("linkchecks", "private", ()),
+    ("census_cache", "private", ("frank_pocnet",)),
     ("index_db", "private", ()),
     ("page_sizes", "private", ()),
     ("downloads", "private", ("esp",)),

@@ -43,6 +43,14 @@ SCHEMATIC_FIELDS = (
     "crawl_at",
 )
 
+# the vocabulary: one index page of a census source (a type list, a databook's numerical index). No OCR
+# stage — these lists are read, not scanned — and no linkcheck, because the URL read is the URL published.
+CENSUS_STAGES = ("fetch", "read")
+CENSUS_VERSIONED = ("read",)
+CENSUS_FIELDS = (
+    "key", "url", "http", "bytes", "sha256", "fetch_at", "n_parts", "read_at", "read_v", "skip_reason",
+)
+
 # pillar 2: a model file of a model source, or the attempt to find the model of one part at that source.
 # Verification is per part and candidate, not per file: its state lives in data/verification/.
 MODEL_STAGES = ("fetch", "index")

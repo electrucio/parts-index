@@ -99,3 +99,38 @@ def test_qa_round_2():
 def test_postcodes_are_not_transistors():
     assert got("Grassington, North Yorks. BD23 5AA") == [] and got("Bristol BS1 4DJ") == []
     assert got("BC107 BD139 BF245") == ["BC107", "BD139", "BF245"]
+
+
+# --- what the census settles ------------------------------------------------------------------------
+def mkpage(ts):
+    return {"w": 1000, "h": 1000, "blocks": [{"box": [0, 0, 9, 9], "text": t, "conf": 0.99} for t in ts]}
+
+
+def test_a_valve_whose_name_is_also_a_value_needs_the_page():
+    """6V6 is the most used output valve there is, and it reads as 6.6 V. It was in no document at all."""
+    assert [h.part for h in parts.extract_page(mkpage("V1 V2 12AX7 6V6 R1 C1".split()))] == ["12AX7", "6V6"]
+    assert [h.part for h in parts.extract_page(mkpage("R1 R2 4K7 6V6 10K 2K2 100n".split()))] == []
+    assert [h.part for h in parts.extract_page(mkpage(["the output valves are a pair of 6V6"]))] == ["6V6"]
+
+
+def test_numeric_valve_names_come_from_the_census_not_a_hand_written_list():
+    """5687, 6336A, 6528, 7236: real valves that no pattern covers and the list of twenty did not have."""
+    got = [h.part for h in parts.extract_page(mkpage("V1 5687 6336A 6528 12AX7 R1".split()))]
+    assert got == ["5687", "6336A", "6528", "12AX7"]
+    assert [h.conf for h in parts.extract_page(mkpage("V1 5687 12AX7".split()))] == ["high", "high"]
+
+
+def test_the_census_does_not_overrule_the_family():
+    """7815 and 7995 are valve types as well as regulators. On a regulator page they are regulators."""
+    assert got("a 7815 regulator") == ["7815"]
+    assert [h.kind for h in parts.extract("a 7815 regulator")] == ["regulator"]
+
+
+def test_the_census_overrules_the_reject_list():
+    """The LLM pass that built rejected_tokens.txt threw away real valves: 1S5, 3S4, 1T4, 1R5."""
+    assert [h.part for h in parts.extract_page(mkpage("V1 V2 1S5 3S4 1T4".split()))] == ["1S5", "3S4", "1T4"]
+
+
+def test_a_census_part_is_high_only_when_something_else_on_the_page_agrees():
+    page = mkpage("6336A R1 R2 C1 C2".split())                  # one valve name, nothing else valve-like
+    assert [h.part for h in parts.extract_page(page)] == []

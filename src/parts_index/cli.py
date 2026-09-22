@@ -77,6 +77,14 @@ def main(argv: list[str] | None = None) -> int:
     se.add_argument("--source", action="append", help="only these sources (repeatable)")
     se.add_argument("--dry", action="store_true", help="count what would be written and write nothing")
 
+    pt = sub.add_parser("parts", help="the part vocabulary: which numbers exist and what they are").add_subparsers(
+        dest="pt_cmd", required=True)
+    pc = pt.add_parser("census", help="read the lists that say which part numbers exist, and link them")
+    pc.add_argument("--source", action="append", help="only these sources (repeatable)")
+    pc.add_argument("--read", action="store_true", help="parse the pages already cached; fetch nothing")
+    pc.add_argument("--limit", type=int, default=0, help="at most this many pages fetched, per source")
+    pc.add_argument("--delay", type=float, default=0.0, help="seconds between two requests to one host")
+
     ds = sub.add_parser("datasets", help="the distilled research datasets").add_subparsers(
         dest="ds_cmd", required=True)
     dr = ds.add_parser("repos", help="read how much attention each open-source project has")
@@ -190,6 +198,13 @@ def main(argv: list[str] | None = None) -> int:
         from parts_index.schematics import export as sch_export
         argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
         return sch_export.main(argv2 + (["--dry"] if args.dry else []))
+
+    if args.cmd == "parts" and args.pt_cmd == "census":
+        from parts_index.core.parts import census
+        argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
+        argv2 += ["--limit", str(args.limit)] if args.limit else []
+        argv2 += ["--delay", str(args.delay)] if args.delay else []
+        return census.main(argv2 + (["--read"] if args.read else []))
 
     if args.cmd == "datasets" and args.ds_cmd == "repos":
         from parts_index.datasets import repos as ds_repos
