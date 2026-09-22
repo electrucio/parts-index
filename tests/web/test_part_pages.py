@@ -78,7 +78,7 @@ def test_a_page_link_travels_with_its_deep_link(data):
 
 def test_the_recipe_is_trimmed_to_what_the_page_shows_and_carries_no_model_text(data):
     idx = P.index()
-    recipes = P.model_recipes()
+    recipes, _ = P.model_recipes()
     page = P.part_payload("TL072", idx, recipes["TL072"])
     m = page["models"]["models"][0]
     assert m["source"] == "ti" and m["symbol"] == "TL072_ti.asy"
@@ -95,15 +95,16 @@ def test_the_source_names_are_not_repeated_in_every_part_file(data):
 
 def test_the_search_index_holds_every_part_from_either_side(data):
     idx = P.index()
-    rows = P.search_index(idx, P.model_recipes())
+    recipes, _ = P.model_recipes()
+    rows, kinds = P.search_index(idx, recipes)
     assert [r[0] for r in rows] == ["12AX7", "TL072"]
     assert dict((r[0], r[3]) for r in rows)["TL072"] == 1     # one model candidate
+    assert kinds[dict((r[0], r[4]) for r in rows)["TL072"]] == "opamp"   # from its recipe
 
 
-def test_a_part_in_everything_is_capped_and_says_so(data, monkeypatch):
-    monkeypatch.setattr(P, "CAP", 1)
+def test_a_part_page_says_how_many_documents_and_how_many_copies_were_folded(data):
     page = P.part_payload("12AX7", P.index(), None)
-    assert page["n"]["shown"] == 1 and page["n"]["documents"] == 1
+    assert page["n"] == {"documents": 1, "shown": 1, "copies": 1}
 
 
 def test_a_part_carries_the_open_source_projects_that_place_it(data, monkeypatch):
@@ -124,3 +125,35 @@ def test_the_index_says_what_kind_of_thing_each_source_is(data):
     idx = P.index()
     assert idx["kinds"]["esp"] == "site"
     assert idx["kinds"]["el34world"] == "factory"
+
+
+def test_a_page_link_is_stored_as_what_to_add_to_its_document(data):
+    """All 94,170 of them are a suffix of the document's URL; writing them whole was three quarters of
+    the URL text on a part's page, and that was the reason to cut documents that should not be cut."""
+    page = P.part_payload("12AX7", P.index(), None)
+    link = page["docs"][0]["p"][0][1]
+    assert link.startswith("#page=")
+    assert page["docs"][0]["u"] + link == \
+        "https://esp.example/bassman.pdf#page=1&zoom=200,10,20&h=792"
+
+
+def test_nothing_is_cut_from_a_part(data):
+    """The 12AX7 is in 1,817 documents across 33 sources. Keeping the top two hundred meant 147 factory
+    sheets crowding out Wireless World and Elektor, which is the part of the answer people want."""
+    idx = P.index()
+    for part in ("12AX7", "TL072"):
+        page = P.part_payload(part, idx, None)
+        assert page["n"]["shown"] == page["n"]["documents"]
+        assert all("more" not in d for d in page["docs"])
+
+
+def test_a_part_filed_under_two_kinds_is_reported_rather_than_hidden(data):
+    """Five are, each curated once as silicon and once as germanium. Under the Pro-Electron convention
+    the first letter settles it — B is silicon — but until the curation is merged, keeping one quietly
+    is how the wrong one won: `bjt-ge` sorts after `bjt`."""
+    other = config.model_part("bjt-ge", "TL072")
+    other.parent.mkdir(parents=True, exist_ok=True)
+    other.write_text("part: TL072\nkind: bjt-ge\nmodels: []\n", encoding="utf-8")
+    recipes, clashes = P.model_recipes()
+    assert clashes == ["TL072"]
+    assert recipes["TL072"]["kind"] == "opamp"       # the one with more candidates, not the last read

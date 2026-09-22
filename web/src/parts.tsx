@@ -9,6 +9,7 @@
  * `parts.json` is 61 KB gzipped and holds all of them, so filtering and sorting never ask the server.
  * Opening a part is one request for a file the build already joined and grouped.
  */
+import type preact from 'preact'
 import { useEffect, useMemo, useState } from 'preact/hooks'
 
 import { forViewer } from './links'
@@ -25,6 +26,25 @@ const SORTS: { key: Sort; label: string }[] = [
   { key: 'models', label: 'Most SPICE models first' },
   { key: 'name', label: 'By part number' },
 ]
+/**
+ * The kinds offered in the filter, and which raw kinds each one takes.
+ *
+ * A part whose kind is ambiguous belongs to every group it could be in, rather than being forced into
+ * one: `2N3904` and `2N5457` are both JEDEC numbers and the family pattern cannot tell a transistor
+ * from a JFET, so `bjt/jfet/mosfet` answers to both. Guessing would hide one of them.
+ */
+export const DEVICES: { key: string; label: string; kinds: string[] }[] = [
+  { key: 'tube', label: 'Valves', kinds: ['tube'] },
+  { key: 'bjt', label: 'Transistors (BJT)', kinds: ['bjt', 'transistor', 'bjt/jfet/mosfet'] },
+  { key: 'ge', label: 'Germanium', kinds: ['bjt-ge', 'diode-ge', 'bjt-ge/diode-ge'] },
+  { key: 'fet', label: 'JFET and MOSFET', kinds: ['jfet', 'mosfet', 'jfet/mosfet', 'bjt/jfet/mosfet'] },
+  { key: 'diode', label: 'Diodes and zeners', kinds: ['diode', 'zener', 'diode/zener', 'bjt-ge/diode-ge'] },
+  { key: 'opamp', label: 'Op-amps', kinds: ['opamp', 'opamp/ic'] },
+  { key: 'ic', label: 'Other ICs', kinds: ['ic', 'ic-audio', 'digital-audio', 'logic', 'control', 'opamp/ic'] },
+  { key: 'regulator', label: 'Regulators', kinds: ['regulator'] },
+  { key: 'opto', label: 'Opto', kinds: ['opto', 'led'] },
+]
+
 const FILTERS: { key: Filter; label: string }[] = [
   { key: '', label: 'all' },
   { key: 'models', label: 'with a model' },
@@ -64,6 +84,14 @@ export function keep(rows: PartRow[], f: Filter): PartRow[] {
   if (f === 'models') return rows.filter((r) => r[3] > 0)
   if (f === 'nomodel') return rows.filter((r) => r[3] === 0)
   return rows
+}
+
+/** The rows whose device kind belongs to the chosen group. An empty group means all of them. */
+export function ofDevice(rows: PartRow[], device: string, vocabulary: string[]): PartRow[] {
+  const group = DEVICES.find((d) => d.key === device)
+  if (!group) return rows
+  const wanted = new Set(group.kinds.map((k) => vocabulary.indexOf(k)).filter((i) => i >= 0))
+  return rows.filter((r) => wanted.has(r[4]))
 }
 
 /** A model's agreement with its datasheet, as the bar the previous site used. */
@@ -142,32 +170,69 @@ function Models({ page }: { page: PartPage }) {
   )
 }
 
-/** One page of one document, with what was beside the part on it. */
-function PageLink({ p }: { p: [number, string, string, number] }) {
+/**
+ * The link to one page, rebuilt from the document's own.
+ *
+ * The build stores `#page=47&zoom=200,55,523&h=792` rather than the whole address, because that is what
+ * it is: all 94,170 page links in the index are a suffix of their document's URL, and writing them out
+ * was three quarters of the URL text on a part's page. One that is not a suffix is stored whole and
+ * says so by starting with a scheme.
+ */
+export function pageHref(docUrl: string, suffix: string): string {
+  return /^[a-z]+:/i.test(suffix) ? suffix : docUrl + suffix
+}
+
+function PageLink({ p, docUrl }: { p: [number, string, string, number]; docUrl: string }) {
   return (
     <li>
-      <a href={forViewer(p[1])} target="_blank" rel="noopener">page {p[0]}</a>
+      <a href={forViewer(pageHref(docUrl, p[1]))} target="_blank" rel="noopener">page {p[0]}</a>
       {p[2] && <span class="muted small"> beside {p[2]}</span>}
     </li>
   )
 }
 
-function Document({ d, source }: { d: PartPage['docs'][0]; source: string }) {
+/**
+ * A `<details>` whose contents are built the first time it is opened.
+ *
+ * Nothing is cut from a part's page, so the 1N4148's holds 3,574 documents and 9,344 page links.
+ * Building all of that as DOM up front costs far more than downloading it. The previous site did the
+ * same thing for the same reason.
+ */
+function Fold({
+  summary, open = false, children,
+}: { summary: preact.ComponentChildren; open?: boolean; children: () => preact.ComponentChildren }) {
+  const [shown, setShown] = useState(open)
   return (
-    <details class="uses sub">
-      <summary>
-        <strong>{d.t || d.u}</strong>
-        <span class="count">{n(d.p.length + (d.more ?? 0))}</span>
-        {d.schematic ? <span class="pill acc">schematic</span> : null}
-        {d.y ? <span class="small muted">{d.y}</span> : null}
-        {d.also ? <span class="small muted">also at {d.also.join(', ')}</span> : null}
-      </summary>
-      <ul class="uselist cols">
-        {d.p.map((p, j) => <PageLink key={j} p={p} />)}
-        {d.more ? <li class="muted small">and {n(d.more)} more pages</li> : null}
-      </ul>
-      <p class="small"><a href={d.u} target="_blank" rel="noopener">the document itself</a> · {source}</p>
+    <details class="uses" open={open} onToggle={(e) => setShown((e.target as HTMLDetailsElement).open)}>
+      <summary>{summary}</summary>
+      {shown ? children() : null}
     </details>
+  )
+}
+
+function Document({ d, source }: { d: PartPage['docs'][0]; source: string }) {
+  const summary = (
+    <>
+      <strong>{d.t || d.u}</strong>
+      <span class="count">{n(d.p.length)} {d.p.length === 1 ? 'page' : 'pages'}</span>
+      {d.schematic ? <span class="pill acc">schematic</span> : null}
+      {d.y ? <span class="small muted">{d.y}</span> : null}
+      {d.also ? <span class="small muted">also at {d.also.join(', ')}</span> : null}
+    </>
+  )
+  return (
+    <Fold summary={summary}>
+      {() => (
+        <>
+          <ul class="uselist cols">
+            {d.p.map((p, j) => <PageLink key={j} p={p} docUrl={d.u} />)}
+          </ul>
+          <p class="small">
+            <a href={d.u} target="_blank" rel="noopener">the document itself</a> · {source}
+          </p>
+        </>
+      )}
+    </Fold>
   )
 }
 
@@ -186,21 +251,26 @@ function Group({
     else bySource.set(k, [d])
   }
   const groups = [...bySource.entries()].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]))
-  const pages = docs.reduce((t, d) => t + d.p.length + (d.more ?? 0), 0)
+  const pages = docs.reduce((t, d) => t + d.p.length, 0)
+  const summary = (
+    <>
+      <strong>{title}</strong>
+      <span class="count">{n(docs.length)} · {n(pages)} pages</span>
+      <span class="small muted">{note}</span>
+    </>
+  )
   return (
-    <details class="uses" open={open}>
-      <summary>
-        <strong>{title}</strong>
-        <span class="count">{n(docs.length)} · {n(pages)} pages</span>
-        <span class="small muted">{note}</span>
-      </summary>
-      {groups.map(([source, ds]) => (
-        <details class="uses sub" key={source} open={groups.length === 1}>
-          <summary><strong>{source}</strong> <span class="count">{n(ds.length)}</span></summary>
-          {ds.map((d, i) => <Document key={i} d={d} source={source} />)}
-        </details>
+    <Fold summary={summary} open={open}>
+      {() => groups.map(([source, ds]) => (
+        <Fold
+          key={source}
+          open={groups.length === 1}
+          summary={<><strong>{source}</strong> <span class="count">{n(ds.length)}</span></>}
+        >
+          {() => ds.map((d, i) => <Document key={i} d={d} source={source} />)}
+        </Fold>
       ))}
-    </details>
+    </Fold>
   )
 }
 
@@ -208,13 +278,16 @@ function Repos({ page }: { page: PartPage }) {
   const repos = page.repos
   if (!repos?.length) return null
   const total = page.n.repos ?? repos.length
+  const summary = (
+    <>
+      <strong>Open-source projects</strong>
+      <span class="count">{n(total)}</span>
+      <span class="small muted">KiCad and Eagle sheets that place this part</span>
+    </>
+  )
   return (
-    <details class="uses">
-      <summary>
-        <strong>Open-source projects</strong>
-        <span class="count">{n(total)}</span>
-        <span class="small muted">KiCad and Eagle sheets that place this part</span>
-      </summary>
+    <Fold summary={summary}>
+      {() => (
       <ul class="uselist cols">
         {repos.map(([repo, sheets], i) => (
           <li key={i}>
@@ -222,9 +295,12 @@ function Repos({ page }: { page: PartPage }) {
             {sheets > 1 && <span class="muted small"> · {sheets} sheets</span>}
           </li>
         ))}
-        {total > repos.length && <li class="muted small">and {n(total - repos.length)} more</li>}
+        {total > repos.length && (
+          <li class="muted small">and {n(total - repos.length)} more on GitHub</li>
+        )}
       </ul>
-    </details>
+      )}
+    </Fold>
   )
 }
 
@@ -305,22 +381,23 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
   const [q, setQ] = useState('')
   const [by, setBy] = useState<Sort>('documents')
   const [filter, setFilter] = useState<Filter>('')
+  const [device, setDevice] = useState('')
   const [shown, setShown] = useState(PAGE)
 
   useEffect(() => {
     fetch(`${DATA}/parts.json`)
       .then((r) => r.json() as Promise<PartIndex>)
       .then(setIndex)
-      .catch(() => setIndex({ schema: 0, sources: [], kinds: [], parts: [] }))
+      .catch(() => setIndex({ schema: 0, sources: [], kinds: [], deviceKinds: [], parts: [] }))
   }, [])
 
   const searching = q.trim().length >= 2
   const list = useMemo(() => {
     if (!index) return []
-    const kept = keep(index.parts, filter)
+    const kept = keep(ofDevice(index.parts, device, index.deviceKinds ?? []), filter)
     return searching ? search(kept, q) : order(kept, by)
-  }, [index, q, by, filter, searching])
-  useEffect(() => setShown(PAGE), [q, by, filter])
+  }, [index, q, by, filter, device, searching])
+  useEffect(() => setShown(PAGE), [q, by, filter, device])
 
   return (
     <div class={`browser${part ? ' has-part' : ''}`}>
@@ -332,6 +409,14 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
           aria-label="Search by part number"
           onInput={(e) => setQ((e.target as HTMLInputElement).value)}
         />
+        <select
+          aria-label="Kind of device"
+          value={device}
+          onChange={(e) => setDevice((e.target as HTMLSelectElement).value)}
+        >
+          <option value="">Every kind of device</option>
+          {DEVICES.map((d) => <option key={d.key} value={d.key}>{d.label}</option>)}
+        </select>
         <div class="filters">
           {FILTERS.map((f) => (
             <button

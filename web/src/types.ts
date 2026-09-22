@@ -54,8 +54,9 @@ export interface Manifest {
   sizes: Record<string, number>
 }
 
-/** One row of the search index: part, documents, uses, model candidates. */
-export type PartRow = [string, number, number, number]
+/** One row of the search index: part, documents, uses, model candidates, device kind.
+ *  The kind is an index into `PartIndex.deviceKinds`; the word itself would be most of the file. */
+export type PartRow = [string, number, number, number, number]
 
 export interface PartIndex {
   schema: number
@@ -63,6 +64,8 @@ export interface PartIndex {
   sources: string[]
   /** What each of those sources is — site, factory, magazine, book — by the same position. */
   kinds: string[]
+  /** The vocabulary of device kinds a part row indexes into. */
+  deviceKinds: string[]
   parts: PartRow[]
 }
 

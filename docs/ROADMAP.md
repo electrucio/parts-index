@@ -53,6 +53,22 @@ each one stands. This file is for everything that is not a source.
   A `pidx models verify` reading those two would have caught the 59,407 definitions pruned by mistake on
   the day it happened, instead of after the archives had been deleted. It found one stale record when run
   by hand, so it is worth having as a step with its own `make` target.
+- **2,029 parts have a model in the catalogue and no published recipe**, and between them they appear in
+  25,764 documents. The curation reached 1,712 parts; the catalogue holds definitions for far more. The
+  worst of it is the most looked-up parts in the whole index: ECC83 (908 documents, 7 sources hold a
+  model), 6L6 (725, 6), BC547 (702, 3), 2N2222 (631, 7), GZ34 (420, 3). Two different causes, both
+  fixable:
+    - **A variant was curated and the bare number was not.** `2N2222A` has a recipe, `2N2222` does not,
+      although five sources hold a definition called exactly `2N2222`. Same for `12AX7A` against
+      `12AX7`, which *is* curated — so the A variant is the orphan there.
+    - **The alias problem below.** ECC83 is a 12AX7 and GZ34 is a 5AR4; the index records the name
+      printed on the sheet, and the curation filed the model under the other one.
+- **Five parts are filed under two kinds at once**: BC109, BC177, BCY70, BCY71 and BUX48, each curated
+  once as silicon and once as germanium, with different candidates in each. Under the Pro-Electron
+  convention the first letter settles it — A is germanium, B is silicon — so the germanium copy is the
+  wrong one in all five. `pidx web build` prints them and keeps whichever has more candidates rather
+  than resolving it in silence; the curation still has to be merged. The dictionary has the same error
+  in seven entries, which is what puts BC109 in the "Germanium" filter on the site.
 - Some vendors publish only encrypted models, readable by one simulator and no other. They are recorded as
   `encrypted_only`; the link is still worth publishing.
 - **Several parts filed as germanium are silicon.** Under the Pro-Electron naming convention the first

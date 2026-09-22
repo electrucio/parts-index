@@ -75,13 +75,15 @@ def build(out: Path | None = None) -> dict:
     sizes = {"sources.json": write_json(out, "sources.json", payload)}
 
     idx = part_pages.index()
-    recipes = part_pages.model_recipes()
-    search = part_pages.search_index(idx, recipes)
+    recipes, clashes = part_pages.model_recipes()
+    search, kind_names = part_pages.search_index(idx, recipes)
     if search:
         sizes["parts.json"] = write_json(out, "parts.json", {
             "schema": SCHEMA, "sources": idx["sources"],
             # what each source is, so a part page can group its uses by the kind of thing they are
             "kinds": [idx["kinds"].get(s, "") for s in idx["sources"]],
+            # the vocabulary of device kinds; a part row names one by position
+            "deviceKinds": kind_names,
             "parts": search})
         total = 0
         for name, *_ in search:
@@ -102,6 +104,7 @@ def build(out: Path | None = None) -> dict:
             "datasheets": datasheets_table().exists(),
         },
         "parts": len(search),
+        "partsFiledTwice": sorted(set(clashes)),
         "sizes": sizes,
     }
     write_json(out, "manifest.json", manifest)
