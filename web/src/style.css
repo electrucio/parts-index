@@ -125,9 +125,25 @@ dl.kv dd { margin: 0; overflow-wrap: anywhere; }
   .plist { max-height: 60vh; }
   .stamp { margin-left: 0; }
 }
-details.uses { border-top: 1px solid var(--rule); padding: 8px 0; }
-details.uses.sub { border-top: 0; padding: 2px 0 2px 14px; }
-details.uses.sub > summary { font-size: 0.93rem; }
+details.uses { padding: 8px 0; }
+details.uses summary { cursor: pointer; }
+
+/* Three levels: the kind of source, the source, the document. They fold the same way, so they have to
+   read differently or the nesting is invisible — which it was, all three sharing one style. */
+details.uses.lv1 { border-top: 1px solid var(--rule); padding-block: 12px; }
+details.uses.lv1 > summary strong {
+  font: 600 1.18rem/1.2 var(--display); letter-spacing: 0.02em; color: var(--ink);
+}
+details.uses.lv1[open] > summary strong { color: var(--accent-ink); }
+
+details.uses.lv2 { padding: 2px 0 2px 16px; border-left: 2px solid var(--rule); margin-left: 4px; }
+details.uses.lv2 > summary strong {
+  font: 600 0.78rem var(--body); text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint);
+}
+details.uses.lv2[open] { border-left-color: var(--accent-soft); }
+
+details.uses.lv3 { padding: 2px 0 2px 16px; }
+details.uses.lv3 > summary strong { font: 400 0.95rem var(--body); color: var(--ink); }
 details.uses summary { cursor: pointer; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
 .uselist { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 4px; font-size: 0.93rem; }
 .uselist.cols { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }

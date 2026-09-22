@@ -199,18 +199,28 @@ function PageLink({ p, docUrl }: { p: [number, string, string, number]; docUrl: 
  * same thing for the same reason.
  */
 function Fold({
-  summary, open = false, children,
-}: { summary: preact.ComponentChildren; open?: boolean; children: () => preact.ComponentChildren }) {
+  summary, level, open = false, children,
+}: {
+  summary: preact.ComponentChildren
+  /** 1 the kind of source, 2 the source, 3 the document. Each reads differently or the nesting is invisible. */
+  level: 1 | 2 | 3
+  open?: boolean
+  children: () => preact.ComponentChildren
+}) {
   const [shown, setShown] = useState(open)
   return (
-    <details class="uses" open={open} onToggle={(e) => setShown((e.target as HTMLDetailsElement).open)}>
+    <details
+      class={`uses lv${level}`}
+      open={open}
+      onToggle={(e) => setShown((e.target as HTMLDetailsElement).open)}
+    >
       <summary>{summary}</summary>
       {shown ? children() : null}
     </details>
   )
 }
 
-function Document({ d, source }: { d: PartPage['docs'][0]; source: string }) {
+function Document({ d }: { d: PartPage['docs'][0] }) {
   const summary = (
     <>
       <strong>{d.t || d.u}</strong>
@@ -221,16 +231,12 @@ function Document({ d, source }: { d: PartPage['docs'][0]; source: string }) {
     </>
   )
   return (
-    <Fold summary={summary}>
+    <Fold summary={summary} level={3}>
       {() => (
-        <>
-          <ul class="uselist cols">
-            {d.p.map((p, j) => <PageLink key={j} p={p} docUrl={d.u} />)}
-          </ul>
-          <p class="small">
-            <a href={d.u} target="_blank" rel="noopener">the document itself</a> · {source}
-          </p>
-        </>
+        // No link to the document on its own: every page link opens it, at a more useful place.
+        <ul class="uselist cols">
+          {d.p.map((p, j) => <PageLink key={j} p={p} docUrl={d.u} />)}
+        </ul>
       )}
     </Fold>
   )
@@ -260,14 +266,15 @@ function Group({
     </>
   )
   return (
-    <Fold summary={summary} open={open}>
+    <Fold summary={summary} open={open} level={1}>
       {() => groups.map(([source, ds]) => (
         <Fold
           key={source}
+          level={2}
           open={groups.length === 1}
           summary={<><strong>{source}</strong> <span class="count">{n(ds.length)}</span></>}
         >
-          {() => ds.map((d, i) => <Document key={i} d={d} source={source} />)}
+          {() => ds.map((d, i) => <Document key={i} d={d} />)}
         </Fold>
       ))}
     </Fold>
@@ -286,7 +293,7 @@ function Repos({ page }: { page: PartPage }) {
     </>
   )
   return (
-    <Fold summary={summary}>
+    <Fold summary={summary} level={1}>
       {() => (
       <ul class="uselist cols">
         {repos.map(([repo, sheets], i) => (
