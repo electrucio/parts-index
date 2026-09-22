@@ -37,6 +37,7 @@ def main(argv: list[str] | None = None) -> int:
     mf.add_argument("--name", help="file name to store it under")
     mf.add_argument("--note", default="")
     mf.add_argument("--curl", action="store_true", help="some vendors answer curl and nothing else")
+    mf.add_argument("--force", action="store_true", help="fetch it again even if this source already holds it")
     mp = mod.add_parser("promote", help="write the public recipe for every curated part")
     mp.add_argument("--kind", help="only one kind (bjt, jfet, ...)")
     mp.add_argument("--dry", action="store_true", help="say what would be written and write nothing")
@@ -133,6 +134,7 @@ def main(argv: list[str] | None = None) -> int:
             argv2 = ["fetch", args.source, "--url", args.url, "--note", args.note]
             argv2 += ["--name", args.name] if args.name else []
             argv2 += ["--curl"] if args.curl else []
+            argv2 += ["--force"] if args.force else []
         else:
             argv2 = ["recover"]
             argv2 += ["--source", args.source] if args.source else []

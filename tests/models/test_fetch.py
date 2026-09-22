@@ -171,3 +171,40 @@ def test_two_files_of_the_same_name_are_not_guessed_at(tree):
     gone = [{"file": "sources/twins/raw/c/x.lib", "source": "twins", "definitions": 1}]
     targets, unmatched = F.recovery_targets(gone)
     assert not targets and unmatched == gone
+
+
+def test_a_file_this_source_already_holds_is_not_asked_for_again(tree, server, monkeypatch):
+    """Several parts are answered by one vendor file; without this check it arrives once per part."""
+    first = F.fetch("acme", f"{server}/q.lib")
+    assert first["status"] == "downloaded"
+
+    asked = []
+    monkeypatch.setattr(F.http, "get", lambda url, **kw: asked.append(url))
+    again = F.fetch("acme", f"{server}/q.lib")
+    assert again["status"] == "have" and again["path"] == first["path"]
+    assert asked == []
+
+
+def test_it_is_asked_for_again_when_the_tree_no_longer_holds_it(tree, server):
+    """These files are the product, not scratch: a record of having fetched one is not the file."""
+    got = F.fetch("acme", f"{server}/q.lib")
+    (tree / "models/sources/acme" / got["path"]).unlink()
+
+    assert F.fetch("acme", f"{server}/q.lib")["status"] == "downloaded"
+
+
+def test_a_file_that_no_longer_matches_its_checksum_is_fetched_again(tree, server):
+    got = F.fetch("acme", f"{server}/q.lib")
+    (tree / "models/sources/acme" / got["path"]).write_bytes(b"* something else\n")
+
+    assert F.fetch("acme", f"{server}/q.lib")["status"] == "downloaded"
+    assert (tree / "models/sources/acme" / got["path"]).read_bytes() == MODEL
+
+
+def test_force_asks_again_for_something_we_have(tree, server, monkeypatch):
+    F.fetch("acme", f"{server}/q.lib")
+    asked, real = [], F.http.get
+    monkeypatch.setattr(F.http, "get", lambda url, **kw: (asked.append(url), real(url, **kw))[1])
+
+    assert F.fetch("acme", f"{server}/q.lib", force=True)["status"] == "downloaded"
+    assert asked == [f"{server}/q.lib"]

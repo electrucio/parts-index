@@ -188,14 +188,41 @@ def unpack(archive: Path, into: Path) -> int:
     return n
 
 
+def already_have(source: str, url: str) -> dict | None:
+    """The manifest entry for this URL when the tree still holds that file, unchanged. Otherwise None.
+
+    Model files are not scratch the way a scanned page is: they are what the private site serves, and
+    they are the point of the exercise. So "we fetched this once" only answers the question while the
+    bytes are still there and still match the checksum written down when they arrived — a file that has
+    gone, or that no longer matches, is asked for again.
+    """
+    entry = Manifest(source).by_url(url)
+    if not entry:
+        return None
+    path = spice_source(source) / entry["path"]
+    if not path.exists():
+        return None
+    if entry.get("sha256") and hashlib.sha256(path.read_bytes()).hexdigest() != entry["sha256"]:
+        return None
+    return entry
+
+
 def fetch(source: str, url: str, *, name: str | None = None, rel: str | None = None, note: str = "",
           subdir: str = "raw", transport: str = "requests", keep_anything: bool = False,
-          expected: set[str] | None = None) -> dict:
+          expected: set[str] | None = None, force: bool = False) -> dict:
     """Download one URL into a source. Returns {status, path, verdict, definitions}.
 
     `rel` puts the file back exactly where it was, which matters when recovering: a source may keep its
     downloads in a directory tree of its own, and flattening it to a file name loses that.
+
+    A URL this source already holds is not asked for again unless `force` says to. The vendors this
+    talks to are asked for thousands of parts, several of which are answered by one file, so without
+    that check the same download arrives over and over — and each one is a request somebody's server
+    served for nothing.
     """
+    if not force and (have := already_have(source, url)):
+        return {"status": "have", "path": have["path"], "verdict": have.get("note", ""), "definitions": 0}
+
     resp = http.get(url, **{"transport": transport, **how_to_ask(source)})
     if not resp.ok:
         stamp(source, url, status="error", note=resp.why or f"http {resp.status}")
@@ -352,6 +379,7 @@ def main(argv=None) -> int:
     f.add_argument("--name", help="file name to store it under")
     f.add_argument("--note", default="")
     f.add_argument("--curl", action="store_true", help="some vendors answer curl and nothing else")
+    f.add_argument("--force", action="store_true", help="fetch it again even if this source already holds it")
     r = sub.add_parser("recover", help="fetch again what the catalogue says the tree has lost")
     r.add_argument("--source")
     r.add_argument("--limit", type=int, default=0)
@@ -361,10 +389,10 @@ def main(argv=None) -> int:
     require(spice_models_root() / "sources", "fetching SPICE models")
 
     if a.cmd == "fetch":
-        got = fetch(a.source, a.url, name=a.name, note=a.note,
+        got = fetch(a.source, a.url, name=a.name, note=a.note, force=a.force,
                     transport="curl" if a.curl else "requests")
         print(json.dumps(got, ensure_ascii=False))
-        return 0 if got["status"] == "downloaded" else 1
+        return 0 if got["status"] in ("downloaded", "have") else 1
 
     from parts_index.core.config import spice_definitions
     from parts_index.models.index import missing
