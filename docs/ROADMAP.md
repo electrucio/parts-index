@@ -4,6 +4,29 @@ What is known to be missing or improvable, so it is not rediscovered. Sources ar
 every source lives in `data/schematics/sources.yaml` or `data/models/sources/`, and `STATUS.md` says where
 each one stands. This file is for everything that is not a source.
 
+## The missing middle of the pipeline
+
+`download` and `crawl` are ported and `export` is ported; **`ocr` and `index` are not**, and they are the
+two stages between them. Everything fetched since the migration is therefore sitting unread: audiocircuit
+750 downloaded and 0 read, fendersupport 281 and 0, tagboard 2,562 and 0, and about 10,600 items over all
+sources. Every download that runs makes that larger, and no extractor improvement — the census included —
+can reach the site until the index is rebuilt, because `export` reads the database and nothing fills it.
+
+Two decisions for the port, both already implied by what is here:
+
+- **The OCR stage is driven by the ledger, not by a run being "finished".** `Ledger.pending("ocr")` already
+  answers "what is downloaded and unread"; the command takes that and can be run again and again while a
+  download is still going. Then the order of the two stops being something a person has to sequence.
+- **It ships as a container.** The old pipeline ran OCR in containers built by hand on one machine. A
+  Dockerfile with CUDA and PaddleOCR is what makes the heavy stage reproducible somewhere else, which is
+  the difference between moving this work to another machine and rebuilding it there.
+
+The five OCR scripts in `private_material/staging/` (`ocr.py`, `ocr_raw.py`, `ocr_turned.py`, `ocr_scans.py`,
+`ocrio.py`, 408 lines between them) are one stage written five times; `build_index.py` is 456 lines and
+already incremental on an extractor version, which is the same idea as the ledger's stage version. Port
+behaviour first and prove it with a golden test, as rule 7 says: the OCR of a page that was read before
+must come out the same.
+
 ## Quality of the schematic index
 
 - **The same schematic appears several times.** The Bassman 5F6-A sheet is published by three different

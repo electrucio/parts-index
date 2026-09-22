@@ -11,6 +11,11 @@ dependencies = ["pyyaml>=6", "requests>=2.31"]
 # Only `pidx migrate datasets` needs this, and only until the research datasets are
 # distilled and deleted. Install with `uv sync --extra datasets`.
 datasets = ["pyarrow>=15"]
+# `pidx schematics ocr` reads documents: PyMuPDF renders and gives the text layer, Pillow opens the
+# TIFFs MuPDF cannot. The OCR engine itself (paddleocr, paddlepaddle-gpu) is not here on purpose —
+# it is CUDA-bound and belongs in the container, `docker/ocr.Dockerfile`. Without it this still reads
+# every page that has a text layer. Install with `uv sync --extra ocr`.
+ocr = ["pymupdf>=1.24", "pillow>=10", "numpy>=1.26"]
 
 [project.scripts]
 pidx = "parts_index.cli:main"

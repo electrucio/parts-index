@@ -72,6 +72,13 @@ def main(argv: list[str] | None = None) -> int:
     sc.add_argument("--delay", type=float, default=0.0, help="seconds between two requests to one host")
     sc.add_argument("--detach", action="store_true", help="run it in the background, under a lock, into a log")
     sc.add_argument("--after", help="wait for that job to finish first (its name, as its log is called)")
+    so = sch.add_parser("ocr", help="read what is downloaded and not read yet, page by page, with boxes")
+    so.add_argument("--source", action="append", required=True, help="a source with documents downloaded (repeatable)")
+    so.add_argument("--limit", type=int, default=0, help="at most this many documents")
+    so.add_argument("--gpu", type=int, default=None, help="which GPU to give the OCR")
+    so.add_argument("--shard", default="0/1", help="k/n: every nth document, for running several at once")
+    so.add_argument("--dry", action="store_true", help="say how much there is to read and read nothing")
+
     sv = sch.add_parser("verify", help="whether the tree still holds what was downloaded, and whether it matters")
     sv.add_argument("--source", action="append", help="only these sources (repeatable)")
     sv.add_argument("--deep", action="store_true", help="read every file and check it against its checksum")
@@ -200,6 +207,14 @@ def main(argv: list[str] | None = None) -> int:
         argv2 += ["--delay", str(args.delay)] if args.delay else []
         argv2 += ["--after", args.after] if args.after else []
         return sch_crawl.main(argv2 + (["--detach"] if args.detach else []))
+
+    if args.cmd == "schematics" and args.sch_cmd == "ocr":
+        from parts_index.schematics import ocr as sch_ocr
+        argv2 = [x for pair in (("--source", s) for s in args.source) for x in pair]
+        argv2 += ["--limit", str(args.limit)] if args.limit else []
+        argv2 += ["--gpu", str(args.gpu)] if args.gpu is not None else []
+        argv2 += ["--shard", args.shard] if args.shard != "0/1" else []
+        return sch_ocr.main(argv2 + (["--dry"] if args.dry else []))
 
     if args.cmd == "schematics" and args.sch_cmd == "verify":
         from parts_index.schematics import verify as sch_verify

@@ -50,21 +50,24 @@ def _title_of(pdf_url: str) -> str:
 
 
 def audiocircuit(delay: float, limit: int = 0):
-    """-> rows, in the order the site shows them."""
+    """-> one batch of rows per brand, as each brand is finished. A batch at a time, because a listing run
+    is long and a run that saves only at the end saves nothing when it is interrupted."""
     r = http.get("https://audiocircuit.dk/sitemap.xml", delay=delay)
     if not r.ok:
         raise SystemExit(f"audiocircuit sitemap: {r.status} {r.why}")
     pages = [u for u in SITEMAP_LOC.findall(r.text())
              if re.fullmatch(r"https://audiocircuit\.dk/[a-z0-9._-]+/", u)]
     print(f"{len(pages)} pages in the sitemap", file=sys.stderr)
-    rows, fetched = [], 0
+    fetched = 0
     for page in pages:
         seen_here: set[str] = set()
         brand = ""
+        rows = []
         for n in range(MAX_PAGES):
             url = page if n == 0 else f"{page}?eeListID=1&ee=1&eePage={n}"
             if limit and fetched >= limit:
-                return rows
+                yield rows
+                return
             resp = http.get(url, delay=delay)
             fetched += 1
             if not resp.ok:
@@ -80,9 +83,9 @@ def audiocircuit(delay: float, limit: int = 0):
                       "origin": "factory", "page": page, "source": "audiocircuit"} for u in fresh]
             if len(found) < PAGE_SIZE_GUESS:
                 break
-        if seen_here:
+        if rows:
+            yield rows
             print(f"  {brand or page}: {len(seen_here)}", file=sys.stderr)
-    return rows
 
 
 LISTERS = {"audiocircuit": audiocircuit}
@@ -116,9 +119,11 @@ def main(argv: list[str] | None = None) -> int:
     for source in a.source:
         if source not in LISTERS:
             raise SystemExit(f"no lister for {source}; there is one for {', '.join(LISTERS)}")
-        rows = LISTERS[source](a.delay, a.limit)
-        added = append_new(source, rows, a.dry)
-        print(f"{source}: {len(rows)} files listed, {added} of them new{' (dry)' if a.dry else ''}")
+        listed = added = 0
+        for batch in LISTERS[source](a.delay, a.limit):
+            listed += len(batch)
+            added += append_new(source, batch, a.dry)          # saved as each brand finishes, not at the end
+        print(f"{source}: {listed} files listed, {added} of them new{' (dry)' if a.dry else ''}")
     return 0
 
 

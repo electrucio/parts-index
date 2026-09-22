@@ -98,6 +98,13 @@ schematics-crawl-bg:  ## (maintainer) the same, detached under a lock with a log
 	$(RUN) pidx schematics crawl $(foreach s,$(SOURCE),--source $(s)) $(if $(MAX),--max $(MAX),) \
 	  $(if $(AFTER),--after $(AFTER),) --detach
 
+schematics-ocr:  ## (maintainer) read what is downloaded and not read yet; SOURCE='a b' [GPU=0] [SHARD=0/2] [DRY=1]
+	uv run pidx schematics ocr $(foreach s,$(SOURCE),--source $(s)) $(if $(GPU),--gpu $(GPU)) $(if $(SHARD),--shard $(SHARD)) $(if $(LIMIT),--limit $(LIMIT)) $(if $(DRY),--dry)
+
+schematics-ocr-docker:  ## (maintainer) the same inside the CUDA image, one shard per GPU; SOURCE='a b' GPU=0 SHARD=0/2
+	docker run --rm --gpus '"device=$(GPU)"' -v "$(PWD)":/repo parts-index-ocr \
+	  schematics ocr $(foreach s,$(SOURCE),--source $(s)) --gpu 0 $(if $(SHARD),--shard $(SHARD))
+
 schematics-verify:  ## (maintainer) find documents lost before anything read them; REPAIR=1 fetches them back
 	$(RUN) pidx schematics verify $(if $(SOURCE),$(foreach s,$(SOURCE),--source $(s)),) $(if $(REPAIR),--repair,)
 
