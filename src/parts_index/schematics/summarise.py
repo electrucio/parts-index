@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import os
 import re
@@ -234,7 +235,15 @@ def room_for(parts: int) -> int:
 
 
 def key_of(page: dict) -> str:
-    return f"{VERSION}|{page['source']}|{page['key']}|{page['page']}"
+    """What identifies this question: the stage version, the page, and the parts being asked about.
+
+    The parts have to be in it. Without them a page answered today is skipped for ever, and the part
+    the extractor learns to read tomorrow never gets a line — rule 5 skips an item when its stamp
+    matches the input, and the input here is the page *and* what was asked of it. With them, an
+    extractor change re-asks exactly the pages whose part list changed and nothing else."""
+    asked = ",".join(sorted(p["part"] for p in page["parts"]))
+    stamp = hashlib.sha256(asked.encode("utf-8")).hexdigest()[:8]
+    return f"{VERSION}|{page['source']}|{page['key']}|{page['page']}|{stamp}"
 
 
 def cached_lines() -> dict:

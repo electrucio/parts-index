@@ -71,7 +71,8 @@ def test_an_answer_about_none_of_the_parts_is_not_an_answer():
 
 # --- the cache key carries the version, which is how this stage is re-run ---------------------------
 def test_bumping_the_version_asks_the_corpus_again():
-    page = {"source": "esp", "key": "https://example.invalid/a.pdf", "page": 3}
+    page = {"source": "esp", "key": "https://example.invalid/a.pdf", "page": 3,
+            "parts": [{"part": "ECC83"}]}
     was = summarise.key_of(page)
     summarise.VERSION, old = "summarise-2", summarise.VERSION
     try:
@@ -103,3 +104,14 @@ def test_the_registry_is_read_the_way_it_is_written(tmp_path, monkeypatch):
                         encoding="utf-8")
     monkeypatch.setattr(summarise, "schematics_registry", lambda: registry)
     assert summarise.sources() == ["books", "esp"]
+
+
+def test_a_page_whose_parts_have_changed_is_asked_again():
+    """Rule 5 skips an item when its stamp matches the input, and the input is the page AND what was
+    asked of it: a part the extractor learns to read tomorrow must not be skipped for ever."""
+    page = {"source": "esp", "key": "https://example.invalid/a.pdf", "page": 3,
+            "parts": [{"part": "ECC83"}, {"part": "EL34"}]}
+    same_parts_other_order = dict(page, parts=[{"part": "EL34"}, {"part": "ECC83"}])
+    one_more_part = dict(page, parts=page["parts"] + [{"part": "6V6"}])
+    assert summarise.key_of(page) == summarise.key_of(same_parts_other_order)
+    assert summarise.key_of(page) != summarise.key_of(one_more_part)

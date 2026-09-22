@@ -189,3 +189,22 @@ def test_a_part_read_as_an_advert_again_and_again_is_probably_not_a_part():
 def test_a_part_with_too_few_uses_is_not_judged():
     lines = {("s", "d", 1): {"OC16": {"kind": "advert", "line": "for sale"}}}
     assert E.suspects(lines) == []
+
+
+def test_the_lines_are_read_back_from_a_key_that_carries_the_parts_asked(corpus, monkeypatch, tmp_path):
+    """`summarised` parses the cache key, which gained a field when the asked parts went into it."""
+    from parts_index.core import llm
+    from parts_index.schematics import summarise
+    monkeypatch.setattr(llm, "llm_cache", lambda: tmp_path)
+    page = {"source": "wireless_world", "key": "https://e.org/ww-1974-06.pdf", "page": 47,
+            "parts": [{"part": "12AX7"}]}
+    answers, _ = llm._paths(summarise.TASK)
+    answers.write_text(json.dumps({
+        "model": summarise.MODEL, "key": summarise.key_of(page),
+        "answer": {"page": "a two-valve amplifier", "v": summarise.VERSION, "missing": [],
+                   "parts": {"12AX7": {"kind": "project", "line": "preamp stage"}}}}) + "\n",
+        encoding="utf-8")
+    assert E.summarised()[("wireless_world", "https://e.org/ww-1974-06.pdf", 47)]["12AX7"]["line"] \
+        == "preamp stage"
+    E.export()
+    assert read(corpus / "lines" / "wireless_world.csv")[0]["line"] == "preamp stage"
