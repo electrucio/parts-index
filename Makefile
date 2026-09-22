@@ -11,7 +11,7 @@ WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
 
 .DEFAULT_GOAL := help
-.PHONY: help setup test test-web lint guard check status status-write paths models-index models-missing models-recover models-verify models-promote datasets-repos schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
+.PHONY: help setup test test-web lint guard check status status-write paths models-index models-missing models-recover models-verify models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -116,6 +116,12 @@ schematics-verify:  ## (maintainer) find documents lost before anything read the
 
 schematics-reindex:  ## (maintainer) read the corpus again with the current extractor; [SOURCE='a b'] [WORKERS=n]
 	uv run pidx schematics reindex $(foreach s,$(SOURCE),--source $(s)) $(if $(WORKERS),--workers $(WORKERS)) $(if $(LIMIT),--limit $(LIMIT)) $(if $(DRY),--dry)
+
+schematics-summarise:  ## (maintainer) one line per published use, from the model next door; SOURCE='a b' [LIMIT=n] [DRY=1]
+	$(RUN) pidx schematics summarise $(foreach s,$(SOURCE),--source $(s)) $(if $(LIMIT),--limit $(LIMIT),) $(if $(DRY),--dry)
+
+schematics-summarise-bg:  ## (maintainer) the same, detached under a lock with a log - this one runs for days
+	$(RUN) pidx schematics summarise $(foreach s,$(SOURCE),--source $(s)) $(if $(LIMIT),--limit $(LIMIT),) --detach
 
 schematics-export:  ## (maintainer) write the schematic index into data/, where the site is built from
 	$(RUN) pidx schematics export

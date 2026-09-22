@@ -168,11 +168,15 @@ def ask_local(task: str, system: str, items: list[dict], *, model: str, parse=No
     and a re-run asks for nothing it already knows. What is written down is seconds and tokens rather
     than dollars: on a corpus-wide pass the number that matters is when it finishes.
 
-    `parse` turns the model's text into the answer that gets cached; it may raise, and an item whose
-    answer cannot be parsed is left unanswered so the next run asks again rather than caching rubbish.
+    An item may carry its own `max_tokens`, because a cut-off answer is an unreadable one and how long
+    an answer needs to be is the caller's business, not this module's.
+
+    `parse(text, item)` turns the model's text into the answer that gets cached; it is given the item
+    back so it can check the answer against what was asked. It may raise, and an item whose answer
+    cannot be read is left unanswered, so the next run asks again rather than caching rubbish.
     """
     url = url or LOCAL_URL
-    parse = parse or json.loads
+    parse = parse or (lambda text, item: json.loads(text))
     answers, ledger = _paths(task)
     have = cached(task, model)
     todo = [it for it in items if it["key"] not in have]
@@ -185,7 +189,8 @@ def ask_local(task: str, system: str, items: list[dict], *, model: str, parse=No
     state = {"done": 0, "failed": 0, "seconds": 0.0, "started": time.time()}
 
     def one(item):
-        body = {"model": model, "temperature": temperature, "max_tokens": max_tokens,
+        body = {"model": model, "temperature": temperature,
+                "max_tokens": int(item.get("max_tokens") or max_tokens),
                 "chat_template_kwargs": {"enable_thinking": False},
                 "messages": [{"role": "system", "content": system},
                              {"role": "user", "content": item["prompt"]}]}
@@ -203,7 +208,7 @@ def ask_local(task: str, system: str, items: list[dict], *, model: str, parse=No
             return
         took = time.time() - t0
         try:
-            answer = parse(resp["choices"][0]["message"]["content"])
+            answer = parse(resp["choices"][0]["message"]["content"], item)
         except Exception as e:                                       # noqa: BLE001
             with lock:
                 state["failed"] += 1

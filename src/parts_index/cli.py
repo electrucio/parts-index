@@ -94,6 +94,13 @@ def main(argv: list[str] | None = None) -> int:
     sr.add_argument("--workers", type=int, default=12, help="how many processes read at once")
     sr.add_argument("--dry", action="store_true", help="say how much there is to read and write nothing")
 
+    ss = sch.add_parser("summarise", help="one line per published use: what that part does on that page")
+    ss.add_argument("--source", action="append", help="only these sources (repeatable)")
+    ss.add_argument("--limit", type=int, default=0, help="at most this many pages per source")
+    ss.add_argument("--workers", type=int, default=4, help="calls in flight (the server has four slots)")
+    ss.add_argument("--detach", action="store_true", help="run it in the background, under a lock, into a log")
+    ss.add_argument("--dry", action="store_true", help="say what would be asked and ask nothing")
+
     se = sch.add_parser("export", help="write the index into data/, where the site is built from")
     se.add_argument("--source", action="append", help="only these sources (repeatable)")
     se.add_argument("--dry", action="store_true", help="count what would be written and write nothing")
@@ -252,6 +259,13 @@ def main(argv: list[str] | None = None) -> int:
         argv2 += ["--limit", str(args.limit)] if args.limit else []
         argv2 += ["--workers", str(args.workers)]
         return sch_reindex.main(argv2 + (["--dry"] if args.dry else []))
+
+    if args.cmd == "schematics" and args.sch_cmd == "summarise":
+        from parts_index.schematics import summarise as sch_summarise
+        argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
+        argv2 += ["--limit", str(args.limit), "--workers", str(args.workers)]
+        argv2 += ["--detach"] if args.detach else []
+        return sch_summarise.main(argv2 + (["--dry"] if args.dry else []))
 
     if args.cmd == "schematics" and args.sch_cmd == "export":
         from parts_index.schematics import export as sch_export

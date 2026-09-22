@@ -61,6 +61,15 @@ def test_the_local_backend_caches_and_writes_down_the_seconds(monkeypatch, tmp_p
                          say=lambda *a: None) == {"p1": {"line": "a valve preamp"}}
 
 
+def test_the_parser_is_given_the_item_so_it_can_check_the_answer(monkeypatch, tmp_path):
+    monkeypatch.setattr(llm, "llm_cache", lambda: tmp_path)
+    monkeypatch.setattr(llm, "_post", lambda url, body, timeout: _reply("6V6 6L6"))
+    got = llm.ask_local("t", "sys", [{"key": "a", "prompt": "...", "asked": ["6V6"]}], model="local",
+                        parse=lambda text, item: [p for p in item["asked"] if p in text],
+                        say=lambda *a: None)
+    assert got == {"a": ["6V6"]}
+
+
 def test_an_unreadable_answer_is_left_to_be_asked_again(monkeypatch, tmp_path):
     monkeypatch.setattr(llm, "llm_cache", lambda: tmp_path)
     monkeypatch.setattr(llm, "_post", lambda url, body, timeout: _reply("sorry, I cannot do that"))
@@ -81,3 +90,17 @@ def test_the_local_backend_does_not_need_an_api_key(monkeypatch, tmp_path):
 def test_the_server_address_is_not_written_into_the_repository():
     # rule 6: the maintainer's machine is named in the environment, never here
     assert llm.LOCAL_URL.startswith("http://127.0.0.1") or "PIDX_LLM_URL" in __import__("os").environ
+
+
+def test_an_item_can_ask_for_more_room_than_the_default(monkeypatch, tmp_path):
+    monkeypatch.setattr(llm, "llm_cache", lambda: tmp_path)
+    seen = {}
+
+    def capture(url, body, timeout):
+        seen["max_tokens"] = body["max_tokens"]
+        return _reply('{"ok": true}')
+
+    monkeypatch.setattr(llm, "_post", capture)
+    llm.ask_local("t", "sys", [{"key": "a", "prompt": "...", "max_tokens": 1200}], model="local",
+                  max_tokens=700, say=lambda *a: None)
+    assert seen["max_tokens"] == 1200
