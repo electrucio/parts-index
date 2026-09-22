@@ -96,10 +96,12 @@ def test_the_source_names_are_not_repeated_in_every_part_file(data):
 def test_the_search_index_holds_every_part_from_either_side(data):
     idx = P.index()
     recipes, _ = P.model_recipes()
-    rows, kinds = P.search_index(idx, recipes)
+    rows, menu = P.search_index(idx, recipes)
     assert [r[0] for r in rows] == ["12AX7", "TL072"]
     assert dict((r[0], r[3]) for r in rows)["TL072"] == 1     # one model candidate
-    assert kinds[dict((r[0], r[4]) for r in rows)["TL072"]] == "opamp"   # from its recipe
+    at = {d["key"]: i for i, d in enumerate(menu)}
+    assert dict((r[0], r[4]) for r in rows)["TL072"] & (1 << at["opamp"])   # from its recipe
+    assert dict((r[0], r[4]) for r in rows)["12AX7"] & (1 << at["tube"])    # from the dictionary
 
 
 def test_a_part_page_says_how_many_documents_and_how_many_copies_were_folded(data):
@@ -157,3 +159,31 @@ def test_a_part_filed_under_two_kinds_is_reported_rather_than_hidden(data):
     recipes, clashes = P.model_recipes()
     assert clashes == ["TL072"]
     assert recipes["TL072"]["kind"] == "opamp"       # the one with more candidates, not the last read
+
+
+def test_a_part_answers_to_every_device_it_could_be(data):
+    """A JEDEC number cannot be told apart by its pattern: 2N3904 is a transistor, 2N5457 a JFET.
+    Guessing one would hide the other, and the menu is a way of finding things."""
+    at = {k: i for i, (k, _) in enumerate(P.DEVICES)}
+    bits = P.device_bits("bjt/jfet/mosfet")
+    for d in ("bjt", "jfet", "mosfet"):
+        assert bits & (1 << at[d]), d
+    assert not bits & (1 << at["tube"])
+
+
+def test_every_kind_the_data_carries_is_mapped_or_deliberately_not(data):
+    """An unmapped kind silently drops its parts out of every menu entry."""
+    from parts_index.core.parts.extractor import FAMILIES
+    for _family, kind, _rx, _strict in FAMILIES:
+        assert kind in P.KIND_MAP, f"the extractor can produce {kind!r} and nothing maps it"
+
+
+def test_the_menu_ships_whole_so_a_bit_always_means_the_same_device(data):
+    """The bit a part carries is a position in this menu. Dropping the devices nothing answers to would
+    renumber the rest and the filter would quietly select the wrong one; the site hides them instead."""
+    idx = P.index()
+    recipes, _ = P.model_recipes()
+    rows, menu = P.search_index(idx, recipes)
+    assert [d["key"] for d in menu] == [k for k, _ in P.DEVICES]
+    at = {d["key"]: i for i, d in enumerate(menu)}
+    assert dict((r[0], r[4]) for r in rows)["TL072"] & (1 << at["opamp"])

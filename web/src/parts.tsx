@@ -13,7 +13,7 @@ import type preact from 'preact'
 import { useEffect, useMemo, useState } from 'preact/hooks'
 
 import { forViewer } from './links'
-import type { PartIndex, PartModel, PartPage, PartRow } from './types'
+import type { DeviceKind, PartIndex, PartModel, PartPage, PartRow } from './types'
 
 const DATA = `${import.meta.env.BASE_URL}data`
 export const n = (v: number) => v.toLocaleString('en-GB')
@@ -26,25 +26,6 @@ const SORTS: { key: Sort; label: string }[] = [
   { key: 'models', label: 'Most SPICE models first' },
   { key: 'name', label: 'By part number' },
 ]
-/**
- * The kinds offered in the filter, and which raw kinds each one takes.
- *
- * A part whose kind is ambiguous belongs to every group it could be in, rather than being forced into
- * one: `2N3904` and `2N5457` are both JEDEC numbers and the family pattern cannot tell a transistor
- * from a JFET, so `bjt/jfet/mosfet` answers to both. Guessing would hide one of them.
- */
-export const DEVICES: { key: string; label: string; kinds: string[] }[] = [
-  { key: 'tube', label: 'Valves', kinds: ['tube'] },
-  { key: 'bjt', label: 'Transistors (BJT)', kinds: ['bjt', 'transistor', 'bjt/jfet/mosfet'] },
-  { key: 'ge', label: 'Germanium', kinds: ['bjt-ge', 'diode-ge', 'bjt-ge/diode-ge'] },
-  { key: 'fet', label: 'JFET and MOSFET', kinds: ['jfet', 'mosfet', 'jfet/mosfet', 'bjt/jfet/mosfet'] },
-  { key: 'diode', label: 'Diodes and zeners', kinds: ['diode', 'zener', 'diode/zener', 'bjt-ge/diode-ge'] },
-  { key: 'opamp', label: 'Op-amps', kinds: ['opamp', 'opamp/ic'] },
-  { key: 'ic', label: 'Other ICs', kinds: ['ic', 'ic-audio', 'digital-audio', 'logic', 'control', 'opamp/ic'] },
-  { key: 'regulator', label: 'Regulators', kinds: ['regulator'] },
-  { key: 'opto', label: 'Opto', kinds: ['opto', 'led'] },
-]
-
 const FILTERS: { key: Filter; label: string }[] = [
   { key: '', label: 'all' },
   { key: 'models', label: 'with a model' },
@@ -86,12 +67,18 @@ export function keep(rows: PartRow[], f: Filter): PartRow[] {
   return rows
 }
 
-/** The rows whose device kind belongs to the chosen group. An empty group means all of them. */
-export function ofDevice(rows: PartRow[], device: string, vocabulary: string[]): PartRow[] {
-  const group = DEVICES.find((d) => d.key === device)
-  if (!group) return rows
-  const wanted = new Set(group.kinds.map((k) => vocabulary.indexOf(k)).filter((i) => i >= 0))
-  return rows.filter((r) => wanted.has(r[4]))
+/**
+ * The rows that answer to the chosen device. An empty choice means all of them.
+ *
+ * A part carries one bit per device, because it can answer to more than one: a JEDEC number like
+ * `2N3904` or `2N5457` could be a transistor, a JFET or a MOSFET and the family pattern cannot tell,
+ * so it appears under all three rather than being guessed into one.
+ */
+export function ofDevice(rows: PartRow[], device: string, menu: DeviceKind[]): PartRow[] {
+  const at = menu.findIndex((d) => d.key === device)
+  if (at < 0) return rows
+  const bit = 1 << at
+  return rows.filter((r) => (r[4] & bit) !== 0)
 }
 
 /** A model's agreement with its datasheet, as the bar the previous site used. */
@@ -401,7 +388,7 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
   const searching = q.trim().length >= 2
   const list = useMemo(() => {
     if (!index) return []
-    const kept = keep(ofDevice(index.parts, device, index.deviceKinds ?? []), filter)
+    const kept = keep(ofDevice(index.parts, device, index.deviceKinds), filter)
     return searching ? search(kept, q) : order(kept, by)
   }, [index, q, by, filter, device, searching])
   useEffect(() => setShown(PAGE), [q, by, filter, device])
@@ -422,7 +409,9 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
           onChange={(e) => setDevice((e.target as HTMLSelectElement).value)}
         >
           <option value="">Every kind of device</option>
-          {DEVICES.map((d) => <option key={d.key} value={d.key}>{d.label}</option>)}
+          {(index?.deviceKinds ?? []).map((d) => (
+            d.n > 0 ? <option key={d.key} value={d.key}>{d.label} ({n(d.n)})</option> : null
+          ))}
         </select>
         <div class="filters">
           {FILTERS.map((f) => (

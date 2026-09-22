@@ -54,8 +54,15 @@ export interface Manifest {
   sizes: Record<string, number>
 }
 
-/** One row of the search index: part, documents, uses, model candidates, device kind.
- *  The kind is an index into `PartIndex.deviceKinds`; the word itself would be most of the file. */
+/** One entry of the device filter: what it is called and how many parts answer to it. */
+export interface DeviceKind {
+  key: string
+  label: string
+  n: number
+}
+
+/** One row of the search index: part, documents, uses, model candidates, devices.
+ *  The last is a bit per entry of `PartIndex.deviceKinds`, because a part can answer to several. */
 export type PartRow = [string, number, number, number, number]
 
 export interface PartIndex {
@@ -64,8 +71,8 @@ export interface PartIndex {
   sources: string[]
   /** What each of those sources is — site, factory, magazine, book — by the same position. */
   kinds: string[]
-  /** The vocabulary of device kinds a part row indexes into. */
-  deviceKinds: string[]
+  /** The device filter's menu, in menu order. A part row carries one bit per entry. */
+  deviceKinds: DeviceKind[]
   parts: PartRow[]
 }
 

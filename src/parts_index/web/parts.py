@@ -27,7 +27,7 @@ source inside it on its own, which is what keeps a part with three thousand hits
 from __future__ import annotations
 
 import csv
-from collections import defaultdict
+from collections import Counter, defaultdict
 
 import yaml
 
@@ -44,6 +44,60 @@ from parts_index.core.config import (
 from parts_index.core.parts.extractor import canonical, family_of
 
 REPO_CAP = 200        # GitHub projects listed for one part
+
+# The vocabulary the curation uses, which is the one the previous site offered, with its labels in
+# English. Order is the order of the menu: the devices an analog-audio circuit is made of, then the
+# support parts, then everything that is not a semiconductor.
+DEVICES: list[tuple[str, str]] = [
+    ("tube", "Valves"),
+    ("bjt", "Silicon BJT"),
+    ("bjt-ge", "Germanium BJT"),
+    ("jfet", "JFET"),
+    ("mosfet", "MOSFET"),
+    ("diode", "Diodes"),
+    ("diode-ge", "Germanium diodes"),
+    ("zener", "Zeners"),
+    ("led", "LEDs"),
+    ("opamp", "Op-amps"),
+    ("ota", "OTAs"),
+    ("comparator", "Comparators"),
+    ("vca", "VCAs, compandors and multipliers"),
+    ("mic-preamp", "Microphone preamps"),
+    ("ic-audio", "Audio power ICs"),
+    ("digital-audio", "Digital audio and BBD"),
+    ("logic", "CMOS logic"),
+    ("regulator", "Regulators"),
+    ("smps", "Switching controllers"),
+    ("opto", "Optocouplers"),
+    ("control", "Control and utility"),
+    ("passive", "Passives and hardware"),
+]
+
+# What each kind the data actually carries means in that vocabulary. A part number whose family cannot
+# be pinned down belongs to every kind it could be — `2N3904` and `2N5457` are both JEDEC and the
+# pattern cannot tell a transistor from a JFET, so a JEDEC number answers to all three. Guessing one
+# would hide the other, and the list is a way of finding things, not a claim about the part.
+KIND_MAP: dict[str, tuple[str, ...]] = {
+    "bjt": ("bjt",), "transistor": ("bjt",), "bjt-ge": ("bjt-ge",),
+    "bjt/jfet/mosfet": ("bjt", "jfet", "mosfet"),
+    "jfet": ("jfet",), "mosfet": ("mosfet",), "jfet/mosfet": ("jfet", "mosfet"),
+    "bjt-ge/diode-ge": ("bjt-ge", "diode-ge"),
+    "diode": ("diode",), "diode-ge": ("diode-ge",), "zener": ("zener",),
+    "diode/zener": ("diode", "zener"), "led": ("led",),
+    "tube": ("tube",), "vacuum_tube": ("tube",),
+    "opamp": ("opamp",), "opamp/ic": ("opamp", "ic-audio", "control"),
+    "ota": ("ota",), "comparator": ("comparator",), "vca": ("vca",),
+    "mic-preamp": ("mic-preamp",), "ic-audio": ("ic-audio",),
+    "digital-audio": ("digital-audio",), "logic": ("logic",),
+    "ic": ("control",), "control": ("control",),
+    "regulator": ("regulator",), "smps": ("smps",),
+    "opto": ("opto",), "optocoupler": ("opto",),
+    "battery": ("passive",), "connector": ("passive",), "crystal_oscillator": ("passive",),
+    "display": ("passive",), "ferrite_bead": ("passive",), "fuse": ("passive",),
+    "motor": ("passive",), "relay": ("passive",), "sensor": ("passive",),
+    "switch": ("passive",), "thermistor": ("passive",), "module": ("passive",),
+    "power_module": ("passive",),
+}
 MODEL_KEYS = ("source", "name", "def", "type", "pins", "verbatim", "changes", "symbol")
 
 
@@ -232,23 +286,42 @@ def part_payload(part: str, idx: dict, recipe: dict | None) -> dict:
     return out
 
 
-def search_index(idx: dict, recipes: dict) -> tuple[list[list], list[str]]:
+def device_bits(kind: str) -> int:
+    """Which of `DEVICES` this kind answers to, as a bit per device.
+
+    One number instead of a list of words: twenty-two devices fit in an integer, and a part row is read
+    fifteen thousand times.
+    """
+    at = {k: i for i, (k, _) in enumerate(DEVICES)}
+    bits = 0
+    for d in KIND_MAP.get(kind, ()):
+        bits |= 1 << at[d]
+    return bits
+
+
+def search_index(idx: dict, recipes: dict) -> tuple[list[list], list[dict]]:
     """What the browser loads first: every part, with just enough to rank, filter and route it.
 
-    Tuples rather than objects, because the key names would be most of the file, and the kind is an
-    index into a vocabulary of about thirty rather than the word itself, for the same reason.
+    Tuples rather than objects, because the key names would be most of the file.
     """
     counts = {r["part"]: (int(r["documents"]), int(r["uses"]))
               for r in rows(schematics_parts())}
     dictionary = dictionary_kinds()
-    vocabulary: list[str] = []
-    seen: dict[str, int] = {}
+    cache: dict[str, int] = {}
     out = []
+    tally = Counter()
     for part in sorted(set(counts) | set(recipes)):
         docs, uses = counts.get(part, (0, 0))
         kind = part_kind(part, recipes, dictionary)
-        if kind not in seen:
-            seen[kind] = len(vocabulary)
-            vocabulary.append(kind)
-        out.append([part, docs, uses, len(recipes.get(part, {}).get("models") or []), seen[kind]])
-    return out, vocabulary
+        if kind not in cache:
+            cache[kind] = device_bits(kind)
+        bits = cache[kind]
+        for i, (key, _) in enumerate(DEVICES):
+            if bits & (1 << i):
+                tally[key] += 1
+        out.append([part, docs, uses, len(recipes.get(part, {}).get("models") or []), bits])
+    # Every device ships, even the ones nothing answers to, because the bit a part carries is its
+    # position here. Dropping the empty ones would renumber the rest, and a filter would quietly select
+    # the wrong device — which is what the fixture caught. The site hides an entry with nothing in it.
+    menu = [{"key": k, "label": label, "n": tally[k]} for k, label in DEVICES]
+    return out, menu
