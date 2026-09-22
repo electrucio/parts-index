@@ -9,6 +9,8 @@ plain CSV that a person can open, diff and correct in a pull request.
   `documents/<source>.csv`  one row per document: its public id, title, link and parent
   `pages/<source>.csv`      one row per page that has anything on it, with the link to that page
   `uses/<source>.csv`       one row per (part, page): the answer to "where is this part used"
+  `lines/<source>.csv`      the same rows, with the line saying what the part does there (`summarise`)
+  `suspects.csv`            parts the model reads as something that is not a component at all
   `parts.csv`               every part with how much there is of it, which is what search loads first
   `export.json`             what this run produced, per source, so any change is measurable
 
@@ -44,9 +46,11 @@ from parts_index.core.config import (
     require,
     schematics_documents,
     schematics_export_manifest,
+    schematics_lines,
     schematics_pages,
     schematics_parts,
     schematics_registry,
+    schematics_suspects,
     schematics_uses,
     schematics_withdrawn,
 )
@@ -68,6 +72,13 @@ DOC_FIELDS = ("id", "key", "title", "url", "parent", "role", "year", "month", "p
 SHA_LEN = 16
 PAGE_FIELDS = ("doc", "page", "url", "schematic", "parts")
 USE_FIELDS = ("part", "doc", "page", "times", "near")
+LINE_FIELDS = ("doc", "page", "part", "kind", "line")
+SUSPECT_FIELDS = ("part", "uses", "read_as", "share", "example")
+# A part most of whose uses the model reads as an advert, or cannot place at all, is probably not a
+# component: BD315 is a gramophone record, 6K8 a resistor value, 1A3 a designator. Below this share it
+# is noise; at or above it, it is worth a look before the next export (rule 4).
+SUSPECT_SHARE = 0.6
+SUSPECT_MIN_USES = 3
 PART_FIELDS = ("part", "documents", "pages", "uses", "sources")
 
 
@@ -149,6 +160,46 @@ def rows(db: sqlite3.Connection):
         ORDER BY d.source, d.doc_id, p.page_no, pa.part""")
 
 
+def summarised() -> dict:
+    """{(source, doc_key, page): {PART: {kind, line}}} from what `summarise` has answered so far.
+
+    The lines live in the model cache under the private root, because that is where an answer about
+    corpus text belongs until it has been cut down to one sentence. A clone without the corpus exports
+    no lines and everything else exactly as before."""
+    from parts_index.schematics import summarise
+    out: dict[tuple, dict] = {}
+    for key, answer in summarise.cached_lines().items():
+        version, source, doc_key, page = key.split("|", 3)
+        if version != summarise.VERSION:
+            continue
+        out[(source, doc_key, int(page))] = answer.get("parts") or {}
+    return out
+
+
+def suspects(lines: dict) -> list[list]:
+    """Parts whose lines say, again and again, that they are not a component.
+
+    One page reading a part as an advert means nothing — a price list mentions real components. The same
+    part read that way across most of its uses is the extractor having published something that is not a
+    part at all, and this is the list to look at before believing the next export."""
+    seen: dict[str, Counter] = {}
+    example: dict[str, str] = {}
+    for parts_here in lines.values():
+        for part, entry in parts_here.items():
+            c = seen.setdefault(part, Counter())
+            c[entry["kind"]] += 1
+            if entry["kind"] in ("advert", "none"):
+                example.setdefault(part, entry["line"])
+    out = []
+    for part, c in seen.items():
+        total = sum(c.values())
+        odd = c["advert"] + c["none"]
+        if total >= SUSPECT_MIN_USES and odd / total >= SUSPECT_SHARE:
+            read_as = "advert" if c["advert"] >= c["none"] else "unplaceable"
+            out.append([part, total, read_as, round(odd / total, 2), example.get(part, "")])
+    return sorted(out, key=lambda r: (-r[1], r[0]))
+
+
 def write(path: Path, fields, rows_) -> int:
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", newline="", encoding="utf-8") as f:
@@ -167,6 +218,7 @@ def export(only: list[str] | None = None, dry: bool = False) -> dict:
     db.row_factory = sqlite3.Row
     skip = withdrawn()
     registry = yaml.safe_load(schematics_registry().read_text(encoding="utf-8")) or {}
+    lines = summarised()
 
     docs: dict[str, dict] = {}          # source -> {key: row}
     pages: dict[str, dict] = {}         # source -> {(key, page): row}
@@ -234,22 +286,31 @@ def export(only: list[str] | None = None, dry: bool = False) -> dict:
                        ([ids.of(k), p["page"], p["url"], p["schematic"], p["parts"]]
                         for (k, _), p in sorted(pages[source].items(),
                                                 key=lambda kv: (ids.of(kv[0][0]), kv[0][1]))))
+        ordered = sorted(uses[source], key=lambda u: (u["part"], ids.of(u["key"]), u["page"]))
         n_use = write(schematics_uses(source), USE_FIELDS,
-                      ([u["part"], ids.of(u["key"]), u["page"], u["times"], u["near"]]
-                       for u in sorted(uses[source], key=lambda u: (u["part"], ids.of(u["key"]), u["page"]))))
-        manifest["sources"][source] = {"documents": n_doc, "pages": n_page, "uses": n_use,
+                      ([u["part"], ids.of(u["key"]), u["page"], u["times"], u["near"]] for u in ordered))
+        n_line = write(schematics_lines(source), LINE_FIELDS, (
+            [ids.of(u["key"]), u["page"], u["part"],
+             lines[(source, u["key"], u["page"])][u["part"]]["kind"],
+             lines[(source, u["key"], u["page"])][u["part"]]["line"]]
+            for u in ordered
+            if u["part"] in lines.get((source, u["key"], u["page"]), {})))
+        manifest["sources"][source] = {"documents": n_doc, "pages": n_page, "uses": n_use, "lines": n_line,
                                        "title": (registry.get(source) or {}).get("title", source),
                                        "kind": (registry.get(source) or {}).get("kind", "")}
         counts["documents"] += n_doc
         counts["pages"] += n_page
         counts["uses"] += n_use
+        counts["lines"] += n_line
 
     if not dry:
+        counts["suspects"] = write(schematics_suspects(), SUSPECT_FIELDS, suspects(lines))
         counts["parts"] = write(
             schematics_parts(), PART_FIELDS,
             ([p, len(part_docs[p]), len(part_pages[p]), sum(part_pages[p].values()),
               " ".join(sorted(part_sources[p]))] for p in sorted(part_docs)))
-        manifest["totals"] = {k: counts[k] for k in ("documents", "pages", "uses", "parts", "references")}
+        manifest["totals"] = {k: counts[k] for k in ("documents", "pages", "uses", "lines", "parts",
+                                                     "references", "suspects")}
         schematics_export_manifest().parent.mkdir(parents=True, exist_ok=True)
         schematics_export_manifest().write_text(
             json.dumps(manifest, indent=1, sort_keys=False) + "\n", encoding="utf-8")

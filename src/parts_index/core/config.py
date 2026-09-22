@@ -82,6 +82,20 @@ def schematics_uses(source: str) -> Path:
     return schematics_dir() / "uses" / f"{source}.csv"
 
 
+def schematics_lines(source: str) -> Path:
+    """One line per published use, saying what that part is doing on that page. Written by `summarise`
+    through `export`, and kept beside the uses rather than inside them: a re-run of the model changes
+    every line and nothing else, and a diff of that is worth reading."""
+    return schematics_dir() / "lines" / f"{source}.csv"
+
+
+def schematics_suspects() -> Path:
+    """Parts whose published uses the model reads as something that is not a component at all — a record
+    catalogue number, a resistor value, a designator, a piece of surplus equipment for sale. A by-product
+    of summarising, and the shortlist for the next pass over the extractor (rule 4)."""
+    return schematics_dir() / "suspects.csv"
+
+
 def schematics_parts() -> Path:
     return schematics_dir() / "parts.csv"
 
@@ -380,6 +394,8 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("schematics_documents", "public", ("esp",)),
     ("schematics_pages", "public", ("esp",)),
     ("schematics_uses", "public", ("esp",)),
+    ("schematics_lines", "public", ("esp",)),
+    ("schematics_suspects", "public", ()),
     ("schematics_parts", "public", ()),
     ("schematics_export_manifest", "public", ()),
     ("schematics_withdrawn", "public", ()),

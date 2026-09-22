@@ -138,3 +138,54 @@ def test_exporting_one_source_leaves_the_others_alone(corpus):
     before = (corpus / "uses" / "books.csv").read_text(encoding="utf-8")
     E.export(["esp"])
     assert (corpus / "uses" / "books.csv").read_text(encoding="utf-8") == before
+
+
+# --- the lines the model wrote, carried in beside the uses ------------------------------------------
+def test_a_clone_without_the_corpus_exports_every_line_it_has_which_is_none(corpus, monkeypatch):
+    monkeypatch.setattr(E, "summarised", dict)
+    E.export()
+    assert read(corpus / "lines" / "wireless_world.csv") == []
+    assert read(corpus / "suspects.csv") == []
+
+
+def test_a_line_is_written_next_to_the_use_it_belongs_to(corpus, monkeypatch):
+    monkeypatch.setattr(E, "summarised", lambda: {
+        ("wireless_world", "https://e.org/ww-1974-06.pdf", 47): {
+            "12AX7": {"kind": "project", "line": "preamp stage of the two-valve amplifier"}}})
+    E.export()
+    lines = read(corpus / "lines" / "wireless_world.csv")
+    assert len(lines) == 1
+    line, use = lines[0], read(corpus / "uses" / "wireless_world.csv")[0]
+    assert (line["doc"], line["page"], line["part"]) == (use["doc"], use["page"], use["part"])
+    assert line["line"] == "preamp stage of the two-valve amplifier"
+
+
+def test_a_use_with_no_line_yet_simply_has_none(corpus, monkeypatch):
+    """The run takes days; an export in the middle of it publishes what has been answered so far."""
+    monkeypatch.setattr(E, "summarised", dict)
+    E.export()
+    assert read(corpus / "uses" / "wireless_world.csv")          # the uses are all there
+    assert read(corpus / "lines" / "wireless_world.csv") == []   # the lines are not, and that is fine
+
+
+# --- the by-product: what the model says is not a component at all ----------------------------------
+def test_one_odd_reading_is_not_enough_to_doubt_a_part():
+    lines = {("s", "d", n): {"NE555": {"kind": "advert", "line": "in a price list"}} if n == 1
+             else {"NE555": {"kind": "project", "line": "the timer of the flasher"}} for n in range(1, 5)}
+    assert E.suspects(lines) == []
+
+
+def test_a_part_read_as_an_advert_again_and_again_is_probably_not_a_part():
+    # BD315 is a gramophone record number in Practical Wireless, and Pro Electron says it is a transistor
+    lines = {("s", "d", n): {"BD315": {"kind": "advert",
+                                       "line": "H.M.V. record number for a film song"}} for n in range(4)}
+    lines[("s", "d", 9)] = {"BD315": {"kind": "reference", "line": "in a list of records"}}
+    got = E.suspects(lines)
+    assert got and got[0][0] == "BD315"
+    assert got[0][2] in ("advert", "unplaceable") and got[0][3] >= E.SUSPECT_SHARE
+    assert "record number" in got[0][4]
+
+
+def test_a_part_with_too_few_uses_is_not_judged():
+    lines = {("s", "d", 1): {"OC16": {"kind": "advert", "line": "for sale"}}}
+    assert E.suspects(lines) == []

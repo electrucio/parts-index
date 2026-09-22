@@ -226,6 +226,15 @@ def key_of(page: dict) -> str:
     return f"{VERSION}|{page['source']}|{page['key']}|{page['page']}"
 
 
+def cached_lines() -> dict:
+    """Every page this stage has answered, for `export` to carry into `lines/<source>.csv`. Empty
+    without the private root, which is what a clone without the corpus gets."""
+    try:
+        return llm.cached(TASK, MODEL)
+    except OSError:
+        return {}
+
+
 # --- the run ----------------------------------------------------------------------------------------
 def run(which: list[str] | None = None, limit: int = 0, workers: int = 4, dry: bool = False,
         say=print) -> dict:
