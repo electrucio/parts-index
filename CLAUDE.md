@@ -11,9 +11,11 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
 - `src/parts_index/core/` shared code: `config` (every location in the project — see rule 4), `http`
   (the one polite client), `ledger` (what has been processed), `pagesio` (OCR page records), `adfilter`,
   `links` (the deep link, with `web/src/links.ts` as its other half and one golden fixture over both),
-  and `parts/` (the part-number extractor, single source of truth). **(todo)** `table`, `llm`.
+  `llm` (the two ways to ask a model — paid at OpenAI, or the local server — with one cache over both),
+  and `parts/` (the part-number extractor, single source of truth). **(todo)** `table`.
 - `src/parts_index/schematics/` pillar 1: `download` (the sources whose URLs are already listed),
-  `export` (the index into `data/`) and `titles`. **(todo)** crawl → ocr → index → linkcheck.
+  `summarise` (one line per published use, saying what that part does on that page), `export` (the
+  index into `data/`) and `titles`. **(todo)** crawl → ocr → index → linkcheck.
 - `src/parts_index/models/` pillar 2: fetch, ingest, index, recover and promote (the public recipe
   per part). **(todo)** curate and `datasheets/`.
 - `src/parts_index/web/` builds the site's data from `data/` alone: `build` and `parts` (one file
@@ -24,7 +26,8 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
   not run from a clean clone yet.
 - `data/` the public dataset: registries, ledgers, the part dictionary and the parts worth having,
   the exported schematic index
-  (documents, pages, uses), the model recipes with their verification results, the LTspice symbols
+  (documents, pages, uses, the line each use gets, and the parts those lines cast doubt on), the model
+  recipes with their verification results, the LTspice symbols
   drawn for them, and what was distilled from the research datasets. **(todo)** the licence notes.
 - `web/` the site (Vite + TypeScript + Preact): the parts browser and the coverage record. Its look
   is the previous project's site, carried over. `docs/` the roadmap. **(todo)** the maintainer runbook.
