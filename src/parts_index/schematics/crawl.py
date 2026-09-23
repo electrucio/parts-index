@@ -158,6 +158,15 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
     queue = deque([without_fragment(u) for u in cfg["start"]] + waiting)
     # A page whose links are already written down is never opened again, with or without its file.
     seen: set[str] = set() if refresh else {same_page(k) for k, r in led.rows.items() if r["crawl_at"]}
+    # And a page every other page links to — a site's own front page — is queued once, not once per link.
+    queued: set[str] = {same_page(u) for u in queue}
+
+    def enqueue(url: str, first: bool = False) -> None:
+        if same_page(url) in seen or same_page(url) in queued:
+            return
+        queued.add(same_page(url))
+        remember(led, url)
+        queue.appendleft(url) if first else queue.append(url)
     read = fetched = 0
     log(f"{source}: {len(waiting)} pages waiting from last time, {len(seen)} already walked, "
         f"{len(led)} rows in the ledger{f', budget {budget} pages' if budget else ''}")
@@ -178,9 +187,8 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
 
             for src in page.frames:                       # a frameset keeps its content one hop further
                 u = without_fragment(urljoin(url, src))
-                if urlparse(u).netloc in hosts and same_page(u) not in seen and not NEVER.search(u):
-                    remember(led, u)
-                    queue.appendleft(u)
+                if urlparse(u).netloc in hosts and not NEVER.search(u):
+                    enqueue(u, first=True)
 
             for href in page.links:
                 u = without_fragment(urljoin(url, href))
@@ -195,9 +203,8 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
                 elif IMAGE_EXT.search(p.path):
                     if figures and not JUNK_IMAGE.search(p.path):
                         job.item(u, "figure")             # the full-size image behind a thumbnail
-                elif allow.search(tail) and same_page(u) not in seen and len(p.query) < 80:
-                    remember(led, u)
-                    queue.append(u)
+                elif allow.search(tail) and len(p.query) < 80:
+                    enqueue(u)
 
             for attrs in page.images if figures else []:
                 src = image_src(attrs)

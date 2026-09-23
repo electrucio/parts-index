@@ -173,3 +173,20 @@ def test_a_queued_crawl_waits_as_long_as_it_was_told(site, monkeypatch):
 
     C.main(["--source", "tubecad", "--after", "download_audiocircuit", "--wait-hours", "48"])
     assert waited == {"name": "download_audiocircuit", "timeout": 48 * 3600}
+
+
+def test_a_page_every_page_links_to_is_queued_once(site, monkeypatch):
+    """A site's front page is linked from all of it; the queue counted one entry per link."""
+    hub = b"""<html><title>Hub</title><body>
+        <a href="/2024/aikido.html">a</a><a href="/2024/aikido.html">again</a>
+        <a href="/2024/aikido.html">and again</a></body></html>"""
+    server = serve(monkeypatch, {
+        "https://tc.example/": Response(200, "https://tc.example/", "text/html", hub),
+        "https://tc.example/2024/aikido.html": Response(200, "https://tc.example/2024/aikido.html", "text/html", ARTICLE),
+        "https://tc.example/img/schematic.gif": Response(200, "https://tc.example/img/schematic.gif", "image/gif", GIF),
+        "https://cdn.example/img/board.png": Response(200, "https://cdn.example/img/board.png", "image/png", PNG),
+    })
+    out = C.crawl("tubecad", log=lambda *a: None)
+
+    assert out["queued"] == 0                     # what is left, not what was ever appended
+    assert server.asked.count("https://tc.example/2024/aikido.html") == 1

@@ -1,5 +1,18 @@
 # Registry of schematic/reference sources. status: proposed | active | paused | blocked | excluded
 # Add a site here (status: proposed) to have it crawled; its progress is in state/<id>.csv and STATUS.md.
+abeltronics:
+  kind: factory
+  title: Abeltronics
+  home_url: https://www.abeltronics.co.uk/
+  status: active
+  crawl:
+    start:
+    - https://www.abeltronics.co.uk/products/
+    allow: '^/(products|pdf)/'
+    max: 0
+    complete: false
+  notes: 'Audio and television diagrams. The /diagrams.php given in the source list is a 404; the files are
+    under /pdf/ and reached from /products/, which is what this entry uses. Checked 2026-09-23.'
 adi_appnotes:
   kind: site
   title: Analog Devices application notes
@@ -33,9 +46,15 @@ amz-muzique:
   kind: site
   title: AMZ / Muzique (Jack Orman)
   home_url: https://www.muzique.com/
-  status: proposed
-  notes: 'pedal design: buffers, boosters, clipping, MOSFET stages. Proposed: set status to active and run `pidx schematics
-    run --source amz-muzique`.'
+  status: active
+  crawl:
+    start:
+    - https://www.muzique.com/
+    allow: '^/'
+    max: 0
+    complete: false
+  notes: 'Pedal design: buffers, boosters, clipping, MOSFET stages. Checked 2026-09-23: 84 links and 42
+    figures on the front page, small enough to take whole.'
 archive_databooks:
   kind: reference
   title: Semiconductor databooks (bitsavers mirror on archive.org)
@@ -246,9 +265,17 @@ firstwatt:
 geofex:
   kind: site
   title: Geofex — The Technology of… (R. G. Keen)
-  home_url: http://www.geofex.com/article_folders/tstech/tsxtech.htm
-  status: proposed
-  notes: 'analysis of classic pedal circuits. Proposed: set status to active and run `pidx schematics run --source geofex`.'
+  home_url: http://www.geofex.com/
+  status: active
+  crawl:
+    start:
+    - http://www.geofex.com/
+    allow: '^/'
+    max: 0
+    complete: false
+  notes: 'The canonical series on why each classic pedal circuit sounds as it does. The front page is a
+    frameset written in FrontPage and carries no links of its own; the crawler follows its four frames,
+    which is where the articles are. Checked 2026-09-23.'
 ggg:
   kind: site
   title: General Guitar Gadgets
@@ -264,9 +291,14 @@ gyraf:
   kind: site
   title: Gyraf Audio DIY
   home_url: https://www.gyraf.dk/gy_pd/gyraf_diy.html
-  status: proposed
-  notes: 'studio processors: GSSL and G1176 compressors, Pultec-style EQs. Proposed: set status to active and run `pidx schematics
-    run --source gyraf`.'
+  status: active
+  crawl:
+    start:
+    - https://www.gyraf.dk/gy_pd/gyraf_diy.html
+    allow: '^/(gy_pd|schematics|nrg)'
+    max: 0
+    complete: false
+  notes: 'Studio processors: GSSL and G1176 compressors, Pultec-style EQs. Checked 2026-09-23.'
 hands_on_electronics:
   kind: magazine
   title: Hands-On Electronics
@@ -316,16 +348,29 @@ ludens:
 madbean:
   kind: site
   title: MadBean Pedals
-  home_url: https://www.madbeanpedals.com
-  status: proposed
-  notes: 'PCB projects with full documentation: schematic, BOM, layout. Proposed: set status to active and run `pidx schematics
-    run --source madbean`.'
+  home_url: https://www.madbeanpedals.com/
+  status: active
+  crawl:
+    start:
+    - https://www.madbeanpedals.com/projects/index.html
+    allow: '^/projects/'
+    max: 0
+    complete: false
+  notes: 'PCB projects documented as one PDF each: schematic, BOM and layout. Checked 2026-09-23: the
+    project index alone links 239 files, and everything worth having hangs off /projects/.'
 mfos:
   kind: site
   title: Music From Outer Space (Ray Wilson)
   home_url: https://musicfromouterspace.com/
-  status: proposed
-  notes: 'analogue synth modules: VCO, VCF, VCA. Proposed: set status to active and run `pidx schematics run --source mfos`.'
+  status: active
+  crawl:
+    start:
+    - https://musicfromouterspace.com/
+    allow: '^/'
+    max: 0
+    complete: false
+  notes: 'Analogue synth modules: VCO, VCF, VCA, envelopes, the Sound Lab series. Checked 2026-09-23: 42
+    links and 84 figures on the front page; the shop is left alone by the crawler''s own rules.'
 modern_electronics:
   kind: magazine
   title: Modern Electronics
@@ -342,6 +387,19 @@ neurochrome:
     allow: ^/(products|pages|blogs|collections)/
     max: 250
     cdn: cdn\.shopify\.com|neurochrome\.com
+one-electron:
+  kind: site
+  title: One Electron
+  home_url: https://www.one-electron.com/
+  status: active
+  crawl:
+    start:
+    - https://www.one-electron.com/
+    allow: '^/'
+    max: 0
+    complete: false
+  notes: 'Transformers and valve audio projects, with an archive of older designs. Small. Checked
+    2026-09-23.'
 onsemi_appnotes:
   kind: site
   title: onsemi application notes
@@ -444,8 +502,9 @@ pisotones:
     - https://www.pisotones.com/
     allow: ^/
     max: 500
-    complete: false
-  notes: Crawl stopped part-way on 2026-09-20 (large site). Re-running resumes where it left off.
+    complete: true
+  notes: 'Crawled to the end on 2026-09-23: the queue emptied after 4,084 files. Re-run with
+    --refresh to pick up whatever the site publishes next.'
 pmillett:
   kind: site
   title: Pete Millett
@@ -499,6 +558,21 @@ radio_tv_experimenter:
   title: Radio-TV Experimenter
   home_url: https://www.worldradiohistory.com/
   status: active
+radiomanual:
+  kind: reference
+  title: Radiomanual.eu
+  home_url: https://www.radiomanual.eu/
+  status: active
+  crawl:
+    start:
+    - https://www.radiomanual.eu/schemari.html
+    allow: '^/schemi/'
+    deny: '^/schemi/(transito|ManualExchange)/'
+    max: 0
+    complete: false
+  notes: 'Amateur and commercial radio manuals. Checked 2026-09-23: the index at schemari.html is where the
+    collection hangs from. robots.txt keeps /tobepublished/ and two staging folders out, and the deny
+    pattern says the same thing so it is visible in the registry.'
 redcircuits:
   kind: site
   title: RED Free Circuit Designs
@@ -512,10 +586,16 @@ redcircuits:
 runoffgroove:
   kind: site
   title: Runoffgroove
-  home_url: https://www.runoffgroove.com
-  status: proposed
-  notes: 'original JFET amp-emulation designs (Fetzer Valve, Thor). Proposed: set status to active and run `pidx schematics
-    run --source runoffgroove`.'
+  home_url: https://www.runoffgroove.com/
+  status: active
+  crawl:
+    start:
+    - https://www.runoffgroove.com/
+    allow: '^/'
+    max: 0
+    complete: false
+  notes: 'Original JFET amp-emulation designs — Fetzer Valve, Thor, Umble — each written up in full. Checked
+    2026-09-23: a handful of pages, all of them articles.'
 schematicheaven:
   kind: factory
   title: Schematic Heaven (mirror)
