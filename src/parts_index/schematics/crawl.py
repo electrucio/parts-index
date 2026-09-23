@@ -52,6 +52,10 @@ IMAGE_EXT = re.compile(r"\.(gif|png|jpe?g|tiff?|webp)(\?|$)", re.I)
 JUNK_IMAGE = re.compile(r"(?i)(logo|icon|sprite|banner|button|avatar|spacer|pixel|badge|emoji|gravatar|paypal|"
                         r"donate|facebook|twitter|rss|arrow|bullet|bg[_-]|background|header|footer|thumb)")
 BLOGGER_SIZE = re.compile(r"/(s\d{2,4}|w\d+-h\d+)(-[a-z]+)?/")
+# A quote cannot be inside an href, because it would have ended the attribute. When one comes out anyway
+# the page was saved as MHTML and served as .htm: its quoted-printable `src=3D"http://..."` parses into a
+# value that still carries the quote. See `resolved`.
+MALFORMED = re.compile(r'["<>]')
 MIN_WIDTH = 120           # a page that says an image is narrower than this is showing a thumbnail
 MIN_IMAGE = 900           # line art is small: the floor is lower here than for a blog's photographs
 SAVE_EVERY = 25
@@ -98,6 +102,16 @@ def image_src(attrs: dict) -> str:
 
 def without_fragment(url: str) -> str:
     return urldefrag(url)[0]
+
+
+def resolved(base: str, href: str) -> str:
+    """Where a link points, absolute and without its fragment, or "" when it can point nowhere.
+
+    A URL that no server can answer still costs a crawl its time: four attempts and, with the back-off
+    between them, three minutes of the one turn its host gets. sm0vpo spent an hour on twelve of them.
+    """
+    url = without_fragment(urljoin(base, href))
+    return "" if MALFORMED.search(url) else url
 
 
 def same_page(url: str) -> str:
@@ -186,12 +200,12 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
             page.feed(body.decode("utf-8", "replace"))
 
             for src in page.frames:                       # a frameset keeps its content one hop further
-                u = without_fragment(urljoin(url, src))
-                if urlparse(u).netloc in hosts and not NEVER.search(u):
+                u = resolved(url, src)
+                if u and urlparse(u).netloc in hosts and not NEVER.search(u):
                     enqueue(u, first=True)
 
             for href in page.links:
-                u = without_fragment(urljoin(url, href))
+                u = resolved(url, href)
                 p = urlparse(u)
                 if p.scheme not in ("http", "https") or p.netloc not in hosts or NEVER.search(u):
                     continue
@@ -210,9 +224,9 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
                 src = image_src(attrs)
                 if not src or src.startswith("data:"):
                     continue
-                u = without_fragment(urljoin(url, src))
+                u = resolved(url, src)
                 p = urlparse(u)
-                if p.netloc not in hosts and not (cdn and cdn.search(p.netloc)):
+                if not u or (p.netloc not in hosts and not (cdn and cdn.search(p.netloc))):
                     continue
                 if JUNK_IMAGE.search(p.path) or p.path.lower().endswith(".svg"):
                     continue

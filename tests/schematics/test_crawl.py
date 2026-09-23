@@ -190,3 +190,26 @@ def test_a_page_every_page_links_to_is_queued_once(site, monkeypatch):
 
     assert out["queued"] == 0                     # what is left, not what was ever appended
     assert server.asked.count("https://tc.example/2024/aikido.html") == 1
+
+
+MHTML = b"""<html><head><title>74 TTL</title></head><body>
+  <img src=3D"http://philips.example/images/clear.gif" width=3D"600">
+  <a href=3D"http://tc.example/2024/quoted.html">A link that was escaped too</a>
+  <img src="/img/schematic.gif" width="600">
+</body></html>"""
+
+
+def test_a_url_that_cannot_exist_is_never_asked_for(site, monkeypatch):
+    """A page saved as MHTML and served as .htm keeps `src=3D"..."`, and the quote lands in the URL.
+
+    Each one costs four attempts and, with the back-off between them, three minutes of the only turn its
+    host gets: twelve of them on one sm0vpo page held that whole crawl still for an hour.
+    """
+    answers = dict(ANSWERS)
+    answers["https://tc.example/2024/aikido.html"] = Response(
+        200, "https://tc.example/2024/aikido.html", "text/html", MHTML)
+    server = serve(monkeypatch, answers)
+    C.crawl("tubecad", log=lambda *a: None)
+
+    assert not [u for u in server.asked if '"' in u]
+    assert "https://tc.example/img/schematic.gif" in server.asked     # the sound links on the page still count
