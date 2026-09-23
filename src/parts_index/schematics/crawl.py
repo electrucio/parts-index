@@ -190,6 +190,9 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
             url = queue.popleft()
             if same_page(url) in seen:
                 continue
+            if MALFORMED.search(url):        # queued by a run from before `resolved` existed
+                led.skip(url, "malformed url")
+                continue
             seen.add(same_page(url))
             body, spent = body_of(job, source, url)
             fetched += spent

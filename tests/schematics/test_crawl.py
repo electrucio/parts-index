@@ -213,3 +213,18 @@ def test_a_url_that_cannot_exist_is_never_asked_for(site, monkeypatch):
 
     assert not [u for u in server.asked if '"' in u]
     assert "https://tc.example/img/schematic.gif" in server.asked     # the sound links on the page still count
+
+
+def test_an_impossible_url_already_in_the_queue_is_dropped_not_asked_for(site, monkeypatch):
+    """The guard stops new ones; the frontier of an older run still holds twenty-four of them."""
+    led = Ledger(config.schematics_state("tubecad"))
+    led.row('https://tc.example/2024/3D"http:/philips.example/clear.gif"')["role"] = "page"
+    led.save()
+
+    server = serve(monkeypatch)
+    C.crawl("tubecad", log=lambda *a: None)
+
+    assert not [u for u in server.asked if '"' in u]
+    again = Ledger(config.schematics_state("tubecad"))
+    assert again.get('https://tc.example/2024/3D"http:/philips.example/clear.gif"')["skip_reason"] == "malformed url"
+    assert C.frontier(again) == []          # and it never comes back to the queue
