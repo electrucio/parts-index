@@ -159,6 +159,55 @@ def _post(url: str, body: dict, timeout: float):
         return json.loads(r.read())
 
 
+def _asker(url, system, model, temperature, max_tokens, timeout, parse, answers, ledger, have,
+           lock, state, total, say, every):
+    """One item, asked and written down. Shared by the flat and the chained entry points."""
+    def one(item, prompt=None):
+        body = {"model": model, "temperature": temperature,
+                "max_tokens": int(item.get("max_tokens") or max_tokens),
+                "chat_template_kwargs": {"enable_thinking": False},
+                "messages": [{"role": "system", "content": system},
+                             {"role": "user", "content": prompt if prompt is not None else item["prompt"]}]}
+        t0 = time.time()
+        for attempt in range(3):
+            try:
+                resp = _post(url, body, timeout)
+                break
+            except Exception as e:                                   # noqa: BLE001
+                say(f"  retry {attempt + 1}: {str(e)[:90]}")
+                time.sleep(5 * (attempt + 1))
+        else:
+            with lock:
+                state["failed"] += 1
+            return None
+        took = time.time() - t0
+        try:
+            answer = parse(resp["choices"][0]["message"]["content"], item)
+        except Exception as e:                                       # noqa: BLE001
+            with lock:
+                state["failed"] += 1
+                say(f"  unreadable answer for {item['key']}: {str(e)[:60]}")
+            return None
+        usage = resp.get("usage") or {}
+        with lock:
+            state["done"] += 1
+            state["seconds"] += took
+            have[item["key"]] = answer
+            with ledger.open("a", encoding="utf-8") as f:
+                f.write(json.dumps({"model": model, "key": item["key"], "usd": 0.0, "s": round(took, 2),
+                                    "in": usage.get("prompt_tokens", 0), "out": usage.get("completion_tokens", 0),
+                                    "at": time.strftime("%Y-%m-%dT%H:%M:%S")}) + "\n")
+            with answers.open("a", encoding="utf-8") as f:
+                f.write(json.dumps({"model": model, "key": item["key"], "answer": answer},
+                                   ensure_ascii=False) + "\n")
+            if state["done"] % every == 0:
+                rate = (time.time() - state["started"]) / state["done"]
+                left = rate * (total - state["done"]) / 3600
+                say(f"  {state['done']}/{total} asked this run, {rate:.2f}s each, {left:.1f} h to go")
+        return answer
+    return one
+
+
 def ask_local(task: str, system: str, items: list[dict], *, model: str, parse=None, workers: int = 4,
               max_tokens: int = 700, temperature: float = 0.2, timeout: float = 300.0,
               url: str | None = None, say=print, every: int = 250) -> dict:
@@ -187,53 +236,59 @@ def ask_local(task: str, system: str, items: list[dict], *, model: str, parse=No
 
     lock = threading.Lock()
     state = {"done": 0, "failed": 0, "seconds": 0.0, "started": time.time()}
-
-    def one(item):
-        body = {"model": model, "temperature": temperature,
-                "max_tokens": int(item.get("max_tokens") or max_tokens),
-                "chat_template_kwargs": {"enable_thinking": False},
-                "messages": [{"role": "system", "content": system},
-                             {"role": "user", "content": item["prompt"]}]}
-        t0 = time.time()
-        for attempt in range(3):
-            try:
-                resp = _post(url, body, timeout)
-                break
-            except Exception as e:                                   # noqa: BLE001
-                say(f"  retry {attempt + 1}: {str(e)[:90]}")
-                time.sleep(5 * (attempt + 1))
-        else:
-            with lock:
-                state["failed"] += 1
-            return
-        took = time.time() - t0
-        try:
-            answer = parse(resp["choices"][0]["message"]["content"], item)
-        except Exception as e:                                       # noqa: BLE001
-            with lock:
-                state["failed"] += 1
-                say(f"  unreadable answer for {item['key']}: {str(e)[:60]}")
-            return
-        usage = resp.get("usage") or {}
-        with lock:
-            state["done"] += 1
-            state["seconds"] += took
-            have[item["key"]] = answer
-            with ledger.open("a", encoding="utf-8") as f:
-                f.write(json.dumps({"model": model, "key": item["key"], "usd": 0.0, "s": round(took, 2),
-                                    "in": usage.get("prompt_tokens", 0), "out": usage.get("completion_tokens", 0),
-                                    "at": time.strftime("%Y-%m-%dT%H:%M:%S")}) + "\n")
-            with answers.open("a", encoding="utf-8") as f:
-                f.write(json.dumps({"model": model, "key": item["key"], "answer": answer},
-                                   ensure_ascii=False) + "\n")
-            if state["done"] % every == 0:
-                rate = (time.time() - state["started"]) / state["done"]
-                left = rate * (len(todo) - state["done"]) / 3600
-                say(f"  {state['done']}/{len(todo)} asked this run, {rate:.2f}s each, {left:.1f} h to go")
-
+    one = _asker(url, system, model, temperature, max_tokens, timeout, parse, answers, ledger, have,
+                 lock, state, len(todo), say, every)
     with ThreadPoolExecutor(max_workers=workers) as pool:
         list(pool.map(one, todo))
     wall = (time.time() - state["started"]) / 3600
     done = sum(1 for it in items if it["key"] in have)
     say(f"{task}: {done}/{len(items)} answered, {state['failed']} unanswered, {wall:.2f} h this run")
+    return have
+
+
+def ask_local_chains(task: str, system: str, chains: list[list[dict]], build, *, model: str, parse=None,
+                     workers: int = 4, max_tokens: int = 700, temperature: float = 0.2,
+                     timeout: float = 300.0, url: str | None = None, say=print, every: int = 250) -> dict:
+    """Like `ask_local`, but some questions are worth asking in order.
+
+    `chains` is a list of lists. Items inside a chain are asked one after another and each one's prompt
+    is built by `build(item, earlier)`, where `earlier` is what the chain has answered so far — cache
+    hits included, so a resumed run gives the same context as an uninterrupted one. Chains run `workers`
+    at a time, which is where the parallelism comes from: a magazine issue is answered in order while
+    fifty other issues are answered beside it.
+
+    The cache, the ledger and the key rule are `ask_local`'s, unchanged. An item whose answer cannot be
+    read is left unanswered and does not join `earlier`: a chain carries what it knows, not what it
+    guessed.
+    """
+    url = url or LOCAL_URL
+    parse = parse or (lambda text, item: json.loads(text))
+    answers, ledger = _paths(task)
+    have = cached(task, model)
+    flat = [it for chain in chains for it in chain]
+    todo = [it for it in flat if it["key"] not in have]
+    say(f"{task}: {len(flat)} items in {len(chains)} chains, {len(flat) - len(todo)} already answered, "
+        f"{len(todo)} to ask, {model} at {url.split('/v1')[0]}")
+    if not todo:
+        return have
+
+    lock = threading.Lock()
+    state = {"done": 0, "failed": 0, "seconds": 0.0, "started": time.time()}
+    one = _asker(url, system, model, temperature, max_tokens, timeout, parse, answers, ledger, have,
+                 lock, state, len(todo), say, every)
+
+    def chain(items):
+        earlier: list[tuple[dict, dict]] = []
+        for item in items:
+            answer = have.get(item["key"])
+            if answer is None:
+                answer = one(item, build(item, earlier))
+            if answer is not None:
+                earlier.append((item, answer))
+
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        list(pool.map(chain, chains))
+    wall = (time.time() - state["started"]) / 3600
+    done = sum(1 for it in flat if it["key"] in have)
+    say(f"{task}: {done}/{len(flat)} answered, {state['failed']} unanswered, {wall:.2f} h this run")
     return have

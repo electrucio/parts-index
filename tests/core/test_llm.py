@@ -104,3 +104,46 @@ def test_an_item_can_ask_for_more_room_than_the_default(monkeypatch, tmp_path):
     llm.ask_local("t", "sys", [{"key": "a", "prompt": "...", "max_tokens": 1200}], model="local",
                   max_tokens=700, say=lambda *a: None)
     assert seen["max_tokens"] == 1200
+
+
+# --- questions worth asking in order --------------------------------------------------------------
+def test_a_chain_gives_each_question_what_the_ones_before_it_answered(monkeypatch, tmp_path):
+    monkeypatch.setattr(llm, "llm_cache", lambda: tmp_path)
+    seen = []
+
+    def echo(url, body, timeout):
+        prompt = body["messages"][1]["content"]
+        seen.append(prompt)
+        return _reply(json.dumps({"said": prompt}))
+
+    monkeypatch.setattr(llm, "_post", echo)
+    chain = [{"key": "p1"}, {"key": "p2"}, {"key": "p3"}]
+    llm.ask_local_chains("t", "sys", [chain], model="local", say=lambda *a: None,
+                         build=lambda item, earlier: f"{item['key']} after {[i['key'] for i, _ in earlier]}")
+    assert seen == ["p1 after []", "p2 after ['p1']", "p3 after ['p1', 'p2']"]
+
+
+def test_a_resumed_chain_carries_what_it_answered_before_it_stopped(monkeypatch, tmp_path):
+    """A cache hit is not re-asked but still becomes context, so a resumed run is not a different run."""
+    monkeypatch.setattr(llm, "llm_cache", lambda: tmp_path)
+    answers, _ = llm._paths("t")
+    answers.write_text(json.dumps({"model": "local", "key": "p1", "answer": {"line": "page one"}}) + "\n",
+                       encoding="utf-8")
+    seen = []
+    monkeypatch.setattr(llm, "_post", lambda url, body, timeout: seen.append(body["messages"][1]["content"])
+                        or _reply('{"line": "page two"}'))
+    llm.ask_local_chains("t", "sys", [[{"key": "p1"}, {"key": "p2"}]], model="local", say=lambda *a: None,
+                         build=lambda item, earlier: f"{item['key']} after {[a['line'] for _, a in earlier]}")
+    assert seen == ["p2 after ['page one']"]
+
+
+def test_a_chain_carries_what_it_knows_not_what_it_guessed(monkeypatch, tmp_path):
+    """An unreadable answer does not become context for the next page."""
+    monkeypatch.setattr(llm, "llm_cache", lambda: tmp_path)
+    seen = []
+    replies = iter(["not json at all", '{"line": "page two"}'])
+    monkeypatch.setattr(llm, "_post", lambda url, body, timeout: seen.append(body["messages"][1]["content"])
+                        or _reply(next(replies)))
+    llm.ask_local_chains("t", "sys", [[{"key": "p1"}, {"key": "p2"}]], model="local", say=lambda *a: None,
+                         build=lambda item, earlier: f"{item['key']} after {len(earlier)}")
+    assert seen == ["p1 after 0", "p2 after 0"]
