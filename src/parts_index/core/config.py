@@ -263,6 +263,12 @@ def ocr_map() -> Path:
     return ocr_root() / "ocr_map.csv"
 
 
+def summarise_preview() -> Path:
+    """Every line the summarise pass has written so far, with the link the site would show beside it.
+    A window into a run that takes days; the real export is `schematics_lines`, written when it ends."""
+    return material_root() / "summarise_preview.csv"
+
+
 def census_cache(source: str) -> Path:
     """The index pages a census source was read from. Third-party content, so it never leaves this tree;
     keeping it means a parser fix costs a re-read, not a re-crawl."""
@@ -432,6 +438,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("ocr_root", "private", ()),
     ("ocr_map", "private", ()),
     ("linkchecks", "private", ()),
+    ("summarise_preview", "private", ()),
     ("census_cache", "private", ("frank_pocnet",)),
     ("index_db", "private", ()),
     ("page_sizes", "private", ()),

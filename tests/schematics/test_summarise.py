@@ -220,3 +220,11 @@ def test_a_line_longer_than_a_line_is_cut():
         json.dumps({"page": long, "parts": [{"part": "TL072", "kind": "project", "line": long}]}), ["TL072"])
     assert len(answer["parts"]["TL072"]["line"]) <= summarise.LINE_CHARS
     assert len(answer["page"]) <= summarise.LINE_CHARS
+
+
+def test_a_cache_key_is_read_whatever_version_wrote_it():
+    """The key gained a field when the asked parts went into it, and the cache keeps its own history."""
+    new = summarise.parse_key("summarise-3|esp|https://e.org/a.pdf|7|9e7da777")
+    old = summarise.parse_key("summarise-1|esp|https://e.org/a.pdf|7")
+    assert new == ("summarise-3", "esp", "https://e.org/a.pdf", 7)
+    assert old == ("summarise-1", "esp", "https://e.org/a.pdf", 7)

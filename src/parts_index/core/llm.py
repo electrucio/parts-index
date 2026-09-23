@@ -74,6 +74,20 @@ def cached(task: str, model: str) -> dict:
     return out
 
 
+def models_in(task: str) -> list[str]:
+    """Which models this task has answers from. A task is usually asked with one model, but the model
+    name comes from the environment, so a reader that guesses it wrong sees an empty cache and concludes
+    there is nothing there."""
+    answers, _ = _paths(task)
+    if not answers.exists():
+        return []
+    seen = {}
+    for line in answers.open(encoding="utf-8"):
+        if line.strip():
+            seen[json.loads(line)["model"]] = True
+    return list(seen)
+
+
 def ask_batch(task: str, system: str, items: list[dict], schema: dict, *, model: str = "gpt-5-mini",
               budget: float = 5.0, per_call: int = 20, effort: str = "low", workers: int = 8,
               say=print) -> dict:

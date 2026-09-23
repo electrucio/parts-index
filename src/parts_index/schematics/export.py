@@ -171,13 +171,12 @@ def summarised() -> dict:
     from parts_index.schematics import summarise
     out: dict[tuple, dict] = {}
     for key, answer in summarise.cached_lines().items():
-        version, source, rest = key.split("|", 2)
-        doc_key, page, _asked = rest.rsplit("|", 2)
+        version, source, doc_key, page = summarise.parse_key(key)
         if version != summarise.VERSION:
             continue
         # A page asked twice, because its parts changed, has two answers; the later line wins, which is
         # the one asked about today's parts.
-        out.setdefault((source, doc_key, int(page)), {}).update(answer.get("parts") or {})
+        out.setdefault((source, doc_key, page), {}).update(answer.get("parts") or {})
     return out
 
 

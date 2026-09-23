@@ -100,6 +100,8 @@ def main(argv: list[str] | None = None) -> int:
     ss.add_argument("--workers", type=int, default=4, help="calls in flight (the server has four slots)")
     ss.add_argument("--detach", action="store_true", help="run it in the background, under a lock, into a log")
     ss.add_argument("--dry", action="store_true", help="say what would be asked and ask nothing")
+    ss.add_argument("--preview", action="store_true",
+                    help="write what has been answered so far, with its links, and stop")
 
     se = sch.add_parser("export", help="write the index into data/, where the site is built from")
     se.add_argument("--source", action="append", help="only these sources (repeatable)")
@@ -265,6 +267,7 @@ def main(argv: list[str] | None = None) -> int:
         argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
         argv2 += ["--limit", str(args.limit), "--workers", str(args.workers)]
         argv2 += ["--detach"] if args.detach else []
+        argv2 += ["--preview"] if args.preview else []
         return sch_summarise.main(argv2 + (["--dry"] if args.dry else []))
 
     if args.cmd == "schematics" and args.sch_cmd == "export":

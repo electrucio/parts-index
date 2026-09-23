@@ -48,8 +48,10 @@ from parts_index.core.config import (
     index_db_uri,
     require,
     schematics_documents,
+    schematics_pages,
     schematics_registry,
     schematics_uses,
+    summarise_preview,
 )
 from parts_index.core.jobs import detach, only_one, run_log
 
@@ -343,13 +345,74 @@ def key_of(page: dict) -> str:
     return f"{VERSION}|{page['source']}|{page['key']}|{page['page']}|{stamp}"
 
 
-def cached_lines() -> dict:
+def parse_key(key: str) -> tuple[str, str, str, int]:
+    """(version, source, document, page) out of a cache key, whatever version wrote it.
+
+    The key gained a field when the asked parts went into it, and the cache keeps what earlier versions
+    wrote, so a reader that assumes today's shape trips over its own history."""
+    version, source, rest = key.split("|", 2)
+    bits = rest.rsplit("|", 2)
+    doc, page = (bits[0], bits[1]) if len(bits) == 3 else rest.rsplit("|", 1)
+    return version, source, doc, int(page)
+
+
+def cached_lines(say=None) -> dict:
     """Every page this stage has answered, for `export` to carry into `lines/<source>.csv`. Empty
-    without the private root, which is what a clone without the corpus gets."""
+    without the private root, which is what a clone without the corpus gets.
+
+    The model's name comes from the environment, so a reader started without `PIDX_LLM_MODEL` would
+    otherwise find an empty cache and report, wrongly, that nothing has been answered. When the
+    configured model has nothing and exactly one other model does, that is the run being read."""
     try:
-        return llm.cached(TASK, MODEL)
+        have = llm.cached(TASK, MODEL)
+        if have:
+            return have
+        others = [m for m in llm.models_in(TASK) if m != MODEL]
+        if len(others) == 1:
+            if say:
+                say(f"(no answers under {MODEL!r}; reading the {others[0]!r} ones)")
+            return llm.cached(TASK, others[0])
+        return have
     except OSError:
         return {}
+
+
+def preview(say=print) -> int:
+    """Write every line answered so far, with the link the site would show beside it.
+
+    A run over the corpus takes days and the real export happens at the end of it, so this is the window
+    into one in flight: open the CSV, read what the model is making of the pages, and stop it early if
+    it is making a mess of them. Private, because it is a working artefact of a run, not the export."""
+    ids, links = {}, {}
+    for f in sorted(schematics_pages("x").parent.glob("*.csv")):
+        source = f.stem
+        docs = schematics_documents(source)
+        if not docs.exists():
+            continue
+        with open(docs, newline="", encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                ids[(source, r["key"])] = r["id"]
+        with open(f, newline="", encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                links[(source, r["doc"], r["page"])] = r["url"]
+
+    rows = []
+    for key, answer in cached_lines(say).items():
+        version, source, doc, page = parse_key(key)
+        if version != VERSION:
+            continue
+        url = links.get((source, ids.get((source, doc), ""), str(page)), doc)
+        for part, e in (answer.get("parts") or {}).items():
+            rows.append([source, part, e["kind"], e["line"], url])
+    rows.sort(key=lambda r: (r[0], r[1]))
+    out = summarise_preview()
+    out.parent.mkdir(parents=True, exist_ok=True)
+    with open(out, "w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh, lineterminator="\n")
+        w.writerow(("source", "part", "kind", "line", "url"))
+        w.writerows(rows)
+    say(f"{len(rows):,} lines from {len({r[4] for r in rows}):,} pages -> {out}")
+    return len(rows)
 
 
 # --- the run ----------------------------------------------------------------------------------------
@@ -393,8 +456,13 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--limit", type=int, default=0, help="at most this many pages per source")
     ap.add_argument("--workers", type=int, default=4, help="calls in flight (the server has four slots)")
     ap.add_argument("--dry", action="store_true", help="say what would be asked, ask nothing")
+    ap.add_argument("--preview", action="store_true",
+                    help="write what has been answered so far, with its links, and stop")
     ap.add_argument("--detach", action="store_true", help="run in the background, under a lock, into a log")
     args = ap.parse_args(argv)
+    if args.preview:
+        preview()
+        return 0
     name = "summarise-" + ("-".join(args.source) if args.source else "all")
     if args.detach:
         given = sys.argv[1:] if argv is None else argv

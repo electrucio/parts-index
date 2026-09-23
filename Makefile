@@ -11,7 +11,7 @@ WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
 
 .DEFAULT_GOAL := help
-.PHONY: help setup test test-web lint guard check status status-write paths models-index models-missing models-recover models-verify models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
+.PHONY: help setup test test-web lint guard check status status-write paths models-index models-missing models-recover models-verify models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -122,6 +122,9 @@ schematics-summarise:  ## (maintainer) one line per published use, from the mode
 
 schematics-summarise-bg:  ## (maintainer) the same, detached under a lock with a log - this one runs for days
 	$(RUN) pidx schematics summarise $(foreach s,$(SOURCE),--source $(s)) $(if $(LIMIT),--limit $(LIMIT),) --detach
+
+schematics-preview:  ## (maintainer) what the summarise pass has written so far, with its links
+	$(RUN) pidx schematics summarise --preview
 
 schematics-export:  ## (maintainer) write the schematic index into data/, where the site is built from
 	$(RUN) pidx schematics export
