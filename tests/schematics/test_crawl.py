@@ -228,3 +228,19 @@ def test_an_impossible_url_already_in_the_queue_is_dropped_not_asked_for(site, m
     again = Ledger(config.schematics_state("tubecad"))
     assert again.get('https://tc.example/2024/3D"http:/philips.example/clear.gif"')["skip_reason"] == "malformed url"
     assert C.frontier(again) == []          # and it never comes back to the queue
+
+
+def test_one_page_spelled_two_ways_is_walked_once_and_both_rows_say_so(site, monkeypatch):
+    """qrp-labs links itself over http and answers over https: 297 pages looked owed for ever."""
+    led = Ledger(config.schematics_state("tubecad"))
+    led.row("https://tc.example/2024/aikido.html")["crawl_at"] = "2026-09-20"   # walked by an earlier run
+    led.row("http://tc.example/2024/aikido.html")["role"] = "page"              # its other spelling, not walked
+    led.save()
+
+    server = serve(monkeypatch)
+    C.crawl("tubecad", log=lambda *a: None)
+
+    assert not [u for u in server.asked if u.endswith("/2024/aikido.html")]     # one page, already walked
+    again = Ledger(config.schematics_state("tubecad"))
+    assert again.get("http://tc.example/2024/aikido.html")["crawl_at"]          # and now both rows say so
+    assert C.frontier(again) == []

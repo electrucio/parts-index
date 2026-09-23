@@ -131,9 +131,15 @@ def remember(led: Ledger, url: str) -> None:
 
 
 def frontier(led: Ledger) -> list[str]:
-    """What a previous run left in the queue."""
+    """What a previous run left in the queue: the pages it knew of and never walked.
+
+    A page is walked once its links are in the ledger, which is what `crawl_at` says and what the file
+    on disk does not: most pages are read from the copy we keep, so nothing is downloaded and no
+    download stamp lands. Reading this without `crawl_at` left sm0vpo and diyaudioheaven looking like
+    they owed fifteen pages each after their queues had emptied.
+    """
     return [key for key, r in led.rows.items()
-            if r["role"] == "page" and not r["download_at"] and not r["skip_reason"]]
+            if r["role"] == "page" and not r["crawl_at"] and not r["download_at"] and not r["skip_reason"]]
 
 
 def body_of(job: Downloader, source: str, url: str) -> tuple[bytes, int]:
@@ -189,6 +195,12 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
         while queue and (not budget or fetched < budget):
             url = queue.popleft()
             if same_page(url) in seen:
+                # The same page under another spelling — qrp-labs links itself over http and answers
+                # over https. It is walked once, and both rows say so, or the one left unstamped is
+                # read as a page still owed and the frontier never empties.
+                if not led.row(url)["crawl_at"]:
+                    led.row(url)["crawl_at"] = today()
+                    led.dirty = True
                 continue
             if MALFORMED.search(url):        # queued by a run from before `resolved` existed
                 led.skip(url, "malformed url")

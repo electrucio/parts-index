@@ -160,9 +160,9 @@ diyaudioheaven:
     allow: ^/
     max: 400
     cdn: files\.wordpress\.com|i\d\.wp\.com
-    complete: false
-  notes: Crawl stopped part-way on 2026-09-20 (many measurements and graphs, few schematics). Re-running resumes where it
-    left off.
+    complete: true
+  notes: 'Crawled to the end on 2026-09-23: 1,444 pages on the last pass, 8,583 files held,
+    nearly all of them the measurement plots the site exists for. Re-run with --refresh later.'
 djerickson:
   kind: site
   title: Dave Erickson
@@ -543,8 +543,10 @@ qrplabs:
     - https://qrp-labs.com/
     allow: ^/
     max: 400
-    complete: false
-  notes: Crawl stopped part-way on 2026-09-20 (large site, mostly RF). Re-running resumes where it left off.
+    complete: true
+  notes: 'Crawled to the end on 2026-09-23: 562 pages on the last pass, 6,412 files held, 416 of
+    them PDF. It links itself over http and answers over https, which left 297 rows looking owed
+    until a walked page began stamping both spellings.'
 radio_constructor:
   kind: magazine
   title: The Radio Constructor
@@ -652,10 +654,11 @@ sm0vpo:
     - https://www.sm0vpo.com/
     allow: ^/
     max: 600
-    complete: false
-  notes: 'Crawl stopped part-way on 2026-09-20 (large site). Re-running resumes where it left off. Most of its pages are third-party
-    datasheets it hosts, so it is a reference source: shown apart, never counted as a schematic. 44 of its PDFs are truncated
-    at source.'
+    complete: true
+  notes: 'Crawled to the end on 2026-09-23: 296 pages on the last pass, 8,511 files held, 6,991 of
+    them PDF. Most of its pages are third-party datasheets it hosts, so it is a reference source:
+    shown apart, never counted as a schematic. 44 of its PDFs are truncated at source. Its pages
+    saved as MHTML under /_pdf/ yield URLs with a quote in them, which the crawler now drops.'
 synfo:
   kind: factory
   title: synfo.nl — service notes
