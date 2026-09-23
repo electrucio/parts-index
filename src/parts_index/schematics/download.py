@@ -276,8 +276,11 @@ def run(source: str, *, limit: int | None = None, delay: float = http.DELAY, dry
     finally:
         if not dry:
             led.save()
-    log(f"{source}: {summary(job.counts)}")
-    return dict(job.counts)
+    # The list is read once, at the start. Saying what it holds now is what tells a run apart from a
+    # source: audiocircuit reported itself done against a list that had grown to three times its size.
+    left = sum(1 for a in read_list(source) if a["url"] not in led)
+    log(f"{source}: {summary(job.counts)}" + (f" · {left} of the list still to fetch" if left else ""))
+    return dict(job.counts) | {"left": left}
 
 
 def main(argv: list[str] | None = None) -> int:

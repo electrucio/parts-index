@@ -235,3 +235,15 @@ def test_a_vector_drawing_is_refused_by_name(site, monkeypatch):
 
     D.run("audiocircuit", log=lambda *a: None)
     assert "svg" in ledger("audiocircuit").get(url)["skip_reason"]
+
+
+def test_a_run_says_what_the_list_holds_that_it_did_not_fetch(site, monkeypatch):
+    """A list is read once, at the start, and audiocircuit's grew to three times its size meanwhile."""
+    write_list("audiocircuit", [{"url": f"https://ac.example/{n}.pdf"} for n in range(3)])
+    serve(monkeypatch, {f"https://ac.example/{n}.pdf": Response(200, f"https://ac.example/{n}.pdf",
+                                                                "application/pdf", PDF) for n in range(3)})
+    said = []
+    out = D.run("audiocircuit", limit=1, log=said.append)
+
+    assert out["left"] == 2
+    assert "2 of the list still to fetch" in said[-1]
