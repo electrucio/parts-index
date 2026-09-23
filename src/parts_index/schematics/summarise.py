@@ -55,12 +55,12 @@ from parts_index.core.config import (
 )
 from parts_index.core.jobs import detach, only_one, run_log
 
-VERSION = "summarise-3"
+VERSION = "summarise-4"
 TASK = "summarise-pages"
 MODEL = os.environ.get("PIDX_LLM_MODEL", "local")
 MODULE = "parts_index.schematics.summarise"
 KINDS = ("project", "technique", "reference", "advert", "mention", "none")
-LINE_CHARS = 240                   # a hard stop, not a target: the prompt asks for 22 words
+LINE_CHARS = 320                   # a hard stop, not a target: the prompt asks for 28 words
 CARRY_GAP = 2                      # a continuation page is next door, not ten pages away
 MAX_PARTS = 24                     # a page with more than this is a catalogue; asking about all of it
                                    # spends the answer on a list nobody reads to the end
@@ -83,9 +83,11 @@ circuits, a service manual sheet with several boards, an article with adverts ar
 is on the page first, then put each part where it belongs. Parts in different circuits must not get \
 the same line.
 
-**Say where the part sits, not what kind of device it is.** You may be wrong about the device, and the \
-reader already knows it. Write "input stage of the C-299 preamplifier", not "JFET in the input stage". \
-Name its function only where the page says it - a label, a designator, a sentence.
+**The page is your only source for what a part does.** Where it shows the job - a label, a designator \
+beside a stage, a sentence - say it: the rectifier, the input buffer, the bias reference. Where it does \
+not, do not work the job out from the type number: you will be wrong often enough to matter, and the \
+reader already knows what kind of device they are looking for. Never say which gates a logic chip has, \
+or what an amplifier is for, because you recognise the number - only because the page says so.
 
 **Ask first where on the page the number is.** Two situations are not a use of a component in a circuit \
 on this page, and they are not the same thing:
@@ -114,15 +116,31 @@ measurement, a design method), reference (a table, a parts list, a datasheet pag
 catalogue), advert (an advertisement or a price list), mention (a real part named here but not used in the circuit on this page), none (the number is \
 not a reference to a component at all).
 
-line: at most 22 words, and shorter where the page gives you less. The circuit or section it sits \
-in, what that circuit is for, and the designator or the neighbouring part where the page shows it. Room \
-to be specific is not room to pad: say more only where you have more to say. Do not begin \
-by repeating the part number. Never write "this page", "the article" or "the circuit shown". Where the page does not \
-place it in a circuit, use `mention` or `none` as above and say where it does appear - a vaguer line is \
-better than a role you cannot see.
+line: at most 28 words, in two parts, and shorter wherever the page gives you less.
+
+  First, **what this is part of**: the project, the circuit, the instrument, the article, the list. Name \
+it the way the page or the document names it - "the Trainwreck Express guitar amplifier", "the P.E. \
+Aurora light controller", "the Azure Analog Chorus kit parts list". Somebody who has not opened the page \
+must know from this line alone what they would be opening. Take the name from the document title where \
+the page is plainly part of that document.
+
+  Then, **what the part does in it**, where the page shows that: the stage, the section, the designator, \
+the job. "the rectifier of its power supply", "V1A of its preamp", "listed as D2 with D3", "extracting \
+the L-R difference at the input". Both halves earn their place. A line that names the project and then \
+says only "labelled near R7" has thrown the second half away: look again at what the page puts beside \
+the part - a stage name, a signal, a control, a heading - and say that instead.
+
+  Where the page does not show what the part does, name what it is part of and stop there. Do not spend \
+the rest of the line on the designators printed next to it: name a neighbour only when it says something, \
+like what the part drives or what it connects to.
+
+  Do not begin by repeating the part number. Never write "this page", "the article" or "the circuit \
+shown". Where the page does not place the part in a circuit, use `mention` or `none` as above and say \
+what it is part of and how it appears there.
 
 Every other part number you name must appear in the text in front of you. Do not name a device because \
-the circuit usually uses one. Use the document title only where the page text agrees with it."""
+the circuit usually uses one. The document title names the project; do not take anything else from it \
+that the page itself does not show."""
 
 
 # --- the excerpt ------------------------------------------------------------------------------------
@@ -330,7 +348,7 @@ def room_for(parts: int) -> int:
     away again, so the cap is generous: it costs nothing unless it is used, and the model stops when it
     has said what it has to say. A page of two dozen parts needs several times the answer of a page
     with one, and a page with one still needs room for the page line and the JSON around it."""
-    return min(400 + 80 * parts, 2600)
+    return min(450 + 105 * parts, 3400)
 
 
 def key_of(page: dict) -> str:

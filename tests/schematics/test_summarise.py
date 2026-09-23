@@ -125,7 +125,7 @@ def test_a_page_with_one_part_still_gets_room_for_a_whole_answer():
     # a 165-token cap cut a one-part answer in half, and a cut-off answer is asked again for ever
     assert summarise.room_for(1) >= 350
     assert summarise.room_for(24) > summarise.room_for(4)
-    assert summarise.room_for(500) <= 2600
+    assert summarise.room_for(500) <= 3400
 
 
 def test_the_registry_is_read_the_way_it_is_written(tmp_path, monkeypatch):
@@ -228,3 +228,23 @@ def test_a_cache_key_is_read_whatever_version_wrote_it():
     old = summarise.parse_key("summarise-1|esp|https://e.org/a.pdf|7")
     assert new == ("summarise-3", "esp", "https://e.org/a.pdf", 7)
     assert old == ("summarise-1", "esp", "https://e.org/a.pdf", 7)
+
+
+def test_the_line_is_asked_for_in_two_parts():
+    """What the part belongs to, then what it does there — a line that says "diode D1 in the power supply
+    section" leaves the reader asking "of what?"."""
+    spec = summarise.SYSTEM[summarise.SYSTEM.index("line: at most"):]
+    assert "what this is part of" in spec and "what the part does in it" in spec
+    assert "Do not spend the rest of the line on the designators printed next to it" in spec
+
+
+def test_the_job_may_only_come_from_the_page():
+    spec = summarise.SYSTEM
+    assert "do not work the job out from the type number" in spec
+
+
+def test_both_halves_of_the_line_are_asked_for():
+    """Naming the project must not swallow the role: 'labelled near R7' is a wasted second half."""
+    spec = summarise.SYSTEM
+    assert "Both halves earn their place" in spec
+    assert "Never say which gates a logic chip has" in spec
