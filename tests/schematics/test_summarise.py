@@ -125,7 +125,7 @@ def test_a_page_with_one_part_still_gets_room_for_a_whole_answer():
     # a 165-token cap cut a one-part answer in half, and a cut-off answer is asked again for ever
     assert summarise.room_for(1) >= 350
     assert summarise.room_for(24) > summarise.room_for(4)
-    assert summarise.room_for(500) <= 2000
+    assert summarise.room_for(500) <= 2600
 
 
 def test_the_registry_is_read_the_way_it_is_written(tmp_path, monkeypatch):
@@ -164,3 +164,59 @@ def test_nothing_else_is_guessed_at():
     """Only that one repair: an answer broken some other way is asked again, not patched."""
     with pytest.raises(Exception):
         summarise.read_answer('{"page": "p", "parts": [{"part": "TL072" "kind": "reference"}]}', ["TL072"])
+
+
+# --- an article runs over several pages and only the first names it ---------------------------------
+def test_the_pages_of_one_document_are_asked_in_order_and_documents_are_independent():
+    pages = [{"source": "pe", "key": "a", "page": 27}, {"source": "pe", "key": "a", "page": 24},
+             {"source": "pe", "key": "b", "page": 3}]
+    chains = summarise.chains_of(pages)
+    assert sorted(len(c) for c in chains) == [1, 2]
+    two = next(c for c in chains if len(c) == 2)
+    assert [p["page"] for p in two] == [24, 27]
+
+
+def test_a_continuation_page_is_told_what_the_page_before_it_was():
+    """Practical Electronics 1971-04: the Aurora runs from page 24 to 28 and only page 24 names it."""
+    earlier = [({"page": 24}, {"page": "P.E. Aurora light and colour control system"})]
+    got = summarise.carried({"page": 25}, earlier)
+    assert "p.24: P.E. Aurora" in got and "plainly the same article" in got
+
+
+def test_a_page_far_from_the_last_one_inherits_nothing():
+    """The queue holds only pages with a published use, so the previous one can be forty pages back."""
+    earlier = [({"page": 24}, {"page": "P.E. Aurora light and colour control system"})]
+    assert summarise.carried({"page": 24 + summarise.CARRY_GAP}, earlier)
+    assert summarise.carried({"page": 24 + summarise.CARRY_GAP + 1}, earlier) == ""
+    assert summarise.carried({"page": 20}, earlier) == ""          # and never backwards
+
+
+def test_only_the_pages_next_door_are_carried():
+    """The distance rule is the whole of it: at most CARRY_GAP pages can be within CARRY_GAP."""
+    earlier = [({"page": n}, {"page": f"page {n}"}) for n in range(1, 8)]
+    got = summarise.carried({"page": 8}, earlier)
+    assert got.count("  p.") == summarise.CARRY_GAP
+    assert "p.7" in got and "p.6" in got and "p.5" not in got
+
+
+# --- a web page's first words are its menu, not its standfirst --------------------------------------
+def test_the_furniture_of_a_web_page_is_marked_as_furniture():
+    text = "Home About Tags ESP8266 Raspberry " + " ".join(f"w{i}" for i in range(60)) + " TL072 input buffer"
+    web, _ = summarise.excerpt(text, ["TL072"], head=5, around=4, web=True)
+    assert web.startswith("[top of the web page")
+    assert "[end of the page furniture" in web
+    scan, _ = summarise.excerpt(text, ["TL072"], head=5, around=4, web=False)
+    assert "[top of the web page" not in scan and "[end of the page furniture" not in scan
+
+
+def test_the_prompt_carries_the_earlier_pages_when_there_are_any():
+    assert "EARLIER PAGES" not in summarise.prompt(PAGE)
+    assert "EARLIER PAGES" in summarise.prompt(PAGE, None, "EARLIER PAGES OF THIS DOCUMENT\n\n")
+
+
+def test_a_line_longer_than_a_line_is_cut():
+    long = "x " * 300
+    answer = summarise.read_answer(
+        json.dumps({"page": long, "parts": [{"part": "TL072", "kind": "project", "line": long}]}), ["TL072"])
+    assert len(answer["parts"]["TL072"]["line"]) <= summarise.LINE_CHARS
+    assert len(answer["page"]) <= summarise.LINE_CHARS

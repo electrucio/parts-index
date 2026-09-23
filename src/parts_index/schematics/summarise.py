@@ -53,11 +53,13 @@ from parts_index.core.config import (
 )
 from parts_index.core.jobs import detach, only_one, run_log
 
-VERSION = "summarise-2"
+VERSION = "summarise-3"
 TASK = "summarise-pages"
 MODEL = os.environ.get("PIDX_LLM_MODEL", "local")
 MODULE = "parts_index.schematics.summarise"
 KINDS = ("project", "technique", "reference", "advert", "mention", "none")
+LINE_CHARS = 240                   # a hard stop, not a target: the prompt asks for 22 words
+CARRY_GAP = 2                      # a continuation page is next door, not ten pages away
 MAX_PARTS = 24                     # a page with more than this is a catalogue; asking about all of it
                                    # spends the answer on a list nobody reads to the end
 
@@ -100,7 +102,7 @@ A line that puts a part in a circuit it is not in is worse than no line.
 Answer with one JSON object, nothing else:
 {"page": "...", "parts": [{"part": "...", "kind": "...", "line": "..."}, ...]}
 
-page: at most 12 words naming what is on the page as a whole. Where it holds several circuits, say so \
+page: at most 18 words naming what is on the page as a whole. Where it holds several circuits, say so \
 and name them.
 
 One entry per part given, in the order given, using exactly the part number as given.
@@ -110,10 +112,12 @@ measurement, a design method), reference (a table, a parts list, a datasheet pag
 catalogue), advert (an advertisement or a price list), mention (a real part named here but not used in the circuit on this page), none (the number is \
 not a reference to a component at all).
 
-line: at most 14 words. The circuit or section it sits in, and what that circuit is for. Do not begin \
-by repeating the part number. Never write "this page", "the article" or "the circuit shown". Where the \
-page does not say, use kind none and say where it appears instead - a vaguer line is better than a \
-role you cannot see.
+line: at most 22 words, and shorter where the page gives you less. The circuit or section it sits \
+in, what that circuit is for, and the designator or the neighbouring part where the page shows it. Room \
+to be specific is not room to pad: say more only where you have more to say. Do not begin \
+by repeating the part number. Never write "this page", "the article" or "the circuit shown". Where the page does not \
+place it in a circuit, use `mention` or `none` as above and say where it does appear - a vaguer line is \
+better than a role you cannot see.
 
 Every other part number you name must appear in the text in front of you. Do not name a device because \
 the circuit usually uses one. Use the document title only where the page text agrees with it."""
@@ -124,8 +128,14 @@ def _norm(word: str) -> str:
     return re.sub(r"[^A-Z0-9]", "", word.upper())
 
 
-def excerpt(text: str, parts, head: int = 110, around: int = 70, cap: int = 6000) -> tuple[str, list]:
+def excerpt(text: str, parts, head: int = 110, around: int = 70, cap: int = 6000,
+            web: bool = False) -> tuple[str, list]:
     """The head of the page plus a window around every part, merged, with `[...]` where text is left out.
+
+    The head is there because that is where a page says what it is — the title, the standfirst, the
+    first paragraph. On a web page it is the navigation and the sidebar instead, and a part number read
+    out of it belongs to nothing, so on a web page the head is marked as what it is rather than left to
+    look like the top of an article.
 
     Returns the excerpt and the parts it could not find at all — which are worth knowing: a part the
     page text does not contain is either an OCR box the index kept and this text did not, or a use that
@@ -145,15 +155,20 @@ def excerpt(text: str, parts, head: int = 110, around: int = 70, cap: int = 6000
     if not keep:
         return text[:cap], missing
     out, last = [], None
+    if web and keep:
+        out.append("[top of the web page - navigation, sidebar, tag lists:]")
     for i in sorted(keep):
-        if last is not None and i > last + 1:
+        left_the_head = web and last is not None and last < head <= i
+        if left_the_head:
+            out.append("[end of the page furniture, the page itself follows:]")
+        elif last is not None and i > last + 1:
             out.append("[...]")
         out.append(words[i])
         last = i
     joined = " ".join(out)
     if len(joined) > cap:
         if around > 25:
-            return excerpt(text, parts, head, around - 20, cap)
+            return excerpt(text, parts, head, around - 20, cap, web)
         joined = joined[:cap]
     return joined, missing
 
@@ -170,7 +185,7 @@ def source_names() -> dict:
     return {k: f"{(v or {}).get('title', k)} - {(v or {}).get('kind', 'site')}" for k, v in reg.items()}
 
 
-def prompt(page: dict, names: dict | None = None) -> str:
+def prompt(page: dict, names: dict | None = None, earlier: str = "") -> str:
     listed = "\n".join(
         f"  {p['part']}  (read {p['times']}x{', beside ' + p['near'] if p['near'] else ''})"
         for p in page["parts"])
@@ -178,7 +193,7 @@ def prompt(page: dict, names: dict | None = None) -> str:
     return (f"DOCUMENT: {page['title']}\nURL: {page['key']}\n"
             f"SOURCE: {source} ({page['role']})\nPAGE: {page['page']}\n"
             f"READ AS: {READ_AS.get(page.get('read_as'), READ_AS['ocr'])}\n"
-            f"PARTS TO WRITE A LINE FOR:\n{listed}\n\nPAGE TEXT:\n{page['excerpt']}")
+            f"PARTS TO WRITE A LINE FOR:\n{listed}\n\n{earlier}PAGE TEXT:\n{page['excerpt']}")
 
 
 # --- the answer -------------------------------------------------------------------------------------
@@ -199,6 +214,33 @@ def loads(text: str) -> dict:
         return json.loads(TRAILING_COMMA.sub(r"\1", body))
 
 
+def chains_of(pages: list[dict]) -> list[list[dict]]:
+    """The pages of one document, in order, are one chain. Documents are independent of each other."""
+    by_doc: dict[tuple, list[dict]] = defaultdict(list)
+    for page in pages:
+        by_doc[(page["source"], page["key"])].append(page)
+    return [sorted(group, key=lambda p: p["page"]) for group in by_doc.values()]
+
+
+def carried(page: dict, earlier: list) -> str:
+    """What the pages just before this one turned out to be.
+
+    A magazine article runs over several pages and only the first names it: without this, page 24 is
+    "P.E. Aurora music-inspired light and colour control system" and pages 25 to 28 are four unrelated
+    thyristor circuits. With it they are all the Aurora, and the model drops the name again when the
+    article ends — it was asked to keep it only while the page is plainly the same one.
+
+    Only pages within `CARRY_GAP` count. Half the pairs in the queue are next door to each other, but
+    the queue holds only the pages that carry a published use, so the page before this one in it can be
+    forty pages earlier in the issue, and that is not a continuation of anything."""
+    near = [(it, a) for it, a in earlier if 0 < page["page"] - it["page"] <= CARRY_GAP]
+    if not near:
+        return ""
+    lines = "\n".join(f"  p.{it['page']}: {a.get('page', '')}" for it, a in near)
+    return ("EARLIER PAGES OF THIS DOCUMENT (an article often runs over several pages and only the first\n"
+            "names it; keep a name only while this page is plainly the same article):\n" + lines + "\n\n")
+
+
 def read_answer(text: str, asked: list[str]) -> dict:
     """The model's text -> {"page": line, "parts": {PART: {kind, line}}}, or raise so it is asked again.
 
@@ -210,14 +252,14 @@ def read_answer(text: str, asked: list[str]) -> dict:
     parts = {}
     for entry in body.get("parts") or []:
         part = want.get(str(entry.get("part", "")).upper())
-        line = " ".join(str(entry.get("line", "")).split())[:160]
+        line = " ".join(str(entry.get("line", "")).split())[:LINE_CHARS]
         if not part or not line:
             continue
         kind = str(entry.get("kind", "")).lower()
         parts[part] = {"kind": kind if kind in KINDS else "none", "line": line}
     if not parts:
         raise ValueError(f"no part of {asked[:3]} answered")
-    return {"page": " ".join(str(body.get("page", "")).split())[:160], "parts": parts,
+    return {"page": " ".join(str(body.get("page", "")).split())[:LINE_CHARS], "parts": parts,
             "v": VERSION, "missing": sorted(set(asked) - set(parts))}
 
 
@@ -270,7 +312,8 @@ def with_text(pages: list[dict], say=print) -> list[dict]:
                 continue
             page["parts"] = page["parts"][:MAX_PARTS]
             page["read_as"] = "text" if method == "text" else "ocr"
-            page["excerpt"], page["absent"] = excerpt(text, [p["part"] for p in page["parts"]])
+            page["excerpt"], page["absent"] = excerpt(text, [p["part"] for p in page["parts"]],
+                                                      web=page["read_as"] == "text")
             out.append(page)
     db.close()
     if notext:
@@ -285,7 +328,7 @@ def room_for(parts: int) -> int:
     away again, so the cap is generous: it costs nothing unless it is used, and the model stops when it
     has said what it has to say. A page of two dozen parts needs several times the answer of a page
     with one, and a page with one still needs room for the page line and the JSON around it."""
-    return min(300 + 60 * parts, 2000)
+    return min(400 + 80 * parts, 2600)
 
 
 def key_of(page: dict) -> str:
@@ -325,16 +368,21 @@ def run(which: list[str] | None = None, limit: int = 0, workers: int = 4, dry: b
         counts["pages"] += len(pages)
         counts["uses"] += uses
         counts["absent"] += sum(len(p["absent"]) for p in pages)
-        items = [{"key": key_of(p), "prompt": prompt(p, names), "asked": [q["part"] for q in p["parts"]],
-                  "max_tokens": room_for(len(p["parts"]))} for p in pages]
+        chains = [[{"key": key_of(p), "page": p, "asked": [q["part"] for q in p["parts"]],
+                    "max_tokens": room_for(len(p["parts"]))} for p in group]
+                  for group in chains_of(pages)]
+        items = [it for chain in chains for it in chain]
         have = llm.cached(TASK, MODEL)
         todo = [it for it in items if it["key"] not in have]
-        say(f"{source}: {len(pages)} pages, {uses} uses, {len(todo)} pages to ask")
+        say(f"{source}: {len(pages)} pages in {len(chains)} documents, {uses} uses, {len(todo)} to ask")
         if dry:
             continue
         counts["asked"] += len(todo)
-        answers = llm.ask_local(TASK, SYSTEM, items, model=MODEL, workers=workers, say=say,
-                                parse=lambda text, item: read_answer(text, item["asked"]))
+        answers = llm.ask_local_chains(
+            TASK, SYSTEM, chains, model=MODEL, workers=workers, say=say,
+            build=lambda item, earlier: prompt(item["page"], names, carried(item["page"], [
+                (e["page"], a) for e, a in earlier])),
+            parse=lambda text, item: read_answer(text, item["asked"]))
         counts["answered"] += sum(1 for it in items if it["key"] in answers)
     return counts
 
