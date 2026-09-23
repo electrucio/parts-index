@@ -41,7 +41,7 @@ import yaml
 
 from parts_index.core import http
 from parts_index.core.config import downloads, schematics_registry, schematics_state, source_list
-from parts_index.core.jobs import detach, only_one, run_log, wait_for
+from parts_index.core.jobs import detach, only_one, run_log, wait_for_all
 from parts_index.core.ledger import Ledger
 
 DOCUMENT_KINDS = ("pdf", "gif", "jpeg", "png", "tiff")
@@ -287,7 +287,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--delay", type=float, default=http.DELAY, help=f"seconds between requests to one host (default {http.DELAY})")
     ap.add_argument("--dry", action="store_true", help="say what would be fetched and fetch nothing")
     ap.add_argument("--detach", action="store_true", help="run it in the background, under a lock, into a log")
-    ap.add_argument("--after", help="wait for that job to finish first (its name, as its log is called)")
+    ap.add_argument("--after", action="append", help="wait for that job to finish first, by its log's name (repeatable)")
     ap.add_argument("--wait-hours", type=float, default=24.0, help="how long to wait for it before giving up")
     args = ap.parse_args(argv)
 
@@ -298,8 +298,9 @@ def main(argv: list[str] | None = None) -> int:
         pid = detach(MODULE, [a for a in given if a != "--detach"], name)
         say(f"{name}: running as {pid}. Watch it with  tail -f {run_log(name)}")
         return 0
-    if args.after and not wait_for(args.after, timeout=args.wait_hours * 3600):
-        raise SystemExit(f"{args.after} is still running after the wait ran out; nothing was fetched")
+    late = wait_for_all(args.after or [], timeout=args.wait_hours * 3600)
+    if late:
+        raise SystemExit(f"{late} is still running after the wait ran out; nothing was fetched")
     with only_one(name):
         for source in args.source:
             run(source, limit=args.limit or None, delay=args.delay, dry=args.dry)

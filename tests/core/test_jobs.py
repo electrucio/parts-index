@@ -56,3 +56,24 @@ def test_a_detached_job_outlives_the_shell_that_started_it(monkeypatch):
     assert started["kw"]["start_new_session"] is True
     assert started["kw"]["stdin"] is jobs.subprocess.DEVNULL       # nothing is ever waiting for a terminal
     assert jobs.run_log("crawl_tubecad").exists()
+
+
+def test_waiting_for_several_jobs_ends_when_the_last_one_does(monkeypatch):
+    alive = {"first": 2, "second": 1}          # polls each one still has to go
+    order = []
+
+    def running(name):
+        order.append(name)
+        if alive.get(name, 0) > 0:
+            alive[name] -= 1
+            return True
+        return False
+
+    monkeypatch.setattr(jobs, "running", running)
+    assert jobs.wait_for_all(["first", "second"], poll=0, sleep=lambda _: None) == ""
+    assert order[0] == "first" and "second" in order      # in the order given, and every one waited for
+
+
+def test_waiting_for_several_names_the_one_that_ran_out(monkeypatch):
+    monkeypatch.setattr(jobs, "running", lambda name: name == "second")
+    assert jobs.wait_for_all(["first", "second"], timeout=0, poll=0, sleep=lambda _: None) == "second"

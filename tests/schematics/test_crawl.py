@@ -165,14 +165,14 @@ def test_a_page_that_never_says_html_is_still_a_page(site, monkeypatch):
     assert "https://tc.example/2024/aikido.html" in server.asked
 
 
-def test_a_queued_crawl_waits_as_long_as_it_was_told(site, monkeypatch):
-    """The default is a day. A download of eleven thousand files can outlast that, so it is a number."""
+def test_a_queued_crawl_waits_for_every_job_it_was_told_to(site, monkeypatch):
+    """The default is a day. A download of forty thousand files can outlast that, so it is a number."""
     waited = {}
-    monkeypatch.setattr(C, "wait_for", lambda name, timeout: waited.update(name=name, timeout=timeout) or True)
+    monkeypatch.setattr(C, "wait_for_all", lambda names, timeout: waited.update(names=names, timeout=timeout) or "")
     monkeypatch.setattr(C, "crawl", lambda *a, **k: {})
 
-    C.main(["--source", "tubecad", "--after", "download_audiocircuit", "--wait-hours", "48"])
-    assert waited == {"name": "download_audiocircuit", "timeout": 48 * 3600}
+    C.main(["--source", "tubecad", "--after", "download_audiocircuit", "--after", "crawl_xdevs", "--wait-hours", "48"])
+    assert waited == {"names": ["download_audiocircuit", "crawl_xdevs"], "timeout": 48 * 3600}
 
 
 def test_a_page_every_page_links_to_is_queued_once(site, monkeypatch):

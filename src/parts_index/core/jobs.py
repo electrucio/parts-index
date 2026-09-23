@@ -83,6 +83,19 @@ def wait_for(name: str, timeout: float = 86400, poll: float = POLL, sleep=time.s
     return True
 
 
+def wait_for_all(names: list[str], timeout: float = 86400, poll: float = POLL, sleep=time.sleep) -> str:
+    """Block until none of those jobs is running. "" when they are all free, else the one still going.
+
+    Waiting for them one after another is enough however they finish: each wait returns only when that
+    job is over, so the last one to end is the one the caller is left waiting on.
+    """
+    deadline = time.time() + timeout
+    for name in names:
+        if not wait_for(name, timeout=max(deadline - time.time(), 0), poll=poll, sleep=sleep):
+            return name
+    return ""
+
+
 def detach(module: str, args: list[str], name: str) -> int:
     """Start `python -m <module> <args>` in its own session, writing to this job's log. Returns its pid.
 
