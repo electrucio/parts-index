@@ -361,6 +361,53 @@ passlabs:
   title: Pass Labs
   home_url: https://www.passlabs.com/
   status: active
+passlabs_diyaudio:
+  kind: delivery
+  title: Nelson Pass and Pass Labs, gathered by hand
+  home_url: https://www.diyaudio.com/community/forums/pass-labs.18/
+  status: active
+  list:
+    role: schematic
+  delivery:
+    role: schematic
+    link:
+    - match: '^diyAudio/([^/]+)/'
+      url: https://www.diyaudio.com/community/threads/{1}/
+    - match: '^firstwatt\.com/(.+)$'
+      url: https://www.firstwatt.com/{1}
+    links:
+      Recuperados_WaybackMachine/800abrochure1.tif: https://web.archive.org/web/20030509050501/http://www.passlabs.com:80/temp/800abrochure1.tif
+      Recuperados_WaybackMachine/800abrochure2.tif: https://web.archive.org/web/20030509052438/http://www.passlabs.com:80/temp/800abrochure2.tif
+      Recuperados_WaybackMachine/800abrochure3.tif: https://web.archive.org/web/20030509055028/http://www.passlabs.com:80/temp/800abrochure3.tif
+      Recuperados_WaybackMachine/800abrochure4.tif: https://web.archive.org/web/20030509062302/http://www.passlabs.com:80/temp/800abrochure4.tif
+      Recuperados_WaybackMachine/F1_SRV_MAN.doc: https://web.archive.org/web/20051110050605/http://passlabs.com:80/np/F1_SRV_MAN.doc
+      Recuperados_WaybackMachine/GC-BOOTSTRAP-1a.pdf: https://web.archive.org/web/20040729140051/http://www.passlabs.com:80/np/GC-BOOTSTRAP-1a.pdf
+      Recuperados_WaybackMachine/GC-BOOTSTRAP-2a.pdf: https://web.archive.org/web/20040729065433/http://www.passlabs.com:80/np/GC-BOOTSTRAP-2a.pdf
+      Recuperados_WaybackMachine/GC-OUTPUT-BIAS-1a.pdf: https://web.archive.org/web/20040729083521/http://www.passlabs.com:80/np/GC-OUTPUT-BIAS-1a.pdf
+      Recuperados_WaybackMachine/GC-SS-3a.pdf: https://web.archive.org/web/20040714044100/http://www.passlabs.com:80/np/GC-SS-3a.pdf
+      Recuperados_WaybackMachine/GC-SS-5a.pdf: https://web.archive.org/web/20040729065345/http://www.passlabs.com:80/np/GC-SS-5a.pdf
+      Recuperados_WaybackMachine/GC-VAR-BAL-FDBK-1a.pdf: https://web.archive.org/web/20040729075936/http://www.passlabs.com:80/np/GC-VAR-BAL-FDBK-1a.pdf
+      Recuperados_WaybackMachine/GC-ZEN-ALEPH-1a.pdf: https://web.archive.org/web/20041025133908/http://www.passlabs.com:80/np/GC-ZEN-ALEPH-1a.pdf
+      Recuperados_WaybackMachine/PLH.pdf: https://web.archive.org/web/20051029111536/http://www.passlabs.com:80/np/PLH.pdf
+      Recuperados_WaybackMachine/leaving_class_a.pdf: https://web.archive.org/web/20191122155242/https://www.passdiy.com/download.php?download_file=/images/uploads/project/leaving_class_a.pdf
+      Recuperados_WaybackMachine/prod_b4_man.pdf: https://web.archive.org/web/20240213163308/https://www.firstwatt.com/wp-content/uploads/2024/01/prod_b4_man.pdf
+      Recuperados_WaybackMachine/stasis1photo.jpg: https://web.archive.org/web/20030509015607/http://www.passlabs.com:80/temp/stasis1photo.jpg
+      Recuperados_WaybackMachine/stasis2-3schem.tif: https://web.archive.org/web/20030509022952/http://www.passlabs.com:80/temp/stasis2-3schem.tif
+      Recuperados_WaybackMachine/stasis_telarc2.jpg: https://web.archive.org/web/20030509033115/http://www.passlabs.com:80/temp/stasis_telarc2.jpg
+      Recuperados_WaybackMachine/stasisproj1.jpg: https://web.archive.org/web/20030509034542/http://www.passlabs.com:80/temp/stasisproj1.jpg
+      Recuperados_WaybackMachine/stasisproj2.jpg: https://web.archive.org/web/20030509041820/http://www.passlabs.com:80/temp/stasisproj2.jpg
+      Recuperados_WaybackMachine/sweet_spot.pdf: https://web.archive.org/web/20191024053003/https://www.passdiy.com/download.php?download_file=/images/uploads/project/sweet_spot.pdf
+      Recuperados_WaybackMachine/thr_fe89.tif: https://web.archive.org/web/20051110051309/http://passlabs.com:80/np/thr_fe89.tif
+      Recuperados_WaybackMachine/thr_fe90.tif: https://web.archive.org/web/20050106061022/http://www.passlabs.com:80/np/thr_fe90.tif
+      Recuperados_WaybackMachine/thr_os89.tif: https://web.archive.org/web/20051110051336/http://passlabs.com:80/np/thr_os89.tif
+      Recuperados_WaybackMachine/z4pcbmech.tif: https://web.archive.org/web/20030509055541/http://www.passlabs.com:80/temp/z4pcbmech.tif
+      Recuperados_WaybackMachine/z4pcbtop.tif: https://web.archive.org/web/20030509062039/http://www.passlabs.com:80/temp/z4pcbtop.tif
+  notes: 'An archive the maintainer gathered himself and handed over on 2026-09-23: Nelson Pass designs
+    saved out of the Pass Labs subforum thread by thread, plus a set recovered from the Wayback Machine
+    and one file from firstwatt.com. The folder a file sits in is the thread it was posted in, and those
+    slugs resolve, so each one carries the public page a reader can be sent to; the recovered set carries
+    none and stays out of anything published. Eight of its files are byte-identical to documents firstwatt
+    already holds. It is a delivery and not a crawl: nothing here was fetched by this project.'
 paulvdiy:
   kind: site
   title: Paul's DIY electronics blog
