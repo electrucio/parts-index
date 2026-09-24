@@ -715,9 +715,10 @@ tubecad:
     - https://www.tubecad.com/
     allow: ^/(20\d\d|articles|index)
     max: 800
-    complete: false
-  notes: Crawl stopped part-way on 2026-09-20 (about 37 files per page; the whole site is several days at one request every
-    3 s). Re-running resumes where it left off.
+    complete: true
+  notes: 'Crawled to the end on 2026-09-24, after four days: 721 pages on the last pass, 16,395
+    files held over 399 MB. It runs to about 37 files a page, nearly all of them the PNG figures the
+    journal draws its circuits as — 83 PDFs in the whole site.'
 valvewizard:
   kind: site
   title: The Valve Wizard
