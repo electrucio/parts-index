@@ -52,9 +52,10 @@ amz-muzique:
     - https://www.muzique.com/
     allow: '^/'
     max: 0
-    complete: false
-  notes: 'Pedal design: buffers, boosters, clipping, MOSFET stages. Checked 2026-09-23: 84 links and 42
-    figures on the front page, small enough to take whole.'
+    complete: true
+  notes: 'Jack Orman''s articles and circuit notes. Crawled to the end on 2026-09-24: 5,808 files
+    held. The site writes some links without their scheme — www.muzique.com/news/ — which buried a
+    hostname in the path and made a circle 3,937 rows long before the crawler learnt to refuse it.'
 archive_databooks:
   kind: reference
   title: Semiconductor databooks (bitsavers mirror on archive.org)
@@ -381,9 +382,9 @@ mfos:
     - https://musicfromouterspace.com/
     allow: '^/'
     max: 0
-    complete: false
-  notes: 'Analogue synth modules: VCO, VCF, VCA, envelopes, the Sound Lab series. Checked 2026-09-23: 42
-    links and 84 figures on the front page; the shop is left alone by the crawler''s own rules.'
+    complete: true
+  notes: 'Music From Outer Space: Ray Wilson''s synthesiser projects. Crawled to the end on
+    2026-09-24 — one page, 56 files. Its schematics are images, not PDFs.'
 modern_electronics:
   kind: magazine
   title: Modern Electronics
@@ -608,9 +609,9 @@ runoffgroove:
     - https://www.runoffgroove.com/
     allow: '^/'
     max: 0
-    complete: false
-  notes: 'Original JFET amp-emulation designs — Fetzer Valve, Thor, Umble — each written up in full. Checked
-    2026-09-23: a handful of pages, all of them articles.'
+    complete: true
+  notes: 'Pedal projects worked out from first principles, most with a PDF. Crawled to the end on
+    2026-09-24: 49 pages, 256 files, 38 of them PDF.'
 schematicheaven:
   kind: factory
   title: Schematic Heaven (mirror)
