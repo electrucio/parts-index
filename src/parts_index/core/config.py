@@ -184,9 +184,14 @@ def rejected_tokens() -> Path:
     return PUBLIC_DATA / "parts" / "rejected_tokens.txt"
 
 
-def parts_census() -> Path:
-    """Which part numbers exist, according to a document whose job was to list them all."""
-    return PUBLIC_DATA / "parts" / "census.csv"
+def parts_census(source: str = "*") -> Path:
+    """Which part numbers exist, according to a list whose job was to be complete about them.
+
+    One file per source, as the schematic ledgers and document indexes are: together they passed the
+    five megabytes a single file may have here, and a manufacturer's catalogue is the kind of thing
+    that arrives twenty thousand rows at a time.
+    """
+    return PUBLIC_DATA / "parts" / "census" / f"{source}.csv"
 
 
 def parts_benchmark() -> Path:

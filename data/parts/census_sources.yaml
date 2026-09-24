@@ -34,3 +34,19 @@ spice_definitions:
     Passive-component vendors are excluded whole. It is the semiconductor half of the census: the tube
     half is frank_pocnet. The evidence URL is the vendor file the definition came from, or that vendor''s
     home page when the ledger cannot name the file.'
+ti_datasheets:
+  kind: manufacturer catalogue
+  title: Texas Instruments data sheets, one per part
+  home_url: https://www.ti.com/
+  index_url: https://www.ti.com/lit/gpn/sitemap-datasheets-standard.xml
+  covers: ic, opamp, adc, dac, regulator, mosfet, bjt, diode
+  status: active
+  notes: 'A manufacturer had to be complete about its own catalogue, which is what this census asks of a
+    source, and TI publishes the result: a sitemap naming one data sheet per part at /lit/gpn/<part>.
+    21,817 parts on 2026-09-24, and the URL is the data sheet — the evidence for the fact and the
+    reference link the site can offer are the same link, with no OCR anywhere in the path. It settles
+    the vocabulary the corpus is emptiest in: the extractor''s families were derived from magazines of
+    1960-1990 and have no ADS, DAC, REF, TPS, ISO, AMC or THS in them, so eight TI application notes
+    full of ADS7822 and ADS1286 yielded no parts at all. Every entry is "semiconductor" because the
+    sitemap says which parts exist and not what they are; that kind is generic on purpose and agrees
+    with any family but a valve.'

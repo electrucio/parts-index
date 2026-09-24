@@ -160,11 +160,36 @@ def spice_definitions_entries(entry: dict) -> list[Entry]:
     return out
 
 
+# --- a manufacturer's list of its own parts --------------------------------------------------------
+# TI publishes a sitemap of its data sheets: one URL per part, at /lit/gpn/<part>. That is this census's
+# contract met exactly — somebody whose job was to be complete about a vocabulary, and a public URL that
+# vouches for each name and is the reference link at the same time. 21,817 parts on 2026-09-24.
+#
+# It says which parts exist and nothing about what they are, so every entry is "semiconductor", which is
+# generic on purpose: it agrees with any family but a valve. A list of TI's catalogue must never be what
+# settles a token the valve family claimed.
+GPN = re.compile(r"<loc>\s*(https?://[^<\s]*?/lit/gpn/([^<\s/]+))\s*</loc>", re.I)
+
+
+def _gpn_seeds(entry: dict) -> list[str]:
+    return [entry["index_url"]]
+
+
+def _gpn_entries(url: str, xml: str) -> list[Entry]:
+    out = []
+    for href, name in GPN.findall(xml):
+        part = unquote(name).strip()
+        if part:
+            out.append(Entry(part, "semiconductor", href))
+    return out
+
+
 LOCAL_ADAPTERS = {"spice_definitions": spice_definitions_entries}
 
 
 ADAPTERS = {
     "frank_pocnet": (_frank_seeds, _frank_more, _frank_entries),
+    "ti_datasheets": (_gpn_seeds, lambda url, xml: [], _gpn_entries),
 }
 
 
@@ -181,6 +206,12 @@ def active(only: list[str] | None = None) -> list[str]:
 def _cache_file(source: str, url: str) -> Path:
     name = re.sub(r"[^A-Za-z0-9._-]", "_", url.rsplit("/", 1)[-1] or "index.html")
     return census_cache(source) / name
+
+
+def _readable(r) -> bool:
+    """Whether this reply is an index we can parse. HTML, or the XML of a sitemap — a manufacturer that
+    publishes a list of its own parts publishes it as one, and `kind` has no name for XML."""
+    return r.kind == "html" or r.body[:200].lstrip().lower().startswith(b"<?xml")
 
 
 def read_source(source: str, *, fetch: bool = True, limit: int = 0, delay: float = http.DELAY) -> list[Entry]:
@@ -205,7 +236,7 @@ def read_source(source: str, *, fetch: bool = True, limit: int = 0, delay: float
         else:
             r = http.get(url, delay=delay)
             fetched += 1
-            if not r.ok or r.kind != "html":
+            if not r.ok or not _readable(r):
                 led.skip(url, (r.why or f"http {r.status}")[:60], url=url, http=r.status)
                 continue
             path.parent.mkdir(parents=True, exist_ok=True)
@@ -239,28 +270,30 @@ def build(only: list[str] | None = None, *, fetch: bool = True, limit: int = 0,
         counts[source] = len({e.part for e in found})
         for e in found:
             rows.setdefault((e.part.upper(), source), e)
-    if only:                                        # keep what the sources we did not run had said
-        keep = [r for r in load_rows() if r["source"] not in counts]
-        for r in keep:
-            rows.setdefault((r["part"].upper(), r["source"]), Entry(r["part"], r["kind"], r["url"]))
-    out = parts_census()
-    out.parent.mkdir(parents=True, exist_ok=True)
-    with open(out, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=FIELDS, lineterminator="\n")
-        w.writeheader()
-        for (_, source), e in sorted(rows.items()):
-            w.writerow({"part": e.part, "kind": e.kind, "source": source, "url": e.url})
-    counts["total rows"] = len(rows)
+    # A source not run keeps what it said: its file is simply not rewritten.
+    by_source: dict[str, list[Entry]] = {}
+    for (_, source), e in sorted(rows.items()):
+        by_source.setdefault(source, []).append(e)
+    for source, entries in by_source.items():
+        out = parts_census(source)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        with open(out, "w", newline="", encoding="utf-8") as f:
+            w = csv.DictWriter(f, fieldnames=FIELDS, lineterminator="\n")
+            w.writeheader()
+            for e in entries:
+                w.writerow({"part": e.part, "kind": e.kind, "source": source, "url": e.url})
+    counts["total rows"] = len(rows) + sum(1 for r in load_rows() if r["source"] not in by_source)
     counts["distinct parts"] = len({p for p, _ in rows})
     return counts
 
 
 def load_rows() -> list[dict]:
-    f = parts_census()
-    if not f.exists():
-        return []
-    with open(f, newline="", encoding="utf-8") as fh:
-        return list(csv.DictReader(fh))
+    """Every source's census, in one list. One file each, so no single one outgrows what may live here."""
+    out = []
+    for f in sorted(parts_census().parent.glob("*.csv")):
+        with open(f, newline="", encoding="utf-8") as fh:
+            out += list(csv.DictReader(fh))
+    return out
 
 
 def norm(s: str) -> str:
@@ -290,5 +323,5 @@ def main(argv: list[str] | None = None) -> int:
     counts = build(a.source, fetch=not a.read, limit=a.limit, delay=a.delay)
     for name, n in counts.items():
         print(f"  {n:8}  {name}")
-    print(f"written to {parts_census()}")
+    print(f"written to {parts_census().parent}")
     return 0

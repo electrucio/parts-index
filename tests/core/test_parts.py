@@ -254,3 +254,37 @@ def test_the_shortest_names_in_the_census_are_not_names_here():
     first full export published 10 on 1,129 documents and CA on 1,121 before this."""
     noisy = "V1 V2 12AX7 6V6 10 50 E CA CH1 PA1 LD1 22 R1 C1".split()
     assert [h.part for h in parts.extract_page(mkpage(noisy))] == ["12AX7", "6V6"]
+
+
+# --- modern analogue silicon -------------------------------------------------------------------------
+# The families were read off magazines of 1960-1990 and stopped there. Eight TI application notes full
+# of ADS7822 and ADS1286 yielded not one part, which is the bias measured rather than argued: 291 of the
+# corpus's 18,542 names belong to a family newer than 1995.
+
+MODERN = "the ADS8681 converter, a DAC8563, a REF5025 reference, an AMC1311 and an ISO7741 isolator, " \
+         "a THS4521 amplifier, a PGA280, an LMH6629, a TPS7A4700 regulator and a TPA3255 output stage"
+
+
+def test_modern_analogue_families_are_seen():
+    assert parts.extract(MODERN)                     # every one of them was invisible before 2026-09-24
+    found = {h.part for h in parts.extract(MODERN)}
+    for p in ("ADS8681", "DAC8563", "REF5025", "AMC1311", "ISO7741",
+              "THS4521", "PGA280", "LMH6629", "TPS7A4700", "TPA3255"):
+        assert p in found, p
+
+
+def test_the_standards_a_document_cites_are_not_parts():
+    """ISO9001 and ISO14001 are on half the application notes ever written."""
+    found = {h.part for h in parts.extract("certified to ISO9001 and ISO14001, with a 12-bit ADC")}
+    assert found == set()
+
+
+def test_a_family_named_with_a_wildcard_is_not_a_device():
+    """A data sheet writes ADS126x for "any of these". You cannot buy one."""
+    found = {h.part for h in parts.extract("The ADS126x family and the REF60xx references")}
+    assert found == set()
+
+
+def test_an_evaluation_board_reports_the_chip_it_carries():
+    found = {h.part for h in parts.extract("Connect the ADS1298REVM, then power the ADS7056EVM")}
+    assert found == {"ADS1298R", "ADS7056"}

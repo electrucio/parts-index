@@ -35,13 +35,11 @@ def _index_rows(part: str) -> dict | None:
 
 
 def _census_row(part: str) -> dict | None:
-    f = parts_census()
-    if not f.exists():
-        return None
-    with open(f, newline="", encoding="utf-8") as fh:
-        for r in csv.DictReader(fh):
-            if ex.norm(r["part"]) == ex.norm(part):
-                return r
+    for f in sorted(parts_census().parent.glob("*.csv")):
+        with open(f, newline="", encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                if ex.norm(r["part"]) == ex.norm(part):
+                    return r
     return None
 
 

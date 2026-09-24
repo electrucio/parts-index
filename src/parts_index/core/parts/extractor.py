@@ -41,6 +41,16 @@ FAMILIES = [   # (family, kind guess, regex on the upper-cased token, strict num
     ("delay / BBD / digital audio", "digital-audio", r"(?:MN\d{4}|PT\d{4}[A-Z]?|SAD\d{3,4}|TDA\d{4}|R5\d{3}|BL\d{4}|V3\d{3}|FV-?1|CD\d{4}[A-Z]{0,3}|HEF4\d{3}[A-Z]{0,2}|CD4\d{3}[A-Z]{0,3}|74[A-Z]{1,4}\d{2,4}[A-Z]?|SN74[A-Z]{0,4}\d{2,4}[A-Z]?|SPN\d|ES5\d{4}|YM\d{4})", False),
     ("regulator", "regulator", r"(?:[ULM]{0,2}A?7[89][LM]?(?:05|06|08|09|10|12|15|18|20|24|33|52|62)[A-Z]{0,2}|LM[123]17[A-Z]{0,3}|LM[123]37[A-Z]{0,2}|LT108\d|LT308\d|TL43[01][A-Z]?|LD1\d{3}|L78\d\d|L79\d\d|LR8|TL783|VB408)", True),
     ("optocoupler / LDR", "opto", r"(?:VTL5C\d(?:/\d)?|NSL-?\d{2}[A-Z\d-]*|4N\d{2}|H11[A-Z]\d|CNY\d{2}|MOC\d{4}|PC8\d{2}|TLP\d{3}|LCR\d{4}|ORP\d{2}|VT\d{3,4}[A-Z]?|CLM\d{4})", False),
+    # Modern analogue silicon. Everything above was read off magazines of 1960-1990 and stops there, so
+    # eight TI application notes full of ADS7822 and ADS1286 yielded not one part. Each pattern here was
+    # checked against TI's own catalogue — the 21,817 parts of the ti_datasheets census — and against
+    # every name this corpus has already published: none of them matches a token that nothing vouches
+    # for. ISO is spelled narrowly on purpose, because ISO9001 and ISO14001 are on half the documents.
+    ("modern op-amp", "opamp/ic", r"(?:THS\d{4}|PGA\d{3,4}|LM[HPV]\d{3,4})[A-Z]{0,3}", False),
+    ("data converter / reference / isolation", "ic",
+     r"(?:ADS\d{3,4}[A-Z]?\d{0,2}|DAC\d{4,5}|ADC\d{4,5}|REF\d{2,5}|AMC\d{4}|MCP\d{4,5}|ISOW\d{4}|ISO[67]\d{3})[A-Z]{0,3}", False),
+    ("modern power IC", "regulator", r"(?:TPS7A\d{2,4}|TPS\d{4,6}|UCC\d{4,5})[A-Z]{0,3}", False),
+    ("modern audio IC", "ic-audio", r"TPA\d{3,4}[A-Z]{0,3}", False),
     ("valve, American", "tube", r"(?:\d{1,2}[A-HJ-MPS-Z][A-Z]{0,2}\d{1,2}(?:[A-Z]{1,3})?|5881|6550[A-C]?|7025|7027A?|7189A?|7199|7247|7355|7581A?|7591A?|7868|8417|6146[AB]?|300B|2A3|211|845|811A?|807|6080|6AS7G?A?|5751|5814A?|6189|6201|12BH7A?)", False),
 ]
 FAMILIES = [(f, k, re.compile(rx), strict) for f, k, rx, strict in FAMILIES]
@@ -249,6 +259,11 @@ def prepare(text):
 
 
 REG_WORDS = re.compile(r"\b(?:regulators?|stabili[sz]ers?|IC\d{1,2}|REG\d?)\b", re.I)
+# A data sheet names a whole family by putting an x where the digits vary: ADS126x, REF60xx. It is how
+# the vendor writes "any of these", never a device you can buy.
+WILDCARD = re.compile(r"[A-Z]{2,4}\d+X{1,2}")
+# An evaluation module is a board named after the chip it carries. The chip is the part.
+EVM = re.compile(r"(.+?)(?:EVM|EVAL|BOOST)$")
 
 
 def _judge(tok, text, pos, isolated, raw=""):
@@ -259,6 +274,10 @@ def _judge(tok, text, pos, isolated, raw=""):
         return None
     if tok in NOT_PARTS or (re.fullmatch(r"\d{1,2}X\d{1,2}[A-Z]{0,3}", tok) and not REAL_X.match(tok)):
         return None
+    if WILDCARD.fullmatch(tok) and norm(tok) not in CENSUS and norm(tok) not in KNOWN:
+        return None                                             # ADS126x is a family, not a device
+    if (m := EVM.fullmatch(tok)) and norm(m.group(1)) in CENSUS:
+        tok, fixed = m.group(1), True                           # ADS1298REVM is the board; ADS1298R is the part
     v = fix_valve(tok)
     if v:
         tok, fixed, k = v, True, KNOWN.get(norm(v)) or KNOWN.get(norm(base_part(v)))
