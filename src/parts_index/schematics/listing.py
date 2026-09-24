@@ -11,6 +11,10 @@ audiocircuit: the sitemap names one page per brand, and each brand page shows a 
 behind `?eeListID=1&ee=1&eePage=N`. The list gathered in September took page 0 only, so 48 of the 358
 brands stopped at exactly a hundred files — Akai alone has 789. Walk the pages until one brings nothing
 new, which is how the site says there is no more.
+
+A dead site has no listing of its own, and asking it is how you learn it is dead. What it published is
+still readable in the Wayback Machine, and the CDX API will say what it held: a source with a `wayback:`
+block is listed from there instead, one row per document the archive holds a good capture of.
 """
 from __future__ import annotations
 
@@ -22,6 +26,7 @@ from urllib.parse import urljoin
 
 from parts_index.core import http
 from parts_index.core.config import source_list
+from parts_index.schematics.download import registry_entry
 
 PAGE_SIZE_GUESS = 100
 MAX_PAGES = 60
@@ -88,7 +93,63 @@ def audiocircuit(delay: float, limit: int = 0):
             print(f"  {brand or page}: {len(seen_here)}", file=sys.stderr)
 
 
+CDX = "https://web.archive.org/cdx/search/cdx"
+# `id_` asks for the bytes as they were archived, without the banner the Wayback Machine puts on a page.
+REPLAY = "https://web.archive.org/web/{stamp}id_/{url}"
+CDX_TIMEOUT = 300           # a page of this index is a database query, not a file
+
+
+def _cdx(params: list[tuple[str, str]], delay: float) -> list[list[str]]:
+    """One CDX query. A list of pairs, not a mapping: `filter` is given more than once."""
+    query = "&".join(f"{k}={v}" for k, v in params)
+    r = http.get(f"{CDX}?{query}", delay=delay, timeout=CDX_TIMEOUT)
+    if not r.ok:
+        raise SystemExit(f"wayback cdx: {r.status} {r.why}  ({query})")
+    return [line.split(" ") for line in r.text().splitlines() if line.strip()]
+
+
+def wayback(source: str, cfg: dict):
+    """-> one batch per page of the CDX index: every document the archive holds a good capture of.
+
+    `collapse=urlkey` asks for one capture per URL rather than every visit the crawler ever made, which
+    is the difference between a few thousand rows and a few hundred thousand.
+    """
+    domain, types = cfg["domain"], cfg.get("types", ["application/pdf"])
+    common = [("url", domain), ("matchType", "domain"), ("collapse", "urlkey"),
+              ("filter", "statuscode:200"), ("filter", f"mimetype:({'|'.join(types)})")]
+
+    def lister(delay: float, limit: int = 0):
+        # `showNumPages` counts the index's own blocks, before the filters: a page of it can yield
+        # anything from nothing to everything, and the count is only there to say when to stop.
+        pages = int(_cdx(common + [("showNumPages", "true")], delay)[0][0])
+        print(f"{domain}: {pages} pages of CDX index", file=sys.stderr)
+        for n in range(pages):
+            rows = _cdx(common + [("fl", "original,timestamp,length"), ("page", str(n))], delay)
+            batch = [{"url": REPLAY.format(stamp=stamp, url=original), "title": _title_of(original),
+                      "kind": cfg.get("kind", "schematic"), "origin": cfg.get("origin", "factory"),
+                      "page": original, "archived": stamp, "bytes": int(size) if size.isdigit() else 0,
+                      "source": source}
+                     for original, stamp, size in (r for r in rows if len(r) == 3)]
+            if batch:
+                yield batch
+            print(f"  page {n + 1}/{pages}: {len(batch)}", file=sys.stderr)
+            if limit and n + 1 >= limit:
+                return
+
+    return lister
+
+
 LISTERS = {"audiocircuit": audiocircuit}
+
+
+def lister_for(source: str):
+    """The lister written for this source, or the one the Wayback Machine gives every dead site."""
+    if source in LISTERS:
+        return LISTERS[source]
+    cfg = registry_entry(source).get("wayback")
+    if cfg is None:
+        raise SystemExit(f"no lister for {source}: it needs one in LISTERS or a `wayback:` block")
+    return wayback(source, cfg)
 
 
 def append_new(source: str, rows: list[dict], dry: bool = False) -> int:
@@ -111,16 +172,16 @@ def append_new(source: str, rows: list[dict], dry: bool = False) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="pidx schematics list", description=__doc__.splitlines()[0])
-    ap.add_argument("--source", action="append", required=True, help=f"one of: {', '.join(LISTERS)}")
+    ap.add_argument("--source", action="append", required=True,
+                    help=f"one of: {', '.join(LISTERS)}, or any source with a `wayback:` block")
     ap.add_argument("--limit", type=int, default=0, help="at most this many listing pages fetched")
     ap.add_argument("--delay", type=float, default=http.DELAY, help="seconds between two requests to one host")
     ap.add_argument("--dry", action="store_true", help="say what would be added and add nothing")
     a = ap.parse_args(argv)
     for source in a.source:
-        if source not in LISTERS:
-            raise SystemExit(f"no lister for {source}; there is one for {', '.join(LISTERS)}")
+        lister = lister_for(source)
         listed = added = 0
-        for batch in LISTERS[source](a.delay, a.limit):
+        for batch in lister(a.delay, a.limit):
             listed += len(batch)
             added += append_new(source, batch, a.dry)          # saved as each brand finishes, not at the end
         print(f"{source}: {listed} files listed, {added} of them new{' (dry)' if a.dry else ''}")

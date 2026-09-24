@@ -214,6 +214,14 @@ electronics_world_us:
   title: Electronics World
   home_url: https://www.worldradiohistory.com/
   status: active
+electronicsrevived:
+  kind: reference
+  title: ElectronicsRevived (dead; nothing archived)
+  home_url: https://web.archive.org/web/2026/http://electronicsrevived.com/
+  status: excluded
+  notes: 'The EEVblog manual archive of 12,000 files, gone. What the Wayback Machine kept is 111 HTML
+    pages and two PDFs: the crawler walked the index and never followed it to the manuals. Checked on
+    2026-09-24 against the CDX index. Nothing to recover, and no reason to look again.'
 electrosmash:
   kind: site
   title: ElectroSmash (MAS Effects mirror / Wayback)
@@ -294,12 +302,37 @@ ggg:
   title: General Guitar Gadgets
   home_url: https://generalguitargadgets.com/
   status: active
+givemefile:
+  kind: reference
+  title: GiveMeFile (dead; files unnamed)
+  home_url: https://web.archive.org/web/2015/http://givemefile.net/
+  status: proposed
+  notes: 'Dead since 2015. 158,587 archived URLs, of which 156,680 are HTML and 1,096 are ZIP — and every
+    zip is behind download.php?id=236422312, so nothing says what any of them holds without fetching all
+    1,096 first. Left proposed rather than excluded: the answer is a gamble, not a certainty. Checked on
+    2026-09-24 against the CDX index.'
 groupdiy_threads:
   kind: forum
   title: GroupDIY
   home_url: https://groupdiy.com/
   status: excluded
   blocked_reason: user forums are out of scope
+guitarwork:
+  kind: reference
+  title: Guitarwork.ru (dead; Wayback copy)
+  home_url: https://web.archive.org/web/2026/http://guitarwork.ru/
+  status: active
+  list:
+    role: schematic
+  wayback:
+    domain: guitarwork.ru
+    kind: schematic
+    origin: community
+    types: [image/jpeg, image/gif]
+  notes: 'Guitar amplifier schematics, last captured June 2026. It published no PDFs at all: of its
+    5,541 archived URLs, 1,470 are JPEG and they are the schematics themselves — Marshall JCM 800 2204,
+    Ampeg V4 Preamp, Gibson Maestro GA-78RV. The download stage''s floor on image size drops the
+    furniture.'
 gyraf:
   kind: site
   title: Gyraf Audio DIY
@@ -323,6 +356,20 @@ hobbyist_specials:
   title: Hobbyist specials
   home_url: https://www.worldradiohistory.com/
   status: active
+kallhovde:
+  kind: factory
+  title: Kallhovde (dead; Wayback copy)
+  home_url: https://web.archive.org/web/2026/http://www.kallhovde.com/
+  status: active
+  list:
+    role: service_manual
+  wayback:
+    domain: kallhovde.com
+    kind: service_manual
+    origin: factory
+  notes: 'A mirror of Pioneer and other hi-fi service documents, last captured June 2026. The CDX index
+    on 2026-09-24 holds 1,258 PDFs, one good capture each — of the five dead sites, the only one whose
+    documents the archive actually kept.'
 keithsnook:
   kind: site
   title: Keith Snook — Wireless World articles
@@ -622,6 +669,13 @@ schematicheaven:
   home_url: https://schematicheaven.net/
   status: active
   notes: '6 of 1,728 files fail: one 404, five do not serve a real PDF.'
+schematics_ca:
+  kind: reference
+  title: Schematics.ca (dead; nothing archived)
+  home_url: https://web.archive.org/web/2025/http://schematics.ca/
+  status: excluded
+  notes: 'Dead since March 2025. Of its 7,164 archived URLs, 6,783 are HTML and not one is a PDF; the
+    260 images left are the site''s own furniture. Checked on 2026-09-24 against the CDX index.'
 schematics_unlimited:
   kind: factory
   title: Schematics Unlimited
