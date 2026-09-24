@@ -15,6 +15,11 @@ new, which is how the site says there is no more.
 A dead site has no listing of its own, and asking it is how you learn it is dead. What it published is
 still readable in the Wayback Machine, and the CDX API will say what it held: a source with a `wayback:`
 block is listed from there instead, one row per document the archive holds a good capture of.
+
+A site that publishes a sitemap has already written the list, and a `sitemap:` block says to read it
+rather than walk the site. It is the polite way in and usually the complete one: TI names its own in
+robots.txt, and one of the files it points at holds 29,562 documents that no amount of crawling would
+have found, because nothing links to most of them from anywhere a crawler starts.
 """
 from __future__ import annotations
 
@@ -139,17 +144,60 @@ def wayback(source: str, cfg: dict):
     return lister
 
 
+SITEMAP_SIZE = 64 << 20         # an index of a large site, not a page
+SITEMAP_DEPTH = 3               # a sitemap index may point at sitemap indexes
+
+
+def _locs(url: str, delay: float, depth: int = SITEMAP_DEPTH) -> list[str]:
+    """Every URL a sitemap names, following the indexes that point at other sitemaps."""
+    r = http.get(url, delay=delay, timeout=CDX_TIMEOUT, max_bytes=SITEMAP_SIZE)
+    if not r.ok:
+        raise SystemExit(f"sitemap: {r.status} {r.why}  ({url})")
+    body = r.text()
+    found = SITEMAP_LOC.findall(body)
+    if "<sitemapindex" in body[:2000] and depth:
+        out: list[str] = []
+        for inner in found:
+            out += _locs(inner, delay, depth - 1)
+        return out
+    return found
+
+
+def sitemap(source: str, cfg: dict):
+    """-> one batch of rows, from the list the site publishes about itself.
+
+    `keep` is what makes this usable rather than indiscriminate. TI's literature sitemap names every
+    document it has, marketing bulletins and processor manuals included; the pattern says which families
+    hold a circuit — application notes, reference design guides, and the user guides of the evaluation
+    boards, which carry the board's own schematic.
+    """
+    keep = re.compile(cfg["keep"]) if cfg.get("keep") else None
+
+    def lister(delay: float, limit: int = 0):
+        locs = list(dict.fromkeys(_locs(cfg["url"], delay)))    # TI names a document in two of its sitemaps
+        print(f"{source}: {len(locs)} URLs in the sitemap", file=sys.stderr)
+        wanted = [u for u in locs if not keep or keep.search(u)]
+        print(f"  {len(wanted)} of them kept by `keep`", file=sys.stderr)
+        yield [{"url": u, "title": u.rsplit("/", 1)[-1].upper(), "kind": cfg.get("kind", "schematic"),
+                "origin": cfg.get("origin", "factory"), "page": u, "source": source}
+               for u in (wanted[:limit] if limit else wanted)]
+
+    return lister
+
+
 LISTERS = {"audiocircuit": audiocircuit}
 
 
 def lister_for(source: str):
-    """The lister written for this source, or the one the Wayback Machine gives every dead site."""
+    """The lister written for this source, or the one its own sitemap or the Wayback Machine gives."""
     if source in LISTERS:
         return LISTERS[source]
-    cfg = registry_entry(source).get("wayback")
-    if cfg is None:
-        raise SystemExit(f"no lister for {source}: it needs one in LISTERS or a `wayback:` block")
-    return wayback(source, cfg)
+    entry = registry_entry(source)
+    if entry.get("sitemap"):
+        return sitemap(source, entry["sitemap"])
+    if entry.get("wayback"):
+        return wayback(source, entry["wayback"])
+    raise SystemExit(f"no lister for {source}: it needs one in LISTERS, or a `sitemap:` or `wayback:` block")
 
 
 def append_new(source: str, rows: list[dict], dry: bool = False) -> int:

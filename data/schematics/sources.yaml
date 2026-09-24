@@ -766,18 +766,26 @@ thetubestore:
   home_url: https://www.thetubestore.com/
   status: active
 ti_appnotes:
-  kind: site
-  title: Texas Instruments application notes
-  home_url: https://www.ti.com/
-  status: proposed
-  notes: 'Application notes are schematics with real part numbers in them, and they are the natural
-    companion to the SPICE model pillar — the same vendor vouches for both. robots.txt allows the
-    document paths and asks for Crawl-delay 1. Verified on 2026-09-24: /lit/an/sboa117/sboa117.pdf
-    redirects to the current revision and answers 200 with 266 KB of PDF, so the documents are simply
-    served. The lister does not need their search, which robots does disallow: the Analog Engineer''s
-    Circuit Cookbook page alone carries 72 /lit/ links, and the product and reference-design pages carry
-    the rest. SBOA (op-amps), SLOA (audio), SBAA (data converters) and SLYT (design journal) are the
-    families worth taking.'
+  kind: factory
+  title: Texas Instruments application notes, reference designs and EVM guides
+  home_url: https://www.ti.com/design-development/analog-circuits.html
+  status: active
+  era: modern
+  list:
+    role: application_note
+  sitemap:
+    url: https://www.ti.com/lit/sitemapindex-standard.xml
+    keep: '/lit/pdf/(sboa|sbaa|sloa|snoa|snva|slva|slua|slyt|tidu|tidr|tidt|sbou|slou|sbau|snvu|sluu|sllu|slvu)[0-9]'
+    kind: application_note
+  notes: 'Application notes are schematics with real part numbers in them, and the same vendor vouches
+    for the SPICE models, which is what makes this the companion of pillar 2. robots.txt allows the
+    document paths, asks for Crawl-delay 1, and names the sitemap index that led here — /sitemap.xml is
+    a 404 and the real one is only written down in robots.txt. Read on 2026-09-24: the literature sitemap
+    holds 29,562 documents, of which `keep` takes 4,823 — 1,157 analog application notes (sboa amplifiers,
+    sbaa converters, sloa/snoa analog, snva/slva/slua power, slyt the design journal), 1,552 TIDA
+    reference design guides, and 2,114 evaluation-module user guides, which carry the board''s own
+    schematic. What is left out is marketing bulletins and the processor and wireless manuals. Their
+    search is disallowed and is not needed.'
 tonepad:
   kind: site
   title: Tonepad

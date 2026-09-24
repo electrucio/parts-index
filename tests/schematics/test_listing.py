@@ -105,3 +105,53 @@ def test_a_wayback_block_is_a_lister(monkeypatch):
     monkeypatch.setattr(listing, "registry_entry",
                         lambda source: {"wayback": {"domain": "kallhovde.com"}})
     assert callable(listing.lister_for("kallhovde"))
+
+
+INDEX = b"""<?xml version="1.0"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap><loc>https://ti.example/lit/pdf/sitemap-other.xml</loc></sitemap>
+</sitemapindex>"""
+LITS = b"""<?xml version="1.0"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://ti.example/lit/pdf/sboa269</loc></url>
+  <url><loc>https://ti.example/lit/pdf/tidu123</loc></url>
+  <url><loc>https://ti.example/lit/pdf/spra456</loc></url>
+  <url><loc>https://ti.example/lit/pdf/sszq789</loc></url>
+</urlset>"""
+
+
+class Site:
+    def __init__(self, pages):
+        self.pages, self.asked = pages, []
+
+    def get(self, url, **kw):
+        from parts_index.core.http import Response
+        self.asked.append(url)
+        return Response(200, url, "application/xml", self.pages[url])
+
+
+SITEMAPS = {"https://ti.example/lit/sitemapindex.xml": INDEX,
+            "https://ti.example/lit/pdf/sitemap-other.xml": LITS}
+
+
+def test_a_sitemap_index_is_followed_to_the_sitemaps_it_points_at(monkeypatch):
+    site = Site(SITEMAPS)
+    monkeypatch.setattr(listing.http, "get", site.get)
+    rows = [r for batch in listing.sitemap("ti", {"url": "https://ti.example/lit/sitemapindex.xml"})(delay=0)
+            for r in batch]
+    assert len(rows) == 4
+    assert site.asked == list(SITEMAPS)          # the index, then the sitemap it named
+
+
+def test_keep_says_which_families_hold_a_circuit(monkeypatch):
+    """TI's literature sitemap names marketing bulletins and processor manuals too."""
+    site = Site(SITEMAPS)
+    monkeypatch.setattr(listing.http, "get", site.get)
+    cfg = {"url": "https://ti.example/lit/sitemapindex.xml", "keep": r"/lit/pdf/(sboa|tidu)[0-9]"}
+    rows = [r for batch in listing.sitemap("ti", cfg)(delay=0) for r in batch]
+
+    assert [r["url"].rsplit("/", 1)[1] for r in rows] == ["sboa269", "tidu123"]
+    assert rows[0]["title"] == "SBOA269"
+
+
+def test_a_sitemap_block_is_a_lister(monkeypatch):
+    monkeypatch.setattr(listing, "registry_entry", lambda source: {"sitemap": {"url": "https://ti.example/s.xml"}})
+    assert callable(listing.lister_for("ti_appnotes"))
