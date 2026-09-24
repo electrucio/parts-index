@@ -155,3 +155,13 @@ def test_keep_says_which_families_hold_a_circuit(monkeypatch):
 def test_a_sitemap_block_is_a_lister(monkeypatch):
     monkeypatch.setattr(listing, "registry_entry", lambda source: {"sitemap": {"url": "https://ti.example/s.xml"}})
     assert callable(listing.lister_for("ti_appnotes"))
+
+
+def test_a_sitemap_served_as_a_gzip_file_is_unpacked(monkeypatch):
+    """vishay.com/sitemap.xml.gz arrives as the bytes it is, not as a content encoding."""
+    import gzip as _gzip
+    site = Site({"https://v.example/sitemap.xml.gz": _gzip.compress(LITS)})
+    monkeypatch.setattr(listing.http, "get", site.get)
+    rows = [r for batch in listing.sitemap("v", {"url": "https://v.example/sitemap.xml.gz"})(delay=0)
+            for r in batch]
+    assert len(rows) == 4

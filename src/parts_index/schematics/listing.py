@@ -24,6 +24,7 @@ have found, because nothing links to most of them from anywhere a crawler starts
 from __future__ import annotations
 
 import argparse
+import gzip
 import json
 import re
 import sys
@@ -149,11 +150,16 @@ SITEMAP_DEPTH = 3               # a sitemap index may point at sitemap indexes
 
 
 def _locs(url: str, delay: float, depth: int = SITEMAP_DEPTH) -> list[str]:
-    """Every URL a sitemap names, following the indexes that point at other sitemaps."""
+    """Every URL a sitemap names, following the indexes that point at other sitemaps.
+
+    Several sites serve theirs gzipped as a file rather than as an encoding — vishay.com/sitemap.xml.gz
+    — which arrives here as the bytes it is, so it is unpacked here rather than by the client.
+    """
     r = http.get(url, delay=delay, timeout=CDX_TIMEOUT, max_bytes=SITEMAP_SIZE)
     if not r.ok:
         raise SystemExit(f"sitemap: {r.status} {r.why}  ({url})")
-    body = r.text()
+    body = (gzip.decompress(r.body).decode("utf-8", "replace")
+            if r.body[:2] == b"\x1f\x8b" else r.text())
     found = SITEMAP_LOC.findall(body)
     if "<sitemapindex" in body[:2000] and depth:
         out: list[str] = []
