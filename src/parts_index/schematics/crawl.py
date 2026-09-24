@@ -56,6 +56,10 @@ BLOGGER_SIZE = re.compile(r"/(s\d{2,4}|w\d+-h\d+)(-[a-z]+)?/")
 # the page was saved as MHTML and served as .htm: its quoted-printable `src=3D"http://..."` parses into a
 # value that still carries the quote. See `resolved`.
 MALFORMED = re.compile(r'["<>]')
+# A directory is never called this. A path segment that is, was a hostname before a relative join ate it.
+HOSTLIKE = re.compile(r"(?i)^(?:[a-z0-9-]+\.)+(?:com|net|org|edu|gov|info|biz|io|uk|de|dk|se|no|fi|nl|fr|it|es|"
+                      r"pl|ru|jp|ca|au|nz|ch|at|be|cz|hu|pt|gr|tv|me|us)$")
+LOOPS = 3                 # how many times one path segment may appear before the path is a circle
 MIN_WIDTH = 120           # a page that says an image is narrower than this is showing a thumbnail
 MIN_IMAGE = 900           # line art is small: the floor is lower here than for a blog's photographs
 SAVE_EVERY = 25
@@ -104,14 +108,32 @@ def without_fragment(url: str) -> str:
     return urldefrag(url)[0]
 
 
-def resolved(base: str, href: str) -> str:
-    """Where a link points, absolute and without its fragment, or "" when it can point nowhere.
+def unusable(url: str) -> str:
+    """Why no server can answer this URL, or "" when one might.
 
-    A URL that no server can answer still costs a crawl its time: four attempts and, with the back-off
+    A URL that cannot be answered still costs a crawl its time: four attempts and, with the back-off
     between them, three minutes of the one turn its host gets. sm0vpo spent an hour on twelve of them.
+    Worse are the ones a site makes more of as you follow them. muzique.com writes some of its links
+    without a scheme — `www.muzique.com/news/` — so joining one to the page it is on buries a hostname
+    in the path, and the page that comes back carries the same link again. Four thousand of its six
+    thousand rows are that one circle, widening by a segment each time round.
     """
+    if MALFORMED.search(url):
+        return "malformed url"
+    path = urlparse(url).path
+    segments = [p for p in path.split("/") if p]
+    named = segments[:-1] if segments and not path.endswith("/") else segments   # the last may be a file
+    if any(HOSTLIKE.match(p) for p in named):
+        return "link written without its scheme"
+    if any(segments.count(p) >= LOOPS for p in segments):
+        return "the path goes round in a circle"
+    return ""
+
+
+def resolved(base: str, href: str) -> str:
+    """Where a link points, absolute and without its fragment, or "" when nowhere. See `unusable`."""
     url = without_fragment(urljoin(base, href))
-    return "" if MALFORMED.search(url) else url
+    return "" if unusable(url) else url
 
 
 def same_page(url: str) -> str:
@@ -202,8 +224,8 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
                     led.row(url)["crawl_at"] = today()
                     led.dirty = True
                 continue
-            if MALFORMED.search(url):        # queued by a run from before `resolved` existed
-                led.skip(url, "malformed url")
+            if reason := unusable(url):      # queued by a run from before `resolved` refused it
+                led.skip(url, reason)
                 continue
             seen.add(same_page(url))
             body, spent = body_of(job, source, url)

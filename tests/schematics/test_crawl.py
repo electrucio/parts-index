@@ -244,3 +244,29 @@ def test_one_page_spelled_two_ways_is_walked_once_and_both_rows_say_so(site, mon
     again = Ledger(config.schematics_state("tubecad"))
     assert again.get("http://tc.example/2024/aikido.html")["crawl_at"]          # and now both rows say so
     assert C.frontier(again) == []
+
+
+TRAP = b"""<html><title>News</title><body>
+  <a href="www.tubecad.com/news/">News</a>
+  <a href="/2024/aikido.html">Aikido</a>
+</body></html>"""
+
+
+def test_a_link_written_without_its_scheme_does_not_become_a_circle(site, monkeypatch):
+    """muzique.com writes some links as `www.muzique.com/news/`, and joining one buries a hostname in
+    the path. The page that comes back carries the same link, a segment deeper, for ever: 3,937 of its
+    6,340 rows were that one circle."""
+    answers = dict(ANSWERS)
+    answers["https://tc.example/"] = Response(200, "https://tc.example/", "text/html", TRAP)
+    server = serve(monkeypatch, answers)
+    C.crawl("tubecad", log=lambda *a: None)
+
+    assert not [u for u in server.asked if "tc.example/www.tubecad.com" in u]
+    assert "https://tc.example/2024/aikido.html" in server.asked       # the sound link on the page still counts
+
+
+def test_a_path_that_repeats_itself_is_read_as_a_circle():
+    assert C.unusable("https://x.example/news/a/news/b/news/") == "the path goes round in a circle"
+    assert C.unusable("https://x.example/news/a/news/b/") == ""            # twice is a site, not a trap
+    assert C.unusable("https://x.example/files/setup.com") == ""           # a file may be called that
+    assert C.unusable("https://x.example/www.other.com/files/") == "link written without its scheme"
