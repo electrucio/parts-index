@@ -62,7 +62,8 @@ HOSTLIKE = re.compile(r"(?i)^(?:[a-z0-9-]+\.)+(?:com|net|org|edu|gov|info|biz|io
 LOOPS = 3                 # how many times one path segment may appear before the path is a circle
 MIN_WIDTH = 120           # a page that says an image is narrower than this is showing a thumbnail
 MIN_IMAGE = 900           # line art is small: the floor is lower here than for a blog's photographs
-SAVE_EVERY = 25
+SAVE_EVERY = 25           # pages between saves of the ledger
+SAVE_ITEMS = 200          # ... or files, for a site whose every page is a list of hundreds
 
 
 class _Page(HTMLParser):
@@ -209,7 +210,7 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
         queued.add(same_page(url))
         remember(led, url)
         queue.appendleft(url) if first else queue.append(url)
-    read = fetched = 0
+    read = fetched = saved = 0
     log(f"{source}: {len(waiting)} pages waiting from last time, {len(seen)} already walked, "
         f"{len(led)} rows in the ledger{f', budget {budget} pages' if budget else ''}")
 
@@ -276,7 +277,12 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
 
             led.row(url)["crawl_at"] = today()       # its links are in the ledger now; never ask again
             led.dirty = True
-            if read % SAVE_EVERY == 0:
+            # Counting pages alone is no measure of how much a run would lose. radiomanual answers a
+            # page with a list of hundreds of manuals, and had fetched 3,003 files over 18 GB before it
+            # reached the twenty-fifth page and first wrote any of them down.
+            taken = sum(job.counts.values())
+            if read % SAVE_EVERY == 0 or taken - saved >= SAVE_ITEMS:
+                saved = taken
                 led.save()
                 log(f"  {read} pages read, {len(queue)} queued  {summary(job.counts)}")
     finally:

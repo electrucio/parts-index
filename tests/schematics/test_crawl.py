@@ -270,3 +270,24 @@ def test_a_path_that_repeats_itself_is_read_as_a_circle():
     assert C.unusable("https://x.example/news/a/news/b/") == ""            # twice is a site, not a trap
     assert C.unusable("https://x.example/files/setup.com") == ""           # a file may be called that
     assert C.unusable("https://x.example/www.other.com/files/") == "link written without its scheme"
+
+
+def test_the_ledger_is_saved_by_files_taken_as_well_as_pages(site, monkeypatch):
+    """radiomanual answers one page with a list of hundreds: it had 3,003 files and 18 GB on disk
+    before it reached the twenty-fifth page and first wrote any of them down."""
+    links = b"<html><title>List</title><body>" + b"".join(
+        f'<a href="/2024/m{n}.pdf">m{n}</a>'.encode() for n in range(C.SAVE_ITEMS + 10)) + b"</body></html>"
+    answers = {"https://tc.example/": Response(200, "https://tc.example/", "text/html", links)}
+    answers |= {f"https://tc.example/2024/m{n}.pdf":
+                Response(200, f"https://tc.example/2024/m{n}.pdf", "application/pdf", PDF)
+                for n in range(C.SAVE_ITEMS + 10)}
+    serve(monkeypatch, answers)
+
+    saves = []
+    real_save = Ledger.save
+    monkeypatch.setattr(Ledger, "save", lambda self: saves.append(len(self)) or real_save(self))
+
+    C.crawl("tubecad", budget=1, log=lambda *a: None)
+
+    assert len(saves) > 1                    # written down during the page, not only when the run ended
+    assert saves[0] > C.SAVE_ITEMS           # and what it held by then was already on disk
