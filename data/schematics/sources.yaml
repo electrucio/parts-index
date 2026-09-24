@@ -773,10 +773,14 @@ xdevs:
     start:
     - https://xdevs.com/
     allow: ^/(article|fix|review|guide|teardown)/
+    figures: false
     max: 400
     complete: false
-  notes: Crawl stopped part-way on 2026-09-20 (very long articles with many photographs). Re-running resumes where it left
-    off.
+  notes: 'Teardowns and repairs of test gear, each article a long photo essay. The schematics are in
+    the service manuals it links, not in the photographs: of the first 29.9 GB taken, 27.9 GB were
+    11,336 JPEGs of instrument internals — 123 of them had anything circuit-like in the name — and
+    2.0 GB were the 668 PDFs that are the point. `figures: false` leaves the photographs where they
+    are; it is the one source here whose drawings are not images.'
 yusynth:
   kind: site
   title: YuSynth — Yves Usson
