@@ -71,10 +71,13 @@ archive_instruments:
   title: Test and instrumentation manuals (bitsavers mirror on archive.org)
   home_url: https://archive.org/details/bitsavers
   status: proposed
-  notes: 'Oscilloscope, generator and meter manuals: discrete analogue design, thoroughly archived, sharing
-    almost all of its vocabulary with audio. 565 Tektronix items on 2026-09-22. Go through the archive.org
-    mirror, never bitsavers.org directly — that host answers 403 to robots.txt, which core.http reads as
-    "everything disallowed", and it is right to.'
+  notes: 'Oscilloscope, generator and meter manuals: discrete analogue design, thoroughly archived,
+    sharing almost all of its vocabulary with audio. 565 Tektronix items on 2026-09-22. The claim that
+    bitsavers.org must be avoided was wrong on both halves and is corrected here on 2026-09-24: it
+    answers 301 to robots.txt, not 403, and serves an 84 MB databook at 200 — and a non-200 robots.txt
+    does not mean "disallowed" anyway. RFC 9309 leaves a crawler free after a 4xx, and core.http already
+    parses any non-200 reply as an empty robots.txt, which allows everything. Either host will do; the
+    archive.org mirror is still the kinder one, being built to be read by machines.'
 archive_service_manuals:
   kind: factory
   title: Service manuals on archive.org
@@ -466,10 +469,12 @@ onsemi_appnotes:
   title: onsemi application notes
   home_url: https://www.onsemi.com/
   status: blocked
-  blocked_reason: 'robots.txt answers 403, which means no permission can be read; treated as disallowed'
-  notes: 'Their model files are already held through data/models/sources/onsemi.yaml, fetched from the
-    download paths their own product pages point at. The web documents are a different matter and stay
-    out until robots.txt can be read. Reach the same devices through archive_databooks instead.'
+  blocked_reason: 'their WAF answers 403 to this machine, for robots.txt and for documents alike'
+  notes: 'Corrected on 2026-09-24. The 403 on robots.txt is not a refusal of permission: RFC 9309 says a
+    4xx there leaves a crawler free, and core.http agrees — a reply that is not 200 is parsed as an empty
+    robots.txt, which allows everything. What blocks us is the same 403 on the documents themselves
+    (AND8177-D.PDF), so this is a technical block on this IP, not a policy one, and a browser on another
+    network may well be served. Their model files are already held through data/models/sources/onsemi.yaml.'
 passdiy:
   kind: site
   title: Pass DIY
@@ -766,9 +771,13 @@ ti_appnotes:
   home_url: https://www.ti.com/
   status: proposed
   notes: 'Application notes are schematics with real part numbers in them, and they are the natural
-    companion to the SPICE model pillar — the same vendor vouches for both. robots.txt on 2026-09-22
-    allows the document paths and asks for Crawl-delay 1. Needs a lister: there is no sitemap of notes,
-    so it goes through the product pages or the search index.'
+    companion to the SPICE model pillar — the same vendor vouches for both. robots.txt allows the
+    document paths and asks for Crawl-delay 1. Verified on 2026-09-24: /lit/an/sboa117/sboa117.pdf
+    redirects to the current revision and answers 200 with 266 KB of PDF, so the documents are simply
+    served. The lister does not need their search, which robots does disallow: the Analog Engineer''s
+    Circuit Cookbook page alone carries 72 /lit/ links, and the product and reference-design pages carry
+    the rest. SBOA (op-amps), SLOA (audio), SBAA (data converters) and SLYT (design journal) are the
+    families worth taking.'
 tonepad:
   kind: site
   title: Tonepad
