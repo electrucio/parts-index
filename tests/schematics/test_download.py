@@ -247,3 +247,18 @@ def test_a_run_says_what_the_list_holds_that_it_did_not_fetch(site, monkeypatch)
 
     assert out["left"] == 2
     assert "2 of the list still to fetch" in said[-1]
+
+
+def test_a_file_over_the_cap_is_refused_once_and_not_fetched_again(site, monkeypatch):
+    """A file does not shrink. Finding out costs the cap in bytes, so it is asked for once: six
+    radiomanual scans were 720 MB a pass, downloaded to the limit and thrown away every run."""
+    url = "https://ac.example/huge.pdf"
+    write_list("audiocircuit", [{"url": url}])
+    over = Response(200, url, "application/pdf", b"", why="larger than max_bytes")
+    server = serve(monkeypatch, {url: over})
+
+    D.run("audiocircuit", log=lambda *a: None)
+    assert ledger("audiocircuit").get(url)["skip_reason"] == "larger than 120 MB"
+
+    D.run("audiocircuit", log=lambda *a: None)
+    assert server.asked == [url]            # asked for once, ever

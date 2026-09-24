@@ -194,9 +194,13 @@ class Downloader:
             return self._skip(url, role, "robots.txt", r)
         if r.status in PERMANENT:
             return self._skip(url, role, f"http {r.status}", r)
+        if r.why == "larger than max_bytes":
+            # Nothing about this will be different next time, and finding out costs the cap in bytes
+            # every run: six radiomanual scans were 720 MB a pass, fetched and thrown away each time.
+            return self._skip(url, role, f"larger than {http.MAX_BYTES >> 20} MB", r)
         if not r.ok:
             self.counts["try again next run"] += 1      # transient: no stamp, so the next run retries it
-            self.log(f"  later: {r.status or r.why}  {url}")
+            self.log(f"  later: {r.why or r.status}  {url}")
             return "", b""
 
         kind = r.kind or ("html" if MARKUP.search(r.body[:20000]) else "")
