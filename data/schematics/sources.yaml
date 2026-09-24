@@ -583,12 +583,16 @@ radiomanual:
     start:
     - https://www.radiomanual.eu/schemari.html
     allow: '^/schemi/'
-    deny: '^/schemi/(transito|ManualExchange)/'
+    deny: '(?i)^/schemi/(transito|ManualExchange)/|_(user|broch|review|leaflet|catalog|advert|quick|installation|preparations|getting)[_0-9.]'
     max: 0
     complete: false
-  notes: 'Amateur and commercial radio manuals. Checked 2026-09-23: the index at schemari.html is where the
-    collection hangs from. robots.txt keeps /tobepublished/ and two staging folders out, and the deny
-    pattern says the same thing so it is visible in the registry.'
+  notes: 'Amateur and commercial radio manuals. The index at schemari.html is where the collection
+    hangs from. robots.txt keeps /tobepublished/ and two staging folders out, and the deny pattern
+    says the same thing so it is visible here. It also refuses everything that holds no schematic,
+    which on this site is most of it: of the first 3,247 files taken, 1,603 were user manuals and
+    12.0 GB of the 17.5 had no circuit in them at all. The site keeps each manual in every language
+    it has — FT-991_user in six, 208 MB of one document — and the scans are colour and uncompressed.
+    Only the service manuals, schematics and adjustment procedures are wanted: 902 files, 5.5 GB.'
 redcircuits:
   kind: site
   title: RED Free Circuit Designs
