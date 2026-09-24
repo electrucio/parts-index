@@ -114,6 +114,9 @@ schematics-ocr-docker:  ## (maintainer) the same inside the CUDA image, one shar
 schematics-verify:  ## (maintainer) find documents lost before anything read them; REPAIR=1 fetches them back
 	$(RUN) pidx schematics verify $(if $(SOURCE),$(foreach s,$(SOURCE),--source $(s)),) $(if $(REPAIR),--repair,)
 
+schematics-prune:  ## (maintainer) drop what a source's rules no longer want; [SOURCE='a b'] [DRY=1]
+	$(RUN) pidx schematics prune $(foreach s,$(SOURCE),--source $(s)) $(if $(DRY),--dry,)
+
 schematics-reindex:  ## (maintainer) read the corpus again with the current extractor; [SOURCE='a b'] [WORKERS=n]
 	uv run pidx schematics reindex $(foreach s,$(SOURCE),--source $(s)) $(if $(WORKERS),--workers $(WORKERS)) $(if $(LIMIT),--limit $(LIMIT)) $(if $(DRY),--dry)
 

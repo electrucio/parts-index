@@ -88,6 +88,9 @@ def main(argv: list[str] | None = None) -> int:
     sv.add_argument("--retry", action="append", metavar="REASON",
                     help="first forget refusals recorded under this reason (repeatable)")
     sv.add_argument("--limit", type=int, default=0, help="at most this many repairs")
+    sp = sch.add_parser("prune", help="drop what a source's rules no longer want, and say it was on purpose")
+    sp.add_argument("--source", action="append", help="only these sources (repeatable)")
+    sp.add_argument("--dry", action="store_true", help="say what would go and delete nothing")
     sr = sch.add_parser("reindex", help="read the corpus again with the current extractor, from the OCR on disk")
     sr.add_argument("--source", action="append", help="only these sources (repeatable)")
     sr.add_argument("--limit", type=int, default=0, help="at most this many documents")
@@ -254,6 +257,12 @@ def main(argv: list[str] | None = None) -> int:
         argv2 += ["--repair"] if args.repair else []
         argv2 += ["--limit", str(args.limit)] if args.limit else []
         return sch_verify.main(argv2)
+
+    if args.cmd == "schematics" and args.sch_cmd == "prune":
+        from parts_index.schematics import prune as sch_prune
+        argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
+        argv2 += ["--dry"] if args.dry else []
+        return sch_prune.main(argv2)
 
     if args.cmd == "schematics" and args.sch_cmd == "reindex":
         from parts_index.schematics import reindex as sch_reindex
