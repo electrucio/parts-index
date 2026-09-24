@@ -60,9 +60,10 @@ FRANK_INDEX = re.compile(r'href="(sheets[0-9A-Za-z]+\.html)"')
 FRANK_SHEET = re.compile(r'href="(sheets/[^"]+/([^"/]+)\.pdf)"', re.I)
 
 
-def _frank_seeds(entry: dict) -> list[str]:
+def _frank(entry: dict):
     base = entry["index_url"]
-    return [urljoin(base, f"sheets{c}.html") for c in "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
+    seeds = [urljoin(base, f"sheets{c}.html") for c in "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
+    return seeds, _frank_more, _frank_entries
 
 
 def _frank_more(url: str, html: str) -> list[str]:
@@ -168,28 +169,43 @@ def spice_definitions_entries(entry: dict) -> list[Entry]:
 # It says which parts exist and nothing about what they are, so every entry is "semiconductor", which is
 # generic on purpose: it agrees with any family but a valve. A list of TI's catalogue must never be what
 # settles a token the valve family claimed.
-GPN = re.compile(r"<loc>\s*(https?://[^<\s]*?/lit/gpn/([^<\s/]+))\s*</loc>", re.I)
+LOC = re.compile(r"<loc>\s*([^<\s]+)\s*</loc>", re.I)
 
 
-def _gpn_seeds(entry: dict) -> list[str]:
-    return [entry["index_url"]]
+def _catalogue(entry: dict):
+    """A manufacturer's own list of its own parts, published as a sitemap.
 
+    `part_from` is the whole configuration: a pattern read against each URL the sitemap names, whose
+    first group is the type number. TI writes /lit/gpn/OPA1612; Renesas writes
+    /products/isl6388/part-details/isl6388irtz-t, where the type is the folder and the tail is one
+    orderable variant of it. Anything the pattern does not match is not a part, which is what keeps a
+    site's news and support pages out.
+    """
+    want = re.compile(entry["part_from"], re.I)
+    kind = entry.get("part_kind", "semiconductor")
 
-def _gpn_entries(url: str, xml: str) -> list[Entry]:
-    out = []
-    for href, name in GPN.findall(xml):
-        part = unquote(name).strip()
-        if part:
-            out.append(Entry(part, "semiconductor", href))
-    return out
+    def more(url: str, xml: str) -> list[str]:
+        # An index of sitemaps: Renesas cuts its catalogue into 117 of them.
+        return LOC.findall(xml) if "<sitemapindex" in xml[:2000] else []
+
+    def entries(url: str, xml: str) -> list[Entry]:
+        out = []
+        for loc in LOC.findall(xml):
+            m = want.search(loc)
+            if m and m.group(1):
+                out.append(Entry(unquote(m.group(1)).strip().upper(), kind, loc))
+        return out
+
+    return [entry["index_url"]], more, entries
 
 
 LOCAL_ADAPTERS = {"spice_definitions": spice_definitions_entries}
 
 
 ADAPTERS = {
-    "frank_pocnet": (_frank_seeds, _frank_more, _frank_entries),
-    "ti_datasheets": (_gpn_seeds, lambda url, xml: [], _gpn_entries),
+    "frank_pocnet": _frank,
+    "ti_datasheets": _catalogue,
+    "renesas_products": _catalogue,
 }
 
 
@@ -220,9 +236,9 @@ def read_source(source: str, *, fetch: bool = True, limit: int = 0, delay: float
     entry = registry()[source]
     if source in LOCAL_ADAPTERS:
         return LOCAL_ADAPTERS[source](entry)              # already here: nothing to fetch, nothing to cache
-    seeds, more, parse = ADAPTERS[source]
+    seeds, more, parse = ADAPTERS[source](entry)
     led = Ledger(census_state(source), stages=CENSUS_STAGES, fields=CENSUS_FIELDS, versioned=CENSUS_VERSIONED)
-    queue, seen, fetched, found = list(seeds(entry)), set(), 0, []
+    queue, seen, fetched, found = list(seeds), set(), 0, []
     while queue:
         url = queue.pop(0)
         if url in seen or led.get(url) and led.get(url)["skip_reason"]:

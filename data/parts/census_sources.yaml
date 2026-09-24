@@ -39,6 +39,7 @@ ti_datasheets:
   title: Texas Instruments data sheets, one per part
   home_url: https://www.ti.com/
   index_url: https://www.ti.com/lit/gpn/sitemap-datasheets-standard.xml
+  part_from: '/lit/gpn/([^/?#]+)$'
   covers: ic, opamp, adc, dac, regulator, mosfet, bjt, diode
   status: active
   notes: 'A manufacturer had to be complete about its own catalogue, which is what this census asks of a
@@ -50,3 +51,18 @@ ti_datasheets:
     full of ADS7822 and ADS1286 yielded no parts at all. Every entry is "semiconductor" because the
     sitemap says which parts exist and not what they are; that kind is generic on purpose and agrees
     with any family but a valve.'
+renesas_products:
+  kind: manufacturer catalogue
+  title: Renesas product catalogue, including the Intersil analogue legacy
+  home_url: https://www.renesas.com/
+  index_url: https://www.renesas.com/sitemap.xml
+  part_from: '/products/([^/]+)/part-details/'
+  covers: ic, opamp, adc, dac, regulator, mosfet
+  status: active
+  notes: 'The second manufacturer asked for its own catalogue, and the first that had to be asked
+    twice: its sitemap is an index of 117, and the type number is the folder a part page sits in —
+    /products/isl6388/part-details/isl6388irtz-t is one orderable variant of ISL6388. Renesas absorbed
+    Intersil, so this is where a great deal of analogue silicon from the 1990s onward is catalogued and
+    still supported. robots.txt names ClaudeBot and anthropic-ai and allows them both, with a policy at
+    renesas.com/llms.txt: of every manufacturer checked on 2026-09-24 it is the only one that says yes
+    to this by name.'
