@@ -117,6 +117,16 @@ books:
   notes: '50 of 78 are indexed: 23 link to a page of a public PDF, 11 to the archive.org page, 16 to its search inside. The
     other 28 keep their OCR but are not indexed, because their only URL is a publisher''s landing page, which the reader cannot
     check on the spot.'
+ci2n_figures:
+  kind: reference
+  title: Figures from the CI2N dataset, credited to their papers
+  home_url: https://github.com/LAD021/ci2n_datasets
+  status: active
+  notes: 'Hand-added on 2026-09-24, one figure. The dataset annotates no text, so 200 of its images whose
+    Labelme imagePath names the source paper were read with the project OCR; one real part number came out
+    (2SC5007) and was checked by eye. The document is the paper, by the DOI Crossref gave for the title;
+    its page links to the figure in the dataset repository, pinned to a commit, because that is where a
+    reader sees the part. Not worth reading the rest: see data/datasets/registry.yaml.'
 dirtbox:
   kind: site
   title: Dirtbox Layouts

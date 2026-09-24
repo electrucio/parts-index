@@ -41,6 +41,14 @@ datasets:
   netlist: 122 verified
   ground_truth: high, hand-made
   note: its 122 golden netlists are the only hand-verified connectivity in any of these
+  part_numbers_checked: '2026-09-24. No text is annotated, so 200 images whose Labelme `imagePath` names
+    the source paper (745 of the 2,269 do, 275 papers, resolvable to a DOI through Crossref) were read with
+    the project OCR (PP-OCRv5, upscaled to 1,600 px) and passed through the extractor: one real part number
+    in 200 images (2SC5007, in doi:10.1109/rfit.2017.8048225), three false hits. The figures are IC-design
+    work labelled M1, Q1; not worth reading the rest. Masala-CHAI and AMSNet 1.0 were looked at the same day:
+    AMSNet has no part numbers and no per-circuit provenance; Masala-CHAI text names about 30, all but six
+    already in the index, written by an LLM (one of two checked did not match its figure) and with no public
+    URL for the image.'
   clone: https://github.com/LAD021/ci2n_datasets
 - id: amsnet_v1
   name: AMSNet 1.0
