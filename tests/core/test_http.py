@@ -20,8 +20,9 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         body, status, headers = b"not found", 404, {}
         if self.path == "/robots.txt":
-            body, status = b"User-agent: *\nDisallow: /private/\n", 200
-        elif self.path in ("/doc.pdf", "/private/doc.pdf"):
+            body, status = (b"User-agent: anthropic-ai\nUser-agent: Claude-User\nDisallow: /noai/\n\n"
+                            b"User-agent: *\nDisallow: /private/\n"), 200
+        elif self.path in ("/doc.pdf", "/private/doc.pdf", "/noai/doc.pdf"):
             body, status = PDF, 200
         elif self.path == "/named":
             body, status, headers = PDF, 200, {"Content-Disposition": 'attachment; filename="TL072_model.zip"'}
@@ -123,3 +124,15 @@ def test_contact_goes_in_the_user_agent_from_the_environment(monkeypatch):
     assert "@" not in http.user_agent()
     monkeypatch.setenv("PIDX_CONTACT", "https://example.org/about")
     assert http.user_agent().endswith("(parts-index; https://example.org/about)") and http.user_agent(None) is None
+
+
+def test_a_rule_written_for_an_ai_agent_is_a_rule_about_this(base):
+    """robots.txt is how a site says who may read it. A rule for Claude-User is about an AI agent
+    fetching at a person's request, which is what this is — and reading only the `*` group reads the
+    wrong half. wiki.analog.com allows `*` everything but /_export/ and disallows every Claude name
+    outright; `allowed()` said True until this existed."""
+    http._robots.clear()
+    assert http.allowed(f"{base}/doc.pdf")
+    assert not http.allowed(f"{base}/noai/doc.pdf")          # named for us, not for `*`
+    assert not http.allowed(f"{base}/private/doc.pdf")       # and `*` is still read
+    assert not http.get(f"{base}/noai/doc.pdf", delay=0).ok

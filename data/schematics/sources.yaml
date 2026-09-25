@@ -27,6 +27,25 @@ abeltronics:
     complete: true
   notes: 'Crawled to the end on 2026-09-25: 92 pages, 31 PDFs and 467 photographs. The /diagrams.php
     the catalogue named is a 404; what it has hangs off /products/ and /pdf/.'
+adi_wiki_eval:
+  kind: factory
+  title: Analog Devices eval-board wiki (evaluation board schematics and user guides)
+  home_url: https://wiki.analog.com/resources/eval/user-guides/
+  status: blocked
+  era: modern
+  blocked_reason: 'its robots.txt disallows every Claude and AI agent name outright, while allowing *'
+  notes: 'A clean index of ADI evaluation boards, each with its schematic, BOM and layout — the modern
+    analogue material this corpus is emptiest in, and exactly what the reference-design plan wanted.
+
+    It is refused, and refused in the one place a site has for saying so. Its robots.txt gives
+    `User-agent: *` everything but /_export/, and then names anthropic-ai, ClaudeBot, Claude-Web,
+    Claude-User, Claude-SearchBot, GPTBot, CCBot, PerplexityBot and twenty more with `Disallow: /`.
+    That is not a complaint about pace, which rule 3 now tells apart: it is a site allowing ordinary
+    crawlers and refusing this kind of reader by name, and no delay makes it into a yes.
+
+    Checked on 2026-09-25. Worth re-reading in a year — a robots.txt is a sentence, not a law, and
+    sites change theirs. analog.com itself is a separate matter: it does not answer this machine at
+    all (HTTP/2 INTERNAL_ERROR, then timeout), which is a technical block and not a refusal.'
 adi_appnotes:
   kind: site
   title: Analog Devices application notes

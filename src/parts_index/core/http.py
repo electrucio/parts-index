@@ -26,6 +26,12 @@ from urllib import robotparser
 from urllib.parse import urlparse
 
 BROWSER_UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+# The names a site uses to address what this is. robots.txt is how a site says who may read it, and a
+# site that writes a rule for `anthropic-ai` or `Claude-User` has written it about this, whatever the
+# User-Agent header happens to say. Checking only the `*` group reads half the file and the wrong half:
+# wiki.analog.com allows `*` everything but /_export/ and disallows every one of these outright, and
+# `allowed()` answered True until 2026-09-25.
+AI_AGENTS = ("anthropic-ai", "ClaudeBot", "Claude-Web", "Claude-User", "Claude-SearchBot")
 DELAY = 3.0                 # seconds between two requests to one host
 BIG, BIG_DELAY = 5 << 20, 20.0
 MAX_WAIT = 600.0            # the longest we will honour a Retry-After for, so one header cannot stall a run
@@ -87,6 +93,12 @@ def wait_turn(host: str) -> None:
 
 
 def allowed(url: str, ua: str | None = BROWSER_UA) -> bool:
+    """Whether robots.txt lets this read that URL — asked of every name that describes this, not just `*`.
+
+    A rule written for `Claude-User` is a rule about an AI agent fetching at a person's request, which is
+    what this is, and it holds whatever the User-Agent header says. So the answer is no if any of the
+    names says no.
+    """
     u = urlparse(url)
     key = (u.scheme, u.netloc)
     if key not in _robots:
@@ -95,7 +107,7 @@ def allowed(url: str, ua: str | None = BROWSER_UA) -> bool:
         looks_like_robots = r.status == 200 and "<html" not in r.text(300).lower()
         rp.parse(r.text().splitlines() if looks_like_robots else [])
         _robots[key] = rp
-    return _robots[key].can_fetch("*", url)
+    return all(_robots[key].can_fetch(agent, url) for agent in ("*", *AI_AGENTS))
 
 
 def get(url: str, *, ua: str | None = BROWSER_UA, transport: str = "requests", robots: bool = True, delay: float = DELAY,
