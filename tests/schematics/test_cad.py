@@ -128,3 +128,53 @@ def test_a_family_wildcard_is_not_a_part_even_in_a_design():
     has to catch it here too: the declared-value path skips the rest of the extractor's judgement."""
     found = {h.part for h in parts.extract_page(page_of(WILDCARDS))}
     assert found == {"ADL5801"}
+
+
+GEDA = """v 20121123 2
+C 50100 49300 1 0 0 EMBEDDEDATmega32U4-1.sym
+[
+P 52900 51400 52600 51400 1 0 0
+{
+T 52695 51445 5 8 1 1 0 0 1
+pinnumber=27
+}
+T 50000 49000 5 10 0 1 0 0 1
+device=SYMBOL_SAYS_RESISTOR
+]
+{
+T 50200 51500 5 10 1 1 0 0 1
+refdes=U1
+T 50200 51700 5 10 0 1 0 0 1
+device=ATmega32U4
+}
+C 60000 40000 1 0 0 resistor-1.sym
+{
+T 60100 40100 5 10 1 1 0 0 1
+refdes=R1
+T 60100 40300 5 10 0 1 0 0 1
+device=RESISTOR
+T 60100 40500 5 10 1 1 0 0 1
+value=10k
+}
+C 61000 40000 1 0 0 aat3220.sym
+{
+T 61100 40100 5 10 1 1 0 0 1
+refdes=U2
+T 61100 40300 5 10 0 1 0 0 1
+device=AAT3220
+}
+"""
+
+
+def test_geda_is_the_third_text_format_and_a_sch_as_well():
+    """The Bus Pirate's schematic is this, and so is a good deal of open hardware from about 2010."""
+    assert cad.kind_of(GEDA) == "geda_sch"
+
+
+def test_a_geda_component_is_its_device_and_not_its_symbols_own_attributes():
+    """A gEDA file embeds a copy of each symbol, pins and all, and the symbol declares a `device=` too.
+    Read naively, the resistor symbol inside U1 answers for U1."""
+    pairs = cad.read_geda(GEDA)
+    assert pairs == [("U1", "ATmega32U4"), ("R1", "RESISTOR"), ("U2", "AAT3220")]
+    found = {h.part for h in parts.extract_page(page_of(GEDA))}
+    assert found == {"ATMEGA32U4", "AAT3220"}       # RESISTOR and 10k are what the thing is, not which

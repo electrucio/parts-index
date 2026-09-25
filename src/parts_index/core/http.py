@@ -91,6 +91,8 @@ class Response:
             return "kicad_legacy"
         if b"<eagle" in self.body[:2000]:
             return "eagle_sch"
+        if re.match(rb"v\s+\d{8}\s+\d", head) and b"\nC " in self.body[:20000]:
+            return "geda_sch"           # gEDA/gschem, and a `.sch` too
         return ""
 
     def text(self, limit: int | None = None) -> str:

@@ -25,7 +25,7 @@ from __future__ import annotations
 import re
 import xml.etree.ElementTree as ET
 
-KINDS = ("kicad_sch", "kicad_legacy", "eagle_sch")
+KINDS = ("kicad_sch", "kicad_legacy", "eagle_sch", "geda_sch")
 MAX_PARTS = 20000            # a sane ceiling: the largest board here has 969
 
 # KiCad writes one `(symbol ...)` per placed component, each carrying its Reference and its Value. The
@@ -37,7 +37,12 @@ KICAD_PROP = re.compile(r'\(property\s+"([^"]+)"\s+"([^"]*)"')
 # but not before counting them as blocks nobody wanted to read.
 NOT_A_PART = re.compile(r"(?i)^(?:[RCLD]_?small|[RCL]_[a-z_]*|gnd|earth|vcc|vdd|vee|vss|v?\+?\d+(?:\.\d+)?v"
                         r"|power|pwr_flag|conn_\w+|test_?point|mounting\w*|logo|fiducial|jumper|sw_\w+"
-                        r"|~|\?|n/?[ac]|dnp|do_?not_?populate)$")
+                        r"|~|\?|n/?[ac]|dnp|do_?not_?populate"
+                        # gEDA names the kind of thing in `device=`, and for a passive that is all it says.
+                        r"|resistor|polarized_capacitor|capacitor|inductor|coil|diode|led|zener"
+                        r"|[np]pn|[np]mos|[np]fet|transistor|crystal|oscillator|switch|fuse|relay"
+                        r"|transformer|battery|connector|header\d*|jack|socket|antenna|speaker|none"
+                        r"|input|output|include|generic\w*)$")
 # ... and one that is a bare component value: 10k, 100nF, 4u7, 1M5.
 A_VALUE = re.compile(r"(?i)^\d+[.,]?\d*\s*(?:[kmrunμp]|[kmrunμp]?[fhΩohm]+|v|a|w|hz|khz|mhz|ppm|%)?\d*$")
 # Reference designators, which say a component is there even when its value is a passive's.
@@ -148,6 +153,47 @@ def read_kicad_legacy(text: str) -> list[tuple[str, str]]:
     return out
 
 
+# gEDA/gschem, the third text format and the one nobody remembers. A component is a `C` line naming its
+# symbol, optionally followed by an embedded copy of that symbol in `[ ... ]`, and then by the instance's
+# own attributes in `{ ... }`. The embedded symbol carries attributes too — its pins each have their own
+# block, and the symbol itself usually declares a `device=` — so the instance's attributes are read only
+# after the embedded copy has been cut out, or a resistor's symbol answers for the part beside it.
+GEDA_COMP = re.compile(r"^C\s+-?\d+\s+-?\d+\s+\d+\s+\d+\s+\d+\s+(\S+)", re.M)
+GEDA_ATTR = re.compile(r"^([a-z_]+)=(.*)$", re.M)
+
+
+def _no_embedded(span: str) -> str:
+    """One component's text with the embedded symbol definition removed. `[` and `]` sit alone on their
+    own lines, which is what makes this safe to do by line rather than by nesting."""
+    out, inside = [], False
+    for line in span.splitlines():
+        if line.strip() == "[":
+            inside = True
+        elif line.strip() == "]":
+            inside = False
+        elif not inside:
+            out.append(line)
+    return "\n".join(out)
+
+
+def read_geda(text: str) -> list[tuple[str, str]]:
+    """Every placed component of a gEDA schematic, as (refdes, device).
+
+    `device` is what the part is — ATMEGA32U4, MCP1700 — and `value` is the fallback for the symbols that
+    leave it empty. The symbol's own file name is deliberately not used: gEDA's stock library calls them
+    resistor-1.sym and opamp-1.sym, which name a kind and not a part.
+    """
+    found = [(m.start(), m.group(1)) for m in GEDA_COMP.finditer(text)]
+    out = []
+    for i, (start, _symbol) in enumerate(found[:MAX_PARTS]):
+        end = found[i + 1][0] if i + 1 < len(found) else len(text)
+        attrs = dict(GEDA_ATTR.findall(_no_embedded(text[start:end])))
+        ref, value = attrs.get("refdes", ""), attrs.get("device") or attrs.get("value") or ""
+        if ref or value:
+            out.append((ref, value))
+    return out
+
+
 def kind_of(text: str) -> str:
     """Which of the three this is, read from the file. `.sch` belongs to EAGLE and to old KiCad both."""
     head = text[:4000].lstrip()
@@ -157,10 +203,15 @@ def kind_of(text: str) -> str:
         return "kicad_legacy"
     if "<eagle" in head[:2000]:
         return "eagle_sch"
+    # `v 20121123 2` and then a page of C, P and T lines. The Bus Pirate's schematic is this, and so are
+    # a good many open-hardware projects of about 2010.
+    if re.match(r"v\s+\d{8}\s+\d", head) and "\nC " in text[:20000]:
+        return "geda_sch"
     return ""
 
 
-READERS = {"kicad_sch": read_kicad, "kicad_legacy": read_kicad_legacy, "eagle_sch": read_eagle}
+READERS = {"kicad_sch": read_kicad, "kicad_legacy": read_kicad_legacy, "eagle_sch": read_eagle,
+           "geda_sch": read_geda}
 
 
 def read(path, kind: str) -> list[dict]:

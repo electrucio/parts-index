@@ -44,7 +44,8 @@ from parts_index.core.config import downloads, schematics_registry, schematics_s
 from parts_index.core.jobs import detach, only_one, run_log, wait_for_all
 from parts_index.core.ledger import Ledger
 
-DOCUMENT_KINDS = ("pdf", "gif", "jpeg", "png", "tiff", "kicad_sch", "kicad_legacy", "eagle_sch")
+DOCUMENT_KINDS = ("pdf", "gif", "jpeg", "png", "tiff", "kicad_sch", "kicad_legacy", "eagle_sch",
+                  "geda_sch")
 IMAGE_KINDS = ("gif", "jpeg", "png", "tiff")
 FILE_EXT = re.compile(r"\.(pdf|gif|jpe?g|png|tiff?|zip|sch|kicad_sch)(\?|$)", re.I)
 IMAGE_EXT = re.compile(r"\.(gif|jpe?g|png|tiff?)(\?|$)", re.I)
