@@ -727,7 +727,7 @@ openhw_eurorack:
   list:
     role: schematic
   github:
-    list_url: https://raw.githubusercontent.com/newdigate/eurorack-awesome/main/README.md
+    list_url: https://raw.githubusercontent.com/newdigate/eurorack-awesome/master/README.md
     repos:
     - GroundGrown/eurorack-modules
     - QuinnFreedman/modular
@@ -744,9 +744,16 @@ openhw_eurorack:
     - newdigate/eurorack-awesome-db
     - azonenberg/pcb-checklist
     - THX2112/Eurorack-Panel-Designer
+    ext: ['.kicad_sch', '.sch', '.pdf']
+    keep: '(?i)sch'
     kind: schematic
     origin: community
-  notes: 'A list a person keeps beats a list a topic makes. eurorack-awesome names fifty-six
+  notes: 'DrJ3RK and schema-cave publish their schematics as PDF and no CAD at all — 105 files between
+    them — so `.pdf` is in `ext` and `keep` says which PDF is a schematic rather than a datasheet or a
+    build note. It costs the `.brd` files, whose paths do not say "sch"; they carry no part fields this
+    pipeline can read anyway.
+
+    A list a person keeps beats a list a topic makes. eurorack-awesome names fifty-six
     repositories chosen by somebody who builds these; the topic sweep finds five hundred and fifty-four
     of mixed worth. Measured on 2026-09-25: 38 of the 56 hold CAD, 440 files and 100 PDFs between them,
     with pichenettes/eurorack (Mutable Instruments) at 70 and CATs-Eurosynth at 63.

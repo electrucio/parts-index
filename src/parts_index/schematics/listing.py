@@ -370,8 +370,15 @@ def _seed_parts(cfg: dict) -> list[str]:
 
 
 def _tree_rows(source: str, full: str, cfg: dict, delay: float, exts: tuple,
-               deny, extra: dict | None = None) -> list[dict]:
-    """The schematic sources one repository holds, in one request whatever its size."""
+               deny, extra: dict | None = None, keep=None) -> list[dict]:
+    """The schematic sources one repository holds, in one request whatever its size.
+
+    `keep` is for a source whose schematics are PDFs. Kitspace is "ready to order", so its projects
+    publish gerbers and a schematic PDF and keep the CAD elsewhere — 0 of the first six repositories hold
+    a `.kicad_sch`. Taking every PDF in a repository would take the datasheets and the assembly notes
+    with it, so the pattern says which PDF is the schematic, and rule 4 settles the rest: a schematic
+    whose file name does not say so is missed, and nothing wrong is published.
+    """
     try:
         tree = _gh(f"/repos/{full}/git/trees/HEAD?recursive=1", delay)
     except SystemExit:
@@ -382,6 +389,8 @@ def _tree_rows(source: str, full: str, cfg: dict, delay: float, exts: tuple,
         if node.get("type") != "blob" or not path.lower().endswith(exts):
             continue
         if deny and deny.search(path):
+            continue
+        if keep and not keep.search(path):
             continue
         rows.append({"url": f"https://raw.githubusercontent.com/{full}/HEAD/{quote(path)}",
                      "title": f"{full}: {path.rsplit('/', 1)[-1]}",
@@ -406,6 +415,7 @@ def github(source: str, cfg: dict):
     """
     exts = tuple(cfg.get("ext", GH_EXT))
     deny = re.compile(cfg["deny"]) if cfg.get("deny") else None
+    keep = re.compile(cfg["keep"]) if cfg.get("keep") else None
 
     def lister(delay: float, limit: int = 0):
         # `skip` is for the repositories a list names that are not designs. A curated list of eurorack
@@ -423,7 +433,7 @@ def github(source: str, cfg: dict):
                 if limit and read >= limit:
                     return
                 read += 1
-                rows = _tree_rows(source, full, cfg, delay, exts, deny)
+                rows = _tree_rows(source, full, cfg, delay, exts, deny, keep=keep)
                 if rows:
                     print(f"  {full}: {len(rows)}{why}", file=sys.stderr)
                     yield rows
@@ -481,6 +491,7 @@ def europepmc(source: str, cfg: dict):
     """
     exts = tuple(cfg.get("ext", GH_EXT))
     deny = re.compile(cfg["deny"]) if cfg.get("deny") else None
+    keep = re.compile(cfg["keep"]) if cfg.get("keep") else None
 
     def lister(delay: float, limit: int = 0):
         done: set[str] = set()
@@ -516,7 +527,8 @@ def europepmc(source: str, cfg: dict):
                         continue
                     done.add(full)
                     rows += _tree_rows(source, full, cfg, delay, exts, deny,
-                                       {"paper": paper, "title_hint": art.get("title", "")[:200]})
+                                       {"paper": paper, "title_hint": art.get("title", "")[:200]},
+                                       keep=keep)
                 if rows:
                     print(f"  {pmcid}: {len(rows)}  {art.get('title', '')[:60]}", file=sys.stderr)
                     yield rows
