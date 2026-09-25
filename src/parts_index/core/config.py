@@ -317,6 +317,12 @@ def source_list(source: str) -> Path:
     return material_root() / "source_lists" / f"assets_{source}.jsonl"
 
 
+def listing_cache(source: str) -> Path:
+    """The index pages a list was gathered from. Kept for the same reason the census keeps its own: a
+    changed `keep` pattern should cost a re-read, not another walk of somebody's sitemap."""
+    return material_root() / "source_lists" / "cache" / source
+
+
 # --- private: the SPICE models the site serves in private mode --------------------------------------
 def spice_source(source: str) -> Path:
     return spice_models_root() / "sources" / source

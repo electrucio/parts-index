@@ -118,6 +118,13 @@ LITS = b"""<?xml version="1.0"?><urlset xmlns="http://www.sitemaps.org/schemas/s
 </urlset>"""
 
 
+@pytest.fixture(autouse=True)
+def private_root(tmp_path, monkeypatch):
+    """Every test in this file gets its own material root: the sitemap cache is written under it, and
+    one of these tests spilled into the real tree before this existed."""
+    monkeypatch.setenv("PIDX_MATERIAL", str(tmp_path / "material"))
+
+
 class Site:
     def __init__(self, pages):
         self.pages, self.asked = pages, []
@@ -165,3 +172,18 @@ def test_a_sitemap_served_as_a_gzip_file_is_unpacked(monkeypatch):
     rows = [r for batch in listing.sitemap("v", {"url": "https://v.example/sitemap.xml.gz"})(delay=0)
             for r in batch]
     assert len(rows) == 4
+
+
+def test_a_sitemap_is_asked_for_once_however_often_the_pattern_changes(monkeypatch):
+    """Renesas was walked three times in one morning — census, list, and again because `keep` changed.
+    The third walk was 118 requests for files already on this disk, and then Cloudflare stopped us."""
+    site = Site(SITEMAPS)
+    monkeypatch.setattr(listing.http, "get", site.get)
+    url = "https://ti.example/lit/sitemapindex.xml"
+
+    wide = [r for b in listing.sitemap("ti", {"url": url})(delay=0) for r in b]
+    asked_first = len(site.asked)
+    narrow = [r for b in listing.sitemap("ti", {"url": url, "keep": r"sboa"})(delay=0) for r in b]
+
+    assert len(wide) == 4 and len(narrow) == 1        # the pattern changed and the answer with it
+    assert len(site.asked) == asked_first             # and not one more request was made

@@ -25,13 +25,14 @@ from __future__ import annotations
 
 import argparse
 import gzip
+import hashlib
 import json
 import re
 import sys
 from urllib.parse import urljoin
 
 from parts_index.core import http
-from parts_index.core.config import source_list
+from parts_index.core.config import listing_cache, source_list
 from parts_index.schematics.download import registry_entry
 
 PAGE_SIZE_GUESS = 100
@@ -105,6 +106,27 @@ REPLAY = "https://web.archive.org/web/{stamp}id_/{url}"
 CDX_TIMEOUT = 300           # a page of this index is a database query, not a file
 
 
+def _cached(source: str, url: str, delay: float) -> str:
+    """One index page, from the copy kept last time when there is one.
+
+    Narrowing a `keep` pattern is a decision about what we want, not a reason to ask a site for its
+    sitemap again. Renesas was walked three times in one morning — once for the census, once to list it
+    and once because the pattern changed — and the third walk was 118 requests for files already on
+    this disk.
+    """
+    path = listing_cache(source) / hashlib.sha1(url.encode()).hexdigest()[:16]
+    if path.exists():
+        return path.read_text(encoding="utf-8", errors="replace")
+    r = http.get(url, delay=delay, timeout=CDX_TIMEOUT, max_bytes=SITEMAP_SIZE)
+    if not r.ok:
+        raise SystemExit(f"sitemap: {r.status} {r.why}  ({url})")
+    body = (gzip.decompress(r.body).decode("utf-8", "replace")
+            if r.body[:2] == b"\x1f\x8b" else r.text())
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(body, encoding="utf-8")
+    return body
+
+
 def _cdx(params: list[tuple[str, str]], delay: float) -> list[list[str]]:
     """One CDX query. A list of pairs, not a mapping: `filter` is given more than once."""
     query = "&".join(f"{k}={v}" for k, v in params)
@@ -149,22 +171,18 @@ SITEMAP_SIZE = 64 << 20         # an index of a large site, not a page
 SITEMAP_DEPTH = 3               # a sitemap index may point at sitemap indexes
 
 
-def _locs(url: str, delay: float, depth: int = SITEMAP_DEPTH) -> list[str]:
+def _locs(source: str, url: str, delay: float, depth: int = SITEMAP_DEPTH) -> list[str]:
     """Every URL a sitemap names, following the indexes that point at other sitemaps.
 
     Several sites serve theirs gzipped as a file rather than as an encoding — vishay.com/sitemap.xml.gz
-    — which arrives here as the bytes it is, so it is unpacked here rather than by the client.
+    — which arrives as the bytes it is, so `_cached` unpacks it rather than the client.
     """
-    r = http.get(url, delay=delay, timeout=CDX_TIMEOUT, max_bytes=SITEMAP_SIZE)
-    if not r.ok:
-        raise SystemExit(f"sitemap: {r.status} {r.why}  ({url})")
-    body = (gzip.decompress(r.body).decode("utf-8", "replace")
-            if r.body[:2] == b"\x1f\x8b" else r.text())
+    body = _cached(source, url, delay)
     found = SITEMAP_LOC.findall(body)
     if "<sitemapindex" in body[:2000] and depth:
         out: list[str] = []
         for inner in found:
-            out += _locs(inner, delay, depth - 1)
+            out += _locs(source, inner, delay, depth - 1)
         return out
     return found
 
@@ -180,7 +198,7 @@ def sitemap(source: str, cfg: dict):
     keep = re.compile(cfg["keep"]) if cfg.get("keep") else None
 
     def lister(delay: float, limit: int = 0):
-        locs = list(dict.fromkeys(_locs(cfg["url"], delay)))    # TI names a document in two of its sitemaps
+        locs = list(dict.fromkeys(_locs(source, cfg["url"], delay)))    # TI names a document in two of its sitemaps
         print(f"{source}: {len(locs)} URLs in the sitemap", file=sys.stderr)
         wanted = [u for u in locs if not keep or keep.search(u)]
         print(f"  {len(wanted)} of them kept by `keep`", file=sys.stderr)
