@@ -711,22 +711,27 @@ renesas_appnotes:
   kind: factory
   title: Renesas application notes and white papers (with the Intersil analogue legacy)
   home_url: https://www.renesas.com/
-  status: active
+  status: blocked
   era: modern
+  blocked_reason: 'Cloudflare answers 429 with cf-mitigated: challenge — a bot challenge, not a rate limit'
   list:
     role: application_note
   sitemap:
     url: https://www.renesas.com/sitemap.xml
     keep: '/en/document/(apn|whp|man)/'
     kind: application_note
-  notes: 'The only manufacturer checked on 2026-09-24 that says yes to this by name: robots.txt names
-    ClaudeBot and anthropic-ai and allows them both, with a policy at renesas.com/llms.txt. Its sitemap
-    is an index of 117, and a document URL answers with the PDF itself rather than a landing page —
-    /en/document/whp/... returned 260 KB of application/pdf. `keep` takes application notes, white
-    papers and manuals and leaves out the tool, software and support pages — and the data sheets, which
-    are 13,749 of the 22,532 a wider pattern took. A data sheet is parametric tables with an application
-    circuit on a page or two of it, and renesas_products already links each part''s own as the evidence
-    for that part: it belongs in the index as a reference, not as a document read for its circuits. Renesas absorbed Intersil, so this is analogue from the 1990s onward.'
+  notes: 'This one is worth reading twice, because the site says two opposite things. robots.txt names
+    ClaudeBot and anthropic-ai and allows them both, with a policy at renesas.com/llms.txt: of every
+    manufacturer checked on 2026-09-24 the only one that says yes to this by name. Its sitemap lists
+    8,783 application notes, white papers and manuals, and 411 of them were fetched without complaint.
+    Then Cloudflare began answering 429 with `cf-mitigated: challenge`, which is not the server asking
+    for a slower pace — slowing from one request every three seconds to one every six changed nothing —
+    but a bot challenge, and rule 3 says we do not go through one. The 411 already held are kept: they
+    were given freely. The catalogue behind renesas_products came from the sitemap and is unaffected,
+    so Renesas still contributes its 14,240 part numbers to the census.
+
+    A human could ask them about the contradiction. Their robots.txt invites this and their CDN refuses
+    it, and they may well not know.'
 runoffgroove:
   kind: site
   title: Runoffgroove
