@@ -25,7 +25,7 @@ from __future__ import annotations
 import re
 import xml.etree.ElementTree as ET
 
-KINDS = ("kicad_sch", "kicad_legacy", "eagle_sch", "geda_sch")
+KINDS = ("kicad_sch", "kicad_legacy", "eagle_sch", "eagle_brd", "geda_sch")
 MAX_PARTS = 20000            # a sane ceiling: the largest board here has 969
 
 # KiCad writes one `(symbol ...)` per placed component, each carrying its Reference and its Value. The
@@ -150,6 +150,28 @@ def read_eagle(text: str) -> list[tuple[str, str]]:
     return out
 
 
+def read_eagle_brd(text: str) -> list[tuple[str, str]]:
+    """Every placed component of an EAGLE board, as (reference, value).
+
+    A board is a layout and not a circuit, so it is second best: it says which parts are on the thing
+    and nothing about how they are wired. It is taken for the boards whose schematic was never published
+    — 653 of SparkFun and Adafruit's 2,059 `.brd` files have no `.sch` beside them, and without this
+    they are invisible. `package` is deliberately unread: that is the case, not the device.
+    """
+    try:
+        root = ET.fromstring(text)
+    except ET.ParseError:
+        return []
+    out = []
+    for el in root.iter("element"):
+        name, value = el.get("name", ""), el.get("value", "")
+        if name or value:
+            out.append((name, value))
+        if len(out) >= MAX_PARTS:
+            break
+    return out
+
+
 # Legacy KiCad, before the S-expressions: a component is a $Comp block, `F 0` holds its reference and
 # `F 1` its value. A .sch is EAGLE's extension too, which is why `kind_of` reads the file rather than
 # trusting the name — tdstat's TDstatv2.sch is this.
@@ -219,7 +241,9 @@ def kind_of(text: str) -> str:
     if head.startswith("EESchema Schematic File"):
         return "kicad_legacy"
     if "<eagle" in head[:2000]:
-        return "eagle_sch"
+        # One file format, two documents. `<board>` is a layout and `<schematic>` a circuit, and they
+        # are read by different functions because a board has no wires to speak of.
+        return "eagle_brd" if "<board" in text[:20000] else "eagle_sch"
     # `v 20121123 2` and then a page of C, P and T lines. The Bus Pirate's schematic is this, and so are
     # a good many open-hardware projects of about 2010.
     if re.match(r"v\s+\d{8}\s+\d", head) and "\nC " in text[:20000]:
@@ -228,7 +252,7 @@ def kind_of(text: str) -> str:
 
 
 READERS = {"kicad_sch": read_kicad, "kicad_legacy": read_kicad_legacy, "eagle_sch": read_eagle,
-           "geda_sch": read_geda}
+           "eagle_brd": read_eagle_brd, "geda_sch": read_geda}
 
 
 def read(path, kind: str) -> list[dict]:

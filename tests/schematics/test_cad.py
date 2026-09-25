@@ -197,3 +197,25 @@ def test_a_package_is_not_a_part_however_confidently_a_library_names_one():
     packages. SMAJ24A stays: it is a Littelfuse TVS diode whose name happens to start with a package."""
     found = {h.part for h in parts.extract_page(page_of(PACKAGES))}
     assert found == {"SMAJ24A", "AD8319"}
+
+
+BOARD = """<?xml version="1.0"?><eagle version="9.6.2"><drawing><board>
+  <elements>
+    <element name="U1" library="adi" package="SOIC8" value="OPA1612" x="10" y="10"/>
+    <element name="R4" library="rcl" package="0402" value="10k" x="12" y="10"/>
+    <element name="U2" library="ti" package="QFN16" value="TPA3255" x="14" y="10"/>
+  </elements>
+</board></drawing></eagle>"""
+
+
+def test_a_board_is_told_from_a_schematic_by_what_is_inside_it():
+    """Both are `<eagle` and both are read here, but a board is a layout: `<board>` says which."""
+    assert cad.kind_of(BOARD) == "eagle_brd"
+    assert cad.kind_of(EAGLE) == "eagle_sch"
+
+
+def test_a_board_gives_the_parts_on_it_and_not_their_packages():
+    """Second best, and the only copy for 653 of SparkFun and Adafruit's 2,059 board files: it says what
+    is fitted and nothing about how it is wired."""
+    found = {h.part for h in parts.extract_page(page_of(BOARD))}
+    assert found == {"OPA1612", "TPA3255"}      # not SOIC8, not QFN16, not 10k

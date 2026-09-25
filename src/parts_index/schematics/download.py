@@ -45,9 +45,9 @@ from parts_index.core.jobs import detach, only_one, run_log, wait_for_all
 from parts_index.core.ledger import Ledger
 
 DOCUMENT_KINDS = ("pdf", "gif", "jpeg", "png", "tiff", "kicad_sch", "kicad_legacy", "eagle_sch",
-                  "geda_sch")
+                  "eagle_brd", "geda_sch")
 IMAGE_KINDS = ("gif", "jpeg", "png", "tiff")
-FILE_EXT = re.compile(r"\.(pdf|gif|jpe?g|png|tiff?|zip|sch|kicad_sch)(\?|$)", re.I)
+FILE_EXT = re.compile(r"\.(pdf|gif|jpe?g|png|tiff?|zip|sch|kicad_sch|brd)(\?|$)", re.I)
 IMAGE_EXT = re.compile(r"\.(gif|jpe?g|png|tiff?)(\?|$)", re.I)
 # Names that belong to the furniture of a page, never to a schematic.
 FURNITURE = re.compile(r"(?i)(logo|icon|sprite|banner|button|avatar|spacer|pixel|badge|emoji|gravatar|"

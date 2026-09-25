@@ -411,10 +411,17 @@ def _tree_rows(source: str, full: str, cfg: dict, delay: float, exts: tuple,
         tree = _gh(f"/repos/{full}/git/trees/HEAD?recursive=1", delay)
     except SystemExit:
         return []                                          # an empty repository has no tree
+    # A board layout is taken only when its schematic was never published. 1,415 of SparkFun and
+    # Adafruit's 2,059 `.brd` files sit beside a `.sch` of the same name, and reading both would fetch
+    # the same board twice and count its parts as two uses; the other 653 are the only copy there is.
+    blobs = [n.get("path", "") for n in tree.get("tree", []) if n.get("type") == "blob"]
+    drawn = {p.rsplit(".", 1)[0] for p in blobs if p.lower().endswith((".sch", ".kicad_sch"))}
     rows = []
     for node in tree.get("tree", []):
         path = node.get("path", "")
         if node.get("type") != "blob" or not path.lower().endswith(exts):
+            continue
+        if path.lower().endswith(".brd") and path.rsplit(".", 1)[0] in drawn:
             continue
         if deny and deny.search(path):
             continue
