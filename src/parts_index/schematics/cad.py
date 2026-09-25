@@ -42,6 +42,7 @@ NOT_A_PART = re.compile(r"(?i)^(?:[RCLD]_?small|[RCL]_[a-z_]*|gnd|earth|vcc|vdd|
                         r"|resistor|polarized_capacitor|capacitor|inductor|coil|diode|led|zener"
                         r"|[np]pn|[np]mos|[np]fet|transistor|crystal|oscillator|switch|fuse|relay"
                         r"|transformer|battery|connector|header\d*|jack|socket|antenna|speaker|none"
+                        r"|arduino\w*"
                         r"|input|output|include|generic\w*)$")
 # ... and one that is a bare component value: 10k, 100nF, 4u7, 1M5.
 A_VALUE = re.compile(r"(?i)^\d+[.,]?\d*\s*(?:[kmrunμp]|[kmrunμp]?[fhΩohm]+|v|a|w|hz|khz|mhz|ppm|%)?\d*$")
@@ -56,10 +57,26 @@ ACTIVE_REF = re.compile(r"(?i)^(?:U|IC|A|Q|T|TR|VT|V|D|LED|ZD|Z|OK|ISO|M)\d")
 FURNITURE = re.compile(r"(?i)^(?:pinhd|frame|a[0-9][a-z]?-loc|dinal|letter|logo)")
 
 
+# A package is not a part. EAGLE libraries routinely name the deviceset after the case rather than the
+# device — SOT23, SOD-123, SOIC-8, TO-252/DPAK, QFN-0.5MM — and the declared-value path in the extractor
+# trusts what a designer typed, so it takes them. Measured over Kitspace's first 556 files: 35 of the 129
+# names that came back were packages, a 27% error on that path. Rule 4 settles it, and the cost is small:
+# L7805SOT89 goes with them, and L7805 arrives on its own from the boards that name it properly.
+#
+# SMA is deliberately absent. SMAJ24A and SMAJ60A are Littelfuse TVS diodes, real parts whose names begin
+# with a package.
+PACKAGE = re.compile(r"(?i)^[A-Z0-9/_-]*?"
+                     r"(?:SOT-?\d{2,4}|SOD-?\d{3}|SOIC-?\d{1,2}|SO-?\d{1,2}|SSOP-?\d{1,2}|TSSOP-?\d{1,2}"
+                     r"|MSOP-?\d{1,2}|[LTV]?QFP|QFN|BGA|DFN|DIP-?\d{1,2}|TO-?\d{2,3}|DPAK|TSOP|PLCC"
+                     r"|SC-?\d{2})[A-Z0-9/._-]*$"
+                     r"|^\d+X\d+(?:MM)?$|^[\d.]+MM$|^LED\d+MM$")
+
+
 def _wanted(value: str) -> bool:
     """Whether this value is worth a block of its own: a name, not a rating and not furniture."""
     v = value.strip()
-    return bool(v) and len(v) <= 40 and not NOT_A_PART.match(v) and not A_VALUE.match(v)
+    return (bool(v) and len(v) <= 40 and not NOT_A_PART.match(v) and not A_VALUE.match(v)
+            and not PACKAGE.match(v))
 
 
 def _blocks(pairs: list[tuple[str, str]]) -> list[dict]:

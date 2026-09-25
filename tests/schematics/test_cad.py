@@ -178,3 +178,22 @@ def test_a_geda_component_is_its_device_and_not_its_symbols_own_attributes():
     assert pairs == [("U1", "ATmega32U4"), ("R1", "RESISTOR"), ("U2", "AAT3220")]
     found = {h.part for h in parts.extract_page(page_of(GEDA))}
     assert found == {"ATMEGA32U4", "AAT3220"}       # RESISTOR and 10k are what the thing is, not which
+
+
+PACKAGES = """<?xml version="1.0"?><eagle version="9"><drawing><schematic><parts>
+  <part name="U1" deviceset="SOT23" device=""/>
+  <part name="U2" deviceset="SOIC-8" device=""/>
+  <part name="D1" deviceset="SOD-123" device=""/>
+  <part name="Q1" deviceset="TO-252/DPAK" device=""/>
+  <part name="U3" deviceset="QFN-0.5MM" device=""/>
+  <part name="D2" deviceset="SMAJ24A" device=""/>
+  <part name="U4" deviceset="AD8319" device=""/>
+</parts></schematic></drawing></eagle>"""
+
+
+def test_a_package_is_not_a_part_however_confidently_a_library_names_one():
+    """EAGLE libraries name the deviceset after the case rather than the device, and the declared-value
+    path trusts what a designer typed. 35 of the 129 names Kitspace's first 556 files returned were
+    packages. SMAJ24A stays: it is a Littelfuse TVS diode whose name happens to start with a package."""
+    found = {h.part for h in parts.extract_page(page_of(PACKAGES))}
+    assert found == {"SMAJ24A", "AD8319"}
