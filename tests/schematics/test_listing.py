@@ -214,7 +214,7 @@ class Hub:
             return Response(200, url, "application/json", json.dumps({"items": items}).encode())
         if "/search/repositories" in url:
             topic = url.split("topic%3A")[1].split("&")[0]
-            page = int(url.split("page=")[1].split("&")[0])
+            page = int(url.split("&page=")[1].split("&")[0])
             names = self.repos.get(topic, []) if page == 1 else []
             return Response(200, url, "application/json",
                             json.dumps({"items": [{"full_name": n} for n in names]}).encode())
@@ -322,3 +322,16 @@ def test_a_paper_gives_the_design_files_it_links_and_keeps_its_citation(monkeypa
 def test_a_europepmc_block_is_a_lister(monkeypatch):
     monkeypatch.setattr(listing, "registry_entry", lambda source: {"europepmc": {"query": "x"}})
     assert callable(listing.lister_for("hardwarex"))
+
+
+def test_a_list_that_names_kicad_itself_is_not_asked_for_kicads_test_files(monkeypatch):
+    """eurorack-awesome links KiCad and FreeCAD alongside the modules. KiCad's own tree holds hundreds
+    of .kicad_sch demonstration files, and not one of them is a board somebody built."""
+    hub = Hub(repos={"eurorack": ["KiCad/kicad-source-mirror", "a/one"]})
+    monkeypatch.setattr(listing.http, "get", hub.get)
+    cfg = {"topics": ["eurorack"], "skip": ["KiCad/kicad-source-mirror"]}
+
+    rows = [r for batch in listing.github("s", cfg)(delay=0) for r in batch]
+
+    assert {r["repo"] for r in rows} == {"a/one"}
+    assert not [u for u in hub.asked if "kicad-source-mirror" in u]

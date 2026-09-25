@@ -397,6 +397,7 @@ def github(source: str, cfg: dict):
     Five ways to name repositories, and they compose. `repos` and `orgs` are the ones chosen by hand or by
     owner. `topics` is GitHub's own filing. `list_url` is a list somebody else maintains. `parts` is the
     other direction — which designs use a part from the census — and it is the one that fights the bias.
+    `skip` names the ones none of them should have offered.
 
     Discovery and reading are interleaved on purpose. A part-seeded run is a day and a half long; a
     generator that discovered everything before yielding anything would save nothing when interrupted,
@@ -407,7 +408,10 @@ def github(source: str, cfg: dict):
     deny = re.compile(cfg["deny"]) if cfg.get("deny") else None
 
     def lister(delay: float, limit: int = 0):
-        done: set[str] = set()
+        # `skip` is for the repositories a list names that are not designs. A curated list of eurorack
+        # modules links KiCad itself and FreeCAD, and KiCad's own tree holds hundreds of `.kicad_sch`
+        # demonstration files — real KiCad, and not one of them a board anybody built.
+        done: set[str] = set(cfg.get("skip", []))
         read = 0
 
         def take(names, why: str = ""):

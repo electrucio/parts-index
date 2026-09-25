@@ -174,6 +174,15 @@ bartola:
     allow: ^/valves/
     max: 500
     cdn: i\d\.wp\.com
+barton_musical:
+  kind: site
+  title: Barton Musical Circuits
+  home_url: https://www.bartonmusicalcircuits.com/
+  status: proposed
+  era: mixed
+  notes: 'Michael Barton sells bare boards and publishes the schematic of each as a PDF — small, single
+    purpose analogue modules, mostly still in production parts. robots.txt is served empty, which under
+    RFC 9309 is no restriction at all. Checked 2026-09-25.'
 books:
   kind: book
   title: Books, linked to their public pages
@@ -193,6 +202,22 @@ ci2n_figures:
     (2SC5007) and was checked by eye. The document is the paper, by the DOI Crossref gave for the title;
     its page links to the figure in the dataset repository, pinned to a commit, because that is where a
     reader sees the part. Not worth reading the rest: see data/datasets/registry.yaml.'
+circuitsnips:
+  kind: site
+  title: CircuitSnips (shared KiCad subcircuits)
+  home_url: https://circuitsnips.com/
+  status: excluded
+  era: modern
+  notes: '4,311 KiCad subcircuits on 2026-09-25, each with a described function, a category, tags and a
+    licence, enumerable over its own /api/search. Excluded because it is derivative and we can take the
+    original: of a hundred "amplifier" results sampled, a hundred were re-imports from GitHub
+    repositories, each carrying the attribution that says so. The `openhw_*` sources reach those same
+    designs whole rather than in fragments.
+
+    Worth remembering for something else. Every snippet carries a sentence saying what the circuit does
+    — "dual low-power op-amp configured for single-supply operation" — which is exactly what `summarise`
+    produces by asking a model. That makes it a test set for that stage, written by people, and this is
+    the note to come back to when that stage needs one.'
 dirtbox:
   kind: site
   title: Dirtbox Layouts
@@ -272,6 +297,16 @@ el34world:
   home_url: https://el34world.com/schematics.htm
   status: active
   era: vintage
+elby_designs:
+  kind: site
+  title: Elby Designs (Panther and Serge-derived modules)
+  home_url: https://www.elby-designs.com/
+  status: proposed
+  era: mixed
+  notes: 'Laurie Biddulph publishes build documents with schematics for the Panther series and a long
+    line of Serge- and CGS-derived modules. Allowed without reservation and easy to list: robots.txt is
+    `User-agent: * / Allow: *` and names a sitemap at https://www.elby-designs.com/sitemap.xml, which is
+    a `sitemap:` block whenever somebody wants to write the `keep` pattern. Checked 2026-09-25.'
 electronics_illustrated:
   kind: magazine
   title: Electronics Illustrated
@@ -298,6 +333,14 @@ electrosmash:
   home_url: https://electrosmash.mas-effects.com/
   status: active
   era: vintage
+  notes: 'Circuit analyses of pedals, amplifiers and the chips in them — schematic, measurements and an
+    explanation of why each stage is there, which is a better document than most schematics on their own.
+
+    electrosmash.com itself is gone: it does not answer at all as of 2026-09-25, not a 404 but no
+    connection. What is crawled is the MAS Effects mirror, rebuilt from a 2022 Wayback capture, and a
+    mirror''s robots.txt is not the author''s permission — so this was a question rather than an
+    assumption. The maintainer of this index has the author''s permission, given directly, and recorded
+    it on 2026-09-25. That is why the mirror is read straight rather than through the archive.'
 elektor:
   kind: magazine
   title: Elektor (English edition)
@@ -431,6 +474,32 @@ hands_on_electronics:
   home_url: https://www.worldradiohistory.com/
   status: active
   era: vintage
+hardwarex:
+  kind: journal
+  title: HardwareX (peer-reviewed open hardware), read through Europe PMC
+  home_url: https://www.hardware-x.com/
+  status: active
+  era: modern
+  list:
+    role: schematic
+  europepmc:
+    query: 'JOURNAL:"HardwareX" AND OPEN_ACCESS:Y'
+    kind: schematic
+    origin: community
+  notes: '744 papers on 2026-09-25, 723 of them open access, 99 naming KiCad and 151 an amplifier. A
+    journal that will not publish a design it cannot give away, which means every paper points at its
+    own files, and the subject is modern analogue instrumentation described by the people who built it.
+
+    The paper itself is not fetched. Elsevier serves the PDF and does not serve it to this machine, and
+    europepmc.org/articles/<id>?pdf=render answers 403. What is read is the open-access full text, to
+    find the design files — the better half anyway, because a .kicad_sch names its parts in fields and a
+    paper names them in prose. One paper measured on 2026-09-25 said ADS1299 sixty-three times and
+    linked eeg_acq.kicad_sch in a GitHub repository. The paper stays on every row as `paper`, which is
+    the citation the site should show.
+
+    Left undone: the papers that keep their files on Zenodo, the OSF or Mendeley Data instead of GitHub.
+    Those are archives of a whole project, which the hand-delivery path takes and this lister only
+    counts.'
 hobbyist_specials:
   kind: magazine
   title: Hobbyist specials
@@ -468,6 +537,22 @@ kerrywong:
     - https://www.kerrywong.com/
     allow: ^/(20\d\d/|blog/)
     max: 500
+kitspace:
+  kind: site
+  title: Kitspace (ready-to-order electronics projects)
+  home_url: https://kitspace.org/
+  status: active
+  era: modern
+  list:
+    role: schematic
+  github:
+    list_url: https://raw.githubusercontent.com/kitspace/kitspace-v2/master/boards.txt
+    kind: schematic
+    origin: community
+  notes: 'Kitspace keeps its whole catalogue in one text file — boards.txt, 151 GitHub repositories on
+    2026-09-25 — which is a better list than any crawl of the site could make, and it is the list its
+    own maintainers edit. Their Gitea instance at gitea.kitspace.dev does not answer this machine and is
+    not needed.'
 limpkin:
   kind: site
   title: Limpkin's blog
@@ -516,6 +601,27 @@ mfos:
     complete: true
   notes: 'Music From Outer Space: Ray Wilson''s synthesiser projects. Crawled to the end on
     2026-09-24 — one page, 56 files. Its schematics are images, not PDFs.'
+mikroe:
+  kind: factory
+  title: MikroElektronika Click boards
+  home_url: https://www.mikroe.com/click
+  status: blocked
+  era: modern
+  blocked_reason: 'robots.txt names about thirty agents that may read it and gives `User-agent: *` a
+    flat Disallow: /'
+  notes: 'Roughly 1,500 add-on boards, each with its own schematic, and heavily analogue — current
+    sense, ADCs, amplifiers, sensor front ends. On volume and on subject it would have been one of the
+    best modern sources in this registry.
+
+    It says no, and how it says it is worth recording. Its robots.txt lists some thirty agents that may
+    crawl public content — Googlebot, bingbot, GPTBot, ClaudeBot, Claude-User, Claude-SearchBot among
+    them — and then gives `User-agent: *` a flat `Disallow: /`. We are not ClaudeBot: this is a personal
+    indexer run by one person, so the group that applies to us is `*`, and `*` is refused. Putting a
+    name from the allow-list in our User-Agent to get in is precisely the disguise rule 3 forbids, so
+    this is blocked rather than argued with.
+
+    Checked on 2026-09-25. Asking them is the way in, and they publish an llms.txt, which suggests they
+    have thought about readers of this kind.'
 modern_electronics:
   kind: magazine
   title: Modern Electronics
@@ -547,6 +653,60 @@ one-electron:
     complete: true
   notes: 'Valve output and power transformers, and the amplifier projects built around them. Crawled
     to the end on 2026-09-25: 111 pages, 1,395 PDFs — far more than its size suggested.'
+nonlinearcircuits:
+  kind: site
+  title: Nonlinear Circuits (eurorack modules, schematics published)
+  home_url: https://www.nonlinearcircuits.com/
+  status: proposed
+  era: mixed
+  notes: 'Andrew Fitch publishes the schematic of every module. Registered proposed rather than crawled
+    because nobody has walked it yet, not because of any doubt about permission.
+
+    On permission there is a trap worth writing down. Its robots.txt is the Squarespace template, which
+    opens with a list of some thirty AI agent names — anthropic-ai and ClaudeBot among them — and looks
+    exactly like a refusal. It is not: the names run straight into `User-agent: *` with no rule in
+    between, so under RFC 9309 they are one group, and the rules that follow are the ordinary
+    Squarespace path exclusions (/search, /api/, /config). Content is allowed. `http.allowed()` reads
+    this correctly as it stands; the eye does not. Checked 2026-09-25.'
+ohwr:
+  kind: site
+  title: Open Hardware Repository (CERN)
+  home_url: https://ohwr.org/
+  status: blocked
+  era: modern
+  blocked_reason: 'every design file is on gitlab.com, whose robots.txt disallows /api/v*, /*/uploads/
+    and /*/*.git/*'
+  notes: '190 projects on 2026-09-25, 27 of them tagged analogue: 32-bit ADC front ends, ultra-low-noise
+    amplifiers, a high-voltage FMC card, a 24-bit 8-channel acquisition board. Precision analogue of a
+    grade nothing else in this registry has.
+
+    The git repositories hold exactly one file, a .ohwr.yaml manifest. The design files are attachments
+    on each project wiki, and gitlab.com refuses all three ways to them: the API (Disallow: /api/v*),
+    the attachments themselves (Disallow: /*/uploads/) and cloning the wiki over HTTP (Disallow:
+    /*/*.git/*). The wiki pages are readable and the files they name are not. That is a refusal and not
+    a matter of pace — no delay turns it into a yes — so rule 3 says blocked, and says to keep the link
+    a person can follow, which is the project page on ohwr.org.
+
+    The way in is to ask, and it is a good bet: every .ohwr.yaml carries a maintainer name and a CERN
+    address, the projects are published under CERN-OHL, and reuse is the whole purpose of the registry.
+    That is a letter to write, not a request to make more slowly.'
+olimex:
+  kind: factory
+  title: Olimex (the design files of every board)
+  home_url: https://github.com/OLIMEX
+  status: active
+  era: modern
+  list:
+    role: schematic
+  github:
+    orgs: [OLIMEX]
+    kind: schematic
+    origin: factory
+  notes: 'A manufacturer that publishes the CAD of everything it sells: 154 repositories on 2026-09-25,
+    and the OLINUXINO repository alone holds 300 schematic files and 285 PDFs. Mostly single-board
+    computers, so the analogue is in the power supplies, the audio codecs and the sensor inputs rather
+    than in the whole board — but it is modern silicon in a shipping product, which is what this pillar
+    is short of.'
 onsemi_appnotes:
   kind: site
   title: onsemi application notes
@@ -558,6 +718,43 @@ onsemi_appnotes:
     robots.txt, which allows everything. What blocks us is the same 403 on the documents themselves
     (AND8177-D.PDF), so this is a technical block on this IP, not a policy one, and a browser on another
     network may well be served. Their model files are already held through data/models/sources/onsemi.yaml.'
+openhw_eurorack:
+  kind: site
+  title: Eurorack and synth-DIY repositories, from the lists people keep
+  home_url: https://github.com/newdigate/eurorack-awesome
+  status: active
+  era: modern
+  list:
+    role: schematic
+  github:
+    list_url: https://raw.githubusercontent.com/newdigate/eurorack-awesome/main/README.md
+    repos:
+    - GroundGrown/eurorack-modules
+    - QuinnFreedman/modular
+    - DrJ3RK/DrJ3RK
+    - odeliy/noise-reap
+    - odeliy/schema-cave
+    - diysynth/EURORACK-MODULES
+    - Fihdi/Eurorack
+    skip:
+    - KiCad/kicad-source-mirror
+    - FreeCAD/FreeCAD
+    - user-attachments/assets
+    - psykon/awesome-synth
+    - newdigate/eurorack-awesome-db
+    - azonenberg/pcb-checklist
+    - THX2112/Eurorack-Panel-Designer
+    kind: schematic
+    origin: community
+  notes: 'A list a person keeps beats a list a topic makes. eurorack-awesome names fifty-six
+    repositories chosen by somebody who builds these; the topic sweep finds five hundred and fifty-four
+    of mixed worth. Measured on 2026-09-25: 38 of the 56 hold CAD, 440 files and 100 PDFs between them,
+    with pichenettes/eurorack (Mutable Instruments) at 70 and CATs-Eurosynth at 63.
+
+    `repos` are the ones sdiy.info names and the list does not: GroundGrown alone has 112 CAD files and
+    QuinnFreedman 50, while DrJ3RK and schema-cave publish their schematics as PDF rather than as
+    sources. `skip` is the other half of reading somebody else''s list — it links KiCad and FreeCAD
+    themselves, and KiCad''s tree holds hundreds of .kicad_sch demonstration files that no one built.'
 openhw_instruments:
   kind: site
   title: Open scientific instruments (KiCad and EAGLE sources)
@@ -591,7 +788,7 @@ openhw_orgs:
   kind: site
   title: SparkFun and Adafruit hardware repositories
   home_url: https://github.com/sparkfun
-  status: proposed
+  status: active
   era: modern
   list:
     role: schematic
@@ -600,10 +797,70 @@ openhw_orgs:
     kind: schematic
     origin: community
   notes: 'sparkfun has 1,485 public repositories and adafruit 2,027, holding 106 .kicad_sch and 531 EAGLE
-    .sch between them on 2026-09-24. Left proposed, not because of the volume — one API call per
-    repository is cheap — but because most of these boards are digital breakouts with an MCU and no
-    analogue chain, which the scope rule admits only conditionally. openhw_instruments first, then this
-    with what that teaches about filtering.'
+    .sch between them on 2026-09-24. It was left proposed while a filter for digital breakouts was
+    wanted, and on 2026-09-25 that turned out to be the wrong place to filter: a path pattern cannot see
+    whether a board has an analogue chain on it, and the thing that can is the extractor. A breakout with
+    nothing but an MCU yields part numbers this index already has or does not want, and costs one request
+    and a few kilobytes to find out. So it is active, and what it actually contributes is measured after
+    the fact rather than guessed before it.'
+openhw_parts:
+  kind: site
+  title: Designs on GitHub that use a part still in production
+  home_url: https://github.com/search?q=extension%3Akicad_sch
+  status: active
+  era: modern
+  list:
+    role: schematic
+  github:
+    parts:
+      from: [spice_definitions]
+      modern: true
+      max: 1500
+      ext: [kicad_sch]
+    kind: schematic
+    origin: community
+  notes: 'The direction that fights the bias instead of adding to it. Every other source here answers
+    "what did somebody publish"; this one asks "who uses this part", of a list of parts still in
+    production, so the answer cannot be a valve amplifier from 1974.
+
+    Seeded from spice_definitions on purpose: a part that has a SPICE model *and* a published design
+    using it is the row this whole project exists to produce. 1,411 of those 39,610 parts are modern by
+    `parts.MODERN`, so the cap of 1,500 takes all of them, at one code search every fifteen seconds —
+    about six hours. Measured before registering it: TL072 appears in 1,276 .kicad_sch files, NE5532 in
+    1,600, OPA1612 in 89, LT3045 in 97, ADG1419 in 11, THAT1512 in 5, PGA2320 in none.
+
+    Only .kicad_sch for the first run. EAGLE .sch would double the cost for what the measurements say is
+    roughly a tenth of the files, and it can be added when this has been paid for once.'
+openhw_topics:
+  kind: site
+  title: Open hardware by GitHub topic (audio and analogue)
+  home_url: https://github.com/topics/eurorack
+  status: active
+  era: modern
+  list:
+    role: schematic
+  github:
+    topics:
+    - eurorack
+    - eurorack-diy
+    - synthesizer-diy
+    - analog-synthesizer
+    - diy-audio
+    - audio-electronics
+    - analog-circuits
+    skip:
+    - KiCad/kicad-source-mirror
+    - FreeCAD/FreeCAD
+    kind: schematic
+    origin: community
+  notes: 'Measured on 2026-09-25 before it was registered: 554 repositories under these seven topics,
+    185 of them holding a schematic, 1,376 schematic files and 1,256 PDFs between them. The bulk is
+    eurorack, and eurorack is the opposite of a museum — a VCF laid out this year, on parts a
+    distributor still stocks, where the analogue signal chain is the point of the module rather than
+    something bolted to a microcontroller.
+
+    88 of those 185 repositories carry no licence at all. That changes nothing about indexing them, by
+    rule 2, and everything about ever republishing one, which this project does not do.'
 passdiy:
   kind: site
   title: Pass DIY
