@@ -30,6 +30,12 @@ class Handler(BaseHTTPRequestHandler):
         elif self.path == "/flaky":
             type(self).flaky_hits += 1
             body, status = (b"busy", 503) if type(self).flaky_hits < 3 else (PDF, 200)
+        elif self.path == "/slowdown":
+            type(self).flaky_hits += 1
+            if type(self).flaky_hits < 2:
+                body, status, headers = b"too many", 429, {"Retry-After": "0.25"}
+            else:
+                body, status = PDF, 200
         elif self.path == "/page":
             body, status = b"<!DOCTYPE html><html><body>BC109</body></html>", 200
         self.send_response(status)
@@ -81,6 +87,22 @@ def test_size_cap(base, transport):
 def test_retries_with_back_off_then_succeeds(base):
     r = http.get(f"{base}/flaky", delay=0)
     assert r.ok and r.attempts == 3
+
+
+def test_a_server_asking_us_to_wait_is_obeyed(base):
+    """429 says in words what a 5xx only implies, and a Retry-After names the wait. Renesas sent twelve
+    of these in the first 425 documents, and the back-off we chose instead cost three minutes each."""
+    t = time.time()
+    r = http.get(f"{base}/slowdown", delay=0)
+    waited = time.time() - t
+
+    assert r.ok and r.attempts == 2
+    assert waited >= 0.25            # its number, not ours: the default back-off here would be 0.1 s
+
+
+def test_a_wait_we_did_not_ask_for_is_capped():
+    assert http._retry_after("99999") == http.MAX_WAIT
+    assert http._retry_after("Wed, 21 Oct 2026 07:28:00 GMT") == 0     # a date, which we do not read
 
 
 def test_gives_up(base):

@@ -28,6 +28,7 @@ from urllib.parse import urlparse
 BROWSER_UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
 DELAY = 3.0                 # seconds between two requests to one host
 BIG, BIG_DELAY = 5 << 20, 20.0
+MAX_WAIT = 600.0            # the longest we will honour a Retry-After for, so one header cannot stall a run
 MAX_BYTES = 120 << 20
 RETRY_STATUS = (0, 429, 500, 502, 503, 504)
 MAGIC = {b"%PDF": "pdf", b"GIF8": "gif", b"\xff\xd8\xff": "jpeg", b"\x89PNG": "png", b"II*\x00": "tiff", b"MM\x00*": "tiff",
@@ -53,6 +54,7 @@ class Response:
     disposition: str = ""                    # file name offered by the server
     why: str = ""                            # reason when there is no usable body
     attempts: int = 1
+    retry_after: float = 0                   # seconds the server asked us to wait, from its own header
     _sha: str = field(default="", repr=False)
 
     @property
@@ -110,7 +112,9 @@ def get(url: str, *, ua: str | None = BROWSER_UA, transport: str = "requests", r
         _next_ok[host] = time.time() + (BIG_DELAY if len(resp.body) > BIG else delay)
         if resp.status not in RETRY_STATUS or resp.why == "larger than max_bytes":
             return resp
-        _next_ok[host] = time.time() + max(delay, 0.01) * 10 * attempt       # back off: 30 s, 60 s, 90 s at the default delay
+        # 429 is the server saying in words what a 5xx only implies. When it names a wait, that is the
+        # wait — arguing with it by retrying sooner is how a polite client gets itself blocked.
+        _next_ok[host] = time.time() + (resp.retry_after or max(delay, 0.01) * 10 * attempt)
     resp.why = resp.why or f"gave up after {retries} attempts ({resp.status})"
     return resp
 
@@ -118,6 +122,14 @@ def get(url: str, *, ua: str | None = BROWSER_UA, transport: str = "requests", r
 def _once(url, ua, timeout, referer, follow, max_bytes, transport) -> Response:
     ua = user_agent(ua)
     return _curl(url, ua, timeout, referer, follow, max_bytes) if transport == "curl" else _requests(url, ua, timeout, referer, follow, max_bytes)
+
+
+def _retry_after(value: str) -> float:
+    """What the server asked for, in seconds. A date is allowed there too; we only read the number."""
+    try:
+        return max(0.0, min(float(value.strip()), MAX_WAIT))
+    except ValueError:
+        return 0.0
 
 
 def _requests(url, ua, timeout, referer, follow, max_bytes) -> Response:
@@ -131,7 +143,8 @@ def _requests(url, ua, timeout, referer, follow, max_bytes) -> Response:
                 if len(body) > max_bytes:
                     return Response(r.status_code, r.url, r.headers.get("content-type", ""), why="larger than max_bytes")
             return Response(r.status_code, r.url, r.headers.get("content-type", ""), body,
-                            _file_name(r.headers.get("content-disposition", "")))
+                            _file_name(r.headers.get("content-disposition", "")),
+                            retry_after=_retry_after(r.headers.get("retry-after", "")))
     except requests.RequestException as e:
         return Response(0, url, why=type(e).__name__)
 
