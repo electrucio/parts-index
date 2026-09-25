@@ -1,5 +1,19 @@
 # Registry of schematic/reference sources. status: proposed | active | paused | blocked | excluded
 # Add a site here (status: proposed) to have it crawled; its progress is in state/<id>.csv and STATUS.md.
+#
+# What belongs here is a document read for its circuits: a schematic, or one where the schematic is the
+# point of it. A service manual qualifies; a user manual does not, and radiomanual was 69% user manuals
+# by weight before its deny pattern said so.
+#
+# A data sheet does not belong here either, and for a different reason. It is not a worse document, it
+# is another kind: it says what a part is, not what anyone built with it. The census already holds one
+# per part and links it — that is where a reader who wants the data sheet is sent. This pillar answers
+# the other question, "where is this part actually used", and a document is worth its place here only
+# if it helps answer that. 13,749 Renesas data sheets were kept out on 2026-09-25 on this ground; they
+# are a category to work with later, on their own terms.
+#
+# `era` is measured, not judged: a source is modern where 8% or more of the parts it has published
+# belong to a family newer than 1995, mixed above 2.5%, vintage below. See `pidx status`.
 abeltronics:
   kind: factory
   title: Abeltronics
@@ -703,14 +717,16 @@ renesas_appnotes:
     role: application_note
   sitemap:
     url: https://www.renesas.com/sitemap.xml
-    keep: '/en/document/(apn|whp|dst|man)/'
+    keep: '/en/document/(apn|whp|man)/'
     kind: application_note
   notes: 'The only manufacturer checked on 2026-09-24 that says yes to this by name: robots.txt names
     ClaudeBot and anthropic-ai and allows them both, with a policy at renesas.com/llms.txt. Its sitemap
     is an index of 117, and a document URL answers with the PDF itself rather than a landing page —
     /en/document/whp/... returned 260 KB of application/pdf. `keep` takes application notes, white
-    papers, data sheets and manuals and leaves the tool, software and support pages, which are the
-    bulk of it. Renesas absorbed Intersil, so this is analogue from the 1990s onward.'
+    papers and manuals and leaves out the tool, software and support pages — and the data sheets, which
+    are 13,749 of the 22,532 a wider pattern took. A data sheet is parametric tables with an application
+    circuit on a page or two of it, and renesas_products already links each part''s own as the evidence
+    for that part: it belongs in the index as a reference, not as a document read for its circuits. Renesas absorbed Intersil, so this is analogue from the 1990s onward.'
 runoffgroove:
   kind: site
   title: Runoffgroove
@@ -842,14 +858,16 @@ ti_appnotes:
     keep: '/lit/pdf/(sboa|sbaa|sloa|snoa|snva|slva|slua|slyt|tidu|tidr|tidt|sbou|slou|sbau|snvu|sluu|sllu|slvu)[0-9]'
     kind: application_note
   notes: 'Application notes are schematics with real part numbers in them, and the same vendor vouches
-    for the SPICE models, which is what makes this the companion of pillar 2. robots.txt allows the
-    document paths, asks for Crawl-delay 1, and names the sitemap index that led here — /sitemap.xml is
-    a 404 and the real one is only written down in robots.txt. Read on 2026-09-24: the literature sitemap
-    holds 29,562 documents, of which `keep` takes 4,823 — 1,157 analog application notes (sboa amplifiers,
-    sbaa converters, sloa/snoa analog, snva/slva/slua power, slyt the design journal), 1,552 TIDA
-    reference design guides, and 2,114 evaluation-module user guides, which carry the board''s own
-    schematic. What is left out is marketing bulletins and the processor and wireless manuals. Their
-    search is disallowed and is not needed.'
+    for the SPICE models, which makes this the companion of pillar 2. robots.txt allows the document
+    paths, asks for Crawl-delay 1, and names the sitemap index that led here — /sitemap.xml is a 404
+    and the real one is written down only in robots.txt. Downloaded whole on 2026-09-25: 8,841 of
+    8,841, 9.7 GB, from a literature sitemap of 69,513 documents. `keep` takes the analog application
+    notes (sboa amplifiers, sbaa converters, sloa/snoa analog, snva/slva/slua power, slyt the design
+    journal), the TIDA reference design guides, and the evaluation-module user guides, which carry the
+    board''s own schematic; it leaves the marketing bulletins, the processor and wireless manuals, and
+    the data sheets, which are a category of their own. Every file is born digital and carries a text
+    layer, so it needs no OCR engine at all. Read on 2026-09-25 it gives 7,805 parts, 6,974 of them new
+    to the index and 4,824 from families newer than 1995 — the whole corpus held 291 of those before.'
 tonepad:
   kind: site
   title: Tonepad
