@@ -10,9 +10,9 @@ abeltronics:
     - https://www.abeltronics.co.uk/products/
     allow: '^/(products|pdf)/'
     max: 0
-    complete: false
-  notes: 'Audio and television diagrams. The /diagrams.php given in the source list is a 404; the files are
-    under /pdf/ and reached from /products/, which is what this entry uses. Checked 2026-09-23.'
+    complete: true
+  notes: 'Crawled to the end on 2026-09-25: 92 pages, 31 PDFs and 467 photographs. The /diagrams.php
+    the catalogue named is a 404; what it has hangs off /products/ and /pdf/.'
 adi_appnotes:
   kind: site
   title: Analog Devices application notes
@@ -351,10 +351,9 @@ guitarwork:
     kind: schematic
     origin: community
     types: [image/jpeg, image/gif]
-  notes: 'Guitar amplifier schematics, last captured June 2026. It published no PDFs at all: of its
-    5,541 archived URLs, 1,470 are JPEG and they are the schematics themselves — Marshall JCM 800 2204,
-    Ampeg V4 Preamp, Gibson Maestro GA-78RV. The download stage''s floor on image size drops the
-    furniture.'
+  notes: 'Guitar amplifier schematics, dead, last captured June 2026. It published no PDFs at all: of
+    its 5,541 archived URLs, 1,470 are JPEG and they are the schematics themselves — Marshall JCM 800
+    2204, Ampeg V4 Preamp, Gibson Maestro GA-78RV. 1,727 images held on 2026-09-25.'
 gyraf:
   kind: site
   title: Gyraf Audio DIY
@@ -391,9 +390,9 @@ kallhovde:
     domain: kallhovde.com
     kind: service_manual
     origin: factory
-  notes: 'A mirror of Pioneer and other hi-fi service documents, last captured June 2026. The CDX index
-    on 2026-09-24 holds 1,258 PDFs, one good capture each — of the five dead sites, the only one whose
-    documents the archive actually kept.'
+  notes: 'A mirror of Pioneer and other hi-fi service documents, dead, last captured June 2026. Of the
+    five dead sites checked against the Wayback CDX index on 2026-09-24, the only one whose documents
+    the archive actually kept. 1,256 of its 1,258 PDFs are held; one is larger than the 120 MB cap.'
 keithsnook:
   kind: site
   title: Keith Snook — Wireless World articles
@@ -487,9 +486,9 @@ one-electron:
     - https://www.one-electron.com/
     allow: '^/'
     max: 0
-    complete: false
-  notes: 'Transformers and valve audio projects, with an archive of older designs. Small. Checked
-    2026-09-23.'
+    complete: true
+  notes: 'Valve output and power transformers, and the amplifier projects built around them. Crawled
+    to the end on 2026-09-25: 111 pages, 1,395 PDFs — far more than its size suggested.'
 onsemi_appnotes:
   kind: site
   title: onsemi application notes
@@ -676,14 +675,13 @@ radiomanual:
     allow: '^/schemi/'
     deny: '(?i)^/schemi/(transito|ManualExchange)/|_(user|broch|review|leaflet|catalog|advert|quick|installation|preparations|getting)[_0-9.]'
     max: 0
-    complete: false
-  notes: 'Amateur and commercial radio manuals. The index at schemari.html is where the collection
-    hangs from. robots.txt keeps /tobepublished/ and two staging folders out, and the deny pattern
-    says the same thing so it is visible here. It also refuses everything that holds no schematic,
-    which on this site is most of it: of the first 3,247 files taken, 1,603 were user manuals and
-    12.0 GB of the 17.5 had no circuit in them at all. The site keeps each manual in every language
-    it has — FT-991_user in six, 208 MB of one document — and the scans are colour and uncompressed.
-    Only the service manuals, schematics and adjustment procedures are wanted: 902 files, 5.5 GB.'
+    complete: true
+  notes: 'Amateur and commercial radio manuals. Crawled to the end on 2026-09-25: 11 pages, and the
+    whole collection hangs off the schemari.html index. The deny pattern refuses everything with no
+    schematic in it, which on this site was most of it — of the first 3,247 files taken, 1,603 were
+    user manuals and 12.0 GB of the 17.5 had no circuit at all, the same manual kept in six languages.
+    2,738 PDFs held. Fifteen scans are larger than the 120 MB core.http will download and are written
+    down as such rather than fetched to the cap and thrown away on every run.'
 redcircuits:
   kind: site
   title: RED Free Circuit Designs
