@@ -262,3 +262,26 @@ def test_a_file_over_the_cap_is_refused_once_and_not_fetched_again(site, monkeyp
 
     D.run("audiocircuit", log=lambda *a: None)
     assert server.asked == [url]            # asked for once, ever
+
+
+def test_a_source_that_needs_a_gentler_pace_carries_its_own(site, monkeypatch):
+    """Renesas answered a bot challenge at one request every three seconds. The pace belongs with the
+    host, not with whoever types the command."""
+    url = "https://ac.example/a.pdf"
+    write_list("audiocircuit", [{"url": url}])
+    serve(monkeypatch, {url: Response(200, url, "application/pdf", PDF)})
+    (site / "schematics" / "sources.yaml").write_text(
+        REGISTRY.replace("list: {role: schematic}", "list: {role: schematic, delay: 15}"), encoding="utf-8")
+
+    real, seen = D.Downloader, {}
+
+    def spy(*a, **k):
+        seen.update(k)
+        return real(*a, **k)
+
+    monkeypatch.setattr(D, "Downloader", spy)
+    D.run("audiocircuit", log=lambda *a: None)
+    assert seen["delay"] == 15                               # the registry's, unasked
+
+    D.run("audiocircuit", delay=1, log=lambda *a: None)
+    assert seen["delay"] == 1                                # and the command still wins when it asks

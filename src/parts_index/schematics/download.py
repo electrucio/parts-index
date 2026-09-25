@@ -255,7 +255,7 @@ def summary(counts: Counter) -> str:
     return " · ".join(f"{n} {name}" for name, n in sorted(counts.items(), key=lambda kv: -kv[1])) or "nothing to do"
 
 
-def run(source: str, *, limit: int | None = None, delay: float = http.DELAY, dry: bool = False,
+def run(source: str, *, limit: int | None = None, delay: float | None = None, dry: bool = False,
         log=say) -> dict[str, int]:
     entry = registry_entry(source)
     if entry.get("status") != "active":
@@ -264,6 +264,9 @@ def run(source: str, *, limit: int | None = None, delay: float = http.DELAY, dry
     if cfg is None:
         raise SystemExit(f"{source} has no `list:` block: that is how a source opts into this stage")
 
+    # The pace a host tolerates belongs with the host, not with whoever types the command. Renesas
+    # answered a bot challenge at one request every three seconds and is listed here at fifteen.
+    delay = cfg.get("delay", http.DELAY) if delay is None else delay
     assets = read_list(source, limit)
     led = Ledger(schematics_state(source))
     job = Downloader(source, cfg, led, delay=delay, dry=dry, log=log)
@@ -291,7 +294,8 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="pidx schematics download", description=__doc__.split("\n")[0])
     ap.add_argument("--source", action="append", required=True, help="a source with a `list:` block (repeatable)")
     ap.add_argument("--limit", type=int, default=0, help="only the first N URLs of the list")
-    ap.add_argument("--delay", type=float, default=http.DELAY, help=f"seconds between requests to one host (default {http.DELAY})")
+    ap.add_argument("--delay", type=float, default=None,
+                    help=f"seconds between requests to one host; overrides the source's own (default {http.DELAY})")
     ap.add_argument("--dry", action="store_true", help="say what would be fetched and fetch nothing")
     ap.add_argument("--detach", action="store_true", help="run it in the background, under a lock, into a log")
     ap.add_argument("--after", action="append", help="wait for that job to finish first, by its log's name (repeatable)")

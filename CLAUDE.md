@@ -48,9 +48,17 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
    source licence is on the allow-list, together with its LICENSE file.
 2. **Forbidding redistribution does not forbid indexing.** Every model is indexed and linked to its source.
    For non-redistributable sources publish measured results, not a dump of the `.model` parameters.
-3. **Never bypass** a CAPTCHA, login, paywall or click-through licence. Respect robots.txt and per-host
-   delays (use `core.http`). A blocked source is recorded as blocked, with the human-facing URL, because
-   a link a person can follow is still worth publishing. **On a forum, index the attachments and never
+3. **Never bypass** a CAPTCHA, login, paywall, click-through licence or bot challenge. Respect
+   robots.txt and per-host delays (use `core.http`). A blocked source is recorded as blocked, with the
+   human-facing URL, because a link a person can follow is still worth publishing.
+   **Tell a refusal of consent from a complaint about pace.** A site whose robots.txt permits this and
+   whose CDN then answers 429 has not withdrawn permission — it has said we asked too fast, and a site
+   that would allow this at some pace can be scraped legitimately. So that is a reason to come back
+   slower, later, or from the maintainer's own browser at human pace; it is never a reason to give up,
+   and never a reason to defeat the check. Patience, a longer delay, fewer wasted requests and asking
+   the owner are all means. Disguise is not: not a borrowed user-agent, not another address, not
+   solving the challenge. Such a source is `paused` with what was measured and a pace to try next;
+   only a refusal that holds at any pace is `blocked`. **On a forum, index the attachments and never
    the conversation**, and among attachments only schematics or projects worked out to some degree — a
    thread page is read to find what it links to and is never itself a document. A SPICE model posted on
    one is still a model.

@@ -711,27 +711,29 @@ renesas_appnotes:
   kind: factory
   title: Renesas application notes and white papers (with the Intersil analogue legacy)
   home_url: https://www.renesas.com/
-  status: blocked
+  status: active
   era: modern
-  blocked_reason: 'Cloudflare answers 429 with cf-mitigated: challenge — a bot challenge, not a rate limit'
   list:
     role: application_note
+    delay: 15
   sitemap:
     url: https://www.renesas.com/sitemap.xml
     keep: '/en/document/(apn|whp|man)/'
     kind: application_note
-  notes: 'This one is worth reading twice, because the site says two opposite things. robots.txt names
-    ClaudeBot and anthropic-ai and allows them both, with a policy at renesas.com/llms.txt: of every
-    manufacturer checked on 2026-09-24 the only one that says yes to this by name. Its sitemap lists
-    8,783 application notes, white papers and manuals, and 411 of them were fetched without complaint.
-    Then Cloudflare began answering 429 with `cf-mitigated: challenge`, which is not the server asking
-    for a slower pace — slowing from one request every three seconds to one every six changed nothing —
-    but a bot challenge, and rule 3 says we do not go through one. The 411 already held are kept: they
-    were given freely. The catalogue behind renesas_products came from the sitemap and is unaffected,
-    so Renesas still contributes its 14,240 part numbers to the census.
+  notes: 'robots.txt names ClaudeBot and anthropic-ai and allows them both, with a policy at
+    renesas.com/llms.txt: of every manufacturer checked on 2026-09-24 the only one that says yes to this
+    by name. Its sitemap lists 8,783 application notes, white papers and manuals.
 
-    A human could ask them about the contradiction. Their robots.txt invites this and their CDN refuses
-    it, and they may well not know.'
+    Measured on 2026-09-25, and the reason rule 3 now tells a refusal from a complaint about pace: 411
+    documents came without a word, then Cloudflare answered 429 with `cf-mitigated: challenge` across
+    the whole site, the front page included. Slowing from one request every three seconds to one every
+    six changed nothing, so it was not the per-request pace alone — the morning had also walked its 118
+    sitemaps three times over, about a hundred megabytes of XML, and the third walk was avoidable. The
+    challenge cleared on its own in about seventy-five minutes. It was never a withdrawal of permission.
+
+    Resumed at one request every fifteen seconds, and the sitemaps are cached now, so a re-list costs
+    nothing. If it trips again the next pace to try is thirty seconds, then an hour of the day when
+    nothing else of ours is running.'
 runoffgroove:
   kind: site
   title: Runoffgroove
