@@ -146,6 +146,10 @@ def wayback(source: str, cfg: dict):
     is the difference between a few thousand rows and a few hundred thousand.
     """
     domain, types = cfg["domain"], cfg.get("types", ["application/pdf"])
+    # What a dead site left behind is not all of one kind. mutable-instruments.net left 196 PDFs in the
+    # archive, of which 63 are schematics and the rest are user manuals, panel drawings and photographs
+    # of boards — so `keep` picks the folders that hold a circuit, the same job it does for a sitemap.
+    keep = re.compile(cfg["keep"]) if cfg.get("keep") else None
     common = [("url", domain), ("matchType", "domain"), ("collapse", "urlkey"),
               ("filter", "statuscode:200"), ("filter", f"mimetype:({'|'.join(types)})")]
 
@@ -156,6 +160,8 @@ def wayback(source: str, cfg: dict):
         print(f"{domain}: {pages} pages of CDX index", file=sys.stderr)
         for n in range(pages):
             rows = _cdx(common + [("fl", "original,timestamp,length"), ("page", str(n))], delay)
+            if keep:
+                rows = [r for r in rows if r and keep.search(r[0])]
             batch = [{"url": REPLAY.format(stamp=stamp, url=original), "title": _title_of(original),
                       "kind": cfg.get("kind", "schematic"), "origin": cfg.get("origin", "factory"),
                       "page": original, "archived": stamp, "bytes": int(size) if size.isdigit() else 0,

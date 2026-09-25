@@ -628,6 +628,29 @@ modern_electronics:
   home_url: https://www.worldradiohistory.com/
   status: active
   era: vintage
+mutable_instruments:
+  kind: site
+  title: Mutable Instruments (Émilie Gillet), from the archive
+  home_url: https://pichenettes.github.io/mutable-instruments-documentation/
+  status: active
+  era: mixed
+  list:
+    role: schematic
+  wayback:
+    domain: mutable-instruments.net
+    keep: '/(schematics|documents)/'
+    kind: schematic
+    origin: factory
+  notes: 'The reference for modern eurorack, and the one source this registry could not read. The
+    repository pichenettes/eurorack publishes 35 schematics and every one of them is EAGLE''s pre-6
+    binary format — `\x10\x80d\x00` and then a blob — which no reader here will ever open. All 65 of
+    openhw_eurorack''s unreadable files were this, blades, blinds, braids and branches among them.
+
+    The way round it is that she also published them as PDF, and the Wayback Machine kept 196 of them:
+    45 under static/schematics, 18 under archive/schematics, and four circuit analyses she wrote herself
+    under archive/documents — pole_mixing, smr4_analysis, svf_analysis. `keep` takes those and leaves the
+    user manuals and the panel drawings. mutable-instruments.net now serves one page pointing at GitHub,
+    so the archive is the only copy; the company closed in 2022.'
 neurochrome:
   kind: site
   title: Neurochrome
