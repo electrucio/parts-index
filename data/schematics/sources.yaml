@@ -46,6 +46,31 @@ adi_wiki_eval:
     Checked on 2026-09-25. Worth re-reading in a year — a robots.txt is a sentence, not a law, and
     sites change theirs. analog.com itself is a separate matter: it does not answer this machine at
     all (HTTP/2 INTERNAL_ERROR, then timeout), which is a technical block and not a refusal.'
+adi_eval:
+  kind: delivery
+  title: Analog Devices circuit notes and evaluation-board guides, fetched by hand
+  home_url: https://www.analog.com/en/resources/reference-designs/circuits-from-the-lab.html
+  status: active
+  era: modern
+  list:
+    role: application_note
+  delivery:
+    role: application_note
+    link:
+    - match: '^CN/[Cc][Nn]-?(\d+)\.pdf$'
+      url: 'https://www.analog.com/media/en/reference-design-documentation/reference-designs/CN{1}.pdf'
+    - match: '^UG/.*?(UG-\d+)\.pdf$'
+      url: 'https://www.analog.com/media/en/technical-documentation/user-guides/{1}.pdf'
+  notes: 'The examples of use that adi_wiki_eval would have given, fetched in a browser by the maintainer
+    instead: ADI refuses this by name in robots.txt and permits `User-agent: *` everything, and a person
+    in Chrome is that visitor. Hand-picked, never enumerated — 23 documents chosen against the 483 ADI
+    parts the census knows and no document in this corpus uses. Circuit notes (CN0xxx) are complete
+    application circuits with measured results; evaluation-board user guides (UG-xxx) carry the board''s
+    own schematic and BOM. Delivered 2026-09-25.
+
+    The link patterns are written from the file names and are unverified: analog.com does not answer this
+    machine at all, so nothing here could check that a CN number maps to that media path. Check one by
+    hand before trusting the links, or correct them.'
 adi_appnotes:
   kind: site
   title: Analog Devices application notes
