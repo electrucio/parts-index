@@ -55,6 +55,30 @@ FAMILIES = [   # (family, kind guess, regex on the upper-cased token, strict num
 ]
 FAMILIES = [(f, k, re.compile(rx), strict) for f, k, rx, strict in FAMILIES]
 
+# Parts a manufacturer will still sell you, by their numbering. Two jobs: seeding the code-search
+# discovery in schematics/listing.py, which asks GitHub which published designs use a part, and measuring
+# a source's `era`.
+#
+# It has to be narrower than the families above, because one family regex covers both eras: `OPA\d{3,4}`
+# matches OPA1612, which TI will ship tomorrow, and OPA37, a Burr-Brown part of the early eighties. So
+# this asks for the number as well as the prefix, and the two-digit op-amps fall out.
+#
+# Counted on 2026-09-25 over the census: 5,787 of TI's 21,817 parts match, 1,411 of the 39,610 that have
+# a SPICE model, 102 of Renesas's 14,240 and none at all of Frank Pocnet's 11,724 valves — 6,889 distinct
+# parts, and a zero in the valve column, which is the shape you would expect if it measures what it says.
+MODERN = re.compile(r"""^(?:
+      OPA1\d{3} | OPA2\d{3} | OPA[3-9]\d{2,3}               # the op-amps still in the catalogue
+    | THS\d{4} | LMH\d{3,4} | LMP\d{3,4} | LMV\d{3,4}
+    | ADA4\d{3} | AD8\d{3}                                  # ADI's current analogue
+    | ADS1\d{3} | ADS8\d{3} | DAC\d{4,5} | ADC\d{4,5}       # converters
+    | LTC\d{3,4} | LT[13]\d{3}                              # Linear, now ADI
+    | MAX[49]\d{3}
+    | TPS\d{4,6} | TPS7A\d{2,4} | UCC\d{4,5}                # power
+    | TPA\d{3,4} | PCM\d{4} | MUSES\d{4}                    # audio
+    | INA\d{3,4} | PGA\d{3,4} | REF\d{2,4} | AMC\d{4} | ISOW?\d{4}
+    | MCP\d{4} | LME\d{5} | NJM\d{4} | NJW\d{4}
+  )[A-Z0-9-]{0,8}$""", re.X)
+
 TOKEN = re.compile(r"(?<![A-Za-z0-9])([A-Za-z0-9][A-Za-z0-9/\-]{2,15})(?![A-Za-z0-9])")
 BARE = re.compile(r"(?<![A-Za-z0-9.,/\-])(\d{3,5})(?![A-Za-z0-9.,/\-])")
 VALUE = re.compile(r"^\d+[RKMUNPVWAHF]\d*$|^\d+(?:K|M|R|UF|NF|PF|MH|UH|V|VA|W|MA|HZ|KHZ|DB|MM|CM)\d*$|^\d{1,2}V\d$|^[RCLQDVTUJPMS]\d{1,3}[A-Z]?$|^(?:19|20)\d\d$"

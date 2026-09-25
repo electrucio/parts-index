@@ -24,16 +24,18 @@ have found, because nothing links to most of them from anywhere a crawler starts
 from __future__ import annotations
 
 import argparse
+import csv
 import gzip
 import hashlib
 import json
 import os
 import re
 import sys
+import time
 from urllib.parse import quote, urljoin
 
-from parts_index.core import http
-from parts_index.core.config import listing_cache, source_list
+from parts_index.core import http, parts
+from parts_index.core.config import listing_cache, parts_census, source_list
 from parts_index.schematics.download import registry_entry
 
 PAGE_SIZE_GUESS = 100
@@ -214,22 +216,21 @@ def sitemap(source: str, cfg: dict):
 # A repository is a listing somebody else already made: `git/trees/{sha}?recursive=1` names every file in
 # one request. What is wanted is the schematic sources, which carry the part numbers as fields rather than
 # as characters a reader guessed — see schematics/cad.py.
+#
+# This is also the route GitHub asks for. Its robots.txt opens with "If you would like to crawl GitHub
+# contact us ... We also provide an extensive API", and api.github.com and raw.githubusercontent.com
+# answer 404 for robots.txt, which under RFC 9309 is no restriction at all. So the API is the polite door
+# and the HTML is not.
 GH = "https://api.github.com"
 GH_EXT = (".kicad_sch", ".sch", ".brd")           # KiCad new and old, EAGLE; .brd is a board, kept for its link
 GH_PER_PAGE = 100
 GH_MAX_PAGES = 40                                 # 4,000 repositories, and adafruit has 2,027
-
-
-def _gh(path: str, delay: float) -> list | dict:
-    """One GitHub API call, with the token the `gh` command already holds when there is one."""
-    token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN") or _gh_token()
-    ua = f"{http.BROWSER_UA}"
-    r = http.get(f"{GH}{path}", delay=delay, ua=ua, robots=False,
-                 headers={"Accept": "application/vnd.github+json",
-                          **({"Authorization": f"Bearer {token}"} if token else {})})
-    if not r.ok:
-        raise SystemExit(f"github: {r.status} {r.why}  ({path})")
-    return json.loads(r.text())
+GH_SEARCH_DELAY = 6.0                             # 30 repository searches a minute
+GH_CODE_DELAY = 15.0                              # ... and 10 code searches a minute, the tighter limit
+GH_RATE_WAIT = 65.0                               # both are per-minute windows, so one is waited out
+GH_SEARCH_PAGES = 5                               # 100 a page; a topic of more than 500 is not a topic
+GH_CODE_HITS = 100                                # one page of a code search names enough repositories
+GH_REPO_URL = re.compile(r"github\.com/([A-Za-z0-9._-]+/[A-Za-z0-9._-]+?)(?:\.git)?(?:[/#?\s\"'<)\]]|$)")
 
 
 def _gh_token() -> str:
@@ -242,50 +243,283 @@ def _gh_token() -> str:
         return ""
 
 
+def _gh_raw(path: str, delay: float) -> http.Response:
+    """One GitHub API call, with the token the `gh` command already holds when there is one."""
+    token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN") or _gh_token()
+    return http.get(f"{GH}{path}", delay=delay, ua=http.BROWSER_UA, robots=False,
+                    headers={"Accept": "application/vnd.github+json",
+                             **({"Authorization": f"Bearer {token}"} if token else {})})
+
+
+def _gh(path: str, delay: float) -> list | dict:
+    r = _gh_raw(path, delay)
+    if not r.ok:
+        raise SystemExit(f"github: {r.status} {r.why}  ({path})")
+    return json.loads(r.text())
+
+
+def _gh_try(path: str, delay: float, tries: int = 3) -> list | dict | None:
+    """A search that may be refused for pace, waited out rather than given up on.
+
+    The search limits are per minute and not per hour — thirty repository searches, ten code searches —
+    so a 403 here is the complaint about pace that rule 3 tells apart from a refusal of consent, and the
+    answer to it is a minute of patience. Learnt by exceeding it: two code searches every seven seconds
+    bought about fifty seconds of work and then nothing.
+    """
+    for _ in range(tries):
+        r = _gh_raw(path, delay)
+        if r.ok:
+            return json.loads(r.text())
+        if r.status not in (403, 429):
+            return None
+        print(f"  github asked for less pace; waiting {GH_RATE_WAIT:.0f}s", file=sys.stderr)
+        time.sleep(GH_RATE_WAIT)
+    return None
+
+
+def _searched(source: str, path: str, delay: float) -> list[str]:
+    """The repository names one search returns, kept on disk under the source's listing cache.
+
+    Only the names are kept and not the answer, because that is all any caller wants from a search and
+    because there are a great many of them: asking GitHub about 6,889 part numbers is a day and a half of
+    work that will be interrupted, and the next run must not pay for it twice. Same reason the sitemaps
+    are cached, and the same mechanism.
+    """
+    keep = listing_cache(source) / f"search-{hashlib.sha1(path.encode()).hexdigest()[:16]}.txt"
+    if keep.exists():
+        return [n for n in keep.read_text(encoding="utf-8").split() if n]
+    got = _gh_try(path, delay)
+    if got is None:
+        return []
+    items = got.get("items", []) if isinstance(got, dict) else []
+    # A repository search names the repository at the top level; a code search names the file, with its
+    # repository inside it. Both are asked the same question here: which repositories are worth reading.
+    names = [n for n in dict.fromkeys(
+        (it.get("full_name") or (it.get("repository") or {}).get("full_name") or "") for it in items) if n]
+    keep.parent.mkdir(parents=True, exist_ok=True)
+    keep.write_text("\n".join(names), encoding="utf-8")
+    return names
+
+
+def _by_topic(source: str, topics: list[str], delay: float) -> list[str]:
+    """Every repository GitHub files under these topics.
+
+    Measured on 2026-09-25 over seven audio and analogue topics: 554 repositories, 185 of which held a
+    schematic, 1,376 schematic files between them. Eurorack is the bulk of it and it is the opposite of a
+    museum — a VCF built this year, on parts a distributor still stocks.
+    """
+    out: list[str] = []
+    for topic in topics:
+        for page in range(1, GH_SEARCH_PAGES + 1):
+            names = _searched(source, f"/search/repositories?q={quote('topic:' + topic)}"
+                                      f"&per_page={GH_PER_PAGE}&page={page}", GH_SEARCH_DELAY)
+            out += names
+            if len(names) < GH_PER_PAGE:
+                break
+        print(f"  topic:{topic}: {len(set(out))} repositories so far", file=sys.stderr)
+    return list(dict.fromkeys(out))
+
+
+def _by_part(source: str, part: str, exts: list[str], delay: float) -> list[str]:
+    """Which repositories hold a schematic file that names this part.
+
+    The other direction, and the one that earns its cost. A sweep finds what people happen to have
+    published; this asks GitHub which published designs use a part we already care about, so the answer
+    cannot be a valve amplifier from 1974. Measured on 2026-09-25: TL072 appears in 1,276 `.kicad_sch`
+    files, NE5532 in 1,600, OPA1612 in 89, LT3045 in 97, THAT1512 in 5.
+    """
+    out: list[str] = []
+    for ext in exts:
+        out += _searched(source, f"/search/code?q={quote(f'{part} extension:{ext}')}"
+                                 f"&per_page={GH_CODE_HITS}", GH_CODE_DELAY)
+    return list(dict.fromkeys(out))
+
+
+def _listed_repos(url: str, delay: float) -> list[str]:
+    """A list somebody else maintains, one repository URL per line.
+
+    Kitspace keeps its whole catalogue this way — 151 projects in `boards.txt` — and a list its own
+    maintainers edit is a better list than anything a crawl of their site would produce.
+    """
+    r = http.get(url, delay=delay)
+    if not r.ok:
+        raise SystemExit(f"repository list: {r.status} {r.why}  ({url})")
+    return list(dict.fromkeys(m.group(1) for m in GH_REPO_URL.finditer(r.text())))
+
+
+def _seed_parts(cfg: dict) -> list[str]:
+    """The part numbers to ask GitHub about, read from the census this project already built.
+
+    This is what turns a sweep into an aim. The corpus leans vintage because its sources do; a question
+    asked of parts still in production cannot answer with a valve. `from` names census files, `also` adds
+    any by hand, `modern` keeps what `parts.MODERN` vouches for, and `max` caps a run that would
+    otherwise take days.
+    """
+    want: list[str] = []
+    for name in cfg.get("from") or []:
+        path = parts_census(name)
+        if not path.exists():
+            raise SystemExit(f"no census file for {name} at {path}")
+        with open(path, encoding="utf-8") as f:
+            want += [(row.get("part") or "").strip().upper() for row in csv.DictReader(f)]
+    want += [str(p).strip().upper() for p in cfg.get("also", [])]
+    if cfg.get("modern", True):
+        want = [p for p in want if p and parts.MODERN.match(p)]
+    out = [p for p in dict.fromkeys(want) if p]
+    return out[:cfg["max"]] if cfg.get("max") else out
+
+
+def _tree_rows(source: str, full: str, cfg: dict, delay: float, exts: tuple,
+               deny, extra: dict | None = None) -> list[dict]:
+    """The schematic sources one repository holds, in one request whatever its size."""
+    try:
+        tree = _gh(f"/repos/{full}/git/trees/HEAD?recursive=1", delay)
+    except SystemExit:
+        return []                                          # an empty repository has no tree
+    rows = []
+    for node in tree.get("tree", []):
+        path = node.get("path", "")
+        if node.get("type") != "blob" or not path.lower().endswith(exts):
+            continue
+        if deny and deny.search(path):
+            continue
+        rows.append({"url": f"https://raw.githubusercontent.com/{full}/HEAD/{quote(path)}",
+                     "title": f"{full}: {path.rsplit('/', 1)[-1]}",
+                     "kind": cfg.get("kind", "schematic"), "origin": cfg.get("origin", "community"),
+                     "page": f"https://github.com/{full}/blob/HEAD/{quote(path)}",
+                     "repo": full, "source": source, **(extra or {})})
+    return rows
+
+
 def github(source: str, cfg: dict):
     """-> one batch per repository: the schematic sources it holds.
 
-    `orgs` names organisations to walk whole, `repos` names single repositories. A repository with no
-    schematic in it yields nothing and costs one request, which is what makes walking an organisation of
-    two thousand affordable at all.
+    Five ways to name repositories, and they compose. `repos` and `orgs` are the ones chosen by hand or by
+    owner. `topics` is GitHub's own filing. `list_url` is a list somebody else maintains. `parts` is the
+    other direction — which designs use a part from the census — and it is the one that fights the bias.
+
+    Discovery and reading are interleaved on purpose. A part-seeded run is a day and a half long; a
+    generator that discovered everything before yielding anything would save nothing when interrupted,
+    and a repository with no schematic in it yields nothing and costs one request, which is what makes
+    reading an organisation of two thousand affordable at all.
     """
-    orgs, repos = cfg.get("orgs", []), cfg.get("repos", [])
     exts = tuple(cfg.get("ext", GH_EXT))
     deny = re.compile(cfg["deny"]) if cfg.get("deny") else None
 
     def lister(delay: float, limit: int = 0):
-        full_names = list(repos)
-        for org in orgs:
+        done: set[str] = set()
+        read = 0
+
+        def take(names, why: str = ""):
+            nonlocal read
+            for full in names:
+                if full in done:
+                    continue
+                done.add(full)
+                if limit and read >= limit:
+                    return
+                read += 1
+                rows = _tree_rows(source, full, cfg, delay, exts, deny)
+                if rows:
+                    print(f"  {full}: {len(rows)}{why}", file=sys.stderr)
+                    yield rows
+
+        yield from take(cfg.get("repos", []))
+        for org in cfg.get("orgs", []):
+            names: list[str] = []
             for page in range(1, GH_MAX_PAGES + 1):
                 got = _gh(f"/orgs/{org}/repos?per_page={GH_PER_PAGE}&page={page}&type=public", delay)
-                full_names += [r["full_name"] for r in got if not r.get("archived")]
-                print(f"  {org}: {len(full_names)} repositories so far", file=sys.stderr)
+                names += [r["full_name"] for r in got if not r.get("archived")]
                 if len(got) < GH_PER_PAGE:
                     break
-        seen = 0
-        for full in full_names:
-            if limit and seen >= limit:
-                return
-            seen += 1
-            try:
-                tree = _gh(f"/repos/{full}/git/trees/HEAD?recursive=1", delay)
-            except SystemExit:
-                continue                                   # an empty repository has no tree
-            rows = []
-            for node in tree.get("tree", []):
-                path = node.get("path", "")
-                if node.get("type") != "blob" or not path.lower().endswith(exts):
+            print(f"  {org}: {len(names)} repositories", file=sys.stderr)
+            yield from take(names)
+        if cfg.get("list_url"):
+            yield from take(_listed_repos(cfg["list_url"], delay))
+        if cfg.get("topics"):
+            yield from take(_by_topic(source, cfg["topics"], delay))
+        seeds = _seed_parts(cfg["parts"]) if cfg.get("parts") else []
+        if seeds:
+            print(f"{source}: {len(seeds)} part numbers to ask about", file=sys.stderr)
+        for n, part in enumerate(seeds, 1):
+            if n % 50 == 0:
+                print(f"  ... {n}/{len(seeds)} parts asked, {len(done)} repositories seen", file=sys.stderr)
+            yield from take(_by_part(source, part, cfg["parts"].get("ext", ["kicad_sch"]), delay),
+                            f"  ({part})")
+
+    return lister
+
+
+# --- a journal of open hardware, read through the archive that holds it --------------------------------
+EPMC = "https://www.ebi.ac.uk/europepmc/webservices/rest"
+EPMC_PAGE = 100
+EPMC_MAX_PAGES = 30
+# Where a paper puts its design files when they are not on GitHub. Recorded rather than fetched: an
+# archive is a zip of a whole project, which the hand-delivery path takes and this one does not.
+ARCHIVE = re.compile(r"(?i)(10\.5281/zenodo\.\d+|osf\.io/[a-z0-9]{4,8}|10\.17605/OSF\.IO/[A-Z0-9]+"
+                     r"|data\.mendeley\.com/datasets/[a-z0-9]+)")
+
+
+def europepmc(source: str, cfg: dict):
+    """-> one batch per paper: the design files it publishes, found through its own full text.
+
+    HardwareX is a peer-reviewed journal of open hardware, and it will not publish a paper whose design
+    files are not released under an open licence. Measured on 2026-09-25: 744 papers, 723 of them open
+    access, 99 naming KiCad and 151 an amplifier. That is modern analogue instrumentation described by
+    the people who built it, and the way in is an API built for reading in bulk rather than a site to
+    crawl — Europe PMC holds the open-access full text of everything the journal has published.
+
+    The paper itself is not fetched. Elsevier serves the PDF and does not serve it to us; what is fetched
+    is the full text, to read what it points at. One paper measured on 2026-09-25 named ADS1299 sixty-three
+    times and linked `eeg_acq.kicad_sch` in a GitHub repository, and that file says what is on the board
+    in fields rather than in prose. So the file is the row and the paper is its `paper`, which is the
+    citation a reader of this index should be given.
+    """
+    exts = tuple(cfg.get("ext", GH_EXT))
+    deny = re.compile(cfg["deny"]) if cfg.get("deny") else None
+
+    def lister(delay: float, limit: int = 0):
+        done: set[str] = set()
+        cursor, seen, elsewhere = "*", 0, 0
+        for page in range(1, EPMC_MAX_PAGES + 1):
+            r = http.get(f"{EPMC}/search?query={quote(cfg['query'])}&format=json"
+                         f"&pageSize={EPMC_PAGE}&cursorMark={quote(cursor)}&resultType=core", delay=delay)
+            if not r.ok:
+                raise SystemExit(f"europepmc: {r.status} {r.why}")
+            got = json.loads(r.text())
+            results = got.get("resultList", {}).get("result", [])
+            if page == 1:
+                print(f"{source}: {got.get('hitCount')} papers", file=sys.stderr)
+            for art in results:
+                pmcid, doi = art.get("pmcid"), art.get("doi")
+                if not pmcid:
                     continue
-                if deny and deny.search(path):
-                    continue
-                rows.append({"url": f"https://raw.githubusercontent.com/{full}/HEAD/{quote(path)}",
-                             "title": f"{full}: {path.rsplit('/', 1)[-1]}",
-                             "kind": cfg.get("kind", "schematic"), "origin": cfg.get("origin", "community"),
-                             "page": f"https://github.com/{full}/blob/HEAD/{quote(path)}",
-                             "repo": full, "source": source})
-            if rows:
-                print(f"  {full}: {len(rows)}", file=sys.stderr)
-                yield rows
+                seen += 1
+                if limit and seen > limit:
+                    print(f"  {elsewhere} papers keep their design files in an archive, not on GitHub",
+                          file=sys.stderr)
+                    return
+                paper = f"https://doi.org/{doi}" if doi else f"https://europepmc.org/articles/{pmcid}"
+                try:
+                    body = _cached(source, f"{EPMC}/{pmcid}/fullTextXML", delay)
+                except SystemExit:
+                    continue                               # a paper whose full text is not there
+                if ARCHIVE.search(body):
+                    elsewhere += 1
+                rows = []
+                for full in dict.fromkeys(m.group(1) for m in GH_REPO_URL.finditer(body)):
+                    if full in done:
+                        continue
+                    done.add(full)
+                    rows += _tree_rows(source, full, cfg, delay, exts, deny,
+                                       {"paper": paper, "title_hint": art.get("title", "")[:200]})
+                if rows:
+                    print(f"  {pmcid}: {len(rows)}  {art.get('title', '')[:60]}", file=sys.stderr)
+                    yield rows
+            cursor = got.get("nextCursorMark") or ""
+            if not cursor or len(results) < EPMC_PAGE:
+                break
+        print(f"  {elsewhere} papers keep their design files in an archive, not on GitHub", file=sys.stderr)
 
     return lister
 
@@ -300,12 +534,14 @@ def lister_for(source: str):
     entry = registry_entry(source)
     if entry.get("github"):
         return github(source, entry["github"])
+    if entry.get("europepmc"):
+        return europepmc(source, entry["europepmc"])
     if entry.get("sitemap"):
         return sitemap(source, entry["sitemap"])
     if entry.get("wayback"):
         return wayback(source, entry["wayback"])
     raise SystemExit(f"no lister for {source}: it needs one in LISTERS, or a "
-                     f"`github:`, `sitemap:` or `wayback:` block")
+                     f"`github:`, `europepmc:`, `sitemap:` or `wayback:` block")
 
 
 def append_new(source: str, rows: list[dict], dry: bool = False) -> int:
