@@ -31,6 +31,7 @@ from pathlib import Path
 from parts_index.core import pagesio
 from parts_index.core.config import downloads, ocr_map, ocr_root, require, schematics_state
 from parts_index.core.ledger import Ledger
+from parts_index.schematics import cad
 from parts_index.schematics.download import registry_entry, safe_name
 
 OCR_VERSION = "ocr_boxes-1"          # what 45,443 documents already carry; bump it to have them read again
@@ -108,6 +109,8 @@ def _text_blocks(page, zoom):
 
 def read_document(path: Path, kind: str, read_image=None) -> list[dict]:
     """-> one page record per page, in the shape core.pagesio documents."""
+    if kind in cad.KINDS:
+        return cad.read(path, kind)       # a design, not a picture: its fields are read, nothing is OCR'd
     import fitz
     import numpy as np
 
@@ -175,7 +178,7 @@ def run(source: str, *, limit: int = 0, gpu: int | None = None, shard: str = "0/
             continue
         t0 = time.time()
         try:
-            if read_image is None and kind != "html":
+            if read_image is None and kind not in ("html", *cad.KINDS):
                 read_image = _reader(gpu)                        # loaded once, on the first document
             pages = read_document(path, kind, read_image)
         except Exception as e:                                   # noqa: BLE001  a broken file must not stop the batch

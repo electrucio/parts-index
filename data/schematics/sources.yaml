@@ -558,6 +558,52 @@ onsemi_appnotes:
     robots.txt, which allows everything. What blocks us is the same 403 on the documents themselves
     (AND8177-D.PDF), so this is a technical block on this IP, not a policy one, and a browser on another
     network may well be served. Their model files are already held through data/models/sources/onsemi.yaml.'
+openhw_instruments:
+  kind: site
+  title: Open scientific instruments (KiCad and EAGLE sources)
+  home_url: https://github.com/topics/open-hardware
+  status: active
+  era: modern
+  list:
+    role: schematic
+  github:
+    repos:
+    - jankae/LibreVNA
+    - matthew-yates/MYSTAT
+    - thomasdob/tdstat
+    - iorodeo/potentiostat
+    - iorodeo/cheapstat
+    - IMTEK-FreiStat/FreiStat-Hardware
+    - hunstat2/HunStat2
+    - OpenBCI/V3_Hardware_Design_Files
+    - OpenBCI/Ganglion_Hardware_Design_Files
+    - upsidedownlabs/BioAmp-v1.5
+    - wntrblm/Castor_and_Pollux
+    kind: schematic
+    origin: community
+  notes: 'Complete instruments published as their own CAD sources — a vector network analyser, four
+    potentiostats, EEG and biopotential front ends. Measured before any of it was fetched: three of these
+    boards hold 27 distinct semiconductors and not one was in this index. ADL5801, SI5351C, RFSA3714 and
+    THS4521IDGKR are in no family and no catalogue either, and they are read anyway because a design
+    declared them — see schematics/cad.py. The GitHub API is the way in and the HTML never is: one call
+    per repository names every file in it.'
+openhw_orgs:
+  kind: site
+  title: SparkFun and Adafruit hardware repositories
+  home_url: https://github.com/sparkfun
+  status: proposed
+  era: modern
+  list:
+    role: schematic
+  github:
+    orgs: [sparkfun, adafruit, OpenBCI]
+    kind: schematic
+    origin: community
+  notes: 'sparkfun has 1,485 public repositories and adafruit 2,027, holding 106 .kicad_sch and 531 EAGLE
+    .sch between them on 2026-09-24. Left proposed, not because of the volume — one API call per
+    repository is cheap — but because most of these boards are digital breakouts with an MCU and no
+    analogue chain, which the scope rule admits only conditionally. openhw_instruments first, then this
+    with what that teaches about filtering.'
 passdiy:
   kind: site
   title: Pass DIY

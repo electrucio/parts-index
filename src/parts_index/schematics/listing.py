@@ -27,9 +27,10 @@ import argparse
 import gzip
 import hashlib
 import json
+import os
 import re
 import sys
-from urllib.parse import urljoin
+from urllib.parse import quote, urljoin
 
 from parts_index.core import http
 from parts_index.core.config import listing_cache, source_list
@@ -209,6 +210,86 @@ def sitemap(source: str, cfg: dict):
     return lister
 
 
+# --- open hardware, by the API and never the HTML ------------------------------------------------------
+# A repository is a listing somebody else already made: `git/trees/{sha}?recursive=1` names every file in
+# one request. What is wanted is the schematic sources, which carry the part numbers as fields rather than
+# as characters a reader guessed — see schematics/cad.py.
+GH = "https://api.github.com"
+GH_EXT = (".kicad_sch", ".sch", ".brd")           # KiCad new and old, EAGLE; .brd is a board, kept for its link
+GH_PER_PAGE = 100
+GH_MAX_PAGES = 40                                 # 4,000 repositories, and adafruit has 2,027
+
+
+def _gh(path: str, delay: float) -> list | dict:
+    """One GitHub API call, with the token the `gh` command already holds when there is one."""
+    token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN") or _gh_token()
+    ua = f"{http.BROWSER_UA}"
+    r = http.get(f"{GH}{path}", delay=delay, ua=ua, robots=False,
+                 headers={"Accept": "application/vnd.github+json",
+                          **({"Authorization": f"Bearer {token}"} if token else {})})
+    if not r.ok:
+        raise SystemExit(f"github: {r.status} {r.why}  ({path})")
+    return json.loads(r.text())
+
+
+def _gh_token() -> str:
+    """Whatever `gh auth login` stored, so this needs no second credential. Empty when there is none."""
+    try:
+        import subprocess
+        out = subprocess.run(["gh", "auth", "token"], capture_output=True, text=True, timeout=20)
+        return out.stdout.strip() if out.returncode == 0 else ""
+    except Exception:                                      # noqa: BLE001  no gh, no token, no matter
+        return ""
+
+
+def github(source: str, cfg: dict):
+    """-> one batch per repository: the schematic sources it holds.
+
+    `orgs` names organisations to walk whole, `repos` names single repositories. A repository with no
+    schematic in it yields nothing and costs one request, which is what makes walking an organisation of
+    two thousand affordable at all.
+    """
+    orgs, repos = cfg.get("orgs", []), cfg.get("repos", [])
+    exts = tuple(cfg.get("ext", GH_EXT))
+    deny = re.compile(cfg["deny"]) if cfg.get("deny") else None
+
+    def lister(delay: float, limit: int = 0):
+        full_names = list(repos)
+        for org in orgs:
+            for page in range(1, GH_MAX_PAGES + 1):
+                got = _gh(f"/orgs/{org}/repos?per_page={GH_PER_PAGE}&page={page}&type=public", delay)
+                full_names += [r["full_name"] for r in got if not r.get("archived")]
+                print(f"  {org}: {len(full_names)} repositories so far", file=sys.stderr)
+                if len(got) < GH_PER_PAGE:
+                    break
+        seen = 0
+        for full in full_names:
+            if limit and seen >= limit:
+                return
+            seen += 1
+            try:
+                tree = _gh(f"/repos/{full}/git/trees/HEAD?recursive=1", delay)
+            except SystemExit:
+                continue                                   # an empty repository has no tree
+            rows = []
+            for node in tree.get("tree", []):
+                path = node.get("path", "")
+                if node.get("type") != "blob" or not path.lower().endswith(exts):
+                    continue
+                if deny and deny.search(path):
+                    continue
+                rows.append({"url": f"https://raw.githubusercontent.com/{full}/HEAD/{quote(path)}",
+                             "title": f"{full}: {path.rsplit('/', 1)[-1]}",
+                             "kind": cfg.get("kind", "schematic"), "origin": cfg.get("origin", "community"),
+                             "page": f"https://github.com/{full}/blob/HEAD/{quote(path)}",
+                             "repo": full, "source": source})
+            if rows:
+                print(f"  {full}: {len(rows)}", file=sys.stderr)
+                yield rows
+
+    return lister
+
+
 LISTERS = {"audiocircuit": audiocircuit}
 
 
@@ -217,11 +298,14 @@ def lister_for(source: str):
     if source in LISTERS:
         return LISTERS[source]
     entry = registry_entry(source)
+    if entry.get("github"):
+        return github(source, entry["github"])
     if entry.get("sitemap"):
         return sitemap(source, entry["sitemap"])
     if entry.get("wayback"):
         return wayback(source, entry["wayback"])
-    raise SystemExit(f"no lister for {source}: it needs one in LISTERS, or a `sitemap:` or `wayback:` block")
+    raise SystemExit(f"no lister for {source}: it needs one in LISTERS, or a "
+                     f"`github:`, `sitemap:` or `wayback:` block")
 
 
 def append_new(source: str, rows: list[dict], dry: bool = False) -> int:

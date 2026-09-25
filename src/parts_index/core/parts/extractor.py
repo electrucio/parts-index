@@ -519,7 +519,8 @@ def extract_page(page, min_conf=0.85):
         if b.get("conf", 1) < (0.90 if len(t) <= 4 else min_conf):
             continue
         found = extract(t, isolated=_short(b), allow_bare=allow_bare, block=i, pending=True)
-        if not found and b.get("field") == "value" and DECLARED.match(t.upper()):
+        if (not found and b.get("field") == "value" and DECLARED.match(t.upper())
+                and not WILDCARD.fullmatch(t.upper())):          # ADG44x and REF33xx are families, as ever
             # Nothing here knows this name and a design says it is one. ADL5801, SI5351C and RFSA3714 are
             # in no family and no catalogue, and LibreVNA puts all three on its board.
             up = t.upper()

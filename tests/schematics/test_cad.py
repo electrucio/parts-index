@@ -114,3 +114,17 @@ def test_legacy_kicad_reads_its_f_fields():
 def test_a_file_of_another_kind_gives_one_empty_page():
     page = page_of("%PDF-1.4 not a schematic")
     assert page["how"] == "cad" and page["blocks"] == []
+
+
+WILDCARDS = """<?xml version="1.0"?><eagle version="9"><drawing><schematic><parts>
+  <part name="U1" deviceset="ADG44X" device=""/>
+  <part name="U2" deviceset="REF33XX" device=""/>
+  <part name="U3" deviceset="ADL5801" device=""/>
+</parts></schematic></drawing></eagle>"""
+
+
+def test_a_family_wildcard_is_not_a_part_even_in_a_design():
+    """A designer writes ADG44x for "whichever of these we fit". The guard that catches ADS126x in prose
+    has to catch it here too: the declared-value path skips the rest of the extractor's judgement."""
+    found = {h.part for h in parts.extract_page(page_of(WILDCARDS))}
+    assert found == {"ADL5801"}

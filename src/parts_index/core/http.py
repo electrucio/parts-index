@@ -75,12 +75,23 @@ class Response:
 
     @property
     def kind(self) -> str:
-        """pdf, gif, jpeg, png, tiff, zip by magic bytes; html by sniffing; else ''."""
+        """pdf, gif, jpeg, png, tiff, zip by magic bytes; html and CAD by sniffing; else ''."""
         for magic, kind in MAGIC.items():
             if self.body.startswith(magic):
                 return kind
-        head = self.body[:600].lstrip().lower()
-        return "html" if head.startswith((b"<!doctype html", b"<html")) or b"<html" in head else ""
+        head = self.body[:600].lstrip()
+        low = head.lower()
+        if low.startswith((b"<!doctype html", b"<html")) or b"<html" in low:
+            return "html"
+        # A schematic in its own format. Sniffed rather than taken from the extension, because `.sch`
+        # belongs to EAGLE and to KiCad before version 6 both. See schematics/cad.py.
+        if head.startswith(b"(kicad_sch"):
+            return "kicad_sch"
+        if head.startswith(b"EESchema Schematic File"):
+            return "kicad_legacy"
+        if b"<eagle" in self.body[:2000]:
+            return "eagle_sch"
+        return ""
 
     def text(self, limit: int | None = None) -> str:
         return self.body[:limit].decode("utf-8", "replace")
@@ -112,14 +123,16 @@ def allowed(url: str, ua: str | None = BROWSER_UA) -> bool:
 
 def get(url: str, *, ua: str | None = BROWSER_UA, transport: str = "requests", robots: bool = True, delay: float = DELAY,
         timeout: float = 120, max_bytes: int = MAX_BYTES, referer: str | None = None, follow: bool = True,
-        retries: int = 4) -> Response:
+        retries: int = 4, headers: dict[str, str] | None = None) -> Response:
+    """`headers` is for an API that asks for them — an Accept type, a bearer token. Everything else here
+    has no business setting them, and a header that changes who we appear to be is not one of these."""
     host = urlparse(url).netloc
     if robots and not allowed(url, ua):
         return Response(0, url, why="disallowed by robots.txt", attempts=0)
     resp = Response(0, url, why="not tried")
     for attempt in range(1, retries + 1):
         wait_turn(host)
-        resp = _once(url, ua, timeout, referer, follow, max_bytes, transport)
+        resp = _once(url, ua, timeout, referer, follow, max_bytes, transport, headers)
         resp.attempts = attempt
         _next_ok[host] = time.time() + (BIG_DELAY if len(resp.body) > BIG else delay)
         if resp.status not in RETRY_STATUS or resp.why == "larger than max_bytes":
@@ -131,9 +144,10 @@ def get(url: str, *, ua: str | None = BROWSER_UA, transport: str = "requests", r
     return resp
 
 
-def _once(url, ua, timeout, referer, follow, max_bytes, transport) -> Response:
+def _once(url, ua, timeout, referer, follow, max_bytes, transport, headers=None) -> Response:
     ua = user_agent(ua)
-    return _curl(url, ua, timeout, referer, follow, max_bytes) if transport == "curl" else _requests(url, ua, timeout, referer, follow, max_bytes)
+    return (_curl(url, ua, timeout, referer, follow, max_bytes) if transport == "curl"
+            else _requests(url, ua, timeout, referer, follow, max_bytes, headers))
 
 
 def _retry_after(value: str) -> float:
@@ -144,9 +158,9 @@ def _retry_after(value: str) -> float:
         return 0.0
 
 
-def _requests(url, ua, timeout, referer, follow, max_bytes) -> Response:
+def _requests(url, ua, timeout, referer, follow, max_bytes, extra=None) -> Response:
     import requests
-    headers = {k: v for k, v in (("User-Agent", ua), ("Referer", referer)) if v}
+    headers = {k: v for k, v in (("User-Agent", ua), ("Referer", referer)) if v} | (extra or {})
     try:
         with requests.get(url, headers=headers, timeout=(20, timeout), stream=True, allow_redirects=follow) as r:
             body = b""
