@@ -335,3 +335,19 @@ def test_a_list_that_names_kicad_itself_is_not_asked_for_kicads_test_files(monke
 
     assert {r["repo"] for r in rows} == {"a/one"}
     assert not [u for u in hub.asked if "kicad-source-mirror" in u]
+
+
+def test_a_repository_another_source_already_holds_is_not_listed_twice(monkeypatch, tmp_path):
+    """A popular repository is what both a topic sweep and a part search find. Each source keeps its own
+    list and ledger, so without this the same file is fetched twice and counted as two uses."""
+    other = tmp_path / "openhw_topics.jsonl"
+    other.write_text(json.dumps({"url": "https://x/a.kicad_sch", "repo": "a/one"}) + "\n", encoding="utf-8")
+    monkeypatch.setattr(listing, "source_list", lambda s: other)
+    hub = Hub(code={"OPA1612": ["a/one", "b/two"]})
+    monkeypatch.setattr(listing.http, "get", hub.get)
+    cfg = {"parts": {"also": ["OPA1612"], "ext": ["kicad_sch"]}, "avoid": ["openhw_topics"]}
+
+    rows = [r for batch in listing.github("s", cfg)(delay=0) for r in batch]
+
+    assert {r["repo"] for r in rows} == {"b/two"}
+    assert not [u for u in hub.asked if "/repos/a/one/" in u]

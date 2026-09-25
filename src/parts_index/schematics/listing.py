@@ -353,6 +353,28 @@ def _listed_repos(url: str, delay: float) -> list[str]:
     return list(dict.fromkeys(m.group(1) for m in GH_REPO_URL.finditer(r.text())))
 
 
+def _repos_listed_by(sources: list[str]) -> set[str]:
+    """Which repositories other sources have already listed, read from their own lists.
+
+    Two sources that find the same repository would each list its files, each download them and each
+    count them as a use, because a list and a ledger belong to one source. The part-seeded search finds
+    what the topic sweep already found — that is the point of a popular repository — so it is told what
+    not to ask about again. Rule 5 by another route: never do what is done.
+    """
+    out: set[str] = set()
+    for source in sources:
+        path = source_list(source)
+        if not path.exists():
+            continue
+        with open(path, encoding="utf-8") as f:
+            for line in f:
+                if line.strip():
+                    repo = json.loads(line).get("repo")
+                    if repo:
+                        out.add(repo)
+    return out
+
+
 def _seed_parts(cfg: dict) -> list[str]:
     """The part numbers to ask GitHub about, read from the census this project already built.
 
@@ -412,7 +434,7 @@ def github(source: str, cfg: dict):
     Five ways to name repositories, and they compose. `repos` and `orgs` are the ones chosen by hand or by
     owner. `topics` is GitHub's own filing. `list_url` is a list somebody else maintains. `parts` is the
     other direction — which designs use a part from the census — and it is the one that fights the bias.
-    `skip` names the ones none of them should have offered.
+    `skip` names the ones none of them should have offered, and `avoid` the ones another source holds.
 
     Discovery and reading are interleaved on purpose. A part-seeded run is a day and a half long; a
     generator that discovered everything before yielding anything would save nothing when interrupted,
@@ -427,7 +449,11 @@ def github(source: str, cfg: dict):
         # `skip` is for the repositories a list names that are not designs. A curated list of eurorack
         # modules links KiCad itself and FreeCAD, and KiCad's own tree holds hundreds of `.kicad_sch`
         # demonstration files — real KiCad, and not one of them a board anybody built.
-        done: set[str] = set(cfg.get("skip", []))
+        # `avoid` is for the ones another source has already taken.
+        done: set[str] = set(cfg.get("skip", [])) | _repos_listed_by(cfg.get("avoid", []))
+        if cfg.get("avoid"):
+            print(f"{source}: {len(done)} repositories already held by {', '.join(cfg['avoid'])}",
+                  file=sys.stderr)
         read = 0
 
         def take(names, why: str = ""):

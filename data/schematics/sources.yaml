@@ -847,6 +847,7 @@ openhw_parts:
       modern: true
       max: 1500
       ext: [kicad_sch]
+    avoid: [openhw_topics, openhw_eurorack, openhw_instruments, kitspace, openhw_orgs, hardwarex, olimex]
     kind: schematic
     origin: community
   notes: 'The direction that fights the bias instead of adding to it. Every other source here answers
@@ -858,6 +859,16 @@ openhw_parts:
     `parts.MODERN`, so the cap of 1,500 takes all of them, at one code search every fifteen seconds —
     about six hours. Measured before registering it: TL072 appears in 1,276 .kicad_sch files, NE5532 in
     1,600, OPA1612 in 89, LT3045 in 97, ADG1419 in 11, THAT1512 in 5, PGA2320 in none.
+
+    Measured on 2026-09-25 over 40 seeds spread through the whole list, not the first 40: 125 distinct
+    repositories, 3.3 per part, and 26 of the 40 parts with no published design at all. So this is not
+    the flood the first four seeds suggested — AD8000, AD8132, AD8436 and AD8615 answered with 95 of
+    those 125 between them, and the obscure end of the Maxim catalogue answers with nothing. What it
+    buys is relevance rather than volume: every file it finds holds a part that has a SPICE model.
+
+    `avoid` matters here more than anywhere. A popular repository is exactly what both a topic sweep and
+    a part search find, and each source keeps its own list and ledger, so without it the same file would
+    be fetched twice and counted as two uses.
 
     Only .kicad_sch for the first run. EAGLE .sch would double the cost for what the measurements say is
     roughly a tenth of the files, and it can be added when this has been paid for once.'
