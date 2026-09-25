@@ -1271,6 +1271,61 @@ ti_appnotes:
     the data sheets, which are a category of their own. Every file is born digital and carries a text
     layer, so it needs no OCR engine at all. Read on 2026-09-25 it gives 7,805 parts, 6,974 of them new
     to the index and 4,824 from families newer than 1995 — the whole corpus held 291 of those before.'
+toragi:
+  kind: magazine
+  title: トランジスタ技術 (Transistor Gijutsu, CQ出版社) — the free sample pages, 2004 onwards
+  home_url: https://toragi.cqpub.co.jp/magazine/
+  status: proposed
+  era: modern
+  list:
+    role: sample
+  toragi:
+    since: 2004
+    archives: list-only
+  notes: 'The Japanese monthly, 1964 to date, whose modern years are the analogue and mixed-signal
+    material this corpus is emptiest in. Measured on 2026-09-25. The site is WordPress and says so
+    in the one place that counts: robots.txt disallows /wp-admin/ and nothing else. Its media API
+    lists every upload — 4,342 PDFs, 192 ZIPs — in 44 requests, so nothing here is guessed from a
+    file name. 4,233 of the PDFs hang off one of the 274 issue pages (/magazine/YYYYMM/, 2004-01 to
+    2026-10, twelve a year), and 109 hang off nothing; the `magazine` endpoint maps a parent post
+    to its YYYYMM. 3,252 of the PDFs were uploaded in 2022, which is the migration of the old
+    TRBN pages (see toragi_trbn) and will duplicate them byte for byte.
+
+    What a sample is: the first page or two of an article (2026-4-p037-038.pdf), about 1 MB, one per
+    article, seventeen to twenty an issue, plus the table of contents, the English digest and the
+    corrections (teiseiYYYYMM.pdf, /teiseiYYYY/, /category/correction/). Never the whole article.
+    The file name carries the start page and, since 2025, the issue; the issue for the older ones
+    comes from the parent post, and the article title from TR.txt — the publisher''s own index of
+    20,054 articles in 738 issues, CP932 CSV, shipped free in TRDBWin25.zip and kept private.
+
+    The ZIPs under /downloadYYYY/ (2010 to 2026) are program sources for the articles. They are
+    listed with their issue and left unopened: a sketch is not a document read for its circuit.
+    The ones that turn out to hold KiCad or EAGLE files can be opened later with cad.py.
+
+    Tech Village (cc.cqpub.co.jp, no robots.txt) sells the full PDFs and shows each issue''s table
+    of contents, but its item pages carry no sample link — only a link back here. It is a
+    catalogue, not a source, and is not listed. The plan with every measurement is in the
+    maintainer''s notes (toragi-cq-corpus).'
+toragi_trbn:
+  kind: magazine
+  title: トランジスタ技術 back numbers on the old CQ site, 1997–2008
+  home_url: https://www.cqpub.co.jp/toragi/TRBN/html/backnumber.htm
+  status: proposed
+  era: mixed
+  list:
+    role: sample
+  toragi_trbn:
+    years: [1997, 2008]
+  notes: 'The previous generation of the same thing, still served. robots.txt forbids /script/,
+    /search/ and /shared/ and nothing under /toragi/. backnumber.htm (CP932) links one page per
+    issue, TRBN/contents/YYYY/TRYYYYMM.htm for 1998 to 2008 (upper-case .HTM in 1998 and 1999),
+    and each page links its sample PDFs under contents/YYYY/trYYMM/ — 17 for 2005-01, one checked
+    at 281 KB and application/pdf. The download archive is behind two frames,
+    download/html/dl_frame.htm → dl_year.htm (1997 to 2008) and download.htm, 390 article pages
+    with their files. Whatever 2004–2008 shares with the WordPress uploads of 2022 is the same
+    bytes under two URLs: both are kept, and the report says so by sha256. The tabid CMS of
+    2008–2020 (toragi/2008-2020/tabid/92/Default.html) links only navigation, banners and CSS
+    under Portals/0/; it is followed where linked and never enumerated.'
 tonepad:
   kind: site
   title: Tonepad
