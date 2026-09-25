@@ -502,6 +502,13 @@ def drop_hex_dumps(hits):
     return [h for h in hits if h.part not in hexy] if len(hexy) >= 5 else hits
 
 
+# A name a designer typed into a component's value field, once nothing else has recognised it. Letters
+# and digits both, and long enough not to be a designator by accident — the reader has already said this
+# block is a value and not a reference, which is the part no pattern could tell: ADL5801 and R12 are the
+# same shape. See `schematics/cad.py`.
+DECLARED = re.compile(r"^(?=.*\d)(?=.*[A-Z])[A-Z][A-Z0-9][A-Z0-9/.-]{2,18}$")
+
+
 def extract_page(page, min_conf=0.85):
     """One OCR page record -> hits with their block index. Bare IC numbers (741, 5534) only count on a page that has a circuit on it."""
     blocks = [b for b in page.get("blocks") or [] if (b.get("text") or "").strip()]
@@ -511,7 +518,13 @@ def extract_page(page, min_conf=0.85):
         t = b["text"].strip()
         if b.get("conf", 1) < (0.90 if len(t) <= 4 else min_conf):
             continue
-        hits += extract(t, isolated=_short(b), allow_bare=allow_bare, block=i, pending=True)
+        found = extract(t, isolated=_short(b), allow_bare=allow_bare, block=i, pending=True)
+        if not found and b.get("field") == "value" and DECLARED.match(t.upper()):
+            # Nothing here knows this name and a design says it is one. ADL5801, SI5351C and RFSA3714 are
+            # in no family and no catalogue, and LibreVNA puts all three on its board.
+            up = t.upper()
+            found = [Hit(up, base_part(up), t, "declared in a design", "ic", "high", False, i)]
+        hits += found
     page_text = " ".join(b["text"] for b in blocks)
     hits = settle_census(hits, page_text, count_designators(blocks))
     hits = drop_designator_misreads(drop_hex_dumps(hits), [b["text"] for b in blocks if _short(b)])
