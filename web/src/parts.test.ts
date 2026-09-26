@@ -1,7 +1,7 @@
 /** Filtering and ordering the parts list, which is the only logic the browser still does for itself. */
 import { describe, expect, it } from 'vitest'
 
-import { keep, ofDevice, order, pageHref, search } from './parts'
+import { keep, ofDevice, order, pageHref, partPath, search } from './parts'
 import type { DeviceKind, PartRow } from './types'
 
 /** The menu, in menu order; a part row carries one bit per entry, the way the built index does. */
@@ -154,5 +154,13 @@ describe('the chosen order survives typing in the box', () => {
 
   it('still puts an exact match first, whatever the order', () => {
     expect(search(rows, 'TL072', 'models')[0]?.[0]).toBe('TL072')
+  })
+})
+
+describe('partPath', () => {
+  it('keeps a slash as a directory and encodes the rest', () => {
+    expect(partPath('APT1608LSECK/J3-PRV')).toBe('APT1608LSECK/J3-PRV')
+    expect(partPath('TL072')).toBe('TL072')
+    expect(partPath('A B#C')).toBe('A%20B%23C')
   })
 })

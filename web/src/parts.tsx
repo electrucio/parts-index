@@ -49,6 +49,15 @@ const COMPARE: Record<Sort, (a: PartRow, b: PartRow) => number> = {
  * LM4562NA — is asking for the type, and the corpus mostly prints the type alone. A key has to be four
  * characters or more to count as the head of a query, so BC does not answer for BC108B.
  */
+/**
+ * Where a part's page is served from. The builder writes APT1608LSECK/J3-PRV as part/APT1608LSECK/J3-PRV.json,
+ * a file inside a directory, so the request has to say the slash as a slash: a static host (GitHub Pages)
+ * does not turn %2F into a directory separator, and 267 parts carry one.
+ */
+export function partPath(part: string): string {
+  return part.split('/').map(encodeURIComponent).join('/')
+}
+
 export function search(rows: PartRow[], q: string, by: Sort = 'documents'): PartRow[] {
   const needle = q.trim().toUpperCase().replace(/[^A-Z0-9]/g, '')
   if (needle.length < 2) return []
@@ -411,7 +420,7 @@ export function Detail({ part, sources, kinds }: { part: string; sources: string
   useEffect(() => {
     setPage(null)
     setError(false)
-    fetch(`${DATA}/part/${encodeURIComponent(part)}.json`)
+    fetch(`${DATA}/part/${partPath(part)}.json`)
       .then((r) => (r.ok ? (r.json() as Promise<PartPage>) : Promise.reject(r.status)))
       .then(setPage)
       .catch(() => setError(true))
