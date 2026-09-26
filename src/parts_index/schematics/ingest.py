@@ -48,7 +48,7 @@ from parts_index.core.config import (
     source_list,
 )
 from parts_index.core.ledger import Ledger
-from parts_index.schematics import titles
+from parts_index.schematics import cad, titles
 from parts_index.schematics.download import safe_name
 
 VERSION = "ingest-1"
@@ -140,7 +140,12 @@ def document_row(source: str, entry: dict, row: dict, meta: dict, note: dict) ->
         source=source, doc_key=url,
         role=role_of(row.get("role") or "", kind, entry.get("kind", "site")),
         parent_doc_id=None, title=title,
-        public_url=note.get("page") or url,
+        # A PDF is its own best link: `{url}#page={n}` opens the sheet. What the listing calls `page` is
+        # the page a person opens for a *design* — the blob page on GitHub, which renders a .kicad_sch
+        # that raw.githubusercontent.com serves as text. For a PDF that field is the listing page the
+        # file was found on — audiocircuit's brand page, toragi's download index — and 20,416 uses
+        # pointed at "audiocircuit.dk/akai/#page=12" before this said so.
+        public_url=(note.get("page") or url) if kind in cad.KINDS else url,
         page_url_tpl="{url}#page={n}" if kind == "pdf" else None,
         sha256=row.get("sha256") or None, year=None, month=None,
         n_pages=int(meta.get("pages") or 0) or None,

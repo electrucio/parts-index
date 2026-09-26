@@ -100,6 +100,18 @@ def test_a_pdf_gets_the_page_template_and_a_factory_document_the_old_role(world)
         ("service_manual", "{url}#page={n}", "SBAA001")
 
 
+def test_a_pdf_links_to_itself_even_when_the_listing_names_the_page_it_was_found_on(world):
+    """audiocircuit's listing records the brand page a PDF was found on; `{url}#page={n}` on the brand
+    page is no link at all. 20,416 uses pointed there before this test."""
+    pdf = "https://audiocircuit.dk/downloads/akai/Akai-202DSS-tape-sm.pdf"
+    read_document("ti_appnotes", pdf, "pdf", [{"page": 1, "w": 1, "h": 1, "how": "ocr",
+                                               "blocks": [{"text": "2SC1815", "conf": 0.9, "box": [0, 0, 1, 1]}]}],
+                  listing={"title": "Akai 202DSS", "page": "https://audiocircuit.dk/akai/"})
+    I.run(["ti_appnotes"], say=lambda *a: None)
+    db = sqlite3.connect(config.index_db())
+    assert db.execute("SELECT public_url FROM documents").fetchone() == (pdf,)
+
+
 def test_a_second_run_adds_nothing_and_the_ledger_says_indexed(world):
     read_document("openhw_parts", RAW, "kicad_sch", CAD_PAGES, listing={"page": BLOB})
     I.run(["openhw_parts"], say=lambda *a: None)
