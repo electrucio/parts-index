@@ -29,10 +29,17 @@ SCHEMA = 1
 
 
 def write_json(out: Path, name: str, payload) -> int:
-    """Write one file atomically, compact. Returns its size in bytes."""
-    out.mkdir(parents=True, exist_ok=True)
+    """Write one file atomically, compact. Returns its size in bytes.
+
+    `name` may carry a slash. 267 published parts do — ADC121C027CIMK/NOPB is TI's ordering suffix,
+    APT1608LSECK/J3-PRV is Kingbright's — and the site asks for `part/<encodeURIComponent(part)>.json`,
+    which a static server decodes back to a path with a directory in it. So the directory is made here,
+    for the file, and not once for the root: the first build after the CAD sources arrived died on
+    part/A10/A20.json with the directory A10 not there.
+    """
     target = out / name
-    fd, tmp = tempfile.mkstemp(dir=out, prefix=name, suffix=".tmp")
+    target.parent.mkdir(parents=True, exist_ok=True)
+    fd, tmp = tempfile.mkstemp(dir=target.parent, prefix=target.name, suffix=".tmp")
     with os.fdopen(fd, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
     os.replace(tmp, target)

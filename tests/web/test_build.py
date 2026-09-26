@@ -43,3 +43,11 @@ def test_writes_are_atomic(tmp_path):
 def test_output_is_valid_json(tmp_path, name):
     web_build.build(tmp_path)
     json.loads((tmp_path / name).read_text(encoding="utf-8"))
+
+
+def test_a_part_with_a_slash_in_its_name_gets_a_directory_not_a_crash(tmp_path):
+    """267 published parts carry one — a manufacturer's ordering suffix — and the site asks for
+    part/<encodeURIComponent(part)>.json, which a static server decodes into a path with a directory."""
+    from parts_index.web.build import write_json
+    n = write_json(tmp_path / "part", "ADC121C027CIMK/NOPB.json", {"part": "ADC121C027CIMK/NOPB"})
+    assert (tmp_path / "part" / "ADC121C027CIMK" / "NOPB.json").is_file() and n > 0
