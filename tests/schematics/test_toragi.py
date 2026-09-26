@@ -305,3 +305,39 @@ def test_what_cq_no_longer_serves_is_listed_again_from_the_archive(index_zip, tm
     assert len(replay) == 1
     assert replay[0]["url"] == "https://web.archive.org/web/20240518004929id_/https://toragi.cqpub.co.jp/Portals/0/support/2010/10/circuit.pdf"
     assert replay[0]["kind"] == "schematic" and replay[0]["issue"] == "201010"
+
+
+# --- the program archives ------------------------------------------------------------------------------
+def test_an_archive_is_packed_again_with_only_what_is_worth_holding(tmp_path):
+    def zipped(files: dict) -> bytes:
+        buf = io.BytesIO()
+        with zipfile.ZipFile(buf, "w") as z:
+            for n, b in files.items():
+                z.writestr(n, b)
+        return buf.getvalue()
+    folder = tmp_path / "zips"
+    folder.mkdir()
+    (folder / "202512_TR202512_P1S1.zip").write_bytes(zipped({
+        "TR202512_P1S1/msg-sch.pdf": b"%PDF-1.4 sch", "TR202512_P1S1/readme.txt": b"hi",
+        "TR202512_P1S1/src/main.c": b"int main(){}", "TR202512_P1S1/img/photo1.jpg": b"\xff\xd8\xff",
+        "TR202512_P1S1/img/circuit.png": b"\x89PNG", "TR202512_P1S1/ltspice/amp.asc": b"Version 4",
+        "TR202512_P1S1/inner.zip": zipped({"board/kairo.pdf": b"%PDF-1.4 inner", "a.hex": b":00"}),
+    }))
+    (folder / "202601_TR2601_Arduino3.zip").write_bytes(zipped({"sketch.ino": b"void loop(){}"}))
+    (folder / "000000_stray.zip").write_bytes(zipped({"x.pdf": b"%PDF"}))
+    urls = {"202512_TR202512_P1S1.zip": "https://toragi.cqpub.co.jp/wp-content/uploads/TR202512_P1S1.zip",
+            "202601_TR2601_Arduino3.zip": "https://toragi.cqpub.co.jp/wp-content/uploads/TR2601_Arduino3.zip"}
+    out = tmp_path / "toragi_zips.zip"
+    result = T.pack_archives(folder, urls, out, log=lambda *a: None)
+    assert result["counts"] == {"archives": 2, "with something worth holding": 1, "no url": 1}
+    assert result["kinds"] == {"pdf": 2, "png": 1, "asc": 1}
+    with zipfile.ZipFile(out) as z:
+        assert z.namelist() == ["cq/toragi.cqpub.co.jp/wp-content/uploads/TR202512_P1S1.zip"]
+        with zipfile.ZipFile(io.BytesIO(z.read(z.namelist()[0]))) as inner:
+            assert sorted(inner.namelist()) == ["TR202512_P1S1/img/circuit.png", "TR202512_P1S1/inner.zip",
+                                                "TR202512_P1S1/ltspice/amp.asc", "TR202512_P1S1/msg-sch.pdf"]
+
+    from parts_index.schematics import deliver
+    cfg = {"link": [{"match": r"^([^!]+\.zip)!", "url": "https://{1}"}]}
+    key = "toragi.cqpub.co.jp/wp-content/uploads/TR202512_P1S1.zip!TR202512_P1S1/msg-sch.pdf"
+    assert deliver.link_for(cfg, key) == "https://toragi.cqpub.co.jp/wp-content/uploads/TR202512_P1S1.zip"

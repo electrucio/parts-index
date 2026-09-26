@@ -592,6 +592,73 @@ def toragi_support(source: str, cfg: dict):
 LISTERS = {"toragi": toragi, "toragi_trbn": toragi_trbn, "toragi_support": toragi_support}
 
 
+# --- the program archives, opened for the schematics inside -----------------------------------------
+# What is kept out of a program archive: the circuit as a PDF, as a CAD source, or as a picture that
+# says it is one. Screenshots, photographs, sources and binaries stay in the archive on CQ's server,
+# which is where the public link points anyway.
+WANTED_MEMBER = re.compile(r"(?i)\.(pdf|asc|kicad_sch|sch|brd|ce3|dsn|sp7)$")
+WANTED_IMAGE = re.compile(r"(?i)\.(png|gif|jpe?g|bmp)$")
+
+
+def wanted(member: str) -> bool:
+    name = member.rsplit("/", 1)[-1]
+    if WANTED_MEMBER.search(name):
+        return True
+    return bool(WANTED_IMAGE.search(name) and SCHEMATIC_NAME.search(member))
+
+
+def _repack(data: bytes, depth: int = 1) -> tuple[bytes | None, Counter]:
+    """The same archive with only the members worth holding; None when there are none."""
+    kept = Counter()
+    out = io.BytesIO()
+    try:
+        src = zipfile.ZipFile(io.BytesIO(data))
+    except zipfile.BadZipFile:
+        return None, kept
+    with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as dst:
+        for info in src.infolist():
+            if info.is_dir():
+                continue
+            body = src.read(info.filename)
+            if info.filename.lower().endswith(".zip") and body[:2] == b"PK" and depth:
+                inner, sub = _repack(body, depth - 1)
+                if inner:
+                    dst.writestr(info.filename, inner)
+                    kept.update(sub)
+            elif wanted(info.filename):
+                dst.writestr(info.filename, body)
+                kept[info.filename.rsplit(".", 1)[-1].lower()] += 1
+    return (out.getvalue(), kept) if kept else (None, kept)
+
+
+def pack_archives(folder, urls: dict[str, str], out, log=print) -> dict:
+    """One delivery archive out of the program archives fetched to `folder`: each ZIP that holds a
+    schematic goes in again, repacked to the members worth holding, under the path of its public URL —
+    cq/toragi.cqpub.co.jp/wp-content/uploads/TR2602P1S1.zip — so the delivery's link rule can say where
+    it came from. `urls` maps a file name in the folder to its URL."""
+    from pathlib import Path
+    folder, out = Path(folder), Path(out)
+    counts, kept_kinds = Counter(), Counter()
+    rows = []
+    with zipfile.ZipFile(out, "w", zipfile.ZIP_STORED) as dst:
+        for f in sorted(folder.glob("*.zip")):
+            url = urls.get(f.name)
+            if not url:
+                counts["no url"] += 1
+                continue
+            counts["archives"] += 1
+            packed, kept = _repack(f.read_bytes())
+            rows.append({"file": f.name, "url": url, "kept": sum(kept.values()), "kinds": " ".join(f"{k}:{n}" for k, n in sorted(kept.items()))})
+            if not packed:
+                continue
+            counts["with something worth holding"] += 1
+            kept_kinds.update(kept)
+            dst.writestr("cq/" + re.sub(r"^https?://", "", url), packed)
+    log(f"{counts['archives']} archives, {counts['with something worth holding']} hold a schematic or a document: "
+        + ", ".join(f"{n} {k}" for k, n in kept_kinds.most_common()) + f" -> {out}")
+    return {"counts": dict(counts), "kinds": dict(kept_kinds), "rows": rows}
+
+
 # --- the report ---------------------------------------------------------------------------------------
 YEAR_FIELDS = ("year", "issues_expected", "issues_listed", "issues_with_sample", "articles_total",
                "articles_with_sample", "samples_listed", "samples_downloaded", "unique_sha256", "corrections",

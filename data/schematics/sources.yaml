@@ -1353,6 +1353,22 @@ toragi_support:
     the board/ folders too: the LV-1 tree keeps its schematics under circuit/ and its copper under
     board/. The ZIPs are listed and not fetched here; they are opened separately, since one in ten
     holds the schematic as a PDF or a CAD file.'
+toragi_zips:
+  kind: delivery
+  title: トランジスタ技術 program archives, opened for the schematics inside
+  home_url: https://toragi.cqpub.co.jp/download2026/
+  status: active
+  era: modern
+  delivery:
+    role: support
+    link:
+    - match: '^([^!]+\.zip)!'
+      url: 'https://{1}'
+  notes: 'The ZIPs under /downloadYYYY/ and the old support trees are the programs that go with the
+    articles, and about one in ten also carries the circuit — as a PDF drawn from the CAD, sometimes
+    the CAD source itself. They are fetched by hand to the scratch area, opened, and packed again with
+    only the members worth holding, each under the path of its public URL, so the link rule above
+    turns the member key back into the archive CQ serves. Sources, binaries and screenshots stay out.'
 toragi_trbn:
   kind: magazine
   title: トランジスタ技術 back numbers on the old CQ site, 1997–2008
