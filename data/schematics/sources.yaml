@@ -856,6 +856,15 @@ openhw_parts:
       max: 1500
       ext: [kicad_sch]
     avoid: [openhw_topics, openhw_eurorack, openhw_instruments, kitspace, openhw_orgs, hardwarex, olimex]
+    most: 20
+    skip:
+    - KiCad/kicad-source-mirror
+    - oomlout/oomlout_oomp_project_src
+    - oomlout/oomlout_oomp_project_bot
+    - oomlout/oomlout_oomp_project_bot_v_2
+    - kitspace-test-repos/kicad6-file-collection
+    - FOSSEE/eSim
+    - ekkus93/ai-kicad-designer
     kind: schematic
     origin: community
   notes: 'The direction that fights the bias instead of adding to it. Every other source here answers
@@ -867,6 +876,14 @@ openhw_parts:
     `parts.MODERN`, so the cap of 1,500 takes all of them, at one code search every fifteen seconds —
     about six hours. Measured before registering it: TL072 appears in 1,276 .kicad_sch files, NE5532 in
     1,600, OPA1612 in 89, LT3045 in 97, ADG1419 in 11, THAT1512 in 5, PGA2320 in none.
+
+    And a second correction, from running it. It listed 85,142 files from 3,694 repositories, where my
+    sample had projected one or two thousand. The sample counted repositories per part and was right
+    about that; what it could not see is that a repository is not one design. A sixth of those files came
+    from five of them: oomlout''s parts catalogue, a KiCad 6 file collection kept for testing, eSim''s
+    examples and two student forks of those. So `most: 20` throws away any repository holding more
+    schematics than a board has sheets, which keeps 83% of the repositories and 20% of the files, and
+    `skip` names the five worst by hand.
 
     Measured on 2026-09-25 over 40 seeds spread through the whole list, not the first 40: 125 distinct
     repositories, 3.3 per part, and 26 of the 40 parts with no published design at all. So this is not

@@ -398,8 +398,14 @@ def _seed_parts(cfg: dict) -> list[str]:
 
 
 def _tree_rows(source: str, full: str, cfg: dict, delay: float, exts: tuple,
-               deny, extra: dict | None = None, keep=None) -> list[dict]:
+               deny, extra: dict | None = None, keep=None, most: int = 0) -> list[dict]:
     """The schematic sources one repository holds, in one request whatever its size.
+
+    `most` throws away a repository that holds more schematics than a board has sheets, because that is
+    what such a repository is: a library, a test suite or a term's coursework. The part-seeded search
+    listed 85,142 files from 3,694 repositories, and a sixth of them came from five — oomlout's parts
+    catalogue, a KiCad 6 file collection kept for testing, eSim's examples and two student forks of them.
+    Measured over that list: a limit of 20 keeps 83% of the repositories and 20% of the files.
 
     `keep` is for a source whose schematics are PDFs. Kitspace is "ready to order", so its projects
     publish gerbers and a schematic PDF and keep the CAD elsewhere — 0 of the first six repositories hold
@@ -432,6 +438,9 @@ def _tree_rows(source: str, full: str, cfg: dict, delay: float, exts: tuple,
                      "kind": cfg.get("kind", "schematic"), "origin": cfg.get("origin", "community"),
                      "page": f"https://github.com/{full}/blob/HEAD/{quote(path)}",
                      "repo": full, "source": source, **(extra or {})})
+    if most and len(rows) > most:
+        print(f"  {full}: {len(rows)} schematics, which is a library and not a design", file=sys.stderr)
+        return []
     return rows
 
 
@@ -451,6 +460,7 @@ def github(source: str, cfg: dict):
     exts = tuple(cfg.get("ext", GH_EXT))
     deny = re.compile(cfg["deny"]) if cfg.get("deny") else None
     keep = re.compile(cfg["keep"]) if cfg.get("keep") else None
+    most = int(cfg.get("most", 0))
 
     def lister(delay: float, limit: int = 0):
         # `skip` is for the repositories a list names that are not designs. A curated list of eurorack
@@ -472,7 +482,7 @@ def github(source: str, cfg: dict):
                 if limit and read >= limit:
                     return
                 read += 1
-                rows = _tree_rows(source, full, cfg, delay, exts, deny, keep=keep)
+                rows = _tree_rows(source, full, cfg, delay, exts, deny, keep=keep, most=most)
                 if rows:
                     print(f"  {full}: {len(rows)}{why}", file=sys.stderr)
                     yield rows

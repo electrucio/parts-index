@@ -351,3 +351,17 @@ def test_a_repository_another_source_already_holds_is_not_listed_twice(monkeypat
 
     assert {r["repo"] for r in rows} == {"b/two"}
     assert not [u for u in hub.asked if "/repos/a/one/" in u]
+
+
+def test_a_repository_with_more_schematics_than_a_board_has_sheets_is_a_library(monkeypatch):
+    """The part-seeded search listed 85,142 files, a sixth of them from five repositories: a parts
+    catalogue, a test collection, and a SPICE tool's examples with two student forks. A design has a
+    handful of sheets; anything else is a library, and 20 is the line."""
+    big = {"tree": [{"type": "blob", "path": f"lib/part{n}.kicad_sch"} for n in range(25)]}
+    hub = Hub(code={"OPA1612": ["a/library", "b/design"]}, trees={"a/library": big})
+    monkeypatch.setattr(listing.http, "get", hub.get)
+    cfg = {"parts": {"also": ["OPA1612"], "ext": ["kicad_sch"]}, "most": 20}
+
+    rows = [r for batch in listing.github("s", cfg)(delay=0) for r in batch]
+
+    assert {r["repo"] for r in rows} == {"b/design"}
