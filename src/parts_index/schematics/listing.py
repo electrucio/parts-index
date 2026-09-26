@@ -180,7 +180,7 @@ SITEMAP_SIZE = 64 << 20         # an index of a large site, not a page
 SITEMAP_DEPTH = 3               # a sitemap index may point at sitemap indexes
 
 
-def _locs(source: str, url: str, delay: float, depth: int = SITEMAP_DEPTH) -> list[str]:
+def locs(source: str, url: str, delay: float, depth: int = SITEMAP_DEPTH) -> list[str]:
     """Every URL a sitemap names, following the indexes that point at other sitemaps.
 
     Several sites serve theirs gzipped as a file rather than as an encoding — vishay.com/sitemap.xml.gz
@@ -191,7 +191,7 @@ def _locs(source: str, url: str, delay: float, depth: int = SITEMAP_DEPTH) -> li
     if "<sitemapindex" in body[:2000] and depth:
         out: list[str] = []
         for inner in found:
-            out += _locs(source, inner, delay, depth - 1)
+            out += locs(source, inner, delay, depth - 1)
         return out
     return found
 
@@ -207,9 +207,9 @@ def sitemap(source: str, cfg: dict):
     keep = re.compile(cfg["keep"]) if cfg.get("keep") else None
 
     def lister(delay: float, limit: int = 0):
-        locs = list(dict.fromkeys(_locs(source, cfg["url"], delay)))    # TI names a document in two of its sitemaps
-        print(f"{source}: {len(locs)} URLs in the sitemap", file=sys.stderr)
-        wanted = [u for u in locs if not keep or keep.search(u)]
+        named = list(dict.fromkeys(locs(source, cfg["url"], delay)))    # TI names a document in two of its sitemaps
+        print(f"{source}: {len(named)} URLs in the sitemap", file=sys.stderr)
+        wanted = [u for u in named if not keep or keep.search(u)]
         print(f"  {len(wanted)} of them kept by `keep`", file=sys.stderr)
         yield [{"url": u, "title": u.rsplit("/", 1)[-1].upper(), "kind": cfg.get("kind", "schematic"),
                 "origin": cfg.get("origin", "factory"), "page": u, "source": source}

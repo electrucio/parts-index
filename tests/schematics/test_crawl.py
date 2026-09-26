@@ -291,3 +291,36 @@ def test_the_ledger_is_saved_by_files_taken_as_well_as_pages(site, monkeypatch):
 
     assert len(saves) > 1                    # written down during the page, not only when the run ended
     assert saves[0] > C.SAVE_ITEMS           # and what it held by then was already on disk
+
+
+class Enough(Exception):
+    """Raised to stop the crawl once the queue has been built, which is all this test is about."""
+
+
+def test_a_crawl_can_be_seeded_from_a_sitemap_when_the_archive_is_not_walkable(monkeypatch, tmp_path):
+    """hifisonix has 86 articles and its /articles/ index shows nine; the rest are behind JavaScript a
+    crawler does not run. The sitemap names all 86, and `allow` keeps the shop and the basket out."""
+    from parts_index.schematics import listing
+    monkeypatch.setattr(listing, "locs", lambda source, url, delay: [
+        "https://h.example/articles/e-amp/", "https://h.example/projects/sx-amp/",
+        "https://h.example/shop/", "https://h.example/basket/"])
+
+    seeded: list[str] = []
+
+    def stop_once_seeded(urls):
+        seeded.extend(urls)
+        raise Enough
+
+    monkeypatch.setattr(C, "Downloader", lambda *a, **k: None)
+    monkeypatch.setattr(C, "deque", stop_once_seeded)
+    monkeypatch.setattr(C, "schematics_state", lambda s: tmp_path / "state.csv")
+    monkeypatch.setattr(C, "registry_entry", lambda s: {"status": "active", "crawl": {
+        "start": ["https://h.example/articles/"], "sitemap": "https://h.example/wp-sitemap.xml",
+        "allow": "^/(articles|projects)/"}})
+
+    with pytest.raises(Enough):
+        C.crawl("hifisonix", log=lambda *a: None)
+
+    assert seeded == ["https://h.example/articles/",
+                      "https://h.example/articles/e-amp/",
+                      "https://h.example/projects/sx-amp/"]      # not the shop, not the basket

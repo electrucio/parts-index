@@ -39,6 +39,7 @@ from parts_index.core import http
 from parts_index.core.config import downloads, schematics_state
 from parts_index.core.jobs import detach, only_one, run_log, wait_for_all
 from parts_index.core.ledger import Ledger, today
+from parts_index.schematics import listing
 from parts_index.schematics.download import Downloader, registry_entry, safe_name, say, summary
 
 MODULE = "parts_index.schematics.crawl"
@@ -198,7 +199,18 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
     led = Ledger(schematics_state(source))
     job = Downloader(source, cfg, led, delay=delay, min_image=MIN_IMAGE, log=log)
     waiting = frontier(led)
-    queue = deque([without_fragment(u) for u in cfg["start"]] + waiting)
+    # A site whose archive is not walkable but whose sitemap is complete. hifisonix has 86 articles and
+    # its /articles/ index shows nine of them, the rest behind JavaScript that a crawler does not run;
+    # the sitemap names all 86. So the sitemap seeds the frontier and the crawl does what it always does.
+    # This is not the `sitemap:` lister, which names documents: these are pages, read for their links,
+    # and `allow` decides which of them are worth opening — a shop and a basket are in there too.
+    start = [without_fragment(u) for u in cfg["start"]]
+    if cfg.get("sitemap"):
+        named = [u for u in listing.locs(source, cfg["sitemap"], delay)
+                 if allow.search(urlparse(u).path)]
+        log(f"{source}: {len(named)} pages named by the sitemap")
+        start += [without_fragment(u) for u in named]
+    queue = deque(start + waiting)
     # A page whose links are already written down is never opened again, with or without its file.
     seen: set[str] = set() if refresh else {same_page(k) for k, r in led.rows.items() if r["crawl_at"]}
     # And a page every other page links to — a site's own front page — is queued once, not once per link.

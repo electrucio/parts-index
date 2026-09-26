@@ -508,6 +508,46 @@ hardwarex:
     Left undone: the papers that keep their files on Zenodo, the OSF or Mendeley Data instead of GitHub.
     Those are archives of a whole project, which the hand-delivery path takes and this lister only
     counts.'
+hifisonix:
+  kind: site
+  title: hifisonix — Andrew "Bonsai" Marsh
+  home_url: https://www.hifisonix.com/
+  status: active
+  era: mixed
+  crawl:
+    start:
+    - https://www.hifisonix.com/articles/
+    - https://www.hifisonix.com/projects/
+    sitemap: https://www.hifisonix.com/wp-sitemap.xml
+    allow: '^/(articles|projects)/'
+    deny: '(?i)/uploads/.*(price-list|specifications|specs-only|product_information|user-instructions|drilling|pcb-dimensions|-wiring|board-layout|-layout\.|copper|overlay|silk-screen|single-sided|record-reviews|review-of-|on-bullshit|einstein|saturn-guidance|the-economy|upc1237|lm308a|psmn4r3|_en\.pdf)'
+    max: 300
+  notes: 'One engineer''s working library of analogue audio, and one of the densest sources in this
+    registry. 151 PDFs on 2026-09-26, of two kinds. His own designs — Ovation 250, SC-1 and Symphony, the
+    e-Amp, the sx, nx, nx2, kx and kx2 amplifiers, the ax-Amp, the X-Altra preamplifiers, HPA-1, the
+    Ripple Eater supplies, the RIAA phono stages, speaker protection — each written up as a design
+    document with the schematic in it, which is exactly what this pillar is for. And the classics he
+    keeps beside them: Locanthi 1966, JLH''s ten-watt class A, Leach, Stan Curtis, the Quad 405 from
+    Wireless World, Baxandall on noise in transistor circuits, Solomon''s op-amp tutorial, Otala and
+    Jung on TIM.
+
+    Permission. The robots.txt is 24 lines and every one of them is a comment: it carries Cloudflare''s
+    content-signals preamble and declares no signal at all, which by the preamble''s own clause (c)
+    neither grants nor restricts. The footer says "All content copyright hifisonix, unless stated
+    otherwise. Please do not reproduce the content on this site without permission." That is a request
+    not to republish, which rules 1 and 2 already answer: the file is read on this machine, the parts and
+    the link are published, and the file is released once read. Nothing of his is ever redistributed.
+
+    The sitemap is in the `crawl:` block rather than a `sitemap:` lister because what it names are pages,
+    not documents. Its /articles/ index shows nine of the 86 and the rest are behind JavaScript, so the
+    sitemap seeds the frontier and the crawl finds the PDFs each article links — which also means every
+    document is recorded with the article that introduced it, and that is the link a reader should get.
+
+    `deny` drops 31 of the 151: price lists, base-plate drilling, PCB dimensions, silkscreen and copper
+    layers, wiring diagrams, user instructions, specification sheets, four data sheets (uPC1237, LM308A,
+    PSMN4R3) which belong to the census and not here, the Pioneer receiver''s user manual as against its
+    schematic — and On Bullshit, Einstein''s path to relativity, the Saturn guidance system and a piece
+    on the economy, which are his reading and not his circuits.'
 hobbyist_specials:
   kind: magazine
   title: Hobbyist specials
