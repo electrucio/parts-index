@@ -4,7 +4,9 @@
 # the runner builds the same site as `make web` on the maintainer's machine. The 263 MB of part pages
 # travel as a deployment artifact and never enter git: every deploy replaces the previous one whole.
 # Started by hand (`make web-deploy`, or the Run workflow button), not on every push: the data commits
-# are many and the site is rebuilt at milestones.
+# are many and the site is rebuilt at milestones. The Pages site itself was created once, by an
+# administrator, with `gh api -X POST repos/electrucio/parts-index/pages -f build_type=workflow`: the
+# workflow's token may deploy to it but may not create it (done 2026-09-26).
 name: pages
 
 on:
@@ -36,8 +38,6 @@ jobs:
       - run: cd web && npm ci --no-fund --no-audit
       - run: make web
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true          # creates the Pages site (source: GitHub Actions) the first time
       - uses: actions/upload-pages-artifact@v3
         with:
           path: web/dist
