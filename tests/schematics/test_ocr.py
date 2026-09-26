@@ -86,3 +86,17 @@ def test_a_published_key_never_carries_a_path_out_of_a_disk():
     kept = "https://archive.org/download/x/e991026.pdf#Elektor 1999/e991026.pdf"
     assert publishable_key(kept) == kept                      # a relative fragment is the document's name
     assert publishable_key("https://example.org/a.pdf") == "https://example.org/a.pdf"
+
+
+def test_a_source_read_in_japanese_carries_its_language_in_the_stamp(monkeypatch, tmp_path):
+    """Read in English is not read in Japanese: a document stamped with the default is read again when its
+    source asks for another language, and one read in that language is not."""
+    assert ocr.version_for({}) == ocr.OCR_VERSION
+    assert ocr.version_for({"ocr": {"lang": "japan"}}) == f"{ocr.OCR_VERSION}-japan"
+    monkeypatch.setattr(ocr, "registry_entry", lambda source: {"ocr": {"lang": "japan"}})
+    monkeypatch.setattr(ocr, "schematics_state", lambda source: tmp_path / "state" / "src.csv")
+    led = _ledger_with(tmp_path, 3)
+    led.stamp("https://example.org/0.pdf", "ocr", version=ocr.OCR_VERSION, n_pages=1, text_method="ocr_boxes")
+    led.stamp("https://example.org/1.pdf", "ocr", version=f"{ocr.OCR_VERSION}-japan", n_pages=1, text_method="ocr_boxes")
+    led.save()
+    assert ocr.run("src", dry=True)["to read"] == 2

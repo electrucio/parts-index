@@ -42,7 +42,15 @@ IMAGE_TYPES = {"gif", "png", "jpeg", "tiff"}
 OCR_MODELS = "PP-OCRv5"              # see _reader(): v6 needs a newer paddle than the one that is here
 
 
-def _reader(gpu: int | None):
+def version_for(entry: dict) -> str:
+    """The stamp a source's documents carry. A source read in another language than the default carries
+    it in the stamp, so what was read in English is never taken for what was read in Japanese, and a
+    change of language is a new version like any other (rule 5)."""
+    lang = (entry.get("ocr") or {}).get("lang", "en")
+    return OCR_VERSION if lang == "en" else f"{OCR_VERSION}-{lang}"
+
+
+def _reader(gpu: int | None, lang: str = "en"):
     """The OCR itself, loaded only when a page actually needs it — a run with nothing to render must not
     ask for a GPU, and a machine without one must still be able to read born-digital documents."""
     if gpu is not None:
@@ -52,7 +60,9 @@ def _reader(gpu: int | None):
 
     # The model family is pinned. Left to itself PaddleOCR 3.x fetches PP-OCRv6, which a paddle 3.0
     # build refuses with "Type of attribute: strides is not right" on the first page it is given.
-    engine = PaddleOCR(lang="en", ocr_version=OCR_MODELS, use_doc_orientation_classify=False,
+    # `lang` is the registry's: a Japanese magazine is read with PP-OCRv5's Japanese model, which reads the
+    # Latin of a part number as well, where the English one turns every kana into a string of letters.
+    engine = PaddleOCR(lang=lang, ocr_version=OCR_MODELS, use_doc_orientation_classify=False,
                        use_doc_unwarping=False, use_textline_orientation=False,
                        text_det_limit_side_len=LONG, text_det_limit_type="max")
 
@@ -153,10 +163,11 @@ def _note_in_map(source: str, url: str, method: str, n_pages: int, name: str) ->
 
 
 def run(source: str, *, limit: int = 0, gpu: int | None = None, shard: str = "0/1", dry: bool = False) -> dict:
-    registry_entry(source)                                      # refuses a source that is not registered
+    entry = registry_entry(source)                              # refuses a source that is not registered
+    version, lang = version_for(entry), (entry.get("ocr") or {}).get("lang", "en")
     led = Ledger(schematics_state(source))
     k, n = (int(x) for x in shard.split("/"))
-    todo = [key for i, key in enumerate(sorted(led.pending("ocr", OCR_VERSION))) if i % n == k]
+    todo = [key for i, key in enumerate(sorted(led.pending("ocr", version))) if i % n == k]
     if limit:
         todo = todo[:limit]
     folder = ocr_root() / source
@@ -179,7 +190,7 @@ def run(source: str, *, limit: int = 0, gpu: int | None = None, shard: str = "0/
         t0 = time.time()
         try:
             if read_image is None and kind not in ("html", *cad.KINDS):
-                read_image = _reader(gpu)                        # loaded once, on the first document
+                read_image = _reader(gpu, lang)                  # loaded once, on the first document
             pages = read_document(path, kind, read_image)
         except Exception as e:                                   # noqa: BLE001  a broken file must not stop the batch
             counts["failed"] += 1
@@ -188,7 +199,7 @@ def run(source: str, *, limit: int = 0, gpu: int | None = None, shard: str = "0/
         pagesio.write_pages(folder, name, pages)
         how = "ocr_boxes" if any(p["how"] == "ocr" for p in pages) else "text"
         _note_in_map(source, url, how, len(pages), name)
-        led.stamp(url, "ocr", version=OCR_VERSION, n_pages=len(pages), text_method=how)
+        led.stamp(url, "ocr", version=version, n_pages=len(pages), text_method=how)
         counts["read"] += 1
         counts["pages"] += len(pages)
         pages_rendered += sum(1 for p in pages if p["how"] == "ocr")
