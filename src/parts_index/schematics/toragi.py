@@ -611,6 +611,18 @@ def wanted(member: str) -> bool:
     return bool(WANTED_IMAGE.search(name) and SCHEMATIC_NAME.search(member))
 
 
+def member_name(info: zipfile.ZipInfo) -> str:
+    """A member's name as it was written. A ZIP made on a Japanese Windows names its members in CP932
+    and says nothing about it, and the zip module then reads them as CP437 — `回路図.pdf` comes out as
+    `ë±ÿHÉ}.pdf`. The repacked archive names them in UTF-8, so the ledger key reads as the author wrote it."""
+    if info.flag_bits & 0x800:
+        return info.filename                             # written as UTF-8, and flagged so
+    try:
+        return info.filename.encode("cp437").decode("cp932")
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return info.filename
+
+
 def _repack(data: bytes, depth: int = 1) -> tuple[bytes | None, Counter]:
     """The same archive with only the members worth holding; None when there are none."""
     kept = Counter()
@@ -624,14 +636,15 @@ def _repack(data: bytes, depth: int = 1) -> tuple[bytes | None, Counter]:
             if info.is_dir():
                 continue
             body = src.read(info.filename)
-            if info.filename.lower().endswith(".zip") and body[:2] == b"PK" and depth:
+            name = member_name(info)
+            if name.lower().endswith(".zip") and body[:2] == b"PK" and depth:
                 inner, sub = _repack(body, depth - 1)
                 if inner:
-                    dst.writestr(info.filename, inner)
+                    dst.writestr(name, inner)
                     kept.update(sub)
-            elif wanted(info.filename):
-                dst.writestr(info.filename, body)
-                kept[info.filename.rsplit(".", 1)[-1].lower()] += 1
+            elif wanted(name):
+                dst.writestr(name, body)
+                kept[name.rsplit(".", 1)[-1].lower()] += 1
     return (out.getvalue(), kept) if kept else (None, kept)
 
 
