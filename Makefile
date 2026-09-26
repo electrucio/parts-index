@@ -9,9 +9,10 @@ RUN := $(UV) run --quiet
 # Where `make serve` puts the site. Every interface, so it can be opened from another machine.
 WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
+PAGES_REPO ?= ../electrucio.github.io
 
 .DEFAULT_GOAL := help
-.PHONY: ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
+.PHONY: web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -160,6 +161,9 @@ web-data:  ## write the site's data from data/ — reads nothing private
 
 web: web-data  ## build the site into web/dist
 	cd web && npm run build
+
+web-deploy: web  ## (maintainer) publish web/dist to the Pages repository and push; NO_PUSH=1 to stop before the push
+	PAGES_REPO=$(PAGES_REPO) NO_PUSH=$(NO_PUSH) scripts/deploy_web.sh
 
 serve: web-data  ## bring the site up with live reload, at http://0.0.0.0:8026/parts-index/
 	@echo "  http://$(WEB_HOST):$(WEB_PORT)/parts-index/"
