@@ -127,3 +127,28 @@ def test_a_dry_run_counts_and_writes_nothing(world):
     assert counts["documents"] == 1
     db = sqlite3.connect(config.index_db())
     assert db.execute("SELECT count(*) FROM documents").fetchone() == (0,)
+
+
+def test_stamping_the_ledger_keeps_what_another_stage_wrote_meanwhile(world):
+    """The downloader is still fetching audiocircuit while the 20,416 documents already read are
+    indexed. Each stage saves its whole copy of the ledger; this one must not save the copy it read."""
+    read_document("openhw_parts", RAW, "kicad_sch", CAD_PAGES, listing={"page": BLOB})
+    other = "https://raw.githubusercontent.com/b/two/HEAD/x.kicad_sch"
+
+    def someone_else_downloads(*a, **k):
+        led = Ledger(config.schematics_state("openhw_parts"))
+        led.stamp(other, "download", role="schematic", type="kicad_sch", http=200, bytes=1, sha256="t" * 64)
+        led.save()
+        return I._real_put(*a, **k)
+
+    I._real_put = I.put
+    try:
+        import unittest.mock as m
+        with m.patch.object(I, "put", someone_else_downloads):
+            I.run(["openhw_parts"], say=lambda *a: None)
+    finally:
+        del I._real_put
+
+    led = Ledger(config.schematics_state("openhw_parts"))
+    assert led.done(RAW, "index", I.VERSION), "our stamp is there"
+    assert led.rows[other]["download_at"], "and so is what the downloader wrote while we worked"

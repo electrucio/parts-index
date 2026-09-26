@@ -156,8 +156,25 @@ def _map_rows() -> dict[tuple[str, str], dict]:
         return out
     with open(path, newline="", encoding="utf-8") as f:
         for r in csv.DictReader(f):
-            out[(r["source"], r["doc_key"])] = r
+            # The map is appended by OCR shards while this reads it; a line still being written is short.
+            if r.get("source") and r.get("doc_key") and r.get("ocr_file"):
+                out[(r["source"], r["doc_key"])] = r
     return out
+
+
+def stamp_index(source: str, keys: list[str]) -> None:
+    """Stamp `index` on these rows without losing what anyone else wrote to the ledger meanwhile.
+
+    A ledger is one CSV, and every stage holds its own copy in memory and saves the whole of it. Two
+    stages on one source at the same time — the downloader still fetching audiocircuit while this
+    indexes the 20,416 documents already read — would each overwrite the other's stamps, last writer
+    wins. So this stage never saves the copy it worked from: it reads the file again now, adds only its
+    own stamps to what is there, and writes that. The window left is the milliseconds between the two.
+    """
+    fresh = Ledger(schematics_state(source))
+    for key in keys:
+        fresh.stamp(key, "index", version=VERSION)
+    fresh.save()
 
 
 def open_db():
@@ -215,6 +232,7 @@ def run(sources: list[str] | None = None, limit: int = 0, dry: bool = False, say
         db.execute("INSERT OR IGNORE INTO sources VALUES (?,?,?,?)",
                    (source, entry.get("kind", "site"), entry.get("title", source), entry.get("home_url", "")))
         t0, nd, npg = time.strftime("%Y-%m-%d %H:%M:%S"), 0, 0
+        stamped: list[str] = []
         for key in sorted(todo):
             row, meta = led.rows[key], known[(source, key)]
             path = ocr_root() / meta["ocr_file"]
@@ -233,16 +251,17 @@ def run(sources: list[str] | None = None, limit: int = 0, dry: bool = False, say
             doc = document_row(source, entry, row, meta, notes.get(key) or {})
             doc["n_pages"] = len(pages) or doc["n_pages"]
             npg += put(db, doc, pages, sizes)
-            led.stamp(key, "index", version=VERSION)
+            stamped.append(key)
             nd += 1
             if nd % 500 == 0:
                 db.commit()
-                led.save()
+                stamp_index(source, stamped)
+                stamped = []
                 say(f"  {source}: {nd}/{len(todo)} documents, {npg} pages")
         db.execute("INSERT INTO ingest_runs VALUES (?,?,?,?,?,?)",
                    (source, t0, time.strftime("%Y-%m-%d %H:%M:%S"), VERSION, nd, npg))
         db.commit()
-        led.save()
+        stamp_index(source, stamped)
         counts["documents"] += nd
         counts["pages"] += npg
         say(f"{source}: {nd} documents, {npg} pages")
