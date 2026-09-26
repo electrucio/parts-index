@@ -288,3 +288,17 @@ def test_a_family_named_with_a_wildcard_is_not_a_device():
 def test_an_evaluation_board_reports_the_chip_it_carries():
     found = {h.part for h in parts.extract("Connect the ADS1298REVM, then power the ADS7056EVM")}
     assert found == {"ADS1298R", "ADS7056"}
+
+
+def test_a_loose_shape_the_census_knows_is_raised_by_company_like_any_open_scheme():
+    """AD817 was read on 16 pages and published on none: ADxxx is a loose shape, so without the
+    dictionary it stayed low, while AD817AN, which the dictionary happened to hold, was on 91. The
+    census knows the type, so beside another IC on the page it is three pieces of evidence like
+    MC33274 — and a package suffix (ARZ) is looked up by its base."""
+    def mkpage(words):
+        return {"blocks": [{"text": w, "conf": 1.0} for w in words]}
+    got = {h.part: h.conf for h in parts.extract_page(mkpage("U1 AD817ARZ U2 OPA1612AID R1 10k".split()))}
+    assert got["AD817ARZ"] == "high" and got["OPA1612AID"] == "high"
+    got = {h.part: h.conf for h in parts.extract_page(mkpage("U1 AD817 R1 R2 C1 C2 J1".split()))}
+    assert got["AD817"] == "medium"                                   # the census alone: not published
+    assert [h.part for h in parts.extract("U1 AD817ARZ-REEL7", isolated=True)] == []   # an order code is not a name

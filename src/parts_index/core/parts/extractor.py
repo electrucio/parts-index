@@ -34,7 +34,7 @@ FAMILIES = [   # (family, kind guess, regex on the upper-cased token, strict num
     ("JFET / MOSFET", "jfet/mosfet", r"(?:J\d{3}|PF\d{4}|BF\d{3}[ABC]?|U\d{3}|LS[KJ]\d{2,3}[A-C]?|IRF[A-Z]{0,2}\d{2,4}[A-Z]{0,2}|IRL[A-Z]{0,2}\d{2,4}[A-Z]?|BS\d{3}|BSS\d{2,3}|VN\d{2,4}[A-Z]{0,2}|VP\d{4}|ZV[NP]\d{4}[A-Z]?|"
                                      r"(?:ECX|ECF|ECW|ALF|BUZ|FQ[PAU]|ST[PWB]|IXT[HPQ]|FD[PBNS])\d{2,4}[A-Z\d]{0,6}|AO[TD]?\d{4}[A-Z]?)", False),
     ("valve, European", "tube", r"(?:E(?:ABC|AA|BC|BF|CC|CF|CH|CL|F|FF|L|LL|M|Y|Z)\d{2,3}[A-Z]?|(?:PCL|UCL|PCC|PCF|PL|UL|UF|UY|PY)\d{2,3}|[EG]Z\d{2}|KT\d{2,3}|CV\d{3,4}|6[PNH]\d{1,2}[PSCE])", True),
-    ("op-amp / analogue IC", "opamp/ic", r"(?:TL0[6-8]\d[A-Z]{0,3}|TLE?2\d{3}[A-Z]{0,2}|TL[4-7]\d{2}[A-Z]?|TLC\d{3,4}[A-Z]?|NE55\d{2}[A-Z]{0,2}|NE5\d\d|SA5\d\d|LM\d{3,5}[A-Z]{0,3}|LF\d{3}[A-Z]?|LT\d{4}[A-Z]?|LTC\d{4}|LME\d{5}|OPA\d{3,4}[A-Z]?|OP\d{2,3}[A-Z]?|AD\d{3,4}[A-Z]?|"
+    ("op-amp / analogue IC", "opamp/ic", r"(?:TL0[6-8]\d[A-Z]{0,3}|TLE?2\d{3}[A-Z]{0,2}|TL[4-7]\d{2}[A-Z]?|TLC\d{3,4}[A-Z]?|NE55\d{2}[A-Z]{0,2}|NE5\d\d|SA5\d\d|LM\d{3,5}[A-Z]{0,3}|LF\d{3}[A-Z]?|LT\d{4}[A-Z]?|LTC\d{4}|LME\d{5}|OPA\d{3,4}[A-Z]?|OP\d{2,3}[A-Z]?|AD\d{3,4}[A-Z]{0,3}|"
                                         r"INA\d{3}|SSM\d{4}|THAT\d{3,4}[A-Z]?|RC\d{4}[A-Z]?|JRC\d{4}[A-Z]?|NJM\d{4}[A-Z]?|MC\d{4,5}[A-Z]?|UA\d{3,4}[A-Z]?|CA3\d{3}[A-Z]?|MAX\d{3,4}|ICL\d{4}|"
                                         r"TDA\d{4}[A-Z]?|TBA\d{3}[A-Z]?|TAA\d{3}[A-Z]?|TCA\d{3}[A-Z]?|SL\d{3,4}[A-Z]?|ZN4\d{2}[A-Z]?|LA\d{4}|UPC\d{3,4}[A-Z]?|BA\d{4,5}[A-Z]?|AN\d{3,4}|HA\d{4,5}|STK\d{3,4}[A-Z-]*\d*|TA\d{4}[A-Z]?|M5\d{3,4}[A-Z]?|XR\d{4}|SG\d{4}|UC\d{4}|"
                                         r"V[23]\d{3}[A-Z]?|CEM\d{4}|SSI\d{4}|AS\d{4}|IR\d{4}|DRV\d{3}|BUF\d{3}|DG\d{3}|ADG\d{3,4})", False),
@@ -94,7 +94,7 @@ NOT_PARTS = {"RS232", "R5232", "RS422", "RS485", "PL259", "SO239", "RG58", "RG59
 DESIGNATOR_LIKE = {"J111", "J112", "J113", "J174", "J175", "J176", "J177", "J201", "J202", "J203", "J230", "J231", "J232", "J304", "J305", "J308",
                    "J309", "J310", "U309", "U310", "U401", "U402", "U403", "U404", "U405", "U406", "U430", "U431", "P1086", "P1087"}
 # too short or too generic to trust on their own: need the dictionary, or the token alone in its block, or valve words around
-LOOSE = re.compile(r"^(?:U\d{3}|J\d{3}|AD\d{3,4}[A-Z]?|AN\d{3,4}|LA\d{4}|BA\d{4,5}[A-Z]?|OP\d{2,3}[A-Z]?|PT\d{4}[A-Z]?|AS\d{4}|IR\d{4}|PC8\d{2}|VT\d{3,4}[A-Z]?|BS\d{3}|R5\d{3}|BL\d{4}|CD\d{4}|SL\d{3,4}[A-Z]?|TA\d{4}[A-Z]?|HA\d{4,5}|XR\d{4}|SG\d{4}|UC\d{4}|S[89]0\d{2}|PN\d{2,4}|CV\d{3,4})$")
+LOOSE = re.compile(r"^(?:U\d{3}|J\d{3}|AD\d{3,4}[A-Z]{0,3}|AN\d{3,4}|LA\d{4}|BA\d{4,5}[A-Z]?|OP\d{2,3}[A-Z]?|PT\d{4}[A-Z]?|AS\d{4}|IR\d{4}|PC8\d{2}|VT\d{3,4}[A-Z]?|BS\d{3}|R5\d{3}|BL\d{4}|CD\d{4}|SL\d{3,4}[A-Z]?|TA\d{4}[A-Z]?|HA\d{4,5}|XR\d{4}|SG\d{4}|UC\d{4}|S[89]0\d{2}|PN\d{2,4}|CV\d{3,4})$")
 NUMERIC_VALVE = re.compile(r"^\d{3,4}[A-C]?$")
 VALVE_WORDS = re.compile(r"\b(?:valves?|tubes?|triodes?|pentodes?|tetrodes?|rectifiers?|heaters?|filaments?|anodes?|plates?|cathodes?|push[\s-]?pull|V\d{1,2}[AB]?)\b", re.I)
 BARE_IC = {"741": "UA741", "709": "UA709", "301": "LM301", "308": "LM308", "555": "NE555", "5532": "NE5532", "5534": "NE5534", "4558": "RC4558",
@@ -378,8 +378,11 @@ def _judge(tok, text, pos, isolated, raw=""):
             near = words.search(text[max(0, pos - 70): pos + 70])
             return (tok, family, kind, "high", fixed) if near else (tok, PENDING_SCHEME, kind, "low", fixed)
         return tok, family, kind, "medium" if k or kind != "tube" else "low", fixed
-    if LOOSE.match(tok) and not k:
+    if LOOSE.match(tok) and not k and not (cen and _kind_agrees(kind, cen[1])):
         return (tok, family, kind, "low", fixed) if isolated else None
+    # A loose shape the census knows — AD817, AD8138ARZ by its base — is medium like any open scheme,
+    # and settle_census raises it beside company. Until now it was low at best: AD817 was read on 16
+    # pages and published on none, while AD817AN, which the dictionary happened to hold, was on 91.
     conf = "high" if k or strict else "medium"
     if family == "valve, American" and not k:
         if not re.fullmatch(r"\d{1,2}[A-Z]{1,3}\d{1,2}(?:G|GT|GTA|GTB|GA|GB|GC|A|B|C|W|WA|WB|WGT|Y)?|\d{3,4}[A-C]?", tok):
@@ -491,7 +494,8 @@ def settle_census(hits, page_text, n_desig=0):
             # that had to be complete also holds the part, and the page carries another of its kind,
             # that is three pieces of evidence and the gate can have it: MC33274 and MC33078 are one
             # vendor and one scheme, and only the one in the dictionary was ever published.
-            if h.conf == "medium" and norm(h.part) in CENSUS and _kind_agrees(h.kind, CENSUS[norm(h.part)][1]):
+            known_as = norm(h.part) if norm(h.part) in CENSUS else norm(h.base)      # AD8138ARZ: the census has the type, not the package
+            if h.conf == "medium" and known_as in CENSUS and _kind_agrees(h.kind, CENSUS[known_as][1]):
                 company = {x.base for x in hits if x.base != h.base and _kind_agrees(x.kind, h.kind)
                            and (x.conf == "high" or x.family not in WAITING)}
                 if company:
