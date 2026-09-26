@@ -192,7 +192,9 @@ def run(source: str, *, limit: int = 0, gpu: int | None = None, shard: str = "0/
         row = led.row(url)
         kind = row.get("type") or "pdf"
         name = safe_name(url, kind)
-        if pagesio.is_done(folder, name):
+        # A page file already written is a page already read — for a scan. A design's pages are its
+        # reader's output, and the ledger has just said that reader has changed, so they are written again.
+        if kind not in cad.KINDS and pagesio.is_done(folder, name):
             counts["already there"] += 1
             continue
         path = downloads(source) / kind / name

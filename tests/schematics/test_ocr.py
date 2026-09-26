@@ -116,3 +116,30 @@ def test_a_design_is_read_again_when_its_reader_changes_and_a_scan_is_not(monkey
               text_method="text")
     led.save()
     assert ocr.run("src", dry=True)["to read"] == 1
+
+
+def test_a_design_already_on_disk_is_written_again_when_its_reader_changed(monkeypatch, tmp_path):
+    """The page file of a scan says it was read; the page file of a design says an older reader read it."""
+    from parts_index.core import pagesio
+    from parts_index.schematics import cad
+    monkeypatch.setattr(ocr, "registry_entry", lambda source: {})
+    monkeypatch.setattr(ocr, "schematics_state", lambda source: tmp_path / "state" / "src.csv")
+    monkeypatch.setattr(ocr, "ocr_root", lambda: tmp_path / "ocr")
+    monkeypatch.setattr(ocr, "ocr_map", lambda: tmp_path / "ocr_map.csv")
+    monkeypatch.setattr(ocr, "downloads", lambda source: tmp_path / "downloads")
+    url = "https://example.org/amp.asc"
+    led = Ledger(tmp_path / "state" / "src.csv")
+    led.stamp(url, "download", sha256="a" * 40, type="ltspice_asc", http=200)
+    led.stamp(url, "ocr", version=ocr.OCR_VERSION, n_pages=1, text_method="text")
+    led.save()
+    name = ocr.safe_name(url, "ltspice_asc")
+    (tmp_path / "downloads" / "ltspice_asc").mkdir(parents=True)
+    (tmp_path / "downloads" / "ltspice_asc" / name).write_text(
+        "Version 4\nSHEET 1 1 1\nSYMBOL npn 0 0 R0\nSYMATTR InstName Q1\nSYMATTR Value 2SC1815\n", encoding="utf-8")
+    pagesio.write_pages(tmp_path / "ocr" / "src", name, [{"page": 1, "w": 0, "h": 0, "how": "cad", "blocks": []}])
+    counts = ocr.run("src")
+    assert counts["read"] == 1 and counts["already there"] == 0
+    row = Ledger(tmp_path / "state" / "src.csv").get(url)
+    assert row["ocr_v"] == f"{ocr.OCR_VERSION}-cad{cad.VERSION}"
+    texts = [b["text"] for p in pagesio.read_pages(pagesio.out_path(tmp_path / "ocr" / "src", name)) for b in p["blocks"]]
+    assert "2SC1815" in texts

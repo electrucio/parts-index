@@ -413,7 +413,7 @@ def read_ltspice(text: str) -> list[tuple]:
             # A symbol with a type number in its name is a vendor's, or an author's for a part — Opamps/LT1001,
             # or a QC1815A drawn by hand — and vouches for it either way, read as a model name is read.
             value, declared = model_name(ref[:1], attrs.get("Value") or name)
-            declared = True
+            declared = declared or bool(PART_SHAPE.match(value))       # ParaCable0r2m is a name, not a type number
         if ref or value:
             out.append((ref, value, declared))
     out += [("", m, recognised(m)) for m in ASC_MODEL.findall(text)]
