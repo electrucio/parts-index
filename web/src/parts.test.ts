@@ -34,6 +34,12 @@ describe('search', () => {
     expect(search(rows, 'BC108B')[0]?.[0]).toBe('BC108B')
   })
 
+  it('answers an order code with the type it starts with, after everything else', () => {
+    // AD817ARZ is on no page; AD817 is. BC108B typed in full still finds BC108B first, BC108 after it.
+    expect(search(rows, 'BC108BZ').map((r) => r[0])).toEqual(['BC108B', 'BC108'])
+    expect(search(rows, 'BC1').map((r) => r[0])).toEqual(['BC108', 'BC108B'])    // two letters never answer for a code
+  })
+
   it('prefers what starts with the query over what merely contains it', () => {
     const names = search(rows, '108').map((r) => r[0])
     expect(names).toContain('BC108')

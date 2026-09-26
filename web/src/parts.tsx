@@ -44,6 +44,10 @@ const COMPARE: Record<Sort, (a: PartRow, b: PartRow) => number> = {
  * and inside each of those, whatever order was asked for. The chosen sort used to be dropped as soon as
  * anything was typed, which put parts with no use at all above parts with hundreds of them, because the
  * relevance weight it fell back to counted one SPICE model as twenty-five documents.
+ *
+ * Last, what the query starts with: somebody who types the order code off a reel — AD817ARZ, TL072CP,
+ * LM4562NA — is asking for the type, and the corpus mostly prints the type alone. A key has to be four
+ * characters or more to count as the head of a query, so BC does not answer for BC108B.
  */
 export function search(rows: PartRow[], q: string, by: Sort = 'documents'): PartRow[] {
   const needle = q.trim().toUpperCase().replace(/[^A-Z0-9]/g, '')
@@ -51,14 +55,17 @@ export function search(rows: PartRow[], q: string, by: Sort = 'documents'): Part
   const exact: PartRow[] = []
   const starts: PartRow[] = []
   const has: PartRow[] = []
+  const heads: PartRow[] = []
   for (const r of rows) {
     const key = r[0].toUpperCase().replace(/[^A-Z0-9]/g, '')
     if (key === needle) exact.push(r)
     else if (key.startsWith(needle)) starts.push(r)
     else if (key.includes(needle)) has.push(r)
+    else if (key.length >= 4 && needle.startsWith(key)) heads.push(r)
   }
-  for (const g of [exact, starts, has]) g.sort(COMPARE[by])
-  return [...exact, ...starts, ...has]
+  for (const g of [exact, starts, has, heads]) g.sort(COMPARE[by])
+  heads.sort((a, b) => b[0].length - a[0].length)     // the longest head is the nearest: BC108B before BC108 for BC108BZ
+  return [...exact, ...starts, ...has, ...heads]
 }
 
 /** All the parts, in the order asked for. Sorting 15,558 rows is cheap; rendering them is not. */
