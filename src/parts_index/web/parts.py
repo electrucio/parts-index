@@ -19,6 +19,12 @@ whole — every one of the 94,170 of them is — which is 76 % of the URL text i
 **Uses are one row per page, and a reader wants one row per document.** Twelve pages of one service
 manual is one result with twelve page links, not twelve results.
 
+**A page link carries the line that says what the part does there.** `summarise` wrote one per
+published use — "preamp stage V1A in the Trainwreck Express amplifier" — and the kind of use it is: a
+circuit, a technique, a reference table, an advert, a mention, or not a component at all. The line goes
+beside the link, because "page 47" is a link and not yet an answer; the kind sends a document whose
+every page only mentions or sells the part below the ones that use it.
+
 And three answers to "where is it used" are three different questions, so they travel apart: a project
 page or a factory sheet is a circuit somebody built, a magazine page is an article about one, and a
 GitHub repository is a board somebody is making now. The site folds each group on its own, and each
@@ -36,6 +42,7 @@ from parts_index.core.config import (
     known_parts,
     model_part,
     schematics_documents,
+    schematics_lines,
     schematics_pages,
     schematics_parts,
     schematics_registry,
@@ -45,6 +52,11 @@ from parts_index.core.config import (
 from parts_index.core.parts.extractor import canonical, family_of
 
 REPO_CAP = 200        # GitHub projects listed for one part
+# The kinds of use `summarise` tells apart, and which of them is a use at all. A page that only names the
+# part as an alternative, sells it, or holds a number that is not a component is not where a reader
+# looking for a circuit wants to start, so a document whose every summarised page is one of those
+# sorts after the rest. A page not summarised yet says nothing either way.
+NOT_A_USE = frozenset(("mention", "advert", "none"))
 
 # The vocabulary the curation uses, which is the one the previous site offered, with its labels in
 # English. Order is the order of the menu: the devices an analog-audio circuit is made of, then the
@@ -190,13 +202,16 @@ def index() -> dict:
     """The whole index, read once: documents and pages by source, uses by part."""
     docs: dict[str, dict] = {}
     pages: dict[str, dict] = {}
+    lines: dict[str, dict] = {}
     uses: dict[str, list] = defaultdict(list)
     for i, s in enumerate(sources()):
         docs[s] = {r["id"]: r for r in rows(schematics_documents(s))}
         pages[s] = {(r["doc"], r["page"]): r for r in rows(schematics_pages(s))}
+        lines[s] = {(r["doc"], r["page"], r["part"]): (r["kind"], r["line"])
+                    for r in rows(schematics_lines(s))}
         for u in rows(schematics_uses(s)):
             uses[u["part"]].append((i, u))
-    return {"sources": sources(), "kinds": kinds(), "documents": docs, "pages": pages,
+    return {"sources": sources(), "kinds": kinds(), "documents": docs, "pages": pages, "lines": lines,
             "uses": uses, "repos": repos(), "wanted": wanted(),
             "wanted_kind": {r["part"]: r["kind"] for r in rows(wanted_parts()) if r.get("kind")}}
 
@@ -251,18 +266,31 @@ def deep_links(doc: dict) -> int:
     return sum(1 for p in doc["p"] if "&zoom=" in p[1])
 
 
-def page_entry(page: dict | None, u: dict, doc_url: str) -> list:
-    """One page link: where it is, what is beside the part, and how many times it is on it.
+def page_entry(page: dict | None, u: dict, doc_url: str, line: tuple[str, str] | None) -> list:
+    """One page link: where it is, what is beside the part, how many times it is on it, and what it
+    does there.
 
     The link is stored as what to add to the document's own URL — `#page=47&zoom=200,55,523&h=792` —
     because that is what it is. All 94,170 of them are a suffix of it, and writing them whole was three
     quarters of the URL text in a part's page. Anything that is not a suffix is kept whole, and the
     reader can tell which by whether it starts with a scheme.
+
+    The last two are the line `summarise` wrote and the kind of use it read; a page not summarised yet
+    ends at the count, and the site treats the missing pair as "not known".
     """
     url = (page or {}).get("url", "")
     if doc_url and url.startswith(doc_url):
         url = url[len(doc_url):]
-    return [int(u["page"]), url, u["near"], int(u["times"] or 1)]
+    out = [int(u["page"]), url, u["near"], int(u["times"] or 1)]
+    if line:
+        out += [line[1], line[0]]
+    return out
+
+
+def only_named(doc: dict) -> bool:
+    """True when every summarised page of this document only mentions or sells the part."""
+    kinds = [p[5] for p in doc["p"] if len(p) > 5]
+    return bool(kinds) and all(k in NOT_A_USE for k in kinds)
 
 
 def part_payload(part: str, idx: dict, recipe: dict | None) -> dict:
@@ -279,7 +307,8 @@ def part_payload(part: str, idx: dict, recipe: dict | None) -> dict:
                                "schematic": 0, "p": []}
         page = idx["pages"][source].get((u["doc"], u["page"]))
         d["schematic"] = max(d["schematic"], int((page or {}).get("schematic") or 0))
-        d["p"].append(page_entry(page, u, d["u"]))
+        line = idx["lines"].get(source, {}).get((u["doc"], u["page"], part))
+        d["p"].append(page_entry(page, u, d["u"], line))
 
     # One sheet published by several archives is one result that names the others. Which copy is kept
     # matters: they differ by the link they offer, and the one that puts the reader on the right part
@@ -296,7 +325,7 @@ def part_payload(part: str, idx: dict, recipe: dict | None) -> dict:
             first["also"] = sorted({idx["sources"][d["s"]] for d in rest})
         merged.append(first)
 
-    merged.sort(key=lambda d: (-d["schematic"], -sum(p[3] for p in d["p"]), d["t"]))
+    merged.sort(key=lambda d: (-d["schematic"], only_named(d), -sum(p[3] for p in d["p"]), d["t"]))
     shown = merged
     for d in shown:
         d["p"].sort(key=lambda p: p[0])

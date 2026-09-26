@@ -92,6 +92,12 @@ export interface PartModel {
   rows?: [number, number, number]
 }
 
+/** What one page's use of the part was read as: a circuit, a technique, a table, an advert, a part
+ *  named but not used, or a number that is not a component at all. */
+export type UseKind = 'project' | 'technique' | 'reference' | 'advert' | 'mention' | 'none'
+
+export type PageUse = [number, string, string, number] | [number, string, string, number, string, UseKind]
+
 export interface PartPage {
   part: string
   docs: {
@@ -101,8 +107,9 @@ export interface PartPage {
     u: string
     y: string
     schematic: number
-    /** page number, link, nearby designators, times on the page */
-    p: [number, string, string, number][]
+    /** page number, link, nearby designators, times on the page — then, once the page has been
+     *  summarised, the line saying what the part does there and the kind of use it is. */
+    p: PageUse[]
     more?: number
     also?: string[]
   }[]

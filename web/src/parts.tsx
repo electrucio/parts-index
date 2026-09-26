@@ -13,7 +13,7 @@ import type preact from 'preact'
 import { useEffect, useMemo, useState } from 'preact/hooks'
 
 import { forViewer } from './links'
-import type { DeviceKind, PartIndex, PartModel, PartPage, PartRow } from './types'
+import type { DeviceKind, PageUse, PartIndex, PartModel, PartPage, PartRow, UseKind } from './types'
 
 const DATA = `${import.meta.env.BASE_URL}data`
 export const n = (v: number) => v.toLocaleString('en-GB')
@@ -174,11 +174,33 @@ export function pageHref(docUrl: string, suffix: string): string {
   return /^[a-z]+:/i.test(suffix) ? suffix : docUrl + suffix
 }
 
-function PageLink({ p, docUrl }: { p: [number, string, string, number]; docUrl: string }) {
+/** The kinds of use worth a word beside the line, because they say "not here, really". */
+const KIND_LABEL: Partial<Record<UseKind, string>> = {
+  mention: 'mentioned',
+  advert: 'advert',
+  none: 'not this part',
+  reference: 'listed',
+}
+
+/**
+ * One page: the link, and the line saying what the part does there.
+ *
+ * The line was read off the page by a language model on the maintainer's machine, one call per page. It
+ * is reliable about where the part sits — the stage, the board, the list — and was told not to say what
+ * the device is for, which it would guess from the type number. A page not summarised yet shows the
+ * designators beside the part instead, which is all the index knew before.
+ */
+function PageLink({ p, docUrl }: { p: PageUse; docUrl: string }) {
+  const line = p[4]
+  const kind = p[5]
+  const label = kind && KIND_LABEL[kind]
   return (
     <li>
       <a href={forViewer(pageHref(docUrl, p[1]))} target="_blank" rel="noopener">page {p[0]}</a>
-      {p[2] && <span class="muted small"> beside {p[2]}</span>}
+      {label && <> <span class={`pill ${kind === 'reference' ? 'na' : 'off'}`}>{label}</span></>}
+      {line
+        ? <span class="line"> {line}</span>
+        : p[2] && <span class="muted small"> beside {p[2]}</span>}
     </li>
   )
 }
@@ -226,7 +248,8 @@ function Document({ d }: { d: PartPage['docs'][0] }) {
     <Fold summary={summary} level={3}>
       {() => (
         // No link to the document on its own: every page link opens it, at a more useful place.
-        <ul class="uselist cols">
+        // Pages with a line each take a row; bare page links still fit several to a row.
+        <ul class={d.p.some((p) => p[4]) ? 'uselist' : 'uselist cols'}>
           {d.p.map((p, j) => <PageLink key={j} p={p} docUrl={d.u} />)}
         </ul>
       )}
@@ -325,7 +348,9 @@ function Uses({ page, sources, kinds }: { page: PartPage; sources: string[]; kin
         {n(documents)} document{documents === 1 ? '' : 's'}
         {shown < documents && <> · showing the {n(shown)} most likely to help</>}
         {copies > 0 && <> · {n(copies)} duplicate cop{copies === 1 ? 'y' : 'ies'} folded in</>}
-        {' '}· a page link opens the sheet where the part is, not at the front.
+        {' '}· a page link opens the sheet where the part is, not at the front, and the line beside it
+        says what the part does there, read off the page by a language model: trust it about where,
+        less about what.
       </p>
       <Group
         title="Projects and factory schematics" open

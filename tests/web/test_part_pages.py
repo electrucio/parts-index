@@ -34,6 +34,8 @@ def data(tmp_path, monkeypatch):
          ["1", "1", "https://esp.example/p00.htm", "0", "2"]])
     put(config.schematics_uses("esp"), ("part", "doc", "page", "times", "near"),
         [["12AX7", "0", "1", "2", "V1 V2"], ["TL072", "1", "1", "1", "IC1"]])
+    put(config.schematics_lines("esp"), ("doc", "page", "part", "kind", "line"),
+        [["0", "1", "12AX7", "project", "First and second preamp stages V1 and V2 of the Bassman 5F6-A."]])
 
     (root / "schematics" / "sources.yaml").write_text(
         "esp: {kind: site, title: ESP, home_url: 'https://e.org/', status: active}\n"
@@ -206,3 +208,38 @@ def test_the_projects_are_ordered_by_stars_and_the_dead_ones_dropped(data):
     page = P.part_payload("12AX7", P.index(), None)
     assert [r[0] for r in page["repos"]] == ["b/renamed", "a/small"]   # stars first, renamed followed
     assert page["repos"][0][2] == 900
+
+
+def test_a_page_link_carries_the_line_saying_what_the_part_does_there(data):
+    """"page 47" is a link and not yet an answer; the line beside it is what `summarise` wrote."""
+    page = P.part_payload("12AX7", P.index(), None)
+    p = page["docs"][0]["p"][0]
+    assert p[4] == "First and second preamp stages V1 and V2 of the Bassman 5F6-A."
+    assert p[5] == "project"
+
+
+def test_a_page_not_summarised_yet_ends_at_the_count(data):
+    """A clone without the model cache exports no lines, and the page must read exactly as before."""
+    page = P.part_payload("TL072", P.index(), None)
+    assert len(page["docs"][0]["p"][0]) == 4
+
+
+def test_a_document_that_only_mentions_the_part_sorts_after_one_that_uses_it(data):
+    """Two schematics of the same weight, and the one that sorts first by title only sells the part:
+    the one whose every summarised page is a mention, an advert or not a component at all goes after
+    the one that uses it. A page not summarised yet is not moved either way."""
+    with open(config.schematics_uses("esp"), "a", newline="", encoding="utf-8") as f:
+        csv.writer(f, lineterminator="\n").writerows(
+            [["TL072", "0", "1", "9", ""], ["TL072", "2", "1", "9", ""]])
+    with open(config.schematics_documents("esp"), "a", newline="", encoding="utf-8") as f:
+        csv.writer(f, lineterminator="\n").writerow(
+            ["2", "k9", "A Sale", "https://esp.example/sale.pdf", "", "schematic", "", "", "1", "beef"])
+    with open(config.schematics_pages("esp"), "a", newline="", encoding="utf-8") as f:
+        csv.writer(f, lineterminator="\n").writerow(
+            ["2", "1", "https://esp.example/sale.pdf#page=1", "1", "9"])
+    with open(config.schematics_lines("esp"), "a", newline="", encoding="utf-8") as f:
+        csv.writer(f, lineterminator="\n").writerows(
+            [["0", "1", "TL072", "project", "Tone stack buffer IC1 of the Bassman 5F6-A."],
+             ["2", "1", "TL072", "advert", "Offered at a price in a mail-order list."]])
+    page = P.part_payload("TL072", P.index(), None)
+    assert [d["t"] for d in page["docs"]] == ["Bassman 5F6-A", "A Sale", "Opamp Bypassing"]

@@ -147,6 +147,6 @@ describe('the chosen order survives typing in the box', () => {
   })
 
   it('still puts an exact match first, whatever the order', () => {
-    expect(search(rows, 'TL072', 'models')[0][0]).toBe('TL072')
+    expect(search(rows, 'TL072', 'models')[0]?.[0]).toBe('TL072')
   })
 })
