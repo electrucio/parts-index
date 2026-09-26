@@ -600,7 +600,9 @@ LISTERS = {"toragi": toragi, "toragi_trbn": toragi_trbn, "toragi_support": torag
 # What is kept out of a program archive: the circuit as a PDF, as a CAD source, or as a picture that
 # says it is one. Screenshots, photographs, sources and binaries stay in the archive on CQ's server,
 # which is where the public link points anyway.
-WANTED_MEMBER = re.compile(r"(?i)\.(pdf|asc|kicad_sch|sch|brd|ce3|dsn|sp7)$")
+# `.net` and `.cir` are the netlists OrCAD/PSpice writes beside a `.DSN`: plain text naming every part and
+# its model, which is the schematic in the one form nothing has to guess at.
+WANTED_MEMBER = re.compile(r"(?i)\.(pdf|asc|kicad_sch|sch|brd|ce3|dsn|sp7|net|cir)$")
 WANTED_IMAGE = re.compile(r"(?i)\.(png|gif|jpe?g|bmp)$")
 
 
@@ -623,10 +625,34 @@ def member_name(info: zipfile.ZipInfo) -> str:
         return info.filename
 
 
+def _lzh_as_zip(data: bytes) -> bytes | None:
+    """An LHA archive, the format of the old download archive (1997–2008), rewritten as a ZIP so one
+    repacking serves both. Names come out as the CP437 reading of CP932, as from a Japanese ZIP."""
+    import tempfile
+
+    import lhafile
+    with tempfile.NamedTemporaryFile(suffix=".lzh") as tmp:
+        tmp.write(data)
+        tmp.flush()
+        try:
+            src = lhafile.Lhafile(tmp.name)
+            out = io.BytesIO()
+            with zipfile.ZipFile(out, "w") as dst:
+                for info in src.infolist():
+                    name = info.filename.replace("\\", "/")
+                    if not name.endswith("/"):
+                        dst.writestr(zipfile.ZipInfo(name), src.read(info.filename))
+            return out.getvalue()
+        except Exception:                                   # a damaged or unknown LHA method
+            return None
+
+
 def _repack(data: bytes, depth: int = 1) -> tuple[bytes | None, Counter]:
     """The same archive with only the members worth holding; None when there are none."""
     kept = Counter()
     out = io.BytesIO()
+    if data[2:5] == b"-lh":                                 # LHA: `-lh5-` at offset 2
+        data = _lzh_as_zip(data) or b""
     try:
         src = zipfile.ZipFile(io.BytesIO(data))
     except zipfile.BadZipFile:
@@ -658,7 +684,7 @@ def pack_archives(folder, urls: dict[str, str], out, log=print) -> dict:
     counts, kept_kinds = Counter(), Counter()
     rows = []
     with zipfile.ZipFile(out, "w", zipfile.ZIP_STORED) as dst:
-        for f in sorted(folder.glob("*.zip")):
+        for f in sorted(p for p in folder.iterdir() if p.suffix.lower() in (".zip", ".lzh")):
             url = urls.get(f.name)
             if not url:
                 counts["no url"] += 1
@@ -670,7 +696,7 @@ def pack_archives(folder, urls: dict[str, str], out, log=print) -> dict:
                 continue
             counts["with something worth holding"] += 1
             kept_kinds.update(kept)
-            dst.writestr("cq/" + re.sub(r"^https?://", "", url), packed)
+            dst.writestr("cq/" + re.sub(r"(?i)\.lzh$", ".lzh.zip", re.sub(r"^https?://", "", url)), packed)
     log(f"{counts['archives']} archives, {counts['with something worth holding']} hold a schematic or a document: "
         + ", ".join(f"{n} {k}" for k, n in kept_kinds.most_common()) + f" -> {out}")
     return {"counts": dict(counts), "kinds": dict(kept_kinds), "rows": rows}

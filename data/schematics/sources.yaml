@@ -1368,13 +1368,21 @@ toragi_zips:
   delivery:
     role: support
     link:
+    - match: '(?i)^([^!]+\.lzh)\.zip!'
+      url: 'https://{1}'
     - match: '^([^!]+\.zip)!'
       url: 'https://{1}'
   notes: 'The ZIPs under /downloadYYYY/ and the old support trees are the programs that go with the
     articles, and about one in ten also carries the circuit — as a PDF drawn from the CAD, sometimes
     the CAD source itself. They are fetched by hand to the scratch area, opened, and packed again with
     only the members worth holding, each under the path of its public URL, so the link rule above
-    turns the member key back into the archive CQ serves. Sources, binaries and screenshots stay out.'
+    turns the member key back into the archive CQ serves. Sources, binaries and screenshots stay out.
+
+    The old download archive (1997–2008, www.cqpub.co.jp/toragi/download/) is 462 more, 243 MB,
+    listed from the Wayback index and still served by CQ; most are LHA. One in eight of a first
+    sample carried OrCAD/PSpice designs, .DSN with the .net and .cir netlists beside them, which
+    name every part and its model in plain text. An LHA archive is repacked as a ZIP, so its key
+    ends .lzh.zip and the first link rule strips that back to the URL.'
 toragi_trbn:
   kind: magazine
   title: トランジスタ技術 back numbers on the old CQ site, 1997–2008

@@ -358,3 +358,18 @@ def test_a_member_named_in_cp932_by_a_japanese_windows_is_read_as_written():
     assert T.member_name(flagged) == "回路図.pdf"                    # written as UTF-8 and said so: kept
     plain = zipfile.ZipInfo("msg-sch.pdf")
     assert T.member_name(plain) == "msg-sch.pdf"
+
+
+def test_an_orcad_netlist_is_worth_holding_and_an_lzh_key_links_back_to_its_url():
+    assert T.wanted("Fig14-6/NOISE_DIODE-SCHEMATIC1.net") and T.wanted("Fig14-6/noise_diode-SCHEMATIC1-AC.sim.cir")
+    assert T.wanted("Fig14-6/NOISE_DIODE.DSN")
+    assert not T.wanted("Fig14-6/noise_diode-SCHEMATIC1-AC.out") and not T.wanted("src/main.c")
+    import yaml
+
+    from parts_index.core.config import schematics_registry
+    from parts_index.schematics import deliver
+    cfg = yaml.safe_load(schematics_registry().read_text(encoding="utf-8"))["toragi_zips"]["delivery"]
+    assert deliver.link_for(cfg, "www.cqpub.co.jp/toragi/download/2006/TR0604S/TR0604S.LZH.zip!Fig14-6/NOISE_DIODE.DSN") \
+        == "https://www.cqpub.co.jp/toragi/download/2006/TR0604S/TR0604S.LZH"
+    assert deliver.link_for(cfg, "toragi.cqpub.co.jp/wp-content/uploads/TR2602P2S1.zip!PASCO2_PICO回路図.pdf") \
+        == "https://toragi.cqpub.co.jp/wp-content/uploads/TR2602P2S1.zip"
