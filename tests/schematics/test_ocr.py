@@ -100,3 +100,19 @@ def test_a_source_read_in_japanese_carries_its_language_in_the_stamp(monkeypatch
     led.stamp("https://example.org/1.pdf", "ocr", version=f"{ocr.OCR_VERSION}-japan", n_pages=1, text_method="ocr_boxes")
     led.save()
     assert ocr.run("src", dry=True)["to read"] == 2
+
+
+def test_a_design_is_read_again_when_its_reader_changes_and_a_scan_is_not(monkeypatch, tmp_path):
+    from parts_index.schematics import cad
+    monkeypatch.setattr(ocr, "registry_entry", lambda source: {})
+    monkeypatch.setattr(ocr, "schematics_state", lambda source: tmp_path / "state" / "src.csv")
+    led = _ledger_with(tmp_path, 2)
+    led.stamp("https://example.org/2.asc", "download", sha256="2" * 40, type="ltspice_asc", http=200)
+    led.stamp("https://example.org/0.pdf", "ocr", version=ocr.OCR_VERSION, n_pages=1, text_method="ocr_boxes")
+    led.stamp("https://example.org/2.asc", "ocr", version=ocr.OCR_VERSION, n_pages=1, text_method="text")
+    led.save()
+    assert ocr.run("src", dry=True)["to read"] == 2               # 1.pdf, never read; 2.asc, read by an older reader
+    led.stamp("https://example.org/2.asc", "ocr", version=f"{ocr.OCR_VERSION}-cad{cad.VERSION}", n_pages=1,
+              text_method="text")
+    led.save()
+    assert ocr.run("src", dry=True)["to read"] == 1

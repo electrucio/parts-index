@@ -167,7 +167,19 @@ def run(source: str, *, limit: int = 0, gpu: int | None = None, shard: str = "0/
     version, lang = version_for(entry), (entry.get("ocr") or {}).get("lang", "en")
     led = Ledger(schematics_state(source))
     k, n = (int(x) for x in shard.split("/"))
-    todo = [key for i, key in enumerate(sorted(led.pending("ocr", version))) if i % n == k]
+
+    def version_of(row: dict) -> str:
+        # A design is read by cad.py and not by the OCR, so it carries that reader's version: when the
+        # reader changes what it keeps, every design is read again and no scan is.
+        return f"{version}-cad{cad.VERSION}" if row.get("type") in cad.KINDS else version
+
+    # A design is stamped `text`, which to the ledger means "no OCR pass", and that is right for a page
+    # with a text layer and wrong for a design, whose reader can change: it is asked about by version.
+    pending = [key for key, row in led.rows.items()
+               if row["download_at"] and not row["skip_reason"]
+               and (row.get("type") in cad.KINDS or led._applies(row, "ocr"))
+               and not led.done(key, "ocr", version_of(row))]
+    todo = [key for i, key in enumerate(sorted(pending)) if i % n == k]
     if limit:
         todo = todo[:limit]
     folder = ocr_root() / source
@@ -199,7 +211,7 @@ def run(source: str, *, limit: int = 0, gpu: int | None = None, shard: str = "0/
         pagesio.write_pages(folder, name, pages)
         how = "ocr_boxes" if any(p["how"] == "ocr" for p in pages) else "text"
         _note_in_map(source, url, how, len(pages), name)
-        led.stamp(url, "ocr", version=version, n_pages=len(pages), text_method=how)
+        led.stamp(url, "ocr", version=version_of(row), n_pages=len(pages), text_method=how)
         counts["read"] += 1
         counts["pages"] += len(pages)
         pages_rendered += sum(1 for p in pages if p["how"] == "ocr")

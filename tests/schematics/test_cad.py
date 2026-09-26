@@ -262,27 +262,27 @@ Q2 2 1 0 2SA1015
 
 
 def test_ltspice_names_the_part_in_its_value_or_its_vendor_symbol():
-    pairs = cad.read_ltspice(ASC)
-    assert ("Q1", "2SC1815") in pairs and ("U1", "LT1001") in pairs and ("U2", "TL072") in pairs
-    assert ("", "2SK170") in pairs                              # a model the sheet defines for itself
-    assert ("V1", "12") in pairs and ("R1", "4.7k") in pairs    # passives stay pairs; _blocks drops the values
+    pairs = {(r, v): d for r, v, d in cad.read_ltspice(ASC)}
+    assert pairs[("Q1", "2SC1815")] and pairs[("U1", "LT1001")] and pairs[("U2", "TL072")]
+    assert pairs[("", "2SK170")]                                # a model the sheet defines for itself
+    assert ("V1", "") in pairs and ("R1", "") in pairs          # a source's waveform and a rating are never read
 
 
 def test_a_generic_ltspice_symbol_is_not_a_part():
     pairs = cad.read_ltspice("Version 4\nSHEET 1 10 10\nSYMBOL npn 0 0 R0\nSYMATTR InstName Q9\n")
-    assert pairs == [("Q9", "")]
+    assert pairs == [("Q9", "", False)]
 
 
 def test_a_pspice_netlist_gives_the_model_of_each_device():
-    pairs = cad.read_spice(PSPICE_NET)
-    assert ("Q1", "QC1815") in pairs and ("U1A", "TL072") in pairs
+    pairs = {(r, v): d for r, v, d in cad.read_spice(PSPICE_NET)}
+    assert pairs[("Q1", "2SC1815")] and pairs[("U1A", "TL072")]   # QC1815 is the author's name for 2SC1815
     assert ("R1", "") in pairs and ("V1", "") in pairs          # a passive or a source keeps its reference only
 
 
 def test_a_deck_skips_its_title_and_reads_its_models():
-    pairs = cad.read_spice(DECK)
+    pairs = {(r, v): d for r, v, d in cad.read_spice(DECK)}
     assert ("Q1", "amplifier") not in pairs                      # the title line, which looks like an element
-    assert ("D1", "DNORM") in pairs and ("Q2", "2SA1015") in pairs and ("", "DNORM") in pairs
+    assert pairs[("Q2", "2SA1015")] and not pairs[("D1", "DNORM")] and not pairs[("", "DNORM")]
 
 
 def test_ltspice_and_netlists_are_recognised_from_the_file():
@@ -320,4 +320,120 @@ def test_a_jis_transistor_is_not_mistaken_for_an_sc_package():
 
 def test_an_ltspice_directive_after_a_bang_or_a_newline_is_read():
     text = "Version 4\nSHEET 1 1 1\nTEXT 0 0 Left 2 !.model 2SK170 NJF(Beta=40m)\\n.subckt MYOPA 1 2 3\n"
-    assert ("", "2SK170") in cad.read_ltspice(text) and ("", "MYOPA") in cad.read_ltspice(text)
+    found = {v: d for _, v, d in cad.read_ltspice(text)}
+    assert found["2SK170"] and "MYOPA" in found and not found["MYOPA"]
+
+
+# --- the vocabulary guard: what the project already knows is never filtered ------------------------------
+def test_nothing_the_dictionary_or_the_census_knows_is_dropped_by_a_filter():
+    """The filters are shapes, and a shape is wrong somewhere: 2SC1815 looked like an SC-18 case, 1N4148
+    like a nanofarad, 6X4 like a pin header. So every name the vocabulary vouches for goes through, and
+    this runs the whole of it — 2,191 dictionary names and the census behind them — to say so."""
+    from parts_index.core.parts import extractor as x
+    dropped = sorted(n for n, _ in x.KNOWN.values() if len(n) <= 40 and not cad._wanted(n))
+    assert dropped == [], dropped[:40]
+    # The census is another matter: it lists 100N, 4U7 and 10 as parts, read off lists that had to be
+    # complete, and a name shaped like a rating is left to the shape rules. Every other census name goes through.
+    rating = lambda n: (cad.A_VALUE.match(n) or cad.A_RAIL.match(n) or cad.A_HEADER.match(n)) and not cad.VALVE_SHAPE.fullmatch(n)  # noqa: E731
+    dropped = sorted(n for n, _ in x.CENSUS.values() if len(n) <= 40 and not rating(n) and not cad._wanted(n))
+    assert dropped == [], dropped[:40]
+
+
+def test_the_shapes_that_once_swallowed_real_parts():
+    for part in ("1N4148", "2N3904", "4N35", "6N137", "2SC1815", "2SA1015", "2SK170", "2SJ74",
+                 "ISO7721", "BSC010N04LS", "BGA616", "TSOP4838", "TOP250", "6X4", "6V6", "5U4", "0A2"):
+        assert cad._wanted(part), part
+    for not_a_part in ("4u7", "1M5", "1Meg", "100nF", "10k", "3V3", "+5V", "5V0", "2X10", "SOT23", "SO-8",
+                       "SC-70", "SC70", "TO-220", "DIP-8", "QFN-16", "TSOP48", "BGA-256", "{Rload}",
+                       "V=V(vd)-V(vm)", "SINE(0 1 1k)", "-1", '""', "NP"):
+        assert not cad._wanted(not_a_part), not_a_part
+
+
+def test_a_package_on_the_end_comes_off_and_the_part_stays():
+    assert cad.strip_package("L7805SOT89") == "L7805"
+    assert cad.strip_package("LM317-TO220") == "LM317"
+    assert cad.strip_package("BC547TO92") == "BC547"
+    assert cad.strip_package("MC34063A-SO8") == "MC34063A"
+    assert cad.strip_package("TSOP4838") == "TSOP4838"          # the census knows it whole
+    assert cad.strip_package("SMAJ24A") == "SMAJ24A"
+
+
+def test_a_spice_model_name_becomes_the_part_it_stands_for_or_stays_undeclared():
+    assert cad.model_name("Q", "QC1815") == ("2SC1815", True)
+    assert cad.model_name("Q", "Q2N3904") == ("2N3904", True)
+    assert cad.model_name("D", "D1N4148") == ("1N4148", True)
+    assert cad.model_name("J", "Jk369") == ("2SK369", True)
+    assert cad.model_name("J", "JK30") == ("2SK30", True)
+    assert cad.model_name("Q", "Q2SA1576A") == ("2SA1576A", True)
+    assert cad.model_name("D", "DS1588") == ("1S1588", True)     # the census knows the JIS diode
+    assert cad.model_name("X", "TL072") == ("TL072", True)
+    for junk in ("QX", "DDEF", "QNORM", "JNDEF", "IDEAL", "SCHEMATIC1_RV1", "OP_10MHz"):
+        assert cad.model_name(junk[:1], junk) == (junk, False), junk
+
+
+def test_ltspice_sources_passives_and_gates_carry_no_part_and_a_vendor_symbol_does():
+    text = """Version 4
+SHEET 1 10 10
+SYMBOL voltage 0 0 R0
+SYMATTR InstName V1
+SYMATTR Value SINE(0 1 1k)
+SYMBOL bv 0 0 R0
+SYMATTR InstName B1
+SYMATTR Value V=V(vd)-V(vm)
+SYMBOL res 0 0 R0
+SYMATTR InstName R1
+SYMATTR Value {Rload}
+SYMBOL Digital\\and 0 0 R0
+SYMATTR InstName A1
+SYMBOL Opamps\\LM358 0 0 R0
+SYMATTR InstName U1
+SYMBOL npn 0 0 R0
+SYMATTR InstName Q1
+SYMATTR Value QC1815A
+SYMBOL njf 0 0 R0
+SYMATTR InstName J1
+SYMATTR Value 2SK170
+"""
+    pairs = {r: (v, d) for r, v, d in cad.read_ltspice(text)}
+    assert pairs["V1"] == ("", False) and pairs["B1"] == ("", False) and pairs["R1"] == ("", False)
+    assert pairs["A1"] == ("", False)
+    assert pairs["U1"] == ("LM358", True)                        # the bug: `lm\d{0,3}` called this generic
+    assert pairs["Q1"] == ("2SC1815A", True) or pairs["Q1"][0].startswith("2SC1815")
+    assert pairs["J1"] == ("2SK170", True)                       # a JFET's model, declared on a J reference
+    page = cad.read(cad.__class__ and type("T", (), {"read_text": lambda self, **k: text})(), "ltspice_asc")[0]
+    fields = {b["text"]: b.get("field", "") for b in page["blocks"]}
+    assert fields["2SK170"] == "value" and fields["LM358"] == "value"
+    assert "SINE(0 1 1k)" not in fields and "{Rload}" not in fields and "and" not in fields
+
+
+def test_an_undeclared_model_reaches_the_extractor_as_text_and_a_declared_one_as_a_value():
+    from parts_index.core import parts
+    net = "* source X\nQ_Q1 1 2 3 QC1815\nQ_Q2 4 5 6 QX\nX_U1 1 2 3 4 5 SCHEMATIC1_RV1\nD_D1 1 0 DS1588\n"
+    page = cad.read(net, "spice_net")[0]
+    fields = {b["text"]: b.get("field", "") for b in page["blocks"]}
+    assert fields["2SC1815"] == "value" and fields["1S1588"] == "value"
+    assert "QX" not in fields and "SCHEMATIC1_RV1" not in fields      # no digit, or a hierarchy: never offered
+    found = {h.part for h in parts.extract_page(page)}
+    assert "2SC1815" in found and "QX" not in found and "SCHEMATIC1" not in found
+
+
+def test_a_grade_suffix_and_a_short_form_come_out_as_the_part_the_index_prints():
+    assert cad.canonical("2SC1815GR") == "2SC1815" and cad.canonical("2SA1015-Y") == "2SA1015"
+    assert cad.canonical("C1815") == "2SC1815" and cad.canonical("S1588") == "1S1588"
+    assert cad.canonical("TL072CP") == "TL072"
+    assert cad.canonical("ADL5801") == "ADL5801"                # nothing to fold, nothing known: as typed
+    page = cad.read("Version 4\nSHEET 1 1 1\nSYMBOL npn 0 0 R0\nSYMATTR InstName Q1\nSYMATTR Value 2SC1815GR\n",
+                    "ltspice_asc")[0]
+    from parts_index.core import parts
+    assert {h.part for h in parts.extract_page(page)} == {"2SC1815"}     # not 2SC1815G, as it once was
+
+
+def test_an_authors_model_of_an_unknown_part_is_offered_by_its_type_number_and_not_declared():
+    assert cad.model_name("Q", "QBFG425W") == ("BFG425W", True)  # the census knows the transistor, not the model
+    assert cad.model_name("Q", "QABCD9999X") == ("ABCD9999X", False)
+    assert cad.model_name("Q", "QNORM") == ("QNORM", False)      # NORM is nobody's type number
+
+
+def test_a_census_name_shaped_like_a_rating_vouches_for_nothing():
+    for rating in ("100n", "4u7", "10", "100N"):
+        assert not cad._wanted(rating), rating

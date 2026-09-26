@@ -25,7 +25,12 @@ from __future__ import annotations
 import re
 import xml.etree.ElementTree as ET
 
+from parts_index.core.parts import extractor as vocabulary
+
 KINDS = ("kicad_sch", "kicad_legacy", "eagle_sch", "eagle_brd", "geda_sch", "ltspice_asc", "spice_net")
+# Bumped when what a reader keeps or drops changes, so every design already read is read again — through
+# the ledger, as rule 5 says, and not by deleting anything. 2: the dictionary guard, 1N4148, 2SC1815.
+VERSION = "2"
 MAX_PARTS = 20000            # a sane ceiling: the largest board here has 969
 
 # KiCad writes one `(symbol ...)` per placed component, each carrying its Reference and its Value. The
@@ -37,15 +42,25 @@ KICAD_PROP = re.compile(r'\(property\s+"([^"]+)"\s+"([^"]*)"')
 # but not before counting them as blocks nobody wanted to read.
 NOT_A_PART = re.compile(r"(?i)^(?:[RCLD]_?small|[RCL]_[a-z_]*|gnd|earth|vcc|vdd|vee|vss|v?\+?\d+(?:\.\d+)?v"
                         r"|power|pwr_flag|conn_\w+|test_?point|mounting\w*|logo|fiducial|jumper|sw_\w+"
-                        r"|~|\?|n/?[ac]|dnp|do_?not_?populate"
+                        r"|~|\?|n/?[ac]|np|dnp|do_?not_?populate"
                         # gEDA names the kind of thing in `device=`, and for a passive that is all it says.
                         r"|resistor|polarized_capacitor|capacitor|inductor|coil|diode|led|zener"
                         r"|[np]pn|[np]mos|[np]fet|transistor|crystal|oscillator|switch|fuse|relay"
                         r"|transformer|battery|connector|header\d*|jack|socket|antenna|speaker|none"
                         r"|arduino\w*"
                         r"|input|output|include|generic\w*)$")
-# ... and one that is a bare component value: 10k, 100nF, 4u7, 1M5.
-A_VALUE = re.compile(r"(?i)^\d+[.,]?\d*\s*(?:[kmrunμp]|[kmrunμp]?[fhΩohm]+|v|a|w|hz|khz|mhz|ppm|%)?\d*$")
+# ... and one that is a bare component value: 10k, 100nF, 4u7, 1M5, 1Meg. The digits after the unit are the
+# fraction, so there are at most two of them: 1N4148 and 2N3904 are not a nanofarad and a nanohenry, which
+# is what `\d*` made of them, and every JEDEC diode and transistor in every design with it.
+A_VALUE = re.compile(r"(?i)^\d+[.,]?\d*\s*(?:meg|[kmrunμp]|[kmrunμp]?[fhΩohm]+|v|a|w|hz|khz|mhz|ppm|%)?\d{0,2}$")
+# A supply rail written the way boards write it — 3V3, 5V0, +1V8, 12V — which is a valve's shape as well.
+A_RAIL = re.compile(r"(?i)^[+-]?\d{1,2}v\d{0,2}$")
+# A pin-header size, 2X10 — which is a valve's shape as well, so the dictionary is asked first.
+A_HEADER = re.compile(r"(?i)^\d+x\d+(?:mm)?$")
+# Nothing a designer typed with these in it is a part: an expression, a parameter, a quoted string.
+AN_EXPRESSION = re.compile(r'[={}()"<>]')
+# A valve as a valve is written, in capitals: 6V6, 5U4, 12AX7, 0A2. A rail and a rating share the shape.
+VALVE_SHAPE = re.compile(r"\d{1,2}[A-Z]{1,2}\d{1,3}[A-Z]{0,3}")
 # Reference designators, which say a component is there even when its value is a passive's.
 DESIGNATOR = re.compile(r"(?i)^[a-z]{1,3}\d{1,4}[a-z]?$")
 # Which designators mean a device worth a part number of its own. A designer who wrote U2 said "this is
@@ -60,24 +75,93 @@ FURNITURE = re.compile(r"(?i)^(?:pinhd|frame|a[0-9][a-z]?-loc|dinal|letter|logo)
 # A package is not a part. EAGLE libraries routinely name the deviceset after the case rather than the
 # device — SOT23, SOD-123, SOIC-8, TO-252/DPAK, QFN-0.5MM — and the declared-value path in the extractor
 # trusts what a designer typed, so it takes them. Measured over Kitspace's first 556 files: 35 of the 129
-# names that came back were packages, a 27% error on that path. Rule 4 settles it, and the cost is small:
-# L7805SOT89 goes with them, and L7805 arrives on its own from the boards that name it properly.
+# names that came back were packages, a 27% error on that path.
 #
-# SMA is deliberately absent. SMAJ24A and SMAJ60A are Littelfuse TVS diodes, real parts whose names begin
-# with a package.
-# A JIS transistor or FET — 2SA1015, 2SC1815, 2SK170 — contains `SC` and two digits and is not an SC-70.
-PACKAGE = re.compile(r"(?i)^(?!2S[ABCDJK]\d)[A-Z0-9/_-]*?"
-                     r"(?:SOT-?\d{2,4}|SOD-?\d{3}|SOIC-?\d{1,2}|SO-?\d{1,2}|SSOP-?\d{1,2}|TSSOP-?\d{1,2}"
-                     r"|MSOP-?\d{1,2}|[LTV]?QFP|QFN|BGA|DFN|DIP-?\d{1,2}|TO-?\d{2,3}|DPAK|TSOP|PLCC"
-                     r"|SC-?\d{2})[A-Z0-9/._-]*$"
-                     r"|^\d+X\d+(?:MM)?$|^[\d.]+MM$|^LED\d+MM$")
+# The package is the whole name, or the name's beginning. It was allowed anywhere in the name once, and
+# that read ISO7721 as an SO-77, BSC010N04LS as an SC-01, 2SC1815 as an SC-18 and BGA616 as a BGA — 1,201
+# of the names the census knows, dropped. A two-digit case number is two digits: SC-70 is a case and
+# SC3300 is not, TSOP48 is a case and TSOP4838 is a receiver. TOP250 never matched and still does not.
+PACKAGE = re.compile(r"(?i)^(?:SOT-?\d{2,4}|SOD-?\d{2,3}|SOIC-?\d{1,2}|SO-?\d{1,2}|T?SSOP-?\d{0,2}|MSOP-?\d{0,2}"
+                     r"|[LTV]?QFP-?\d{0,3}|QFN-?\d{0,3}|BGA-?\d{0,4}|DFN-?\d{0,3}|DIP-?\d{1,2}|TO-?\d{2,3}[A-Z]{0,2}"
+                     r"|D2?PAK|TSOP-?\d{1,2}|PLCC-?\d{0,2}|SC-?\d{2})(?!\d)(?:[-_/. ][A-Z0-9/._-]*)?$"
+                     r"|^[\d.]+MM$|^LED\d+MM$")
+# A package on the end of a part number — L7805SOT89, LM317-TO220, BC547TO92 — comes off, and the part
+# stays. It was dropped whole before, and "L7805 arrives on its own from the boards that name it properly"
+# was the excuse; it arrives from this board now.
+PACKAGE_SUFFIX = re.compile(r"(?i)(?<=[A-Z0-9]{4})(?:[-_/ ]?(?:SOT-?\d{2,4}|SOD-?\d{2,3}|SOIC-?\d{1,2}|T?SSOP-?\d{0,2}"
+                            r"|MSOP-?\d{0,2}|[LTV]?QFP-?\d{0,3}|QFN-?\d{0,3}|DFN-?\d{0,3}|DIP-?\d{1,2}|TO-?\d{2,3}[A-Z]{0,2}"
+                            r"|D2?PAK|PLCC-?\d{0,2})|[-_/ ](?:SO-?\d{1,2}|SC-?\d{2}))$")
+
+
+def strip_package(value: str) -> str:
+    """The part number without the package a designer hung on the end of it, when there is one."""
+    v = value.strip()
+    if recognised(v):
+        return v                                          # TSOP4838, SMAJ24A: whole names the census knows
+    base = PACKAGE_SUFFIX.sub("", v)
+    return base if base != v and re.search(r"\d", base) else v
+
+
+def recognised(value: str) -> bool:
+    """Whether something already vouches for this name: the dictionary, the census, or a closed family
+    like JIS or JEDEC whose shape admits nothing else. Such a name is never filtered here, whatever it
+    looks like — 6X4 looks like a header, 1N4148 like a nanofarad, 2SC1815 like a case — and it is what
+    a SPICE model name has to turn into before a design is said to declare it."""
+    n = vocabulary.norm(value)
+    if not n or n in vocabulary.REJECTED:
+        return False
+    if n in vocabulary.KNOWN:
+        return True
+    # The census was read off lists that had to be complete, and it lists 100N, 4U7 and 10 among the
+    # parts: a census name shaped like a rating vouches for nothing. 6V6 is one, and the valve rule in
+    # `_wanted` is what keeps it.
+    if n in vocabulary.CENSUS and (VALVE_SHAPE.fullmatch(value)
+                                   or not (A_VALUE.match(value) or A_RAIL.match(value) or A_HEADER.match(value))):
+        return True
+    family = vocabulary.family_of(value.upper())
+    return bool(family and family[2])
+
+
+def canonical(value: str) -> str:
+    """The name as the index will print it: the package off the end, a JIS short form written out, and
+    the grade or selection suffix folded away when what is left is a part the vocabulary knows —
+    2SC1815GR is a 2SC1815 of the GR gain rank, and C1815 is the same part as a Japanese author writes it."""
+    v = strip_package(value)
+    if vocabulary.WILDCARD.fullmatch(v.upper()):
+        return v                                          # REF33xx names a family, and folding it would name a part
+    m = JIS_SHORT.match(v) or JIS_DIODE_SHORT.match(v)
+    if m:
+        full = ("1" if JIS_DIODE_SHORT.match(v) else "2S") + v.upper()
+        if recognised(full):
+            return full                                   # C1815 is 2SC1815 even where the dictionary lists both
+    # 2SA1015-Y, 2SC1815/GR: the rank behind a separator, which base_part does not see past.
+    m = re.fullmatch(r"(.*\d)[-/ ]([A-Z]{1,2})", v.upper())
+    if m and recognised(m.group(1)):
+        return m.group(1)
+    base = vocabulary.base_part(v.upper())
+    if base != v.upper() and recognised(base):
+        return base
+    return v
 
 
 def _wanted(value: str) -> bool:
-    """Whether this value is worth a block of its own: a name, not a rating and not furniture."""
+    """Whether this value is worth a block of its own: a name, not a rating and not furniture.
+
+    Asked in this order: what the vocabulary vouches for is kept whatever its shape; what is plainly not
+    a name — an expression, a rail, a header size — goes; a valve's shape is kept, since a value written
+    6V6 or 5U4 on a tube is one; then the ratings and the cases."""
     v = value.strip()
-    return (bool(v) and len(v) <= 40 and not NOT_A_PART.match(v) and not A_VALUE.match(v)
-            and not PACKAGE.match(v))
+    if not v or len(v) > 40:
+        return False
+    if recognised(v):
+        return True
+    if AN_EXPRESSION.search(v) or v[0] in "+-" or A_RAIL.match(v) or A_HEADER.match(v):
+        return False
+    # 5U4, 0A2, 1R5: a valve nobody listed is still a valve. Written as a valve is written, in capitals;
+    # 4u7 is a capacitor, and 1M5 and 2K2 are resistors even in capitals.
+    if VALVE_SHAPE.fullmatch(v) and not re.match(r"\d+[KM]\d", v) and vocabulary.family_of(v):
+        return True
+    return not (NOT_A_PART.match(v) or A_VALUE.match(v) or PACKAGE.match(v))
 
 
 def _blocks(pairs: list[tuple[str, str]]) -> list[dict]:
@@ -91,15 +175,23 @@ def _blocks(pairs: list[tuple[str, str]]) -> list[dict]:
     a part. A value block says "a designer typed this name here", which is why `extract_page` may take it
     without a family or a dictionary behind it.
     """
-    refs = [(r.strip(), "ref") for r, _ in pairs if DESIGNATOR.match(r.strip())]
+    refs = [(p[0].strip(), "ref") for p in pairs if DESIGNATOR.match(p[0].strip())]
     values = []
-    for ref, value in pairs:
-        v = value.strip()
+    for pair in pairs:
+        ref, value, declared = (pair + (None,))[:3]       # a reader may say itself whether a design vouches
+        v = canonical(value)
         if not _wanted(v) or FURNITURE.match(v):
             continue
         # A value on an active reference is a part this index is for; any other value is still written
         # down, but only counts if something already recognises it — TL431 on a D reference is real.
-        values.append((v, "value" if ACTIVE_REF.match(ref.strip()) else ""))
+        if declared is None:
+            declared = bool(ACTIVE_REF.match(ref.strip()))
+        # What no design vouches for is still offered to the extractor, whose families may know it —
+        # but only if it has the shape of a type number at all. SCHEMATIC1_RV1 is PSpice naming a
+        # hierarchy and DDEF is an author naming nothing, and the extractor once made SCHEMATIC1 a part.
+        if not declared and (not re.search(r"\d", v) or "_" in v):
+            continue
+        values.append((v, "value" if declared else ""))
     seen: set[str] = set()
     out = []
     for text, field in refs + values:
@@ -251,28 +343,80 @@ ASC_ATTR = re.compile(r"^SYMATTR\s+(\w+)\s*(.*)$", re.M)
 # hold several, joined by a literal `\n`.
 ASC_MODEL = re.compile(r"(?i)(?:!|\\n)\s*\.(?:model|subckt)\s+([A-Za-z0-9_.+-]+)")
 SPICE_MODEL = re.compile(r"(?im)^[!*;\s]*\.(?:model|subckt)\s+([A-Za-z0-9_.+-]+)")
-# The symbols LTspice ships for a kind of thing rather than a part: their name is never a part number.
-ASC_GENERIC = re.compile(r"(?i)^(?:res|res2|cap|polcap|ind|ind2|voltage|current|bv|bi|e|e2|f|g|g2|h|"
-                         r"npn\d?|pnp\d?|nmos\d?|pmos\d?|njf|pjf|diode|zener|schottky|varactor|led|"
-                         r"opamp\d?|universalopamp\d?|sw|csw|tline|ltline|xtal|lm\d{0,3}|"
-                         r"cell|battery|load\d?|ferritebead\d?|mesfet|tl)$")
+# The symbols LTspice ships for a kind of thing rather than a part. A source's value is a waveform and a
+# passive's a rating, and neither is ever a part, so their value is not read at all; a device's value is
+# its model, which is read as one. Anything else without a digit in its name is a generic too — `and`,
+# `dflop`, `schmitt` — since a vendor symbol always carries a type number.
+ASC_SOURCE = re.compile(r"(?i)^(?:voltage|current|bv|bi|e2?|f|g2?|h|load2?|cell|battery|signal|"
+                        r"modulate2?|sample|phidet)$")
+ASC_PASSIVE = re.compile(r"(?i)^(?:res2?|cap|polcap|ind2?|ferritebead2?|european(?:resistor|cap|polcap|inductor)|"
+                         r"varistor|tline|ltline|xtal|sw|csw|fuse)$")
+ASC_DEVICE = re.compile(r"(?i)^(?:npn\d?|pnp\d?|nmos\d?|pmos\d?|njf|pjf|mesfet|diode|zener|schottky|"
+                        r"varactor|led|opamp2?|universalopamp2?|tl)$")
+ASC_GENERIC = re.compile(r"(?i)^(?:and|or|xor|inv|buf1?|dflop|srflop|schmitt|schmtbuf|schmtinv|diffschmt\w*|"
+                         r"counter|dac|adc|sine|mesfet)$")
+# The one-letter prefix a model name carries for the kind of device it is — Q2N3904, D1N4148, QC1815,
+# JK369 — and the JIS short forms a Japanese author writes, C1815 for 2SC1815 and S1588 for 1S1588.
+JIS_SHORT = re.compile(r"(?i)^([ABCDFGHJK])(\d{2,4}[A-Z]{0,2})$")
+JIS_DIODE_SHORT = re.compile(r"(?i)^S(\d{3,4}[A-Z]{0,2})$")
+PART_SHAPE = re.compile(r"(?i)^(?:[A-Z]{1,4}\d{2,5}[A-Z0-9]{0,4}|\d[A-Z]{1,2}\d{2,5}[A-Z]{0,3})$")
 
 
-def read_ltspice(text: str) -> list[tuple[str, str]]:
-    """Every placed symbol of an LTspice .asc, as (instance name, part), then the models it defines."""
+def model_name(kind: str, name: str) -> tuple[str, bool]:
+    """The part a SPICE model name stands for, and whether something vouches for it.
+
+    A model is named by its author. In OrCAD's own libraries the name is the part number behind a letter
+    for the device — Q2N3904, D1N4148 — and in a Toragi author's it is the JIS short form behind the same
+    letter, QC1815 for 2SC1815, JK369 for 2SK369; and a good many are QX, DDEF or QNORM, which stand for
+    nothing. So the candidates are tried against the vocabulary, longest reading first, and a name nothing
+    vouches for is returned as it was and marked undeclared: a later reader may still know it, but no
+    design is said to have declared it."""
+    name = name.strip()
+    candidates = [name]
+    if len(name) > 3 and kind and name[0].upper() == kind.upper() and re.search(r"\d", name[1:]):
+        candidates.append(name[1:])
+    for c in list(candidates):
+        m = JIS_SHORT.match(c)
+        if m:
+            candidates.append(f"2S{c.upper()}")
+        m = JIS_DIODE_SHORT.match(c)
+        if m:
+            candidates.append(f"1{c.upper()}")
+    # The reading that says most goes first: 2SC1815 before C1815, 2N3904 before Q2N3904 — the census
+    # lists model names too, and Q2N3904 is one, but the part is 2N3904.
+    for c in reversed(candidates):
+        if recognised(c):
+            return c, True
+    # Nothing vouches. What is behind the letter is still the better reading when it has a type number's
+    # shape — QBFG425W is an author's model of a BFG425W — and it goes on undeclared for the extractor.
+    if len(candidates) > 1 and PART_SHAPE.match(candidates[1]):
+        return candidates[1], False
+    return name, False
+
+
+def read_ltspice(text: str) -> list[tuple]:
+    """Every placed symbol of an LTspice .asc, as (instance name, part, declared), then the models it
+    defines. `declared` is True for a vendor's own symbol — LT1001, AD8065 — and for a model the
+    vocabulary knows; a model nothing knows is written down undeclared."""
     starts = [(m.start(), m.group(1)) for m in ASC_SYMBOL.finditer(text)]
-    out = []
+    out: list[tuple] = []
     for i, (start, symbol) in enumerate(starts[:MAX_PARTS]):
         end = starts[i + 1][0] if i + 1 < len(starts) else len(text)
         attrs = dict((k, v.strip()) for k, v in ASC_ATTR.findall(text[start:end]))
         name = symbol.replace("\\", "/").rsplit("/", 1)[-1]
-        value = attrs.get("Value") or attrs.get("SpiceModel") or ""
-        if not value and not ASC_GENERIC.match(name):
-            value = name                                   # a vendor symbol: LT1001, AD8065, TL431
         ref = attrs.get("InstName", "")
+        if ASC_SOURCE.match(name) or ASC_PASSIVE.match(name) or ASC_GENERIC.match(name):
+            value, declared = "", False
+        elif ASC_DEVICE.match(name) or not re.search(r"\d", name):
+            value, declared = model_name(ref[:1], attrs.get("Value") or attrs.get("SpiceModel") or "")
+        else:
+            # A symbol with a type number in its name is a vendor's, or an author's for a part — Opamps/LT1001,
+            # or a QC1815A drawn by hand — and vouches for it either way, read as a model name is read.
+            value, declared = model_name(ref[:1], attrs.get("Value") or name)
+            declared = True
         if ref or value:
-            out.append((ref, value))
-    out += [("", m) for m in ASC_MODEL.findall(text)]
+            out.append((ref, value, declared))
+    out += [("", m, recognised(m)) for m in ASC_MODEL.findall(text)]
     return out
 
 
@@ -288,9 +432,9 @@ NET_LINE = re.compile(r"^([A-Za-z])(?:_([A-Za-z]{1,3}\w*)|(\w*))\s+(.+)$")
 MODELLED = set("QDJMZXU")
 
 
-def read_spice(text: str) -> list[tuple[str, str]]:
-    """Every element of a SPICE netlist, as (reference, model), then the models it defines."""
-    out = []
+def read_spice(text: str) -> list[tuple]:
+    """Every element of a SPICE netlist, as (reference, model, declared), then the models it defines."""
+    out: list[tuple] = []
     lines = text.splitlines()
     if lines and not lines[0].lstrip().startswith(("*", ".")):
         lines = lines[1:]                                  # a deck's first line is its title, whatever it says
@@ -303,11 +447,11 @@ def read_spice(text: str) -> list[tuple[str, str]]:
         kind, prefixed, bare, rest = m.groups()
         ref = prefixed if prefixed is not None else kind + (bare or "")
         words = [w for w in rest.split("PARAMS:")[0].split() if "=" not in w]
-        value = words[-1] if kind.upper() in MODELLED and len(words) >= 2 else ""
-        out.append((ref, value))
+        value, declared = model_name(kind, words[-1]) if kind.upper() in MODELLED and len(words) >= 2 else ("", False)
+        out.append((ref, value, declared))
         if len(out) >= MAX_PARTS:
             break
-    out += [("", m) for m in SPICE_MODEL.findall(text)]
+    out += [("", m, recognised(m)) for m in SPICE_MODEL.findall(text)]
     return out
 
 
