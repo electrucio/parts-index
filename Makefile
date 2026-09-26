@@ -130,6 +130,9 @@ schematics-prune:  ## (maintainer) drop what a source's rules no longer want; [S
 schematics-release:  ## (maintainer) delete downloaded files whose text is already read; [SOURCE='a b'] [DRY=1]
 	$(RUN) pidx schematics release $(foreach s,$(SOURCE),--source $(s)) $(if $(DRY),--dry,)
 
+schematics-ingest:  ## (maintainer) put what has been read into the index database; [SOURCE='a b'] [LIMIT=n] [DRY=1]
+	$(RUN) pidx schematics ingest $(foreach s,$(SOURCE),--source $(s)) $(if $(LIMIT),--limit $(LIMIT)) $(if $(DRY),--dry)
+
 schematics-reindex:  ## (maintainer) read the corpus again with the current extractor; [SOURCE='a b'] [WORKERS=n]
 	uv run pidx schematics reindex $(foreach s,$(SOURCE),--source $(s)) $(if $(WORKERS),--workers $(WORKERS)) $(if $(LIMIT),--limit $(LIMIT)) $(if $(DRY),--dry)
 

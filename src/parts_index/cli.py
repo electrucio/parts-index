@@ -94,6 +94,10 @@ def main(argv: list[str] | None = None) -> int:
     sp = sch.add_parser("prune", help="drop what a source's rules no longer want, and say it was on purpose")
     sp.add_argument("--source", action="append", help="only these sources (repeatable)")
     sp.add_argument("--dry", action="store_true", help="say what would go and delete nothing")
+    si = sch.add_parser("ingest", help="put the documents that have been read into the index database")
+    si.add_argument("--source", action="append", help="only these sources (repeatable)")
+    si.add_argument("--limit", type=int, default=0, help="at most this many documents per source")
+    si.add_argument("--dry", action="store_true", help="say how much there is to index and write nothing")
     sr = sch.add_parser("release", help="delete the downloaded files whose text has already been read")
     sr.add_argument("--source", action="append", help="only these sources (repeatable)")
     sr.add_argument("--dry", action="store_true", help="say what would go and delete nothing")
@@ -269,6 +273,13 @@ def main(argv: list[str] | None = None) -> int:
         argv2 += ["--repair"] if args.repair else []
         argv2 += ["--limit", str(args.limit)] if args.limit else []
         return sch_verify.main(argv2)
+
+    if args.cmd == "schematics" and args.sch_cmd == "ingest":
+        from parts_index.schematics import ingest as sch_ingest
+        argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
+        argv2 += ["--limit", str(args.limit)] if args.limit else []
+        argv2 += ["--dry"] if args.dry else []
+        return sch_ingest.main(argv2)
 
     if args.cmd == "schematics" and args.sch_cmd == "release":
         from parts_index.schematics import release as sch_release
