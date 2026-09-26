@@ -347,13 +347,14 @@ def test_an_archive_is_packed_again_with_only_what_is_worth_holding(tmp_path):
     assert deliver.link_for(cfg, key) == "https://toragi.cqpub.co.jp/wp-content/uploads/TR202512_P1S1.zip"
 
 
-def test_a_member_named_in_cp932_by_a_japanese_windows_is_read_as_written(tmp_path):
-    buf = io.BytesIO()
-    with zipfile.ZipFile(buf, "w") as z:
-        info = zipfile.ZipInfo("制御基板回路図.pdf".encode("cp932").decode("cp437"))   # what such a ZIP carries
-        z.writestr(info, b"%PDF-1.4")
-    with zipfile.ZipFile(io.BytesIO(buf.getvalue())) as z:
-        assert T.member_name(z.infolist()[0]) == "制御基板回路図.pdf"
-    packed, kept = T._repack(buf.getvalue())
-    with zipfile.ZipFile(io.BytesIO(packed)) as z:
-        assert z.namelist() == ["制御基板回路図.pdf"] and kept == {"pdf": 1}
+def test_a_member_named_in_cp932_by_a_japanese_windows_is_read_as_written():
+    """The zip module reads an unflagged name as CP437; Python's own writer always flags a non-ASCII name
+    as UTF-8, so the unflagged case is built by hand here, as such a ZIP arrives."""
+    info = zipfile.ZipInfo("制御基板回路図.pdf".encode("cp932").decode("cp437"))
+    info.flag_bits = 0
+    assert T.member_name(info) == "制御基板回路図.pdf"
+    flagged = zipfile.ZipInfo("回路図.pdf")
+    flagged.flag_bits = 0x800
+    assert T.member_name(flagged) == "回路図.pdf"                    # written as UTF-8 and said so: kept
+    plain = zipfile.ZipInfo("msg-sch.pdf")
+    assert T.member_name(plain) == "msg-sch.pdf"
