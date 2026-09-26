@@ -373,3 +373,20 @@ def test_an_orcad_netlist_is_worth_holding_and_an_lzh_key_links_back_to_its_url(
         == "https://www.cqpub.co.jp/toragi/download/2006/TR0604S/TR0604S.LZH"
     assert deliver.link_for(cfg, "toragi.cqpub.co.jp/wp-content/uploads/TR2602P2S1.zip!PASCO2_PICO回路図.pdf") \
         == "https://toragi.cqpub.co.jp/wp-content/uploads/TR2602P2S1.zip"
+
+
+def test_a_member_behind_a_password_is_left_shut():
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as z:
+        z.writestr("open/sch.pdf", b"%PDF-1.4 open")
+        locked = zipfile.ZipInfo("Software_Tools/Caution1.pdf")
+        z.writestr(locked, b"%PDF-1.4 locked")
+    data = bytearray(buf.getvalue())
+    # set the encryption bit of the second member in both headers, as a password-protected ZIP has it
+    for sig in (b"PK\x03\x04", b"PK\x01\x02"):
+        at = data.find(sig, data.find(sig) + 1) if sig == b"PK\x03\x04" else data.rfind(sig)
+        flag = at + (6 if sig == b"PK\x03\x04" else 8)
+        data[flag] |= 0x1
+    packed, kept = T._repack(bytes(data))
+    with zipfile.ZipFile(io.BytesIO(packed)) as z:
+        assert z.namelist() == ["open/sch.pdf"] and kept == {"pdf": 1}

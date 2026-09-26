@@ -638,9 +638,11 @@ def _lzh_as_zip(data: bytes) -> bytes | None:
             src = lhafile.Lhafile(tmp.name)
             out = io.BytesIO()
             with zipfile.ZipFile(out, "w") as dst:
+                seen = set()
                 for info in src.infolist():
                     name = info.filename.replace("\\", "/")
-                    if not name.endswith("/"):
+                    if not name.endswith("/") and name not in seen:
+                        seen.add(name)
                         dst.writestr(zipfile.ZipInfo(name), src.read(info.filename))
             return out.getvalue()
         except Exception:                                   # a damaged or unknown LHA method
@@ -658,11 +660,17 @@ def _repack(data: bytes, depth: int = 1) -> tuple[bytes | None, Counter]:
     except zipfile.BadZipFile:
         return None, kept
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as dst:
+        seen = set()
         for info in src.infolist():
-            if info.is_dir():
-                continue
-            body = src.read(info.filename)
             name = member_name(info)
+            # A member behind a password is a door the author locked: it is left shut, never opened.
+            if info.is_dir() or info.flag_bits & 0x1 or name in seen:
+                continue
+            seen.add(name)
+            try:
+                body = src.read(info.filename)
+            except (zipfile.BadZipFile, NotImplementedError, RuntimeError, OSError):
+                continue                                    # damaged, or a method the zip module lacks
             if name.lower().endswith(".zip") and body[:2] == b"PK" and depth:
                 inner, sub = _repack(body, depth - 1)
                 if inner:
@@ -684,11 +692,15 @@ def pack_archives(folder, urls: dict[str, str], out, log=print) -> dict:
     counts, kept_kinds = Counter(), Counter()
     rows = []
     with zipfile.ZipFile(out, "w", zipfile.ZIP_STORED) as dst:
+        done_urls = set()
         for f in sorted(p for p in folder.iterdir() if p.suffix.lower() in (".zip", ".lzh")):
             url = urls.get(f.name)
             if not url:
                 counts["no url"] += 1
                 continue
+            if url in done_urls:                            # the same archive listed under two issues
+                continue
+            done_urls.add(url)
             counts["archives"] += 1
             packed, kept = _repack(f.read_bytes())
             rows.append({"file": f.name, "url": url, "kept": sum(kept.values()), "kinds": " ".join(f"{k}:{n}" for k, n in sorted(kept.items()))})
