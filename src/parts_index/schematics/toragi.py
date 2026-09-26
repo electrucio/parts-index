@@ -515,7 +515,9 @@ SUPPORT_TYPES = {"application/pdf": "pdf", "application/x-zip-compressed": "zip"
 # the LV-1 tree taught: the schematics are under circuit/ and the copper is under board/.
 SCHEMATIC_NAME = re.compile(r"(?i)sch|circuit|kairo|回路|diagram|\.brd|kicad|eagle")
 LAYOUT_NAME = re.compile(r"(?i)/board/|/pcb/|layout|pattern|gerber|silk")
-GONE = ("http 404", "http 410")
+# How CQ says a file is gone: 404, or a 200 that is its "ERROR 404" page served as application/pdf, which
+# the download stage records as "not the declared file type". Both are listed again from the archive.
+GONE = ("http 404", "http 410", "not the declared file type")
 
 
 def _cdx_rows(source: str, prefix: str, delay: float) -> list[list[str]]:
@@ -569,7 +571,9 @@ def toragi_support(source: str, cfg: dict):
             for parts in _cdx_rows(source, prefix, delay):
                 if len(parts) != 4:
                     continue
-                original, mime, stamp, _ = parts
+                original, mime, stamp, length = parts
+                if length.isdigit() and int(length) < 1500 and "pdf" in mime:
+                    continue                              # CQ's own 404 page, captured as a PDF
                 row = support_row(source, original, mime, stamp, articles)
                 if row and row["url"] not in rows:
                     rows[row["url"]] = row

@@ -288,7 +288,8 @@ def test_what_cq_no_longer_serves_is_listed_again_from_the_archive(index_zip, tm
     monkeypatch.setattr(T, "schematics_state", lambda source: tmp_path / f"{source}.csv")
     cdx = ("http://toragi.cqpub.co.jp:80/Portals/0/support/2010/10/circuit.pdf application/pdf 20240518004929 801412\n"
            "https://toragi.cqpub.co.jp/Portals/0/support/2019/05/pisoc_sch.pdf application/pdf 20210101000000 29432\n"
-           "https://toragi.cqpub.co.jp/Portals/0/support/2019/05/photo.jpg image/jpeg 20210101000000 9\n")
+           "https://toragi.cqpub.co.jp/Portals/0/support/2019/05/photo.jpg image/jpeg 20210101000000 9\n"
+           "https://toragi.cqpub.co.jp/Portals/0/support/2019/05/gone.pdf application/pdf 20210101000000 871\n")
     server = Site({u: (cdx if "support/" in u else "") for u in
                    [f"{T.CDX}?url={p}&matchType=prefix&collapse=urlkey&filter=statuscode:200"
                     f"&fl=original,mimetype,timestamp,length&limit=100000" for p in T.SUPPORT_PREFIXES]})
@@ -299,12 +300,15 @@ def test_what_cq_no_longer_serves_is_listed_again_from_the_archive(index_zip, tm
     from parts_index.core.ledger import Ledger
     led = Ledger(tmp_path / "toragi_support.csv")
     led.skip("https://toragi.cqpub.co.jp/Portals/0/support/2010/10/circuit.pdf", "http 404", role="schematic")
+    led.skip("https://toragi.cqpub.co.jp/Portals/0/support/2019/05/pisoc_sch.pdf", "not the declared file type",
+             role="schematic")                                     # CQ's "ERROR 404" page, served as a PDF
     led.save()
     rows = [r for b in T.toragi_support("toragi_support", {})(0, 0) for r in b]
-    replay = [r for r in rows if r["url"].startswith("https://web.archive.org/")]
-    assert len(replay) == 1
-    assert replay[0]["url"] == "https://web.archive.org/web/20240518004929id_/https://toragi.cqpub.co.jp/Portals/0/support/2010/10/circuit.pdf"
-    assert replay[0]["kind"] == "schematic" and replay[0]["issue"] == "201010"
+    replay = sorted(r["url"] for r in rows if r["url"].startswith("https://web.archive.org/"))
+    assert replay == ["https://web.archive.org/web/20210101000000id_/https://toragi.cqpub.co.jp/Portals/0/support/2019/05/pisoc_sch.pdf",
+                      "https://web.archive.org/web/20240518004929id_/https://toragi.cqpub.co.jp/Portals/0/support/2010/10/circuit.pdf"]
+    circuit = next(r for r in rows if r["url"].endswith("id_/https://toragi.cqpub.co.jp/Portals/0/support/2010/10/circuit.pdf"))
+    assert circuit["kind"] == "schematic" and circuit["issue"] == "201010"
 
 
 # --- the program archives ------------------------------------------------------------------------------
