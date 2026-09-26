@@ -98,6 +98,8 @@ def main(argv: list[str] | None = None) -> int:
     si.add_argument("--source", action="append", help="only these sources (repeatable)")
     si.add_argument("--limit", type=int, default=0, help="at most this many documents per source")
     si.add_argument("--dry", action="store_true", help="say how much there is to index and write nothing")
+    si.add_argument("--sizes", action="store_true",
+                    help="only fill in page sizes on documents already indexed without them")
     sr = sch.add_parser("release", help="delete the downloaded files whose text has already been read")
     sr.add_argument("--source", action="append", help="only these sources (repeatable)")
     sr.add_argument("--dry", action="store_true", help="say what would go and delete nothing")
@@ -279,6 +281,7 @@ def main(argv: list[str] | None = None) -> int:
         argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
         argv2 += ["--limit", str(args.limit)] if args.limit else []
         argv2 += ["--dry"] if args.dry else []
+        argv2 += ["--sizes"] if args.sizes else []
         return sch_ingest.main(argv2)
 
     if args.cmd == "schematics" and args.sch_cmd == "release":
