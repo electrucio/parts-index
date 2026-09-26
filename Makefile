@@ -120,6 +120,9 @@ schematics-verify:  ## (maintainer) find documents lost before anything read the
 schematics-prune:  ## (maintainer) drop what a source's rules no longer want; [SOURCE='a b'] [DRY=1]
 	$(RUN) pidx schematics prune $(foreach s,$(SOURCE),--source $(s)) $(if $(DRY),--dry,)
 
+schematics-release:  ## (maintainer) delete downloaded files whose text is already read; [SOURCE='a b'] [DRY=1]
+	$(RUN) pidx schematics release $(foreach s,$(SOURCE),--source $(s)) $(if $(DRY),--dry,)
+
 schematics-reindex:  ## (maintainer) read the corpus again with the current extractor; [SOURCE='a b'] [WORKERS=n]
 	uv run pidx schematics reindex $(foreach s,$(SOURCE),--source $(s)) $(if $(WORKERS),--workers $(WORKERS)) $(if $(LIMIT),--limit $(LIMIT)) $(if $(DRY),--dry)
 

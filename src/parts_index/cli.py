@@ -94,6 +94,11 @@ def main(argv: list[str] | None = None) -> int:
     sp = sch.add_parser("prune", help="drop what a source's rules no longer want, and say it was on purpose")
     sp.add_argument("--source", action="append", help="only these sources (repeatable)")
     sp.add_argument("--dry", action="store_true", help="say what would go and delete nothing")
+    sr = sch.add_parser("release", help="delete the downloaded files whose text has already been read")
+    sr.add_argument("--source", action="append", help="only these sources (repeatable)")
+    sr.add_argument("--dry", action="store_true", help="say what would go and delete nothing")
+    sr.add_argument("--all-kinds", action="store_true",
+                    help="release the CAD sources too, which are kept by default")
     sr = sch.add_parser("reindex", help="read the corpus again with the current extractor, from the OCR on disk")
     sr.add_argument("--source", action="append", help="only these sources (repeatable)")
     sr.add_argument("--limit", type=int, default=0, help="at most this many documents")
@@ -264,6 +269,13 @@ def main(argv: list[str] | None = None) -> int:
         argv2 += ["--repair"] if args.repair else []
         argv2 += ["--limit", str(args.limit)] if args.limit else []
         return sch_verify.main(argv2)
+
+    if args.cmd == "schematics" and args.sch_cmd == "release":
+        from parts_index.schematics import release as sch_release
+        argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
+        argv2 += ["--dry"] if args.dry else []
+        argv2 += ["--all-kinds"] if args.all_kinds else []
+        return sch_release.main(argv2)
 
     if args.cmd == "schematics" and args.sch_cmd == "prune":
         from parts_index.schematics import prune as sch_prune
