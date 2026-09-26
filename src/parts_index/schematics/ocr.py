@@ -195,6 +195,11 @@ def run(source: str, *, limit: int = 0, gpu: int | None = None, shard: str = "0/
         # A page file already written is a page already read — for a scan. A design's pages are its
         # reader's output, and the ledger has just said that reader has changed, so they are written again.
         if kind not in cad.KINDS and pagesio.is_done(folder, name):
+            # Read by another run that never got to stamp it — a trial, a shard that was killed. The pages
+            # are the work; the stamp is taken from them, or the ledger offers this document forever.
+            pages = pagesio.read_pages(pagesio.existing(folder, name))
+            how = "ocr_boxes" if any(p.get("how") == "ocr" for p in pages) else "text"
+            led.stamp(url, "ocr", version=version_of(row), n_pages=len(pages), text_method=how)
             counts["already there"] += 1
             continue
         path = downloads(source) / kind / name

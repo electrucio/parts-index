@@ -143,3 +143,26 @@ def test_a_design_already_on_disk_is_written_again_when_its_reader_changed(monke
     assert row["ocr_v"] == f"{ocr.OCR_VERSION}-cad{cad.VERSION}"
     texts = [b["text"] for p in pagesio.read_pages(pagesio.out_path(tmp_path / "ocr" / "src", name)) for b in p["blocks"]]
     assert "2SC1815" in texts
+
+
+def test_pages_already_on_disk_get_their_stamp_instead_of_being_offered_forever(monkeypatch, tmp_path):
+    from parts_index.core import pagesio
+    monkeypatch.setattr(ocr, "registry_entry", lambda source: {})
+    monkeypatch.setattr(ocr, "schematics_state", lambda source: tmp_path / "state" / "src.csv")
+    monkeypatch.setattr(ocr, "ocr_root", lambda: tmp_path / "ocr")
+    monkeypatch.setattr(ocr, "ocr_map", lambda: tmp_path / "ocr_map.csv")
+    monkeypatch.setattr(ocr, "downloads", lambda source: tmp_path / "downloads")
+    url = "https://example.org/sheet.pdf"
+    led = Ledger(tmp_path / "state" / "src.csv")
+    led.stamp(url, "download", sha256="b" * 40, type="pdf", http=200)
+    led.save()
+    name = ocr.safe_name(url, "pdf")
+    (tmp_path / "downloads" / "pdf").mkdir(parents=True)
+    (tmp_path / "downloads" / "pdf" / name).write_bytes(b"%PDF-1.4 not opened here")
+    pagesio.write_pages(tmp_path / "ocr" / "src", name, [{"page": 1, "w": 1, "h": 1, "how": "ocr", "blocks": []},
+                                                          {"page": 2, "w": 1, "h": 1, "how": "text", "blocks": []}])
+    counts = ocr.run("src")
+    assert counts["already there"] == 1 and counts["read"] == 0
+    row = Ledger(tmp_path / "state" / "src.csv").get(url)
+    assert (row["ocr_v"], row["n_pages"], row["text_method"]) == (ocr.OCR_VERSION, "2", "ocr_boxes")
+    assert ocr.run("src", dry=True)["to read"] == 0
