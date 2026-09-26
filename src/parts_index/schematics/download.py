@@ -45,7 +45,7 @@ from parts_index.core.jobs import detach, only_one, run_log, wait_for_all
 from parts_index.core.ledger import Ledger
 
 DOCUMENT_KINDS = ("pdf", "gif", "jpeg", "png", "tiff", "kicad_sch", "kicad_legacy", "eagle_sch",
-                  "eagle_brd", "geda_sch")
+                  "eagle_brd", "geda_sch", "ltspice_asc", "spice_net")
 IMAGE_KINDS = ("gif", "jpeg", "png", "tiff")
 FILE_EXT = re.compile(r"\.(pdf|gif|jpe?g|png|tiff?|zip|sch|kicad_sch|brd)(\?|$)", re.I)
 IMAGE_EXT = re.compile(r"\.(gif|jpe?g|png|tiff?)(\?|$)", re.I)

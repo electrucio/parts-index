@@ -219,3 +219,105 @@ def test_a_board_gives_the_parts_on_it_and_not_their_packages():
     is fitted and nothing about how it is wired."""
     found = {h.part for h in parts.extract_page(page_of(BOARD))}
     assert found == {"OPA1612", "TPA3255"}      # not SOIC8, not QFN16, not 10k
+
+
+# --- LTspice and SPICE netlists: the Toragi archives are full of both -----------------------------------
+ASC = """Version 4
+SHEET 1 1280 680
+WIRE 272 160 176 160
+SYMBOL npn 208 112 R0
+SYMATTR InstName Q1
+SYMATTR Value 2SC1815
+SYMBOL res 288 32 R0
+SYMATTR InstName R1
+SYMATTR Value 4.7k
+SYMBOL Opamps\\\\LT1001 400 96 R0
+SYMATTR InstName U1
+SYMBOL Opamps\\\\opamp2 500 96 R0
+SYMATTR InstName U2
+SYMATTR Value TL072
+SYMBOL voltage 64 160 R0
+SYMATTR InstName V1
+SYMATTR Value 12
+TEXT 48 400 Left 2 !.model 2SK170 NJF(Beta=40m Vto=-0.4)
+"""
+
+# A PSpice netlist as OrCAD wrote it beside TR0205A's design, and a hand deck from TR9604S1.
+PSPICE_NET = """* source CE3
+Q_Q1         N05113 N04583 N06304 QC1815
+V_V1         N04583 0 DC 0.718Vdc AC 1Vac
+R_R1         N05113 N03123  1k
+X_U1A        N1 N2 N3 N4 N5 TL072 PARAMS: GAIN=1
+R_R2         0 N06304  100
+"""
+DECK = """Q1 amplifier - Voltage Drive
+
+VS 1 0 DC 1V
+D1 1 0 DNORM
+Q2 2 1 0 2SA1015
+.DC VS -0.8V 0.7V  0.004V
+.MODEL DNORM D(IS=1E-14)
+.END
+"""
+
+
+def test_ltspice_names_the_part_in_its_value_or_its_vendor_symbol():
+    pairs = cad.read_ltspice(ASC)
+    assert ("Q1", "2SC1815") in pairs and ("U1", "LT1001") in pairs and ("U2", "TL072") in pairs
+    assert ("", "2SK170") in pairs                              # a model the sheet defines for itself
+    assert ("V1", "12") in pairs and ("R1", "4.7k") in pairs    # passives stay pairs; _blocks drops the values
+
+
+def test_a_generic_ltspice_symbol_is_not_a_part():
+    pairs = cad.read_ltspice("Version 4\nSHEET 1 10 10\nSYMBOL npn 0 0 R0\nSYMATTR InstName Q9\n")
+    assert pairs == [("Q9", "")]
+
+
+def test_a_pspice_netlist_gives_the_model_of_each_device():
+    pairs = cad.read_spice(PSPICE_NET)
+    assert ("Q1", "QC1815") in pairs and ("U1A", "TL072") in pairs
+    assert ("R1", "") in pairs and ("V1", "") in pairs          # a passive or a source keeps its reference only
+
+
+def test_a_deck_skips_its_title_and_reads_its_models():
+    pairs = cad.read_spice(DECK)
+    assert ("Q1", "amplifier") not in pairs                      # the title line, which looks like an element
+    assert ("D1", "DNORM") in pairs and ("Q2", "2SA1015") in pairs and ("", "DNORM") in pairs
+
+
+def test_ltspice_and_netlists_are_recognised_from_the_file():
+    assert cad.kind_of(ASC) == "ltspice_asc"
+    assert cad.kind_of(PSPICE_NET) == "spice_net" and cad.kind_of(DECK) == "spice_net"
+    assert cad.kind_of("README\nThis archive holds the programs.\nRun make.\n") == ""
+    utf16 = ASC.encode("utf-16")                                 # as LTspice XVII saves a Japanese comment
+    assert cad.kind_of(cad._text(utf16)) == "ltspice_asc"
+    assert cad._text("回路図".encode("cp932")) == "回路図"
+
+
+def test_the_client_sniffs_them_too():
+    from parts_index.core.http import Response
+    assert Response(200, "", body=ASC.encode("utf-16")).kind == "ltspice_asc"
+    assert Response(200, "", body=PSPICE_NET.encode()).kind == "spice_net"
+    assert Response(200, "", body=b"Readme: nothing here\n").kind == ""
+
+
+def test_a_design_read_from_disk_arrives_as_one_page(tmp_path):
+    f = tmp_path / "amp.asc"
+    f.write_bytes(ASC.encode("utf-16"))
+    page = cad.read(f, "ltspice_asc")[0]
+    texts = {b["text"]: b.get("field", "") for b in page["blocks"]}
+    assert page["how"] == "cad" and texts["2SC1815"] == "value" and texts["TL072"] == "value"
+    assert "4.7k" not in texts and "Q1" in texts
+
+
+def test_a_jis_transistor_is_not_mistaken_for_an_sc_package():
+    """2SC1815 holds `SC18`, which the package filter read as an SC-70-style case and dropped — every
+    Japanese transistor and FET in every design, until the Toragi netlists showed it."""
+    for part in ("2SC1815", "2SA1015", "2SK170", "2SJ74", "2SD669A", "2SB649"):
+        assert not cad.PACKAGE.match(part), part
+    assert cad.PACKAGE.match("SC-70") and cad.PACKAGE.match("SOT23")
+
+
+def test_an_ltspice_directive_after_a_bang_or_a_newline_is_read():
+    text = "Version 4\nSHEET 1 1 1\nTEXT 0 0 Left 2 !.model 2SK170 NJF(Beta=40m)\\n.subckt MYOPA 1 2 3\n"
+    assert ("", "2SK170") in cad.read_ltspice(text) and ("", "MYOPA") in cad.read_ltspice(text)

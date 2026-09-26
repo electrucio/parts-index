@@ -1,4 +1,4 @@
-"""Reading a schematic that was never a picture: KiCad and EAGLE source files.
+"""Reading a schematic that was never a picture: KiCad, EAGLE, gEDA, LTspice and SPICE netlist sources.
 
 Everything else in this corpus is a drawing. A scan needs OCR, a born-digital PDF needs its text layer
 read, and either way a part number arrives as characters that might be wrong. A `.kicad_sch` or an EAGLE
@@ -25,7 +25,7 @@ from __future__ import annotations
 import re
 import xml.etree.ElementTree as ET
 
-KINDS = ("kicad_sch", "kicad_legacy", "eagle_sch", "eagle_brd", "geda_sch")
+KINDS = ("kicad_sch", "kicad_legacy", "eagle_sch", "eagle_brd", "geda_sch", "ltspice_asc", "spice_net")
 MAX_PARTS = 20000            # a sane ceiling: the largest board here has 969
 
 # KiCad writes one `(symbol ...)` per placed component, each carrying its Reference and its Value. The
@@ -65,7 +65,8 @@ FURNITURE = re.compile(r"(?i)^(?:pinhd|frame|a[0-9][a-z]?-loc|dinal|letter|logo)
 #
 # SMA is deliberately absent. SMAJ24A and SMAJ60A are Littelfuse TVS diodes, real parts whose names begin
 # with a package.
-PACKAGE = re.compile(r"(?i)^[A-Z0-9/_-]*?"
+# A JIS transistor or FET — 2SA1015, 2SC1815, 2SK170 — contains `SC` and two digits and is not an SC-70.
+PACKAGE = re.compile(r"(?i)^(?!2S[ABCDJK]\d)[A-Z0-9/_-]*?"
                      r"(?:SOT-?\d{2,4}|SOD-?\d{3}|SOIC-?\d{1,2}|SO-?\d{1,2}|SSOP-?\d{1,2}|TSSOP-?\d{1,2}"
                      r"|MSOP-?\d{1,2}|[LTV]?QFP|QFN|BGA|DFN|DIP-?\d{1,2}|TO-?\d{2,3}|DPAK|TSOP|PLCC"
                      r"|SC-?\d{2})[A-Z0-9/._-]*$"
@@ -233,6 +234,106 @@ def read_geda(text: str) -> list[tuple[str, str]]:
     return out
 
 
+# LTspice, the simulator most of this corpus's authors draw in. An .asc names each placed symbol and then
+# its attributes on the lines after it:
+#
+#     SYMBOL npn 1264 368 R0              the symbol, which for a generic device says only what kind
+#     SYMATTR InstName Q1
+#     SYMATTR Value 2SC1815               the model: here is the part number
+#     SYMBOL Opamps\\LT1001 ...           a vendor symbol names the part itself
+#
+# LTspice XVII and later save as UTF-16 when a file holds a character outside Latin-1, which a Japanese
+# comment makes likely; `_text` undoes that. `.model` and `.subckt` lines in a TEXT directive name the
+# devices a sheet defines for itself — 2SK170 written out by hand — and are read as values too.
+ASC_SYMBOL = re.compile(r"^SYMBOL\s+(\S+)", re.M)
+ASC_ATTR = re.compile(r"^SYMATTR\s+(\w+)\s*(.*)$", re.M)
+# A directive sits in a TEXT line after `!`: `TEXT 48 400 Left 2 !.model 2SK170 NJF(...)`, and one TEXT may
+# hold several, joined by a literal `\n`.
+ASC_MODEL = re.compile(r"(?i)(?:!|\\n)\s*\.(?:model|subckt)\s+([A-Za-z0-9_.+-]+)")
+SPICE_MODEL = re.compile(r"(?im)^[!*;\s]*\.(?:model|subckt)\s+([A-Za-z0-9_.+-]+)")
+# The symbols LTspice ships for a kind of thing rather than a part: their name is never a part number.
+ASC_GENERIC = re.compile(r"(?i)^(?:res|res2|cap|polcap|ind|ind2|voltage|current|bv|bi|e|e2|f|g|g2|h|"
+                         r"npn\d?|pnp\d?|nmos\d?|pmos\d?|njf|pjf|diode|zener|schottky|varactor|led|"
+                         r"opamp\d?|universalopamp\d?|sw|csw|tline|ltline|xtal|lm\d{0,3}|"
+                         r"cell|battery|load\d?|ferritebead\d?|mesfet|tl)$")
+
+
+def read_ltspice(text: str) -> list[tuple[str, str]]:
+    """Every placed symbol of an LTspice .asc, as (instance name, part), then the models it defines."""
+    starts = [(m.start(), m.group(1)) for m in ASC_SYMBOL.finditer(text)]
+    out = []
+    for i, (start, symbol) in enumerate(starts[:MAX_PARTS]):
+        end = starts[i + 1][0] if i + 1 < len(starts) else len(text)
+        attrs = dict((k, v.strip()) for k, v in ASC_ATTR.findall(text[start:end]))
+        name = symbol.replace("\\", "/").rsplit("/", 1)[-1]
+        value = attrs.get("Value") or attrs.get("SpiceModel") or ""
+        if not value and not ASC_GENERIC.match(name):
+            value = name                                   # a vendor symbol: LT1001, AD8065, TL431
+        ref = attrs.get("InstName", "")
+        if ref or value:
+            out.append((ref, value))
+    out += [("", m) for m in ASC_MODEL.findall(text)]
+    return out
+
+
+# A SPICE netlist, as PSpice writes one beside an OrCAD design (.net) or as a hand-written deck (.cir):
+#
+#     Q_Q1         N05113 N04583 N06304 QC1815         PSpice: the part's type, "_", its reference
+#     X_U1A        N1 N2 N3 N4 N5 TL072 PARAMS: ...     a subcircuit: its name is the last word
+#     D1 1 0 DNORM                                     a deck: no prefix
+#
+# For a device that takes a model (Q, D, J, M, Z, X) the model is the last word that is not a parameter.
+# A passive's value is a rating, and its reference is all that is kept of it.
+NET_LINE = re.compile(r"^([A-Za-z])(?:_([A-Za-z]{1,3}\w*)|(\w*))\s+(.+)$")
+MODELLED = set("QDJMZXU")
+
+
+def read_spice(text: str) -> list[tuple[str, str]]:
+    """Every element of a SPICE netlist, as (reference, model), then the models it defines."""
+    out = []
+    lines = text.splitlines()
+    if lines and not lines[0].lstrip().startswith(("*", ".")):
+        lines = lines[1:]                                  # a deck's first line is its title, whatever it says
+    for line in lines:
+        if not line or line[0] in "*.+;":
+            continue
+        m = NET_LINE.match(line.strip())
+        if not m:
+            continue
+        kind, prefixed, bare, rest = m.groups()
+        ref = prefixed if prefixed is not None else kind + (bare or "")
+        words = [w for w in rest.split("PARAMS:")[0].split() if "=" not in w]
+        value = words[-1] if kind.upper() in MODELLED and len(words) >= 2 else ""
+        out.append((ref, value))
+        if len(out) >= MAX_PARTS:
+            break
+    out += [("", m) for m in SPICE_MODEL.findall(text)]
+    return out
+
+
+def _text(data: bytes) -> str:
+    """The text of a design file, whatever it was saved as: UTF-16 from LTspice, CP932 from a Japanese
+    Windows, UTF-8 from everything else."""
+    if data[:2] in (b"\xff\xfe", b"\xfe\xff") or (len(data) > 3 and data[1:4:2] == b"\x00\x00"):
+        return data.decode("utf-16", "replace")
+    try:
+        return data.decode("utf-8")
+    except UnicodeDecodeError:
+        return data.decode("cp932", "replace")
+
+
+# How a netlist is recognised without its name: PSpice heads one with `* source`, a deck ends with .END,
+# and either way most lines are an element with a reference and at least two nodes.
+NET_ELEMENT = re.compile(r"(?m)^[RCLQDJMXVIKEFGHSTUZ](?:_\w+|\w*)\s+\S+\s+\S+")
+
+
+def looks_like_netlist(text: str) -> bool:
+    head = text[:20000]
+    elements = len(NET_ELEMENT.findall(head))
+    return (head.lstrip().lower().startswith("* source") and elements >= 1) or \
+        (elements >= 2 and re.search(r"(?im)^\s*\.(end|model|subckt|tran|ac|dc|op|probe|lib|inc)\b", head) is not None)
+
+
 def kind_of(text: str) -> str:
     """Which of the three this is, read from the file. `.sch` belongs to EAGLE and to old KiCad both."""
     head = text[:4000].lstrip()
@@ -248,17 +349,27 @@ def kind_of(text: str) -> str:
     # a good many open-hardware projects of about 2010.
     if re.match(r"v\s+\d{8}\s+\d", head) and "\nC " in text[:20000]:
         return "geda_sch"
+    if re.match(r"Version\s+4", head) and "\nSHEET " in text[:2000]:
+        return "ltspice_asc"
+    if looks_like_netlist(text):
+        return "spice_net"
     return ""
 
 
 READERS = {"kicad_sch": read_kicad, "kicad_legacy": read_kicad_legacy, "eagle_sch": read_eagle,
-           "eagle_brd": read_eagle_brd, "geda_sch": read_geda}
+           "eagle_brd": read_eagle_brd, "geda_sch": read_geda, "ltspice_asc": read_ltspice,
+           "spice_net": read_spice}
 
 
 def read(path, kind: str) -> list[dict]:
     """-> one page record, in the shape core.pagesio documents. A CAD file is read as a single sheet:
     a hierarchical design is several files, and each arrives here on its own."""
-    text = path.read_text(encoding="utf-8", errors="replace") if hasattr(path, "read_text") else str(path)
+    if hasattr(path, "read_bytes"):
+        text = _text(path.read_bytes())
+    elif hasattr(path, "read_text"):
+        text = path.read_text(encoding="utf-8", errors="replace")
+    else:
+        text = str(path)
     reader = READERS.get(kind) or READERS.get(kind_of(text))
     pairs = reader(text) if reader else []
     return [{"page": 1, "w": 0, "h": 0, "how": "cad", "blocks": _blocks(pairs)}]

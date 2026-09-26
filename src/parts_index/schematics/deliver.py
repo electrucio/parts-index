@@ -165,7 +165,9 @@ def deliver(source: str, archive: Path, *, remove: bool = False, log=say) -> dic
         led.stamp(key, "download", role=role, type=kind, bytes=len(body), sha256=digest, url=url)
         seen[digest] = (source, key)
 
-        # Kept either way; the reason only tells the reading stages to leave it alone.
+        # Kept either way; the reason only tells the reading stages to leave it alone. A delivery taken in
+        # again after a reader was added is classified afresh, so the old reason goes first.
+        led.row(key)["skip_reason"] = ""
         if not kind:
             led.row(key)["skip_reason"] = "not a document"
             counts["kept, nothing reads it"] += 1

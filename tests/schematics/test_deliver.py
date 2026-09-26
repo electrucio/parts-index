@@ -127,3 +127,18 @@ def test_taking_the_same_pile_in_twice_says_the_same_thing(delivery):
     second = D.deliver("handover", delivery, log=lambda *a: None)
     assert {k: r["skip_reason"] for k, r in led().rows.items()} == reasons
     assert first == second
+
+
+def test_a_delivery_taken_in_again_after_a_reader_arrived_is_classified_afresh(delivery):
+    """What was 'not a document' yesterday is a document once something reads it; the old reason goes."""
+    netlist = b"* source CE3\nQ_Q1 N1 N2 N3 QC1815\nR_R1 N1 N4 1k\n"
+    again = delivery.parent / "again.zip"
+    again.write_bytes(zipped({"pack/threads/ce3/ce3.net": netlist}))
+    D.deliver("handover", again, log=lambda *a: None)
+    ledger = led()
+    key = "delivery:threads/ce3/ce3.net"
+    ledger.row(key)["skip_reason"] = "not a document"            # what an older reader left behind
+    ledger.save()
+    D.deliver("handover", again, log=lambda *a: None)
+    row = led().get(key)
+    assert (row["type"], row["skip_reason"]) == ("spice_net", "")

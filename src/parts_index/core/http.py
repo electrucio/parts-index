@@ -93,6 +93,13 @@ class Response:
             return "eagle_brd" if b"<board" in self.body[:20000] else "eagle_sch"
         if re.match(rb"v\s+\d{8}\s+\d", head) and b"\nC " in self.body[:20000]:
             return "geda_sch"           # gEDA/gschem, and a `.sch` too
+        # LTspice and SPICE netlists are text too, and may be UTF-16 or CP932; the CAD module says which.
+        if head.startswith((b"Version 4", b"\xff\xfeV\x00", b"V\x00e\x00")) or head[:1] in b"*.RCLQDJMXVI" \
+                or head[:2] in (b"\xff\xfe",):
+            from parts_index.schematics import cad
+            found = cad.kind_of(cad._text(self.body[:200000]))
+            if found in ("ltspice_asc", "spice_net"):
+                return found
         return ""
 
     def text(self, limit: int | None = None) -> str:
