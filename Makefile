@@ -11,7 +11,7 @@ WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
 
 .DEFAULT_GOAL := help
-.PHONY: help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
+.PHONY: ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -110,8 +110,15 @@ schematics-crawl-bg:  ## (maintainer) the same, detached under a lock with a log
 schematics-ocr:  ## (maintainer) read what is downloaded and not read yet; SOURCE='a b' [GPU=0] [SHARD=0/2] [DRY=1]
 	uv run pidx schematics ocr $(foreach s,$(SOURCE),--source $(s)) $(if $(GPU),--gpu $(GPU)) $(if $(SHARD),--shard $(SHARD)) $(if $(LIMIT),--limit $(LIMIT)) $(if $(DRY),--dry)
 
+# The CUDA the image is built for has to be one this machine's driver runs; see docker/ocr.Dockerfile.
+PADDLE_TAG ?= 3.2.2-gpu-cuda12.6-cudnn9.5
+
+ocr-image:  ## (maintainer) build the OCR image; PADDLE_TAG=3.2.2-gpu-cuda11.8-cudnn8.9 for a driver older than CUDA 12.6
+	docker build --build-arg PADDLE_TAG=$(PADDLE_TAG) -f docker/ocr.Dockerfile -t parts-index-ocr .
+
 schematics-ocr-docker:  ## (maintainer) the same inside the CUDA image, one shard per GPU; SOURCE='a b' GPU=0 SHARD=0/2
-	docker run --rm --gpus '"device=$(GPU)"' -v "$(PWD)":/repo parts-index-ocr \
+	docker run --rm --gpus '"device=$(GPU)"' --user $$(id -u):$$(id -g) -e HOME=/repo/private_material/cache_ocr_home \
+	  -v "$(PWD)":/repo parts-index-ocr \
 	  schematics ocr $(foreach s,$(SOURCE),--source $(s)) --gpu 0 $(if $(SHARD),--shard $(SHARD))
 
 schematics-verify:  ## (maintainer) find documents lost before anything read them; REPAIR=1 fetches them back

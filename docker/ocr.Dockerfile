@@ -9,7 +9,13 @@
 #
 # Several shards run beside one another, one per GPU: they take disjoint documents, append to the map and
 # stamp their own ledger rows. Nothing is read twice — the ledger decides, not the order they finish in.
-FROM paddlepaddle/paddle:3.0.0-gpu-cuda12.6-cudnn9.5
+# The CUDA of the base has to be one the host's driver runs: a 535 driver tops out at CUDA 12.2 and refuses
+# the 12.6 build outright ("unsatisfied condition: cuda>=12.6"), so a machine like that builds with
+#   docker build --build-arg PADDLE_TAG=3.2.2-gpu-cuda11.8-cudnn8.9 -f docker/ocr.Dockerfile -t parts-index-ocr .
+ARG PADDLE_TAG=3.2.2-gpu-cuda12.6-cudnn9.5
+FROM paddlepaddle/paddle:${PADDLE_TAG}
+
+RUN apt-get update && apt-get install -y --no-install-recommends libgl1 libglib2.0-0 && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /repo
 ENV PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1
