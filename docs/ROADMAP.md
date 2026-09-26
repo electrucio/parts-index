@@ -46,6 +46,40 @@ must come out the same.
 - **Documents cut short.** Five documents over 600 pages are still truncated by the page cap. None of them
   carries audio schematics, but the cap should be raised or made per-source.
 
+## The part extractor, seen from the design readers
+
+Found on 2026-09-26 while reviewing `schematics/cad.py` against every name the dictionary and the census
+know and against the 359 Toragi designs. The reader's side is fixed; what follows is the extractor's side,
+left as it is because those files were mid-change in another session, and because each one deserves its
+own test (rule 4). None is urgent; all are worth a look before the Japanese material is indexed in earnest.
+
+- **The 1S series of JIS diodes is invisible.** 1S1588, 1S2076A, 1SS355: the census knows them, no family
+  claims them, and the "declared in a design" path takes only names that start with a letter. Seventeen
+  1S1588 out of the Toragi netlists reach the extractor as declared values and come out as nothing. A
+  closed family `1S(S)?\d{3,4}[A-Z]?` beside the JIS transistor one would settle it, with 1S1588 as the
+  test — and settle the OCR path too, where the same diodes appear in every Japanese schematic.
+- **A grade suffix is captured as a part.** From `2SC1815GR` on a page the JIS pattern takes one letter and
+  publishes `2SC1815G`, which is not a part; the ranks are GR, Y, O, BL. The design readers fold the grade
+  before the extractor sees it (`cad.canonical`), so the CAD path is right and the OCR path is not. The
+  fix belongs in `base_part` or the JIS family pattern: a rank of one or two letters after the digits,
+  folded when what is left is known.
+- **A net label passes for a part.** `IN3`, `OUT1`: designators by shape, taken as parts by the bare
+  reader when the page has enough of them around. Three of them came off one Toragi netlist. Labels of
+  the form IN/OUT plus a digit are never parts and could be dropped by name.
+- **The census lists ratings as parts.** `100N`, `4U7`, `10`, `1000H` are census entries, read off lists
+  that had to be complete. `cad.recognised` refuses a census name shaped like a rating unless it is also
+  shaped like a valve (6V6 is both); the extractor's own census gate may want the same rule, or the census
+  a cleaning pass, since a `100N` in OCR text is a capacitor a thousand times before it is a part once.
+- **PSpice model names are in the census as parts.** `Q2N3904`, `QBFG425W`, `QC1815A` came in with the
+  SPICE-definition lists, letter and all, so `norm("Q2N3904")` is "known". The readers strip the letter
+  and prefer the reading that says most (`cad.model_name`); a page of OCR'd netlist would still publish
+  the model name. Either the census marks these as models, or the extractor learns the same stripping.
+
+What the readers now guarantee, and the test that holds them to it: nothing the dictionary or the census
+vouches for is dropped by a shape rule (`test_nothing_the_dictionary_or_the_census_knows_is_dropped_by_a_filter`
+runs the whole vocabulary). The rules that once dropped 1N4148 as a nanofarad, 2SC1815 as an SC-18 case
+and ISO7721 as an SO-77 are the reason it exists; a new filter that swallows a real part fails it.
+
 ## Links
 
 - **Nothing re-checks links.** Some will rot, and at least one archive.org item is a private upload that
