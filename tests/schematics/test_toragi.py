@@ -47,6 +47,9 @@ TRBN_PAGE = """<html><body>
 <b>第1章</b><i> 8ビット・パラレルI/O変換もサポートする</i><br>
 <b><font size="+1">超定番<i>！</i>USB-シリアル変換IC FT232BM </font></b>　芹井 滋喜　　　<a href="../../contents/2005/tr0501/0501sp1.pdf"><img src="../../../Images/pdficon.gif" alt="見本PDF"></a> <font size="-1">273Kバイト</font><br>
 <a href="../../contents/2005/tr0501/0501toku.pdf">特集扉</a>
+<td><font size="+1" color="white">　</font><strong>第1部　電池，マイコン回路編</strong></td>
+<p><b>第1章</b><em>安全にそして無駄無く電池を活用するために</em><br>
+  <font size="+1"><strong>知っておきたいトラブル対策</strong></font>　下間 憲行<font size="+1"><b>　</b></font>　　<a href="./tr0806/p092-093.pdf"><img src="x.gif"></a>
 </body></html>"""
 
 BACKNUMBER = """<a href="../contents/1998/TR199801.HTM">1月号</a> <a href="../contents/2005/TR200501.htm">1月号</a>
@@ -158,6 +161,7 @@ def test_the_old_site_names_title_author_and_pdf_in_one_line():
     assert found[0] == {"url": "https://www.cqpub.co.jp/toragi/TRBN/contents/2005/tr0501/0501sp1.pdf",
                         "title": "超定番！USB-シリアル変換IC FT232BM", "authors": "芹井 滋喜"}
     assert found[1]["url"].endswith("0501toku.pdf") and found[1]["title"] == ""
+    assert (found[2]["title"], found[2]["authors"]) == ("知っておきたいトラブル対策", "下間 憲行")   # the 2008 shape
 
 
 def test_the_back_number_index_and_the_program_archive():

@@ -286,29 +286,32 @@ def parse_backnumber(page: str, base: str) -> list[tuple[str, str]]:
     return sorted(set(out))
 
 
-TRBN_ENTRY = re.compile(r'<b><font size="\+1">(?P<title>.*?)</font></b>(?P<authors>.*?)'
-                        r'<a href="(?P<href>[^"]+\.pdf)"', re.S | re.I)
+def _clean(s: str) -> str:
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", s))).strip("　 \n")
 
 
 def parse_trbn_page(page: str, base: str) -> list[dict]:
-    """An issue page of the old site: title in a big bold font, the author after it, then the PDF icon.
+    """An issue page of the old site: the title in a big font, the author after it, then the PDF icon.
 
         <b><font size="+1">超定番<i>！</i>USB-シリアル変換IC FT232BM </font></b>　芹井 滋喜　　　<a href="../../contents/2005/tr0501/0501sp1.pdf">
+        <font size="+1"><strong>知っておきたいトラブル対策</strong></font>　下間 憲行<font size="+1"><b>　</b></font>　　<a href="./tr0806/p092-093.pdf">
+
+    Eleven years of hand-written HTML, so the title is found by walking back from each link to the last
+    big font that says anything, and the author is whatever stands between the two.
     """
     out = []
     seen = set()
-    for m in TRBN_ENTRY.finditer(page):
-        url = urljoin(base, m.group("href")).split("#")[0]
-        if url in seen:
-            continue
-        seen.add(url)
-        clean = lambda s: re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", s))).strip("　 \n")   # noqa: E731
-        out.append({"url": url, "title": clean(m.group("title")), "authors": clean(m.group("authors"))})
-    for m in re.finditer(r'href="([^"]+\.pdf)"', page, re.I):           # a link the pattern did not reach
+    prev_end = 0
+    for m in re.finditer(r'<a href="([^"]+\.pdf)"', page, re.I):
         url = urljoin(base, m.group(1)).split("#")[0]
+        chunk, prev_end = page[prev_end:m.start()], m.end()
+        title = authors = ""
+        fonts = [f for f in re.finditer(r'<font size="\+1"[^>]*>(.*?)</font>', chunk, re.S | re.I) if _clean(f.group(1))]
+        if fonts:
+            title, authors = _clean(fonts[-1].group(1)), _clean(chunk[fonts[-1].end():])
         if url not in seen:
             seen.add(url)
-            out.append({"url": url, "title": "", "authors": ""})
+            out.append({"url": url, "title": title, "authors": authors})
     return out
 
 
@@ -474,7 +477,8 @@ def toragi_trbn(source: str, cfg: dict):
             for f in parse_trbn_page(body, page_url):
                 kind = kind_of_name(file_name(f["url"]))          # 0501sp1.pdf says nothing: a sample, then
                 batch.append(_row(source, f["url"], kind if kind in ("toc", "correction") else "sample", issue,
-                                  f["title"], f["authors"], page_url, articles, match="issue page" if f["title"] else ""))
+                                  f["title"], f["authors"], page_url, articles, page=page_of_name(file_name(f["url"])),
+                                  match="issue page" if f["title"] else ""))
             print(f"  {issue}: {len(batch)}  ({n}/{len(issues)})", file=sys.stderr)
             if batch:
                 yield batch
