@@ -68,7 +68,7 @@ def main(argv: list[str] | None = None) -> int:
     sl.add_argument("--dry", action="store_true", help="say what would be added and add nothing")
 
     st = sch.add_parser("toragi", help="トランジスタ技術: coverage by year and by issue, from the lists and ledgers")
-    st.add_argument("--source", action="append", help="only these sources (default: toragi and toragi_trbn)")
+    st.add_argument("--source", action="append", help="only these sources (default: toragi, toragi_trbn and toragi_support)")
 
     sc = sch.add_parser("crawl", help="walk a site from its start pages and take what it shows")
     sc.add_argument("--source", action="append", required=True, help="a source with a `crawl:` block (repeatable)")

@@ -253,3 +253,55 @@ def test_a_full_api_page_is_kept_and_the_last_one_is_asked_for_again(site):
     again = site.asked[first:]
     assert api("media", 1, "application/pdf") in again          # six items: a last page, asked again
     assert T.ISSUE_PAGE.format(issue="201001") not in again      # a page is kept
+
+
+# --- the support trees, from the archive's index -------------------------------------------------------
+def test_an_archived_support_file_becomes_a_live_row_by_what_its_path_says(index_zip):
+    arts = {}
+    r = T.support_row("toragi_support", "http://toragi.cqpub.co.jp:80/Portals/0/support/2010/10/circuit.pdf?123",
+                      "application/pdf", "20240518004929", arts)
+    assert (r["url"], r["kind"], r["issue"], r["year"], r["title"], r["archived"]) == \
+        ("https://toragi.cqpub.co.jp/Portals/0/support/2010/10/circuit.pdf", "schematic", "201010", "2010",
+         "support/2010/10/circuit.pdf", "20240518004929")
+    assert r["page"] == "https://toragi.cqpub.co.jp/Portals/0/support/2010/10/"
+    r = T.support_row("toragi_support", "https://toragi.cqpub.co.jp/Portals/0/download/2012/lv1/circuit/HP.pdf",
+                      "application/pdf", "2020", arts)
+    assert (r["kind"], r["issue"], r["year"]) == ("schematic", "", "2012")            # circuit/ says it
+    r = T.support_row("toragi_support", "https://toragi.cqpub.co.jp/Portals/0/support/2014/DSD/manual.pdf",
+                      "application/pdf", "2020", arts)
+    assert r["kind"] == "support"
+    z = T.support_row("toragi_support", "https://toragi.cqpub.co.jp/Portals/0/support/2014/DSD/schematic_3rd_2.zip",
+                      "application/x-zip-compressed", "2020", arts)
+    assert (z["kind"], z["skip"]) == ("archive", T.ARCHIVE)
+    assert T.support_row("toragi_support", "https://toragi.cqpub.co.jp/Portals/0/support/2014/DSD/photo1.jpg",
+                         "image/jpeg", "2020", arts) is None                              # a photograph
+    assert T.support_row("toragi_support", "https://toragi.cqpub.co.jp/Portals/0/download/2012/lv1/board/LV-1_DAC.pdf",
+                         "application/pdf", "2020", arts) is None                          # copper, not circuit
+    assert T.support_row("toragi_support", "https://toragi.cqpub.co.jp/Portals/0/support/2014/DSD/circuit.png",
+                         "image/png", "2020", arts)["kind"] == "schematic"
+    assert T.support_row("toragi_support", "https://toragi.cqpub.co.jp/Portals/0/support/x/page.html",
+                         "text/html", "2020", arts) is None
+
+
+def test_what_cq_no_longer_serves_is_listed_again_from_the_archive(index_zip, tmp_path, monkeypatch):
+    monkeypatch.setattr(T, "listing_cache", lambda source: tmp_path / "cache" / source)
+    monkeypatch.setattr(T, "schematics_state", lambda source: tmp_path / f"{source}.csv")
+    cdx = ("http://toragi.cqpub.co.jp:80/Portals/0/support/2010/10/circuit.pdf application/pdf 20240518004929 801412\n"
+           "https://toragi.cqpub.co.jp/Portals/0/support/2019/05/pisoc_sch.pdf application/pdf 20210101000000 29432\n"
+           "https://toragi.cqpub.co.jp/Portals/0/support/2019/05/photo.jpg image/jpeg 20210101000000 9\n")
+    server = Site({u: (cdx if "support/" in u else "") for u in
+                   [f"{T.CDX}?url={p}&matchType=prefix&collapse=urlkey&filter=statuscode:200"
+                    f"&fl=original,mimetype,timestamp,length&limit=100000" for p in T.SUPPORT_PREFIXES]})
+    monkeypatch.setattr(T.http, "get", server.get)
+    rows = [r for b in T.toragi_support("toragi_support", {})(0, 0) for r in b]
+    assert [r["url"].rsplit("/", 1)[-1] for r in rows] == ["pisoc_sch.pdf", "circuit.pdf"]      # newest year first
+
+    from parts_index.core.ledger import Ledger
+    led = Ledger(tmp_path / "toragi_support.csv")
+    led.skip("https://toragi.cqpub.co.jp/Portals/0/support/2010/10/circuit.pdf", "http 404", role="schematic")
+    led.save()
+    rows = [r for b in T.toragi_support("toragi_support", {})(0, 0) for r in b]
+    replay = [r for r in rows if r["url"].startswith("https://web.archive.org/")]
+    assert len(replay) == 1
+    assert replay[0]["url"] == "https://web.archive.org/web/20240518004929id_/https://toragi.cqpub.co.jp/Portals/0/support/2010/10/circuit.pdf"
+    assert replay[0]["kind"] == "schematic" and replay[0]["issue"] == "201010"

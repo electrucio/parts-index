@@ -597,9 +597,10 @@ def lister_for(source: str):
     if source in LISTERS:
         return LISTERS[source]
     entry = registry_entry(source)
-    if entry.get("toragi") is not None or entry.get("toragi_trbn") is not None:
+    block = next((k for k in ("toragi", "toragi_trbn", "toragi_support") if entry.get(k) is not None), None)
+    if block:
         from parts_index.schematics import toragi  # a publisher with an index of its own: see there
-        return toragi.LISTERS[source](source, entry.get("toragi") or entry.get("toragi_trbn") or {})
+        return toragi.LISTERS[source](source, entry.get(block) or {})
     if entry.get("github"):
         return github(source, entry["github"])
     if entry.get("europepmc"):

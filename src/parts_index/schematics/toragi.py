@@ -19,6 +19,16 @@ The file name carries the start page (2026-4-p037-038.pdf) and is the last resor
 Two sources because they are two hosts, so two ledgers; the report joins them by sha256, since the
 3,252 PDFs uploaded to WordPress in 2022 are the old site's files carried across.
 
+A sample is the first page of an article, and the schematic is on the pages that are sold. What CQ did
+publish whole is the support material of its appendix boards and projects — circuit.pdf, pisoc_sch.pdf,
+LV-1 headphone amplifier, a full-digital RF transceiver — under Portals/0/support/ and Portals/0/download/
+on both hosts, the DotNetNuke tree of 2008–2020. No page indexes it any more, but the Wayback Machine's
+CDX index names every file it ever captured there, and the files are still served live. `toragi_support`
+lists them from the CDX index and the download stage fetches them from CQ; a file CQ no longer serves is
+listed again from the archive on the next run, with its capture date, so nothing is lost either way.
+
+    pidx schematics list --source toragi_support  # the support trees, from the archive's index, live URLs
+
 Listed and not fetched: the ZIPs under /downloadYYYY/ are the programs that go with the articles, and
 a sketch is not a document read for its circuit. They go into the list with a `skip`, so the download
 stage records them in the ledger with their issue and never spends a request on them. The old site's
@@ -40,7 +50,7 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import date
 from html.parser import HTMLParser
-from urllib.parse import urljoin, urlparse
+from urllib.parse import unquote, urljoin, urlparse
 
 from parts_index.core import http
 from parts_index.core.config import listing_cache, schematics_state, source_list, toragi_index, toragi_reports
@@ -129,7 +139,6 @@ def by_issue(articles: list[Article]) -> dict[str, list[Article]]:
 
 # --- what a name says ---------------------------------------------------------------------------------
 def file_name(url: str) -> str:
-    from urllib.parse import unquote
     return unquote(urlparse(url).path.rsplit("/", 1)[-1])
 
 
@@ -494,7 +503,93 @@ def toragi_trbn(source: str, cfg: dict):
     return lister
 
 
-LISTERS = {"toragi": toragi, "toragi_trbn": toragi_trbn}
+# --- the support trees, from the archive's index -----------------------------------------------------
+CDX = "https://web.archive.org/cdx/search/cdx"
+REPLAY = "https://web.archive.org/web/{stamp}id_/{url}"
+SUPPORT_PREFIXES = ("toragi.cqpub.co.jp/Portals/0/support/", "toragi.cqpub.co.jp/Portals/0/download/",
+                    "www.cqpub.co.jp/toragi/2008-2020/Portals/0/support/",
+                    "www.cqpub.co.jp/toragi/2008-2020/Portals/0/download/")
+SUPPORT_TYPES = {"application/pdf": "pdf", "application/x-zip-compressed": "zip", "application/zip": "zip",
+                 "image/png": "png", "image/gif": "gif", "image/jpeg": "jpeg", "image/bmp": "bmp"}
+# A name or a folder that says what the file is. `board/` and `pcb/` are layouts, which is the one thing
+# the LV-1 tree taught: the schematics are under circuit/ and the copper is under board/.
+SCHEMATIC_NAME = re.compile(r"(?i)sch|circuit|kairo|回路|diagram|\.brd|kicad|eagle")
+LAYOUT_NAME = re.compile(r"(?i)/board/|/pcb/|layout|pattern|gerber|silk")
+GONE = ("http 404", "http 410")
+
+
+def _cdx_rows(source: str, prefix: str, delay: float) -> list[list[str]]:
+    """Every capture of a file under this prefix, one per URL, from the copy kept last time."""
+    url = (f"{CDX}?url={prefix}&matchType=prefix&collapse=urlkey&filter=statuscode:200"
+           f"&fl=original,mimetype,timestamp,length&limit=100000")
+    status, body = _get(source, url, delay)
+    if status != 200:
+        raise SystemExit(f"{source}: {status} from the CDX index for {prefix}")
+    return [line.split(" ") for line in body.decode("utf-8", "replace").splitlines() if line.strip()]
+
+
+def live_url(original: str) -> str:
+    """The URL as CQ serves it now: https, no :80, no cache-busting query."""
+    return re.sub(r"^http://", "https://", original).replace(":80/", "/").split("?")[0]
+
+
+def support_row(source: str, original: str, mime: str, stamp: str, articles: dict, url: str | None = None) -> dict | None:
+    """One line of the list for an archived support file, or None when it is not a kind worth holding."""
+    kind = SUPPORT_TYPES.get(mime.split(";")[0].strip())
+    if not kind:
+        return None
+    url = url or live_url(original)
+    path = unquote(urlparse(original).path)
+    name = path.rsplit("/", 1)[-1]
+    if kind == "jpeg" and not SCHEMATIC_NAME.search(path):
+        return None                                       # a photograph of the board, almost always
+    if LAYOUT_NAME.search(path) and not SCHEMATIC_NAME.search(name):
+        return None
+    m = re.search(r"/(20\d\d)/(\d\d)/", path)
+    y = re.search(r"/(20[012]\d)/", path)
+    issue = f"{m.group(1)}{m.group(2)}" if m and 1 <= int(m.group(2)) <= 12 else ""
+    folder = path.split("/Portals/0/")[-1].rsplit("/", 1)[0]
+    role = ("archive" if kind == "zip" else "schematic" if SCHEMATIC_NAME.search(path)
+            else "figure" if kind in ("png", "gif", "jpeg", "bmp") else "support")
+    row = _row(source, url, role, issue, f"{folder}/{name}", "", live_url(original).rsplit("/", 1)[0] + "/",
+               articles, match="")
+    row |= {"year": issue[:4] if issue else (y.group(1) if y else ""), "archived": stamp, "original": live_url(original)}
+    return row
+
+
+def toragi_support(source: str, cfg: dict):
+    """-> batches, newest year first: the support and download trees, live where CQ still serves them."""
+    prefixes = cfg.get("prefixes") or list(SUPPORT_PREFIXES)
+
+    def lister(delay: float, limit: int = 0):
+        articles = by_issue(index())
+        led = Ledger(schematics_state(source))
+        rows: dict[str, dict] = {}
+        for prefix in prefixes:
+            for parts in _cdx_rows(source, prefix, delay):
+                if len(parts) != 4:
+                    continue
+                original, mime, stamp, _ = parts
+                row = support_row(source, original, mime, stamp, articles)
+                if row and row["url"] not in rows:
+                    rows[row["url"]] = row
+            print(f"  {prefix}: {len(rows)} files so far", file=sys.stderr)
+        # what CQ no longer serves is listed again from the archive, as its own row, once the ledger says so
+        for url, row in list(rows.items()):
+            gone = led.get(url)
+            if gone and gone["skip_reason"].startswith(GONE):
+                replay = REPLAY.format(stamp=row["archived"], url=row["original"])
+                rows[replay] = row | {"url": replay, "page": REPLAY.format(stamp=row["archived"], url=row["page"])}
+        ordered = sorted(rows.values(), key=lambda r: (-int(r["year"] or 0), r["url"]))
+        print(f"{source}: {len(ordered)} files, {sum(1 for r in ordered if r['kind'] == 'schematic')} named as a "
+              f"schematic, {sum(1 for r in ordered if r['kind'] == 'archive')} archives listed and not fetched", file=sys.stderr)
+        if ordered:
+            yield ordered[:limit] if limit else ordered
+
+    return lister
+
+
+LISTERS = {"toragi": toragi, "toragi_trbn": toragi_trbn, "toragi_support": toragi_support}
 
 
 # --- the report ---------------------------------------------------------------------------------------
@@ -514,7 +609,7 @@ def _list_rows(source: str) -> list[dict]:
         return [json.loads(line) for line in f if line.strip()]
 
 
-def report(sources=("toragi", "toragi_trbn"), articles: list[Article] | None = None, out=None, log=print) -> dict:
+def report(sources=("toragi", "toragi_trbn", "toragi_support"), articles: list[Article] | None = None, out=None, log=print) -> dict:
     """Coverage by year and by issue, from the lists and the ledgers, written as CSV and shown as a table."""
     out = out or toragi_reports()
     arts = by_issue(articles if articles is not None else index())
@@ -602,9 +697,9 @@ def _write(path, fields, rows):
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="pidx schematics toragi", description=__doc__.splitlines()[0])
-    ap.add_argument("--source", action="append", help="only these sources (default: toragi and toragi_trbn)")
+    ap.add_argument("--source", action="append", help="only these sources (default: toragi, toragi_trbn and toragi_support)")
     a = ap.parse_args(argv)
-    report(tuple(a.source) if a.source else ("toragi", "toragi_trbn"))
+    report(tuple(a.source) if a.source else ("toragi", "toragi_trbn", "toragi_support"))
     return 0
 
 
