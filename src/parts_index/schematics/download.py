@@ -274,7 +274,15 @@ def run(source: str, *, limit: int | None = None, delay: float | None = None, dr
     log(f"{source}: {len(assets)} URLs in the list, {len(led)} already in the ledger")
     try:
         for i, asset in enumerate(assets, 1):
-            kind, body = job.item(asset["url"], asset.get("kind") or cfg.get("role") or "document")
+            role = asset.get("kind") or cfg.get("role") or "document"
+            if asset.get("skip"):
+                # A list may name a file to record and never fetch — a program archive that goes with an
+                # article, listed with its issue so the ledger says it exists. Rule 5 still holds: written once.
+                if asset["url"] not in led and not dry:
+                    led.skip(asset["url"], asset["skip"], role=role)
+                job.counts["listed, not fetched"] += 1
+                continue
+            kind, body = job.item(asset["url"], role)
             if kind == "html" and body and cfg.get("figures"):
                 for url, role in job.figures(asset["url"], body):
                     job.item(url, role)

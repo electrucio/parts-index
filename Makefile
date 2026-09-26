@@ -11,7 +11,7 @@ WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
 
 .DEFAULT_GOAL := help
-.PHONY: help setup test test-web lint guard check status status-write paths models-index models-missing models-recover models-verify models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
+.PHONY: help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -94,6 +94,9 @@ parts-judge:  ## decide which census names mean a component here; COLLECT=1 then
 
 parts-census:  ## (maintainer) read the lists that say which part numbers exist; [SOURCE='a b'] [READ=1]
 	uv run pidx parts census $(foreach s,$(SOURCE),--source $(s)) $(if $(READ),--read)
+
+toragi-report:  ## (maintainer) トランジスタ技術: coverage by year and by issue, from the lists and ledgers
+	$(RUN) pidx schematics toragi
 
 schematics-crawl:  ## (maintainer) walk a site and take what it shows; SOURCE='a b' [MAX=n]
 	@test -n "$(SOURCE)" || { echo "give the source: make schematics-crawl SOURCE=tubecad"; exit 1; }

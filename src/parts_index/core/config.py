@@ -317,6 +317,18 @@ def source_list(source: str) -> Path:
     return material_root() / "source_lists" / f"assets_{source}.jsonl"
 
 
+def toragi_index() -> Path:
+    """CQ出版社's own index of every トランジスタ技術 article, as the publisher gives it away: TRDBWin25.zip
+    with TR.txt inside (CP932, one comma-separated row per article since 1964). Fetched by hand from
+    https://toragi.cqpub.co.jp/database/ and kept private, since it is their database and not ours."""
+    return material_root() / "indexes" / "toragi" / "TRDBWin25.zip"
+
+
+def toragi_reports() -> Path:
+    """Coverage of トランジスタ技術 by year and by issue, written by `pidx schematics toragi`."""
+    return scratch() / "toragi"
+
+
 def listing_cache(source: str) -> Path:
     """The index pages a list was gathered from. Kept for the same reason the census keeps its own: a
     changed `keep` pattern should cost a re-read, not another walk of somebody's sitemap."""
@@ -456,6 +468,8 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("downloads", "private", ("esp",)),
     ("download_manifest", "private", ("esp",)),
     ("source_list", "private", ("diyaudio",)),
+    ("toragi_index", "private", ()),
+    ("toragi_reports", "private", ()),
     ("spice_models_root", "private", ()),
     ("spice_source", "private", ("onsemi",)),
     ("spice_source_doc", "private", ("onsemi",)),

@@ -67,6 +67,9 @@ def main(argv: list[str] | None = None) -> int:
     sl.add_argument("--delay", type=float, default=0.0, help="seconds between two requests to one host")
     sl.add_argument("--dry", action="store_true", help="say what would be added and add nothing")
 
+    st = sch.add_parser("toragi", help="トランジスタ技術: coverage by year and by issue, from the lists and ledgers")
+    st.add_argument("--source", action="append", help="only these sources (default: toragi and toragi_trbn)")
+
     sc = sch.add_parser("crawl", help="walk a site from its start pages and take what it shows")
     sc.add_argument("--source", action="append", required=True, help="a source with a `crawl:` block (repeatable)")
     sc.add_argument("--max", type=int, default=None, help="pages to fetch before stopping; 0 runs until the queue is empty")
@@ -232,6 +235,10 @@ def main(argv: list[str] | None = None) -> int:
         argv2 += ["--limit", str(args.limit)] if args.limit else []
         argv2 += ["--delay", str(args.delay)] if args.delay else []
         return sch_listing.main(argv2 + (["--dry"] if args.dry else []))
+
+    if args.cmd == "schematics" and args.sch_cmd == "toragi":
+        from parts_index.schematics import toragi as sch_toragi
+        return sch_toragi.main([x for pair in (("--source", s) for s in args.source or []) for x in pair])
 
     if args.cmd == "schematics" and args.sch_cmd == "crawl":
         from parts_index.schematics import crawl as sch_crawl

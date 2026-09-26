@@ -285,3 +285,18 @@ def test_a_source_that_needs_a_gentler_pace_carries_its_own(site, monkeypatch):
 
     D.run("audiocircuit", delay=1, log=lambda *a: None)
     assert seen["delay"] == 1                                # and the command still wins when it asks
+
+
+def test_a_listed_file_marked_skip_is_recorded_and_never_asked_for(site, monkeypatch):
+    """A list may name a file to record and never fetch — a program archive that goes with an article."""
+    zip_url, pdf_url = "https://ac.example/TR2601P1S1.zip", "https://ac.example/p037.pdf"
+    write_list("audiocircuit", [{"url": zip_url, "kind": "archive", "skip": "archive, not opened"},
+                                {"url": pdf_url, "kind": "sample"}])
+    server = serve(monkeypatch, {pdf_url: Response(200, pdf_url, "application/pdf", PDF)})
+
+    counts = D.run("audiocircuit", log=lambda *a: None)
+
+    assert server.asked == [pdf_url]                          # the archive cost no request
+    row = ledger("audiocircuit").get(zip_url)
+    assert (row["role"], row["skip_reason"]) == ("archive", "archive, not opened")
+    assert counts["listed, not fetched"] == 1 and counts["pdf"] == 1

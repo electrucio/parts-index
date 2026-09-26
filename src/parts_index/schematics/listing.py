@@ -587,6 +587,9 @@ def lister_for(source: str):
     if source in LISTERS:
         return LISTERS[source]
     entry = registry_entry(source)
+    if entry.get("toragi") is not None or entry.get("toragi_trbn") is not None:
+        from parts_index.schematics import toragi  # a publisher with an index of its own: see there
+        return toragi.LISTERS[source](source, entry.get("toragi") or entry.get("toragi_trbn") or {})
     if entry.get("github"):
         return github(source, entry["github"])
     if entry.get("europepmc"):
@@ -596,7 +599,7 @@ def lister_for(source: str):
     if entry.get("wayback"):
         return wayback(source, entry["wayback"])
     raise SystemExit(f"no lister for {source}: it needs one in LISTERS, or a "
-                     f"`github:`, `europepmc:`, `sitemap:` or `wayback:` block")
+                     f"`github:`, `europepmc:`, `sitemap:`, `wayback:` or `toragi:` block")
 
 
 def append_new(source: str, rows: list[dict], dry: bool = False) -> int:
