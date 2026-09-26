@@ -21,7 +21,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 MAX_BYTES = 1_000_000
-MAX_BYTES_DATA = 5_000_000          # ledgers and exports under data/ are plain CSV and may be larger
+MAX_BYTES_DATA = 50_000_000         # ledgers and exports under data/ are plain CSV: audiocircuit alone is 25 MB, GitHub warns at 50
 
 PRIVATE_DIRS = ("private_web_spice_models/", "private_material/")
 BLOCKED_SUFFIXES = {
