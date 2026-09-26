@@ -1,0 +1,53 @@
+# Publish the site to GitHub Pages: https://electrucio.github.io/parts-index/
+#
+# The build reads only what is committed under data/ (a test sabotages the private root to prove it), so
+# the runner builds the same site as `make web` on the maintainer's machine. The 263 MB of part pages
+# travel as a deployment artifact and never enter git: every deploy replaces the previous one whole.
+# Started by hand (`make web-deploy`, or the Run workflow button), not on every push: the data commits
+# are many and the site is rebuilt at milestones.
+name: pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: uv sync
+      - run: cd web && npm ci --no-fund --no-audit
+      - run: make web
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true          # creates the Pages site (source: GitHub Actions) the first time
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
