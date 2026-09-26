@@ -145,7 +145,11 @@ def read_document(path: Path, kind: str, read_image=None) -> list[dict]:
             img = np.stack([np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.h, pix.w)] * 3, axis=-1)
             blocks, how, w_px, h_px = read_image(img), "ocr", pix.w, pix.h
         blocks.sort(key=lambda b: (round(b["box"][1] / 12), b["box"][0]))
-        pages.append({"page": pno + 1, "w": w_px, "h": h_px, "how": how, "blocks": blocks})
+        # The size in points travels with the page, because the file does not: the retention rule
+        # deletes a scan once it is read, and the zoom link needs the page's points to say where on the
+        # sheet a part sits. 481,319 pages of audiocircuit were read and released before this line.
+        pages.append({"page": pno + 1, "w": w_px, "h": h_px, "how": how, "blocks": blocks,
+                      "w_pt": round(page.rect.width, 1), "h_pt": round(page.rect.height, 1)})
     return pages
 
 

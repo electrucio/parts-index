@@ -127,6 +127,27 @@ def pt_sizes(path) -> list[tuple[float, float]]:
         return []
 
 
+def sizes_for(pages: list[dict], local, dpi: float | None) -> list[tuple[float, float]]:
+    """The page sizes in points, from the best of three places.
+
+    The page record, when the OCR wrote them (it does since 2026-09-26). The file, when it is still here.
+    And last, the pixel size divided by a DPI the registry vouches for: audiocircuit's 481,319 pages were
+    read by the maintainer's own OCR at a fixed 300 dpi and the files released, so `ocr: {dpi: 300}` is
+    what recovers them — Letter came out 2550x3300 and A4 2480x3508, and nothing came out at any other
+    resolution. A page from this project's own OCR has no fixed DPI and gets nothing rather than a guess.
+    """
+    if pages and all(p.get("w_pt") for p in pages):
+        return [(float(p["w_pt"]), float(p["h_pt"])) for p in pages]
+    if local is not None and local.exists():
+        got = pt_sizes(local)
+        if got:
+            return got
+    if dpi:
+        return [(round(p["w"] * 72 / dpi, 1), round(p["h"] * 72 / dpi, 1)) if p.get("w") and p.get("h")
+                else (0.0, 0.0) for p in pages]
+    return []
+
+
 def page_text(page: dict) -> str:
     return "\n".join((b.get("text") or "").strip() for b in page.get("blocks") or [] if (b.get("text") or "").strip())
 
@@ -252,7 +273,7 @@ def run(sources: list[str] | None = None, limit: int = 0, dry: bool = False, say
                 continue
             kind = row.get("type") or "pdf"
             local = downloads(source) / kind / safe_name(key, kind)
-            sizes = pt_sizes(local) if kind == "pdf" and local.exists() else []
+            sizes = sizes_for(pages, local if kind == "pdf" else None, (entry.get("ocr") or {}).get("dpi"))
             doc = document_row(source, entry, row, meta, notes.get(key) or {})
             doc["n_pages"] = len(pages) or doc["n_pages"]
             npg += put(db, doc, pages, sizes)
@@ -274,12 +295,58 @@ def run(sources: list[str] | None = None, limit: int = 0, dry: bool = False, say
     return counts
 
 
+def backfill_sizes(sources: list[str] | None = None, say=print) -> dict:
+    """Fill in w_pt/h_pt on pages already indexed without them, by the same three-way rule."""
+    reg = registry()
+    db = open_db()
+    counts = {"documents": 0, "pages": 0}
+    where = "WHERE p.w_pt IS NULL" + (f" AND d.source IN ({','.join('?' * len(sources))})" if sources else "")
+    docs = db.execute(f"SELECT DISTINCT d.doc_id, d.source, d.doc_key, d.ocr_path FROM pages p "
+                      f"JOIN documents d ON d.doc_id = p.doc_id {where} ORDER BY d.source, d.doc_id",
+                      list(sources or [])).fetchall()
+    say(f"{len(docs)} documents with pages of unknown size")
+    led, led_source = None, None
+    for n, (doc_id, source, key, ocr_path) in enumerate(docs, 1):
+        if source != led_source:
+            led, led_source = Ledger(schematics_state(source)), source
+        path = ocr_root() / ocr_path if ocr_path else None
+        if not path or not path.exists():
+            continue
+        try:
+            pages = pagesio.read_pages(path)
+        except (OSError, ValueError):
+            continue
+        kind = (led.rows.get(key) or {}).get("type") or "pdf"
+        local = downloads(source) / kind / safe_name(key, kind)
+        sizes = sizes_for(pages, local if kind == "pdf" else None, ((reg.get(source) or {}).get("ocr") or {}).get("dpi"))
+        if not sizes:
+            continue
+        for page, (w, h) in zip(pages, sizes):
+            if w and h:
+                db.execute("UPDATE pages SET w_pt = ?, h_pt = ? WHERE doc_id = ? AND page_no = ? AND w_pt IS NULL",
+                           (w, h, doc_id, int(page.get("page") or 0)))
+                counts["pages"] += 1
+        counts["documents"] += 1
+        if n % 1000 == 0:
+            db.commit()
+            say(f"  {n}/{len(docs)}")
+    db.commit()
+    db.close()
+    return counts
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="pidx schematics ingest", description=__doc__.splitlines()[0])
     ap.add_argument("--source", action="append", help="only these sources (repeatable)")
     ap.add_argument("--limit", type=int, default=0, help="at most this many documents per source")
     ap.add_argument("--dry", action="store_true", help="say how much there is to index and write nothing")
+    ap.add_argument("--sizes", action="store_true",
+                    help="only fill in page sizes on documents already indexed without them")
     a = ap.parse_args(argv)
+    if a.sizes:
+        counts = backfill_sizes(a.source)
+        print(" · ".join(f"{v} {k}" for k, v in counts.items()), file=sys.stderr)
+        return 0
     counts = run(a.source, limit=a.limit, dry=a.dry)
     print(" · ".join(f"{v} {k}" for k, v in counts.items()), file=sys.stderr)
     if counts["documents"]:

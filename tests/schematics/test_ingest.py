@@ -164,3 +164,34 @@ def test_stamping_the_ledger_keeps_what_another_stage_wrote_meanwhile(world):
     led = Ledger(config.schematics_state("openhw_parts"))
     assert led.done(RAW, "index", I.VERSION), "our stamp is there"
     assert led.rows[other]["download_at"], "and so is what the downloader wrote while we worked"
+
+
+def test_a_page_size_comes_from_the_record_then_the_file_then_a_declared_dpi(tmp_path):
+    """The file is temporary by rule, so the size has to come from somewhere that stays."""
+    rec = [{"page": 1, "w": 2550, "h": 3300, "w_pt": 612.0, "h_pt": 792.0, "blocks": []}]
+    assert I.sizes_for(rec, None, None) == [(612.0, 792.0)]
+    px = [{"page": 1, "w": 2550, "h": 3300, "blocks": []}]
+    assert I.sizes_for(px, tmp_path / "gone.pdf", 300) == [(612.0, 792.0)]     # Letter at 300 dpi
+    assert I.sizes_for(px, tmp_path / "gone.pdf", None) == []                   # no guess without a DPI
+
+
+def test_sizes_are_filled_in_afterwards_for_pages_indexed_without_them(world):
+    """481,319 pages of audiocircuit were indexed after their files were released, with no size and no
+    zoom link. The registry says that OCR ran at 300 dpi, and that is enough to recover them."""
+    pdf = "https://audiocircuit.dk/downloads/akai/Akai-202DSS-tape-sm.pdf"
+    (world / "data" / "schematics" / "sources.yaml").write_text(
+        REGISTRY + "audiocircuit: {kind: factory, title: AudioCircuit, home_url: 'https://audiocircuit.dk/',"
+        " status: active, list: {role: schematic}, ocr: {dpi: 300}}\n", encoding="utf-8")
+    read_document("audiocircuit", pdf, "pdf", [{"page": 1, "w": 2480, "h": 3508, "how": "ocr",
+                                                "blocks": [{"text": "2SC1815", "conf": 0.9, "box": [0, 0, 1, 1]}]}])
+    I.run(["audiocircuit"], say=lambda *a: None)
+    db = sqlite3.connect(config.index_db())
+    db.execute("UPDATE pages SET w_pt = NULL, h_pt = NULL")     # as the first ingest left them
+    db.commit()
+    db.close()
+
+    counts = I.backfill_sizes(["audiocircuit"], say=lambda *a: None)
+
+    db = sqlite3.connect(config.index_db())
+    assert counts["pages"] == 1
+    assert db.execute("SELECT w_pt, h_pt FROM pages").fetchone() == (595.2, 841.9)     # A4

@@ -1,6 +1,7 @@
 """OCR page records on disk: one gzip JSON-lines file per document, one line per page.
 
-    {"page": 1, "w": 3300, "h": 2550, "how": "ocr" | "text", "blocks": [{"box": [x0, y0, x1, y1], "text": "...", "conf": 0.98}]}
+    {"page": 1, "w": 3300, "h": 2550, "how": "ocr" | "text", "blocks": [{"box": [x0, y0, x1, y1], "text": "...", "conf": 0.98}],
+     "w_pt": 792.0, "h_pt": 612.0}                       # the page in points, since 2026-09-26; absent before, and in a design
 
 `<name>.jsonl.gz` holds the pages; an empty `<name>.done` next to it marks a document that was written completely, so an
 interrupted run is detected and redone. Uncompressed `.jsonl` files from early runs are still read.

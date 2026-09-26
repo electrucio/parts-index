@@ -166,3 +166,18 @@ def test_pages_already_on_disk_get_their_stamp_instead_of_being_offered_forever(
     row = Ledger(tmp_path / "state" / "src.csv").get(url)
     assert (row["ocr_v"], row["n_pages"], row["text_method"]) == (ocr.OCR_VERSION, "2", "ocr_boxes")
     assert ocr.run("src", dry=True)["to read"] == 0
+
+
+def test_a_page_record_carries_its_size_in_points_because_the_file_will_not_stay(tmp_path):
+    """The retention rule deletes a scan once read; the zoom link needs the page's points to say where
+    on the sheet a part sits, and 481,319 pages were released before the record said so."""
+    import fitz
+    path = tmp_path / "a.pdf"
+    doc = fitz.open()
+    page = doc.new_page(width=612, height=792)
+    for i in range(12):                                  # 72 words: past TEXT_WORDS, so no render
+        page.insert_text((72, 72 + 14 * i), "IC1 TL072 R1 C1 U2 NE5532")
+    doc.save(path)
+    doc.close()
+    pages = ocr.read_document(path, "pdf", read_image=None)
+    assert (pages[0]["w_pt"], pages[0]["h_pt"]) == (612.0, 792.0)
