@@ -43,3 +43,15 @@ def test_summarise_keeps_the_highest_confidence_seen():
             (Hit("X1", "X1", "X1", "fam", "bjt", "high", False, 1), True)]
     d = reindex.summarise(hits)["X1"]
     assert d["conf"] == "high" and d["n"] == 2 and d["n_label"] == 1
+
+
+def test_a_design_read_from_its_file_has_no_boxes_and_is_a_schematic_by_definition():
+    """cad.py writes a field as a block with no box — there is no picture for a box to be on. The first
+    reindex over 17,040 designs died on the first one, in the advert filter, on `KeyError: 'box'`."""
+    cad_page = {"page": 1, "w": 0, "h": 0, "how": "cad",
+                "blocks": [{"text": "U1", "conf": 1.0, "field": "ref"},
+                           {"text": "R1", "conf": 1.0, "field": "ref"},
+                           {"text": "OPA1612", "conf": 1.0, "field": "value"}]}
+    feats, summ = reindex.page_record(cad_page)
+    assert "OPA1612" in summ and "boxes" not in summ["OPA1612"]
+    assert feats["has_schematic"] == 1 and feats["is_ad"] == 0 and feats["n_parts"] == 1

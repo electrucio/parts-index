@@ -70,6 +70,16 @@ def page_record(page):
     blocks = [b for b in page.get("blocks") or [] if (b.get("text") or "").strip()]
     hits = [h for h in parts.extract_page(page) if h.block is not None and h.block < len(blocks)]
     summ = summarise((h, len(blocks[h.block]["text"].strip()) <= 14) for h in hits)
+    if page.get("how") == "cad" or any("box" not in b for b in blocks):
+        # A design read from its own file has no geometry: cad.py writes each field as a block with no
+        # box, because a box says where a word was on a picture and there is no picture. So there is
+        # nothing to locate, no advert to score, and nothing to decide about whether it is a schematic —
+        # it is one by definition, which is what `has_schematic` gates the export on.
+        distinct = {d["base"] for d in summ.values()}
+        feats = {"n_blocks": len(blocks), "n_desig": parts.count_designators(blocks),
+                 "n_values": parts.count_values(blocks), "n_parts": len(distinct), "priced_rows": 0,
+                 "seq_run": 0.0, "ad_score": 0, "is_ad": 0, "has_schematic": 1}
+        return feats, summ
     w, h = page.get("w") or 1, page.get("h") or 1
     for hit in hits:
         d = summ[hit.part]
