@@ -55,3 +55,30 @@ def test_a_design_read_from_its_file_has_no_boxes_and_is_a_schematic_by_definiti
     feats, summ = reindex.page_record(cad_page)
     assert "OPA1612" in summ and "boxes" not in summ["OPA1612"]
     assert feats["has_schematic"] == 1 and feats["is_ad"] == 0 and feats["n_parts"] == 1
+
+
+def test_a_document_the_reader_found_no_page_in_is_stamped_not_offered_forever(monkeypatch, tmp_path):
+    """88 documents (a .tif, a PDF with nothing inside) are in the map with no file. Every pass joined
+    the OCR root with an empty name, reported "Is a directory" and left them for the next pass."""
+    import sqlite3
+
+    from parts_index.schematics import ingest
+    dbp = tmp_path / "index.sqlite"
+    db = sqlite3.connect(dbp)
+    db.executescript(ingest.SCHEMA)
+    db.execute("INSERT INTO sources (source, kind) VALUES ('src', 'site')")
+    db.execute("INSERT INTO documents (doc_id, source, doc_key, role, public_url) VALUES (1,'src','k1','schematic','u')")
+    db.execute("INSERT INTO documents (doc_id, source, doc_key, role, public_url) VALUES (2,'src','k2','schematic','u')")
+    db.commit()
+    db.close()
+    monkeypatch.setattr(reindex, "index_db", lambda: dbp)
+    monkeypatch.setattr(reindex, "index_db_uri", lambda readonly=False: f"file:{dbp}")
+    monkeypatch.setattr(reindex, "_ocr_files", lambda: {("src", "k1"): "", ("src", "k2"): "src/k2.jsonl.gz"})
+    monkeypatch.setattr(reindex, "ocr_root", lambda: tmp_path)
+    monkeypatch.setattr(reindex, "read_one", lambda job: (job[0], [], None))
+    from concurrent.futures import ThreadPoolExecutor
+    monkeypatch.setattr(reindex, "ProcessPoolExecutor", ThreadPoolExecutor)     # a lambda does not pickle
+    counts = reindex.run()
+    assert counts["with no page"] == 1 and counts["with an OCR file"] == 1
+    got = dict(sqlite3.connect(dbp).execute("SELECT doc_id, extractor_version FROM documents"))
+    assert got == {1: reindex.EXTRACTOR, 2: reindex.EXTRACTOR}

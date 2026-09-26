@@ -141,12 +141,20 @@ def run(sources=None, limit=0, workers=12, dry=False) -> dict:
     todo = db.execute(f"SELECT doc_id, source, doc_key FROM documents {where} ORDER BY doc_id", args).fetchall()
     files = _ocr_files()
     jobs = [(doc_id, str(ocr_root() / files[(source, key)]))
-            for doc_id, source, key in todo if (source, key) in files]
-    counts = {"documents to read": len(todo), "with an OCR file": len(jobs)}
+            for doc_id, source, key in todo if files.get((source, key))]
+    # A document the reader opened and found no page in (a .tif, a PDF with nothing inside) is in the
+    # map with no file. There is nothing to read; it is stamped so it is not offered again — 88 of them
+    # came back as "Is a directory" on every pass, the OCR root joined with an empty name.
+    empty = [doc_id for doc_id, source, key in todo if (source, key) in files and not files[(source, key)]]
+    counts = {"documents to read": len(todo), "with an OCR file": len(jobs), "with no page": len(empty)}
     if limit:
         jobs = jobs[:limit]
     if dry or not jobs:
         return counts
+    for doc_id in empty:
+        db.execute("UPDATE documents SET extractor_version = ?, ingested_at = date('now') WHERE doc_id = ?",
+                   (EXTRACTOR, doc_id))
+    db.commit()
 
     part_ids = _part_ids(db)
     done = pages_written = rows_written = 0
