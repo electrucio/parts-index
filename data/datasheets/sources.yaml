@@ -22,12 +22,14 @@ renesas_products:
   maker: renesas
   census: renesas_products
   page: 'https://www.renesas.com/en/products/{lower}'
-  status: active
+  status: paused
   keep: 0                      # the status and breadcrumb sit 225 KB into the page: keep all of it
   notes: 'robots.txt allows ClaudeBot and anthropic-ai by name, with no crawl delay; read at the default
     one page every three seconds. The product page gives the breadcrumb (its last step is the category),
     a status label, the product''s title and the data sheet link — named only "Datasheet", so the data
-    sheet has no title of its own here and the product''s title is kept as the name.'
+    sheet has no title of its own here and the product''s title is kept as the name.
+    Paused 2026-09-27: every page, the first included, answers 429 with cf-mitigated: challenge — a
+    Cloudflare bot challenge, not a complaint about pace. Try again later; never solve it.'
 onsemi_docs:
   kind: document sitemap
   maker: onsemi

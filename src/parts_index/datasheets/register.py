@@ -215,6 +215,9 @@ def main(argv: list[str] | None = None) -> int:
         if s not in reg or s not in READERS:
             print(f"{s}: not a registered source with a reader", file=sys.stderr)
             return 2
+        if reg[s].get("status") in ("paused", "blocked"):
+            print(f"{s}: {reg[s]['status']} — see its notes in the registry; not asked", file=sys.stderr)
+            continue
         c = run(s, reg[s], a.limit, a.reread)
         print(f"{s}: asked {c['asked']}, re-read {c['cached']} from the cache, read {c['read']}, no page {c['missing']}")
     return 0
