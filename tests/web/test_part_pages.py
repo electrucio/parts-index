@@ -258,3 +258,14 @@ def test_what_no_source_says_is_left_out_rather_than_guessed(data):
     # which the index itself vouches for, and nothing else.
     idx = P.index()
     assert set(P.part_payload("TL072", idx, None).get("about", {})) <= {"first"}
+
+
+def test_a_variant_borrows_its_types_sheets_and_a_bare_number_its_makers_names():
+    from parts_index.web.parts import kin_names
+    assert kin_names("NJM4558D") == [("package", "NJM4558")]
+    assert kin_names("BC547BTA") == [("packing", "BC547B"), ("grade", "BC547")]
+    assert kin_names("2SC1815GR") == [("grade", "2SC1815")]
+    assert ("maker's name", "L7812") in kin_names("7812") and ("maker's name", "SN74HC04") in kin_names("74HC04")
+    # another part, not a package of one: less current, a better grade, another rating, another voltage
+    for other in ("LM317L", "LM358A", "6L6GC", "TIP31C"):
+        assert kin_names(other) == []

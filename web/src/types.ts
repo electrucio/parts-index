@@ -166,6 +166,9 @@ export interface About {
   /** [relation, other part, "out" read from this part, "in" read from the other, "both" for a shared
    *  sheet; references; what the source says; draft or reviewed] */
   related?: [string, string, 'out' | 'in' | 'both', string[], string, 'draft' | 'reviewed'][]
+  /** Sheets of other names that document this one too: the type it is a package, packing, grade or
+   *  brand of, or a maker's name for a bare number (7812 -> L7812). [name, why, sheets] */
+  kin?: [string, string, [string, string, string, string, string, string, string?][]][]
   /** The type this number is a grade or package of. */
   base?: string
   variants?: string[]

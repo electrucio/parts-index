@@ -420,6 +420,56 @@ def kind_of(part: str, recipe: dict | None, idx: dict) -> str:
     return fam[1] if fam else idx.get("wanted_kind", {}).get(part, "")
 
 
+# The suffixes that change a part's package, its packing or its selection and leave the part itself: a
+# sheet of the type documents all of them. Each list is kept narrow on purpose — LM317L, 78L05, LM358A and
+# 6L6GC are other parts (less current, another die, a better grade, another rating), so L, A and G are
+# never folded, and a suffix not listed here keeps the part alone.
+KIN_STEPS = (
+    ("grade", re.compile(r"(?P<t>2S[ABCDJK]\d{2,4})-?(?:GR|BL|Y|O|R|P|E|F|K|V)")),        # 2SC1815GR
+    ("grade", re.compile(r"(?P<t>(?:BC|BCY|BF|MPS|MPSA|PN)\d{2,4})[ABC]")),                 # BC547B
+    ("packing", re.compile(r"(?P<t>.*\d[A-Z]{0,2})(?:TR|TA|TB|TAP|RL|RLG|ZL|ZLG|BU|BK|CT)")),  # 1N4002TR, BC547BTA
+    ("package", re.compile(r"(?P<t>[A-Z]{2,5}\d{3,5})(?:C?(?:D|N|P|M|DR|DD|DT|CN|CP|CD|ID|IN|IP|BE|BP|HA|HT|C))")),
+    ("brand", re.compile(r"(?P<t>\d{1,2}[A-Z]{1,2}\d{1,2})(?:EH|LPS|WA|WB|WC|WXT)")),       # 12AX7EH
+)
+# The makers' names for a bare number the drawings print: 7812 is ST's L7812, onsemi's MC7812, TI's
+# UA7812; 74HC04 TI's SN74HC04; 4013B TI's CD4013B, NXP's HEF4013B, onsemi's MC14013B.
+GENERIC = (
+    (re.compile(r"7[89]M?\d{2}[A-Z]{0,2}"), ("L", "MC", "UA", "LM", "KA", "KIA", "NJM")),
+    (re.compile(r"78L\d{2}[A-Z]{0,2}|79L\d{2}[A-Z]{0,2}"), ("L", "MC", "UA", "LM", "KA", "KIA", "NJM")),
+    (re.compile(r"74[A-Z]{0,4}\d{2,4}[A-Z]{0,2}"), ("SN", "MM", "CD", "M", "TC", "HD", "MC", "NLV")),
+    (re.compile(r"4\d{3}[A-Z]{0,3}"), ("CD", "HEF", "MC1", "TC", "NJU")),
+)
+
+
+def kin_names(part: str) -> list[tuple[str, str]]:
+    """The names whose sheets also document this one, and why: the type it is a package, packing, grade
+    or brand of (a step at a time, BC547BTA -> BC547B -> BC547), or a maker's name for a bare number."""
+    out, p = [], part
+    for _ in range(3):
+        step = next(((why, m.group("t")) for why, rx in KIN_STEPS if (m := rx.fullmatch(p))), None)
+        if not step:
+            break
+        out.append(step)
+        p = step[1]
+    for rx, prefixes in GENERIC:
+        if rx.fullmatch(part):
+            stems = [part] + [re.sub(r"[A-Z]{1,2}$", "", part)] * bool(re.search(r"\d[A-Z]{1,2}$", part))
+            out += [("maker's name", f + stem) for stem in stems for f in prefixes]
+    return list(dict.fromkeys(out))
+
+
+def kin(part: str, idx: dict, own: list[list[str]]) -> list[list]:
+    """The sheets of the names in `kin_names` that are not already this part's own."""
+    seen = {r[0] for r in own}
+    out = []
+    for why, name in kin_names(part):
+        rows = [r for r in datasheets(name, idx, None) if r[0] not in seen]
+        if rows:
+            seen |= {r[0] for r in rows}
+            out.append([name, why, rows])
+    return out
+
+
 def about(part: str, idx: dict, recipe: dict | None) -> dict:
     """What the part is, as far as something says so — each piece carrying where it came from.
 
@@ -454,6 +504,9 @@ def about(part: str, idx: dict, recipe: dict | None) -> dict:
     sheets = datasheets(part, idx, recipe)
     if sheets:
         out["sheets"] = sheets
+    kinship = kin(part, idx, sheets)
+    if kinship:
+        out["kin"] = kinship
     listed = idx.get("listed_by", {}).get(part)
     if listed:
         out["listed"] = listed

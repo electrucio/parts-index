@@ -293,6 +293,42 @@ function fileName(url: string): string {
  * three chances to catch a misprint, and the later work of measuring a model against its sheet wants
  * exactly that redundancy. Each link says where it was found.
  */
+const KIN: Record<string, string> = {
+  grade: 'the type this is a selected grade of',
+  packing: 'the same part, packed differently',
+  package: 'the same part in another package',
+  brand: 'the type this is a brand of',
+  "maker's name": "a maker's name for this number",
+}
+
+/** Sheets that document the part under another name: its type, or a maker's name for the bare number. */
+function KinSheets({ page }: { page: PartPage }) {
+  const kin = page.about?.kin
+  if (!kin?.length) return null
+  return (
+    <section class="stack-s">
+      <h3>Sheets under another name</h3>
+      <ul class="uselist">
+        {kin.map(([name, why, rows]) => (
+          <li key={name}>
+            <strong><a href={`?part=${encodeURIComponent(name)}`}>{name}</a></strong>
+            <span class="muted small"> · {KIN[why] ?? why}</span>
+            <ul class="sheetlist">
+              {rows.map(([url, maker, text, title, via, , copy], i) => (
+                <li key={i}>
+                  <a href={url} target="_blank" rel="noopener">{title || fileName(url)}</a>
+                  <span class="muted small"> · {maker || text || 'maker not stated'} · via {VIA[via] ?? via}
+                    {copy && <> · <a href={copy} target="_blank" rel="noopener">archived copy</a></>}</span>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
 function Datasheets({ page, cat }: { page: PartPage; cat: Catalogue }) {
   const sheets = page.about?.sheets
   if (!sheets?.length) return null
@@ -341,6 +377,7 @@ export function AboutPart({ page, sources }: { page: PartPage; sources: string[]
       <NameReading page={page} cat={cat} />
       <Facts page={page} cat={cat} sources={sources} />
       <Datasheets page={page} cat={cat} />
+      <KinSheets page={page} />
     </>
   )
 }
