@@ -196,6 +196,12 @@ def documented_families() -> Path:
     return PUBLIC_DATA / "parts" / "part_families.csv"
 
 
+def part_relations() -> Path:
+    """How parts relate — one sheet documents both, a maker offers one as the other's replacement, one
+    product is sold under both names — each row citing the document that says so."""
+    return PUBLIC_DATA / "parts" / "relations.csv"
+
+
 def part_references() -> Path:
     """The books, datasheets, standards and histories the catalogue cites, as S01, S02… with how each
     link answered when it was last requested."""
@@ -476,6 +482,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("rejected_tokens", "public", ()),
     ("part_families", "public", ()),
     ("documented_families", "public", ()),
+    ("part_relations", "public", ()),
     ("part_references", "public", ()),
     ("naming_schemes", "public", ("pro-electron",)),
     ("part_makers", "public", ()),

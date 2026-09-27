@@ -152,6 +152,9 @@ export interface About {
   listed?: [string, string][]
   /** The oldest dated document here that prints it: year, title, source position, link. */
   first?: [number, string, number, string]
+  /** [relation, other part, "out" read from this part, "in" read from the other, "both" for a shared
+   *  sheet; references; what the source says; draft or reviewed] */
+  related?: [string, string, 'out' | 'in' | 'both', string[], string, 'draft' | 'reviewed'][]
   /** The type this number is a grade or package of. */
   base?: string
   variants?: string[]

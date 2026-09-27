@@ -47,3 +47,11 @@ def test_lineage_runs_up_to_the_top():
 ])
 def test_a_datasheet_maker_line_names_the_publisher_and_its_lineage(text, maker, lineage):
     assert catalogue.maker_of(text) == (maker, lineage)
+
+
+def test_a_relation_reads_both_ways_and_a_shared_sheet_lists_every_other_part():
+    rel = {(r[0], r[1], r[2]) for r in catalogue.related("TL072")}
+    assert ("next_generation_of", "TL072H", "in") in rel                     # TI: the H is the next generation
+    assert ("same_datasheet", "TL074", "both") in rel and ("same_datasheet", "TL071", "both") in rel
+    assert ("replacement_for", "2SK170", "out") in {(r[0], r[1], r[2]) for r in catalogue.related("LSK170")}
+    assert catalogue.related("NOTAPART") == []

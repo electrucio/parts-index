@@ -19,7 +19,13 @@ from pathlib import Path
 
 import yaml
 
-from parts_index.core.config import documented_families, part_families, part_makers, part_references
+from parts_index.core.config import (
+    documented_families,
+    part_families,
+    part_makers,
+    part_references,
+    part_relations,
+)
 
 
 def stamp(path: Path) -> tuple[str, float]:
@@ -55,6 +61,43 @@ def references() -> dict[str, dict]:
 def documented() -> dict[str, dict]:
     """Parts a manufacturer's sheet files under a family, by part."""
     return {r["part"]: r for r in _csv(stamp(documented_families()))}
+
+
+# What each relation says, read from the part in the first column. They are directional and never
+# transitive: a replacement for a replacement is not a replacement, and "in one datasheet with" is the only
+# one that holds both ways.
+RELATIONS = ("next_generation_of", "replacement_for", "same_product_as", "same_datasheet")
+
+
+def relations() -> tuple[dict, ...]:
+    return _csv(stamp(part_relations()))
+
+
+def related(part: str) -> list[list]:
+    """Every relation that touches `part`: [relation, other part, "out" or "in", refs, note, status].
+
+    A same-datasheet row names the first part of the sheet as its anchor, so the parts sharing a sheet are
+    the rows with the same anchor and the same reference, and each is listed with all the others.
+    """
+    rows = relations()
+    out: list[list] = []
+    seen = set()
+    for r in rows:
+        if r["relation"] == "same_datasheet":
+            continue
+        refs = r["refs"].split()
+        if r["part"] == part:
+            out.append([r["relation"], r["other"], "out", refs, r["note"], r["status"]])
+        elif r["other"] == part:
+            out.append([r["relation"], r["part"], "in", refs, r["note"], r["status"]])
+    mine = [(r["other"], r["refs"]) for r in rows if r["relation"] == "same_datasheet" and r["part"] == part]
+    for anchor, refs in mine:
+        for r in rows:
+            if (r["relation"] == "same_datasheet" and (r["other"], r["refs"]) == (anchor, refs)
+                    and r["part"] != part and (r["part"], refs) not in seen):
+                seen.add((r["part"], refs))
+                out.append(["same_datasheet", r["part"], "both", refs.split(), r["note"], r["status"]])
+    return out
 
 
 def makers() -> dict[str, dict]:
@@ -164,6 +207,16 @@ def check(devices: list[str] | None = None) -> list[str]:
     for rid, r in refs.items():
         if not r.get("url", "").startswith(("https://", "http://")):
             out.append(f"reference {rid}: no usable URL")
+    for r in relations():
+        if r["relation"] not in RELATIONS:
+            out.append(f"relation {r['part']} -> {r['other']}: {r['relation']} is not one of {', '.join(RELATIONS)}")
+        if not r["refs"].split():
+            out.append(f"relation {r['part']} -> {r['other']}: a relation needs a reference")
+        for ref in r["refs"].split():
+            if ref not in refs:
+                out.append(f"relation {r['part']} -> {r['other']}: reference {ref} is not in references.csv")
+        if r.get("status") not in ("draft", "reviewed"):
+            out.append(f"relation {r['part']} -> {r['other']}: status must be draft or reviewed")
     orgs = makers()
     seen_alias: dict[str, str] = {}
     for mid, m in orgs.items():

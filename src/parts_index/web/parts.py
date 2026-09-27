@@ -350,6 +350,9 @@ def about(part: str, idx: dict, recipe: dict | None) -> dict:
         m, lineage = catalogue.maker_of(ds["maker"])
         if m:
             out["maker"] = [m, lineage]
+    rel = catalogue.related(part)
+    if rel:
+        out["related"] = rel
     listed = idx.get("listed_by", {}).get(part)
     if listed:
         out["listed"] = listed

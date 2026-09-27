@@ -82,6 +82,14 @@ function MakerName({ id, cat }: { id: string; cat: Catalogue }) {
   )
 }
 
+/** How a relation reads from the part on the page: from the part in its first column, or towards it. */
+const RELATION: Record<string, Record<'out' | 'in' | 'both', string>> = {
+  next_generation_of: { out: 'The next generation of', in: 'Its next generation is', both: 'Same generation as' },
+  replacement_for: { out: 'Offered by its maker as a replacement for', in: 'Its maker\'s declared replacement is', both: '' },
+  same_product_as: { out: 'Sold as one product with', in: 'Sold as one product with', both: 'Sold as one product with' },
+  same_datasheet: { out: 'Documented in one datasheet with', in: 'Documented in one datasheet with', both: 'In one datasheet with' },
+}
+
 const label = (id: string, cat: Catalogue) => fams(cat)[id]?.label ?? id
 
 /** The families above this one, outermost first. */
@@ -173,6 +181,21 @@ function Facts({ page, cat, sources }: { page: PartPage; cat: Catalogue; sources
           )
         })}
         <div class="muted small">A catalogue that lists a part today; not necessarily who designed it.</div>
+      </>
+    )])
+  }
+  if (a.related?.length) {
+    rows.push(['Related', (
+      <>
+        {a.related.map(([rel, other, dir, refs, note, status], i) => (
+          <div key={i}>
+            {RELATION[rel]?.[dir] ?? rel} <A href={partHref(other)}>{other}</A>
+            {' '}<Refs ids={refs} cat={cat} />
+            {status === 'draft' && <> <span class="pill na">not yet reviewed</span></>}
+            {dir !== 'both' && <div class="muted small">{note}</div>}
+          </div>
+        ))}
+        <div class="muted small">Each relation is what its source says, and only that: none makes two parts interchangeable.</div>
       </>
     )])
   }
