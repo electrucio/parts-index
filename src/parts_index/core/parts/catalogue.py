@@ -165,13 +165,30 @@ def family_for(devices: tuple[str, ...] | list[str]) -> str:
     return ""
 
 
-def family_of(part: str, devices: tuple[str, ...] | list[str] = ()) -> tuple[str, str]:
-    """(family, basis) for a part: what its manufacturer's sheet says, or else what its kind implies."""
+def shared(fids: list[str]) -> str:
+    """The nearest family every one of `fids` sits inside; "" when any is empty or unknown."""
+    if not fids or any(not f or f not in families() for f in fids):
+        return ""
+    chains = [lineage(f) for f in fids]
+    return next((f for f in chains[0] if all(f in c for c in chains[1:])), "")
+
+
+def family_of(part: str, devices: tuple[str, ...] | list[str] = (), named: list[str] | None = None) -> tuple[str, str]:
+    """(family, basis) for a part, from the surest thing that says: the manufacturer's sheet, then the
+    letters of its name under the standard that assigned them, then the kind it is filed as.
+
+    The name counts only when it is more precise than the kind and agrees with it — a 2SK is a field-effect
+    transistor whether the kind says "jfet/mosfet" or nothing, but a name never moves a part out of the
+    family its kind puts it in.
+    """
     d = documented().get(part)
     if d and d.get("family"):
         return d["family"], "documented"
-    fid = family_for(devices)
-    return (fid, "kind") if fid else ("", "")
+    by_kind = family_for(devices)
+    by_name = shared(named or [])
+    if by_name and (not by_kind or by_kind in lineage(by_name)):
+        return by_name, "name"
+    return (by_kind, "kind") if by_kind else ("", "")
 
 
 def check(devices: list[str] | None = None) -> list[str]:

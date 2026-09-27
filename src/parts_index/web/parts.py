@@ -308,6 +308,12 @@ def variant_groups(names, keep: set[str] | None = None) -> dict[str, list[str]]:
     return {k: sorted(v) for k, v in out.items()}
 
 
+def all_names(idx: dict, recipes: dict) -> list[str]:
+    """Every part the search index will hold: printed, curated or vouched for."""
+    counts = {r["part"] for r in rows(schematics_parts())}
+    return sorted(counts | set(recipes) | set(idx.get("wanted_kind", {})))
+
+
 def known_kinds(idx: dict, recipes: dict, names) -> dict[str, tuple[str, ...]]:
     """Every number the project knows, with the device kinds it answers to.
 
@@ -352,7 +358,7 @@ def about(part: str, idx: dict, recipe: dict | None) -> dict:
     d = schemes.decode(part, devices, idx.get("known"))
     if d:
         out["name"] = d.as_dict()
-    fid, basis = catalogue.family_of(part, devices)
+    fid, basis = catalogue.family_of(part, devices, d.families if d else None)
     if fid:
         out["family"] = [fid, basis]
     doc = catalogue.documented().get(part)
@@ -578,7 +584,9 @@ def search_index(idx: dict, recipes: dict) -> tuple[list[list], list[dict]]:
         for i, (key, _) in enumerate(DEVICES):
             if bits & (1 << i):
                 tally[key] += 1
-        fid, _ = catalogue.family_of(part, KIND_MAP.get(kind, ()))
+        devs = KIND_MAP.get(kind, ())
+        named = schemes.decode(part, devs, idx.get("known"))
+        fid, _ = catalogue.family_of(part, devs, named.families if named else None)
         out.append([part, docs, uses, len(recipes.get(part, {}).get("models") or []), bits,
                     fam_at.get(fid, -1)])
     # Every device ships, even the ones nothing answers to, because the bit a part carries is its

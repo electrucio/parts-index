@@ -83,11 +83,12 @@ def build(out: Path | None = None) -> dict:
 
     idx = part_pages.index()
     recipes, clashes = part_pages.model_recipes()
+    # Every number the project knows, for the naming schemes that must not read an American revision
+    # letter as a Soviet envelope: 1X2A is the 1X2, revised, because 1X2 is a part of its own. Known before
+    # the search index is written, because a part's family there can come from its name.
+    idx["known"] = part_pages.known_kinds(idx, recipes, part_pages.all_names(idx, recipes))
     search, kind_names = part_pages.search_index(idx, recipes)
     names = [r[0] for r in search]
-    # Every number the project knows, for the naming schemes that must not read an American revision
-    # letter as a Soviet envelope: 1X2A is the 1X2, revised, because 1X2 is a part of its own.
-    idx["known"] = part_pages.known_kinds(idx, recipes, names)
     idx["variants"] = part_pages.variant_groups(names, part_pages.vouched(idx, recipes, search))
     if search:
         sizes["parts.json"] = write_json(out, "parts.json", {

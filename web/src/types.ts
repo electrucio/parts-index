@@ -143,8 +143,8 @@ export interface NameReading {
 
 export interface About {
   name?: NameReading
-  /** The family, and whether a maker's sheet says so or the part's kind implies it. */
-  family?: [string, 'documented' | 'kind']
+  /** The family, and what says so: a maker's sheet, the letters of the name, or the part's kind. */
+  family?: [string, 'documented' | 'name' | 'kind']
   documented?: { note: string; refs: string[]; status: 'draft' | 'reviewed' }
   /** Who published the sheet the models were measured against, and the organisations it descends from. */
   maker?: [string, string[]]

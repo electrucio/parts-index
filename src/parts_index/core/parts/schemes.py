@@ -47,6 +47,8 @@ class Decoding:
     segments: list[Segment]
     caveats: list[str] = field(default_factory=list)
     refs: list[str] = field(default_factory=list)
+    # The families the letters imply, one per letter that implies any; what they share is the part's.
+    families: list[str] = field(default_factory=list)
 
     def as_dict(self) -> dict:
         return {"scheme": self.scheme, "label": self.label,
@@ -147,7 +149,7 @@ def read_with(scheme: dict, part: str, known: Known | None = None) -> Decoding |
             devs = _devices_of(known, part[:m.start(g)])
             if devs is not None and not set(devs) & applies:
                 continue
-        segments, ok = [], True
+        segments, ok, implied = [], True, []
         for name, value in sorted(((k, v) for k, v in m.groupdict().items() if v is not None),
                                   key=lambda kv: m.start(kv[0])):
             spec = fields.get(name) or {}
@@ -158,9 +160,18 @@ def read_with(scheme: dict, part: str, known: Known | None = None) -> Decoding |
                 ok = False
                 break
             segments.append(Segment(value, spec.get("label", name), meaning))
+            fams = spec.get("families") or {}
+            if fams:
+                if value in fams:
+                    implied.append(fams[value])
+                elif "each" in spec:
+                    per = [fams.get(c, "") for c in value]
+                    implied.extend(per if all(per) else [""])    # a letter with no family: no claim
+                else:
+                    implied.append("")
         if ok and segments:
             return Decoding(scheme["id"], scheme.get("label", scheme["id"]), segments,
-                            list(scheme.get("caveats") or ()), list(scheme.get("refs") or ()))
+                            list(scheme.get("caveats") or ()), list(scheme.get("refs") or ()), implied)
     return None
 
 
@@ -182,10 +193,15 @@ def decode(part: str, devices: tuple[str, ...] | list[str], known: Known | None 
     return None
 
 
-def check(references: set[str]) -> list[str]:
-    """Each scheme reads its own examples, cites references that exist, and names only fields it defines."""
+def check(references: set[str], families: set[str] | None = None) -> list[str]:
+    """Each scheme reads its own examples, cites references that exist, names only fields it defines, and
+    implies only families the catalogue has."""
     out = []
     for sid, s in schemes().items():
+        for fname, spec in (s.get("fields") or {}).items():
+            for v, fid in (spec.get("families") or {}).items():
+                if families is not None and fid not in families:
+                    out.append(f"scheme {sid}: {fname} {v!r} implies family {fid}, which does not exist")
         for r in s.get("refs") or ():
             if r not in references:
                 out.append(f"scheme {sid}: reference {r} is not in references.csv")

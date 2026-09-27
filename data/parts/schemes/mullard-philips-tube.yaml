@@ -44,6 +44,11 @@ fields:
       X: a gas-filled full-wave rectifier
       Y: a half-wave rectifier
       Z: a full-wave rectifier
+    # Each letter is one electrode system; the family is the one they all share (ECC83: triode; ECL82,
+    # a triode and a pentode: a tube). E and L name no family here — a tetrode, and "power tetrode or
+    # power pentode" — so a valve with either is simply a tube.
+    families: {A: tube-rectifier, B: tube-rectifier, C: triode, D: triode, F: pentode, N: gas-tube,
+               W: gas-tube, X: gas-tube, Y: tube-rectifier, Z: tube-rectifier}
     joiner: ' + '
   base:
     label: base and serial

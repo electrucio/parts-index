@@ -44,6 +44,9 @@ fields:
       X: diode — multiplier, such as a varactor or step-recovery diode
       Y: diode — rectifier or booster
       Z: diode — voltage reference or regulator
+    # The family a letter implies, where it implies one. The transistor letters do not: BF245 is a JFET
+    # and BC548 a bipolar transistor, both "transistor, low power".
+    families: {A: signal-diode, B: varactor, E: tunnel-diode, X: varactor, Y: rectifier, Z: zener}
   range:
     label: range letter
     meaning: 'a letter before a two-figure serial number: the industrial and professional range (Z, Y, X, W and so on)'

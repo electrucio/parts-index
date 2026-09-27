@@ -14,7 +14,7 @@ def read(part, kind):
 
 
 def test_every_scheme_reads_its_own_example_and_cites_what_exists():
-    assert schemes.check(set(catalogue.references())) == []
+    assert schemes.check(set(catalogue.references()), set(catalogue.families())) == []
 
 
 @pytest.mark.parametrize("part,kind,scheme,pieces", [
@@ -100,3 +100,25 @@ def test_no_transistor_filed_as_germanium_is_named_silicon():
         if d and d.scheme == "pro-electron" and d.segments[0].text == "B" and d.segments[1].text in "CDFLSU":
             wrong.append(r["name"])
     assert wrong == []
+
+
+@pytest.mark.parametrize("part,kind,family", [
+    ("ECC83", "tube", "triode"),              # C + C: two triodes
+    ("ECL82", "tube", "tube"),                # a triode and a power pentode share only "tube"
+    ("GZ34", "tube", "tube-rectifier"),
+    ("6N2P", "tube", "triode"),
+    ("2SK170BL", "jfet/mosfet", "fet"),
+    ("2SC1815", "bjt", "bjt"),
+    ("BZX55C5V6", "zener", "zener"),
+    ("BC548", "bjt", "bjt"),                  # "transistor, low power" names no structure; the kind does
+    ("1N914", "diode", "diode"),
+])
+def test_the_letters_of_a_name_can_narrow_its_family(part, kind, family):
+    devices = KIND_MAP.get(kind, ())
+    d = schemes.decode(part, devices, KNOWN)
+    assert catalogue.family_of(part, devices, d.families if d else None)[0] == family
+
+
+def test_a_name_never_moves_a_part_out_of_the_family_its_kind_gives():
+    # A 1N number read as "a diode" filed as a zener stays a zener: the name is less precise, not contrary.
+    assert catalogue.family_of("1N5231", KIND_MAP["zener"], ["diode"]) == ("zener", "kind")

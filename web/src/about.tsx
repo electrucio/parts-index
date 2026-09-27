@@ -149,6 +149,8 @@ function Facts({ page, cat, sources }: { page: PartPage; cat: Catalogue; sources
             The maker's sheet: {a.documented.note}. <Refs ids={a.documented.refs} cat={cat} />
             {a.documented.status === 'draft' && <> <span class="pill na">not yet reviewed</span></>}
           </div>
+        ) : a.family[1] === 'name' ? (
+          <div class="muted small">From the letters of its name, read above.</div>
         ) : (
           <div class="muted small">From the kind of device it is filed as, not from a document about this part.</div>
         )}
