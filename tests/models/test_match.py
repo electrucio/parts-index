@@ -108,3 +108,19 @@ def test_a_part_number_that_starts_with_another_devices_letter_is_not_cut():
     assert M.keys_of("MTP3055E", "VDMOS") == {"MTP3055E", "TP3055E"}
     assert M.keys_of("DAN217", "SUBCKT") == {"DAN217"}
     assert M.keys_of("QPWR", None) == {"QPWR"}
+
+
+def test_a_tag_with_a_digit_names_another_part_unless_it_is_a_reel_code():
+    wanted = {"zener": [{"part": "BZX84"}], "bjt": [{"part": "MMBT3904"}]}
+    got = found(wanted, [rec("BZX84C3V3", type="D"), rec("BZX84C10S", type="D"),
+                         rec("Qmmbt3904lt1"), rec("MMBT3904T1G"), rec("MMBT3904A1")])
+    assert got == {"BZX84": [], "MMBT3904": [("Qmmbt3904lt1", "suffix"), ("MMBT3904T1G", "suffix")]}
+
+
+def test_a_tag_set_off_by_an_underscore_or_a_dot_names_the_model_not_the_part():
+    wanted = {"regulator": [{"part": "LM78L05"}], "tube": [{"part": "6BW6"}], "diode": [{"part": "RB751"}]}
+    got = found(wanted, [rec("LM78L05_F1", type="SUBCKT", kind="subckt"), rec("6BW6.BRi3", type="SUBCKT", kind="subckt"),
+                         rec("RB751S-40", type="D"), rec("RB751_C5V6", type="D")])
+    assert got == {"LM78L05": [("LM78L05_F1", "suffix")], "6BW6": [("6BW6.BRi3", "suffix")], "RB751": []}
+    assert M.tag_after("Qmmbt3904lt1", "MMBT3904") == "LT1"
+    assert M.tag_after("TLC2272_TI_5_2", "TLC2272") == "_TI_5_2"

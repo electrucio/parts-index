@@ -12,7 +12,8 @@ vendors glue on (Q2N3904, D1N4148, J2N5457, X..., M...; before a letter only the
 device letter, so Motorola's Qmj15001 is MJ15001 and MPSA18 stays MPSA18):
 
   exact   same name                               2N3904 ~ Q2N3904
-  suffix  name = part + short tag (≤4, not digit)  2N3904C (Cordell), 12AX7_JJ
+  suffix  name = part + short tag (≤4, not digit)  2N3904C (Cordell), 12AX7_JJ, MMBT3904LT1
+          and no digit in it unless a reel code or set off by _ or . (LM78L05_F1)
   grade   part = name + one grade letter           BC549 for BC549C, 2N2222 for 2N2222A
   alias   any of the above against an alias        ECC83 for 12AX7
 
@@ -83,6 +84,39 @@ def keys_of(name: str, type: str | None = None) -> set[str]:
     elif len(n) > 3 and n[1].isalpha() and n[0] == ELEMENT_OF_TYPE.get((type or "").upper()):
         ks.add(n[1:])
     return ks
+
+
+# A tag after a part's name with a digit in it names another part: a zener's voltage (BZX84C3V3), a
+# rating (RB160MM-60, BZX84J-B10). Two kinds are the same part: a tape-and-reel ordering code — onsemi's
+# LT1, T1G, WT1G, HT1G, the same die on a different reel — and a tag set off by `_` or `.`, which names
+# the model rather than the part (TI's LM78L05_F1 and TLV70433_S2, Bordodynov's 6BW6.BRi3).
+REEL = re.compile(r"[A-Z]{0,2}T[13]G?")
+# A model tag after the separator: a few letters and at most two digits (F1, S15, L0, TI, BRI3). A
+# voltage written after one, `bzx84_c5v6`, is still the part's voltage and not a tag.
+MODEL_TAG = re.compile(r"[_.]([A-Z]{1,3}\d{0,2})(?:[_.\-]|$)")
+
+
+def tag_after(name: str, part_n: str) -> str:
+    """What follows the part's own characters in a definition's raw name, separators kept."""
+    s = name.upper()
+    for start in (0, 1):                   # the name itself, or after a SPICE element letter
+        i, j = start, 0
+        while i < len(s) and j < len(part_n):
+            if s[i] == part_n[j]:
+                j += 1
+            elif s[i].isalnum():
+                break
+            i += 1
+        if j == len(part_n):
+            return s[i:]
+    return ""
+
+
+def same_part(name: str, part_n: str, tail: str) -> bool:
+    """Whether a suffix match with this tag is still the part, by the rule above."""
+    if not any(ch.isdigit() for ch in tail) or REEL.fullmatch(tail):
+        return True
+    return bool(MODEL_TAG.match(tag_after(name, part_n)))
 
 
 def match(part_n: str, key: str) -> str | None:
@@ -235,6 +269,8 @@ def find(wanted: dict, recs: list[dict]) -> dict:
                 for i in by_key[k]:
                     r = recs[i]
                     if i in seen:
+                        continue
+                    if how == "suffix" and not same_part(r["name"], pn, k[len(pn):]):
                         continue
                     ok = TYPE_OK.get(kind)
                     if ok and r["type"] not in ok:
