@@ -50,7 +50,9 @@ CONTENT_PATTERNS = [
     # ordinary URL whose own path happens to contain the same segment does not match.
     ("local corpus path", re.compile(r"""(?:^|[\s,"'#=])/(?:data|mnt|srv|opt)/[A-Za-z0-9_.-]+/""")),
     ("personal e-mail address", re.compile(r"[A-Za-z0-9._%+-]+@" + r"(?:gmail|hotmail|outlook|yahoo)\.")),
-    ("API-key shaped string", re.compile(r"\bsk-" + r"[A-Za-z0-9_-]{24,}")),
+    # A key mixes capitals and digits; sk-<lower-case words>-1280-revb-sch-png is a diyAudio attachment's
+    # name (a Sallen-Key filter), and it was refused as one.
+    ("API-key shaped string", re.compile(r"\bsk-" + r"(?=[A-Za-z0-9_-]*[A-Z])(?=[A-Za-z0-9_-]*\d)[A-Za-z0-9_-]{24,}")),
 ]
 
 

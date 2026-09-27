@@ -54,3 +54,13 @@ def test_a_file_that_is_not_yet_tracked_is_checked(dropped):
 def test_invented_model_text_in_a_test_is_allowed(dropped):
     dropped("tests/_probe_fixture.py", 'NPN = """\n.MODEL Q1 NPN (BF=300)\n"""\n')
     assert run().returncode == 0
+
+
+def test_an_attachment_named_like_a_key_is_not_one_and_a_key_still_is():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("guard", Path(__file__).resolve().parents[1] / "scripts" / "licence_guard.py")
+    guard = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(guard)
+    rx = dict(guard.CONTENT_PATTERNS)["API-key shaped string"]
+    assert not rx.search("sk-" + "sallenkey-butt-1280-revb-sch-png")
+    assert rx.search("sk-" + "proj-Ab3dEf6hIj9kLm2nOp5qRs8tUv")
