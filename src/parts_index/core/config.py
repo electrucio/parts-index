@@ -161,6 +161,13 @@ def model_links() -> Path:
     return models_dir() / "links.csv"
 
 
+def model_wanted() -> Path:
+    """The parts the model curation looks for, by kind, with the other names each one goes by and the
+    parts declared to stand in for it. Written by hand; `wanted_parts` is the list generated from shops,
+    databooks and documents."""
+    return models_dir() / "wanted.yaml"
+
+
 def datasheets_table() -> Path:
     """What each manufacturer's catalogue says about a part: category, status, data sheet title and link."""
     return PUBLIC_DATA / "datasheets" / "datasheets.csv"
@@ -445,6 +452,12 @@ def spice_definitions() -> Path:
     return material_root() / "index.jsonl"
 
 
+def spice_matches() -> Path:
+    """Every definition whose name matches a wanted part, per part: read from the definitions above,
+    so it is in transit too."""
+    return material_root() / "model_matches.json"
+
+
 def datasheets(kind: str | None = None) -> Path:
     """Vendor PDFs, kept until the simulation and datasheet-reading work is done."""
     d = material_root() / "datasheets"
@@ -513,6 +526,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("model_licence", "public", ("onsemi",)),
     ("model_files", "public", ("germaniumbjts",)),
     ("model_links", "public", ()),
+    ("model_wanted", "public", ()),
     ("datasheets_table", "public", ()),
     ("datasheets_registry", "public", ()),
     ("datasheet_links", "public", ("frank_pocnet",)),
@@ -566,6 +580,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("spice_model_dir", "private", ("bjt", "2N3904")),
     ("spice_part_json", "private", ("bjt", "2N3904")),
     ("spice_definitions", "private", ()),
+    ("spice_matches", "private", ()),
     ("datasheets", "private", ()),
     ("simulators", "private", ()),
     ("staging", "private", ()),

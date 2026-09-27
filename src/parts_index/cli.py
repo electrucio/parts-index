@@ -42,6 +42,7 @@ def main(argv: list[str] | None = None) -> int:
     mv.add_argument("--source", action="append", help="only these sources (repeatable)")
     mv.add_argument("--repair", action="store_true", help="fetch back what is lost or no longer matches")
     mv.add_argument("--limit", type=int, default=0, help="at most this many repairs per source")
+    mod.add_parser("match", help="find, for every wanted part, each definition that could be its model")
     mp = mod.add_parser("promote", help="write the public recipe for every curated part")
     mp.add_argument("--kind", help="only one kind (bjt, jfet, ...)")
     mp.add_argument("--dry", action="store_true", help="say what would be written and write nothing")
@@ -226,6 +227,10 @@ def main(argv: list[str] | None = None) -> int:
         argv2 += ["--repair"] if args.repair else []
         argv2 += ["--limit", str(args.limit)] if args.limit else []
         return model_verify.main(argv2)
+
+    if args.cmd == "models" and args.mod_cmd == "match":
+        from parts_index.models import match as model_match
+        return model_match.main([])
 
     if args.cmd == "models" and args.mod_cmd == "promote":
         from parts_index.models import promote as model_promote

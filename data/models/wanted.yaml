@@ -1,0 +1,764 @@
+# The parts the model curation looks for: devices common in audio amplifiers (solid state
+# and valve), guitar/instrument amplifiers and effect pedals. Written by hand; the lists
+# generated from shops, databooks and documents are in data/parts/wanted.csv.
+#
+# priority: 1 = everywhere, 2 = common, 3 = worth having.
+# Each entry: part, priority, aliases, complement, note, stand_in.
+# aliases  = other names of the same part (packages, second sources with the same die).
+# stand_in = models of other, declared-equivalent parts, used only when the part has no
+#            model of its own; the note says why they are equivalent. Candidates found
+#            this way are labelled stand-in and verified against this part's datasheet.
+# The top-level key is the part's kind; `non_native` lists components drawn in components/.
+
+bjt:
+  small_signal_npn:
+    - {part: 2N3904, priority: 1, complement: 2N3906}
+    - {part: 2N2222A, priority: 1, complement: 2N2907A, aliases: [PN2222A]}
+    - {part: 2N4401, priority: 2, complement: 2N4403}
+    - {part: 2N5088, priority: 1, note: "high gain, fuzz/boost pedals"}
+    - {part: 2N5089, priority: 1, complement: 2N5087, note: "high gain low noise, fuzz/boost"}
+    - {part: 2N5210, priority: 2, note: "low noise"}
+    - {part: 2N5551, priority: 1, complement: 2N5401, note: "160 V, amp input/VAS"}
+    - {part: 2N4124, priority: 3}
+    - {part: 2N5961, priority: 3}
+    - {part: BC546B, priority: 2, complement: BC556B}
+    - {part: BC547B, priority: 1, complement: BC557B}
+    - {part: BC548B, priority: 2, complement: BC558B}
+    - {part: BC549C, priority: 1, complement: BC559C, note: "low noise, pedals and preamps"}
+    - {part: BC550C, priority: 1, complement: BC560C, note: "low noise, amp input pairs"}
+    - {part: BC547C, priority: 2, complement: BC557C}
+    - {part: BC548C, priority: 3}
+    - {part: BC549B, priority: 2, note: "lower-gain grade of BC549C; bias sensitivity"}
+    - {part: BC550B, priority: 3}
+    - {part: BC183, priority: 3, note: "vintage fuzz"}
+    - {part: BC337, priority: 2, complement: BC327}
+    - {part: BC108, priority: 2, note: "Fuzz Face silicon, Tone Bender"}
+    - {part: BC109C, priority: 2, note: "Fuzz Face silicon"}
+    - {part: BC239C, priority: 3}
+    - {part: MPSA18, priority: 1, note: "very high gain, low noise; boosts"}
+    - {part: MPSA13, priority: 2, note: "darlington, pedals"}
+    - {part: MPSA14, priority: 2, note: "darlington, pedals"}
+    - {part: MPSA06, priority: 2, complement: MPSA56}
+    - {part: MPSA42, priority: 2, complement: MPSA92, note: "300 V, tube amp helpers"}
+    - {part: 2SC1815, priority: 1, complement: 2SA1015}
+    - {part: 2SC945, priority: 3, complement: 2SA733}
+    - {part: 2SC2240, priority: 2, complement: 2SA970, note: "low noise audio"}
+    - {part: 2SC1845, priority: 2, complement: 2SA992, note: "low noise audio"}
+    - {part: 2SC2705, priority: 3, complement: 2SA1145}
+    - {part: KSC1845, priority: 2, complement: KSA992}
+    - {part: ZTX450, priority: 3, complement: ZTX550}
+    - {part: BC147, priority: 2}
+    - {part: BC148, priority: 2}
+    - {part: BC184, priority: 2}
+    - {part: BC184C, priority: 2}
+    - {part: BC550, priority: 2, note: "unsuffixed type (gain group not stated); distinct from BC550C"}
+    - {part: SS9014, priority: 2}
+    - {part: MPSA05, priority: 2}
+    - {part: MPSA43, priority: 3}
+    - {part: 2N1613, priority: 2}
+    - {part: 2N1711, priority: 2}
+    - {part: 2N697, priority: 2}
+    - {part: 2N4410, priority: 3}
+    - {part: 2N5550, priority: 3}
+    - {part: 2N834, priority: 2}
+    - {part: 2N338, priority: 2}
+    - {part: SSM2210, priority: 3, note: "matched NPN pair"}
+    - {part: LM394, priority: 3, note: "matched NPN pair (supermatch)"}
+    - {part: 2SC2362K, priority: 3}
+    - {part: 2SC2547, priority: 3}
+  small_signal_pnp:
+    - {part: 2N3906, priority: 1}
+    - {part: 2N2907A, priority: 2}
+    - {part: 2N4403, priority: 2}
+    - {part: 2N5087, priority: 1}
+    - {part: 2N5401, priority: 1}
+    - {part: BC556B, priority: 2}
+    - {part: BC557B, priority: 1}
+    - {part: BC558B, priority: 2}
+    - {part: BC559C, priority: 2}
+    - {part: BC560C, priority: 1}
+    - {part: BC327, priority: 2}
+    - {part: MPSA56, priority: 3}
+    - {part: MPSA92, priority: 2}
+    - {part: 2SA1015, priority: 1}
+    - {part: 2SA970, priority: 2}
+    - {part: 2SA992, priority: 2}
+    - {part: KSA992, priority: 2}
+    - {part: 2SA733, priority: 3}
+    - {part: BC158B, priority: 2}
+    - {part: BC214, priority: 2}
+    - {part: BC560, priority: 2, note: "unsuffixed type; distinct from BC560C"}
+    - {part: MPSA93, priority: 3}
+    - {part: MPS8599, priority: 3}
+    - {part: 2N4058, priority: 2}
+    - {part: 2SA1016K, priority: 3}
+    - {part: 2SA1085, priority: 3}
+    - {part: 2SA872A, priority: 3}
+  driver_vas:
+    - {part: BD139, priority: 1, complement: BD140}
+    - {part: BD135, priority: 2, complement: BD136}
+    - {part: BD140, priority: 1}
+    - {part: BD136, priority: 2}
+    - {part: MJE340, priority: 1, complement: MJE350}
+    - {part: MJE350, priority: 1}
+    - {part: MJE15030, priority: 2, complement: MJE15031}
+    - {part: MJE15032, priority: 1, complement: MJE15033}
+    - {part: MJE15034, priority: 2, complement: MJE15035}
+    - {part: MJE243, priority: 3, complement: MJE253}
+    - {part: KSC3503, priority: 1, complement: KSA1381, aliases: [2SC3503]}
+    - {part: KSA1381, priority: 1, aliases: [2SA1381]}
+    - {part: 2SC4793, priority: 2, complement: 2SA1837}
+    - {part: 2SC3421, priority: 3, complement: 2SA1358}
+    - {part: KSC2690, priority: 3, complement: KSA1220}
+    - {part: 2SC3601, priority: 3, complement: 2SA1407}
+    - {part: TIP31C, priority: 2, complement: TIP32C}
+    - {part: TIP41C, priority: 2, complement: TIP42C}
+    - {part: 2SD669, priority: 3, complement: 2SB649}
+    - {part: MJE3055T, priority: 3, complement: MJE2955T}
+    - {part: BD131, priority: 3, complement: BD132}
+    - {part: BD132, priority: 3}
+    - {part: BD137, priority: 2, complement: BD138}
+    - {part: BD138, priority: 2}
+    - {part: BD179, priority: 2, complement: BD180, aliases: [QBD179], stand_in: [BD179_6, BD179_10], note: "onsemi's model is named Qbd179; stand-ins BD179_6/_10 are its hFE groups -6 (40-100) and -10 (63-160)"}
+    - {part: BD180, priority: 2, aliases: [QBD180], stand_in: [BD180_6, BD180_10], note: "onsemi's model is named Qbd180; stand-ins BD180_6/_10 are its hFE groups"}
+    - {part: BD437, priority: 2}
+    - {part: BC639, priority: 2, complement: BC640}
+    - {part: BC640, priority: 2}
+    - {part: MJE15028, priority: 3, complement: MJE15029}
+    - {part: MJE15029, priority: 3}
+    - {part: BF469, priority: 3, complement: BF470}
+    - {part: BF470, priority: 3}
+    - {part: BF869, priority: 3, complement: BF870, note: "250 V video-output NPN, TO-202"}
+    - {part: BF870, priority: 3}
+    - {part: 2N3439, priority: 3}
+    - {part: 2N3440, priority: 3}
+    - {part: ZTX653, priority: 3, complement: ZTX753}
+    - {part: ZTX753, priority: 3}
+    - {part: TIP29C, priority: 3, complement: TIP30C}
+    - {part: TIP30C, priority: 3}
+    - {part: 2SC2238, priority: 3, complement: 2SA968}
+    - {part: 2SA968, priority: 3}
+    - {part: 2SC2910, priority: 3, complement: 2SA1208}
+    - {part: 2SA1208, priority: 3}
+    - {part: 2SA1077, priority: 3}
+    - {part: 2SC3298B, priority: 3, complement: 2SA1306B}
+    - {part: 2SA1306B, priority: 3}
+    - {part: 2SD600K, priority: 3, complement: 2SB631K}
+    - {part: 2SB631K, priority: 3}
+    - {part: 2SD756, priority: 3, complement: 2SB716}
+    - {part: 2SB716, priority: 3}
+    - {part: 2SB1144, priority: 3}
+    - {part: 2SD1684, priority: 3}
+    - {part: BD344, priority: 2}
+    - {part: 2N5023, priority: 2, note: "PNP general-purpose switch, TO-39, 30 V 1 A (Motorola sheet)"}
+    - {part: 2N4898, priority: 2, stand_in: [2N4900], note: "PNP TO-66 medium power; stand-in 2N4900 = 80 V grade of the same 2N4898-4900 family (Central model)"}
+    - {part: 2SC4382, priority: 2, complement: 2SA1668, note: "2 A / 25 W TO-220F driver (Sanken sheet), not an output device"}
+    - {part: 2SA1668, priority: 2, note: "2 A / 25 W TO-220F driver (Sanken sheet), not an output device"}
+  power_output:
+    - {part: 2N3055, priority: 1, complement: MJ2955}
+    - {part: MJ2955, priority: 1}
+    - {part: MJ15003, priority: 2, complement: MJ15004}
+    - {part: MJ15024, priority: 2, complement: MJ15025}
+    - {part: MJ21193, priority: 2, complement: MJ21194}
+    - {part: MJL21193, priority: 1, complement: MJL21194}
+    - {part: MJL21194, priority: 1}
+    - {part: MJL3281A, priority: 1, complement: MJL1302A}
+    - {part: MJL4281A, priority: 2, complement: MJL4302A}
+    - {part: NJW0281G, priority: 1, complement: NJW0302G}
+    - {part: NJW3281G, priority: 2, complement: NJW1302G}
+    - {part: 2SC5200, priority: 1, complement: 2SA1943, aliases: [FJL4315]}
+    - {part: 2SA1943, priority: 1, aliases: [FJL4215]}
+    - {part: 2SC3281, priority: 2, complement: 2SA1302}
+    - {part: 2SC5198, priority: 3, complement: 2SA1941}
+    - {part: 2SC2922, priority: 3, complement: 2SA1216, note: "Sanken"}
+    - {part: TIP35C, priority: 2, complement: TIP36C}
+    - {part: TIP3055, priority: 2, complement: TIP2955}
+    - {part: TIP142, priority: 2, complement: TIP147, note: "darlington"}
+    - {part: BDX53C, priority: 3, complement: BDX54C, note: "darlington"}
+    - {part: 2SD1047, priority: 3, complement: 2SB817}
+    - {part: MJ802, priority: 3, complement: MJ4502}
+    - {part: MJ15022, priority: 2, complement: MJ15023}
+    - {part: MJ15023, priority: 2}
+    - {part: MJ15001, priority: 3, complement: MJ15002}
+    - {part: MJ15002, priority: 3}
+    - {part: MJ11016, priority: 3, complement: MJ11015, note: "NPN darlington"}
+    - {part: MJ11015, priority: 3, note: "PNP darlington"}
+    - {part: 2N3773, priority: 3}
+    - {part: 2N3441, priority: 3}
+    - {part: 2N3442, priority: 3}
+    - {part: 2N6259, priority: 3}
+    - {part: 2N3583, priority: 3}
+    - {part: TIP35F, priority: 3, complement: TIP36F, note: "voltage grade F; distinct from TIP35C"}
+    - {part: TIP36F, priority: 3, note: "voltage grade F"}
+    - {part: BD182, priority: 2}
+    - {part: BDY20, priority: 2}
+    - {part: BDY56, priority: 3}
+    - {part: BDY77, priority: 3}
+    - {part: MJ480, priority: 2, complement: MJ490}
+    - {part: MJ481, priority: 2, note: "NPN 60 V grade of MJ480 (Motorola)"}
+    - {part: NJW0281, priority: 2, complement: NJW0302}
+    - {part: NJW0302, priority: 2}
+    - {part: 2SC3263, priority: 3}
+    - {part: 2SC3519, priority: 3, complement: 2SA1386}
+    - {part: 2SA1386, priority: 3}
+    - {part: 2SD424, priority: 3, complement: 2SB554}
+    - {part: 2SB554, priority: 3}
+    - {part: 2SD1046, priority: 3, complement: 2SB816}
+    - {part: 2SB816, priority: 3}
+    - {part: 2SC2565, priority: 3}
+    - {part: 2SC2527, priority: 3}
+    - {part: BD711, priority: 3, complement: BD712}
+    - {part: BD712, priority: 3}
+    - {part: BD539C, priority: 3, complement: BD540C, note: "TO-220 power transistor, 100 V 5 A 45 W (Power Innovations sheet)"}
+    - {part: BD540C, priority: 3, note: "TO-220 power transistor, 100 V 5 A 45 W (Power Innovations sheet)"}
+
+bjt-ge:
+  - {part: 2N1374, priority: 2}
+  - {part: 2N1379, priority: 2}
+  # Germanium transistors: fuzz pedals (Fuzz Face, Tone Bender), vintage radios.
+  # Rarely any manufacturer model; community models from measurements.
+  - {part: AC128, priority: 1, note: "PNP, Fuzz Face / Tone Bender"}
+  - {part: AC127, priority: 2, note: "NPN complement of AC128"}
+  - {part: AD162, priority: 3, complement: AD161, note: "PNP Ge power, Mullard/Philips AD1xx family (audio output)"}
+  - {part: AC126, priority: 3, note: "PNP, same Valvo family as AC125/AC128"}
+  - {part: AC132, priority: 3, note: "PNP, same Valvo family as AC125/AC128"}
+  - {part: AC187, priority: 2, complement: AC188}
+  - {part: AC188, priority: 2}
+  - {part: NKT275, priority: 1, note: "PNP, original Fuzz Face"}
+  - {part: OC44, priority: 2, note: "PNP, Tone Bender MkI"}
+  - {part: OC45, priority: 3}
+  - {part: OC71, priority: 1, note: "PNP, Rangemaster / Tone Bender"}
+  - {part: OC75, priority: 2, note: "PNP, Tone Bender MkII"}
+  - {part: OC81, priority: 3}
+  - {part: 2N404, priority: 2, note: "PNP, Maestro FZ-1"}
+  - {part: 2N1305, priority: 3}
+  - {part: 2N1307, priority: 3}
+  - {part: 2N1308, priority: 2, note: "NPN, Fuzz Face NPN builds"}
+  - {part: 2N527, priority: 3}
+  - {part: 2N2613, priority: 3}
+  - {part: GT308V, priority: 3, aliases: [ГТ308В]}
+  - {part: MP42B, priority: 3, aliases: [МП42Б]}
+  - {part: MP38A, priority: 3, aliases: [МП38А], note: "NPN Ge"}
+  - {part: MP16, priority: 3, aliases: [МП16]}
+  - {part: P416, priority: 3, aliases: [П416]}
+
+jfet:
+  n_channel:
+    - {part: J201, priority: 1, aliases: [MMBFJ201, SST201], note: "low Idss/Vp, pedals (boosts, amp-in-a-box)"}
+    - {part: J202, priority: 3}
+    - {part: J113, priority: 2}
+    - {part: J111, priority: 3}
+    - {part: J112, priority: 3}
+    - {part: J309, priority: 3}
+    - {part: J310, priority: 2}
+    - {part: 2N5457, priority: 1, aliases: [MMBF5457]}
+    - {part: 2N5458, priority: 2}
+    - {part: 2N5459, priority: 3}
+    - {part: 2N5484, priority: 3}
+    - {part: 2N5485, priority: 3}
+    - {part: 2N5486, priority: 3}
+    - {part: 2N3819, priority: 1}
+    - {part: MPF102, priority: 1}
+    - {part: 2N4416, priority: 3}
+    - {part: BF245A, priority: 2}
+    - {part: BF245B, priority: 2}
+    - {part: BF245C, priority: 3}
+    - {part: BF256B, priority: 3}
+    - {part: BF862, priority: 2, aliases: [LSBF862], note: "very low noise, modern boosts/preamps"}
+    - {part: 2SK30A, priority: 2, note: "discontinued Toshiba, audio"}
+    - {part: 2SK117, priority: 2, note: "Toshiba low noise"}
+    - {part: 2SK170, priority: 1, complement: 2SJ74, note: "Toshiba ultra low noise, MC/MM phono"}
+    - {part: LSK170, priority: 1, complement: LSJ74, note: "Linear Systems 2SK170 replacement"}
+    - {part: LSK489, priority: 2, note: "Linear Systems dual"}
+    - {part: LSK389, priority: 2, note: "dual, 2SK389 replacement"}
+    - {part: 2SK209, priority: 3}
+    - {part: 2SK208, priority: 3}
+    - {part: 2SK246, priority: 3}
+    - {part: 2SK369, priority: 3}
+    - {part: 2N4416A, priority: 3}
+    - {part: 2SK389, priority: 3, note: "dual"}
+    - {part: LS844, priority: 3, note: "dual"}
+    - {part: 2SK370, priority: 2}
+  p_channel:
+    - {part: J175, priority: 2}
+    - {part: J176, priority: 3}
+    - {part: J177, priority: 3}
+    - {part: 2N5460, priority: 3}
+    - {part: 2SJ74, priority: 2}
+    - {part: LSJ74, priority: 2, aliases: [SST74]}
+    - {part: J270, priority: 3}
+    - {part: 2SJ103, priority: 2}
+    - {part: 2SJ108, priority: 2}
+
+mosfet:
+  small_signal:
+    - {part: 2N7000, priority: 1, note: "pedals (switching, boosts), relay drivers"}
+    - {part: BS170, priority: 1}
+    - {part: 2N7002, priority: 2, note: "SOT-23; not BS170's pinout"}
+    - {part: BS250, priority: 2, note: "P-channel"}
+    - {part: BSS138, priority: 2}
+    - {part: BSS84, priority: 3, note: "P-channel"}
+    - {part: ZVN2110A, priority: 3}
+    - {part: ZVP2110A, priority: 3}
+    - {part: BS107, priority: 3}
+  power_vertical:
+    - {part: IRF510, priority: 2, complement: IRF9510}
+    - {part: IRF530, priority: 2, complement: IRF9530}
+    - {part: IRF540N, priority: 2, complement: IRF9540N}
+    - {part: IRF610, priority: 2, complement: IRF9610}
+    - {part: IRF640, priority: 2, complement: IRF9640}
+    - {part: IRFP140, priority: 2, complement: IRFP9140}
+    - {part: IRFP240, priority: 1, complement: IRFP9240, note: "Nelson Pass / Aleph / class-A amps"}
+    - {part: IRFP9240, priority: 1}
+    - {part: IRFP250N, priority: 3}
+    - {part: IRFP460, priority: 3}
+    - {part: IRFZ44N, priority: 3}
+    - {part: FQA19N20C, priority: 3}
+    - {part: 2SK2013, priority: 3, complement: 2SJ313}
+    - {part: IRF820, priority: 3, note: "HV, tube amp regulators / followers"}
+    - {part: IRF840, priority: 3, note: "HV, tube amp regulators"}
+    - {part: IRF540, priority: 3, complement: IRF9540}
+    - {part: IRF9540, priority: 3}
+    - {part: FQA12P20, priority: 2}
+    - {part: FQA19N20, priority: 2, note: "a different part from FQA19N20C (Vth 3-5 vs 2-4 V, Ciss 1220 vs 830 pF: Fairchild sheets); the F5 guide writes it without C"}
+    - {part: 2SK1530, priority: 2, complement: 2SJ201}
+    - {part: 2SJ201, priority: 2}
+    - {part: 2SK413, priority: 3, complement: 2SJ118, note: "vertical, not lateral (Hitachi 1985 data book: VGS(off) 2-5 V, RDS(on) 0.5 ohm)"}
+    - {part: 2SJ118, priority: 3, note: "vertical, not lateral (Hitachi 1985 data book: VGS(off) 2-5 V, RDS(on) 0.5 ohm)"}
+    - {part: 2SK414, priority: 3, complement: 2SJ119, note: "vertical, not lateral (Hitachi 1985 data book: VGS(off) 2-5 V, RDS(on) 0.5 ohm)"}
+    - {part: 2SJ119, priority: 3, note: "vertical, not lateral (Hitachi 1985 data book: VGS(off) 2-5 V, RDS(on) 0.5 ohm)"}
+  power_lateral:
+    - {part: 2SK1058, priority: 1, complement: 2SJ162, note: "Hitachi lateral, audio output"}
+    - {part: 2SJ162, priority: 1}
+    - {part: 2SK1056, priority: 3, complement: 2SJ160}
+    - {part: ECX10N20, priority: 2, complement: ECX10P20, note: "Exicon lateral"}
+    - {part: ALF08N16V, priority: 3, complement: ALF08P16V, note: "Alfet lateral"}
+    - {part: 2SK134, priority: 3, complement: 2SJ49}
+    - {part: BUZ900, priority: 3, complement: BUZ905}
+    - {part: 2SK1057, priority: 3, complement: 2SJ161}
+    - {part: 2SJ161, priority: 3}
+    - {part: 2SK133, priority: 3, complement: 2SJ48}
+    - {part: 2SJ48, priority: 3}
+    - {part: 2SK135, priority: 3, complement: 2SJ50}
+    - {part: 2SJ50, priority: 3}
+    - {part: 2SK175, priority: 3, complement: 2SJ55}
+    - {part: 2SJ55, priority: 3}
+    - {part: 2SK176, priority: 3, complement: 2SJ56}
+    - {part: 2SJ56, priority: 3}
+    - {part: BUZ901, priority: 3, complement: BUZ906}
+    - {part: BUZ906, priority: 3}
+    - {part: ECX10N16, priority: 3, complement: ECX10P16}
+    - {part: ECX10P16, priority: 3}
+    - {part: ECX10N24, priority: 3, complement: ECX10P24, note: "only in Duncan's table; not found in Exicon's current or archived range (2026-09-14)"}
+    - {part: ECX10P24, priority: 3, note: "only in Duncan's table; not found in Exicon's current or archived range (2026-09-14)"}
+
+diode:
+  silicon_signal:
+    - {part: 1N4148, priority: 1, note: "THE clipping diode"}
+    - {part: 1N914, priority: 1, note: "clipping (Tube Screamer, DS-1)"}
+    - {part: 1N4448, priority: 3}
+    - {part: BAS16, priority: 3}
+    - {part: 1N4148W, priority: 3}
+    - {part: BAV99, priority: 3, note: "two diodes in series, 3 pins"}
+    - {part: BAV21, priority: 3}
+  rectifier:
+    - {part: 1N4001, priority: 1, note: "also used as soft clipper (MXR Distortion+ style variants)"}
+    - {part: 1N4002, priority: 3}
+    - {part: 1N4004, priority: 2}
+    - {part: 1N4007, priority: 1}
+    - {part: 1N5404, priority: 2}
+    - {part: 1N5408, priority: 2}
+    - {part: UF4007, priority: 1, note: "tube amp HV rectifier"}
+    - {part: UF5408, priority: 3}
+    - {part: MUR160, priority: 2}
+    - {part: MUR860, priority: 3}
+    - {part: HER108, priority: 3}
+    - {part: FR107, priority: 3}
+    - {part: BYV27-200, priority: 3}
+    - {part: 1N4003, priority: 2}
+    - {part: 1N5400, priority: 2}
+    - {part: 1N5402, priority: 2}
+    - {part: BYV26D, priority: 2, note: "fast avalanche rectifier"}
+    - {part: MR850, priority: 2, note: "fast recovery"}
+    - {part: MURS320, priority: 2}
+    - {part: 1N537, priority: 2, stand_in: [1N4002], note: "100 V silicon rectifier; stand-in 1N4002 = direct replacement in Motorola DL125 (1985) cross-reference, PDF p. 7"}
+    - {part: 1N2613, priority: 2, stand_in: [1N4004], note: "silicon rectifier; stand-in 1N4004 = direct replacement in Motorola DL125 (1985) cross-reference, PDF p. 10"}
+  schottky:
+    - {part: 1N5817, priority: 1, note: "pedal reverse-polarity protection, clipping"}
+    - {part: 1N5818, priority: 3}
+    - {part: 1N5819, priority: 1}
+    - {part: 1N5822, priority: 3}
+    - {part: BAT41, priority: 2, note: "clipping"}
+    - {part: BAT46, priority: 2, note: "clipping"}
+    - {part: BAT54, priority: 2}
+    - {part: BAT54S, priority: 3, note: "series pair; A = common anode, C = common cathode variants"}
+    - {part: BAT85, priority: 2}
+    - {part: BAT43, priority: 3}
+    - {part: 1N5711, priority: 2, note: "clipping, detectors"}
+  bridge:
+    - {part: KBPC3510, priority: 3}
+    - {part: GBU8J, priority: 3}
+    - {part: D3SBA20, priority: 3}
+    - {part: B80C2200, priority: 2, note: "80 V / 2.2 A bridge"}
+
+diode-ge:
+  - {part: 1N34A, priority: 1, note: "germanium clipping (Klon-style, fuzz), detectors"}
+  - {part: 1N60, priority: 1, aliases: [1N60P], note: "technology of today's 1N60/1N60P is often not Ge"}
+  - {part: 1N270, priority: 2}
+  - {part: OA90, priority: 1}
+  - {part: OA91, priority: 2}
+  - {part: OA95, priority: 3}
+  - {part: AA119, priority: 2}
+  - {part: AA143, priority: 3}
+  - {part: D9E, priority: 3, aliases: [Д9Е]}
+  - {part: D311, priority: 3, aliases: [Д311]}
+  - {part: 1N91, priority: 2}
+
+zener:
+  - {part: 1N4728A, priority: 3, note: "3.3 V"}
+  - {part: 1N4733A, priority: 2, note: "5.1 V"}
+  - {part: 1N4739A, priority: 2, note: "9.1 V"}
+  - {part: 1N4740A, priority: 2, note: "10 V"}
+  - {part: 1N4742A, priority: 1, note: "12 V"}
+  - {part: 1N4744A, priority: 1, note: "15 V"}
+  - {part: 1N4746A, priority: 3, note: "18 V"}
+  - {part: 1N4749A, priority: 3, note: "24 V"}
+  - {part: 1N4764A, priority: 3, note: "100 V, tube amp screen/regulator strings"}
+  - {part: 1N5231B, priority: 3, note: "5.1 V 500 mW"}
+  - {part: 1N5242B, priority: 3, note: "12 V 500 mW"}
+  - {part: BZX55C3V3, priority: 2, stand_in: [BZX79C3V3, BZX793V3, BZX84-C3V3, DI_BZX84C3V3], note: "500 mW series, 3V3; stand-ins: BZX79/BZX84 C-grade of the same voltage (another 500 mW 5 % series)"}
+  - {part: BZX55C4V7, priority: 2, stand_in: [BZX79C4V7, BZX794V7, BZX84-C4V7, DI_BZX84C4V7], note: "500 mW series, 4V7; stand-ins: BZX79/BZX84 C-grade of the same voltage (another 500 mW 5 % series)"}
+  - {part: BZX55C5V1, priority: 2, stand_in: [BZX79C5V1, BZX795V1, BZX84-C5V1, DI_BZX84C5V1], note: "500 mW series, 5V1; stand-ins: BZX79/BZX84 C-grade of the same voltage (another 500 mW 5 % series)"}
+  - {part: BZX55C6V2, priority: 2, aliases: [BZX6V2], stand_in: [BZX79C6V2, BZX796V2, BZX84-C6V2, DI_BZX84C6V2], note: "500 mW series, 6V2; stand-ins: BZX79/BZX84 C-grade of the same voltage (another 500 mW 5 % series)"}
+  - {part: BZX55C9V1, priority: 2, stand_in: [BZX79C9V1, BZX799V1, BZX84-C9V1, DI_BZX84C9V1], note: "500 mW series, 9V1; stand-ins: BZX79/BZX84 C-grade of the same voltage (another 500 mW 5 % series)"}
+  - {part: BZX55C10, priority: 2, stand_in: [BZX79C10, BZX79A10, BZX84-C10, DI_BZX84C10], note: "500 mW series, 10; stand-ins: BZX79/BZX84 C-grade of the same voltage (another 500 mW 5 % series)"}
+  - {part: BZX55C12, priority: 2, stand_in: [BZX79C12, BZX79A12, BZX84-C12, DI_BZX84C12], note: "500 mW series, 12; stand-ins: BZX79/BZX84 C-grade of the same voltage (another 500 mW 5 % series)"}
+  - {part: BZX55C15, priority: 2, stand_in: [BZX79C15, BZX79A15, BZX84-C15, DI_BZX84C15], note: "500 mW series, 15; stand-ins: BZX79/BZX84 C-grade of the same voltage (another 500 mW 5 % series)"}
+  - {part: BZX55C18, priority: 2, aliases: [BZX18], stand_in: [BZX79C18, BZX79A18, BZX84-C18, DI_BZX84C18], note: "500 mW series, 18; stand-ins: BZX79/BZX84 C-grade of the same voltage (another 500 mW 5 % series)"}
+  - {part: BZX55C24, priority: 2, stand_in: [BZX79C24, BZX79A24, BZX84-C24, DI_BZX84C24], note: "500 mW series, 24; stand-ins: BZX79/BZX84 C-grade of the same voltage (another 500 mW 5 % series)"}
+  - {part: BZX79C3V3, priority: 2, stand_in: [BZX793V3, BZX84-C3V3, DI_BZX84C3V3], note: "500 mW series, 3V3; stand-ins: old BZX79 cards (kicad DIODE.LIB, comments inconsistent), BZX84-C (Nexperia/Diodes, same C-grade 5 % series in SOT-23)"}
+  - {part: BZX79C4V7, priority: 2, stand_in: [BZX794V7, BZX84-C4V7, DI_BZX84C4V7], note: "500 mW series, 4V7; stand-ins: old BZX79 cards (kicad DIODE.LIB, comments inconsistent), BZX84-C (Nexperia/Diodes, same C-grade 5 % series in SOT-23)"}
+  - {part: BZX79C5V1, priority: 2, stand_in: [BZX795V1, BZX84-C5V1, DI_BZX84C5V1], note: "500 mW series, 5V1; stand-ins: old BZX79 cards (kicad DIODE.LIB, comments inconsistent), BZX84-C (Nexperia/Diodes, same C-grade 5 % series in SOT-23)"}
+  - {part: BZX79C6V2, priority: 2, stand_in: [BZX796V2, BZX84-C6V2, DI_BZX84C6V2], note: "500 mW series, 6V2; stand-ins: old BZX79 cards (kicad DIODE.LIB, comments inconsistent), BZX84-C (Nexperia/Diodes, same C-grade 5 % series in SOT-23)"}
+  - {part: BZX79C9V1, priority: 2, stand_in: [BZX799V1, BZX84-C9V1, DI_BZX84C9V1], note: "500 mW series, 9V1; stand-ins: old BZX79 cards (kicad DIODE.LIB, comments inconsistent), BZX84-C (Nexperia/Diodes, same C-grade 5 % series in SOT-23)"}
+  - {part: BZX79C10, priority: 2, stand_in: [BZX79A10, BZX84-C10, DI_BZX84C10], note: "500 mW series, 10; stand-ins: old BZX79 cards (kicad DIODE.LIB, comments inconsistent), BZX84-C (Nexperia/Diodes, same C-grade 5 % series in SOT-23)"}
+  - {part: BZX79C12, priority: 2, stand_in: [BZX79A12, BZX84-C12, DI_BZX84C12], note: "500 mW series, 12; stand-ins: old BZX79 cards (kicad DIODE.LIB, comments inconsistent), BZX84-C (Nexperia/Diodes, same C-grade 5 % series in SOT-23)"}
+  - {part: BZX79C15, priority: 2, stand_in: [BZX79A15, BZX84-C15, DI_BZX84C15], note: "500 mW series, 15; stand-ins: old BZX79 cards (kicad DIODE.LIB, comments inconsistent), BZX84-C (Nexperia/Diodes, same C-grade 5 % series in SOT-23)"}
+  - {part: BZX79C18, priority: 2, stand_in: [BZX79A18, BZX84-C18, DI_BZX84C18], note: "500 mW series, 18; stand-ins: old BZX79 cards (kicad DIODE.LIB, comments inconsistent), BZX84-C (Nexperia/Diodes, same C-grade 5 % series in SOT-23)"}
+  - {part: BZX79C24, priority: 2, stand_in: [BZX79A24, BZX84-C24, DI_BZX84C24], note: "500 mW series, 24; stand-ins: old BZX79 cards (kicad DIODE.LIB, comments inconsistent), BZX84-C (Nexperia/Diodes, same C-grade 5 % series in SOT-23)"}
+  - {part: BZX85C3V3, priority: 3, stand_in: [1N4728A], note: "1.3 W series, 3V3; stand-in: 1N4728A (1 W series, same nominal voltage)"}
+  - {part: BZX85C4V7, priority: 3, stand_in: [1N4732A], note: "1.3 W series, 4V7; stand-in: 1N4732A (1 W series, same nominal voltage)"}
+  - {part: BZX85C5V1, priority: 3, stand_in: [1N4733A], note: "1.3 W series, 5V1; stand-in: 1N4733A (1 W series, same nominal voltage)"}
+  - {part: BZX85C6V2, priority: 3, stand_in: [1N4735A], note: "1.3 W series, 6V2; stand-in: 1N4735A (1 W series, same nominal voltage)"}
+  - {part: BZX85C9V1, priority: 3, stand_in: [1N4739A], note: "1.3 W series, 9V1; stand-in: 1N4739A (1 W series, same nominal voltage)"}
+  - {part: BZX85C10, priority: 3, stand_in: [1N4740A], note: "1.3 W series, 10; stand-in: 1N4740A (1 W series, same nominal voltage)"}
+  - {part: BZX85C12, priority: 3, stand_in: [1N4742A], note: "1.3 W series, 12; stand-in: 1N4742A (1 W series, same nominal voltage)"}
+  - {part: BZX85C15, priority: 3, stand_in: [1N4744A], note: "1.3 W series, 15; stand-in: 1N4744A (1 W series, same nominal voltage)"}
+  - {part: BZX85C18, priority: 3, stand_in: [1N4746A], note: "1.3 W series, 18; stand-in: 1N4746A (1 W series, same nominal voltage)"}
+  - {part: BZX85C24, priority: 3, stand_in: [1N4749A], note: "1.3 W series, 24; stand-in: 1N4749A (1 W series, same nominal voltage)"}
+  - {part: 1N751, priority: 2, aliases: [1N751A], note: "A = 5 % grade"}
+  - {part: 1N5228B, priority: 2, stand_in: [MMSZ5228B, DI_MMSZ5228B], note: "stand-ins: MMSZ5228B = same 1N52xxB zener family in SOD-123"}
+  - {part: 1N5225, priority: 2, aliases: [1N5225B], stand_in: [MMSZ5225B], note: "only the B grade is made; stand-in MMSZ5225B = same family in SOD-123"}
+  - {part: 1N5353B, priority: 2}
+
+led:
+  # Clipping LEDs in pedals: the colour sets the knee. Generic or specific parts.
+  - {part: LED-RED-5MM, priority: 1, aliases: [LedRed, RED, QTLP690C, L128-RED1003500000, L1C1-RED1000000000, GaAs_REDLED, Ga_REDLED, DLED1], note: "generic red 5 mm (Vf ≈ 1.8–2.0 V)"}
+  - {part: LED-RED-3MM, priority: 1, aliases: [LedRed, RED, QTLP690C, L128-RED1003500000, L1C1-RED1000000000, DLED1]}
+  - {part: LED-GREEN, priority: 2, aliases: [LedGreen, GREEN]}
+  - {part: LED-YELLOW, priority: 2}
+  - {part: LED-BLUE, priority: 2, aliases: [LedBLUE, BLUE, DLED3]}
+  - {part: LED-WHITE, priority: 2, aliases: [LedWHITE, NSPW500BS]}
+  - {part: LED-IR, priority: 3, aliases: [DLED0]}
+
+tube:
+  triode:
+    - {part: 12AX7, priority: 1, aliases: [ECC83, 7025, 5751-like]}
+    - {part: 12AT7, priority: 1, aliases: [ECC81, 6201]}
+    - {part: 12AU7, priority: 1, aliases: [ECC82, 5814, 6189]}
+    - {part: 12AY7, priority: 2, aliases: [6072]}
+    - {part: 5751, priority: 2}
+    - {part: 12BH7, priority: 2}
+    - {part: 12DW7, priority: 3, aliases: [7247]}
+    - {part: 6SN7, priority: 1, aliases: [6SN7GT, ECC32-like]}
+    - {part: 6SL7, priority: 2}
+    - {part: 6DJ8, priority: 1, aliases: [ECC88, 6922, E88CC, 6N23P]}
+    - {part: 6CG7, priority: 2, aliases: [6FQ7]}
+    - {part: 6N1P, priority: 2, aliases: [6Н1П]}
+    - {part: 6N2P, priority: 3, aliases: [6Н2П]}
+    - {part: 6N3P, priority: 3, aliases: [6Н3П]}
+    - {part: 6C45P, priority: 3, aliases: [6С45П]}
+    - {part: 5670, priority: 3, aliases: [6N3P-like, 2C51]}
+    - {part: 6J5, priority: 3}
+    - {part: 300B, priority: 2}
+    - {part: 2A3, priority: 2}
+    - {part: "45", priority: 3}
+    - {part: 6C33C, priority: 3, aliases: [6С33С]}
+    - {part: 6H30, priority: 3, aliases: [6Н30П]}
+    - {part: 6BQ7A, priority: 3}
+  pentode_beam:
+    - {part: EL84, priority: 1, aliases: [6BQ5, 6P14P]}
+    - {part: EL34, priority: 1}
+    - {part: 6CA7, priority: 2, note: "commercial relative of EL34, construction differs"}
+    - {part: 6L6GC, priority: 1, aliases: [6L6, 7581]}
+    - {part: "5881", priority: 2, note: "not 6L6GC in ratings"}
+    - {part: 6V6GT, priority: 1, aliases: [6V6]}
+    - {part: KT66, priority: 2}
+    - {part: KT88, priority: 1}
+    - {part: "6550", priority: 1, aliases: [6550A]}
+    - {part: KT77, priority: 3}
+    - {part: KT120, priority: 3}
+    - {part: KT150, priority: 3}
+    - {part: EF86, priority: 1, aliases: [6267]}
+    - {part: 6AU6, priority: 3}
+    - {part: 6SJ7, priority: 3}
+    - {part: 6AQ5, priority: 3, aliases: [6005]}
+    - {part: 6BM8, priority: 3, aliases: [ECL82]}
+    - {part: "7591", priority: 3}
+    - {part: "7189", priority: 3}
+    - {part: "7868", priority: 3}
+    - {part: "6146", priority: 3}
+    - {part: "807", priority: 3}
+    - {part: 6P3S, priority: 3, aliases: [6П3С]}
+    - {part: 6P1P, priority: 3, aliases: [6П1П]}
+    - {part: 6973, priority: 3}
+  rectifier:
+    - {part: 5AR4, priority: 1, aliases: [GZ34]}
+    - {part: 5U4GB, priority: 1}
+    - {part: 5Y3GT, priority: 1}
+    - {part: GZ32, priority: 3, aliases: [5V4G]}
+    - {part: EZ81, priority: 2, aliases: [6CA4]}
+    - {part: EZ80, priority: 3, aliases: [6V4]}
+    - {part: 6X4, priority: 3}
+    - {part: 6AL5, priority: 3, aliases: [EB91], note: "double signal diode, detectors/limiters"}
+
+opamp:
+  - {part: TL072, priority: 1}
+  - {part: TL062, priority: 2}
+  - {part: TL072H, priority: 2, note: "different part from TL072; own model"}
+  - {part: TLE2072, priority: 2}
+  - {part: NE5532, priority: 1, aliases: [SA5532]}
+  - {part: NE5534, priority: 2}
+  - {part: RC4558, priority: 1, note: "TI design; the JRC/NJR 4558 is its own part (NJM4558)"}
+  - {part: LM358, priority: 1, note: "cheap pedals"}
+  - {part: LM741, priority: 2, aliases: [uA741]}
+  - {part: MC1458, priority: 2, aliases: [LM1458], note: "DOD/MXR, Tube Screamer variants"}
+  - {part: LM308, priority: 1, note: "ProCo RAT; slew-rate character matters"}
+  - {part: OP07, priority: 3, note: "RAT substitute"}
+  - {part: OPA2134, priority: 1, aliases: [OPAx134], note: "TI publishes one model, OPAx134, for OPA134/OPA2134/OPA4134"}
+  - {part: OPA1612, priority: 2, aliases: [OPA161x], note: "TI publishes one model, OPA161x, for OPA1611/OPA1612; dual of OPA1611 (one TI datasheet, SBOS450, covers both)"}
+  - {part: OPA1656, priority: 1}
+  - {part: OPA1678, priority: 2}
+  - {part: RC4580, priority: 2}
+  - {part: LF347, priority: 3}
+  - {part: TLC2262, priority: 3}
+  - {part: CA3240, priority: 3}
+  - {part: OPA2604, priority: 3}
+  - {part: LM833, priority: 2}
+  - {part: LM4562, priority: 2, aliases: [LME49720]}
+  - {part: OPA627, priority: 3}
+  - {part: OP27, priority: 2}
+  - {part: AD797, priority: 3}
+  - {part: AD8620, priority: 3, stand_in: [AD8610], note: "dual of AD8610 (one ADI datasheet covers both); stand-in = the single's model"}
+  - {part: MC33078, priority: 2}
+  - {part: LF353, priority: 2}
+  - {part: NJM2068, priority: 3}
+  - {part: TLC2272, priority: 3, note: "rail-to-rail CMOS, 9 V pedals"}
+  - {part: CA3130, priority: 3}
+  - {part: CA3140, priority: 3, aliases: [CA3140E], note: "E = DIP package (Penfold)"}
+  - {part: TL071, priority: 2, note: "single; was an alias of TL072 ("}
+  - {part: TL074, priority: 2, note: "quad; was an alias of TL072"}
+  - {part: TL061, priority: 3, note: "single; was an alias of TL062"}
+  - {part: TL064, priority: 3, note: "quad; was an alias of TL062"}
+  - {part: OP37, priority: 3, note: "decompensated, stable at gain >= 5; was an alias of OP27"}
+  - {part: LF351, priority: 3, note: "single; was an alias of LF353"}
+  - {part: LF356, priority: 3, note: "single, different compensation; was an alias of LF353"}
+  - {part: OPA134, priority: 3, aliases: [OPAx134], note: "TI publishes one model, OPAx134, for OPA134/OPA2134/OPA4134; single; was an alias of OPA2134"}
+  - {part: OPA4134, priority: 3, aliases: [OPAx134], note: "TI publishes one model, OPAx134, for OPA134/OPA2134/OPA4134; quad; was an alias of OPA2134"}
+  - {part: OPA1611, priority: 3, aliases: [OPA161x], note: "TI publishes one model, OPA161x, for OPA1611/OPA1612; single; was an alias of OPA1612"}
+  - {part: AD8610, priority: 3, note: "single; was an alias of AD8620"}
+  - {part: MC33079, priority: 3, note: "quad; was an alias of MC33078"}
+  - {part: LME49860, priority: 3, note: "+-22 V part; was an alias of LM4562"}
+  - {part: NJM4558, priority: 3, aliases: [JRC4558, JRC4558D], note: "NJR/JRC design, distinct from TI RC4558 (was merged with it)"}
+  - {part: LM324, priority: 2, aliases: [LMX24_LM2902], note: "TI model LMX24_LM2902 covers LM124/224/324/2902"}
+  - {part: MC33171, priority: 2}
+  - {part: MC33172, priority: 2}
+  - {part: MC33174, priority: 2}
+  - {part: TL052, priority: 3}
+  - {part: TL022, priority: 2}
+  - {part: LM747, priority: 3}
+  - {part: LM837, priority: 2}
+  - {part: M5201, priority: 2, note: "switching op-amp (2 inputs, 1 output); forums cite NJM2120 as equivalent, not confirmed by the maker"}
+  - {part: MC1436, priority: 2, note: "high-voltage op-amp"}
+
+ota:
+  - {part: LM13700, priority: 1, note: "compressors, phasers, filters"}
+  - {part: CA3080, priority: 1, note: "Ross/Dyna Comp, phasers"}
+  - {part: LM13600, priority: 2, aliases: [LM13600N], note: "buffer bias differs from LM13700; N = DIP package"}
+  - {part: LM3080, priority: 2}
+  - {part: NE5517, priority: 3}
+  - {part: CA3094, priority: 2, note: "programmable power switch/amplifier (OTA + darlington)"}
+
+ic-audio:
+  - {part: LM386, priority: 1, note: "practice amps, Ruby, pedals"}
+  - {part: TDA2030, priority: 2, aliases: [TDA2030A]}
+  - {part: TDA2050, priority: 2}
+  - {part: LM1875, priority: 2}
+  - {part: LM3886, priority: 1}
+  - {part: TDA7293, priority: 2}
+  - {part: TDA7294, priority: 2}
+  - {part: LM4780, priority: 3}
+  - {part: TDA2003, priority: 3}
+  - {part: TPA3116, priority: 3, note: "class D"}
+  - {part: LM3875, priority: 3}
+  - {part: LME49810, priority: 2}
+  - {part: LME49830, priority: 2}
+  - {part: LM1877, priority: 2}
+  - {part: LM377, priority: 2}
+
+regulator:
+  - {part: LM7805, priority: 2, aliases: [UA7805, L7805]}
+  - {part: LM7809, priority: 2, note: "9 V pedal supplies"}
+  - {part: LM7812, priority: 2}
+  - {part: LM7815, priority: 2}
+  - {part: LM7915, priority: 2}
+  - {part: LM317, priority: 1}
+  - {part: LM337, priority: 2, aliases: [LM337_N_TRANS], note: "TI names its LM337 model LM337_N_TRANS"}
+  - {part: TL431, priority: 1}
+  - {part: TL783, priority: 3, note: "HV adjustable, tube supplies"}
+  - {part: LM338, priority: 3, aliases: [LM338K]}
+  - {part: LM350, priority: 3}
+  - {part: LM350A, priority: 3, note: "A grade of LM350"}
+  - {part: LM138, priority: 3, note: "military-temperature member of the LM338 family"}
+  - {part: LM150, priority: 3, note: "military-temperature member of the LM350 family"}
+  - {part: LM723, priority: 2, aliases: [LM723N]}
+  - {part: LM7824, priority: 2}
+  - {part: LM7924, priority: 2}
+  - {part: LT1083, priority: 3}
+  - {part: LT1084, priority: 3}
+  - {part: LT1085, priority: 3}
+  - {part: 78L06, priority: 2}
+  - {part: MC1466L, priority: 2, note: "floating lab-supply regulator"}
+
+opto:
+  - {part: VTL5C1, priority: 2, note: "vactrol"}
+  - {part: VTL5C3, priority: 1, note: "vactrol, tremolo/compressor"}
+  - {part: VTL5C4, priority: 2}
+  - {part: VTL5C6, priority: 2}
+  - {part: PC817, priority: 3, note: "phototransistor: NOT an LDR substitute"}
+  - {part: NSL-32, priority: 2, note: "LED/LDR, compressors (LA-2A clones use T4B)"}
+  - {part: H11F1, priority: 3, note: "photo-FET, used as VCR"}
+  - {part: 4N35, priority: 3}
+
+logic:
+  - {part: CD4049UB, priority: 2, note: "unbuffered inverter used as amplifier (Tube Sound Fuzz)"}
+  - {part: CD4069UB, priority: 2}
+  - {part: CD4007, priority: 3}
+  - {part: CD4053, priority: 3, aliases: [4053], note: "Bordodynov SwitchAna.Lib names it 4053"}
+
+# Not devices but components that LTspice lacks and amp schematics are full of. These
+# are designed here (components/), not downloaded; sources only give ideas.
+non_native:
+  - {part: potentiometer, priority: 1, note: "lin/log(A)/revlog(C)/W taper, dual gang with tracking error, tap, wiper R; taper stored as points at 10/50/90 %"}
+  - {part: trimmer, priority: 2}
+  - {part: rotary-switch, priority: 2, note: "n positions, parameter selected"}
+  - {part: footswitch-3pdt, priority: 2, note: "true bypass"}
+  - {part: jack-switched, priority: 3, note: "input jack that cuts the battery"}
+  - {part: relay, priority: 1, note: "SPDT/DPDT/latching (loosweb models), channel switching"}
+  - {part: mains-transformer, priority: 1, note: "multi-winding, regulation, magnetising"}
+  - {part: output-transformer, priority: 1, note: "push-pull/SE, leakage L, winding C, core saturation, UL taps"}
+  - {part: interstage-transformer, priority: 3}
+  - {part: input-transformer, priority: 2, note: "DI / line / mic input transformers"}
+  - {part: choke, priority: 2, note: "filter choke with DC saturation"}
+  - {part: speaker, priority: 1, note: "electrical impedance from Thiele/Small (resonance + voice coil L)"}
+  - {part: guitar-pickup, priority: 1, note: "single coil / humbucker R-L-C source"}
+  - {part: wah-inductor, priority: 2, note: "Fasel / Halo 500 mH with Q"}
+  - {part: ldr, priority: 1, note: "light-dependent resistor with attack/decay"}
+  - {part: incandescent-lamp, priority: 2, note: "thermal PTC for Wien oscillators, tremolo"}
+  - {part: neon-lamp, priority: 3, note: "NE-2, relaxation oscillators, Magnatone/Fender tremolo"}
+  - {part: ntc-thermistor, priority: 3, note: "inrush limiting"}
+  - {part: electrolytic-cap, priority: 2, note: "ESR/ESL/leakage, for supply sag"}
+  - {part: spring-reverb, priority: 3, note: "tank input/output impedance model (Accutronics types)"}
+  - {part: tape-head, priority: 3}
+  - {part: bbd, priority: 3, note: "MN3007/MN3207 behavioural, analog delay/chorus"}
+  - {part: pt2399, priority: 3, note: "behavioural delay"}
+  - {part: vu-meter, priority: 3}
+
+comparator:
+  - {part: LM393, priority: 1, note: "open collector, needs pull-up; detectors, LFO shaping"}
+  - {part: LM339, priority: 2}
+  - {part: LM2901, priority: 2}
+
+vca:
+  - {part: NE570, priority: 2, note: "compander"}
+  - {part: NE571, priority: 2, aliases: [SA571], note: "compander"}
+  - {part: SSM2013, priority: 3}
+  - {part: SSM2018, priority: 3}
+  - {part: SSM2024, priority: 3}
+  - {part: TDA1074, priority: 2}
+  - {part: MC3340, priority: 3}
+  - {part: AD534, priority: 2, note: "four-quadrant multiplier"}
+  # voltage-controlled amplifiers and digitally controlled volume
+  - {part: THAT2180, priority: 2, aliases: [THAT2181], note: "EOL announced 2026-09-01"}
+  - {part: THAT2150, priority: 2}
+  - {part: THAT2162, priority: 2}
+  - {part: SSM2164, priority: 2, aliases: [V2164, SSI2164]}
+  - {part: THAT4301, priority: 3, aliases: [THAT4305, THAT4315]}
+  - {part: PGA2311, priority: 2}
+
+mic-preamp:
+  - {part: THAT1510, priority: 2, aliases: [THAT1512]}
+  - {part: THAT1580, priority: 3, aliases: [THAT1583]}
+
+control:
+  - {part: CD4066B, priority: 1, note: "analog switch, bypass/mute; Ron depends on signal and supply"}
+  - {part: CD4051, priority: 2, aliases: [4051], note: "Bordodynov SwitchAna.Lib names it 4051"}
+  - {part: NE555, priority: 2}
+  - {part: CD4047B, priority: 2}
+  - {part: TLE2426, priority: 1, note: "rail splitter, limited current"}
+  - {part: TC1044S, priority: 1, note: "charge pump; own entry, not an alias of LT1054"}
+  - {part: ICL7660S, priority: 1}
+  - {part: MAX1044, priority: 1}
+  - {part: LT1054, priority: 2}
+  - {part: LM3914, priority: 2}
+  - {part: LM3915, priority: 3}
+  - {part: LM2917, priority: 2}
+  - {part: LT1166, priority: 2, note: "LTspice native model only (binary)"}
+  - {part: TA7317, priority: 2, note: "speaker protection"}
+  - {part: CD4052, priority: 3, aliases: [4052], note: "Bordodynov SwitchAna.Lib names it 4052; dual 4-channel mux; was an alias of CD4051 (single 8-channel)"}
+  - {part: TLC555, priority: 3, note: "CMOS; was an alias of NE555 (bipolar)"}
+
+# Functional (behavioural) blocks: no transistor-level model exists or makes sense;
+# modelled here as abstractions with declared scope.
+digital-audio:
+  - {part: PT2399, priority: 1, note: "digital delay with analog I/O: delay + filters + degradation"}
+  - {part: MN3005, priority: 2, note: "BBD 4096 stages; t = N/(2 f) with f per phase"}
+  - {part: MN3007, priority: 2, note: "BBD 1024 stages"}
+  - {part: MN3207, priority: 3, aliases: [V3207]}
+  - {part: MN3102, priority: 3, aliases: [V3102], note: "BBD clock driver for MN3207/MN3205 (low voltage)"}
+  - {part: FV-1, priority: 2, note: "Spin DSP; algorithm block"}
+  - {part: ADAU1701, priority: 2}
+  - {part: PCM1808, priority: 2, note: "IBIS exists but it is not a conversion model"}
+  - {part: PCM1802, priority: 3}
+  - {part: PCM5102A, priority: 2}
+  - {part: TLV320AIC3104, priority: 2}
+  - {part: PCM2902C, priority: 3}
+  - {part: STM32H750, priority: 3}
+  - {part: MN3009, priority: 2, note: "BBD 256 stages"}
+  - {part: TDA1022, priority: 2, note: "BBD 512 stages"}
+  - {part: MN3101, priority: 2, note: "clock driver for MN3007/MN3005/MN3009 (15 V); was an alias of MN3102"}
+  - {part: MN3205, priority: 3, aliases: [V3205], note: "BBD 4096 stages, low voltage; was an alias of MN3207 (1024 stages)"}
+
+# Switching-regulator controllers and regulators
+smps:
+  - {part: LM2575, priority: 3}
+  - {part: LM2576, priority: 3}
+  - {part: LM2577, priority: 3}
+  - {part: LM2578, priority: 3}
+  - {part: TL494, priority: 2}
+  - {part: UC3842, priority: 3}
+  - {part: UC3843, priority: 3}
+  - {part: UC3844, priority: 3}
+  - {part: UC3845, priority: 3}
+  - {part: SG3525, priority: 3}
+  - {part: LM3524, priority: 2}
