@@ -295,7 +295,7 @@ LABEL = re.compile(r"(?:IN|OUT|LED|CH)\d{1,2}")
 # modules with no valve in sight. Only E24 values: 6K6 and 6K7 are not one, and 6K8GT keeps its suffix.
 E24 = {"10", "11", "12", "13", "15", "16", "18", "20", "22", "24", "27", "30", "33", "36", "39", "43", "47",
        "51", "56", "62", "68", "75", "82", "91"}
-MARKED_VALUE = re.compile(r"(\d)[RKM](\d)")
+MARKED_VALUE = re.compile(r"(\d)[RKMV](\d)")            # 6V8 is a 6.8 V zener; 6V6 is not E24 and stays a valve
 # A family written with its variable digit as X: 1N400X is any of 1N4001 to 1N4007, not a device.
 FAMILY_X = re.compile(r"\d[A-Z]\d+X+")
 # A number after an Australian state is a postcode: 7262 is a valve type and Elby's town.
