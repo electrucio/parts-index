@@ -102,3 +102,46 @@ def test_a_one_word_title_field_is_not_a_title():
     for junk in ("BC447.rev3", "Document:", "FDG6304P.Rev9", "untitled"):
         assert title_of([""], {"title": junk}, "") == ""
     assert title_of([""], {"title": "BC447 NPN amplifier transistor"}, "") == "BC447 NPN amplifier transistor"
+
+
+def test_a_makers_prefix_written_apart_is_read_with_the_number():
+    from parts_index.datasheets.harvest import covered
+    parts = {"THAT1606", "THAT1646", "THAT2015"}
+    first = ("Copyright 2015, THAT Corporation; Document 600078 Rev. 07\n"
+             "The THAT 1606 and 1646 are monolithic audio differential line drivers. 1646 1606\n")
+    got = covered([first], parts, "THAT1606", prefix="THAT")
+    assert {"THAT1606", "THAT1646"} <= set(got)
+    assert "THAT2015" not in got           # a year once on the page is not a part
+
+
+def test_a_listing_page_gives_its_pdfs(monkeypatch):
+    from parts_index.datasheets import harvest
+    page = ('<a href="/images/stories/product/power_tubes/pdf/el34_e34l.pdf" class="wf_file">EL34</a>'
+            '<a href="/images/stories/product/capacitors/MNH_EN_web.pdf" class="wf_file">MNH</a>')
+    monkeypatch.setattr(harvest, "fetch_text", lambda url, entry: page)
+    entry = {"kind": "document page", "pages": ["https://www.jj-electronic.com/en/download"],
+             "keep": r"/images/stories/product/(preamplifying|power|rectifying)_tubes/.+\.pdf$"}
+    assert list(harvest.listing("jj", entry)) == [
+        "https://www.jj-electronic.com/images/stories/product/power_tubes/pdf/el34_e34l.pdf"]
+
+
+def test_a_sheet_read_own_only_covers_its_series_and_not_its_companions():
+    from parts_index.datasheets.harvest import covered
+    parts = {"THAT1510", "THAT1512", "THAT1570", "THAT6261", "THAT6263", "7X7", "THAT1606", "THAT1646"}
+    first = "THAT 1570 digital preamplifier controller for the THAT 1510 and 1512. 1570 1510 1512 7X7 7X7"
+    got = covered([first], parts, "THAT1570", prefix="THAT", series=3, own_only=True)
+    assert set(got) == {"THAT1570"}
+    got = covered(["THAT 6261 6263 626x family"], parts, "THAT626X", prefix="THAT", series=3, own_only=True)
+    assert set(got) == {"THAT6261", "THAT6263"}
+    got = covered(["The THAT 1606 and 1646"], parts, "THAT1606", prefix="THAT", heads=("THAT1646",),
+                  series=3, own_only=True)
+    assert set(got) == {"THAT1606", "THAT1646"}
+
+
+def test_a_jedec_series_counts_three_digits_and_a_number_filed_as_a_sheet_is_its_part():
+    from parts_index.datasheets.harvest import covered, same_series
+    assert same_series("2N4393", "2N4391") and not same_series("2N4351", "2N4391")
+    assert same_series("3N164", "3N163") and not same_series("3N170", "3N163")
+    assert same_series("BC548C", "BC546")
+    got = covered(["6550\nbeam power tube 6550 103 103"], {"6550", "103"}, "6550", own_only=True)
+    assert set(got) == {"6550"}

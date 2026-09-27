@@ -41,6 +41,7 @@ import yaml
 from parts_index.core.config import (
     census_registry,
     dataset_table,
+    datasheet_catalogue,
     datasheet_covers,
     datasheet_documents,
     datasheet_links,
@@ -261,8 +262,10 @@ CATALOGUE_FIELDS = ("source", "maker", "category", "status", "title", "revision"
 def catalogued() -> dict[str, list[list[str]]]:
     """What each manufacturer's catalogue says about a part, from the data-sheet register."""
     out: dict[str, list[list[str]]] = defaultdict(list)
-    for r in rows(datasheets_table()):
-        out[r["part"]].append([r.get(k, "") for k in CATALOGUE_FIELDS])
+    d = datasheet_catalogue("x").parent
+    for f in [datasheets_table(), *(sorted(d.glob("*.csv")) if d.is_dir() else ())]:
+        for r in rows(f):
+            out[r["part"]].append([r.get(k, "") for k in CATALOGUE_FIELDS])
     return out
 
 

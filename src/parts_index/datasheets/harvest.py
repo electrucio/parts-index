@@ -26,6 +26,7 @@ import re
 import sys
 from collections import Counter
 from pathlib import Path
+from urllib.parse import urljoin
 
 import yaml
 
@@ -33,6 +34,7 @@ from parts_index.core import http
 from parts_index.core.config import (
     datasheet_covers,
     datasheet_documents,
+    datasheets_cache,
     datasheets_registry,
     datasheets_state,
     datasheets_text,
@@ -46,7 +48,7 @@ from parts_index.core.parts.extractor import KNOWN, base_part, canonical, family
 STAGES = ("fetch", "read")
 VERSIONED = ("read",)
 FIELDS = ("key", "url", "http", "bytes", "sha256", "fetch_at", "read_at", "read_v", "skip_reason")
-READ_VERSION = "2"  # 2: no one-word titles; a stem is not a part when the full name is there
+READ_VERSION = "5"  # 5: a JEDEC series is its number but the last digit; a sheet filed under a number covers it
 DOC_FIELDS = ("url", "maker", "title", "revision", "pages", "bytes", "sha256", "covers", "checked")
 COVER_FIELDS = ("part", "url", "seen", "times")
 
@@ -89,24 +91,68 @@ def head(url: str, strip: str = "") -> str:
     return name.upper()
 
 
-def listing(source: str, entry: dict) -> list[str]:
-    """Every data sheet the source's sitemaps name, fetched politely and never twice in one run."""
-    urls: list[str] = []
-    for sm in entry["sitemaps"]:
-        r = http.get(sm, ua=PROJECT_UA, delay=float(entry.get("delay", http.DELAY)), max_bytes=64 << 20)
-        if not r.ok:
-            print(f"  {sm}: {r.why or r.status}", file=sys.stderr)
-            continue
-        body = r.body
-        if sm.endswith(".gz") or body[:2] == b"\x1f\x8b":
-            body = gzip.decompress(body)
-        keep = re.compile(entry["keep"])
-        urls += [u for u in LOC.findall(body.decode("utf-8", "replace")) if keep.search(u)]
-    return sorted(set(urls))
+KINDS = ("document sitemap", "document page", "product pages")
+HREF = re.compile(r'href="([^"]+)"')
+PAGE_TITLE = re.compile(r"<title>([^<]*)</title>", re.I)
 
 
-def wanted(urls: list[str], entry: dict, parts: set[str]) -> list[str]:
-    """The sheets whose file name starts with a part this project knows, or with the type of one."""
+def fetch_text(url: str, entry: dict) -> str:
+    r = http.get(url, ua=PROJECT_UA, delay=float(entry.get("delay", http.DELAY)), max_bytes=64 << 20)
+    if not r.ok:
+        print(f"  {url}: {r.why or r.status}", file=sys.stderr)
+        return ""
+    body = r.body
+    if url.endswith(".gz") or body[:2] == b"\x1f\x8b":
+        body = gzip.decompress(body)
+    return body.decode("utf-8", "replace")
+
+
+def listing(source: str, entry: dict) -> dict[str, str]:
+    """Every data sheet the source lists, with the name its listing files it under when that is not in
+    the file name ("" otherwise). Three shapes of listing:
+
+    document sitemap  the sitemaps name the PDFs themselves (onsemi, NXP);
+    document page     one or a few pages link every PDF (THAT's data sheet page, JJ's downloads);
+    product pages     the sitemaps name product pages, and each links its own sheet (Linear Systems,
+                      whose PDFs are named by a hash: the page's title says which part it is)."""
+    keep = re.compile(entry["keep"])
+    kind = entry.get("kind")
+    out: dict[str, str] = {}
+    if kind == "document sitemap":
+        for sm in entry["sitemaps"]:
+            out |= {u: "" for u in LOC.findall(fetch_text(sm, entry)) if keep.search(u)}
+    elif kind == "document page":
+        for page in entry["pages"]:
+            out |= {u: "" for u in (urljoin(page, h) for h in HREF.findall(fetch_text(page, entry)))
+                    if keep.search(u)}
+    elif kind == "product pages":
+        locs = [u for sm in entry["sitemaps"] for u in LOC.findall(fetch_text(sm, entry))]
+        subs = [u for u in locs if u.endswith(".xml") and re.search(entry.get("sitemaps_keep", "$^"), u)]
+        locs += [u for sm in subs for u in LOC.findall(fetch_text(sm, entry))]   # one level of index
+        pages = sorted({u for u in locs if not u.endswith(".xml") and re.search(entry["pages_keep"], u)})
+        link, strip = re.compile(entry["sheet_link"]), entry.get("title_strip", "")
+        cache = datasheets_cache(source)
+        cache.mkdir(parents=True, exist_ok=True)
+        for page in pages:
+            kept = cache / (re.sub(r"[^A-Za-z0-9]+", "_", page.split("://", 1)[-1]) + ".html.gz")
+            if kept.exists():
+                html_ = gzip.decompress(kept.read_bytes()).decode("utf-8", "replace")
+            else:
+                html_ = fetch_text(page, entry)
+                if not html_:
+                    continue
+                kept.write_bytes(gzip.compress(html_.encode("utf-8")))
+            m, t = link.search(html_), PAGE_TITLE.search(html_)
+            if m and keep.search(m.group(1)):
+                out.setdefault(m.group(1), re.sub(strip, "", t.group(1)).strip() if t and strip else "")
+    return dict(sorted(out.items()))
+
+
+def wanted(urls: dict[str, str] | list[str], entry: dict, parts: set[str]) -> list[str]:
+    """The sheets whose file name starts with a part this project knows, or with the type of one. A
+    source small enough to read whole (`all: true`) gives every sheet it lists."""
+    if entry.get("all"):
+        return list(urls)
     out = []
     for u in urls:
         h = head(u, entry.get("strip", ""))
@@ -116,9 +162,13 @@ def wanted(urls: list[str], entry: dict, parts: set[str]) -> list[str]:
     return out
 
 
-def same_series(name: str, sheet_head: str) -> bool:
-    """BF245B on the BF245A-B-C sheet, BC548C on bc546-d: the letters of the head and the first digits."""
-    h = re.match(r"([A-Z]+\d{2})", sheet_head)
+def same_series(name: str, sheet_head: str, digits: int = 2) -> bool:
+    """BF245B on the BF245A-B-C sheet, BC548C on bc546-d: the letters of the head and the first digits.
+    A maker that numbers its series by three (THAT's 1240 series is 1240, 1243 and 1246, and its 1250
+    another product) says so with `series: 3`."""
+    # A JEDEC number's series is all its digits but the last: 2N4391-2N4393 is the 2N439 series and
+    # 2N4351 another part; 3N163 and 3N164 share one sheet.
+    h = re.match(rf"(\d[A-Z]+\d+(?=\d)|[A-Z]+\d{{{digits}}})", sheet_head)
     return bool(h) and name.startswith(h.group(1))
 
 
@@ -128,22 +178,33 @@ def is_a_part(name: str) -> bool:
     return bool(family_of(name)) or norm(name) in KNOWN
 
 
-def covered(pages: list[str], parts: set[str], sheet_head: str = "") -> dict[str, tuple[str, int]]:
+def covered(pages: list[str], parts: set[str], sheet_head: str = "", prefix: str = "",
+            heads: tuple[str, ...] = (), series: int = 2, own_only: bool = False) -> dict[str, tuple[str, int]]:
     """The known parts a sheet documents, and how that was seen: on its first page, or only in its text
     (an ordering table). A name that follows "complementary to" or "replaces" is another part's.
 
     Two ways in. A part of the sheet's own series (BF245C on the BF245A-B-C sheet) needs its first page
     or two mentions. Any other part needs its first page, more than one mention, and to be recognisably a
     part: a sheet's first page names its related products once, and its register tables name S12 and
-    LED1 dozens of times."""
+    LED1 dozens of times.
+
+    A maker that writes its prefix apart from the number ("THAT 1646", or "1646" alone on a THAT sheet)
+    is read with its `prefix`: the number is that maker's part. A sheet named after several parts
+    (THAT_1606-1646) has them all as `heads`; a maker whose sheets name companion products by number on
+    their first page (THAT's 1570 sheet, the 1510 it pairs with) is read `own_only`: its sheets cover
+    the series they are named after and nothing else."""
     found: dict[str, tuple[str, int]] = {}
     counts: Counter = Counter()
+    heads_all = {h for h in (sheet_head, *heads) if h}
     first: set[str] = set()
     for i, text in enumerate(pages):
         for m in TOKEN.finditer(text):
             tok = canonical(m.group(1)) or ""
-            if not tok or not re.search(r"[A-Z]", tok) or not re.search(r"\d", tok):
-                continue                     # 103 is a capacitor code and a page number before it is a part
+            if prefix and re.fullmatch(r"\d{3,5}[A-Z]{0,2}", tok):
+                tok = prefix + tok
+            if not tok or not re.search(r"\d", tok) or (not re.search(r"[A-Z]", tok) and tok not in heads_all):
+                continue                     # 103 is a capacitor code and a page number before it is a part,
+                                             # unless the sheet is filed under it (JJ's 6550)
             names = {n for n in (tok, base_part(tok)) if n in parts}
             if not names:
                 continue
@@ -155,7 +216,9 @@ def covered(pages: list[str], parts: set[str], sheet_head: str = "") -> dict[str
                 if i == 0 and m.start() < FIRST_PAGE:
                     first.add(n)
     for n, c in counts.items():
-        own = n == sheet_head or same_series(n, sheet_head)
+        own = any(n == h or same_series(n, h, series) for h in (sheet_head, *heads) if h)
+        if own_only and not own:
+            continue
         if (own and (n in first or c >= 2)) or (n in first and c >= 2 and is_a_part(n)):
             found[n] = ("first page" if n in first else "text", c)
     return {n: v for n, v in found.items() if not stem(n, found)}
@@ -213,6 +276,7 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
     parts = known()
     urls = listing(source, entry)
     todo = wanted(urls, entry, parts)
+    prefix = entry.get("prefix", "")
     print(f"{source}: {len(urls)} data sheets listed, {len(todo)} named after a known part")
     if list_only:
         return {"listed": len(urls), "wanted": len(todo)}
@@ -254,11 +318,16 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
             sha, size = resp.sha256, len(resp.body)
             kept.write_bytes(gzip.compress(json.dumps({"meta": meta, "pages": pages}).encode("utf-8")))
             led.stamp(url, "fetch", url=url, http=resp.status, bytes=size, sha256=sha)
-        sheet_head = re.sub(r"[^A-Z0-9]", "", head(url, entry.get("strip", "")).split("_")[0])
-        found = covered(pages, parts, sheet_head)
+        names = [urls.get(url)] if urls.get(url) else re.split(entry.get("split", "_"), head(url, entry.get("strip", "")))
+        names = [re.sub(r"[^A-Z0-9]", "", n.upper()) for n in names if re.search(r"\d", n)] or [""]
+        names = [n if not prefix or n.startswith(prefix) else prefix + n for n in names]
+        sheet_head = names[0]
+        found = covered(pages, parts, sheet_head, prefix, tuple(names[1:]), int(entry.get("series", 2)),
+                        bool(entry.get("own_only")))
         text = "\n".join(pages[:1])
         rev = REVISION.search(text)
-        docs[(url,)] = {"url": url, "maker": entry.get("maker", ""), "title": title_of(pages, meta, sheet_head),
+        title = title_of(pages, meta, sheet_head) if entry.get("titles", True) else ""
+        docs[(url,)] = {"url": url, "maker": entry.get("maker", ""), "title": title,
                         "revision": rev.group(1) if rev else "", "pages": len(pages), "bytes": size,
                         "sha256": sha, "covers": len(found), "checked": today()}
         for k in [k for k in covers if k[1] == url]:
@@ -285,13 +354,16 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--reread", action="store_true", help="read the kept text again with today's reader")
     a = ap.parse_args(argv)
     reg = registry()
-    names = a.source or [s for s, e in reg.items() if (e or {}).get("kind") == "document sitemap"
+    names = a.source or [s for s, e in reg.items() if (e or {}).get("kind") in KINDS
                          and e.get("status") == "active"]
     for s in names:
         e = reg.get(s) or {}
-        if e.get("kind") != "document sitemap":
-            print(f"{s}: not a document-sitemap source", file=sys.stderr)
+        if e.get("kind") not in KINDS:
+            print(f"{s}: not a source the harvest reads ({', '.join(KINDS)})", file=sys.stderr)
             return 2
+        if e.get("status") in ("paused", "blocked"):
+            print(f"{s}: {e['status']} — see its notes in the registry; not asked", file=sys.stderr)
+            continue
         print(f"{s}: {run(s, e, a.limit, a.list_only, a.reread)}")
     return 0
 

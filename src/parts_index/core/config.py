@@ -188,6 +188,12 @@ def datasheet_covers(source: str) -> Path:
     return PUBLIC_DATA / "datasheets" / "covers" / f"{source}.csv"
 
 
+def datasheet_catalogue(source: str) -> Path:
+    """What a manufacturer's own product list says about each indexed part it makes: category, status,
+    and the data sheet it gives for it."""
+    return PUBLIC_DATA / "datasheets" / "catalogue" / f"{source}.csv"
+
+
 def datasheets_registry() -> Path:
     """The manufacturer catalogues the data-sheet register reads, and at what pace."""
     return PUBLIC_DATA / "datasheets" / "sources.yaml"
@@ -537,6 +543,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("datasheet_links", "public", ("frank_pocnet",)),
     ("datasheet_documents", "public", ("onsemi_docs",)),
     ("datasheet_covers", "public", ("onsemi_docs",)),
+    ("datasheet_catalogue", "public", ("diotec_products",)),
     ("datasheets_state", "public", ("ti_products",)),
     ("verification", "public", ("bjt", "2N3904")),
     ("known_parts", "public", ()),

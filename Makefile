@@ -11,7 +11,7 @@ WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
 
 .DEFAULT_GOAL := help
-.PHONY: datasheets-register datasheets-links datasheets-harvest web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-match models-found models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
+.PHONY: datasheets-register datasheets-links datasheets-harvest datasheets-catalogue web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-match models-found models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -109,6 +109,9 @@ datasheets-links:  ## (maintainer) every data sheet an archive lists for each pa
 
 datasheets-harvest:  ## (maintainer) read the data sheets a maker's sitemap lists, to learn which parts each covers; [SOURCE=onsemi_docs] [LIMIT=N] [LIST=1]
 	uv run --extra ocr pidx datasheets harvest $(foreach s,$(SOURCE),--source $(s)) $(if $(LIMIT),--limit $(LIMIT)) $(if $(LIST),--list-only)
+
+datasheets-catalogue:  ## (maintainer) read a maker's whole product list: each known part, its status and its sheet; [SOURCE=diotec_products] [REFRESH=1]
+	uv run pidx datasheets catalogue $(foreach s,$(SOURCE),--source $(s)) $(if $(REFRESH),--refresh)
 
 toragi-report:  ## (maintainer) トランジスタ技術: coverage by year and by issue, from the lists and ledgers
 	$(RUN) pidx schematics toragi

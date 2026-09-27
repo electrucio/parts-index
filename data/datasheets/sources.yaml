@@ -55,3 +55,76 @@ nxp_docs:
   delay: 3
   notes: 'The collateral sitemap lists 4,707 data sheets under /docs/en/data-sheet/, named after their
     first part. robots.txt allows them and names no delay; read at the default three seconds.'
+that_datasheets:
+  kind: document page
+  maker: that-corporation
+  pages:
+    - https://thatcorp.com/ic-product-datasheets/
+    - https://thatcorp.com/archived-datasheets/
+  keep: '/datashts/[^/]+\.pdf$'
+  all: true                      # 34 sheets: read them all
+  strip: '^THAT_|_Datasheet$|data$'
+  split: '[_-]'                  # THAT_1606-1646 is first the 1606
+  prefix: THAT                   # the sheets write "THAT 1646" and "1646"; the index, THAT1646
+  series: 3                      # the 1240 series is 1240, 1243, 1246; the 1250 is another product
+  own_only: true                 # a sheet names the parts it pairs with (1570 -> 1510) on its first page
+  status: active
+  delay: 3
+  notes: 'robots.txt allows everything. Two pages, current and archived data sheets, link every sheet
+    under /datashts/ (34 on 2026-09-27).'
+jj_datasheets:
+  kind: document page
+  maker: jj-electronic
+  pages:
+    - https://www.jj-electronic.com/en/download
+  keep: '/images/stories/product/(preamplifying|power|rectifying)_tubes/.+\.pdf$'
+  all: true                      # 36 tube sheets; the capacitor catalogues and amplifier manuals are left
+  own_only: true                 # a tube sheet covers the types in its file name (el34_e34l) and no other
+  status: active
+  delay: 3
+  notes: 'robots.txt disallows only the Joomla system folders. The download page links every tube sheet;
+    a sheet names its type and, for EL34/E34L, both.'
+linearsystems_datasheets:
+  kind: product pages
+  maker: linear-integrated-systems
+  sitemaps:
+    - https://www.linearsystems.com/sitemap.xml
+  sitemaps_keep: 'dynamic-(jfet|bipolar|mosfets|dmos|currentregulating|lowleakage|voltagecontrolled|bifet)'
+  pages_keep: 'linearsystems\.com/[a-z-]+/[a-z0-9-]+$'
+  sheet_link: '<a [^>]*href="(https://www\.linearsystems\.com/_files/ugd/[^"]+\.pdf)"[^>]*aria-label="Datasheet"'
+  title_strip: '\s*(Series)?\s*(\|.*)?$'
+  keep: '/_files/ugd/[^/]+\.pdf$'
+  all: true                      # about 70 products
+  own_only: true                 # the LSK489 sheet names the LSK389 to compare with it
+  titles: false                  # the PDF title fields are copied from other sheets (LS350's says ID100)
+  status: active
+  delay: 3
+  notes: 'A Wix site: robots.txt allows everything but lightboxes. The product-collection sitemaps name
+    each product page; the page links its data sheet as the button labelled "Datasheet" (its SPICE model
+    is another PDF button, not taken), and its title names the part. PDF names are hashes.'
+diotec_products:
+  kind: catalogue
+  maker: diotec
+  status: active
+  delay: 3
+  notes: 'robots.txt disallows only the CMS folders. /en/all-products.html links 23 product families;
+    /request/family/<FAM>/products/en is the table each family page draws: the article, its data sheet
+    and its life cycle. A column lists competitors'' names the maker cross-references — not its parts,
+    not read.'
+toshiba_parametric:
+  kind: catalogue
+  maker: toshiba
+  status: active
+  delay: 3
+  notes: 'robots.txt allows /parametric/ and /info/docget.jsp and names no delay. The parametric search
+    page carries its menu (68 tables, 8 of them the not-recommended and discontinued lists); getHeaderData
+    and getRowData give each table. The data sheet is a docget link, which answers with the dated PDF.
+    Parts whose discontinuation is complete (2SC1815) are gone from every table.'
+infineon_tables:
+  kind: catalogue
+  maker: infineon
+  status: active
+  delay: 3
+  notes: 'robots.txt allows *.json and /assets/row/public/, and names no delay. The row sitemap names 930
+    product tables; each family table''s JSON gives its parts, family, ordering-code status and data sheet.
+    Tables built from a collection answer empty.'

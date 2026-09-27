@@ -166,6 +166,10 @@ def main(argv: list[str] | None = None) -> int:
     dsv.add_argument("--list-only", action="store_true", help="read the sitemaps and say how many would be fetched")
     dsv.add_argument("--reread", action="store_true", help="read the kept text again with today's reader")
 
+    dsc = dsh.add_parser("catalogue", help="read a maker's whole product list: each part, its status and its sheet")
+    dsc.add_argument("--source", action="append", help="only these sources (repeatable)")
+    dsc.add_argument("--refresh", action="store_true", help="ask for every table again")
+
     ds = sub.add_parser("datasets", help="the distilled research datasets").add_subparsers(
         dest="ds_cmd", required=True)
     dr = ds.add_parser("repos", help="read how much attention each open-source project has")
@@ -381,6 +385,11 @@ def main(argv: list[str] | None = None) -> int:
         argv2 += ["--limit", str(args.limit)] if args.limit else []
         argv2 += ["--list-only"] if args.list_only else []
         return harvest.main(argv2 + (["--reread"] if args.reread else []))
+
+    if args.cmd == "datasheets" and args.dsh_cmd == "catalogue":
+        from parts_index.datasheets import catalogues
+        argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
+        return catalogues.main(argv2 + (["--refresh"] if args.refresh else []))
 
     if args.cmd == "datasets" and args.ds_cmd == "repos":
         from parts_index.datasets import repos as ds_repos
