@@ -46,7 +46,7 @@ from parts_index.core.parts.extractor import KNOWN, base_part, canonical, family
 STAGES = ("fetch", "read")
 VERSIONED = ("read",)
 FIELDS = ("key", "url", "http", "bytes", "sha256", "fetch_at", "read_at", "read_v", "skip_reason")
-READ_VERSION = "1"
+READ_VERSION = "2"  # 2: no one-word titles; a stem is not a part when the full name is there
 DOC_FIELDS = ("url", "maker", "title", "revision", "pages", "bytes", "sha256", "covers", "checked")
 COVER_FIELDS = ("part", "url", "seen", "times")
 
@@ -158,7 +158,14 @@ def covered(pages: list[str], parts: set[str], sheet_head: str = "") -> dict[str
         own = n == sheet_head or same_series(n, sheet_head)
         if (own and (n in first or c >= 2)) or (n in first and c >= 2 and is_a_part(n)):
             found[n] = ("first page" if n in first else "text", c)
-    return found
+    return {n: v for n, v in found.items() if not stem(n, found)}
+
+
+def stem(name: str, found: dict) -> bool:
+    """Whether a name is the start of another the sheet covers rather than a part: 1N400 and the
+    placeholder 1N400X beside 1N4001. A letter after it is a grade, so BC846 beside BC846A stays."""
+    root = name[:-1] if name.endswith("X") else name
+    return any(o != name and o.startswith(root) and o[len(root):].isdigit() for o in found)
 
 
 def read_pdf(data: bytes) -> tuple[list[str], dict]:
@@ -177,7 +184,8 @@ def title_of(pages: list[str], meta: dict, sheet_head: str = "") -> str:
     # A title names the part and says what it is in a few words. "The TDA8920B is a high efficiency
     # class-D audio power amplifier with…" is the maker's sentence, not a title, and is not taken.
     sentence = re.search(r"\b(is|are|was|provides|offers|features)\b", t, re.I) or len(t) > 110
-    if (len(t) >= 6 and not sentence and "www." not in t.lower()
+    # One word is a file name or a label ("BC447.rev3", "Document:"), not a title.
+    if (len(t) >= 6 and len(t.split()) >= 2 and not sentence and "www." not in t.lower()
             and not re.fullmatch(r"[\w\-. ]+\.(?:pdf|docx?|indd|fm)", t, re.I)):
         return t
     return ""

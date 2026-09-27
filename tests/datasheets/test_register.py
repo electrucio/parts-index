@@ -86,3 +86,19 @@ def test_a_page_kept_short_of_todays_limit_is_fetched_again():
     assert not cut_short("x" * 60_000, {"bytes": "352231"}, 60_000)  # the limit has not moved
     assert not cut_short("x" * 90_000, {"bytes": "90000"}, 250_000)  # the whole page was kept
     assert not cut_short("x" * 60_000, None, None) and cut_short("x" * 60_000, {"bytes": "70000"}, None)
+
+
+def test_a_stem_of_a_covered_part_is_not_a_part():
+    from parts_index.datasheets.harvest import covered
+    parts = {"1N400", "1N400X", "1N4001", "1N4007", "BC846", "BC846A"}
+    first = "1N4001 thru 1N4007 1N400x series\n1N4001 1N4007 1N400X 1N400\nBC846 BC846A BC846 BC846A\n"
+    got = covered([first], parts, "1N4001")
+    assert {"1N4001", "1N4007", "BC846", "BC846A"} <= set(got)
+    assert "1N400" not in got and "1N400X" not in got
+
+
+def test_a_one_word_title_field_is_not_a_title():
+    from parts_index.datasheets.harvest import title_of
+    for junk in ("BC447.rev3", "Document:", "FDG6304P.Rev9", "untitled"):
+        assert title_of([""], {"title": junk}, "") == ""
+    assert title_of([""], {"title": "BC447 NPN amplifier transistor"}, "") == "BC447 NPN amplifier transistor"
