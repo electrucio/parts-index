@@ -528,3 +528,18 @@ archive_manuallib:
   notes: 'About 36,500 single data sheets on archive.org, uploaded from a manuals site into the makers''
     manuals_* collections and titled "<MAKER> <PART> handbook". The title names the part and its maker;
     the archive item is linked. Only names this project knows, standing as words of the title, are kept.'
+wrh_books:
+  kind: databooks
+  pages:
+    - https://www.worldradiohistory.com/Archive-Catalogs/Suppliers/Supplier-Library.htm
+    - https://www.worldradiohistory.com/BOOKSHELF-ARH/Bookshelf-RCA.htm
+    - https://www.worldradiohistory.com/BOOKSHELF-ARH/Bookshelf-GE.htm
+  keep: '(Mullard-(Technical-Handbook|Data-book|Semiconductors-manual|Valve-data-book|Valves-and-Electron-Tubes)|Philips-(Electronic-Valves|Electron-tubes-Part-4)|Sylvania-(Technical-manual|Radio-Tubes-Technical)|Tung-Sol-Electronic-Tubes|GE-Tubes-Essential|Transistor(%20|-)Manual|Semiconductor-Almanac|RCA.*(Transistor|Solid|Semiconductor|Receiving|Tube))[^/]*\.pdf$'
+  include: '.'
+  exclude: '$^'
+  status: active
+  delay: 5
+  notes: 'World Radio History''s scans of makers'' data books: the Mullard Technical Handbooks (1971-87),
+    Philips Electronic Valves, Sylvania and Tung-Sol tube manuals, RCA and GE transistor manuals. robots.txt
+    allows /Archive-Catalogs/ and /BOOKSHELF-ARH/. The PDFs carry an OCR layer; each is read here, its text
+    kept in the private tree, and the page of the PDF is linked.'

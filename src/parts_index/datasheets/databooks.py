@@ -22,21 +22,21 @@ import html
 import json
 import re
 import sys
-from urllib.parse import quote
+from urllib.parse import quote, unquote, urljoin
 
 from parts_index.core import http
 from parts_index.core.config import datasheet_pages, datasheets_state, datasheets_text, schematics_parts
 from parts_index.core.ledger import Ledger, today
 from parts_index.core.parts import catalogue
 from parts_index.core.parts.extractor import canonical, family_of
-from parts_index.datasheets.harvest import PROJECT_UA, TOKEN, is_a_part, known, nearest, registry
+from parts_index.datasheets.harvest import PROJECT_UA, TOKEN, is_a_part, known, nearest, read_pdf, registry
 
 ARCHIVE = "https://archive.org"
 STAGES = ("fetch", "read")
 VERSIONED = ("read",)
 FIELDS = ("key", "url", "http", "bytes", "fetch_at", "read_at", "read_v", "skip_reason")
 READ_VERSION = "3"  # 3: JIS names the OCR misread (25A1770, 2S41770) are read as JIS
-PAGE_FIELDS = ("part", "book", "leaf", "printed", "maker", "title", "year", "checked", "kind")
+PAGE_FIELDS = ("part", "book", "leaf", "printed", "maker", "title", "year", "checked", "kind", "link")
 TABLE_PAGES = 2         # in a tabulation, the first pages a part is listed on are enough to find it
 HEAD_LINES = 6          # a sheet names its type in its first lines
 MAX_HEADS = 4           # a page heading more parts than this is an index or a selector guide
@@ -52,6 +52,17 @@ def books(entry: dict) -> list[dict]:
     title says it is a semiconductor book and not one of the kinds the registry leaves out."""
     if entry.get("items"):
         return [{"identifier": i, "title": ""} for i in entry["items"]]
+    if entry.get("pages"):              # PDF books linked from a site's own pages (worldradiohistory)
+        keep = re.compile(entry["keep"], re.I)
+        out: dict[str, dict] = {}
+        for page in entry["pages"]:
+            r = http.get(page, ua=PROJECT_UA, delay=float(entry.get("delay", http.DELAY)), max_bytes=16 << 20)
+            for href in re.findall(r'href="([^"]+\.pdf)"', r.text(None) if r.ok else "", re.I):
+                url = urljoin(page, href.strip())
+                if keep.search(url):
+                    name = re.sub(r"\.pdf$", "", unquote(url.rsplit("/", 1)[-1]), flags=re.I)
+                    out[url] = {"identifier": url, "title": re.sub(r"[-_]+", " ", name).strip(), "pdf": True}
+        return list(out.values())
     q = (f"{ARCHIVE}/advancedsearch.php?q={quote(entry['query'])}&fl%5B%5D=identifier&fl%5B%5D=title"
          f"&rows=10000&output=json")
     r = http.get(q, ua=PROJECT_UA, delay=float(entry.get("delay", http.DELAY)), max_bytes=32 << 20)
@@ -165,9 +176,26 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
         r = led.get(ident)
         if (r and r["skip_reason"]) or (led.done(ident, "read", version=READ_VERSION) and not reread):
             continue
-        kept = text_dir / f"{ident}.json.gz"
+        kept = text_dir / (f"{ident}.json.gz" if not item.get("pdf")
+                           else re.sub(r"[^A-Za-z0-9._-]+", "_", unquote(ident.rsplit("/", 1)[-1]))[:150] + ".json.gz")
         if led.done(ident, "fetch") and kept.exists():
             held = json.loads(gzip.decompress(kept.read_bytes()))
+        elif item.get("pdf"):
+            # No text layer to borrow: the PDF is read here, its text kept private, and the PDF let go.
+            resp = http.get(ident, ua=PROJECT_UA, delay=delay, max_bytes=800 << 20)
+            n["fetched"] += 1
+            if not resp.ok or resp.kind != "pdf":
+                n["failed"] += 1
+                print(f"  {ident}: {resp.why or resp.status} — left for the next run", file=sys.stderr)
+                continue
+            try:
+                pages, _meta = read_pdf(resp.body)
+            except Exception as e:                                        # a broken PDF is not a crash
+                led.skip(ident, f"unreadable PDF: {type(e).__name__}"[:60], url=ident, http=resp.status)
+                continue
+            held = {"title": title, "pages": pages, "printed": {}}
+            kept.write_bytes(gzip.compress(json.dumps(held).encode("utf-8")))
+            led.stamp(ident, "fetch", url=ident, http=resp.status, bytes=len(resp.body))
         else:
             meta = http.get(f"{ARCHIVE}/metadata/{ident}", ua=PROJECT_UA, delay=delay, max_bytes=16 << 20)
             files = json.loads(meta.body or b"{}").get("files", []) if meta.ok else []
@@ -198,7 +226,8 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
         table = entry.get("mode") == "table"
         # A tabulation is nobody's data sheet: its publisher (CQ, D.A.T.A.) made no part, so no maker.
         maker, year = ("" if table else maker_of(title)), (YEAR.search(title) or [""])[0]
-        for k in [k for k in rows if k[1] == ident]:
+        book = kept.name.removesuffix(".json.gz") if item.get("pdf") else ident
+        for k in [k for k in rows if k[1] == book]:
             del rows[k]
         listed: dict[str, int] = {}
         for leaf, page in enumerate(held["pages"], start=1):
@@ -208,10 +237,10 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
                     listed[part] = listed.get(part, 0) + 1
                     if listed[part] > TABLE_PAGES:
                         continue
-                rows[(part, ident, str(leaf))] = {
-                    "part": part, "book": ident, "leaf": leaf, "printed": held["printed"].get(str(leaf), ""),
+                rows[(part, book, str(leaf))] = {
+                    "part": part, "book": book, "leaf": leaf, "printed": held["printed"].get(str(leaf), ""),
                     "maker": maker, "title": title.split("::")[-1].strip(), "year": year, "checked": today(),
-                    "kind": "table" if table else "sheet"}
+                    "kind": "table" if table else "sheet", "link": ident if item.get("pdf") else ""}
                 n["pages"] += 1
         led.stamp(ident, "read", version=READ_VERSION)
         n["read"] += 1
