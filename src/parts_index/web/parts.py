@@ -249,7 +249,7 @@ def census_listings() -> tuple[dict[str, list[list]], dict[str, dict]]:
     return out, meta
 
 
-CATALOGUE_FIELDS = ("source", "maker", "category", "status", "title", "revision", "url", "page", "checked")
+CATALOGUE_FIELDS = ("source", "maker", "category", "status", "title", "revision", "url", "page", "checked", "name")
 
 
 def catalogued() -> dict[str, list[list[str]]]:

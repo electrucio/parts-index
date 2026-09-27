@@ -17,3 +17,13 @@ ti_products:
     A product page carries its category, status and part number in meta tags and the data sheet as a
     link whose text is its title and revision. A part TI no longer has a page for answers 404 and is
     recorded as such.'
+renesas_products:
+  maker: renesas
+  census: renesas_products
+  page: 'https://www.renesas.com/en/products/{lower}'
+  status: active
+  keep: 0                      # the status and breadcrumb sit 225 KB into the page: keep all of it
+  notes: 'robots.txt allows ClaudeBot and anthropic-ai by name, with no crawl delay; read at the default
+    one page every three seconds. The product page gives the breadcrumb (its last step is the category),
+    a status label, the product''s title and the data sheet link — named only "Datasheet", so the data
+    sheet has no title of its own here and the product''s title is kept as the name.'

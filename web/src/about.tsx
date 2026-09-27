@@ -176,14 +176,15 @@ function Facts({ page, cat, sources }: { page: PartPage; cat: Catalogue; sources
   if (a.catalogue?.length) {
     rows.push(["Maker's catalogue", (
       <>
-        {a.catalogue.map(([, maker, category, status, title, rev, url, pageUrl, checked], i) => (
+        {a.catalogue.map(([, maker, category, status, title, rev, url, pageUrl, checked, name], i) => (
           <div key={i}>
             <MakerName id={maker} cat={cat} /> files it under <b>{category || 'no category'}</b>
             {status && <> · <span class={`pill ${STATUS_PILL[status] ?? 'na'}`}>{status.toLowerCase()}</span></>}
             {' · '}<a href={pageUrl} target="_blank" rel="noopener">their page</a>
-            {title && (
+            {name && <div class="small">Their title for it: {name}</div>}
+            {(title || url) && (
               <div class="small">
-                Data sheet: {url ? <a href={url} target="_blank" rel="noopener">{title}</a> : title}
+                Data sheet: {url ? <a href={url} target="_blank" rel="noopener">{title || 'on their site'}</a> : title}
                 {rev && <span class="muted">, revision {rev}</span>}
               </div>
             )}

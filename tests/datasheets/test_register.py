@@ -1,5 +1,5 @@
 """Reading a manufacturer's product page: the facts, and nothing it wrote in its own words."""
-from parts_index.datasheets.register import read_ti
+from parts_index.datasheets.register import read_renesas, read_ti
 
 # Shaped like a TI product page, written for this test: meta tags in the head, the data sheet as a link
 # whose text is its title and revision.
@@ -37,3 +37,23 @@ def test_a_page_that_is_not_a_product_gives_nothing():
 def test_a_sheet_without_a_revision_still_has_a_title():
     page = PAGE.replace(" (Rev. C)", "")
     assert read_ti(page)["title"] == "XY123x Low-Noise, Dual Operational Amplifiers" and read_ti(page)["revision"] == ""
+
+
+# Shaped like a Renesas product page, written for this test.
+REN = """<html><head><title>AB3140 - 4.5MHz, Operational Amplifier | Renesas</title>
+<style>.product__label{display:none}</style></head><body>
+<nav role="navigation" aria-labelledby="system-breadcrumb"><ol>
+  <li><a href="/en">Home</a></li><li><a href="/en/products">Products</a></li>
+  <li><a href="/en/products/amplifiers">Amplifiers</a></li>
+  <li><a href="/en/products/op-amps">General-purpose Op Amps</a></li><li>AB3140</li></ol></nav>
+<span class="part__label product__label">Active</span>
+<h2 class="subtitle">4.5MHz, Operational Amplifier</h2>
+<p>A paragraph the manufacturer wrote.</p>
+<a href="/en/document/dst/ab3140-datasheet?r=1" class="document-link" title="Datasheet">Datasheet</a>
+</body></html>"""
+
+
+def test_a_renesas_page_gives_category_status_name_and_sheet():
+    assert read_renesas(REN) == {
+        "page_part": "AB3140", "category": "General-purpose Op Amps", "status": "ACTIVE",
+        "name": "4.5MHz, Operational Amplifier", "url": "https://www.renesas.com/en/document/dst/ab3140-datasheet"}

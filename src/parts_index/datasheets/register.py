@@ -39,7 +39,9 @@ VERSIONED = ("read",)
 FIELDS = ("key", "url", "http", "bytes", "fetch_at", "read_at", "read_v", "skip_reason")
 READ_VERSION = "1"
 KEEP = 60_000
-TABLE = ("part", "source", "maker", "category", "status", "title", "revision", "url", "page", "checked")
+# `title` is the data sheet's own; `name` the title the maker gives the product on its page, where it
+# gives one and the data sheet's is not there to read.
+TABLE = ("part", "source", "maker", "category", "status", "name", "title", "revision", "url", "page", "checked")
 
 META = re.compile(r'<meta\s+name="(description|PartNumber|gpnFamily|status)"\s+content="([^"]*)"', re.S)
 SHEET = re.compile(r'<a\s[^>]*navtitle="data sheet"[^>]*>(.*?)</a\s*>', re.S)
@@ -73,7 +75,39 @@ def read_ti(page: str) -> dict:
     return out
 
 
-READERS = {"ti_products": read_ti}
+REN_CRUMB = re.compile(r'<nav[^>]*breadcrumb[^>]*>(.*?)</nav>', re.S)
+REN_ITEM = re.compile(r"<li[^>]*>(.*?)</li>", re.S)
+REN_STATUS = re.compile(r'class="[^"]*product__label[^"]*">([^<]+)<')
+REN_NAME = re.compile(r'<h2 class="subtitle">(.*?)</h2>', re.S)
+REN_SHEET = re.compile(r'href="(/en/document/dst/[^"?]+)')
+REN_TITLE = re.compile(r"<title>\s*([^<]*?)\s+-\s", re.S)
+
+
+def read_renesas(page: str) -> dict:
+    """The facts a Renesas product page states: category from the breadcrumb, status, the product's title
+    and the data sheet link. The page names the data sheet only "Datasheet", so it has no title here."""
+    t = REN_TITLE.search(page)
+    if not t:
+        return {}
+    out = {"page_part": text(t.group(1))}
+    crumb = REN_CRUMB.search(page)
+    items = [text(i) for i in REN_ITEM.findall(crumb.group(1))] if crumb else []
+    items = [i for i in items if i]
+    if len(items) >= 2:
+        out["category"] = items[-2]
+    st = REN_STATUS.search(page)
+    if st:
+        out["status"] = text(st.group(1)).upper()
+    nm = REN_NAME.search(page)
+    if nm:
+        out["name"] = text(nm.group(1))
+    sh = REN_SHEET.search(page)
+    if sh:
+        out["url"] = "https://www.renesas.com" + sh.group(1)
+    return out
+
+
+READERS = {"ti_products": read_ti, "renesas_products": read_renesas}
 
 
 def wanted(source: str, entry: dict) -> list[str]:
@@ -122,7 +156,7 @@ def run(source: str, entry: dict, limit: int = 0, reread: bool = False) -> dict:
             continue
         if led.done(part, "read", version=READ_VERSION) and not reread:
             continue
-        url = entry["page"].format(part=part)
+        url = entry["page"].format(part=part, lower=part.lower())
         kept = cache / f"{part.replace('/', '_')}.html.gz"
         if led.done(part, "fetch") and kept.exists():
             page = gzip.decompress(kept.read_bytes()).decode("utf-8", "replace")
@@ -137,7 +171,7 @@ def run(source: str, entry: dict, limit: int = 0, reread: bool = False) -> dict:
             if not resp.ok:
                 print(f"  {part}: {resp.why or resp.status} — left for the next run", file=sys.stderr)
                 continue
-            page = resp.text(KEEP)
+            page = resp.text(int(entry.get("keep", KEEP)) or None)
             kept.write_bytes(gzip.compress(page.encode("utf-8")))
             led.stamp(part, "fetch", url=url, http=resp.status, bytes=len(resp.body))
         facts = reader(page)
@@ -145,6 +179,7 @@ def run(source: str, entry: dict, limit: int = 0, reread: bool = False) -> dict:
             table[(part, source)] = {
                 "part": part, "source": source, "maker": entry.get("maker", ""),
                 "category": facts.get("category", ""), "status": facts.get("status", ""),
+                "name": facts.get("name", ""),
                 "title": facts.get("title", ""), "revision": facts.get("revision", ""),
                 "url": facts.get("url", ""), "page": url, "checked": today()}
             counts["read"] += 1
