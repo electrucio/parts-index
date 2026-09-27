@@ -195,3 +195,14 @@ def test_sizes_are_filled_in_afterwards_for_pages_indexed_without_them(world):
     db = sqlite3.connect(config.index_db())
     assert counts["pages"] == 1
     assert db.execute("SELECT w_pt, h_pt FROM pages").fetchone() == (595.2, 841.9)     # A4
+
+
+def test_a_delivered_file_is_published_under_its_public_url_not_its_key():
+    """adi_eval keys a file delivery:CN/CN0183.pdf and the registry gives it analog.com's URL; 72 pages went
+    out under the key. A delivered file with no public URL is not indexed at all."""
+    row = {"key": "delivery:CN/CN0183.pdf", "type": "pdf", "role": "application_note",
+           "url": "https://www.analog.com/media/en/reference-design-documentation/reference-designs/CN0183.pdf"}
+    doc = I.document_row("adi_eval", {"kind": "delivery"}, row, {"pages": "5"}, {})
+    assert doc["public_url"] == row["url"] and doc["doc_key"] == row["key"]      # the key finds its OCR file
+    doc = I.document_row("adi_eval", {"kind": "delivery"}, dict(row, url=""), {"pages": "5"}, {})
+    assert doc["public_url"] == ""

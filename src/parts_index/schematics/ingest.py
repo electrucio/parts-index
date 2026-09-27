@@ -155,10 +155,13 @@ def page_text(page: dict) -> str:
 def document_row(source: str, entry: dict, row: dict, meta: dict, note: dict) -> dict:
     """One ledger row + its map line + what the listing said -> the `documents` row."""
     kind = row.get("type") or "pdf"
-    url = row["key"]
-    title = note.get("title") or titles.clean(None, url)
+    # A delivered file is keyed `delivery:<path>`, which is an identity and not a place; the public URL
+    # the registry gives it is in the ledger's `url`. adi_eval and passlabs_diyaudio published 72 pages
+    # under keys like delivery:CN/CN0183.pdf before this looked there.
+    url = row["key"] if row["key"].startswith(("http://", "https://")) else (row.get("url") or "")
+    title = note.get("title") or titles.clean(None, url or row["key"])
     return dict(
-        source=source, doc_key=url,
+        source=source, doc_key=row["key"],
         role=role_of(row.get("role") or "", kind, entry.get("kind", "site")),
         parent_doc_id=None, title=title,
         # A PDF is its own best link: `{url}#page={n}` opens the sheet. What the listing calls `page` is
@@ -275,6 +278,9 @@ def run(sources: list[str] | None = None, limit: int = 0, dry: bool = False, say
             local = downloads(source) / kind / safe_name(key, kind)
             sizes = sizes_for(pages, local if kind == "pdf" else None, (entry.get("ocr") or {}).get("dpi"))
             doc = document_row(source, entry, row, meta, notes.get(key) or {})
+            if not doc["public_url"]:                   # nowhere to send a reader: not indexed
+                counts["no public link"] += 1
+                continue
             doc["n_pages"] = len(pages) or doc["n_pages"]
             npg += put(db, doc, pages, sizes)
             stamped.append(key)
