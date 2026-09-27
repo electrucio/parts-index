@@ -180,11 +180,23 @@ barton_musical:
   kind: site
   title: Barton Musical Circuits
   home_url: https://www.bartonmusicalcircuits.com/
-  status: proposed
+  status: active
   era: mixed
+  crawl:
+    start:
+    - https://www.bartonmusicalcircuits.com/synthstuff.html
+    allow: '^/[A-Za-z0-9_-]+(/[A-Za-z0-9_-]+)?/index\.html$'
+    figures: false
+    max: 200
   notes: 'Michael Barton sells bare boards and publishes the schematic of each as a PDF — small, single
     purpose analogue modules, mostly still in production parts. robots.txt is served empty, which under
-    RFC 9309 is no restriction at all. Checked 2026-09-25.'
+    RFC 9309 is no restriction at all. Checked 2026-09-25.
+
+    Shape, 2026-09-27: synthstuff.html lists every module, one page each at /<module>/index.html, and
+    each page links its documentation.pdf ("how to build it, including schematics and parts list").
+    The links are written `href=" phaser/index.html"`, with a space inside the quotes, which the
+    crawler resolves; the other images on a page are a photo of the module and a drill guide, so
+    figures are off.'
 books:
   kind: book
   title: Books, linked to their public pages
@@ -311,12 +323,29 @@ elby_designs:
   kind: site
   title: Elby Designs (Panther and Serge-derived modules)
   home_url: https://www.elby-designs.com/
-  status: proposed
+  status: active
   era: mixed
+  crawl:
+    start:
+    - https://www.elby-designs.com/webtek/webtek.htm
+    allow: '^/webtek/.*\.html?$'
+    deny: '(?i)(overlay|3d|/kh-|carrier|panel|drill|warranty|compliance|synths-how_to)[^/]*$'
+    figures: '(?i)(^|/)schem[^/]*$'
+    max: 3000
   notes: 'Laurie Biddulph publishes build documents with schematics for the Panther series and a long
     line of Serge- and CGS-derived modules. Allowed without reservation and easy to list: robots.txt is
-    `User-agent: * / Allow: *` and names a sitemap at https://www.elby-designs.com/sitemap.xml, which is
-    a `sitemap:` block whenever somebody wants to write the `keep` pattern. Checked 2026-09-25.'
+    `User-agent: * / Allow: *` and names a sitemap at https://www.elby-designs.com/sitemap.xml. Checked
+    2026-09-25.
+
+    Shape, 2026-09-27. The sitemap is the shop (ShopFactory, 493 product pages) and names no document;
+    each product links into a separate documentation tree under /webtek/, which is what is walked, from
+    webtek.htm. Two kinds of module in it, published differently. The CGS designs (Ken Stone''s) show
+    the schematic as images named schem_<module>.gif beside photographs of the panel, the board and
+    the wiring, so figures are taken only by that name. The Euro-Serge line publishes no schematic at
+    all - build guides with silk-screen overlays and 3D views - and every module has kit lists as PDF:
+    kc- (component kit, a BOM with the real ICs: CGS01 is two CD4011 and a CD4017), kf- (full kit, the
+    same plus hardware) and kh- (hardware only: knobs and jacks). The kit lists are taken as parts
+    lists; the hardware list, overlays, 3D views, panel carriers and drilling drawings are denied.'
 electronics_illustrated:
   kind: magazine
   title: Electronics Illustrated
@@ -730,8 +759,16 @@ nonlinearcircuits:
   kind: site
   title: Nonlinear Circuits (eurorack modules, schematics published)
   home_url: https://www.nonlinearcircuits.com/
-  status: proposed
+  status: active
   era: mixed
+  crawl:
+    start:
+    - https://www.nonlinearcircuits.com/modules
+    sitemap: https://www.nonlinearcircuits.com/sitemap.xml
+    allow: '^/modules/p/[^/]+$'
+    deny: '(?i)(panel|pnl|template|drill)[^/]*\.pdf$'
+    figures: false
+    max: 400
   notes: 'Andrew Fitch publishes the schematic of every module. Registered proposed rather than crawled
     because nobody has walked it yet, not because of any doubt about permission.
 
@@ -740,7 +777,13 @@ nonlinearcircuits:
     exactly like a refusal. It is not: the names run straight into `User-agent: *` with no rule in
     between, so under RFC 9309 they are one group, and the rules that follow are the ordinary
     Squarespace path exclusions (/search, /api/, /config). Content is allowed. `http.allowed()` reads
-    this correctly as it stands; the eye does not. Checked 2026-09-25.'
+    this correctly as it stands; the eye does not. Checked 2026-09-25.
+
+    Shape, 2026-09-27: the sitemap names 159 module pages at /modules/p/<name>, and each links its PDFs
+    under /s/ (Squarespace''s file store): 312 of them, about half a "build and BOM" document and half
+    a panel template. The build document is the BOM as text and then the schematic, drawn, on the
+    pages after it (FROLIC: two pages of text, eight of drawing), so it is the one taken; the panel
+    templates are drilling drawings and are denied by name. The product photos are not figures.'
 ohwr:
   kind: site
   title: Open Hardware Repository (CERN)
