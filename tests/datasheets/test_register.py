@@ -57,3 +57,15 @@ def test_a_renesas_page_gives_category_status_name_and_sheet():
     assert read_renesas(REN) == {
         "page_part": "AB3140", "category": "General-purpose Op Amps", "status": "ACTIVE",
         "name": "4.5MHz, Operational Amplifier", "url": "https://www.renesas.com/en/document/dst/ab3140-datasheet"}
+
+
+def test_a_sheet_covers_its_series_and_not_what_it_mentions():
+    from parts_index.datasheets.harvest import covered
+    parts = {"BC546", "BC547", "BC547B", "BC548", "BC556", "S12", "LED1"}
+    first = ("BC546B, BC547A, B, C, BC548B, C Amplifier Transistors NPN Silicon\n"
+             "BC547 BC547B BC548 BC546\nComplementary PNP type: BC556\n")
+    rest = "Ordering: BC547BZL1G BC548 BC547B\nS12 S12 S12 LED1 LED1 LED1 BC556"
+    got = covered([first, rest], parts, "BC546")
+    assert {"BC546", "BC547", "BC547B", "BC548"} <= set(got)
+    assert "BC556" not in got                        # the complement is named, not covered
+    assert "S12" not in got and "LED1" not in got    # a parameter and a pin are not parts

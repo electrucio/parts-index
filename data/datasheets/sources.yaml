@@ -27,3 +27,28 @@ renesas_products:
     one page every three seconds. The product page gives the breadcrumb (its last step is the category),
     a status label, the product''s title and the data sheet link — named only "Datasheet", so the data
     sheet has no title of its own here and the product''s title is kept as the name.'
+onsemi_docs:
+  kind: document sitemap
+  maker: onsemi
+  sitemaps:
+    - https://www.onsemi.com/sitemap_com_documents_1.xml
+    - https://www.onsemi.com/sitemap_com_documents_2.xml
+    - https://www.onsemi.com/sitemap_com_documents_3.xml
+    - https://www.onsemi.com/sitemap_com_documents_4.xml
+  keep: '/download/data-sheet/pdf/'
+  strip: '-d$'                   # bc546-d.pdf is the sheet whose first part is BC546
+  status: active
+  delay: 10                      # robots.txt: Crawl-delay 10
+  notes: 'The document sitemaps list 6,449 data sheets (and application notes, which are not read here).
+    robots.txt allows /download/ and asks for ten seconds between requests. A sheet''s file name is its
+    first part; the sheet says which others it covers.'
+nxp_docs:
+  kind: document sitemap
+  maker: nxp
+  sitemaps:
+    - https://www.nxp.com/sitemaps/sitemap_en_collateral.xml.gz
+  keep: '/docs/en/data-sheet/'
+  status: active
+  delay: 3
+  notes: 'The collateral sitemap lists 4,707 data sheets under /docs/en/data-sheet/, named after their
+    first part. robots.txt allows them and names no delay; read at the default three seconds.'

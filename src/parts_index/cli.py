@@ -158,6 +158,12 @@ def main(argv: list[str] | None = None) -> int:
     dsl = dsh.add_parser("links", help="every data sheet an archive lists for each part, from its cached index")
     dsl.add_argument("--source", action="append", help="only these sources (repeatable)")
 
+    dsv = dsh.add_parser("harvest", help="read the data sheets a maker's sitemap lists, to learn what each covers")
+    dsv.add_argument("--source", action="append", help="only these sources (repeatable)")
+    dsv.add_argument("--limit", type=int, default=0, help="at most this many sheets fetched, per source")
+    dsv.add_argument("--list-only", action="store_true", help="read the sitemaps and say how many would be fetched")
+    dsv.add_argument("--reread", action="store_true", help="read the kept text again with today's reader")
+
     ds = sub.add_parser("datasets", help="the distilled research datasets").add_subparsers(
         dest="ds_cmd", required=True)
     dr = ds.add_parser("repos", help="read how much attention each open-source project has")
@@ -358,6 +364,13 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "datasheets" and args.dsh_cmd == "links":
         from parts_index.datasheets import links
         return links.main([x for pair in (("--source", s) for s in args.source or []) for x in pair])
+
+    if args.cmd == "datasheets" and args.dsh_cmd == "harvest":
+        from parts_index.datasheets import harvest
+        argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
+        argv2 += ["--limit", str(args.limit)] if args.limit else []
+        argv2 += ["--list-only"] if args.list_only else []
+        return harvest.main(argv2 + (["--reread"] if args.reread else []))
 
     if args.cmd == "datasets" and args.ds_cmd == "repos":
         from parts_index.datasets import repos as ds_repos

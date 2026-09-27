@@ -171,6 +171,16 @@ def datasheet_links(source: str) -> Path:
     return PUBLIC_DATA / "datasheets" / "links" / f"{source}.csv"
 
 
+def datasheet_documents(source: str) -> Path:
+    """The data sheets a manufacturer publishes that were read: title, revision, pages, checksum."""
+    return PUBLIC_DATA / "datasheets" / "documents" / f"{source}.csv"
+
+
+def datasheet_covers(source: str) -> Path:
+    """Which known parts each of those sheets documents, and whether that was seen on its first page."""
+    return PUBLIC_DATA / "datasheets" / "covers" / f"{source}.csv"
+
+
 def datasheets_registry() -> Path:
     """The manufacturer catalogues the data-sheet register reads, and at what pace."""
     return PUBLIC_DATA / "datasheets" / "sources.yaml"
@@ -331,6 +341,12 @@ def datasheets_cache(source: str) -> Path:
     """The head of each catalogue page the register read, compressed: third-party content, so it stays
     here, and a parser fix costs a re-read rather than another visit."""
     return material_root() / "datasheets_cache" / source
+
+
+def datasheets_text(source: str) -> Path:
+    """The text of every data sheet the harvest read, page by page, compressed: the manufacturer's, so it
+    stays here, and a better reader costs no second download."""
+    return material_root() / "datasheets_text" / source
 
 
 def census_cache(source: str) -> Path:
@@ -500,6 +516,8 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("datasheets_table", "public", ()),
     ("datasheets_registry", "public", ()),
     ("datasheet_links", "public", ("frank_pocnet",)),
+    ("datasheet_documents", "public", ("onsemi_docs",)),
+    ("datasheet_covers", "public", ("onsemi_docs",)),
     ("datasheets_state", "public", ("ti_products",)),
     ("verification", "public", ("bjt", "2N3904")),
     ("known_parts", "public", ()),
@@ -532,6 +550,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("summarise_preview", "private", ()),
     ("census_cache", "private", ("frank_pocnet",)),
     ("datasheets_cache", "private", ("ti_products",)),
+    ("datasheets_text", "private", ("onsemi_docs",)),
     ("index_db", "private", ()),
     ("page_sizes", "private", ()),
     ("downloads", "private", ("esp",)),

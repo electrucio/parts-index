@@ -270,6 +270,8 @@ const VIA: Record<string, string> = {
   renesas_products: "Renesas' product page",
   ti_datasheets: "TI's data sheet index",
   frank_pocnet: "Frank Philipse's tube archive",
+  onsemi_docs: "onsemi's data sheet list, read",
+  nxp_docs: "NXP's data sheet list, read",
 }
 
 function fileName(url: string): string {

@@ -11,7 +11,7 @@ WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
 
 .DEFAULT_GOAL := help
-.PHONY: datasheets-register datasheets-links web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
+.PHONY: datasheets-register datasheets-links datasheets-harvest web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -100,6 +100,9 @@ datasheets-register:  ## (maintainer) what each maker's catalogue says about the
 
 datasheets-links:  ## (maintainer) every data sheet an archive lists for each part, from its cached index; [SOURCE=frank_pocnet]
 	uv run pidx datasheets links $(foreach s,$(SOURCE),--source $(s))
+
+datasheets-harvest:  ## (maintainer) read the data sheets a maker's sitemap lists, to learn which parts each covers; [SOURCE=onsemi_docs] [LIMIT=N] [LIST=1]
+	uv run --extra ocr pidx datasheets harvest $(foreach s,$(SOURCE),--source $(s)) $(if $(LIMIT),--limit $(LIMIT)) $(if $(LIST),--list-only)
 
 toragi-report:  ## (maintainer) トランジスタ技術: coverage by year and by issue, from the lists and ledgers
 	$(RUN) pidx schematics toragi

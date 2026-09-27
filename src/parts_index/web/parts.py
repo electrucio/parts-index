@@ -40,6 +40,8 @@ import yaml
 from parts_index.core.config import (
     census_registry,
     dataset_table,
+    datasheet_covers,
+    datasheet_documents,
     datasheet_links,
     datasheets_table,
     known_parts,
@@ -223,6 +225,7 @@ def index() -> dict:
     idx["listed_by"], idx["listings"] = census_listings()
     idx["catalogued"] = catalogued()
     idx["sheets"] = archive_sheets()
+    idx["harvested"] = harvested_sheets()
     idx["first"] = first_seen(idx)
     return idx
 
@@ -278,6 +281,22 @@ def archive_sheets() -> dict[str, list[list[str]]]:
     return out
 
 
+def harvested_sheets() -> dict[str, list[list[str]]]:
+    """The makers' own sheets the harvest read, by every part each was found to cover."""
+    out: dict[str, list[list[str]]] = defaultdict(list)
+    d = datasheet_covers("x").parent
+    for f in sorted(d.glob("*.csv")) if d.is_dir() else ():
+        docs = {r["url"]: r for r in rows(datasheet_documents(f.stem))}
+        for r in rows(f):
+            doc = docs.get(r["url"], {})
+            title = doc.get("title", "")
+            if title and doc.get("revision"):
+                title += f", revision {doc['revision']}"
+            seen = "named on its first page" if r["seen"] == "first page" else "in its tables"
+            out[r["part"]].append([r["url"], doc.get("maker", ""), "", title, f.stem, seen])
+    return out
+
+
 def datasheets(part: str, idx: dict, recipe: dict | None) -> list[list[str]]:
     """Every data sheet known for a part, one row per link: link, maker id, maker as written, title,
     where it came from, a note.
@@ -304,6 +323,8 @@ def datasheets(part: str, idx: dict, recipe: dict | None) -> list[list[str]]:
     for src, url in idx.get("listed_by", {}).get(part, []):
         if url.lower().split("?")[0].endswith(".pdf") or "/lit/gpn/" in url:
             add(url, idx.get("listings", {}).get(src, {}).get("maker", ""), "", "", src)
+    for row in idx.get("harvested", {}).get(part, []):
+        add(*row)
     for row in idx.get("sheets", {}).get(part, []):
         add(*row)
     return out
