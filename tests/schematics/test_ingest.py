@@ -206,3 +206,12 @@ def test_a_delivered_file_is_published_under_its_public_url_not_its_key():
     assert doc["public_url"] == row["url"] and doc["doc_key"] == row["key"]      # the key finds its OCR file
     doc = I.document_row("adi_eval", {"kind": "delivery"}, dict(row, url=""), {"pages": "5"}, {})
     assert doc["public_url"] == ""
+
+
+def test_a_pdf_inside_an_archive_is_linked_as_the_archive_without_a_page():
+    row = {"key": "delivery:x/TR0712US.zip!TR0712US/p.pdf", "type": "pdf", "role": "schematic",
+           "url": "https://toragi.cqpub.co.jp/Portals/0/download/2007/TR0712US.zip"}
+    doc = I.document_row("toragi_zips", {"kind": "delivery"}, row, {"pages": "3"}, {})
+    assert doc["public_url"].endswith(".zip") and doc["page_url_tpl"] is None
+    row = {"key": "https://e.example/a.pdf", "type": "pdf", "role": "schematic"}
+    assert I.document_row("s", {}, row, {"pages": "3"}, {})["page_url_tpl"] == "{url}#page={n}"

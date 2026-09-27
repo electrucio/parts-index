@@ -30,6 +30,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import re
 import sqlite3
 import sys
 import time
@@ -52,6 +53,7 @@ from parts_index.schematics import cad, titles
 from parts_index.schematics.download import safe_name
 
 VERSION = "ingest-1"
+ARCHIVE = re.compile(r"(?i)\.(zip|rar|7z|lzh|lha|tar|gz|tgz)$")   # a link to an archive has no page to open
 PDF_PAGES_MAX = 200
 
 # The database, for a clone that has none yet. Copied from the one this project has been building since
@@ -170,7 +172,9 @@ def document_row(source: str, entry: dict, row: dict, meta: dict, note: dict) ->
         # file was found on — audiocircuit's brand page, toragi's download index — and 20,416 uses
         # pointed at "audiocircuit.dk/akai/#page=12" before this said so.
         public_url=(note.get("page") or url) if kind in cad.KINDS else url,
-        page_url_tpl="{url}#page={n}" if kind == "pdf" else None,
+        # A page number means something only on a link that opens the PDF itself: a file inside
+        # toragi's ZIPs is linked as the ZIP, where #page=12 would be noise.
+        page_url_tpl="{url}#page={n}" if kind == "pdf" and not ARCHIVE.search(url.split("?")[0]) else None,
         sha256=row.get("sha256") or None, year=None, month=None,
         n_pages=int(meta.get("pages") or 0) or None,
         text_method=meta.get("text_method") or None,
@@ -238,7 +242,7 @@ def run(sources: list[str] | None = None, limit: int = 0, dry: bool = False, say
     known = _map_rows()
     db = open_db()
     have = {(s, k) for s, k in db.execute("SELECT source, doc_key FROM documents")}
-    counts = {"documents": 0, "pages": 0, "skipped": 0, "no file": 0}
+    counts = {"documents": 0, "pages": 0, "skipped": 0, "no file": 0, "no public link": 0}
     for source in sources or sorted({s for s, _ in known}):
         entry = reg.get(source)
         if not entry:
