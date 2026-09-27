@@ -13,6 +13,7 @@ ti_products:
   page: 'https://www.ti.com/product/{part}'
   status: active
   delay: 1.5
+  keep: 250_000                 # the data sheet link sits 60-100 KB into a long page (ATL431: 61.5 KB)
   notes: 'robots.txt allows /product/ with Crawl-delay 1; read on 2026-09-27 at one page every 1.5 s.
     A product page carries its category, status and part number in meta tags and the data sheet as a
     link whose text is its title and revision. A part TI no longer has a page for answers 404 and is

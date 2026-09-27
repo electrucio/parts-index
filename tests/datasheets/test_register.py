@@ -1,5 +1,5 @@
 """Reading a manufacturer's product page: the facts, and nothing it wrote in its own words."""
-from parts_index.datasheets.register import read_renesas, read_ti
+from parts_index.datasheets.register import cut_short, read_renesas, read_ti
 
 # Shaped like a TI product page, written for this test: meta tags in the head, the data sheet as a link
 # whose text is its title and revision.
@@ -78,3 +78,11 @@ def test_a_makers_sentence_is_not_taken_for_a_sheets_title():
                     "TDA8920B") == ""
     assert title_of([page], {"title": "TDA8920B 2 x 100 W class-D power amplifier"}, "TDA8920B") \
         == "TDA8920B 2 x 100 W class-D power amplifier"
+
+
+def test_a_page_kept_short_of_todays_limit_is_fetched_again():
+    # ATL431: TI served 352 KB, 60 KB were kept, and the data sheet link sits at 61.5 KB.
+    assert cut_short("x" * 60_000, {"bytes": "352231"}, 250_000)
+    assert not cut_short("x" * 60_000, {"bytes": "352231"}, 60_000)  # the limit has not moved
+    assert not cut_short("x" * 90_000, {"bytes": "90000"}, 250_000)  # the whole page was kept
+    assert not cut_short("x" * 60_000, None, None) and cut_short("x" * 60_000, {"bytes": "70000"}, None)

@@ -37,7 +37,7 @@ from parts_index.core.ledger import Ledger, today
 STAGES = ("fetch", "read")
 VERSIONED = ("read",)
 FIELDS = ("key", "url", "http", "bytes", "fetch_at", "read_at", "read_v", "skip_reason")
-READ_VERSION = "1"
+READ_VERSION = "2"  # 2: pages cut before the data sheet link are fetched again
 KEEP = 60_000
 # `title` is the data sheet's own; `name` the title the maker gives the product on its page, where it
 # gives one and the data sheet's is not there to read.
@@ -140,6 +140,13 @@ def save_table(rows: dict[tuple[str, str], dict]) -> None:
     tmp.replace(p)
 
 
+def cut_short(page: str, row: dict | None, keep: int | None) -> bool:
+    """Whether the copy kept holds less of the page than today's limit would: the server sent more
+    than was kept, and the limit has since been raised past it."""
+    served = int((row or {}).get("bytes") or 0)
+    return len(page) < served and (keep is None or len(page) < keep)
+
+
 def run(source: str, entry: dict, limit: int = 0, reread: bool = False) -> dict:
     led = Ledger(datasheets_state(source), stages=STAGES, fields=FIELDS, versioned=VERSIONED)
     table = load_table()
@@ -158,10 +165,14 @@ def run(source: str, entry: dict, limit: int = 0, reread: bool = False) -> dict:
             continue
         url = entry["page"].format(part=part, lower=part.lower())
         kept = cache / f"{part.replace('/', '_')}.html.gz"
+        keep = int(entry.get("keep", KEEP)) or None
+        page = ""
         if led.done(part, "fetch") and kept.exists():
             page = gzip.decompress(kept.read_bytes()).decode("utf-8", "replace")
             counts["cached"] += 1
-        else:
+            if cut_short(page, r, keep) and not (reader(page) or {}).get("url"):
+                page = ""  # the copy kept stops before the data sheet link, and today more is kept
+        if not page:
             counts["asked"] += 1
             resp = http.get(url, delay=delay, max_bytes=2 << 20)
             if resp.status == 404:
@@ -171,7 +182,7 @@ def run(source: str, entry: dict, limit: int = 0, reread: bool = False) -> dict:
             if not resp.ok:
                 print(f"  {part}: {resp.why or resp.status} — left for the next run", file=sys.stderr)
                 continue
-            page = resp.text(int(entry.get("keep", KEEP)) or None)
+            page = resp.text(keep)
             kept.write_bytes(gzip.compress(page.encode("utf-8")))
             led.stamp(part, "fetch", url=url, http=resp.status, bytes=len(resp.body))
         facts = reader(page)
