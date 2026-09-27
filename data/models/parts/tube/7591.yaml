@@ -164,7 +164,37 @@ models:
     not_measurable: 0
     typical_rows: 19
   symbol: 7591_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from inline comment'
+  note: pins from inline comment
+  copies:
+  - source: kicad-spice-library
+    name: 7591DB
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: ltwiki
+    name: 7591DB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: ltwiki
+    name: 7591DB
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
+      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
+  - source: ltwiki
+    name: 7591DB
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Valves.Lib
+      sha256: cf7b995102b452efb5b8e7b07168a3a7df1931ca1db84b3aa54433452ab11dfd
+  - source: ltwiki
+    name: 7591DB
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
+      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
 - source: bordodynov
   name: 7591Pent
   def: subckt
@@ -195,7 +225,36 @@ models:
     not_measurable: 19
     typical_rows: 0
   symbol: 7591_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: 7591Pent
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: ltwiki
+    name: 7591Pent
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: ltwiki
+    name: 7591Pent
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
+      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
+  - source: ltwiki
+    name: 7591Pent
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Valves.Lib
+      sha256: cf7b995102b452efb5b8e7b07168a3a7df1931ca1db84b3aa54433452ab11dfd
+  - source: ltwiki
+    name: 7591Pent
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
+      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
 - source: bordodynov
   name: 7591A
   def: subckt
@@ -231,7 +290,14 @@ models:
     not_measurable: 0
     typical_rows: 19
   symbol: 7591_bordodynov-3.asy
-  note: 'same code also in: ltwiki; pins from inline comment'
+  note: pins from inline comment
+  copies:
+  - source: ltwiki
+    name: 7591A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Koren_Tubes.lib
+      sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
 - source: ltwiki
   name: 7591T
   def: subckt
@@ -258,6 +324,13 @@ models:
     typical_rows: 19
   symbol: 7591_ltwiki.asy
   note: pins from names
+  copies:
+  - source: bordodynov
+    name: 7591T
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Triode_Ayumi.lib
+      sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
 - source: ltwiki
   name: '7591'
   def: subckt
@@ -285,6 +358,13 @@ models:
     typical_rows: 19
   symbol: 7591_ltwiki-2.asy
   note: pins from names
+  copies:
+  - source: bordodynov
+    name: '7591'
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Pentode_Ayumi.lib
+      sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
 - source: robrobinette
   name: 7591A
   def: subckt
@@ -323,6 +403,13 @@ models:
     typical_rows: 19
   symbol: 7591_robrobinette.asy
   note: pins from inline comment
+  copies:
+  - source: robrobinette
+    name: 7591A
+    get:
+      url: https://robrobinette.com/images/Guitar/Spice_Analysis/Bassman_LTSpice.zip
+      member: Koren_Tubes.INC
+      sha256: 9e27abd35e5f4c28d8e5197292a14af264bfe4d2d8a2747b8bddccb7c1a3a949
 datasheet:
   url: https://frank.pocnet.net/sheets/168/7/7591.pdf
   maker: Sylvania

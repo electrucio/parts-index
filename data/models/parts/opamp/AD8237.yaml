@@ -24,4 +24,20 @@ models:
     lines:
       AD8237: [47, 174]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: adi
+    name: AD8237
+    get:
+      url: https://www.analog.com/media/en/simulation-models/spice-models/AD8237.cir?modelType=spice-models
+      sha256: a92101fea74e6631597926ddb22d5458c4b7278498e7a4f12eee89017f640b5a
+  - source: kicad-spice-library
+    name: AD8237
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/AD8237.cir
+      sha256: f3d85b1eb460a1dfeed5df2e5c1029153154485901bc8ac60362a90ab30e410d
+  - source: ltwiki
+    name: AD8237
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/AD8237.cir
+      sha256: f3d85b1eb460a1dfeed5df2e5c1029153154485901bc8ac60362a90ab30e410d

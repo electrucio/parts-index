@@ -27,7 +27,39 @@ models:
       COMP1016: [1410, 1516]
       LT1016: [1404, 1406]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library; pins from DIP-8 pin numbers (single op-amp pin-out)'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+  copies:
+  - source: spice-model-cd
+    name: LT1016
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/LTC37.lib
+      sha256: d067d03736b9b3410257d9d18783c6af42ad7b1ed4a7c3217e0e4744cebe97e6
+  - source: kicad-spice-library
+    name: LT1016
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Ltc_Old_Big.lib
+      sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+  - source: kicad-spice-library
+    name: LT1016
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/LTC_ampliop.lib
+      sha256: 140c4a222da3dfce63a2a5af619a118436c566ab1db5ac47c8fc5dfcec8f7a68
+  - source: kicad-spice-library
+    name: LT1016
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Linear%20Technology%20Corporation/LinearTech.lib
+      sha256: d08734cb6f0f2b03fe160350f7a07747c6e026f53ca9e3a0b281b9fbd2e23306
+  - source: kicad-spice-library
+    name: LT1016_LT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/linear.lib
+      sha256: 025903d9677acbc507e2eaa578ba581d9e52f17c10dbf286da658f1af22dd5ba
+  - source: microcap12
+    name: LT1016_LT
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: linear.lib
+      sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
 - source: ltwiki
   name: LT1016
   def: subckt
@@ -51,6 +83,13 @@ models:
       LT1016: [633, 635]
     fetched: '2026-09-14'
   note: pins from DIP-8 pin numbers (single op-amp pin-out)
+  copies:
+  - source: ltwiki
+    name: LT1016
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Symbol Types For Subcircuits/ltcx_test1.lib
+      sha256: 5ca7b948e6a0217e51b78d49213e5d5720bf26d849d52a60584fedd5e133c1ce
 - source: kicad-spice-library
   name: LT1016_TI
   def: subckt
@@ -71,6 +110,13 @@ models:
       LT1016_TI: [1017, 1041]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: LT1016_TI
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
 - source: kicad-spice-library
   name: LT1016_LT
   def: subckt

@@ -21,4 +21,44 @@ models:
     lines:
       AD8691: [1501, 1576]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: adi
+    name: AD8691
+    get:
+      url: https://www.analog.com/media/en/simulation-models/spice-models/AD8691.cir?modelType=spice-models
+      sha256: 2559c8af30107cf11781137524437ad2eba60fc74e3fd36eb02b8a98973edc55
+  - source: kicad-spice-library
+    name: AD8691
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: AD8691
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: AD8691
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+- source: microcap12
+  name: AD8691
+  def: subckt
+  type: SUBCKT
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: analog.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+    lines:
+      AD8691: [85679, 85756]
+      dx: [77076, 77076]
+    fetched: '2026-09-20'

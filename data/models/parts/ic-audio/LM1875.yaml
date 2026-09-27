@@ -87,7 +87,64 @@ models:
     not_measurable: 1
     typical_rows: 0
   symbol: LM1875_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: LM1875
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/LM1875.lib
+      sha256: 91d4e379311a8bf4f27d6a300b054c67489149fdca7643fe29b95c885be3fbf4
+  - source: ltwiki
+    name: LM1875
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LM1875.lib
+      sha256: 91d4e379311a8bf4f27d6a300b054c67489149fdca7643fe29b95c885be3fbf4
+  - source: ltwiki
+    name: LM1875
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/NS/LM1875.lib
+      sha256: 38b0543489ef550b2bb2a8dcfc7ac1ac28cfc41d081301b36ea1cd5df41c9fe7
+- source: ti
+  name: LM1875
+  def: subckt
+  type: SUBCKT
+  deps:
+  - PSRR_0
+  - OUT_CURRENT_CLAMP_PD_0
+  - GBW_SLEW_SE_0
+  - VCLAMP_W_SENSE_0
+  - IQ_IOFF_0
+  - AMETER_0
+  - VNSE_0
+  - TF_0
+  - IDEAL_DIODE_0
+  - CMRR_0
+  - GND_FLOAT_0
+  - INPUT_0
+  - VCLAMP_0
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNAM067
+    member: LM1875.lib
+    archive_sha256: 2241b9a0fc154bbf0119fc1e1a915c46551268ced2e9c8d05f7726062ca10f42
+    sha256: 062f6787e2553985920fc3725eb322c7c34d7f6aa68afeed0bc7c72cfcfa0bc9
+    lines:
+      AMETER_0: [273, 277]
+      CMRR_0: [316, 325]
+      GBW_SLEW_SE_0: [149, 163]
+      GND_FLOAT_0: [261, 263]
+      IDEAL_DIODE_0: [248, 252]
+      INPUT_0: [335, 341]
+      IQ_IOFF_0: [235, 238]
+      LM1875: [34, 74]
+      OUT_CURRENT_CLAMP_PD_0: [174, 178]
+      PSRR_0: [84, 94]
+      TF_0: [181, 224]
+      VCLAMP_0: [304, 306]
+      VCLAMP_W_SENSE_0: [287, 294]
+      VNSE_0: [98, 136]
+    fetched: '2026-09-14'
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/lm1875.pdf
   maker: Texas Instruments (National Semiconductor)

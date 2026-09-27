@@ -16,7 +16,98 @@ models:
     lines:
       MBRS340: [185, 185]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: bordodynov
+    name: MBRS340
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Standard/standard.dio
+      sha256: f2458802fa6c40912b3a09421d9e56386828f30ecee452b9c5688d586fc79571
+  - source: bordodynov
+    name: MBRS340
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Original/standard.dio.bak
+      sha256: d642ab3308ad8af4b0a1cb884dade229d936190ce5706a8c6233c3d57984a067
+  - source: bordodynov
+    name: MBRS340
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Original/standard.dio
+      sha256: d642ab3308ad8af4b0a1cb884dade229d936190ce5706a8c6233c3d57984a067
+  - source: kicad-spice-library
+    name: MBRS340
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.dio
+      sha256: 85043335b56cc10779c03bcd2c237472827cf28c004628c9ddacb6fb3d8705c7
+  - source: kicad-spice-library
+    name: MBRS340
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Original_IV/standard.dio
+      sha256: 4e0554bdaf142e7e9ba803406136235d5a40a3524f8dc902855578244b8fb05e
+  - source: kicad-spice-library
+    name: MBRS340
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Standard/standard.dio
+      sha256: f2458802fa6c40912b3a09421d9e56386828f30ecee452b9c5688d586fc79571
+  - source: kicad-spice-library
+    name: MBRS340
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Original/standard.dio
+      sha256: 273feb7f49f8eadc7ccba882f5dc69157a3eac38c27ae6400087936ab87aba13
+  - source: kicad-spice-library
+    name: MBRS340
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Diode/DIODE2.lib
+      sha256: 30ed855dc84e2de25e560deac3c77134cb73d072e10199aa8de3d2a7155af902
+  - source: ltwiki
+    name: MBRS340
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: MBRS340
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Standard/standard.dio
+      sha256: f2458802fa6c40912b3a09421d9e56386828f30ecee452b9c5688d586fc79571
+  - source: ltwiki
+    name: MBRS340
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Original/standard.dio.bak
+      sha256: d642ab3308ad8af4b0a1cb884dade229d936190ce5706a8c6233c3d57984a067
+  - source: ltwiki
+    name: MBRS340
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Original/standard.dio
+      sha256: d642ab3308ad8af4b0a1cb884dade229d936190ce5706a8c6233c3d57984a067
+  - source: ltwiki
+    name: MBRS340
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: MBRS340
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.dio
+      sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+  - source: ltwiki
+    name: MBRS340
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/cmp/standard.dio
+      sha256: c37cd3feda2bf48e371d1b329a4f08dcedf3e90acb6a8b98ec28a8063b633c21
+  - source: ltwiki
+    name: MBRS340
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/cmp/Original_IV/standard.dio
+      sha256: 4e0554bdaf142e7e9ba803406136235d5a40a3524f8dc902855578244b8fb05e
 - source: ltwiki
   name: MBRS340
   def: model
@@ -30,4 +121,111 @@ models:
     lines:
       MBRS340: [47, 47]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: kicad-spice-library
+    name: MBRS340
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard3.dio
+      sha256: 13cb55bb7184e06a29b64a8d1991371f8414622ef1213c5b7bcb01e358ed71ee
+- source: onsemi
+  name: Dmbrs340
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mbrs340t3.lib
+    sha256: f57f3050e0af53911379345f39a1a760a0e4dce3922b903b8abed363eacb9f1b
+    lines:
+      Dmbrs340: [14, 18]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: Dmbrs340
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: ti
+  name: DMBRS340T3
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNVMAW9
+    member: LM3478_PSPICE_TRANS/LM3478_TRANS.lib
+    archive_sha256: 59249c6e5ea478737e269148f1a6f7e903c8744b327135b0cbadd16701ef542e
+    sha256: 4071ab9c75ff6a4702d2219f996d929683fde2d5d0c077105f10189707605b27
+    lines:
+      DMBRS340T3: [235, 239]
+    fetched: '2026-09-19'
+  copies:
+  - source: kicad-spice-library
+    name: mbrs340t3
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_rect.lib
+      sha256: 4280e2f5339d54da1e9eda2a615c5b783b50e01b2cacde8c6bbc21649adfa347
+  - source: ltwiki
+    name: mbrs340t3
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Smps/HalfVm/Power456.lib
+      sha256: 9f06df533ae2edb2c14beb1b88977c99a92ad826c248ffb93ab84c151d37ac36
+  - source: ltwiki
+    name: mbrs340t3
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Basso/BassoBook20100103/application.lib
+      sha256: 5d29041032ba900f2d5cf36b92bfc8f65ba9f0fef305040427717fbfc1135ea3
+  - source: ltwiki
+    name: mbrs340t3
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Basso/BassoBook20100103/New2/power456_ltspice.lib
+      sha256: 15f9ae5d23db290aa090a57998a19f39afcefea1d73a495de7f93339ef492fc1
+  - source: ltwiki
+    name: mbrs340t3
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Smps/HalfVm/Power456.lib
+      sha256: 9f06df533ae2edb2c14beb1b88977c99a92ad826c248ffb93ab84c151d37ac36
+  - source: ltwiki
+    name: mbrs340t3
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/Basso/BassoBook20100103/application.lib
+      sha256: 5d29041032ba900f2d5cf36b92bfc8f65ba9f0fef305040427717fbfc1135ea3
+  - source: ltwiki
+    name: mbrs340t3
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/Basso/BassoBook20100103/New2/power456_ltspice.lib
+      sha256: 15f9ae5d23db290aa090a57998a19f39afcefea1d73a495de7f93339ef492fc1
+  - source: microcap12
+    name: MBRS340T3
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: S_FLYBACK_CM.cir
+      sha256: 3eade7b819dd682851d0473565f1a20bb85b1e73ea9835fc62475e7b1c30108a
+  - source: microcap12
+    name: MBRS340T3
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: S_FLYBACK_VM.cir
+      sha256: c43a2f0c8df833a96a91a64f1a96ac8e1676cef82746528f6a2cf0cbc611b46b
+  - source: microcap12
+    name: mbrs340t3
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: m_rect.lib
+      sha256: 307f442b92fbc7c5f238c9f560a6fe2c9882ed67e4ac1baf8487fd962fc59558
+  - source: spice-model-cd
+    name: mbrs340t3
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Motorola/Spice/Rectifier/Schottky/mbrs340t3.lib
+      sha256: 9408ecd16e04c3e6daaab2ad64d9f6c31b33b44c56b2c9f647d04230dfa0d02e
+  - source: ti
+    name: DMBRS340T3
+    get:
+      url: https://www.ti.com/lit/zip/SNVMAW8
+      member: LM3478_PSPICE_TRANS/LM3478_TRANS.lib
+      sha256: 4071ab9c75ff6a4702d2219f996d929683fde2d5d0c077105f10189707605b27

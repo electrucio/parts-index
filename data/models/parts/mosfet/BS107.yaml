@@ -31,6 +31,17 @@ models:
     typical_rows: 3
   symbol: BS107_diodes-inc.asy
   note: pins from default order (unverified)
+  copies:
+  - source: diodes-inc
+    name: BS107P
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8375/collection.spice.txt
+      sha256: 5b45aa3bc2280be6971e3863ce34ff70b2b18015fb62d526160d78441a4a227d
+  - source: diodes-inc
+    name: BS107P
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+      sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
 - source: bordodynov
   name: BS107KL
   def: model
@@ -51,7 +62,24 @@ models:
     fail: 0
     not_measurable: 1
     typical_rows: 3
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: BS107KL
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: BS107KL
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: BS107KL
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: ltwiki
   name: BS107KL
   def: model
@@ -72,7 +100,28 @@ models:
     fail: 0
     not_measurable: 1
     typical_rows: 3
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: ltwiki
+    name: BS107KL
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: kicad-spice-library
+    name: BS107KL
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: kicad-spice-library
+    name: BS107KL
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/MOS.lib
+      sha256: 5a12451d9b52820cc74b1f3c11955dcfbc99cc0ede851dd12587ebbbc9e9531e
+  - source: ltwiki
+    name: BS107KL
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.mos
+      sha256: 0f6a0a30f327903e5b61c3764e08354839fed85c6ce2d4a8b3d708d6c2ec9533
 - source: ltwiki
   name: BS107A/PLP
   def: subckt
@@ -99,6 +148,24 @@ models:
     typical_rows: 3
   symbol: BS107_ltwiki-2.asy
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: BS107A_PH
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_mos.lib
+      sha256: d27a8c869acadbdfd055eba6519c0c67fbcfdf5fd4550c2f8b4fb6ae44b6739a
+  - source: kicad-spice-library
+    name: BS107A_PH
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_mos.lib
+      sha256: 795bf5362d9c9ce1e5b504e78b48671614a7585f75d3533c2585557571d04168
+  - source: ltwiki
+    name: BS107A/PLP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/FET/phil_fet.lib
+      sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
 - source: kicad-spice-library
   name: BS107A_PH
   def: subckt
@@ -143,6 +210,31 @@ models:
     fail: 1
     not_measurable: 1
     typical_rows: 3
+- source: microcap12
+  name: bs107
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: on_fet.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 9b68f867d49f3f5c7f8313d34e42073e408ccb5020d4cdec8e0168d84275f49d
+    lines:
+      bs107: [5088, 5147]
+    fetched: '2026-09-20'
+- source: kicad-spice-library
+  name: BS107A
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/MOSFET.LIB
+    sha256: 1751c109a541fbf073d7f75840dc63faa70953cc4a96930ee53180e215c4a2a0
+    lines:
+      BS107A: [179, 181]
+    fetched: '2026-09-14'
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/bs107-d.pdf
   maker: onsemi

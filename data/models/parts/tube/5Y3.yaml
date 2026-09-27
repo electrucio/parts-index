@@ -57,7 +57,49 @@ models:
       5Y3GT: [28, 30]
     fetched: '2026-09-14'
     note: subckt 5Y3GT (A K)
-  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: bordodynov
+    name: 5Y3GT
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: duncanamps
+    name: 5Y3GT
+    get:
+      url: https://www.duncanamps.com/spice.html
+      member: 5Y3GT.INC
+      sha256: 28f69bc68a22ffcd6c3c667f09cce039fee5f8f42c2a265a0d2374b31630a621
+  - source: kicad-spice-library
+    name: 5Y3GT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: ltwiki
+    name: 5Y3GT
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: ltwiki
+    name: 5Y3GT
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
+      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
+  - source: ltwiki
+    name: 5Y3GT
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Valves.Lib
+      sha256: cf7b995102b452efb5b8e7b07168a3a7df1931ca1db84b3aa54433452ab11dfd
+  - source: ltwiki
+    name: 5Y3GT
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
+      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
 - source: suusi-tubes
   name: 5Y3GT
   def: subckt
@@ -77,7 +119,20 @@ models:
       DULEREC: [2089, 2092]
     fetched: '2026-09-14'
     note: Suusi Malcolm-Brown extended Koren library, 285 subckts, 20-Apr-2014 (LTspice)
-  note: 'same code also in: bordodynov, ltwiki; pins from inline comment'
+  note: pins from inline comment
+  copies:
+  - source: bordodynov
+    name: 5Y3GT
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Koren_Tubes.lib
+      sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
+  - source: ltwiki
+    name: 5Y3GT
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Koren_Tubes.lib
+      sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
 - source: suusi-tubes
   name: 5Y3GT
   def: subckt
@@ -121,7 +176,48 @@ models:
       5Y3GTRY: [153, 156]
       VALVE1: [2980, 2986]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: bordodynov
+    name: 5Y3GT
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Rydel_tubes.lib
+      sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+  - source: ltwiki
+    name: 5Y3GT
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Rydel_tubes.lib
+      sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+  - source: kicad-spice-library
+    name: 5Y3GTRY
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: ltwiki
+    name: 5Y3GTRY
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: ltwiki
+    name: 5Y3GTRY
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
+      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
+  - source: ltwiki
+    name: 5Y3GTRY
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Valves.Lib
+      sha256: cf7b995102b452efb5b8e7b07168a3a7df1931ca1db84b3aa54433452ab11dfd
+  - source: ltwiki
+    name: 5Y3GTRY
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
+      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
 - source: bordodynov
   name: 5Y3
   def: subckt
@@ -138,7 +234,20 @@ models:
     lines:
       5Y3: [563, 570]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki, robrobinette; pins from names'
+  note: pins from names
+  copies:
+  - source: ltwiki
+    name: 5Y3
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/Tubes/tube.lib
+      sha256: 0eeca282ba6506a1a4826c5833c023b17df0c557ef46c9ade79abe98a9c24a3f
+  - source: robrobinette
+    name: 5Y3
+    get:
+      url: https://robrobinette.com/images/Guitar/Spice_Analysis/5E3_Spice_Model_by_Carl_Gigun.zip
+      member: 5E3.txt
+      sha256: 2a9499b011c74994e61275ad3ee8eca55a40d420c45e3b01a65688c180b059c8
 - source: bordodynov
   name: 5Y3GT
   def: subckt
@@ -159,7 +268,13 @@ models:
       5Y3GT: [100, 105]
       VRECTIFIER: [19, 35]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: 5Y3GT
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/vrectifier.txt
+      sha256: 6f39b4729541ad16b04e62a45667127a910029cc5c095d49dc8622ca11a85443
 - source: bordodynov
   name: 5Y3GT
   def: subckt
@@ -197,4 +312,31 @@ models:
     lines:
       5Y3GT: [393, 396]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: ltwiki
+    name: 5Y3GT
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/Tubes/Tube_IM.lib
+      sha256: 8eed72dbd55b52f5eb6004bcaacd3d88c79e3e3df9ef28462570c887a70e0d00
+- source: bordodynov
+  name: 5Y3
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Diode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 58fd9e1eba78d4f20d75d4d1a7d289ff8f337f5e17184bcfcf27ad75aade4a1f
+    lines:
+      5Y3: [75, 77]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: 5Y3
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Diode_Ayumi.lib
+      sha256: 58fd9e1eba78d4f20d75d4d1a7d289ff8f337f5e17184bcfcf27ad75aade4a1f

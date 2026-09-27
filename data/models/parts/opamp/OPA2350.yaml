@@ -21,4 +21,27 @@ models:
     lines:
       OPA2350: [9363, 9439]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: OPA2350
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Operational_Amplifiers.LIB
+      sha256: a23e6b6cd7f13ddcbd76cc0a88987255186bf1dca04a8349a968e4dad0daf832
+  - source: kicad-spice-library
+    name: OPA2350
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Operational_Amplifiers.LIB
+      sha256: a23e6b6cd7f13ddcbd76cc0a88987255186bf1dca04a8349a968e4dad0daf832
+  - source: ltwiki
+    name: OPA2350
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Operational_Amplifiers.LIB
+      sha256: a23e6b6cd7f13ddcbd76cc0a88987255186bf1dca04a8349a968e4dad0daf832
+  - source: ltwiki
+    name: OPA2350
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Operational_Amplifiers.LIB
+      sha256: a23e6b6cd7f13ddcbd76cc0a88987255186bf1dca04a8349a968e4dad0daf832

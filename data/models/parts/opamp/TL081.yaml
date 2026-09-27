@@ -21,7 +21,58 @@ models:
     lines:
       TL081: [10, 42]
     fetched: '2026-09-19'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: bordodynov
+    name: TL081
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: bordodynov
+    name: TL081
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: kicad-spice-library
+    name: TL081
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+      sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+  - source: kicad-spice-library
+    name: TL081
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Texas%20Instruments/tl081.mod
+      sha256: f6feef548932aa046dbf40af9cb204710238a2a0d861d9d0fd6284e13c1d3f63
+  - source: ltwiki
+    name: TL081
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: ltwiki
+    name: TL081
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: spice-model-cd
+    name: TL081
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/TI/TL081.301
+      sha256: 74746c9e184824a7665d9b24c767f5f8cfabc77fbb4893115966dee531b08cf5
+  - source: kicad-spice-library
+    name: TL081_TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+      sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+  - source: microcap12
+    name: TL081_TI
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
 - source: bordodynov
   name: TL081
   def: subckt
@@ -44,7 +95,36 @@ models:
       TL081: [1004, 1036]
       TL082: [1045, 1077]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: bordodynov
+    name: TL081
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: kicad-spice-library
+    name: TL081
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_TI.lib
+      sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+  - source: kicad-spice-library
+    name: TL081
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: ltwiki
+    name: TL081
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_TI.lib
+      sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+  - source: ltwiki
+    name: TL081
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
 - source: bordodynov
   name: TL081
   def: subckt
@@ -64,7 +144,37 @@ models:
     lines:
       TL081: [2576, 2608]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: TL081
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: TL081
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: TL081
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: TL081
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: TL081
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraOpamps/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
 - source: ltwiki
   name: TL081
   def: subckt
@@ -88,6 +198,13 @@ models:
       TL082: [1045, 1077]
     fetched: '2026-09-14'
   note: pins from comment words
+  copies:
+  - source: ltwiki
+    name: TL081
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OpAmp_NSC.lib
+      sha256: 640cf42a735c898a54951becb5657cb42ecbfd75453e22e5d739958213f9cf2c
 - source: kicad-spice-library
   name: TL081S
   def: subckt
@@ -126,3 +243,56 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from comment words
+- source: spice-model-cd
+  name: TL081
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/STMicroelectronics/Standard%20Linear%20ICs/Spice/tl081.txt
+    sha256: 47fe77e7ba52b1bc2729ab2717e718b8f6bd583c4e975f5c72e97cbdabf4769f
+    lines:
+      TL081: [27, 72]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: TL081_MC
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: m_opamp.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 6b96d357d32e315e8e5c5d9fc2835ffffa23b6371aa0fe1a5475ebb6b2c776a0
+    lines:
+      TL081_MC: [2514, 2548]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: TL081_MC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_opamp.lib
+      sha256: bfbf4e51462367a37800fa5c0f5a2b3190a30da3e6321416caa3e14b91ff274a
+- source: kicad-spice-library
+  name: TL081M
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/MOTOR.LIB
+    sha256: 44f08a5cfceeb4c72d4f6e77e1eac1d108b46f7cb81dee8f3296a908b1eb53e6
+    lines:
+      TL081M: [2453, 2487]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: TL081T
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TIA.LIB
+    sha256: 9ab15d59dfe2a0a2393f98d60244934f66a2fdae82a8815b49b7517010d7b4ac
+    lines:
+      TL081T: [809, 841]
+    fetched: '2026-09-14'

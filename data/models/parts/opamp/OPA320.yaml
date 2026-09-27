@@ -72,4 +72,122 @@ models:
     lines:
       OPA320: [1, 25]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: OPA320
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/opa320.sub
+      sha256: 557cb06b8761fc37e615299c20aaa7b5d2f84e9b7d653373c60a11ae83581218
+  - source: ltwiki
+    name: OPA320
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/opa320.sub
+      sha256: 557cb06b8761fc37e615299c20aaa7b5d2f84e9b7d653373c60a11ae83581218
+- source: ti
+  name: OPA320S
+  def: subckt
+  type: SUBCKT
+  deps:
+  - VOS_OPA320S
+  - VNSE_OPA320S
+  - IIBN_OPA320S
+  - COMPARATOR_OPA320S
+  - SHDN_NOT_OPA320S
+  - GBW_SLEW_OPA320S
+  - IIBP_OPA320S
+  - VICM_OPA320S
+  - ICMR_OPA320S
+  - VCLAMP_W_SENSE_OPA320S
+  - PSRR_OPA320S
+  - AMETER_OPA320S
+  - TF_OPA320S
+  - IQ_OPA320S
+  - FEMT_OPA320S
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM823
+    member: OPA320S_PSPICE_AIO/opa320s.txt
+    archive_sha256: 9bf0f6bdd5183dd64b85dbaf6227946325ffc112b459482dc4348be6b89fc9dc
+    sha256: c8c9983a30a4ee074173a39a9d6d924eae2e7dd34034a1f2c1dbc306ef53d6a7
+    lines:
+      AMETER_OPA320S: [179, 183]
+      COMPARATOR_OPA320S: [321, 326]
+      FEMT_OPA320S: [294, 319]
+      GBW_SLEW_OPA320S: [224, 245]
+      ICMR_OPA320S: [124, 129]
+      IIBN_OPA320S: [271, 292]
+      IIBP_OPA320S: [185, 205]
+      IQ_OPA320S: [261, 269]
+      OPA320S: [55, 95]
+      PSRR_OPA320S: [247, 259]
+      SHDN_NOT_OPA320S: [146, 165]
+      TF_OPA320S: [131, 144]
+      VCLAMP_W_SENSE_OPA320S: [167, 177]
+      VICM_OPA320S: [207, 209]
+      VNSE_OPA320S: [98, 122]
+      VOS_OPA320S: [211, 222]
+    fetched: '2026-09-19'
+  copies:
+  - source: ti
+    name: OPA320S
+    get:
+      url: https://www.ti.com/lit/zip/SBOM822
+      member: OPA320S_TINA_AIO/opa320s.lib
+      sha256: 2f0b256353b33747762aacd73c54e120d7a2ee270b654e64b8315ae9e183a637
+- source: microcap12
+  name: OPA320
+  def: subckt
+  type: SUBCKT
+  deps:
+  - VCCS_EXT_LIM_0
+  - VCCS_LIMIT_IQ_0
+  - OL_SENSE_0
+  - VCCS_LIM_CLAW+_0
+  - VCCS_LIM_2_0
+  - VCCS_LIM_1_0
+  - VCCS_LIM_ZO_0
+  - AOL_ZO_0
+  - VCCS_LIM_4_0
+  - VNSE_0
+  - PSRR_CMRR_0
+  - VCCS_LIM_CLAW-_0
+  - ESD_0
+  - VCCS_LIM_3_0
+  - CLAMP_AMP_HI_0
+  - VCCS_LIM_GR_0
+  - PSRR_CMRR_2
+  - PSRR_CMRR_1
+  - CLAMP_AMP_LO_0
+  - FEMT_0
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ti.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+    lines:
+      AOL_ZO_0: [207, 242]
+      CLAMP_AMP_HI_0: [306, 310]
+      CLAMP_AMP_LO_0: [299, 303]
+      ESD_0: [161, 167]
+      FEMT_0: [245, 266]
+      OL_SENSE_0: [368, 370]
+      OPA320: [20, 158]
+      PSRR_CMRR_0: [170, 184]
+      PSRR_CMRR_1: [187, 194]
+      PSRR_CMRR_2: [197, 204]
+      VCCS_EXT_LIM_0: [373, 376]
+      VCCS_LIMIT_IQ_0: [293, 296]
+      VCCS_LIM_1_0: [387, 392]
+      VCCS_LIM_2_0: [379, 384]
+      VCCS_LIM_3_0: [360, 365]
+      VCCS_LIM_4_0: [321, 326]
+      VCCS_LIM_CLAW+_0: [329, 342]
+      VCCS_LIM_CLAW-_0: [345, 357]
+      VCCS_LIM_GR_0: [313, 318]
+      VCCS_LIM_ZO_0: [395, 400]
+      VNSE_0: [269, 290]
+    fetched: '2026-09-20'

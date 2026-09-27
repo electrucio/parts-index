@@ -20,4 +20,35 @@ models:
     lines:
       irlml5203: [1, 56]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irlml5203
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: bordodynov
+    name: irlml5203
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irlml5203.spi
+      sha256: 62839904616cb71196e15a9238c25e73df52d0432a77c92345418566bc678edd
+  - source: ltwiki
+    name: irlml5203
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irlml5203.spi
+      sha256: 62839904616cb71196e15a9238c25e73df52d0432a77c92345418566bc678edd
+  - source: ltwiki
+    name: irlml5203
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irlml5203.spi
+      sha256: 62839904616cb71196e15a9238c25e73df52d0432a77c92345418566bc678edd
+  - source: ltwiki
+    name: irlml5203
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irlml5203.spi
+      sha256: 62839904616cb71196e15a9238c25e73df52d0432a77c92345418566bc678edd

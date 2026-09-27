@@ -19,7 +19,19 @@ models:
       '2': [519, 519]
       ZTX751: [237, 237]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: ZTX751
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: ZTX751
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
 - source: ltwiki
   name: ZTX751
   def: model
@@ -33,7 +45,29 @@ models:
     lines:
       ZTX751: [218, 218]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: kicad-spice-library
+    name: ZTX751
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+      sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+  - source: kicad-spice-library
+    name: ZTX751
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJT.lib
+      sha256: 1f07e6e6b38c9b5d8d19dbccfd3c29741281ead66a7b48cc40eb82e9684580eb
+  - source: ltwiki
+    name: ZTX751
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.bjt
+      sha256: 0f87e9840e1130e025a7add442288c0f67048f9755108d0384d1594296884e82
+  - source: ltwiki
+    name: ZTX751
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
+      sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
 - source: ltwiki
   name: ZTX751
   def: model
@@ -47,7 +81,47 @@ models:
     lines:
       ZTX751: [701, 704]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: diodes-inc
+    name: ZTX751
+    get:
+      url: https://www.diodes.com/spice/download/2738/ZTX751.spice.txt
+      sha256: e2dd28bbe9f5a57b06f0e355a340950b4f2cdde7e9dc16011952538a29f551b6
+  - source: diodes-inc
+    name: ZTX751
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8426/collection.spice.txt
+      sha256: ca5759f37375eed975f03f72dafec9c3338930de6cfafaecda91fdca1fd33379
+  - source: kicad-spice-library
+    name: ZTX751
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+      sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+  - source: kicad-spice-library
+    name: ZTX751
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Zetex%20Semiconductors/ZMODELS.LIB
+      sha256: 356f4751706278dd76767c0cbdfceab52ea806ed01a3669b26584507bf29f3e0
+  - source: kicad-spice-library
+    name: ZTX751
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTP.LIB
+      sha256: 3dd15df7a58d8985561b2180fc63d333ddd59c8693c4d56de506df410c3a7607
+  - source: spice-model-cd
+    name: ZTX751
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/ztx751.lib
+      sha256: 0fefb0203ea0d481a7623cf6ca2baee55887e912fb1f4c305b04acae49bb13f7
+  - source: spice-model-cd
+    name: ZTX751
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/zmodels.lib
+      sha256: df79c20130b55541a1047df22b4cca3bfdb260045dfee6f538354adc6cfb78d6
+  - source: ltwiki
+    name: ZTX751/ZTX
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/Zetex.lib
+      sha256: 801edb075d3bd3995ad94e8dbf3c9a290a89481b1e897b74b75fcb6a6fab8ec0
 - source: kicad-spice-library
   name: ZTX751
   def: model
@@ -89,3 +163,35 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: ZTX751_ZX
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
+- source: qspice
+  name: ZTX751
+  def: model
+  type: PNP
+  deps:
+  - PNP
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
+    lines:
+      PNP: [2, 2]
+      ZTX751: [772, 775]
+    fetched: '2026-09-20'
+- source: duncanamps
+  name: QZTX751
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/bjt/pnp.mod
+    sha256: 9554024b39ab1fa861067c6af517fbe13435370dd0e78c4ed0d461fe355488a1
+    lines:
+      QZTX751: [725, 728]
+    fetched: '2026-09-14'

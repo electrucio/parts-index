@@ -32,11 +32,28 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: LM7805_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from simulation: of the 6 node orders only
-    IN GND OUT regulates to about 5 V at Vin-Vout 5 V / 5 mA, Vin-Vout 15 V / 5 mA, Vin-Vout 5 V / 100
-    mA (orders tried: IN OUT GND: -5 V, -5 V, -64.7 V; IN GND OUT: 5 V, 5 V, 5 V; OUT IN GND: 7.87 V,
-    17.8 V, 7.87 V; OUT GND IN: 5.96 V, 14 V, -1.8 V; GND IN OUT: -0.717 V, -0.712 V, -0.855 V; GND OUT
-    IN: -3.24 V, -3.24 V, -55.1 V)'
+  note: 'pins from simulation: of the 6 node orders only IN GND OUT regulates to about 5 V at Vin-Vout
+    5 V / 5 mA, Vin-Vout 15 V / 5 mA, Vin-Vout 5 V / 100 mA (orders tried: IN OUT GND: -5 V, -5 V, -64.7
+    V; IN GND OUT: 5 V, 5 V, 5 V; OUT IN GND: 7.87 V, 17.8 V, 7.87 V; OUT GND IN: 5.96 V, 14 V, -1.8 V;
+    GND IN OUT: -0.717 V, -0.712 V, -0.855 V; GND OUT IN: -3.24 V, -3.24 V, -55.1 V)'
+  copies:
+  - source: kicad-spice-library
+    name: LM7805
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/regulators.lib
+      sha256: 0b15463dadbf7c99cb3692aa563c298dd2a488e40122b87c0094158001d08f4c
+  - source: ltwiki
+    name: LM7805
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/regulators.lib
+      sha256: 1998b5aaba8b44019bf630a561c739ff33a83996cd6600bbaa8b8c3e02cf5bf2
+  - source: ltwiki
+    name: LM7805
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/regulators.lib
+      sha256: ba2105aa53d2db16001d205924af438b7c473ed9a864ce8e7ef13fcd71a7fcf7
 - source: bordodynov
   name: LM7805
   def: subckt
@@ -65,7 +82,19 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: LM7805_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: LM7805
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/LM78xx.txt
+      sha256: 85a79b9c4224eedd7b333dc306ea7ae90a39a5d92242196b6fbd370eeb3300bc
+  - source: ltwiki
+    name: LM7805
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LM78xx.txt
+      sha256: 85a79b9c4224eedd7b333dc306ea7ae90a39a5d92242196b6fbd370eeb3300bc
 - source: ltwiki
   name: LM7805C
   def: subckt
@@ -92,6 +121,25 @@ models:
     typical_rows: 0
   symbol: LM7805_ltwiki.asy
   note: pins from names
+  copies:
+  - source: ltwiki
+    name: LM7805C
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Miscel/Ixdd404/IXDD404lt.lib
+      sha256: a752c4e6632ab543e460f417a6175adcb5c03beb4460f6a30fc9d07971f524d3
+  - source: ltwiki
+    name: LM7805C
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Miscel/Ixdd404/IXDD404lt.lib
+      sha256: a752c4e6632ab543e460f417a6175adcb5c03beb4460f6a30fc9d07971f524d3
+  - source: ltwiki
+    name: LM7805C
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Miscel/ixdd414/IXDD414lt.lib
+      sha256: 9215f7da91a8cf0b58c8a40ada17cb50cb1c12d9d886800459478aa347ca5245
 - source: ltwiki
   name: LM7805C
   def: subckt
@@ -118,6 +166,25 @@ models:
     typical_rows: 0
   symbol: LM7805_ltwiki-2.asy
   note: pins from names
+  copies:
+  - source: ltwiki
+    name: LM7805C
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Digital/IXDI430YI/IXDI430YI_lt.lib
+      sha256: 96e0b71b479e8e77f5cb91a3e4847b33a1c8052e809f14489fed4c85c2cb0d2d
+  - source: ltwiki
+    name: LM7805C
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Digital/IXDI430YI/IXDI430YI_lt.lib
+      sha256: 96e0b71b479e8e77f5cb91a3e4847b33a1c8052e809f14489fed4c85c2cb0d2d
+  - source: ltwiki
+    name: LM7805C
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Digital/IXDN430YI/IXDN430YI_lt.lib
+      sha256: 7cbee7c2923148c93468fc0076bbd116b30f2a263e1f43dad3597e71c21ac265
 - source: kicad-spice-library
   name: LM7805C
   def: subckt
@@ -174,6 +241,38 @@ models:
     typical_rows: 0
   symbol: LM7805_kicad-spice-library-2.asy
   note: found under the alias UA7805; pins from names
+- source: ltwiki
+  name: LM7805C
+  def: subckt
+  type: SUBCKT
+  deps:
+  - x_LM78XX
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+    sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+    lines:
+      LM7805C: [4849, 4852]
+      x_LM78XX: [4741, 4845]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: UA7805C
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+      sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+- source: ltwiki
+  name: UA7805/TEMP
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+    sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+    lines:
+      UA7805/TEMP: [4880, 5264]
+    fetched: '2026-09-21'
+  note: found under the alias UA7805
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/lm7805.pdf
   maker: Texas Instruments (National Semiconductor)

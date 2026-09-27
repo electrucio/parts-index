@@ -59,7 +59,48 @@ models:
     not_measurable: 0
     typical_rows: 12
   symbol: 5U4GB_duncanamps.asy
-  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: duncanamps
+    name: 5U4GB
+    get:
+      url: https://www.duncanamps.com/spice/valves/5u4gb.inc
+      sha256: 5aeca254042d820857a75777ce0ad3c404c6b9839fe4349be7d5d0d07035a410
+  - source: bordodynov
+    name: 5U4GB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: kicad-spice-library
+    name: 5U4GB
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: ltwiki
+    name: 5U4GB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: ltwiki
+    name: 5U4GB
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
+      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
+  - source: ltwiki
+    name: 5U4GB
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Valves.Lib
+      sha256: cf7b995102b452efb5b8e7b07168a3a7df1931ca1db84b3aa54433452ab11dfd
+  - source: ltwiki
+    name: 5U4GB
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
+      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
 - source: suusi-tubes
   name: 5U4GB
   def: subckt
@@ -87,7 +128,20 @@ models:
     not_measurable: 0
     typical_rows: 12
   symbol: 5U4GB_suusi-tubes.asy
-  note: 'same code also in: bordodynov, ltwiki; pins from inline comment'
+  note: pins from inline comment
+  copies:
+  - source: bordodynov
+    name: 5U4GB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Koren_Tubes.lib
+      sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
+  - source: ltwiki
+    name: 5U4GB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Koren_Tubes.lib
+      sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
 - source: suusi-tubes
   name: 5U4GB
   def: subckt
@@ -147,7 +201,48 @@ models:
     not_measurable: 12
     typical_rows: 0
   symbol: 5U4GB_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: bordodynov
+    name: 5U4GB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Rydel_tubes.lib
+      sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+  - source: ltwiki
+    name: 5U4GB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Rydel_tubes.lib
+      sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+  - source: kicad-spice-library
+    name: 5U4GBRY
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: ltwiki
+    name: 5U4GBRY
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: ltwiki
+    name: 5U4GBRY
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
+      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
+  - source: ltwiki
+    name: 5U4GBRY
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Valves.Lib
+      sha256: cf7b995102b452efb5b8e7b07168a3a7df1931ca1db84b3aa54433452ab11dfd
+  - source: ltwiki
+    name: 5U4GBRY
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
+      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
 - source: bordodynov
   name: 5U4GB
   def: subckt
@@ -202,6 +297,13 @@ models:
     typical_rows: 12
   symbol: 5U4GB_ltwiki.asy
   note: pins from names
+  copies:
+  - source: bordodynov
+    name: 5U4GB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Diode_Ayumi.lib
+      sha256: 58fd9e1eba78d4f20d75d4d1a7d289ff8f337f5e17184bcfcf27ad75aade4a1f
 datasheet:
   url: https://frank.pocnet.net/sheets/093/5/5U4GB.pdf
   maker: General Electric

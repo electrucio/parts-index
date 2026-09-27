@@ -1,0 +1,80 @@
+part: NE5534A
+kind: opamp
+priority: 2
+models:
+- source: ti
+  name: NE5534
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ049
+    member: NE5534.301
+    archive_sha256: 2a9dc4eb85cbf477aae44c6b94697d5edb612b70d3b04e761239c484749f57aa
+    sha256: 4baa66d3898669fcadf8b9ee417fbea840a06463c389ea46bd9bcaf6262e1fdc
+    lines:
+      NE5534: [11, 44]
+    fetched: '2026-09-14'
+  copies:
+  - source: kicad-spice-library
+    name: NE5534
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Texas%20Instruments/ne5534.mod
+      sha256: be4d9d4025a29ea0b32a055fea1075d7cc2cdfbc3a97c82ecc7b458d081e569c
+  - source: ltwiki
+    name: NE5534
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/OpAmps/Tests/Ne5534/ne5534.301
+      sha256: 4baa66d3898669fcadf8b9ee417fbea840a06463c389ea46bd9bcaf6262e1fdc
+  - source: ltwiki
+    name: NE5534
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/TI/NE5534.301
+      sha256: 4baa66d3898669fcadf8b9ee417fbea840a06463c389ea46bd9bcaf6262e1fdc
+  - source: ltwiki
+    name: NE5534
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/Tests/Ne5534/ne5534.301
+      sha256: 4baa66d3898669fcadf8b9ee417fbea840a06463c389ea46bd9bcaf6262e1fdc
+- source: bordodynov
+  name: NE5534
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/NE553x.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0b90f4ac73ed328341114e02953781ab5106be95fb2e65cc4ff6535bd0e08564
+    lines:
+      NE5534: [14, 50]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: NE5534
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/NE553x.lib
+      sha256: 0b90f4ac73ed328341114e02953781ab5106be95fb2e65cc4ff6535bd0e08564
+- source: ltwiki
+  name: NE5534
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/TI/NE553x.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 7b937dff803cc78a682d8e71deed484d90f657584406f255beec85b67fd697f8
+    lines:
+      NE5534: [14, 48]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: NE5534
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/NE553x.lib
+      sha256: 7b937dff803cc78a682d8e71deed484d90f657584406f255beec85b67fd697f8

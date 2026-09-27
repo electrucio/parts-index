@@ -216,7 +216,19 @@ models:
     not_measurable: 12
     typical_rows: 14
   symbol: 6AU6_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from inline comment'
+  note: pins from inline comment
+  copies:
+  - source: kicad-spice-library
+    name: 6AU6
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/nk_pentode.sub
+      sha256: c559485a397b0b4be28e593e9cd6dd23228a07fbce5ca4e240d2421fb98a3f40
+  - source: ltwiki
+    name: 6AU6
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/nk_pentode.sub
+      sha256: c559485a397b0b4be28e593e9cd6dd23228a07fbce5ca4e240d2421fb98a3f40
 - source: bordodynov
   name: 6AU6A
   def: subckt
@@ -250,7 +262,19 @@ models:
     not_measurable: 12
     typical_rows: 14
   symbol: 6AU6_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from inline comment'
+  note: pins from inline comment
+  copies:
+  - source: kicad-spice-library
+    name: 6AU6A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/nk_pentode.sub
+      sha256: c559485a397b0b4be28e593e9cd6dd23228a07fbce5ca4e240d2421fb98a3f40
+  - source: ltwiki
+    name: 6AU6A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/nk_pentode.sub
+      sha256: c559485a397b0b4be28e593e9cd6dd23228a07fbce5ca4e240d2421fb98a3f40
 - source: bordodynov
   name: 6AU6
   def: subckt
@@ -280,7 +304,14 @@ models:
     not_measurable: 12
     typical_rows: 14
   symbol: 6AU6_bordodynov-3.asy
-  note: 'same code also in: ltwiki; pins from inline comment'
+  note: pins from inline comment
+  copies:
+  - source: ltwiki
+    name: 6AU6
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Koren_Tubes.lib
+      sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
 - source: bordodynov
   name: 6AU6A
   def: subckt
@@ -312,7 +343,54 @@ models:
     not_measurable: 12
     typical_rows: 14
   symbol: 6AU6_bordodynov-4.asy
-  note: 'same code also in: ltwiki; pins from inline comment'
+  note: pins from inline comment
+  copies:
+  - source: ltwiki
+    name: 6AU6A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Koren_Tubes.lib
+      sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
+- source: bordodynov
+  name: 6AU6T
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Triode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+    lines:
+      6AU6T: [1219, 1232]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: 6AU6T
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Triode_Ayumi.lib
+      sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+- source: bordodynov
+  name: 6AU6
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Pentode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
+    lines:
+      6AU6: [520, 540]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: 6AU6
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Pentode_Ayumi.lib
+      sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
 datasheet:
   url: https://frank.pocnet.net/sheets/127/6/6AU6.pdf
   maker: Tung-Sol

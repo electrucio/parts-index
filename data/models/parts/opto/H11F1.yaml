@@ -24,7 +24,24 @@ models:
     score: null
     error: 'KeyError: ''opto'''
   symbol: H11F1_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: H11F1M
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/H11F1M.sub
+      sha256: b217e8ab4a1f18fe1eb3e4fe2a13396d26a0cb0cb8cd1946a9ff99439116770b
+  - source: ltwiki
+    name: H11F1M
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/H11F1M.sub
+      sha256: b217e8ab4a1f18fe1eb3e4fe2a13396d26a0cb0cb8cd1946a9ff99439116770b
+  - source: ltwiki
+    name: H11F1M
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/H11F1M/H11F1M.sub
+      sha256: b217e8ab4a1f18fe1eb3e4fe2a13396d26a0cb0cb8cd1946a9ff99439116770b
 - source: bordodynov
   name: H11F1M_AB
   def: subckt
@@ -47,7 +64,18 @@ models:
     score: null
     error: 'KeyError: ''opto'''
   symbol: H11F1_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: H11F1M_AB
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/H11F1M_AB.sub
+      sha256: 1007a60ff1a193f5d94ac7c9020ae6035788c79026824878122bc8f7c714474a
+  - source: ltwiki
+    name: H11F1M_AB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/H11F1M_AB.sub
+      sha256: 1007a60ff1a193f5d94ac7c9020ae6035788c79026824878122bc8f7c714474a
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/h11f1m-d.pdf
   maker: Fairchild Semiconductor (now onsemi)

@@ -33,7 +33,24 @@ models:
       TLC555: [174, 210]
       TLC556: [394, 397]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: TLC556
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/timers.lib
+      sha256: 5caceb6b0c16c6b684284c8598439454661f6908a926796c1459becf67fc8f85
+  - source: ltwiki
+    name: TLC556
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/timers.lib
+      sha256: 5caceb6b0c16c6b684284c8598439454661f6908a926796c1459becf67fc8f85
+  - source: ltwiki
+    name: TLC556
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/timers.lib
+      sha256: 5caceb6b0c16c6b684284c8598439454661f6908a926796c1459becf67fc8f85
 - source: ltwiki
   name: TLC556
   def: subckt
@@ -65,3 +82,76 @@ models:
       TLC555: [21, 57]
       TLC556: [71, 74]
     fetched: '2026-09-14'
+  copies:
+  - source: ltwiki
+    name: TLC556
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/Basso/BassoBook20100103/New2/TL555.sub
+      sha256: a1cd2142091273d4325964316ca6a0f4220f67397a8fd83068be25cab435162c
+- source: ti
+  name: TLC556
+  def: subckt
+  type: SUBCKT
+  deps:
+  - TLC55X_PMOSD_LV
+  - TLC55X_PMOS_LV
+  - COMP2INPNORSD
+  - COMP3INPNORSD
+  - RR1SFF
+  - IIMIRRP
+  - TLC55X_PMOSD_HV
+  - TLC55X_PMOS_HV
+  - MDSWP
+  - MSWN
+  - TLC55X_PMOSD_MV
+  - TLC55X_PMOS_MV
+  - IIMIRRN
+  - TLC55X_RWELLD
+  - TLC55X_RWELL
+  - MDSWN
+  - TLC55X_NMOSD_HV_L1
+  - TLC55X_NMOS_HV_L1
+  - IMIRRP
+  - DZ_18V
+  - D_Z18V
+  - IBIAS
+  - TLC55X_NMOSD_MV
+  - TLC55X_NMOS_MV
+  - TLC55X_NMOSD_HV
+  - TLC55X_NMOS_HV
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLFM001
+    member: TLC556_TINA_AIO/TLC556.LIB
+    archive_sha256: db6d8004995b337c54b81d5585f1c2369629a9630916ff6c908d166225e164c7
+    sha256: b660d635eb9056c169650ec5cfe4aaf7cf93ef7ab06a13fa0291daed19ce78f7
+    lines:
+      COMP2INPNORSD: [347, 361]
+      COMP3INPNORSD: [363, 380]
+      DZ_18V: [322, 322]
+      D_Z18V: [316, 318]
+      IBIAS: [196, 218]
+      IIMIRRN: [260, 279]
+      IIMIRRP: [239, 258]
+      IMIRRP: [220, 237]
+      MDSWN: [291, 299]
+      MDSWP: [281, 289]
+      MSWN: [301, 311]
+      RR1SFF: [324, 345]
+      TLC556: [43, 109]
+      TLC55X_NMOSD_HV: [131, 132]
+      TLC55X_NMOSD_HV_L1: [134, 135]
+      TLC55X_NMOSD_MV: [137, 138]
+      TLC55X_NMOS_HV: [111, 114]
+      TLC55X_NMOS_HV_L1: [116, 119]
+      TLC55X_NMOS_MV: [121, 124]
+      TLC55X_PMOSD_HV: [160, 161]
+      TLC55X_PMOSD_LV: [168, 169]
+      TLC55X_PMOSD_MV: [163, 163]
+      TLC55X_PMOS_HV: [145, 148]
+      TLC55X_PMOS_LV: [155, 158]
+      TLC55X_PMOS_MV: [150, 153]
+      TLC55X_RWELL: [172, 174]
+      TLC55X_RWELLD: [176, 178]
+    fetched: '2026-09-19'

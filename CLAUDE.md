@@ -19,8 +19,10 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
   `summarise` (one line per published use, saying what that part does on that page), `export` (the
   index into `data/`) and `titles`. **(todo)** crawl → ocr → index → linkcheck.
 - `src/parts_index/models/` pillar 2: fetch, ingest, index, recover, match (which definitions are
-  candidates for each wanted part, from `data/models/wanted.yaml` and the other lists) and promote (the
-  public recipe per part). **(todo)** curate and `datasheets/`.
+  candidates for each wanted part, from `data/models/wanted.yaml` and the other lists), found (those
+  grouped into distinct models, each with every copy of it) and promote (the public recipe per part:
+  the curated judgement plus every model found). **(todo)** curate — pins, symbols, fixups, bench — and
+  `datasheets/`.
 - `src/parts_index/datasheets/` `register`: what a manufacturer's own catalogue says about each indexed
   part — category, production status, data sheet title and revision — facts and links only.
 - `src/parts_index/web/` builds the site's data from `data/` alone: `build` and `parts` (one file

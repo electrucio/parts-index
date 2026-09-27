@@ -1,0 +1,40 @@
+part: 74LS374
+kind: logic
+priority: 3
+models:
+- source: microcap12
+  name: 74LS374
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: dig250.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 7849fb2f66d30775a6f3151b291e5af9ab01c1163bf2e032f0b73585b5a37242
+    lines:
+      74LS374: [13122, 13149]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: 74LS374
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/dig250.lib
+      sha256: 50043dbaa105d7c8ad587ccdbedfc17001fd3c0bf0de03f56b5672f7b471fba6
+- source: ltwiki
+  name: 74LS374
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D_LS374_2
+  - D_LS374_1
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/74ls.lib
+    sha256: 1a3fc139003ba53119805e469c8c7d464ec28fab6ab216986e6ed79e137bdb4b
+    lines:
+      74LS374: [9170, 9187]
+      D_LS374_1: [9189, 9192]
+      D_LS374_2: [9193, 9200]
+    fetched: '2026-09-21'

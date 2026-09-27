@@ -33,7 +33,41 @@ models:
     not_measurable: 0
     typical_rows: 2
   symbol: LF347_ti.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: bordodynov
+    name: LF347
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: kicad-spice-library
+    name: LF347
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+      sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+  - source: kicad-spice-library
+    name: LF347
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Texas%20Instruments/lf347.mod
+      sha256: c6ef6b8feb34d3d0fa3c10aaecc3243d2fbf7b33a84dc62fc30a6e94c795e305
+  - source: ltwiki
+    name: LF347
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: kicad-spice-library
+    name: LF347_TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+      sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+  - source: microcap12
+    name: LF347_TI
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
 - source: bordodynov
   name: LF347
   def: subckt
@@ -61,7 +95,54 @@ models:
     not_measurable: 0
     typical_rows: 2
   symbol: LF347_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: bordodynov
+    name: LF347
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: bordodynov
+    name: LF347
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: LF347
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: LF347
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/LF347.cir
+      sha256: 43776c53c487ec3cfb2a46e79a748d430f0add3f1fed64ab962520601c447d0c
+  - source: ltwiki
+    name: LF347
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: LF347
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: LF347
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LF347.cir
+      sha256: 43776c53c487ec3cfb2a46e79a748d430f0add3f1fed64ab962520601c447d0c
+  - source: ltwiki
+    name: LF347
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraOpamps/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
 - source: bordodynov
   name: LF347
   def: subckt
@@ -89,7 +170,25 @@ models:
     not_measurable: 0
     typical_rows: 2
   symbol: LF347_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: kicad-spice-library
+    name: LF347
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: ltwiki
+    name: LF347
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: ltwiki
+    name: LF347
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OpAmp_NSC.lib
+      sha256: 640cf42a735c898a54951becb5657cb42ecbfd75453e22e5d739958213f9cf2c
 - source: kicad-spice-library
   name: LF347_TI
   def: subckt
@@ -117,6 +216,17 @@ models:
     typical_rows: 2
   symbol: LF347_kicad-spice-library.asy
   note: pins from comment words
+- source: spice-model-cd
+  name: LF347
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/STMicroelectronics/Standard%20Linear%20ICs/Spice/lf147.txt
+    sha256: 1c555002f705cd45bba97b2984e5329a3a143e1ecdd04465ec6053acfae51fc8
+    lines:
+      LF347: [25, 70]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/lf347.pdf
   maker: Texas Instruments

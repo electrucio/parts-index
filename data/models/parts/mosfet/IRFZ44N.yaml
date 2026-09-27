@@ -32,7 +32,48 @@ models:
     not_measurable: 2
     typical_rows: 3
   symbol: IRFZ44N_infineon.asy
-  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: irfz44n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irfz44n.spi
+      sha256: cd2b1dcc0350b40aad8d4701bc3dcd3dc1e1ab4eb499a0da1c9bd7dbd19e3f1f
+  - source: bordodynov
+    name: irfz44n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irfz44n.spi
+      sha256: cd2b1dcc0350b40aad8d4701bc3dcd3dc1e1ab4eb499a0da1c9bd7dbd19e3f1f
+  - source: kicad-spice-library
+    name: irfz44n
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irfz44n.spi
+      sha256: 0dbff3620ea1ed14db4f90e9980cacbd426768f812e820eff9974a234bb2928e
+  - source: ltwiki
+    name: irfz44n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irfz44n.spi
+      sha256: cd2b1dcc0350b40aad8d4701bc3dcd3dc1e1ab4eb499a0da1c9bd7dbd19e3f1f
+  - source: ltwiki
+    name: irfz44n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irfz44n.spi
+      sha256: cd2b1dcc0350b40aad8d4701bc3dcd3dc1e1ab4eb499a0da1c9bd7dbd19e3f1f
+  - source: ltwiki
+    name: irfz44n
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irfz44n.spi
+      sha256: cd2b1dcc0350b40aad8d4701bc3dcd3dc1e1ab4eb499a0da1c9bd7dbd19e3f1f
+  - source: kicad-spice-library
+    name: irfz44ns
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irfz44ns.spi
+      sha256: 70193f9db37b8f6c4d03a2035873acb0e74491834114e9bb081377047f34938a
 - source: ltspice-native
   name: IRFZ44N
   def: model
@@ -72,7 +113,34 @@ models:
     fail: 1
     not_measurable: 2
     typical_rows: 3
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: IRFZ44N_
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: ltwiki
+    name: IRFZ44N_
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: IRFZ44N_
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: IRFZ44N_
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: IRFZ44N_
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: bordodynov
   name: irfz44ns
   def: subckt
@@ -98,7 +166,32 @@ models:
     not_measurable: 2
     typical_rows: 3
   symbol: IRFZ44N_bordodynov-2.asy
-  note: 'same code also in: ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: irfz44ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irfz44ns.spi
+      sha256: 70acda5d539978a3bb809eb8074e13e851841cf661ea9f648e84b14a998c79e8
+  - source: ltwiki
+    name: irfz44ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irfz44ns.spi
+      sha256: 70acda5d539978a3bb809eb8074e13e851841cf661ea9f648e84b14a998c79e8
+  - source: ltwiki
+    name: irfz44ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irfz44ns.spi
+      sha256: 70acda5d539978a3bb809eb8074e13e851841cf661ea9f648e84b14a998c79e8
+  - source: ltwiki
+    name: irfz44ns
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irfz44ns.spi
+      sha256: 70acda5d539978a3bb809eb8074e13e851841cf661ea9f648e84b14a998c79e8
 - source: bordodynov
   name: irfz44nst
   def: subckt
@@ -123,7 +216,31 @@ models:
     not_measurable: 8
     typical_rows: 0
   symbol: IRFZ44N_bordodynov-3.asy
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: bordodynov
+    name: irfz44nst
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irfz44ns.spi
+      sha256: 70acda5d539978a3bb809eb8074e13e851841cf661ea9f648e84b14a998c79e8
+  - source: ltwiki
+    name: irfz44nst
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irfz44ns.spi
+      sha256: 70acda5d539978a3bb809eb8074e13e851841cf661ea9f648e84b14a998c79e8
+  - source: ltwiki
+    name: irfz44nst
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irfz44ns.spi
+      sha256: 70acda5d539978a3bb809eb8074e13e851841cf661ea9f648e84b14a998c79e8
+  - source: ltwiki
+    name: irfz44nst
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irfz44ns.spi
+      sha256: 70acda5d539978a3bb809eb8074e13e851841cf661ea9f648e84b14a998c79e8
 - source: ltwiki
   name: IRFZ44N
   def: model
@@ -144,7 +261,188 @@ models:
     fail: 0
     not_measurable: 2
     typical_rows: 3
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: ltwiki
+    name: IRFZ44N
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.mos
+      sha256: 0f6a0a30f327903e5b61c3764e08354839fed85c6ce2d4a8b3d708d6c2ec9533
+  - source: kicad-spice-library
+    name: IRFZ44N
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/MOS.lib
+      sha256: 5a12451d9b52820cc74b1f3c11955dcfbc99cc0ede851dd12587ebbbc9e9531e
+- source: spice-model-cd
+  name: IRFZ44N
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/MOSFET.LB
+    sha256: 9287b7f0b7ae8ab0fa02300dfe2bdbf54cd76d2720f610592fdc5fcb2528d29b
+    lines:
+      IRFZ44N: [954, 961]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: irfz44n_IR
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: irf.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+    lines:
+      irfz44n_IR: [7603, 7662]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: IRFZ44N
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+      sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+  - source: kicad-spice-library
+    name: irfz44n
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+      sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+  - source: kicad-spice-library
+    name: irfz44n
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+      sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+  - source: kicad-spice-library
+    name: IRFZ44NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+      sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+  - source: kicad-spice-library
+    name: irfz44ns
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+      sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+  - source: kicad-spice-library
+    name: irfz44ns
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+      sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+  - source: kicad-spice-library
+    name: irfz44n_IR
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+      sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+  - source: kicad-spice-library
+    name: irfz44ns_IR
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+      sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+  - source: microcap12
+    name: irfz44ns_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+- source: bordodynov
+  name: IRFZ44N
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRFZ44N: [740, 740]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov
+    name: IRFZ44N
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: bordodynov
+    name: IRFZ44N
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Original/standard.mos
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: bordodynov
+    name: IRFZ44N
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Original/standard.mos.bak
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: kicad-spice-library
+    name: IRFZ44N
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: kicad-spice-library
+    name: IRFZ44N
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: kicad-spice-library
+    name: IRFZ44N
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Original/standard.mos
+      sha256: 4ad1e16da6dfb08f9b1d55a27c28ca4a034db3f309073ce070136378fb658ad0
+  - source: ltwiki
+    name: IRFZ44N
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: IRFZ44N
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: IRFZ44N
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: IRFZ44N
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: ltwiki
+    name: IRFZ44N
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Original/standard.mos
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: ltwiki
+    name: IRFZ44N
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Original/standard.mos.bak
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: ltwiki
+    name: IRFZ44N
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+- source: kicad-spice-library
+  name: irfz44n
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/General%20Semiconductor/General%20Semiconductor.lb5
+    sha256: 29db97b9e48c44570530220654814e32bc2a2cb0d10d0a4a018887fb43ef592d
+    lines:
+      irfz44n: [2735, 2765]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.infineon.com/assets/row/public/documents/24/49/infineon-irfz44n-datasheet-en.pdf
   maker: International Rectifier (Infineon)

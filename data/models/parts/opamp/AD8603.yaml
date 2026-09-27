@@ -21,7 +21,48 @@ models:
     lines:
       AD8603: [1288, 1362]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: bordodynov
+    name: AD8603
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/ad8603.cir
+      sha256: e0908f943c485f17589d05fd5bf8118d2cd2c477a358771de2d665595a67dfb6
+  - source: kicad-spice-library
+    name: AD8603
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: kicad-spice-library
+    name: AD8603
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/ad8603.cir
+      sha256: e0908f943c485f17589d05fd5bf8118d2cd2c477a358771de2d665595a67dfb6
+  - source: ltwiki
+    name: AD8603
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: AD8603
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/ad8603.cir
+      sha256: e0908f943c485f17589d05fd5bf8118d2cd2c477a358771de2d665595a67dfb6
+  - source: ltwiki
+    name: AD8603
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: AD8603
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/ad8603.cir
+      sha256: e0908f943c485f17589d05fd5bf8118d2cd2c477a358771de2d665595a67dfb6
 - source: bordodynov
   name: AD8603
   def: subckt
@@ -41,4 +82,44 @@ models:
     lines:
       AD8603: [3812, 3886]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: kicad-spice-library
+    name: AD8603
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: AD8603
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+- source: adi
+  name: AD8603
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.analog.com/media/en/simulation-models/spice-models/ad8603.cir?modelType=spice-models
+    sha256: 58e11769134d8164a60ae19e01b02ae2ebdd2c0cfdf1a1c604c4ac835e5e4ee6
+    lines:
+      AD8603: [28, 102]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: AD8603
+  def: subckt
+  type: SUBCKT
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: analog.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+    lines:
+      AD8603: [80716, 80790]
+      dx: [77076, 77076]
+    fetched: '2026-09-20'

@@ -14,7 +14,19 @@ models:
       BZX585-B5V6: [28, 37]
     fetched: '2026-09-19'
     note: 'BZX585-B5V6: BZX585-B5V6'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: BZX585-B5V6
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/BZX585-B5V6.PRM
+      sha256: b4d1398318006e5edae526b49f47f994757630ff4c3eb65b38921b60c35fe6ac
+  - source: microcap12
+    name: BZX585-B5V6
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_diode.lib
+      sha256: f9df24ec0c294f52c0b42dcb8aa86242c24d1c52b5df04656c47544b89fac977
 - source: ltwiki
   name: BZX585-B9V1
   def: model

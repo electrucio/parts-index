@@ -60,6 +60,53 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: LM4780_ti.asy
+- source: ti
+  name: LM4780
+  def: subckt
+  type: SUBCKT
+  deps:
+  - VCLAMP
+  - RNOISE_LESS_WILIM
+  - VNSE
+  - PSRR
+  - GND_FLOAT
+  - CMRR
+  - TF
+  - AMETER
+  - FEMT
+  - VCLAMP_W_SENSE
+  - GBW_SLEW_SE
+  - INPUT
+  - AMP
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNAM083
+    member: LM4780.LIB
+    archive_sha256: 9d597e0b10a3eec13e056c6a14f490ee568235b2fdeeb69ce8d053c7e12fbdb9
+    sha256: b8cd149d2a0c496ebedd2f8dc36229a56fa9afc7d9d3ed5f8bad2d41a417c679
+    lines:
+      AMETER: [170, 174]
+      AMP: [52, 137]
+      CMRR: [341, 350]
+      FEMT: [379, 417]
+      GBW_SLEW_SE: [251, 263]
+      GND_FLOAT: [159, 161]
+      INPUT: [476, 482]
+      LM4780: [45, 49]
+      PSRR: [359, 369]
+      RNOISE_LESS_WILIM: [283, 285]
+      TF: [199, 242]
+      VCLAMP: [272, 274]
+      VCLAMP_W_SENSE: [184, 189]
+      VNSE: [428, 466]
+    fetched: '2026-09-14'
+  copies:
+  - source: ti
+    name: LM4780
+    get:
+      url: https://www.ti.com/lit/zip/SNAM082
+      member: LM4780.LIB
+      sha256: 3819f7397c75ef0eb14fec6a170c605d85694ced3184725076ec79e5d9640446
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/lm4780.pdf
   maker: Texas Instruments (National Semiconductor)

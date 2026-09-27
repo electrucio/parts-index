@@ -24,7 +24,19 @@ models:
       OPA350: [6892, 6968]
       Rb: [564, 570]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: OPA350
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: OPA350
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
 - source: bordodynov
   name: OPA350
   def: subckt
@@ -44,7 +56,25 @@ models:
     lines:
       OPA350: [3524, 3600]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: microcap12
+    name: OPA350
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+  - source: kicad-spice-library
+    name: OPA350
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Operational_Amplifiers.LIB
+      sha256: a23e6b6cd7f13ddcbd76cc0a88987255186bf1dca04a8349a968e4dad0daf832
+  - source: ltwiki
+    name: OPA350
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Operational_Amplifiers.LIB
+      sha256: a23e6b6cd7f13ddcbd76cc0a88987255186bf1dca04a8349a968e4dad0daf832
 - source: ltwiki
   name: OPA350
   def: subckt

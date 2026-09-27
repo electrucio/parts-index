@@ -15,6 +15,12 @@ models:
       BAS70LP: [24, 25]
     fetched: '2026-09-19'
     note: 'model(s): BAS70LP'
+  copies:
+  - source: diodes-inc
+    name: BAS70LP
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8333/collection.spice.txt
+      sha256: 5ef137bd240eef7ab0d08017d778783c6a26367f24e1153006548e452231be6d
 - source: bordodynov
   name: bas70
   def: model
@@ -28,7 +34,41 @@ models:
     lines:
       bas70: [101, 101]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: bas70
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.dio
+      sha256: 85043335b56cc10779c03bcd2c237472827cf28c004628c9ddacb6fb3d8705c7
+  - source: kicad-spice-library
+    name: bas70
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Diode/DIODE2.lib
+      sha256: 30ed855dc84e2de25e560deac3c77134cb73d072e10199aa8de3d2a7155af902
+  - source: ltwiki
+    name: bas70
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: bas70
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: bas70
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.dio
+      sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+  - source: ltwiki
+    name: bas70
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/cmp/standard.dio
+      sha256: c37cd3feda2bf48e371d1b329a4f08dcedf3e90acb6a8b98ec28a8063b633c21
 - source: bordodynov
   name: BAS70H
   def: model
@@ -42,7 +82,24 @@ models:
     lines:
       BAS70H: [1425, 1425]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: BAS70H
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.dio
+      sha256: 85043335b56cc10779c03bcd2c237472827cf28c004628c9ddacb6fb3d8705c7
+  - source: ltwiki
+    name: BAS70H
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: BAS70H
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
 - source: ltwiki
   name: BAS70
   def: subckt
@@ -60,6 +117,13 @@ models:
       BAS70: [2, 22]
     fetched: '2026-09-14'
   note: pins from default order (unverified)
+  copies:
+  - source: ltwiki
+    name: BAS70W
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/BAS70W.PRM
+      sha256: 9a3a0671dec8cb559036efabe471acfa9ea1b52554232de1f21aa5076a107469
 - source: ltwiki
   name: BAS70H
   def: subckt
@@ -77,6 +141,13 @@ models:
       BAS70H: [2, 24]
     fetched: '2026-09-14'
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: BAS70H
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_shot.lib
+      sha256: c6367af2c60015e9fb5ecc3771d731c998ee74c0f74ef57bce37e58e08532f5d
 - source: ltwiki
   name: BAS70W
   def: subckt
@@ -94,3 +165,220 @@ models:
       BAS70W: [2, 22]
     fetched: '2026-09-14'
   note: pins from default order (unverified)
+- source: onsemi
+  name: BAS70SL
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bas70sl.lib
+    sha256: 747a58229eaea78d7e14bfebeae467f8a6319b478a67de4e2bbc80b8c6544fb2
+    lines:
+      BAS70SL: [6, 19]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: BAS70SL
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: spice-model-cd
+  name: BAS70
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Infineon/Other/DIODE/S_DIODE.LIB
+    sha256: 5b0c047f0241963047cfdccac9eb3038eecfe7d78d04fc568cd0ac9135423c2a
+    lines:
+      BAS70: [455, 456]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: BAS70s
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/S_DIODE.LIB
+      sha256: c9fda6f359d82175cc33b2d5022078515b6c97969631ba29cf77d12a36f704d1
+  - source: ltwiki
+    name: BAS70/SIE
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/siemens.lib
+      sha256: 243664dd487b615b87bd321416060f6822da14486fcece9fd2e3ded453189d81
+  - source: spice-model-cd
+    name: BAS70/SIE
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Siemens/S_diode.lib
+      sha256: 5db13a4ff341739aa880aa23a7c2a0378e5c0a9f01d9c1ef30d8f9965b1fea64
+- source: microcap12
+  name: BAS70BRW
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      BAS70BRW: [82, 83]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: BAS70JW
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc.lib
+      sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+  - source: microcap12
+    name: BAS70T
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc.lib
+      sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+  - source: microcap12
+    name: BAS70TW
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc.lib
+      sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+- source: microcap12
+  name: BAS70W_PH
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ph_shot.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: c6367af2c60015e9fb5ecc3771d731c998ee74c0f74ef57bce37e58e08532f5d
+    lines:
+      BAS70W_PH: [882, 902]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: BAS70W_PH
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_shot.lib
+      sha256: 89422b6d829e90bd8424b8aee8462c0b273938950d3c699f08d950b475f5908d
+- source: microcap12
+  name: BAS70VV
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ph_shot.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: c6367af2c60015e9fb5ecc3771d731c998ee74c0f74ef57bce37e58e08532f5d
+    lines:
+      BAS70VV: [2036, 2063]
+    fetched: '2026-09-20'
+  copies:
+  - source: ltwiki
+    name: BAS70VV
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/BAS70VV.PRM
+      sha256: 4adb541cb2e587018b887e3924b7238db94867afe00f3e56324eabb67857f1c3
+- source: microcap12
+  name: BAS70L
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ph_shot.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: c6367af2c60015e9fb5ecc3771d731c998ee74c0f74ef57bce37e58e08532f5d
+    lines:
+      BAS70L: [2011, 2033]
+    fetched: '2026-09-20'
+  copies:
+  - source: ltwiki
+    name: BAS70L
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/BAS70L.PRM
+      sha256: 4c3ec28bf6f866f8efa3fd9dce961be828ba1a4b10751280834862d50469f2d5
+- source: microcap12
+  name: BAS70
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ediode_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 2e50d524139f4241c5345aa22e759f4b47df02a98f9343c9c753c201ba13d8c9
+    lines:
+      BAS70: [97, 98]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: BAS70XY
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: nxp.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
+    lines:
+      BAS70XY: [6002, 6031]
+    fetched: '2026-09-20'
+- source: ltwiki
+  name: BAS70
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/ediode.lib
+    sha256: 3a1ee34ce1dccb655cfdf9e5ee520ad37c7f7e97ce94973793706080d52808b9
+    lines:
+      BAS70: [176, 176]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: BAS70FILM
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/DIOD/DIODE_ST_10.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 5fbff1861259b242b3696034eae7e9618dee580d80ef08990e75eff81815a0f7
+    lines:
+      BAS70FILM: [924, 930]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: BAS70
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/DIODE.LIB
+    sha256: c68f4b4a28eb0e866fb8e516b6a6a37a779ac80fed8a2ef16a3afcfb80c522e5
+    lines:
+      BAS70: [1762, 1763]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: BAS70/SIE
+  def: subckt
+  type: SUBCKT
+  deps:
+  - BAS70_1
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/siemens.lib
+    sha256: c1318342f700741e0d97896cf4f77fe203b8923e12b1106c6c14f848c74bdd5b
+    lines:
+      BAS70/SIE: [2118, 2124]
+      BAS70_1: [2125, 2126]
+    fetched: '2026-09-14'

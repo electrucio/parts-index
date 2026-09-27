@@ -18,7 +18,20 @@ models:
       PMEG2010AEH: [33, 49]
     fetched: '2026-09-14'
     note: 'model(s): PMEG2010AEH (.subckt 1 2), PMEG2010AEH (D .model)'
-  note: 'same code also in: ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: ltwiki
+    name: PMEG2010AEH
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG2010AEH.PRM
+      sha256: 09cefdf1df9af7b1ed0803421d4149263502004e14dfe21cce24399ca47bc2fe
+  - source: microcap12
+    name: PMEG2010AEH
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_shot.lib
+      sha256: c6367af2c60015e9fb5ecc3771d731c998ee74c0f74ef57bce37e58e08532f5d
 - source: bordodynov
   name: PMEG2010AEB
   def: model

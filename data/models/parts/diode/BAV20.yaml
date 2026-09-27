@@ -15,3 +15,60 @@ models:
       BAV20: [1826, 1827]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: spice-model-cd
+  name: bav20
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/DIODE.LB
+    sha256: b648c925003b172006c0871521a37a1448d9cd5343fd97cd1426d0ec65a8c324
+    lines:
+      bav20: [66, 67]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: BAV20WS
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      BAV20WS: [9350, 9351]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: BAV20W
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc.lib
+      sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+- source: microcap12
+  name: BAV20
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ediode_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 2e50d524139f4241c5345aa22e759f4b47df02a98f9343c9c753c201ba13d8c9
+    lines:
+      BAV20: [201, 202]
+    fetched: '2026-09-20'
+- source: ltwiki
+  name: BAV20
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/ediode.lib
+    sha256: 3a1ee34ce1dccb655cfdf9e5ee520ad37c7f7e97ce94973793706080d52808b9
+    lines:
+      BAV20: [261, 262]
+    fetched: '2026-09-21'

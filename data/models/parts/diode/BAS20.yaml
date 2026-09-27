@@ -15,6 +15,18 @@ models:
       bas20ht1g: [14, 18]
     fetched: '2026-09-19'
     note: 'BAS20HT1G.SP3: bas20ht1g'
+  copies:
+  - source: microcap12
+    name: Dbas20ht1g
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: onsemi
+    name: Dbas20ht1g
+    get:
+      url: https://www.onsemi.com/download/models/lib/bas20ht1g.lib.lib
+      sha256: d7550e389f45291dc4121ca88cca924b0526eeb265c872421229662f61b0496d
 - source: kicad-spice-library
   name: BAS20
   def: model
@@ -27,6 +39,22 @@ models:
       BAS20: [147, 148]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: spice-model-cd
+    name: BAS20
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/bas20.lib
+      sha256: 751e0f7d90f881da2cc7baa54b7b516c34e4705b43f5b0eaa83b89ad23d1f59c
+  - source: kicad-spice-library
+    name: BAS20
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Zetex%20Semiconductors/ZMODELS.LIB
+      sha256: 356f4751706278dd76767c0cbdfceab52ea806ed01a3669b26584507bf29f3e0
+  - source: spice-model-cd
+    name: BAS20-Z
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/zmodels.lib
+      sha256: df79c20130b55541a1047df22b4cca3bfdb260045dfee6f538354adc6cfb78d6
 - source: kicad-spice-library
   name: BAS20
   def: model
@@ -55,3 +83,120 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: BAS20_ZX
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
+- source: onsemi
+  name: Dbas20lt1
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bas20lt1.lib
+    sha256: 6c13d207c0e146cb4848844bc108af6db78ee3683cbb35e821a3a7c1d68e9454
+    lines:
+      Dbas20lt1: [14, 18]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: Dbas20lt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: bas20lt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_diode.lib
+      sha256: b22e1d5ee75d5fe192f4e75a25f3addd1671eb17659c3b2a8cb964cfc96d10bc
+- source: spice-model-cd
+  name: bas20
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/DIODE.LB
+    sha256: b648c925003b172006c0871521a37a1448d9cd5343fd97cd1426d0ec65a8c324
+    lines:
+      bas20: [63, 64]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: BAS20
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ediode_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 2e50d524139f4241c5345aa22e759f4b47df02a98f9343c9c753c201ba13d8c9
+    lines:
+      BAS20: [65, 66]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: BAS20DW
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      BAS20DW: [9289, 9290]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: BAS20W
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      BAS20W: [9293, 9294]
+    fetched: '2026-09-20'
+- source: duncanamps
+  name: DBAS20
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/diode.mod
+    sha256: bb58d6a99a7204cfa89803598a0331243f10c11afb1b6279fb56fec2ae14c941
+    lines:
+      DBAS20: [165, 166]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: BAS20
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/ediode.lib
+    sha256: 3a1ee34ce1dccb655cfdf9e5ee520ad37c7f7e97ce94973793706080d52808b9
+    lines:
+      BAS20: [126, 127]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: BAS20/ZTX
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/Zetex.lib
+    sha256: 801edb075d3bd3995ad94e8dbf3c9a290a89481b1e897b74b75fcb6a6fab8ec0
+    lines:
+      BAS20/ZTX: [374, 376]
+    fetched: '2026-09-21'

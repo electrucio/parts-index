@@ -32,7 +32,25 @@ models:
     not_measurable: 2
     typical_rows: 0
   symbol: ZVP2110A_diodes-inc.asy
-  note: 'same code also in: ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: diodes-inc
+    name: ZVP2110A
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8393/collection.spice.txt
+      sha256: 8e48bc6b5b8b3539a783ee1f41fc4e1286d5798edacfd30b5163b4141e6d1aac
+  - source: ltwiki
+    name: ZVP2110A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ZETEX/LIB/zmodels.lib
+      sha256: 8d3fb488666b5f813a666d5c589ac6c7779a2c44a4b38799b2a41ca0006368e7
+  - source: microcap12
+    name: ZVP2110A
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
 datasheet:
   url: https://www.diodes.com/assets/Datasheets/ZVP2110A.pdf
   maker: Zetex (now Diodes Incorporated)

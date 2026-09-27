@@ -28,3 +28,14 @@ models:
       BAT48: [174, 176]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: spice-model-cd
+  name: BAT48
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/DIODE.LB
+    sha256: b648c925003b172006c0871521a37a1448d9cd5343fd97cd1426d0ec65a8c324
+    lines:
+      BAT48: [411, 413]
+    fetched: '2026-09-21'

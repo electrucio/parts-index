@@ -25,7 +25,30 @@ models:
     score: null
     error: 'KeyError: ''smps'''
   symbol: LM2575_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: bordodynov
+    name: LM2575
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/LM2575.LIB
+      sha256: 182b4a3116ee69b3ce9abf42af0cebe5112bbe5587b49632ab1daf714df69eed
+  - source: kicad-spice-library
+    name: LM2575
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/LM2575.LIB
+      sha256: 182b4a3116ee69b3ce9abf42af0cebe5112bbe5587b49632ab1daf714df69eed
+  - source: ltwiki
+    name: LM2575
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LM2575.LIB
+      sha256: 182b4a3116ee69b3ce9abf42af0cebe5112bbe5587b49632ab1daf714df69eed
+  - source: ltwiki
+    name: LM2575
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/Sw_Reg_add/LM2575.LIB
+      sha256: 182b4a3116ee69b3ce9abf42af0cebe5112bbe5587b49632ab1daf714df69eed
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/lm2575-n.pdf
   maker: Texas Instruments (National Semiconductor)

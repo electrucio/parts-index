@@ -32,7 +32,116 @@ models:
     not_measurable: 2
     typical_rows: 3
   symbol: IRF510_infineon.asy
-  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: irf510
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/IrfNmosFet.lib
+      sha256: e34cb81ed38fc5228d4544f69c106f994942a5a06965064598fe10f739a57b37
+  - source: bordodynov
+    name: irf510
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irf510.spi
+      sha256: dace084ce76647e226437aabab8e1106185201cb07a7275044d59013515a2d12
+  - source: bordodynov
+    name: irf510
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irf510.spi
+      sha256: dace084ce76647e226437aabab8e1106185201cb07a7275044d59013515a2d12
+  - source: kicad-spice-library
+    name: irf510
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/IrfNmosFet.lib
+      sha256: e34cb81ed38fc5228d4544f69c106f994942a5a06965064598fe10f739a57b37
+  - source: kicad-spice-library
+    name: irf510
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf510.spi
+      sha256: 8a498a5c02e4c2d9f00ac8e429b750c68ea6ec11f0fffa6cf513aa1ebd9d9c50
+  - source: kicad-spice-library
+    name: irf510
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+      sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+  - source: kicad-spice-library
+    name: irf510
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+      sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+  - source: ltwiki
+    name: irf510
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/IrfNmosFet.lib
+      sha256: e34cb81ed38fc5228d4544f69c106f994942a5a06965064598fe10f739a57b37
+  - source: ltwiki
+    name: irf510
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf510.spi
+      sha256: dace084ce76647e226437aabab8e1106185201cb07a7275044d59013515a2d12
+  - source: ltwiki
+    name: irf510
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf510.spi
+      sha256: dace084ce76647e226437aabab8e1106185201cb07a7275044d59013515a2d12
+  - source: ltwiki
+    name: irf510
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Smps/Ltc/lt1843/irf_mosfet.lib
+      sha256: 32493c0a135172116748fc862a7eca6f4488bf34d1a22a56d288645e832e84f7
+  - source: ltwiki
+    name: irf510
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Smps/Ltc/3phase PFC using LT1249/Irf nmosfet.lib
+      sha256: 38b7ab7698deed078accc7ff29859963108c0f0a05f2c6d127ea9db801a541bb
+  - source: ltwiki
+    name: irf510
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/IrfNmosFet.lib
+      sha256: e34cb81ed38fc5228d4544f69c106f994942a5a06965064598fe10f739a57b37
+  - source: ltwiki
+    name: irf510
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf510.spi
+      sha256: dace084ce76647e226437aabab8e1106185201cb07a7275044d59013515a2d12
+  - source: ltwiki
+    name: irf510
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Smps/Ltc/lt1843/irf_mosfet.lib
+      sha256: 32493c0a135172116748fc862a7eca6f4488bf34d1a22a56d288645e832e84f7
+  - source: ltwiki
+    name: irf510
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Smps/Ltc/3phase PFC using LT1249/Irf nmosfet.lib
+      sha256: 38b7ab7698deed078accc7ff29859963108c0f0a05f2c6d127ea9db801a541bb
+  - source: kicad-spice-library
+    name: irf510_IR
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+      sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+  - source: microcap12
+    name: irf510_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: kicad-spice-library
+    name: IRF510M
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+      sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
 - source: ltspice-native
   name: IRF510
   def: model
@@ -72,7 +181,34 @@ models:
     fail: 0
     not_measurable: 2
     typical_rows: 3
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: IRF510_
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: ltwiki
+    name: IRF510_
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: IRF510_
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: IRF510_
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: IRF510_
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: ltwiki
   name: IRF510
   def: model
@@ -93,7 +229,18 @@ models:
     fail: 0
     not_measurable: 2
     typical_rows: 3
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: ltwiki
+    name: IRF510
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.mos
+      sha256: 0f6a0a30f327903e5b61c3764e08354839fed85c6ce2d4a8b3d708d6c2ec9533
+  - source: kicad-spice-library
+    name: IRF510
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/MOS.lib
+      sha256: 5a12451d9b52820cc74b1f3c11955dcfbc99cc0ede851dd12587ebbbc9e9531e
 - source: kicad-spice-library
   name: IRF510
   def: subckt
@@ -144,6 +291,154 @@ models:
     typical_rows: 3
   symbol: IRF510_kicad-spice-library-2.asy
   note: pins from default order (unverified)
+- source: spice-model-cd
+  name: IRF510
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/MOSFET.LB
+    sha256: 9287b7f0b7ae8ab0fa02300dfe2bdbf54cd76d2720f610592fdc5fcb2528d29b
+    lines:
+      IRF510: [82, 89]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: IRF510
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: irpmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 105bbe2b177521de15323aae290e05947c3bb26d62a8ee42fe5da0e351b46ddf
+    lines:
+      IRF510: [390, 394]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: IRF510
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: mpmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: f3a8113e6ad33c866f8d396d65b1d1e98d8b1d17ebaf3390dd611a3181d4fd37
+    lines:
+      IRF510: [348, 352]
+    fetched: '2026-09-20'
+- source: duncanamps
+  name: XIRF510
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/mosfets/nemos3t.mod
+    sha256: 927fa85ad71152c8e20938dc7e7d15797d8626ce84f73137e1062849f663ce76
+    lines:
+      XIRF510: [70, 91]
+    fetched: '2026-09-14'
+- source: bordodynov
+  name: IRF510
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRF510: [262, 262]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov
+    name: IRF510
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: bordodynov
+    name: IRF510
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Original/standard.mos
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: bordodynov
+    name: IRF510
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Original/standard.mos.bak
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: kicad-spice-library
+    name: IRF510
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: kicad-spice-library
+    name: IRF510
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: kicad-spice-library
+    name: IRF510
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Original/standard.mos
+      sha256: 4ad1e16da6dfb08f9b1d55a27c28ca4a034db3f309073ce070136378fb658ad0
+  - source: ltwiki
+    name: IRF510
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: IRF510
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: IRF510
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: IRF510
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: ltwiki
+    name: IRF510
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Original/standard.mos
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: ltwiki
+    name: IRF510
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Original/standard.mos.bak
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: ltwiki
+    name: IRF510
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+- source: ltwiki
+  name: IRF510
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrmos.lib
+    sha256: cd1b43c7f364ba7d1ebb8af3764d05b8ddaab1d79950e0eedd42a0826cd2c46b
+    lines:
+      IRF510: [1163, 1166]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.vishay.com/docs/91015/irf510.pdf
   maker: Vishay Siliconix

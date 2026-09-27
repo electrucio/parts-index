@@ -32,11 +32,28 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: LM7812_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from simulation: of the 6 node orders only
-    IN GND OUT regulates to about 12 V at Vin-Vout 5 V / 5 mA, Vin-Vout 15 V / 5 mA, Vin-Vout 5 V / 100
-    mA (orders tried: IN OUT GND: -12 V, -12 V, -89.2 V; IN GND OUT: 12 V, 12 V, 12 V; OUT IN GND: 14.8
-    V, 24.8 V, 14.8 V; OUT GND IN: 11.5 V, 19.8 V, -1.72 V; GND IN OUT: -0.73 V, -0.73 V, -0.849 V; GND
-    OUT IN: -3.27 V, -3.25 V, -73.1 V)'
+  note: 'pins from simulation: of the 6 node orders only IN GND OUT regulates to about 12 V at Vin-Vout
+    5 V / 5 mA, Vin-Vout 15 V / 5 mA, Vin-Vout 5 V / 100 mA (orders tried: IN OUT GND: -12 V, -12 V, -89.2
+    V; IN GND OUT: 12 V, 12 V, 12 V; OUT IN GND: 14.8 V, 24.8 V, 14.8 V; OUT GND IN: 11.5 V, 19.8 V, -1.72
+    V; GND IN OUT: -0.73 V, -0.73 V, -0.849 V; GND OUT IN: -3.27 V, -3.25 V, -73.1 V)'
+  copies:
+  - source: kicad-spice-library
+    name: LM7812
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/regulators.lib
+      sha256: 0b15463dadbf7c99cb3692aa563c298dd2a488e40122b87c0094158001d08f4c
+  - source: ltwiki
+    name: LM7812
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/regulators.lib
+      sha256: 1998b5aaba8b44019bf630a561c739ff33a83996cd6600bbaa8b8c3e02cf5bf2
+  - source: ltwiki
+    name: LM7812
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/regulators.lib
+      sha256: ba2105aa53d2db16001d205924af438b7c473ed9a864ce8e7ef13fcd71a7fcf7
 - source: bordodynov
   name: LM7812
   def: subckt
@@ -65,7 +82,19 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: LM7812_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: LM7812
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/LM78xx.txt
+      sha256: 85a79b9c4224eedd7b333dc306ea7ae90a39a5d92242196b6fbd370eeb3300bc
+  - source: ltwiki
+    name: LM7812
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LM78xx.txt
+      sha256: 85a79b9c4224eedd7b333dc306ea7ae90a39a5d92242196b6fbd370eeb3300bc
 - source: kicad-spice-library
   name: LM7812C
   def: subckt
@@ -94,6 +123,20 @@ models:
     typical_rows: 0
   symbol: LM7812_kicad-spice-library.asy
   note: pins from names
+- source: ltwiki
+  name: LM7812C
+  def: subckt
+  type: SUBCKT
+  deps:
+  - x_LM78XX
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+    sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+    lines:
+      LM7812C: [7504, 7507]
+      x_LM78XX: [4741, 4845]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/lm7812.pdf
   maker: Texas Instruments (National Semiconductor)

@@ -32,7 +32,30 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: 6C45P_bordodynov.asy
-  note: 'same code also in: gist-chanmix51, ltwiki; pins from inline comment'
+  note: pins from inline comment
+  copies:
+  - source: gist-chanmix51
+    name: 6C45-PE
+    get:
+      url: https://gist.github.com/chanmix51/6947361/raw/57aa4f0baec33aaaecdfa64d99f4e0a2434be1a4/triodes.sub
+      sha256: 5a946644246b6dfa6b961fecd642dcefe0205f2db65392fda8cf7f502e0fa797
+  - source: gist-chanmix51
+    name: 6C45-PE
+    get:
+      url: https://gist.github.com/chanmix51/6947361/raw/57aa4f0baec33aaaecdfa64d99f4e0a2434be1a4/triodes.sub
+      sha256: 5a946644246b6dfa6b961fecd642dcefe0205f2db65392fda8cf7f502e0fa797
+  - source: ltwiki
+    name: 6C45-PE
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/Tubes/triodes.sub
+      sha256: 1e31c73aba86877020a0740d279066992ad7c2cd57aed56223b59706e68a7f44
+  - source: ltwiki
+    name: 6C45-PE
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/Tubes/triodes.sub
+      sha256: 1e31c73aba86877020a0740d279066992ad7c2cd57aed56223b59706e68a7f44
 - source: bordodynov
   name: 6C45-PE
   def: subckt
@@ -61,7 +84,14 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: 6C45P_bordodynov-2.asy
-  note: 'same code also in: ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: ltwiki
+    name: 6C45-PE
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/new_triodes.txt
+      sha256: 4c621c85eb3b9d3dd97622ff9d25c1c1dcf93bc76e9dc887a946205326f08da2
 datasheet:
   url: https://frank.pocnet.net/sheets/112/6/6S45PE.pdf
   maker: Soviet (bilingual handbook sheet)

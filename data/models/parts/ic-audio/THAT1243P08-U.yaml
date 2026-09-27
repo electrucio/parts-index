@@ -1,0 +1,28 @@
+part: THAT1243P08-U
+kind: ic-audio
+priority: 2
+models:
+- source: thatcorp
+  name: THAT1243
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DPROT
+  - OA_33X36706
+  verbatim: true
+  get:
+    url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+    sha256: ae77f1b43731c387cfed7de047ce8d1c4a4e8a2c0f91f4c808aaa78b07aa996f
+    lines:
+      DPROT: [169, 169]
+      OA_33X36706: [126, 162]
+      THAT1243: [56, 77]
+    fetched: '2026-09-14'
+  note: found under the alias THAT1243
+  copies:
+  - source: thatcorp
+    name: THAT1243
+    get:
+      url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+      member: 124x_Macro_01.lib
+      sha256: ae77f1b43731c387cfed7de047ce8d1c4a4e8a2c0f91f4c808aaa78b07aa996f

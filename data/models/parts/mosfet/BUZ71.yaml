@@ -20,6 +20,38 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: spice-model-cd
+    name: BUZ-71L
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Siemens/Buz_l0.lib
+      sha256: d430f7a785f585e96713acf396e6acf4a1676dd873fd4c966a15508134240f27
+  - source: spice-model-cd
+    name: BUZ-71L
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Infineon/Other/MOSFET/Buz_l0.lib
+      sha256: d430f7a785f585e96713acf396e6acf4a1676dd873fd4c966a15508134240f27
+  - source: kicad-spice-library
+    name: BUZ71L/SIE
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/siemens.lib
+      sha256: c1318342f700741e0d97896cf4f77fe203b8923e12b1106c6c14f848c74bdd5b
+  - source: ltwiki
+    name: BUZ71L/SIE
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/siemens.lib
+      sha256: 243664dd487b615b87bd321416060f6822da14486fcece9fd2e3ded453189d81
+  - source: kicad-spice-library
+    name: BUZ71L_IN
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Infineon%20Technologies/infineon.lib
+      sha256: 06c1d0847f268f69e5d6655adae6c2942997148829254bf22af1c5202a381ed7
+  - source: microcap12
+    name: BUZ71L_IN
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: infineon.lib
+      sha256: cdae8e9767d8fccbc81f94acb925cc440425a03e902d86cd8c5591d87131e175
 - source: kicad-spice-library
   name: BUZ-71
   def: subckt
@@ -37,6 +69,27 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: spice-model-cd
+    name: BUZ-71
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Siemens/Buz_l0.lib
+      sha256: d430f7a785f585e96713acf396e6acf4a1676dd873fd4c966a15508134240f27
+  - source: spice-model-cd
+    name: BUZ-71
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Infineon/Other/MOSFET/Buz_l0.lib
+      sha256: d430f7a785f585e96713acf396e6acf4a1676dd873fd4c966a15508134240f27
+  - source: kicad-spice-library
+    name: BUZ71/SIE
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/siemens.lib
+      sha256: c1318342f700741e0d97896cf4f77fe203b8923e12b1106c6c14f848c74bdd5b
+  - source: ltwiki
+    name: BUZ71/SIE
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/siemens.lib
+      sha256: 243664dd487b615b87bd321416060f6822da14486fcece9fd2e3ded453189d81
 - source: kicad-spice-library
   name: BUZ-71LGE
   def: subckt
@@ -54,6 +107,17 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: spice-model-cd
+    name: BUZ-71LGE
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Siemens/Buz_l0.lib
+      sha256: d430f7a785f585e96713acf396e6acf4a1676dd873fd4c966a15508134240f27
+  - source: spice-model-cd
+    name: BUZ-71LGE
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Infineon/Other/MOSFET/Buz_l0.lib
+      sha256: d430f7a785f585e96713acf396e6acf4a1676dd873fd4c966a15508134240f27
 - source: kicad-spice-library
   name: BUZ71L/SIE
   def: subckt
@@ -105,3 +169,24 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+- source: microcap12
+  name: BUZ71
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: mpmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: f3a8113e6ad33c866f8d396d65b1d1e98d8b1d17ebaf3390dd611a3181d4fd37
+    lines:
+      BUZ71: [117, 121]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: BUZ71A
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: mpmos_lbr.lib
+      sha256: f3a8113e6ad33c866f8d396d65b1d1e98d8b1d17ebaf3390dd611a3181d4fd37

@@ -99,3 +99,14 @@ models:
     note: git clone --depth 1, commit a868895
   note: 'STAND-IN: model of 1N5822, not of SK54; equivalence declared in catalog/wanted.yaml (see its
     note); pins from default order (unverified)'
+- source: qspice
+  name: SK54BL
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 77d471af2ae9494b08252dd53e648f3cafcfb17d1844579217cf4886f41604b2
+    lines:
+      SK54BL: [17, 17]
+    fetched: '2026-09-20'

@@ -27,6 +27,19 @@ models:
       NJM4556A: [13, 16]
       njm4556a_s: [25, 88]
     fetched: '2026-09-14'
+  copies:
+  - source: nisshinbo
+    name: NJM4556A
+    get:
+      url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm4556a_v2_p.zip
+      member: NJM4556A_v2_NewJRC/njm4556A_v2.lib
+      sha256: 471044ec09b7bef68cb13fccfcaa4ab25f12ca1abefb5047ac95d5b262981864
+  - source: bordodynov
+    name: NJM4556A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/njm4556.lib
+      sha256: 471044ec09b7bef68cb13fccfcaa4ab25f12ca1abefb5047ac95d5b262981864
 - source: ltwiki
   name: njm4556a_s
   def: subckt
@@ -46,3 +59,16 @@ models:
     lines:
       njm4556a_s: [25, 88]
     fetched: '2026-09-14'
+  copies:
+  - source: nisshinbo
+    name: njm4556a_s
+    get:
+      url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm4556a_v2_p.zip
+      member: NJM4556A_v2_NewJRC/njm4556A_v2.lib
+      sha256: 471044ec09b7bef68cb13fccfcaa4ab25f12ca1abefb5047ac95d5b262981864
+  - source: bordodynov
+    name: njm4556a_s
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/njm4556.lib
+      sha256: 471044ec09b7bef68cb13fccfcaa4ab25f12ca1abefb5047ac95d5b262981864

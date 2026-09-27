@@ -31,7 +31,19 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 0
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: BF470
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: BF470
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
 - source: ltwiki
   name: BF470
   def: model
@@ -52,7 +64,29 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 0
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: ltwiki
+    name: BF470
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Mixer/standard.bjt
+      sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+  - source: kicad-spice-library
+    name: BF470
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+      sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+  - source: kicad-spice-library
+    name: BF470
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJT.lib
+      sha256: 1f07e6e6b38c9b5d8d19dbccfd3c29741281ead66a7b48cc40eb82e9684580eb
+  - source: ltwiki
+    name: BF470
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.bjt
+      sha256: 0f87e9840e1130e025a7add442288c0f67048f9755108d0384d1594296884e82
 - source: kicad-spice-library
   name: BF470
   def: model
@@ -72,6 +106,28 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 0
+  copies:
+  - source: spice-model-cd
+    name: QBF470
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BF470.lib
+      sha256: e65cd8690b6f6d0cfdaa5a67fd208064a88e6dc640ef6c29bf7f9adf4f622caf
+  - source: microcap12
+    name: BF470
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_bjt.lib
+      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
+  - source: kicad-spice-library
+    name: QBF470/PLP
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/phil_bjt.lib
+      sha256: b04fec0197e8e7b6c8e1dfad671d6b27c716f7e541ea3a50bbcdafa5c7a20e20
+  - source: ltwiki
+    name: QBF470/PLP
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/phil_bjt.lib
+      sha256: b623268d86bce75fdf51394d854e686cdc6a6cd2ace376954bc24bf15056d79f
 - source: kicad-spice-library
   name: BF470S
   def: model
@@ -91,6 +147,17 @@ models:
     fail: 1
     not_measurable: 0
     typical_rows: 0
+- source: groupsio-ltspice
+  name: BF470
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    how: unknown
+    sha256: c2efeb5146d6eec5855876ea76bbcab2e20b845867d62bf17ead9f0a9bb77c0c
+    lines:
+      BF470: [2299, 2306]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.pcpaudio.com/pcpfiles/transistores/BF470.pdf
   maker: philips

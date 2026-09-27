@@ -24,4 +24,90 @@ models:
       SMAJ28A: [2472, 2477]
       TRANSIL: [32, 80]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: bordodynov
+    name: SMAJ28A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/transil_ST1.lib
+      sha256: 93ff5cd289fe81c860e39217e1c54e74ea737baa8a1751c9667bc871452b4391
+  - source: bordodynov
+    name: SMAJ28A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ValVol/ST/Transil/transil_ST.lib
+      sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+  - source: kicad-spice-library
+    name: SMAJ28A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/transil_ST.lib
+      sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+  - source: kicad-spice-library
+    name: SMAJ28A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/transil_ST.lib
+      sha256: 185c29e40bd794726709b41e5a0689c10546add785539576e806e0c0c63484eb
+  - source: ltwiki
+    name: SMAJ28A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/transil_ST1.lib
+      sha256: 93ff5cd289fe81c860e39217e1c54e74ea737baa8a1751c9667bc871452b4391
+  - source: ltwiki
+    name: SMAJ28A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/transil_ST.lib
+      sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+  - source: ltwiki
+    name: SMAJ28A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/ST/Transil/transil_ST.lib
+      sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+  - source: ltwiki
+    name: SMAJ28A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/transil_ST.lib
+      sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+  - source: ltwiki
+    name: SMAJ28A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/TRANSIL/transil_ST.lib
+      sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+  - source: ltwiki
+    name: SMAJ28A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/ValVol/ST/Transil/transil_ST.lib
+      sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+- source: vishay
+  name: SMAJ28A
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/98966/p_smaj14catosmaj70ca.zip
+    member: P_SMAJ28A.txt
+    archive_sha256: d9f94beb3e7e31f25dcda0e1c524fc4d5cdc8fcf104816dc39f14cebfb90d769
+    sha256: 489ef6d1053fe338b39c1196db5c0f16157149d3450d5b93de4b5974ba3df67a
+    lines:
+      SMAJ28A: [7, 40]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: SMAJ28A
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: Littelfuse_TVS.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: dcd9d3f9fbfb1e09ed0e64872d8efa2d598ed0fa98684cbaa9fa705eb9da652a
+    lines:
+      SMAJ28A: [2262, 2267]
+    fetched: '2026-09-20'

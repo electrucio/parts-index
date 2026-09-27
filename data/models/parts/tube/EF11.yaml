@@ -27,3 +27,52 @@ models:
       PENTODE1: [3073, 3092]
     fetched: '2026-09-14'
   note: pins from inline comment
+- source: microcap12
+  name: XEF11_HA
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DIOLIM
+  - XST11_HA
+  - XNR11_HA
+  - XTDV11_HA
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: harhip.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: ce9937e2a7ee7b3d381e9d895c669d3df9dcf8c770fd8fc2602425a2d07fe295
+    lines:
+      DIOLIM: [45, 45]
+      XEF11_HA: [198, 231]
+      XNR11_HA: [246, 250]
+      XST11_HA: [251, 262]
+      XTDV11_HA: [232, 245]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: XEF11_HA
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/harhip.lib
+      sha256: 10f46c1fc5f3dd7e754b85e98d31583b21667430b00af32887ab5bff8b0cb474
+- source: ltwiki
+  name: XEF11
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DIOLIM
+  - XST11
+  - XNR11
+  - XTDV11
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/harris.lib
+    sha256: 5e556916203cdb4cc4a4e500efe41f531e4c2b12aa26d4d3181891c94ce0c506
+    lines:
+      DIOLIM: [9166, 9166]
+      XEF11: [9334, 9367]
+      XNR11: [9384, 9388]
+      XST11: [9390, 9401]
+      XTDV11: [9369, 9382]
+    fetched: '2026-09-21'

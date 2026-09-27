@@ -42,7 +42,19 @@ models:
       CD40_OUT_1X: [520, 532]
     fetched: '2026-09-14'
   symbol: CD4051_bordodynov.asy
-  note: 'found under the alias 4051; same code also in: kicad-spice-library, ltwiki'
+  note: found under the alias 4051
+  copies:
+  - source: kicad-spice-library
+    name: 4051a
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/SwitchAna.Lib
+      sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
+  - source: ltwiki
+    name: 4051a
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/SwitchAna.Lib
+      sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
 - source: bordodynov
   name: '4051'
   def: subckt
@@ -81,7 +93,19 @@ models:
       CD40_OUT_1X: [520, 532]
     fetched: '2026-09-14'
   symbol: CD4051_bordodynov-2.asy
-  note: 'found under the alias 4051; same code also in: kicad-spice-library, ltwiki'
+  note: found under the alias 4051
+  copies:
+  - source: kicad-spice-library
+    name: '4051'
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/SwitchAna.Lib
+      sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
+  - source: ltwiki
+    name: '4051'
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/SwitchAna.Lib
+      sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
 - source: ltwiki
   name: 4051a
   def: subckt

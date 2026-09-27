@@ -37,3 +37,32 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: spice-model-cd
+    name: FDN337N
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Fairchild/FD/FDN337N.lib
+      sha256: 04cd2ba2919e6edabe91aab7556eee01865b71127b6ed8b286c1b2695276668d
+  - source: microcap12
+    name: FDN337N_FC
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: fairch.lib
+      sha256: 53806c9a42d8b9f44b8c77ed3ae210ad6250b5eacb44d7e7f2b429e8f4559918
+- source: microcap12
+  name: FDN337N
+  def: subckt
+  type: SUBCKT
+  deps:
+  - nmos
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      FDN337N: [100990, 101035]
+      nmos: [161508, 161508]
+    fetched: '2026-09-20'

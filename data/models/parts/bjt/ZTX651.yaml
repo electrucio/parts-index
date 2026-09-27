@@ -19,7 +19,19 @@ models:
       '2': [519, 519]
       ZTX651: [1801, 1801]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: ZTX651
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: ZTX651
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
 - source: ltwiki
   name: ZTX651
   def: model
@@ -33,7 +45,47 @@ models:
     lines:
       ZTX651: [610, 613]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: diodes-inc
+    name: ZTX651
+    get:
+      url: https://www.diodes.com/spice/download/2659/ZTX651.spice.txt
+      sha256: 76bbb991774b52df7f777fcdf8a7a0fdcf2ac616cda0e73d9085f9b41076a231
+  - source: diodes-inc
+    name: ZTX651
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8426/collection.spice.txt
+      sha256: ca5759f37375eed975f03f72dafec9c3338930de6cfafaecda91fdca1fd33379
+  - source: kicad-spice-library
+    name: ZTX651
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+      sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+  - source: kicad-spice-library
+    name: ZTX651
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Zetex%20Semiconductors/ZMODELS.LIB
+      sha256: 356f4751706278dd76767c0cbdfceab52ea806ed01a3669b26584507bf29f3e0
+  - source: kicad-spice-library
+    name: ZTX651
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTN.LIB
+      sha256: 2c85b6bbf3a7dcb9403d646a1c120714fdc7bce5c8287c8e537012a1cf3ef6c2
+  - source: spice-model-cd
+    name: ZTX651
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/ztx651.lib
+      sha256: 9f34ed5c9296393b8e2ff523d1e23c955c046b0acb415629c78fe5a9b59f6d03
+  - source: spice-model-cd
+    name: ZTX651
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/zmodels.lib
+      sha256: df79c20130b55541a1047df22b4cca3bfdb260045dfee6f538354adc6cfb78d6
+  - source: ltwiki
+    name: ZTX651/ZTX
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/Zetex.lib
+      sha256: 801edb075d3bd3995ad94e8dbf3c9a290a89481b1e897b74b75fcb6a6fab8ec0
 - source: kicad-spice-library
   name: ZTX651
   def: model
@@ -75,3 +127,32 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: ZTX651_ZX
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
+- source: qspice
+  name: ZTX651
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 02e7f34086291154c4ad5a23bd7be80641cec3ccd61609bfc623a1231183224b
+    lines:
+      ZTX651: [808, 811]
+    fetched: '2026-09-20'
+- source: duncanamps
+  name: QZTX651
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/bjt/npn.mod
+    sha256: 57dfef87174fc8f0310bc9527e0bf7ef3fa92d13d295ea8a504d3ba67f13ec87
+    lines:
+      QZTX651: [890, 893]
+    fetched: '2026-09-14'

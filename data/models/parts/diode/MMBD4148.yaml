@@ -15,3 +15,80 @@ models:
       MMBD4148: [8813, 8813]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: spice-model-cd
+    name: MMBD4148
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Fairchild/MM/MMBD4148.t
+      sha256: e7d68a9d910eaf2a88336c7c2e1c477c8ed7925bf481da8f78cbb5cab7e2b7a2
+  - source: microcap12
+    name: MMBD4148
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: fairch.lib
+      sha256: 53806c9a42d8b9f44b8c77ed3ae210ad6250b5eacb44d7e7f2b429e8f4559918
+- source: onsemi
+  name: MMBD4148SE
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mmbd4148se.lib
+    sha256: a31a14b89e45556eecaa2718f2ee229b6c6344db06c01e9b287e9e4e8110d394
+    lines:
+      MMBD4148SE: [6, 17]
+    fetched: '2026-09-19'
+- source: diodes-inc
+  name: MMBD4148PLM
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/1557/MMBD4148PLM.spice.txt
+    sha256: 690baafd14a0e85f66ff5afb973fc3f59db8e85eb86f0354f0eaa9fdda8fa3df
+    lines:
+      MMBD4148PLM: [18, 19]
+    fetched: '2026-09-19'
+  copies:
+  - source: diodes-inc
+    name: MMBD4148PLM
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8348/collection.spice.txt
+      sha256: a574bf04bdb37004ffcdf1735f89e9ac6e60c5be2713ccd0124603550eedfa96
+  - source: microcap12
+    name: MMBD4148PLM
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc.lib
+      sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+- source: microcap12
+  name: MMBD4148SE
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D2
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      D2: [212863, 212863]
+      MMBD4148SE: [139643, 139654]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: MMBD4148W
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      MMBD4148W: [9456, 9457]
+    fetched: '2026-09-20'

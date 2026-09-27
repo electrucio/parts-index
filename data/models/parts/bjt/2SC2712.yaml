@@ -16,7 +16,29 @@ models:
     lines:
       2SC2712: [1333, 1333]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: 2SC2712
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+      sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+  - source: ltwiki
+    name: q2sc2712
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/jbipolar.lib
+      sha256: 0918e78e635212ebc891072f11282cbf2e370a4163cd9a0794cfc1a50dddf89a
+  - source: ltwiki
+    name: 2SC2712
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: 2SC2712
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
 - source: bordodynov
   name: 2SC2712_
   def: model
@@ -30,7 +52,24 @@ models:
     lines:
       2SC2712_: [1334, 1334]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: 2SC2712_
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+      sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+  - source: ltwiki
+    name: 2SC2712_
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: 2SC2712_
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
 - source: kicad-spice-library
   name: Q2SC2712
   def: model
@@ -43,3 +82,23 @@ models:
       Q2SC2712: [643, 659]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: toshiba
+  name: 2SC2712
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://toshiba.semicon-storage.com/info/docget.jsp?did=55782&prodName=2SC2712&displang=en
+    member: 2SC2712.lib
+    archive_sha256: d4fca41e2c688cc13b242a0e6716d51eb174c01bd0c208034eac4d3f1105c018
+    sha256: befe72c288c7d7d85faa62bd1c21d61e6b3dd0ee3301f1bc2ba04e87c2cbe804
+    lines:
+      2SC2712: [12, 50]
+    fetched: '2026-09-21'
+  copies:
+  - source: toshiba
+    name: 2SC2712
+    get:
+      member: PSpice_20260827/Toshiba-lib-PSpice_20260827/Bipolar Transistors/2SC2712_PSpice_20161207/2SC2712.lib
+      how: unknown
+      sha256: befe72c288c7d7d85faa62bd1c21d61e6b3dd0ee3301f1bc2ba04e87c2cbe804

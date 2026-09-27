@@ -22,7 +22,18 @@ models:
     lines:
       ADA4817-1: [162, 265]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: ADA4817-1
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/AD4817.lib
+      sha256: 995028247c1b05f1bb46f86d6cf39ca414a22f6f424377be5879a1a0e894142f
+  - source: ltwiki
+    name: ADA4817-1
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/AD4817.lib
+      sha256: 995028247c1b05f1bb46f86d6cf39ca414a22f6f424377be5879a1a0e894142f
 - source: bordodynov
   name: ADA4817-1
   def: subckt
@@ -42,7 +53,19 @@ models:
     lines:
       ADA4817-1: [9276, 9352]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: kicad-spice-library
+    name: ADA4817-1
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: ADA4817-1
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
 - source: bordodynov
   name: ADA4817
   def: subckt
@@ -64,3 +87,20 @@ models:
     fetched: '2026-09-14'
   note: 'found under the alias ADA4817; same code also in: kicad-spice-library, ltwiki; pins from comment
     words'
+- source: microcap12
+  name: ADA4817-1
+  def: subckt
+  type: SUBCKT
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: analog.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+    lines:
+      ADA4817-1: [86034, 86129]
+      dx: [77076, 77076]
+    fetched: '2026-09-20'

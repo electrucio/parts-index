@@ -16,3 +16,24 @@ models:
     lines:
       PESD3V3S1UB: [2, 11]
     fetched: '2026-09-14'
+  copies:
+  - source: microcap12
+    name: PESD3V3S1UB
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_diode.lib
+      sha256: f9df24ec0c294f52c0b42dcb8aa86242c24d1c52b5df04656c47544b89fac977
+- source: microcap12
+  name: PESD3V3S1UL
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ph_diode.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: f9df24ec0c294f52c0b42dcb8aa86242c24d1c52b5df04656c47544b89fac977
+    lines:
+      PESD3V3S1UL: [4817, 4826]
+    fetched: '2026-09-20'

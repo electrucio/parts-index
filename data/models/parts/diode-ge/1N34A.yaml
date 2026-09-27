@@ -24,7 +24,35 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 1
-  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+  copies:
+  - source: bordodynov
+    name: 1N34A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: groups-io
+    name: 1N34A
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/Germanium/Germanium.lib
+      sha256: ecf123dfc87c5454687a9b0c68c5b6aa633fb7e47d1ede1b1100afbd5916ab63
+  - source: kicad-spice-library
+    name: 1N34A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.dio
+      sha256: 85043335b56cc10779c03bcd2c237472827cf28c004628c9ddacb6fb3d8705c7
+  - source: ltwiki
+    name: 1N34A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: 1N34A
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
 - source: germanium-apm
   name: 1N34A_
   def: model
@@ -44,7 +72,35 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 1
-  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+  copies:
+  - source: bordodynov
+    name: 1N34A_
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: groups-io
+    name: 1N34A_
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/Germanium/Germanium.lib
+      sha256: ecf123dfc87c5454687a9b0c68c5b6aa633fb7e47d1ede1b1100afbd5916ab63
+  - source: kicad-spice-library
+    name: 1N34A_
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.dio
+      sha256: 85043335b56cc10779c03bcd2c237472827cf28c004628c9ddacb6fb3d8705c7
+  - source: ltwiki
+    name: 1N34A_
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: 1N34A_
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
 - source: ltwiki
   name: 1N34A
   def: model
@@ -65,7 +121,29 @@ models:
     fail: 1
     not_measurable: 0
     typical_rows: 1
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: ltwiki
+    name: 1N34A
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.dio
+      sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+  - source: kicad-spice-library
+    name: 1N34A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard3.dio
+      sha256: 13cb55bb7184e06a29b64a8d1991371f8414622ef1213c5b7bcb01e358ed71ee
+  - source: kicad-spice-library
+    name: 1N34A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Diode/DIODE2.lib
+      sha256: 30ed855dc84e2de25e560deac3c77134cb73d072e10199aa8de3d2a7155af902
+  - source: ltwiki
+    name: 1N34A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/cmp/standard.dio
+      sha256: c37cd3feda2bf48e371d1b329a4f08dcedf3e90acb6a8b98ec28a8063b633c21
 datasheet:
   url: https://www.taitroncomponents.com/catalog/Datasheet/1N34A.pdf
   maker: Taitron Components

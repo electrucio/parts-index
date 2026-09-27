@@ -31,7 +31,90 @@ models:
     not_measurable: 1
     typical_rows: 3
   symbol: IRF530_infineon.asy
-  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: irf530
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/IrfNmosFet.lib
+      sha256: e34cb81ed38fc5228d4544f69c106f994942a5a06965064598fe10f739a57b37
+  - source: bordodynov
+    name: irf530
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irf530.spi
+      sha256: b357d3f1161390512eb4b6cde5ce6d3d53cee00dcc031a2687602e5a45d0e2a5
+  - source: bordodynov
+    name: irf530
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irf530.spi
+      sha256: b357d3f1161390512eb4b6cde5ce6d3d53cee00dcc031a2687602e5a45d0e2a5
+  - source: kicad-spice-library
+    name: irf530
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/IrfNmosFet.lib
+      sha256: e34cb81ed38fc5228d4544f69c106f994942a5a06965064598fe10f739a57b37
+  - source: kicad-spice-library
+    name: irf530
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf530.spi
+      sha256: 0e304db83f07279ef9e6a566df8d901d28b31322874469248f67b2c6699034ed
+  - source: ltwiki
+    name: irf530
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/IrfNmosFet.lib
+      sha256: e34cb81ed38fc5228d4544f69c106f994942a5a06965064598fe10f739a57b37
+  - source: ltwiki
+    name: irf530
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf530.spi
+      sha256: b357d3f1161390512eb4b6cde5ce6d3d53cee00dcc031a2687602e5a45d0e2a5
+  - source: ltwiki
+    name: irf530
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf530.spi
+      sha256: b357d3f1161390512eb4b6cde5ce6d3d53cee00dcc031a2687602e5a45d0e2a5
+  - source: ltwiki
+    name: irf530
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Smps/Ltc/lt1843/irf_mosfet.lib
+      sha256: 32493c0a135172116748fc862a7eca6f4488bf34d1a22a56d288645e832e84f7
+  - source: ltwiki
+    name: irf530
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Smps/Ltc/3phase PFC using LT1249/Irf nmosfet.lib
+      sha256: 38b7ab7698deed078accc7ff29859963108c0f0a05f2c6d127ea9db801a541bb
+  - source: ltwiki
+    name: irf530
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/IrfNmosFet.lib
+      sha256: e34cb81ed38fc5228d4544f69c106f994942a5a06965064598fe10f739a57b37
+  - source: ltwiki
+    name: irf530
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf530.spi
+      sha256: b357d3f1161390512eb4b6cde5ce6d3d53cee00dcc031a2687602e5a45d0e2a5
+  - source: ltwiki
+    name: irf530
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Smps/Ltc/lt1843/irf_mosfet.lib
+      sha256: 32493c0a135172116748fc862a7eca6f4488bf34d1a22a56d288645e832e84f7
+  - source: ltwiki
+    name: irf530
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Smps/Ltc/3phase PFC using LT1249/Irf nmosfet.lib
+      sha256: 38b7ab7698deed078accc7ff29859963108c0f0a05f2c6d127ea9db801a541bb
 - source: ltspice-native
   name: IRF530
   def: model
@@ -76,7 +159,89 @@ models:
     not_measurable: 1
     typical_rows: 3
   symbol: IRF530_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irf530n_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: bordodynov
+    name: irf530ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irf530ns.spi
+      sha256: 4bbfe02dd7d05198bacd338702c1da4a679cb05c2bfc8461c9e193a4e0feb150
+  - source: kicad-spice-library
+    name: IRF530NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+      sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+  - source: kicad-spice-library
+    name: irf530ns
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf530ns.spi
+      sha256: c3c92336ca43a9298613b189c23629677ffca8105b74d8791d437fb47a8587c0
+  - source: kicad-spice-library
+    name: irf530ns
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+      sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+  - source: kicad-spice-library
+    name: irf530ns
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+      sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+  - source: ltwiki
+    name: irf530ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf530ns.spi
+      sha256: 4bbfe02dd7d05198bacd338702c1da4a679cb05c2bfc8461c9e193a4e0feb150
+  - source: ltwiki
+    name: irf530ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf530ns.spi
+      sha256: 4bbfe02dd7d05198bacd338702c1da4a679cb05c2bfc8461c9e193a4e0feb150
+  - source: ltwiki
+    name: irf530ns
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf530ns.spi
+      sha256: 4bbfe02dd7d05198bacd338702c1da4a679cb05c2bfc8461c9e193a4e0feb150
+  - source: kicad-spice-library
+    name: IRF530N
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+      sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+  - source: kicad-spice-library
+    name: irf530n
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+      sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+  - source: kicad-spice-library
+    name: irf530n
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+      sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+  - source: kicad-spice-library
+    name: irf530n_IR
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+      sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+  - source: kicad-spice-library
+    name: irf530ns_IR
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+      sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+  - source: microcap12
+    name: irf530ns_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
 - source: bordodynov
   name: IRF530_
   def: model
@@ -97,7 +262,34 @@ models:
     fail: 0
     not_measurable: 1
     typical_rows: 3
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: IRF530_
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: ltwiki
+    name: IRF530_
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: IRF530_
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: IRF530_
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: IRF530_
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: bordodynov
   name: irf530n
   def: subckt
@@ -123,7 +315,37 @@ models:
     not_measurable: 1
     typical_rows: 3
   symbol: IRF530_bordodynov-3.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: irf530n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irf530n.spi
+      sha256: ab5e852bd617bcbb5de7a271a33ceb56786b3cac5af4dcaac4e8df1d684a290a
+  - source: kicad-spice-library
+    name: irf530n
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf530n.spi
+      sha256: 6d5a816ff08ddfdc834a7d11b6e45e40f7fe258751ab24afef948f9665f7eeea
+  - source: ltwiki
+    name: irf530n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf530n.spi
+      sha256: ab5e852bd617bcbb5de7a271a33ceb56786b3cac5af4dcaac4e8df1d684a290a
+  - source: ltwiki
+    name: irf530n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf530n.spi
+      sha256: ab5e852bd617bcbb5de7a271a33ceb56786b3cac5af4dcaac4e8df1d684a290a
+  - source: ltwiki
+    name: irf530n
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf530n.spi
+      sha256: ab5e852bd617bcbb5de7a271a33ceb56786b3cac5af4dcaac4e8df1d684a290a
 - source: bordodynov
   name: irf530v
   def: subckt
@@ -149,7 +371,346 @@ models:
     not_measurable: 1
     typical_rows: 3
   symbol: IRF530_bordodynov-4.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irf530v
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: bordodynov
+    name: irf530v
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irf530v.spi
+      sha256: 6046bda32a38b42e167dd0c9bda0e40bf6994ef199def72395949e5f8f4fe02f
+  - source: kicad-spice-library
+    name: irf530v
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf530v.spi
+      sha256: 37e454e66f73dc12e498099afbe7013cc9520cd659db93f54d14280912099694
+  - source: ltwiki
+    name: irf530v
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf530v.spi
+      sha256: 6046bda32a38b42e167dd0c9bda0e40bf6994ef199def72395949e5f8f4fe02f
+  - source: ltwiki
+    name: irf530v
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf530v.spi
+      sha256: 6046bda32a38b42e167dd0c9bda0e40bf6994ef199def72395949e5f8f4fe02f
+  - source: ltwiki
+    name: irf530v
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf530v.spi
+      sha256: 6046bda32a38b42e167dd0c9bda0e40bf6994ef199def72395949e5f8f4fe02f
+- source: spice-model-cd
+  name: IRF530
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/MOSFET.LB
+    sha256: 9287b7f0b7ae8ab0fa02300dfe2bdbf54cd76d2720f610592fdc5fcb2528d29b
+    lines:
+      IRF530: [122, 129]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: irf530_IR
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: irf.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+    lines:
+      irf530_IR: [3029, 3088]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: irf530
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+      sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+  - source: kicad-spice-library
+    name: irf530_IR
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+      sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+  - source: kicad-spice-library
+    name: IRF530M
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+      sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+- source: microcap12
+  name: IRF530
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: irpmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 105bbe2b177521de15323aae290e05947c3bb26d62a8ee42fe5da0e351b46ddf
+    lines:
+      IRF530: [411, 415]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: IRF530
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: mpmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: f3a8113e6ad33c866f8d396d65b1d1e98d8b1d17ebaf3390dd611a3181d4fd37
+    lines:
+      IRF530: [404, 408]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: irf530vt
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: irf.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+    lines:
+      irf530vt: [28186, 28195]
+    fetched: '2026-09-20'
+- source: duncanamps
+  name: XIRF530
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/mosfets/nemos3t.mod
+    sha256: 927fa85ad71152c8e20938dc7e7d15797d8626ce84f73137e1062849f663ce76
+    lines:
+      XIRF530: [120, 141]
+    fetched: '2026-09-14'
+- source: bordodynov
+  name: IRF530
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      IRF530: [263, 263]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov
+    name: IRF530
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: bordodynov
+    name: IRF530
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Original/standard.mos
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: bordodynov
+    name: IRF530
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Original/standard.mos.bak
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: kicad-spice-library
+    name: IRF530
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: kicad-spice-library
+    name: IRF530
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: kicad-spice-library
+    name: IRF530
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Original/standard.mos
+      sha256: 4ad1e16da6dfb08f9b1d55a27c28ca4a034db3f309073ce070136378fb658ad0
+  - source: ltwiki
+    name: IRF530
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: IRF530
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: IRF530
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: IRF530
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: ltwiki
+    name: IRF530
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Original/standard.mos
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: ltwiki
+    name: IRF530
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Original/standard.mos.bak
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: ltwiki
+    name: IRF530
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+- source: bordodynov
+  name: irf530vt
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/IGBT/IRF/LIB/irf530v.spi
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6046bda32a38b42e167dd0c9bda0e40bf6994ef199def72395949e5f8f4fe02f
+    lines:
+      irf530vt: [60, 69]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov
+    name: irf530vt
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irf530v.spi
+      sha256: 6046bda32a38b42e167dd0c9bda0e40bf6994ef199def72395949e5f8f4fe02f
+  - source: kicad-spice-library
+    name: irf530vt
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf530v.spi
+      sha256: 37e454e66f73dc12e498099afbe7013cc9520cd659db93f54d14280912099694
+  - source: ltwiki
+    name: irf530vt
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf530v.spi
+      sha256: 6046bda32a38b42e167dd0c9bda0e40bf6994ef199def72395949e5f8f4fe02f
+  - source: ltwiki
+    name: irf530vt
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf530v.spi
+      sha256: 6046bda32a38b42e167dd0c9bda0e40bf6994ef199def72395949e5f8f4fe02f
+  - source: ltwiki
+    name: irf530vt
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf530v.spi
+      sha256: 6046bda32a38b42e167dd0c9bda0e40bf6994ef199def72395949e5f8f4fe02f
+- source: ltwiki
+  name: IRF530
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Reg_Vref/lm/LdoReg/bss139.mod
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: d98105aa9235cae554ad7dbee1e8fda1606da5c422a9dc12f1bcff7721950ef7
+    lines:
+      IRF530: [89, 89]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: IRF530
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Reg&Vref/lm/LdoReg/bss139.mod
+      sha256: d98105aa9235cae554ad7dbee1e8fda1606da5c422a9dc12f1bcff7721950ef7
+  - source: ltwiki
+    name: IRF530
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Reg_Vref/lm/LdoReg/bss139.mod
+      sha256: d98105aa9235cae554ad7dbee1e8fda1606da5c422a9dc12f1bcff7721950ef7
+  - source: ltwiki
+    name: IRF530
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Reg&Vref/lm/LdoReg/bss139.mod
+      sha256: d98105aa9235cae554ad7dbee1e8fda1606da5c422a9dc12f1bcff7721950ef7
+- source: ltwiki
+  name: IRF530
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.mos
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 0f6a0a30f327903e5b61c3764e08354839fed85c6ce2d4a8b3d708d6c2ec9533
+    lines:
+      IRF530: [260, 260]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: IRF530
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/MOS.lib
+      sha256: 5a12451d9b52820cc74b1f3c11955dcfbc99cc0ede851dd12587ebbbc9e9531e
+  - source: ltwiki
+    name: IRF530
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/cmp/standard.mos
+      sha256: 0f6a0a30f327903e5b61c3764e08354839fed85c6ce2d4a8b3d708d6c2ec9533
+- source: ltwiki
+  name: IRF530
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrmos.lib
+    sha256: cd1b43c7f364ba7d1ebb8af3764d05b8ddaab1d79950e0eedd42a0826cd2c46b
+    lines:
+      IRF530: [1219, 1222]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: IRF530
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWMOS.LIB
+    sha256: 3a158ee63ad9816d8dcdc0cad0827d2f4646c66b6296d7bbcd2c28d49bf1d219
+    lines:
+      IRF530: [2754, 2774]
+    fetched: '2026-09-14'
 datasheet:
   url: https://www.vishay.com/docs/91019/irf530.pdf
   maker: Vishay Siliconix

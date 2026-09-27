@@ -93,3 +93,52 @@ models:
     fetched: '2026-09-14'
   note: 'STAND-IN: model of SS14, not of B140; equivalence declared in catalog/wanted.yaml (see its note);
     same code also in: kicad-spice-library, ltwiki'
+- source: microcap12
+  name: B140
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      B140: [9604, 9605]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: B140B
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc.lib
+      sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+- source: microcap12
+  name: B140HB
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      B140HB: [9612, 9613]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: B140HW
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      B140HW: [9660, 9661]
+    fetched: '2026-09-20'

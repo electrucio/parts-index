@@ -36,7 +36,13 @@ models:
     score: null
     error: 'KeyError: ''smps'''
   symbol: SG3525_bordodynov.asy
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: sg3525a
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/ValVol.lib
+      sha256: c12415c540e806c1348c9c16e84708c84fe8c9c6cb59b5ade3420c0fbb85e44d
 - source: ltwiki
   name: sg3525a
   def: subckt

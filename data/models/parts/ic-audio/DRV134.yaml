@@ -24,4 +24,32 @@ models:
     lines:
       DRV134: [48, 136]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: DRV134
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/DRV134.SUB
+      sha256: 515e34e8fadee71923668d94a578155c65747d5fbcf869d6bb1fd5991f836381
+  - source: ltwiki
+    name: DRV134
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/DRV134.SUB
+      sha256: 515e34e8fadee71923668d94a578155c65747d5fbcf869d6bb1fd5991f836381
+- source: microcap12
+  name: DRV134
+  def: subckt
+  type: SUBCKT
+  deps:
+  - OP1_134
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ti.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+    lines:
+      DRV134: [19159, 19201]
+      OP1_134: [19211, 19247]
+    fetched: '2026-09-20'

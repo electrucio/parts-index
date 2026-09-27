@@ -21,4 +21,43 @@ models:
     lines:
       MCP6561_my: [1, 205]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: MCP6561_my
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/MCP6561_my.txt
+      sha256: 42cfabc93f9f3b52d255616ebcfbf233d497edfd84e613b324297b5c9192f236
+  - source: ltwiki
+    name: MCP6561_my
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/MCP6561_my.txt
+      sha256: 42cfabc93f9f3b52d255616ebcfbf233d497edfd84e613b324297b5c9192f236
+- source: microchip
+  name: MCP6561
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/BoardDesignFiles/MCP6561_MM_B.zip
+    member: MCP6561.txt
+    archive_sha256: a94190bb3131b29daecc2a5e5ec979a9b475303eb0de4f676d90701a2d3d8be7
+    sha256: e2ff2a773e96e6efc58659e4776f9f4cb3b21d442cb757f0e52002cb82d66ed2
+    lines:
+      MCP6561: [1, 205]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: MCP6561
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: mc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 9e6a5b46e8405605b3f004924fa5b2852f67b9470fe1c5bec2c8e144400f2abe
+    lines:
+      MCP6561: [5815, 6019]
+    fetched: '2026-09-20'

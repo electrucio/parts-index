@@ -21,7 +21,37 @@ models:
     lines:
       MC3403: [816, 850]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: MC3403
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: MC3403
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: MC3403
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: MC3403
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: MC3403
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraOpamps/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
 - source: bordodynov
   name: MC3403
   def: subckt
@@ -60,7 +90,25 @@ models:
       TL072: [837, 869]
       TL074: [878, 910]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: kicad-spice-library
+    name: MC3403
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_TI.lib
+      sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+  - source: ltwiki
+    name: MC3403
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_TI.lib
+      sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+  - source: ltwiki
+    name: MC3403
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OpAmp_TI.lib
+      sha256: 9527567b0cc2c8a3023a6eed5baeb2ccabc2a67a41227a6c95866ece0253dc52
 - source: ltwiki
   name: MC3403
   def: subckt
@@ -80,7 +128,30 @@ models:
     lines:
       MC3403: [7045, 7079]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: microcap12
+    name: MC3403_TI_30
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+  - source: bordodynov
+    name: MC3403
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: kicad-spice-library
+    name: MC3403
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Texas%20Instruments/mc3403.mod
+      sha256: 887e7754a531472537482b6200114f1c2c527de1f1b57958887ebbf21202ffb6
+  - source: kicad-spice-library
+    name: MC3403_TI_30
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+      sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
 - source: kicad-spice-library
   name: MC3403
   def: subckt
@@ -100,6 +171,12 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from numbered connections table
+  copies:
+  - source: kicad-spice-library
+    name: MC3403
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/NONLIN.LIB
+      sha256: 69207a978c970ac7da3929409b0188fad477d4289939755abbde979c13214be7
 - source: kicad-spice-library
   name: MC3403S
   def: subckt
@@ -138,3 +215,81 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from comment words
+  copies:
+  - source: microcap12
+    name: MC3403_TI_5
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+- source: onsemi
+  name: MC3403
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/zip/ncp1205is.zip
+    member: ONIC.LIB
+    archive_sha256: 1f31a322a79cc052cb8a78d0de266cf6ad41dde83cbd480d1dc973c49bf58fe8
+    sha256: 2205b1dca9be0f1465a30b1880ff6f9b9bf273bfdd12359dcd4622db942cba8c
+    lines:
+      MC3403: [4068, 4103]
+    fetched: '2026-09-19'
+  copies:
+  - source: onsemi
+    name: MC3403
+    get:
+      url: https://www.onsemi.com/download/models/zip/mc33163_model.zip
+      member: MC33163 MODEL/onic.lib
+      sha256: 4b75d2a5b998dbc4b9048dda08ddab54587bf815a725128b3f9f747851cacfb7
+  - source: onsemi
+    name: MC3403
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp101x_isspice.zip
+      member: onic.lib
+      sha256: 3bba6f67478987c9d9d436d24fa9b82e91d92888f20a34d59fd5c0dae0de189c
+  - source: kicad-spice-library
+    name: MC3403_MC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_opamp.lib
+      sha256: bfbf4e51462367a37800fa5c0f5a2b3190a30da3e6321416caa3e14b91ff274a
+  - source: microcap12
+    name: MC3403_MC
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: m_opamp.lib
+      sha256: 6b96d357d32e315e8e5c5d9fc2835ffffa23b6371aa0fe1a5475ebb6b2c776a0
+- source: spice-model-cd
+  name: MC3403
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/STMicroelectronics/Standard%20Linear%20ICs/Spice/mc3403.txt
+    sha256: fb6786ff663af2cfc897556dce8155d9c97b43af6007eee9a3d10fd758712176
+    lines:
+      MC3403: [27, 74]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: MC3403
+  def: subckt
+  type: SUBCKT
+  deps:
+  - nmos
+  - Q1
+  - pmos
+  - Q2
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      MC3403: [210820, 210855]
+      Q1: [78385, 78412]
+      Q2: [78417, 78442]
+      nmos: [161508, 161508]
+      pmos: [161510, 161510]
+    fetched: '2026-09-20'

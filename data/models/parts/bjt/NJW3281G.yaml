@@ -26,7 +26,53 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 1
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: NJW3281G
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+      sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+  - source: ltwiki
+    name: NJW3281G
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: NJW3281G
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+- source: onsemi
+  name: njw3281g
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/sp3/njw3281g.sp3
+    sha256: 29371567c71a8c1e7fde4118545e35f613b8778fc7956697d7562b1b75001779
+    lines:
+      njw3281g: [14, 24]
+    fetched: '2026-09-21'
+  copies:
+  - source: microcap12
+    name: Qnjw3281g
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: njw3281g
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_bjt.lib
+      sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77
+  - source: onsemi
+    name: Qnjw3281g
+    get:
+      url: https://www.onsemi.com/download/models/lib/njw3281g.lib
+      sha256: 4774f08ec60cd008fa6bc0e0b09970618c6fe9ed33c065f4b7ef88239db66082
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/njw3281-d.pdf
   maker: onsemi

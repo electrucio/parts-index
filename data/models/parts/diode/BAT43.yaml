@@ -26,7 +26,24 @@ models:
     fail: 2
     not_measurable: 0
     typical_rows: 6
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: BAT43
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.dio
+      sha256: 85043335b56cc10779c03bcd2c237472827cf28c004628c9ddacb6fb3d8705c7
+  - source: ltwiki
+    name: BAT43
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: BAT43
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
 - source: ltwiki
   name: BAT43
   def: model
@@ -47,6 +64,12 @@ models:
     fail: 3
     not_measurable: 0
     typical_rows: 6
+  copies:
+  - source: kicad-spice-library
+    name: BAT43
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/diode_ST.lib
+      sha256: 5481ed55e9738303fe20e33d9889db3f5a684d384e1d83667fa178b6c99ac49d
 - source: kicad-spice-library
   name: BAT43
   def: model
@@ -66,6 +89,27 @@ models:
     fail: 3
     not_measurable: 0
     typical_rows: 6
+- source: microcap12
+  name: BAT43W
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      BAT43W: [139, 140]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: BAT43WS
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc.lib
+      sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
 datasheet:
   url: https://www.vishay.com/docs/85660/bat42.pdf
   maker: Vishay Semiconductors

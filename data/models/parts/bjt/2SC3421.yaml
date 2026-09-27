@@ -30,7 +30,19 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 2
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: 2SC3421
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: 2SC3421
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
 - source: ltwiki
   name: 2SC3421
   def: model
@@ -51,7 +63,40 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 2
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: ltwiki
+    name: 2SC3421
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Mixer/standard.bjt
+      sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+  - source: kicad-spice-library
+    name: 2SC3421
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+      sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+  - source: kicad-spice-library
+    name: 2SC3421
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJT.lib
+      sha256: 1f07e6e6b38c9b5d8d19dbccfd3c29741281ead66a7b48cc40eb82e9684580eb
+  - source: ltwiki
+    name: 2SC3421
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.bjt
+      sha256: 0f87e9840e1130e025a7add442288c0f67048f9755108d0384d1594296884e82
+- source: ltwiki
+  name: Q2SC3421
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/jpwrbjt.lib
+    sha256: 4820b209a2d9611c90461add6db411abc0c8d995398a5bf9227703dfce96af66
+    lines:
+      Q2SC3421: [2704, 2726]
+    fetched: '2026-09-21'
 datasheet:
   url: https://docs.rs-online.com/7903/0900766b80c0c679.pdf
   maker: toshiba

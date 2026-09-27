@@ -21,7 +21,24 @@ models:
     lines:
       4N25: [152, 160]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: 4N25
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OptoAcop.lib
+      sha256: afc41e67a056aadd6af70da491aedd69fb6e66a9f20ffe644c8b39d92e8ad025
+  - source: ltwiki
+    name: 4N25
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OptoAcop.lib
+      sha256: afc41e67a056aadd6af70da491aedd69fb6e66a9f20ffe644c8b39d92e8ad025
+  - source: ltwiki
+    name: 4N25
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OptoAcop.lib
+      sha256: e1cc58e7df7070c4b67ca9ba29d04f8ede1394d26c33951fbd6e7923ecc6a694
 - source: bordodynov
   name: 4N27
   def: subckt
@@ -61,7 +78,24 @@ models:
     lines:
       4N25: [3, 11]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: 4N25
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/4N25.sub
+      sha256: c97120393d2aafd4f1b9cf7a18f4c2a7dcc3e05810c8820c6f9247ce9a752341
+  - source: ltwiki
+    name: 4N25
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/4N25.sub
+      sha256: c97120393d2aafd4f1b9cf7a18f4c2a7dcc3e05810c8820c6f9247ce9a752341
+  - source: ltwiki
+    name: 4N25
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/4N25.sub
+      sha256: c97120393d2aafd4f1b9cf7a18f4c2a7dcc3e05810c8820c6f9247ce9a752341
 - source: bordodynov
   name: 4N27
   def: subckt

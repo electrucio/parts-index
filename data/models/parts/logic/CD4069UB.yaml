@@ -61,7 +61,13 @@ models:
     score: null
     error: 'KeyError: ''logic'''
   symbol: CD4069UB_bordodynov.asy
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: CD4069UB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/CD4069UB.sub
+      sha256: 637e45e124b6103b44004e1a64f1210130fca185be890f540905a998d3637661
 - source: kicad-spice-library
   name: CD4069UB
   def: subckt
@@ -103,6 +109,60 @@ models:
     score: null
     error: 'KeyError: ''logic'''
   symbol: CD4069UB_kicad-spice-library-2.asy
+  copies:
+  - source: microcap12
+    name: CD4069UB
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: cmos.lib
+      sha256: 355bb3dfa2be483f7c2d5b8d729acb8221874a18fbf49607f03a0bfc0d753917
+- source: ti
+  name: CD4069UB
+  def: subckt
+  type: SUBCKT
+  deps:
+  - LOGIC_PP_OUTPUT_AHC_1i_NAND_PP_CMOS_CD4069UB
+  - LOGIC_ICC_AHC_1i_NAND_PP_CMOS_CD4069UB
+  - LOGIC_FUNCTION_2_AHC_1i_NAND_PP_CMOS_CD4069UB
+  - LOGIC_INPUT_AHC_1i_NAND_PP_CMOS_CD4069UB
+  - TPD_AHC_1i_NAND_PP_CMOS_CD4069UB
+  - LOGIC_GATE_2PIN_OD_AHC_1i_NAND_PP_CMOS_CD4069UB
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SCHM017
+    member: CD4069UB.cir
+    archive_sha256: 6d7483699fe027177e4b63418330c279509e28e85a705e2352e1ca4b1ecf7d35
+    sha256: e51d6bc38b91f7d4a3c727637c2400d044ac1a0a57621edc1c10782471917579
+    lines:
+      CD4069UB: [35, 37]
+      LOGIC_FUNCTION_2_AHC_1i_NAND_PP_CMOS_CD4069UB: [141, 156]
+      LOGIC_GATE_2PIN_OD_AHC_1i_NAND_PP_CMOS_CD4069UB: [43, 76]
+      LOGIC_ICC_AHC_1i_NAND_PP_CMOS_CD4069UB: [252, 260]
+      LOGIC_INPUT_AHC_1i_NAND_PP_CMOS_CD4069UB: [77, 140]
+      LOGIC_PP_OUTPUT_AHC_1i_NAND_PP_CMOS_CD4069UB: [171, 182]
+      TPD_AHC_1i_NAND_PP_CMOS_CD4069UB: [157, 170]
+    fetched: '2026-09-14'
+  copies:
+  - source: ti
+    name: CD4069UB
+    get:
+      url: https://www.ti.com/lit/zip/SCHM017
+      member: CD4069UB.lib
+      sha256: e51d6bc38b91f7d4a3c727637c2400d044ac1a0a57621edc1c10782471917579
+- source: ltwiki
+  name: CD4069UB
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D_CD4069UB
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/cd4000.lib
+    sha256: 01fee132096b681bc7bb8cb653efc6a8a0ea6929099c8aa90057eea83857cba8
+    lines:
+      CD4069UB: [2624, 2630]
+      D_CD4069UB: [2632, 2635]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/cd4069ub.pdf
   maker: Texas Instruments

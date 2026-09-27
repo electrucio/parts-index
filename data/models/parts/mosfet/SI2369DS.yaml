@@ -21,6 +21,25 @@ models:
       Si2369DS: [106, 132]
     fetched: '2026-09-19'
   note: pins from names
+  copies:
+  - source: vishay
+    name: Si2369DS
+    get:
+      url: https://www.vishay.com/docs/64553/si2369ds_ps.zip
+      member: Si2369DS_PS.TXT
+      sha256: 904dc0d1d3c23f25511073661f5c0c8a0a7c43d12ec67fc907dc2c6504644fc8
+  - source: vishay
+    name: Si2369DS
+    get:
+      url: https://www.vishay.com/docs/64553/si2369ds_ps.zip
+      member: Si2369DS_PS.LIB
+      sha256: 904dc0d1d3c23f25511073661f5c0c8a0a7c43d12ec67fc907dc2c6504644fc8
+  - source: vishay
+    name: Si2369DS
+    get:
+      url: https://www.vishay.com/docs/64553/si2369ds_ps.zip
+      member: Si2369DS_PS_RC.LIB
+      sha256: d7e8b84bd023c891faa02f9e47c032724bbccd9364c78975b8054302e9cc9792
 - source: vishay
   name: Si2369DS_PS_RC
   def: subckt
@@ -42,6 +61,13 @@ models:
       Si2369DS_PS_RC: [9, 104]
     fetched: '2026-09-19'
   note: pins from names
+  copies:
+  - source: vishay
+    name: Si2369DS_PS_RC
+    get:
+      url: https://www.vishay.com/docs/64553/si2369ds_ps.zip
+      member: Si2369DS_PS_RC.LIB
+      sha256: d7e8b84bd023c891faa02f9e47c032724bbccd9364c78975b8054302e9cc9792
 - source: vishay
   name: Si2369DS
   def: subckt

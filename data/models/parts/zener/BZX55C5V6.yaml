@@ -1,0 +1,49 @@
+part: BZX55C5V6
+kind: zener
+priority: 2
+models:
+- source: onsemi
+  name: 1n5232b
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n5232b.rev0.lib
+    sha256: f5b8f835fb895a18b6990e597fe531157fb5a1476c2e5dc943949fc068c86fea
+    lines:
+      1n5232b: [1, 41]
+    fetched: '2026-09-19'
+  note: found under the alias 1N5232B
+- source: microcap12
+  name: 1n5232b
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D2
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      1n5232b: [601, 630]
+      D2: [212863, 212863]
+    fetched: '2026-09-20'
+  note: found under the alias 1N5232B
+- source: kicad-spice-library
+  name: 1N5232B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - zd1n5232b
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/General%20Semiconductor/General%20Semiconductor.lb5
+    sha256: 29db97b9e48c44570530220654814e32bc2a2cb0d10d0a4a018887fb43ef592d
+    lines:
+      1N5232B: [2806, 2808]
+      zd1n5232b: [3010, 3029]
+    fetched: '2026-09-21'
+  note: found under the alias 1N5232B

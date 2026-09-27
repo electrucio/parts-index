@@ -19,4 +19,94 @@ models:
       Si2307BDS: [4, 28]
     fetched: '2026-09-19'
     note: 'MOSFETs, PSpice Models (*.txt): Si2307BDS, PMOS, NMOS, DBD, RTEMP'
-  note: 'same code also in: ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: ltwiki
+    name: Si2307BDS
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Discretos/Mos&Fet/si2307bd.sub
+      sha256: 7dfb7ce1533341ef7332ff7a2b78a592d97e6cf4f676c214e916df129ce71894
+  - source: ltwiki
+    name: Si2307BDS
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Discretos/Mos&Fet/Mos_Misc/si2307bd.sub
+      sha256: 7dfb7ce1533341ef7332ff7a2b78a592d97e6cf4f676c214e916df129ce71894
+  - source: ltwiki
+    name: Si2307BDS
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Discretos/Mos&Fet/si2307bd.sub
+      sha256: 7dfb7ce1533341ef7332ff7a2b78a592d97e6cf4f676c214e916df129ce71894
+  - source: ltwiki
+    name: Si2307BDS
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Discretos/Mos&Fet/Mos_Misc/si2307bd.sub
+      sha256: 7dfb7ce1533341ef7332ff7a2b78a592d97e6cf4f676c214e916df129ce71894
+  - source: microcap12
+    name: Si2307BDS
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: vishaymosfet.lib
+      sha256: 23bc5e3e06c64162cbb4b96205c8a4b30b08d7cfd780d41fd3043fede09671f7
+- source: vishay
+  name: Si2307CDS
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/68511/si2307cds_pa_revb.zip
+    member: si2307cds_ps Rev B.txt
+    archive_sha256: 7c12f9db3a471b81ff7ef358274a254ebf006f04822443ce76a5b0ecf22f0f9e
+    sha256: 8b89639686a0ff44720ec8cf35c943c80c987a510ec136f66ac5e2b734def086
+    lines:
+      Si2307CDS: [12, 39]
+    fetched: '2026-09-19'
+  copies:
+  - source: vishay
+    name: Si2307CDS
+    get:
+      url: https://www.vishay.com/docs/68511/si2307cds_pa_revb.zip
+      member: si2307cds_ps Rev B.lib
+      sha256: 8b89639686a0ff44720ec8cf35c943c80c987a510ec136f66ac5e2b734def086
+  - source: vishay
+    name: Si2307CDS
+    get:
+      url: https://www.vishay.com/docs/68511/si2307cds_pa_revb.zip
+      member: si2307cds_ps_rc Rev B.txt
+      sha256: c27bb23d6e14d59453789f5218833092a2f40be80a1dc0bacaed2698f1951222
+  - source: vishay
+    name: Si2307CDS
+    get:
+      url: https://www.vishay.com/docs/68511/si2307cds_pa_revb.zip
+      member: si2307cds_ps_rc Rev B.lib
+      sha256: c27bb23d6e14d59453789f5218833092a2f40be80a1dc0bacaed2698f1951222
+- source: vishay
+  name: Si2307CDS
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/68511/si2307cds_pa_revb.zip
+    member: Si2307CDS_HS Rev B.TXT
+    archive_sha256: 7c12f9db3a471b81ff7ef358274a254ebf006f04822443ce76a5b0ecf22f0f9e
+    sha256: 44efabdc7758908af7485388181cc5ad996c52994ce47102153da837836b232a
+    lines:
+      Si2307CDS: [11, 39]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: SI2307DS
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: vishaymosfet.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 23bc5e3e06c64162cbb4b96205c8a4b30b08d7cfd780d41fd3043fede09671f7
+    lines:
+      SI2307DS: [3, 28]
+    fetched: '2026-09-20'

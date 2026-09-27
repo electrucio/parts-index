@@ -16,7 +16,41 @@ models:
     lines:
       SS12: [713, 713]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: SS12
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.dio
+      sha256: 85043335b56cc10779c03bcd2c237472827cf28c004628c9ddacb6fb3d8705c7
+  - source: kicad-spice-library
+    name: SS12
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Diode/DIODE2.lib
+      sha256: 30ed855dc84e2de25e560deac3c77134cb73d072e10199aa8de3d2a7155af902
+  - source: ltwiki
+    name: SS12
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: SS12
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: SS12
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.dio
+      sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+  - source: ltwiki
+    name: SS12
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/cmp/standard.dio
+      sha256: c37cd3feda2bf48e371d1b329a4f08dcedf3e90acb6a8b98ec28a8063b633c21
 - source: kicad-spice-library
   name: SS12
   def: model
@@ -29,3 +63,80 @@ models:
       SS12: [973, 984]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: SS12
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: gensemi.lib
+      sha256: a91e073b84759dcbe41d4ae51687287a413fc12865804565e488f747b57b3d6c
+  - source: kicad-spice-library
+    name: SS12
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/SemiGenSchottkyRect.lib
+      sha256: d165361125280de311667a3cd347670774ffdf2bbd93f2360d2ebd8c3baebfe0
+- source: onsemi
+  name: Dss12t3
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/ss12t3.lib
+    sha256: 0806a0b29710934673098947704e5d29255d1c839305fd88f71f944c62bf86e5
+    lines:
+      Dss12t3: [14, 18]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: Dss12t3
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: onsemi
+  name: SS12FP
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/ss12fp.lib
+    sha256: 5cf28a3d5a70d3d32aa6e599d1e919c840be291c961b1ff81ce014a405abbcb8
+    lines:
+      SS12FP: [7, 17]
+    fetched: '2026-09-19'
+- source: vishay
+  name: SS12
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/98612/p_ss12.txt
+    sha256: 55ed940803520afcdfd8eeb6fb6f9a1d1f6355db379cd0aa02ca815b54839a00
+    lines:
+      SS12: [7, 13]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: SS12FP
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D2
+  - DCLAMP
+  - limit2
+  - limit
+  - a
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      D2: [212863, 212863]
+      DCLAMP: [212865, 212865]
+      SS12FP: [222868, 222878]
+      a: [219198, 219213]
+      limit: [219382, 219391]
+      limit2: [219393, 219403]
+    fetched: '2026-09-20'

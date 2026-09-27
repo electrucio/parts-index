@@ -84,7 +84,18 @@ models:
     lines:
       12AV7: [494, 509]
     fetched: '2026-09-14'
-  note: 'same code also in: gist-chanmix51, ltwiki'
+  copies:
+  - source: gist-chanmix51
+    name: 12AV7
+    get:
+      url: https://gist.github.com/chanmix51/6947361/raw/57aa4f0baec33aaaecdfa64d99f4e0a2434be1a4/triodes.sub
+      sha256: 5a946644246b6dfa6b961fecd642dcefe0205f2db65392fda8cf7f502e0fa797
+  - source: ltwiki
+    name: 12AV7
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/Tubes/triodes.sub
+      sha256: 1e31c73aba86877020a0740d279066992ad7c2cd57aed56223b59706e68a7f44
 - source: bordodynov
   name: 12AV7
   def: subckt
@@ -105,4 +116,11 @@ models:
       12AV7: [534, 538]
       TRIODE: [2016, 2027]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki; pins from inline comment'
+  note: pins from inline comment
+  copies:
+  - source: ltwiki
+    name: 12AV7
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Koren_Tubes.lib
+      sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7

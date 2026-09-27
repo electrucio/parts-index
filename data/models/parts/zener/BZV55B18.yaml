@@ -15,4 +15,16 @@ models:
     lines:
       BZV55-B18: [1933, 1933]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: BZV55-B18
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: BZV55-B18
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455

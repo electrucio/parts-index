@@ -1,0 +1,60 @@
+part: CD4046
+kind: logic
+priority: 3
+models:
+- source: bordodynov
+  name: CD4046Bg
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4046Bg.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 160165aaa469147d4db56d930fa8515f3f194f9f9e7cdd8ddcdb500f7b534605
+    lines:
+      CD4046Bg: [5, 55]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: CD4046Bg
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/CD4046Bg.sub
+      sha256: 160165aaa469147d4db56d930fa8515f3f194f9f9e7cdd8ddcdb500f7b534605
+  - source: ltwiki
+    name: CD4046Bg
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/CD4046Bg.sub
+      sha256: 160165aaa469147d4db56d930fa8515f3f194f9f9e7cdd8ddcdb500f7b534605
+- source: ltwiki
+  name: CD4046
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Robertugo/Modelos/Pll/4046/PspiceMod/4046PSpice.sub
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: b780f7e26ac5fd9f7e71510b5ff6906a508e296f580c0896fad21ff80b9a8984
+    lines:
+      CD4046: [1, 175]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: CD4046
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/Robertugo/Modelos/Pll/4046/PspiceMod/4046PSpice.sub
+      sha256: b780f7e26ac5fd9f7e71510b5ff6906a508e296f580c0896fad21ff80b9a8984
+- source: ltwiki
+  name: CD4046
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/mix_misc.lib
+    sha256: 8a8c454acc6bbfb49f5c38ae24390484829e3d8d082c99ca173204f2b1a954bb
+    lines:
+      CD4046: [434, 608]
+    fetched: '2026-09-21'

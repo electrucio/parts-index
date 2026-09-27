@@ -119,7 +119,14 @@ models:
       EF37A: [332, 335]
       Tetrode: [47, 70]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: ltwiki
+    name: EF37A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/new_tetrodes.txt
+      sha256: 7d30fcbe19ab6ecdcce055525f4bb4c1d60f885a3f876f1549e245ed6f47b6e6
 - source: bordodynov
   name: EF37A
   def: subckt
@@ -142,7 +149,13 @@ models:
       EF37A: [224, 227]
       Pentode: [29, 70]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: EF37A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/pentodes.lib
+      sha256: d6266b406c88cab6fe4b2a526c77d345fa252c884b28b29826199c9b33cc3c87
 - source: bordodynov
   name: EF37A-4
   def: subckt
@@ -210,4 +223,10 @@ models:
       EF37A_at: [300, 302]
       PentodeT: [263, 287]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: EF37A_at
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/pentodes.lib
+      sha256: d6266b406c88cab6fe4b2a526c77d345fa252c884b28b29826199c9b33cc3c87

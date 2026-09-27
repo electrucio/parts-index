@@ -50,3 +50,28 @@ models:
       PMEG6010CEJ: [2, 23]
     fetched: '2026-09-14'
   note: found under the alias PMEG6010C; pins from default order (unverified)
+- source: nexperia
+  name: PMEG6010CPA
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PMEG6010CPA.txt
+    sha256: 094f223af2249fc07d02f9ddb872c9e9f30470e2e0c7abcbb72cf1c9155c7d82
+    lines:
+      PMEG6010CPA: [28, 58]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: PMEG6010CPA
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: nxp.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
+    lines:
+      PMEG6010CPA: [27313, 27342]
+    fetched: '2026-09-20'

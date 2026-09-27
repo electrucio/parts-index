@@ -20,7 +20,37 @@ models:
     lines:
       irf7324: [1, 56]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: irf7324
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irf7324.spi
+      sha256: da77eb4c9b977cf0c7aea13f08580f7de21697f87a561052d828c828e0764b28
+  - source: kicad-spice-library
+    name: irf7324
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf7324.spi
+      sha256: 0ea4539402b86066490a6b4341e97eec15236b4586d91710925da84a6861e9c9
+  - source: ltwiki
+    name: irf7324
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf7324.spi
+      sha256: da77eb4c9b977cf0c7aea13f08580f7de21697f87a561052d828c828e0764b28
+  - source: ltwiki
+    name: irf7324
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf7324.spi
+      sha256: da77eb4c9b977cf0c7aea13f08580f7de21697f87a561052d828c828e0764b28
+  - source: ltwiki
+    name: irf7324
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf7324.spi
+      sha256: da77eb4c9b977cf0c7aea13f08580f7de21697f87a561052d828c828e0764b28
 - source: kicad-spice-library
   name: irf7324_IR
   def: subckt
@@ -38,3 +68,10 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irf7324_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99

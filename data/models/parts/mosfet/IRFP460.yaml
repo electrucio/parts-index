@@ -31,7 +31,59 @@ models:
     not_measurable: 2
     typical_rows: 3
   symbol: IRFP460_infineon.asy
-  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: irfp460
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irfp460.spi
+      sha256: 86995dd350bc29aa3ba8cb2c4b36e7a847815d73ca7620c09bc19a12460c70d1
+  - source: bordodynov
+    name: irfp460
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irfp460.spi
+      sha256: 86995dd350bc29aa3ba8cb2c4b36e7a847815d73ca7620c09bc19a12460c70d1
+  - source: kicad-spice-library
+    name: irfp460
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irfp460.spi
+      sha256: e445d3cf0740b8fbe47043496a833846b2104d6b2cd8b059dc1e4ee36cf7bcbd
+  - source: ltwiki
+    name: irfp460
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irfp460.spi
+      sha256: 86995dd350bc29aa3ba8cb2c4b36e7a847815d73ca7620c09bc19a12460c70d1
+  - source: ltwiki
+    name: irfp460
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irfp460.spi
+      sha256: 86995dd350bc29aa3ba8cb2c4b36e7a847815d73ca7620c09bc19a12460c70d1
+  - source: ltwiki
+    name: irfp460
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irfp460.spi
+      sha256: 86995dd350bc29aa3ba8cb2c4b36e7a847815d73ca7620c09bc19a12460c70d1
+  - source: kicad-spice-library
+    name: irfp460_IR
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+      sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+  - source: microcap12
+    name: irfp460_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: kicad-spice-library
+    name: IRFP460M
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+      sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
 - source: bordodynov
   name: IRFP460
   def: model
@@ -52,7 +104,34 @@ models:
     fail: 0
     not_measurable: 2
     typical_rows: 3
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: IRFP460
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: ltwiki
+    name: IRFP460
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: IRFP460
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: IRFP460
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: IRFP460
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: bordodynov
   name: irfp460n
   def: subckt
@@ -78,7 +157,43 @@ models:
     not_measurable: 2
     typical_rows: 3
   symbol: IRFP460_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irfp460n
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: bordodynov
+    name: irfp460n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irfp460n.spi
+      sha256: 64950bda84ffee2225bd0c567b0fb52e9d1bb0403fe2f387621714d7fceffd20
+  - source: kicad-spice-library
+    name: irfp460n
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irfp460n.spi
+      sha256: 04c1173170feea678622c8df3228fa1227f7194646d7a6ac02c737a4a39242bc
+  - source: ltwiki
+    name: irfp460n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irfp460n.spi
+      sha256: 64950bda84ffee2225bd0c567b0fb52e9d1bb0403fe2f387621714d7fceffd20
+  - source: ltwiki
+    name: irfp460n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irfp460n.spi
+      sha256: 64950bda84ffee2225bd0c567b0fb52e9d1bb0403fe2f387621714d7fceffd20
+  - source: ltwiki
+    name: irfp460n
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irfp460n.spi
+      sha256: 64950bda84ffee2225bd0c567b0fb52e9d1bb0403fe2f387621714d7fceffd20
 - source: bordodynov
   name: irfp460lc
   def: subckt
@@ -104,7 +219,48 @@ models:
     not_measurable: 2
     typical_rows: 3
   symbol: IRFP460_bordodynov-3.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irfp460lc_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: bordodynov
+    name: irfp460lc
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/fp460lc.spi
+      sha256: 0bd2ae16fb7cdc1e8aa2164aa120b09ee7a14d355cdf6da08c7d0c0f9d8f2ae9
+  - source: kicad-spice-library
+    name: irfp460lc
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/fp460lc.spi
+      sha256: e69f79a95264e61e067e58302a1bcedba983f262aa04ea65540b1abfe0715bba
+  - source: ltwiki
+    name: irfp460lc
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/fp460lc.spi
+      sha256: 0bd2ae16fb7cdc1e8aa2164aa120b09ee7a14d355cdf6da08c7d0c0f9d8f2ae9
+  - source: ltwiki
+    name: irfp460lc
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/fp460lc.spi
+      sha256: 0bd2ae16fb7cdc1e8aa2164aa120b09ee7a14d355cdf6da08c7d0c0f9d8f2ae9
+  - source: ltwiki
+    name: irfp460lc
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/fp460lc.spi
+      sha256: 0bd2ae16fb7cdc1e8aa2164aa120b09ee7a14d355cdf6da08c7d0c0f9d8f2ae9
+  - source: kicad-spice-library
+    name: irfp460lc_IR
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+      sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
 - source: bordodynov
   name: IRFP460LC
   def: model
@@ -125,7 +281,34 @@ models:
     fail: 1
     not_measurable: 2
     typical_rows: 3
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: IRFP460LC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: ltwiki
+    name: IRFP460LC
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: IRFP460LC
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: IRFP460LC
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: IRFP460LC
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: bordodynov
   name: irfp460a
   def: subckt
@@ -151,7 +334,137 @@ models:
     not_measurable: 2
     typical_rows: 3
   symbol: IRFP460_bordodynov-5.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irfp460a_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: bordodynov
+    name: irfp460a
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irfp460a.spi
+      sha256: 34a18546ec035adf7aa51903b9eae4c28e3685cdc3026b850beafeca93fcd95b
+  - source: kicad-spice-library
+    name: irfp460a
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irfp460a.spi
+      sha256: 4ae4508369e7ac2388385f48c05541af47f7e0b3bb338c1b381899c3be1be12f
+  - source: ltwiki
+    name: irfp460a
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irfp460a.spi
+      sha256: 34a18546ec035adf7aa51903b9eae4c28e3685cdc3026b850beafeca93fcd95b
+  - source: ltwiki
+    name: irfp460a
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irfp460a.spi
+      sha256: 34a18546ec035adf7aa51903b9eae4c28e3685cdc3026b850beafeca93fcd95b
+  - source: ltwiki
+    name: irfp460a
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irfp460a.spi
+      sha256: 34a18546ec035adf7aa51903b9eae4c28e3685cdc3026b850beafeca93fcd95b
+  - source: kicad-spice-library
+    name: irfp460a_IR
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+      sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+- source: vishay
+  name: IRFP460B
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/91943/sihg460b_ps_reva.zip
+    member: SiHG460B_PS_RC_Rev_A.txt
+    archive_sha256: 25b38dffca2ecaea6766b52feaa2a694f1e8a91dad7a1dc7c7c5813a1e65ff3a
+    sha256: 7b4b9dda72d67d128fbd1a9acc68c3779f10dadd952a46dace6861968a39abec
+    lines:
+      IRFP460B: [12, 44]
+    fetched: '2026-09-19'
+  copies:
+  - source: vishay
+    name: IRFP460B
+    get:
+      url: https://www.vishay.com/docs/91943/sihg460b_ps_reva.zip
+      member: SiHG460B_PS_RC_Rev_A.LIB
+      sha256: 7b4b9dda72d67d128fbd1a9acc68c3779f10dadd952a46dace6861968a39abec
+- source: spice-model-cd
+  name: IRFP460
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/MOSFET.LB
+    sha256: 9287b7f0b7ae8ab0fa02300dfe2bdbf54cd76d2720f610592fdc5fcb2528d29b
+    lines:
+      IRFP460: [826, 833]
+    fetched: '2026-09-21'
+- source: spice-model-cd
+  name: IRFP460LC
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/MOSFET.LB
+    sha256: 9287b7f0b7ae8ab0fa02300dfe2bdbf54cd76d2720f610592fdc5fcb2528d29b
+    lines:
+      IRFP460LC: [834, 841]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: IRFP460
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: irpmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 105bbe2b177521de15323aae290e05947c3bb26d62a8ee42fe5da0e351b46ddf
+    lines:
+      IRFP460: [1657, 1661]
+    fetched: '2026-09-20'
+- source: ltwiki
+  name: IRFP460
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrmos.lib
+    sha256: cd1b43c7f364ba7d1ebb8af3764d05b8ddaab1d79950e0eedd42a0826cd2c46b
+    lines:
+      IRFP460: [3905, 3908]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: IRFP460
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWMOS3.LIB
+    sha256: 15daa43bae301f0f87935f96d7a7634586ef2319657a3f622e47f56ae492d6d7
+    lines:
+      IRFP460: [3655, 3677]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: IRFP460
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL1.LIB
+    sha256: 8a0af54a34c8e405d5f54f85a9836846c3926f39a0926309907c5f1c3820df13
+    lines:
+      IRFP460: [766, 796]
+    fetched: '2026-09-14'
 datasheet:
   url: https://www.vishay.com/docs/91237/91237.pdf
   maker: Vishay Siliconix

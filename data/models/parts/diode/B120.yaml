@@ -93,3 +93,24 @@ models:
     fetched: '2026-09-14'
   note: 'STAND-IN: model of 1N5817, not of B120; equivalence declared in catalog/wanted.yaml (see its
     note)'
+- source: microcap12
+  name: B120
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      B120: [9580, 9581]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: B120B
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc.lib
+      sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15

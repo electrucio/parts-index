@@ -24,6 +24,18 @@ models:
     lines:
       AD8221: [3832, 4001]
     fetched: '2026-09-14'
+  copies:
+  - source: adi
+    name: AD8221
+    get:
+      url: https://www.analog.com/media/en/simulation-models/spice-models/ad8221.cir?modelType=spice-models
+      sha256: db047afe43150001a2d8ac8da2d44fa2e2c9a2d505b80846347fdde0a69d8680
+  - source: bordodynov
+    name: AD8221
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/ADI1.lib
+      sha256: 56007b832dfb995c0072377bc98125b86a2ee7e9dd4d109d29d4c295aa6a265d
 - source: ltwiki
   name: AD8221
   def: subckt
@@ -46,3 +58,29 @@ models:
     lines:
       AD8221: [20, 139]
     fetched: '2026-09-14'
+  copies:
+  - source: ltwiki
+    name: AD8221
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/AD8221_test/ad8221.cir
+      sha256: f258d25e6a9a1ccf4559f968ddbbdb62ac6aaf144a5d4d73a6a9830472842ff7
+- source: microcap12
+  name: AD8221
+  def: subckt
+  type: SUBCKT
+  deps:
+  - dx
+  - qn1
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: analog.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+    lines:
+      AD8221: [80452, 80571]
+      dx: [77076, 77076]
+      qn1: [77075, 77075]
+    fetched: '2026-09-20'

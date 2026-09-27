@@ -26,6 +26,13 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 4
+  copies:
+  - source: microcap12
+    name: BAS16
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: nexperia
   name: BAS16
   def: subckt
@@ -69,6 +76,25 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 4
+  copies:
+  - source: ltwiki
+    name: BAS16
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/BAS16.PRM
+      sha256: 60fdda82f1258461f9ce2b1b59e05656cb313554e5fd55a2cf6b3b9498a5daeb
+  - source: ltwiki
+    name: BAS16H
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/BAS16H.PRM
+      sha256: fc0023127d0f905df820e9921ef41d7e40ba95513abe0d08235fce44bc0ffbc3
+  - source: microcap12
+    name: BAS16H
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_diode.lib
+      sha256: f9df24ec0c294f52c0b42dcb8aa86242c24d1c52b5df04656c47544b89fac977
 - source: ltspice-native
   name: BAS16HY
   def: model
@@ -108,7 +134,41 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 4
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: bordodynov
+    name: BAS16HM
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Standard/standard.dio
+      sha256: f2458802fa6c40912b3a09421d9e56386828f30ecee452b9c5688d586fc79571
+  - source: kicad-spice-library
+    name: BAS16HM
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.dio
+      sha256: 85043335b56cc10779c03bcd2c237472827cf28c004628c9ddacb6fb3d8705c7
+  - source: kicad-spice-library
+    name: BAS16HM
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Standard/standard.dio
+      sha256: f2458802fa6c40912b3a09421d9e56386828f30ecee452b9c5688d586fc79571
+  - source: ltwiki
+    name: BAS16HM
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: BAS16HM
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Standard/standard.dio
+      sha256: f2458802fa6c40912b3a09421d9e56386828f30ecee452b9c5688d586fc79571
+  - source: ltwiki
+    name: BAS16HM
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
 - source: ltwiki
   name: BAS16
   def: model
@@ -129,6 +189,442 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 4
+- source: onsemi
+  name: Dbas16wt1g
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/txt/bas16w.lib.txt
+    sha256: 2d850cd4f244446a59851277724389ffcae3d47573e2e090446408c895e5e0ac
+    lines:
+      Dbas16wt1g: [14, 18]
+    fetched: '2026-09-19'
+  copies:
+  - source: onsemi
+    name: bas16wt1g
+    get:
+      url: https://www.onsemi.com/download/models/txt/bas16w.sp3.txt
+      sha256: 6638896f15f0e1d7f48be5d0c9431d7acc68e35763a5d445dc10a5c4a53e3d09
+- source: onsemi
+  name: Dbas16ht
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/txt/bas16ht.sp2.txt
+    sha256: a05a5d22f2018966f66760e48adc8bce76a0ca45867c09532837e28de2844f81
+    lines:
+      Dbas16ht: [14, 18]
+    fetched: '2026-09-19'
+  copies:
+  - source: onsemi
+    name: Dbas16ht
+    get:
+      url: https://www.onsemi.com/download/models/lib/bas16ht.lib
+      sha256: 5ac7050243afec37a3e758fcfdd75f2bcf49e89314d6d0bfd34198a9b8d7fcce
+- source: onsemi
+  name: bas16lt1g
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/sp3/bas16lt1g.sp3
+    sha256: d6e78e3f81363ec64d4093d9260aa394a9d4537b3210912be355b1d8f2a8ab32
+    lines:
+      bas16lt1g: [14, 18]
+    fetched: '2026-09-21'
+- source: vishay
+  name: BAS16L
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/86478/spice_vishay_bas16l.txt
+    sha256: 6e2e63a3fb9cd79213d0acb75269475576d95f32a8152effa595f64e397ae343
+    lines:
+      BAS16L: [12, 21]
+    fetched: '2026-09-19'
+- source: spice-model-cd
+  name: BAS16
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/bas16.lib
+    sha256: d8f791e86a7a4e0f85e447a6697c12bd0137a80910ddd483fbeae86f18d42df5
+    lines:
+      BAS16: [3, 4]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: BAS16
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+      sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+  - source: kicad-spice-library
+    name: BAS16
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Zetex%20Semiconductors/ZMODELS.LIB
+      sha256: 356f4751706278dd76767c0cbdfceab52ea806ed01a3669b26584507bf29f3e0
+  - source: spice-model-cd
+    name: BAS16-Z
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/zmodels.lib
+      sha256: df79c20130b55541a1047df22b4cca3bfdb260045dfee6f538354adc6cfb78d6
+- source: spice-model-cd
+  name: BAS16
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Infineon/Other/DIODE/S_DIODE.LIB
+    sha256: 5b0c047f0241963047cfdccac9eb3038eecfe7d78d04fc568cd0ac9135423c2a
+    lines:
+      BAS16: [63, 71]
+    fetched: '2026-09-21'
+  copies:
+  - source: spice-model-cd
+    name: BAS16/SIE
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Siemens/S_diode.lib
+      sha256: 5db13a4ff341739aa880aa23a7c2a0378e5c0a9f01d9c1ef30d8f9965b1fea64
+- source: spice-model-cd
+  name: BAS16C
+  def: subckt
+  type: SUBCKT
+  deps:
+  - BAS16
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Infineon/Other/DIODE/S_DIODE.LIB
+    sha256: 5b0c047f0241963047cfdccac9eb3038eecfe7d78d04fc568cd0ac9135423c2a
+    lines:
+      BAS16: [63, 71]
+      BAS16C: [58, 62]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: BAS16/SIE
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/siemens.lib
+      sha256: c1318342f700741e0d97896cf4f77fe203b8923e12b1106c6c14f848c74bdd5b
+- source: spice-model-cd
+  name: BAS16
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/DIODE.LB
+    sha256: b648c925003b172006c0871521a37a1448d9cd5343fd97cd1426d0ec65a8c324
+    lines:
+      BAS16: [355, 356]
+    fetched: '2026-09-21'
+- source: spice-model-cd
+  name: BAS16C/SIE
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Siemens/S_diode.lib
+    sha256: 5db13a4ff341739aa880aa23a7c2a0378e5c0a9f01d9c1ef30d8f9965b1fea64
+    lines:
+      BAS16C/SIE: [59, 63]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: BAS16VY
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ph_diode.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: f9df24ec0c294f52c0b42dcb8aa86242c24d1c52b5df04656c47544b89fac977
+    lines:
+      BAS16VY: [507, 526]
+    fetched: '2026-09-20'
+  copies:
+  - source: ltwiki
+    name: BAS16VY
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/BAS16VY.PRM
+      sha256: 11bd4da89eeff9ef373ba9ddd54df165e7bfa5d873eb4a9b512c644fceb56f20
+  - source: ltwiki
+    name: BAS16VV
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/BAS16VV.PRM
+      sha256: da28e0a813cea9ff182a10b443e63e7885393b0c0b415ad4758b93963441a0d1
+  - source: microcap12
+    name: BAS16VV
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_diode.lib
+      sha256: f9df24ec0c294f52c0b42dcb8aa86242c24d1c52b5df04656c47544b89fac977
+- source: microcap12
+  name: BAS16_ZX
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: zetex.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
+    lines:
+      BAS16_ZX: [1832, 1842]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: BAS16_ZX
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zetex.lib
+      sha256: 453392deca3bd0ddfca565d56241c4a5bb4d2e8f14c6efa92c1c453ed434fdca
+- source: microcap12
+  name: BAS16C_IN
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: infineon.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: cdae8e9767d8fccbc81f94acb925cc440425a03e902d86cd8c5591d87131e175
+    lines:
+      BAS16C_IN: [3770, 3783]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: BAS16C_IN
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Infineon%20Technologies/infineon.lib
+      sha256: 06c1d0847f268f69e5d6655adae6c2942997148829254bf22af1c5202a381ed7
+- source: microcap12
+  name: BAS16L
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ph_diode.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: f9df24ec0c294f52c0b42dcb8aa86242c24d1c52b5df04656c47544b89fac977
+    lines:
+      BAS16L: [473, 485]
+    fetched: '2026-09-20'
+  copies:
+  - source: ltwiki
+    name: BAS16L
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/DIODES/BAS16L.PRM
+      sha256: f9dc63386821f70392027892a9b169c3a8e55962d84119d63b1bfaee1b3dc0ea
+- source: microcap12
+  name: BAS16TW
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      BAS16TW: [9273, 9274]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: BAS16W
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc.lib
+      sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+- source: microcap12
+  name: BAS16
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ediode_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 2e50d524139f4241c5345aa22e759f4b47df02a98f9343c9c753c201ba13d8c9
+    lines:
+      BAS16: [57, 58]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: BAS16J
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: nxp.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
+    lines:
+      BAS16J: [2950, 2962]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: BAS16LP
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      BAS16LP: [9265, 9266]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: BAS16T
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      BAS16T: [9269, 9270]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: BAS16V
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      BAS16V: [9277, 9278]
+    fetched: '2026-09-20'
+- source: qspice
+  name: BAS16HY
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
+    lines:
+      BAS16HY: [165, 165]
+    fetched: '2026-09-20'
+- source: duncanamps
+  name: DBAS16
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/diodes/diode.mod
+    sha256: bb58d6a99a7204cfa89803598a0331243f10c11afb1b6279fb56fec2ae14c941
+    lines:
+      DBAS16: [151, 152]
+    fetched: '2026-09-14'
+- source: bordodynov
+  name: BAS16HY
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      BAS16HY: [2244, 2244]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: BAS16HY
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: BAS16HY
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+- source: ltwiki
+  name: BAS16/SIE
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/siemens.lib
+    sha256: 243664dd487b615b87bd321416060f6822da14486fcece9fd2e3ded453189d81
+    lines:
+      BAS16/SIE: [167, 171]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: BAS16s
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/S_DIODE.LIB
+      sha256: c9fda6f359d82175cc33b2d5022078515b6c97969631ba29cf77d12a36f704d1
+- source: ltwiki
+  name: BAS16
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/ediode.lib
+    sha256: 3a1ee34ce1dccb655cfdf9e5ee520ad37c7f7e97ce94973793706080d52808b9
+    lines:
+      BAS16: [111, 112]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: BAS16/ZTX
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/Zetex.lib
+    sha256: 801edb075d3bd3995ad94e8dbf3c9a290a89481b1e897b74b75fcb6a6fab8ec0
+    lines:
+      BAS16/ZTX: [354, 356]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: BAS16
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/DIODE.LIB
+    sha256: c68f4b4a28eb0e866fb8e516b6a6a37a779ac80fed8a2ef16a3afcfb80c522e5
+    lines:
+      BAS16: [1841, 1842]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: BAS16Z
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/DIODE3.LIB
+    sha256: 88ceba16090e9038958260ddfeaada17f266d72cde791f865efa4a903dfb91d3
+    lines:
+      BAS16Z: [1685, 1686]
+    fetched: '2026-09-14'
 datasheet:
   url: https://assets.nexperia.com/documents/data-sheet/BAS16_SER.pdf
   maker: Nexperia

@@ -16,6 +16,12 @@ models:
     lines:
       BAT42: [515, 517]
     fetched: '2026-09-14'
+  copies:
+  - source: kicad-spice-library
+    name: BAT42
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/diode_ST.lib
+      sha256: 5481ed55e9738303fe20e33d9889db3f5a684d384e1d83667fa178b6c99ac49d
 - source: kicad-spice-library
   name: BAT42
   def: model
@@ -28,3 +34,24 @@ models:
       BAT42: [134, 136]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: microcap12
+  name: BAT42W
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      BAT42W: [130, 131]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: BAT42WS
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc.lib
+      sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15

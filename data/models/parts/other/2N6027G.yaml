@@ -1,0 +1,45 @@
+part: 2N6027G
+kind: other
+priority: 2
+models:
+- source: onsemi
+  name: 2N6027
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/2n6027.lib
+    sha256: 77b8e12af72b83545ebe277c96c9f383543f7ebba2b57b570858c8a8055948a1
+    lines:
+      2N6027: [1, 25]
+    fetched: '2026-09-19'
+  copies:
+  - source: bordodynov
+    name: 2N6027
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/2N6027.LIB
+      sha256: 77b8e12af72b83545ebe277c96c9f383543f7ebba2b57b570858c8a8055948a1
+  - source: kicad-spice-library
+    name: 2N6027
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/2N6027.LIB
+      sha256: 77b8e12af72b83545ebe277c96c9f383543f7ebba2b57b570858c8a8055948a1
+  - source: ltwiki
+    name: 2N6027
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/2N6027.LIB
+      sha256: 77b8e12af72b83545ebe277c96c9f383543f7ebba2b57b570858c8a8055948a1
+  - source: ltwiki
+    name: 2N6027
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/ValVol/ON/Tiristors/2N6027.LIB
+      sha256: 77b8e12af72b83545ebe277c96c9f383543f7ebba2b57b570858c8a8055948a1
+  - source: microcap12
+    name: 2N6027
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_thyristor.lib
+      sha256: edd4cf82fc9b7f5072f4723c3346c0d040ba1912fa54caa9ee8d01ad01302aee

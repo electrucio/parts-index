@@ -60,7 +60,20 @@ models:
     not_measurable: 0
     typical_rows: 11
   symbol: EZ81_suusi-tubes.asy
-  note: 'same code also in: bordodynov, ltwiki; pins from inline comment'
+  note: pins from inline comment
+  copies:
+  - source: bordodynov
+    name: EZ81
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Koren_Tubes.lib
+      sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
+  - source: ltwiki
+    name: EZ81
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Koren_Tubes.lib
+      sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
 - source: suusi-tubes
   name: EZ81
   def: subckt
@@ -149,7 +162,14 @@ models:
     not_measurable: 0
     typical_rows: 11
   symbol: EZ81_bordodynov.asy
-  note: 'same code also in: ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: ltwiki
+    name: EZ81
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/Tubes/tube.lib
+      sha256: 0eeca282ba6506a1a4826c5833c023b17df0c557ef46c9ade79abe98a9c24a3f
 - source: bordodynov
   name: EZ81
   def: subckt
@@ -178,7 +198,13 @@ models:
     not_measurable: 11
     typical_rows: 0
   symbol: EZ81_bordodynov-2.asy
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: EZ81
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/vrectifier.txt
+      sha256: 6f39b4729541ad16b04e62a45667127a910029cc5c095d49dc8622ca11a85443
 - source: bordodynov
   name: 6CA4
   def: subckt
@@ -203,7 +229,14 @@ models:
     not_measurable: 0
     typical_rows: 11
   symbol: EZ81_bordodynov-3.asy
-  note: 'found under the alias 6CA4; same code also in: ltwiki; pins from names'
+  note: found under the alias 6CA4; pins from names
+  copies:
+  - source: ltwiki
+    name: 6CA4
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/Tubes/tube.lib
+      sha256: 0eeca282ba6506a1a4826c5833c023b17df0c557ef46c9ade79abe98a9c24a3f
 - source: ltwiki
   name: 6CA4
   def: subckt
@@ -229,6 +262,13 @@ models:
     typical_rows: 11
   symbol: EZ81_ltwiki.asy
   note: found under the alias 6CA4; pins from names
+  copies:
+  - source: bordodynov
+    name: 6CA4
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Diode_Ayumi.lib
+      sha256: 58fd9e1eba78d4f20d75d4d1a7d289ff8f337f5e17184bcfcf27ad75aade4a1f
 datasheet:
   url: https://frank.pocnet.net/sheets/030/e/EZ81.pdf
   maker: Philips

@@ -126,6 +126,569 @@ models:
     fail: 4
     not_measurable: 0
     typical_rows: 2
+- source: interfet
+  name: LSK170C-LS
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.interfet.com/jfet-datasheets/standard.jft
+    sha256: fd842bd931665b16e2f1eeb142e0651cde3375845f928eeaf47f079b65cc42aa
+    lines:
+      LSK170C-LS: [469, 469]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: LSK170A
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: linearsystems.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 0887103f402ae0f49c04b9a00d60ff280779e3a5ea1d0a65ee243d51b7a9828c
+    lines:
+      LSK170A: [1352, 1358]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: LSK170B
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: linearsystems.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 0887103f402ae0f49c04b9a00d60ff280779e3a5ea1d0a65ee243d51b7a9828c
+    lines:
+      LSK170B: [1360, 1366]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: LSK170C
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: linearsystems.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 0887103f402ae0f49c04b9a00d60ff280779e3a5ea1d0a65ee243d51b7a9828c
+    lines:
+      LSK170C: [1368, 1373]
+    fetched: '2026-09-20'
+- source: qspice
+  name: LSK170A
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 1eecb317d294dfd7730c4f9070b7f3da9fc4938412714089b87d1948f46fc741
+    lines:
+      LSK170A: [163, 163]
+    fetched: '2026-09-20'
+- source: qspice
+  name: LSK170B
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 1eecb317d294dfd7730c4f9070b7f3da9fc4938412714089b87d1948f46fc741
+    lines:
+      LSK170B: [164, 164]
+    fetched: '2026-09-20'
+- source: qspice
+  name: LSK170C
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 1eecb317d294dfd7730c4f9070b7f3da9fc4938412714089b87d1948f46fc741
+    lines:
+      LSK170C: [165, 165]
+    fetched: '2026-09-20'
+- source: bordodynov
+  name: LSK170A
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      LSK170A: [502, 502]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov
+    name: LSK170A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Standard/standard.jft
+      sha256: aac0066c935f88cda18e998d41911b55d03185b27704c566d10f86e2c27768c8
+  - source: kicad-spice-library
+    name: LSK170A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.jft
+      sha256: 818a99dfe7a395e2b42662a223e2d2259401d97ce60ba4532cc4b56b93fd2c3b
+  - source: kicad-spice-library
+    name: LSK170A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Standard/standard.jft
+      sha256: aac0066c935f88cda18e998d41911b55d03185b27704c566d10f86e2c27768c8
+  - source: ltwiki
+    name: LSK170A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.jft
+      sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+  - source: ltwiki
+    name: LSK170A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Standard/standard.jft
+      sha256: aac0066c935f88cda18e998d41911b55d03185b27704c566d10f86e2c27768c8
+  - source: ltwiki
+    name: LSK170A
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.jft
+      sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+- source: bordodynov
+  name: LSK170B
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      LSK170B: [503, 503]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov
+    name: LSK170B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Standard/standard.jft
+      sha256: aac0066c935f88cda18e998d41911b55d03185b27704c566d10f86e2c27768c8
+  - source: kicad-spice-library
+    name: LSK170B
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.jft
+      sha256: 818a99dfe7a395e2b42662a223e2d2259401d97ce60ba4532cc4b56b93fd2c3b
+  - source: kicad-spice-library
+    name: LSK170B
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Standard/standard.jft
+      sha256: aac0066c935f88cda18e998d41911b55d03185b27704c566d10f86e2c27768c8
+  - source: ltwiki
+    name: LSK170B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.jft
+      sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+  - source: ltwiki
+    name: LSK170B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Standard/standard.jft
+      sha256: aac0066c935f88cda18e998d41911b55d03185b27704c566d10f86e2c27768c8
+  - source: ltwiki
+    name: LSK170B
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.jft
+      sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+- source: bordodynov
+  name: LSK170C
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      LSK170C: [504, 504]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov
+    name: LSK170C
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Standard/standard.jft
+      sha256: aac0066c935f88cda18e998d41911b55d03185b27704c566d10f86e2c27768c8
+  - source: kicad-spice-library
+    name: LSK170C
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.jft
+      sha256: 818a99dfe7a395e2b42662a223e2d2259401d97ce60ba4532cc4b56b93fd2c3b
+  - source: kicad-spice-library
+    name: LSK170C
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Standard/standard.jft
+      sha256: aac0066c935f88cda18e998d41911b55d03185b27704c566d10f86e2c27768c8
+  - source: ltwiki
+    name: LSK170C
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.jft
+      sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+  - source: ltwiki
+    name: LSK170C
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Standard/standard.jft
+      sha256: aac0066c935f88cda18e998d41911b55d03185b27704c566d10f86e2c27768c8
+  - source: ltwiki
+    name: LSK170C
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.jft
+      sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+- source: bordodynov
+  name: LSK170A_n
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      LSK170A_n: [508, 508]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LSK170A_n
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.jft
+      sha256: 818a99dfe7a395e2b42662a223e2d2259401d97ce60ba4532cc4b56b93fd2c3b
+  - source: ltwiki
+    name: LSK170A_n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.jft
+      sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+  - source: ltwiki
+    name: LSK170A_n
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.jft
+      sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+- source: bordodynov
+  name: LSK170B_n
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      LSK170B_n: [509, 509]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LSK170B_n
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.jft
+      sha256: 818a99dfe7a395e2b42662a223e2d2259401d97ce60ba4532cc4b56b93fd2c3b
+  - source: ltwiki
+    name: LSK170B_n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.jft
+      sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+  - source: ltwiki
+    name: LSK170B_n
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.jft
+      sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+- source: bordodynov
+  name: LSK170C_n
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.jft
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+    lines:
+      LSK170C_n: [510, 510]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LSK170C_n
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.jft
+      sha256: 818a99dfe7a395e2b42662a223e2d2259401d97ce60ba4532cc4b56b93fd2c3b
+  - source: ltwiki
+    name: LSK170C_n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.jft
+      sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+  - source: ltwiki
+    name: LSK170C_n
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.jft
+      sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+- source: bordodynov
+  name: LSK170A_x
+  def: subckt
+  type: SUBCKT
+  deps:
+  - Di
+  - Msub
+  - Dpns
+  - Dpnd
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/njf_subthres.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 3e3e0211d414d146dbecc59788f743b54ef4ffef41c468373d03e91ba3c7753a
+    lines:
+      Di: [70, 70]
+      Dpnd: [71, 71]
+      Dpns: [72, 72]
+      LSK170A_x: [107, 121]
+      Msub: [69, 69]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: LSK170A_x
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/njf_subthres.lib
+      sha256: 3e3e0211d414d146dbecc59788f743b54ef4ffef41c468373d03e91ba3c7753a
+  - source: ltwiki
+    name: LSK170A_x
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/NJF_Subthres/njf_subthres.lib
+      sha256: 3e3e0211d414d146dbecc59788f743b54ef4ffef41c468373d03e91ba3c7753a
+- source: bordodynov
+  name: LSK170B_x
+  def: subckt
+  type: SUBCKT
+  deps:
+  - Di
+  - Msub
+  - Dpns
+  - Dpnd
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/njf_subthres.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 3e3e0211d414d146dbecc59788f743b54ef4ffef41c468373d03e91ba3c7753a
+    lines:
+      Di: [70, 70]
+      Dpnd: [71, 71]
+      Dpns: [72, 72]
+      LSK170B_x: [123, 137]
+      Msub: [69, 69]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: LSK170B_x
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/njf_subthres.lib
+      sha256: 3e3e0211d414d146dbecc59788f743b54ef4ffef41c468373d03e91ba3c7753a
+  - source: ltwiki
+    name: LSK170B_x
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/NJF_Subthres/njf_subthres.lib
+      sha256: 3e3e0211d414d146dbecc59788f743b54ef4ffef41c468373d03e91ba3c7753a
+- source: bordodynov
+  name: LSK170C_x
+  def: subckt
+  type: SUBCKT
+  deps:
+  - Di
+  - Msub
+  - Dpns
+  - Dpnd
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/njf_subthres.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 3e3e0211d414d146dbecc59788f743b54ef4ffef41c468373d03e91ba3c7753a
+    lines:
+      Di: [70, 70]
+      Dpnd: [71, 71]
+      Dpns: [72, 72]
+      LSK170C_x: [139, 153]
+      Msub: [69, 69]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: LSK170C_x
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/njf_subthres.lib
+      sha256: 3e3e0211d414d146dbecc59788f743b54ef4ffef41c468373d03e91ba3c7753a
+  - source: ltwiki
+    name: LSK170C_x
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/NJF_Subthres/njf_subthres.lib
+      sha256: 3e3e0211d414d146dbecc59788f743b54ef4ffef41c468373d03e91ba3c7753a
+- source: ltwiki
+  name: LSK170A
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.jft
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: e129c65d0238559c9fe2d25e47143d11aa57115e1ff5d8747d9a45db57f83e37
+    lines:
+      LSK170A: [557, 557]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LSK170A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/JFET2.lib
+      sha256: 32fd0651eba7dea99ca263c60007ec76d9f93d82bef9624fd89cc36d7d62d960
+  - source: ltwiki
+    name: LSK170A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/cmp/standard.jft
+      sha256: e129c65d0238559c9fe2d25e47143d11aa57115e1ff5d8747d9a45db57f83e37
+- source: ltwiki
+  name: LSK170B
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.jft
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: e129c65d0238559c9fe2d25e47143d11aa57115e1ff5d8747d9a45db57f83e37
+    lines:
+      LSK170B: [558, 558]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LSK170B
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/JFET2.lib
+      sha256: 32fd0651eba7dea99ca263c60007ec76d9f93d82bef9624fd89cc36d7d62d960
+  - source: ltwiki
+    name: LSK170B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/cmp/standard.jft
+      sha256: e129c65d0238559c9fe2d25e47143d11aa57115e1ff5d8747d9a45db57f83e37
+- source: ltwiki
+  name: LSK170C
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.jft
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: e129c65d0238559c9fe2d25e47143d11aa57115e1ff5d8747d9a45db57f83e37
+    lines:
+      LSK170C: [559, 559]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LSK170C
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/JFET2.lib
+      sha256: 32fd0651eba7dea99ca263c60007ec76d9f93d82bef9624fd89cc36d7d62d960
+  - source: ltwiki
+    name: LSK170C
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/cmp/standard.jft
+      sha256: e129c65d0238559c9fe2d25e47143d11aa57115e1ff5d8747d9a45db57f83e37
+- source: kicad-spice-library
+  name: LSK170B_x
+  def: subckt
+  type: SUBCKT
+  deps:
+  - Di
+  - Msub
+  - Dpns
+  - Dpnd
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/njf_subthres.lib
+    sha256: 4c3628b4d8ce7a8488edaa8413a58b1139a64d7acdf3468ee6d0de9bd35d626e
+    lines:
+      Di: [70, 70]
+      Dpnd: [71, 71]
+      Dpns: [72, 72]
+      LSK170B_x: [123, 137]
+      Msub: [69, 69]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: LSK170C_x
+  def: subckt
+  type: SUBCKT
+  deps:
+  - Di
+  - Msub
+  - Dpns
+  - Dpnd
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/njf_subthres.lib
+    sha256: 4c3628b4d8ce7a8488edaa8413a58b1139a64d7acdf3468ee6d0de9bd35d626e
+    lines:
+      Di: [70, 70]
+      Dpnd: [71, 71]
+      Dpns: [72, 72]
+      LSK170C_x: [139, 153]
+      Msub: [69, 69]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: LSK170A
+  def: subckt
+  type: SUBCKT
+  deps:
+  - Di
+  - Msub
+  - Dpns
+  - Dpnd
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/njf_subthres.lib
+    sha256: 4c3628b4d8ce7a8488edaa8413a58b1139a64d7acdf3468ee6d0de9bd35d626e
+    lines:
+      Di: [70, 70]
+      Dpnd: [71, 71]
+      Dpns: [72, 72]
+      LSK170A: [107, 121]
+      Msub: [69, 69]
+    fetched: '2026-09-14'
 datasheet:
   url: https://www.linearsystems.com/_files/ugd/7e8069_a086ff7323054b5da3b91e364c90b3d4.pdf
   maker: Linear Integrated Systems

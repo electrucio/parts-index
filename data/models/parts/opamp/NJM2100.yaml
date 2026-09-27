@@ -1,0 +1,33 @@
+part: NJM2100
+kind: opamp
+priority: 2
+models:
+- source: nisshinbo
+  name: NJM2100x
+  def: subckt
+  type: SUBCKT
+  deps:
+  - njm2100_s
+  verbatim: true
+  get:
+    url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm2100_p.zip
+    member: SPM_NJM2100x_v0402/NJM2100x_v0402_Z.lib
+    archive_sha256: 11fc95ad99a742415b81a59391180a7de5eee66e2c535deb415a995eb36559af
+    sha256: 2c5c17b2779f888e4581914adc2e7a6d4b1c198c80d73c44f4ce5c9fa3ad7f6c
+    lines:
+      NJM2100x: [11, 14]
+      njm2100_s: [23, 86]
+    fetched: '2026-09-20'
+- source: nisshinbo
+  name: njm2100_s
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm2100_p.zip
+    member: SPM_NJM2100x_v0402/NJM2100x_v0402_Z.lib
+    archive_sha256: 11fc95ad99a742415b81a59391180a7de5eee66e2c535deb415a995eb36559af
+    sha256: 2c5c17b2779f888e4581914adc2e7a6d4b1c198c80d73c44f4ce5c9fa3ad7f6c
+    lines:
+      njm2100_s: [23, 86]
+    fetched: '2026-09-20'

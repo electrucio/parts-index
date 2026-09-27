@@ -22,4 +22,73 @@ models:
       SMBJ30CA: [2914, 2919]
       TRANSILB: [91, 129]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: SMBJ30CA
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ValVol/ST/Transil/transil_ST.lib
+      sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+  - source: kicad-spice-library
+    name: SMBJ30CA
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/transil_ST.lib
+      sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+  - source: kicad-spice-library
+    name: SMBJ30CA
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/transil_ST.lib
+      sha256: 185c29e40bd794726709b41e5a0689c10546add785539576e806e0c0c63484eb
+  - source: ltwiki
+    name: SMBJ30CA
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/transil_ST.lib
+      sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+  - source: ltwiki
+    name: SMBJ30CA
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/ST/Transil/transil_ST.lib
+      sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+  - source: ltwiki
+    name: SMBJ30CA
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/transil_ST.lib
+      sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+  - source: ltwiki
+    name: SMBJ30CA
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/TRANSIL/transil_ST.lib
+      sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+  - source: ltwiki
+    name: SMBJ30CA
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/ValVol/ST/Transil/transil_ST.lib
+      sha256: f29a54fcc3bbc3a2742bfe9f288a8313324de90707eeec5924bb82104f149bab
+- source: vishay
+  name: smbj30ca
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/87831/smbj30ca.txt
+    sha256: 658f05e9bde386ad17ef1a48c85aeb720720191bdc2e9c0873ebc1b18db79fc0
+    lines:
+      smbj30ca: [8, 36]
+    fetched: '2026-09-19'
+- source: vishay
+  name: smbj30ca
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/98021/_p_smbj30ca.txt
+    sha256: 37d234f90340b8a76d3842d0beaca40cec61a17cff75e74e4443de68432b8777
+    lines:
+      smbj30ca: [5, 33]
+    fetched: '2026-09-19'

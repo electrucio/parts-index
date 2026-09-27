@@ -1,0 +1,34 @@
+part: AD536
+kind: opamp
+priority: 2
+models:
+- source: adi
+  name: AD536A
+  def: subckt
+  type: SUBCKT
+  deps:
+  - AEIOPAMP0
+  - OPAMP0
+  verbatim: true
+  get:
+    url: https://www.analog.com/media/en/simulation-models/spice-models/ad536ap.cir
+    sha256: 8bde3a83fbfc338babf688ae1f4276a9001620b3d25e1ddb5718018cef095a5b
+    lines:
+      AD536A: [42, 64]
+      AEIOPAMP0: [111, 142]
+      OPAMP0: [66, 109]
+    fetched: '2026-09-20'
+- source: adi
+  name: AD536A_CON
+  def: subckt
+  type: SUBCKT
+  deps:
+  - OPAMP0
+  verbatim: true
+  get:
+    url: https://www.analog.com/media/en/simulation-models/spice-models/ad536ap.cir
+    sha256: 8bde3a83fbfc338babf688ae1f4276a9001620b3d25e1ddb5718018cef095a5b
+    lines:
+      AD536A_CON: [144, 161]
+      OPAMP0: [66, 109]
+    fetched: '2026-09-20'

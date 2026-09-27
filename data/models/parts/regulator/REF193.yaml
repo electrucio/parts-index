@@ -56,6 +56,17 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from comment words
+  copies:
+  - source: spice-model-cd
+    name: REF193/AD
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Analog%20Devices_Spice_Files/OpAmps/Spice/anlg_dev.lib
+      sha256: 6ab38357b65b81a3e4b75284dac1bed7e893f4ee465f998763fd9b4d3ecd4af3
+  - source: ltwiki
+    name: REF193/AD
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/anlg_dev.lib
+      sha256: d35db6d0ae84971c8fbeea5cf543df725be973dce3bb9a4e9d881b1bf8f519ec
 - source: kicad-spice-library
   name: REF193_AD
   def: subckt
@@ -77,6 +88,13 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from comment words
+  copies:
+  - source: microcap12
+    name: REF193_AD
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: analog.lib
+      sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
 - source: kicad-spice-library
   name: REF193G/AD
   def: subckt
@@ -95,6 +113,17 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from comment words
+  copies:
+  - source: spice-model-cd
+    name: REF193G/AD
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Analog%20Devices_Spice_Files/OpAmps/Spice/anlg_dev.lib
+      sha256: 6ab38357b65b81a3e4b75284dac1bed7e893f4ee465f998763fd9b4d3ecd4af3
+  - source: ltwiki
+    name: REF193G/AD
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/anlg_dev.lib
+      sha256: d35db6d0ae84971c8fbeea5cf543df725be973dce3bb9a4e9d881b1bf8f519ec
 - source: kicad-spice-library
   name: REF193G_AD
   def: subckt
@@ -116,3 +145,10 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from comment words
+  copies:
+  - source: microcap12
+    name: REF193G_AD
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: analog.lib
+      sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6

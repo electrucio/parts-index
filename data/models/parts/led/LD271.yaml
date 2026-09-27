@@ -19,7 +19,25 @@ models:
     lines:
       ld271l: [227, 235]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: ld271l
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Led_Light_and_IR.lib
+      sha256: 3c3d8de4270acf66f33baea07906bd55047e09b20523f9db7faeba6ebcc5df02
+  - source: ltwiki
+    name: ld271l
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Led_Light_and_IR.lib
+      sha256: 845885af101494f2f0f94a3c1b6783c579d2578f695e0d98a00526c8a3c12ef4
+  - source: ltwiki
+    name: ld271l
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Led_and_IR/Led_Light_and_IR.lib
+      sha256: d57aabe0406a02c16668c34af13f5c122fc3b00e8b42aa1ee3058a6fb7e4f85b
 - source: bordodynov
   name: ld271hl
   def: subckt
@@ -37,7 +55,25 @@ models:
     lines:
       ld271hl: [237, 245]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: ld271hl
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Led_Light_and_IR.lib
+      sha256: 3c3d8de4270acf66f33baea07906bd55047e09b20523f9db7faeba6ebcc5df02
+  - source: ltwiki
+    name: ld271hl
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Led_Light_and_IR.lib
+      sha256: 845885af101494f2f0f94a3c1b6783c579d2578f695e0d98a00526c8a3c12ef4
+  - source: ltwiki
+    name: ld271hl
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Led_and_IR/Led_Light_and_IR.lib
+      sha256: d57aabe0406a02c16668c34af13f5c122fc3b00e8b42aa1ee3058a6fb7e4f85b
 - source: bordodynov
   name: ld271h
   def: subckt
@@ -55,7 +91,25 @@ models:
     lines:
       ld271h: [247, 255]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: ld271h
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Led_Light_and_IR.lib
+      sha256: 3c3d8de4270acf66f33baea07906bd55047e09b20523f9db7faeba6ebcc5df02
+  - source: ltwiki
+    name: ld271h
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Led_Light_and_IR.lib
+      sha256: 845885af101494f2f0f94a3c1b6783c579d2578f695e0d98a00526c8a3c12ef4
+  - source: ltwiki
+    name: ld271h
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Led_and_IR/Led_Light_and_IR.lib
+      sha256: d57aabe0406a02c16668c34af13f5c122fc3b00e8b42aa1ee3058a6fb7e4f85b
 - source: bordodynov
   name: ld271
   def: subckt
@@ -73,7 +127,25 @@ models:
     lines:
       ld271: [257, 265]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: ld271
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Led_Light_and_IR.lib
+      sha256: 3c3d8de4270acf66f33baea07906bd55047e09b20523f9db7faeba6ebcc5df02
+  - source: ltwiki
+    name: ld271
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Led_Light_and_IR.lib
+      sha256: 845885af101494f2f0f94a3c1b6783c579d2578f695e0d98a00526c8a3c12ef4
+  - source: ltwiki
+    name: ld271
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Led_and_IR/Led_Light_and_IR.lib
+      sha256: d57aabe0406a02c16668c34af13f5c122fc3b00e8b42aa1ee3058a6fb7e4f85b
 - source: kicad-spice-library
   name: LD271
   def: model
@@ -86,3 +158,17 @@ models:
       LD271: [373, 374]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: microcap12
+  name: LD271
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: osram.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: fd6bb96c0ae7ed18f01d2bbcbf28faed95a4c7e298e95dfc31b05f35a482286f
+    lines:
+      LD271: [48, 52]
+    fetched: '2026-09-20'

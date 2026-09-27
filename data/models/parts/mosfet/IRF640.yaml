@@ -31,7 +31,90 @@ models:
     not_measurable: 2
     typical_rows: 3
   symbol: IRF640_infineon.asy
-  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: irf640
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/IrfNmosFet.lib
+      sha256: e34cb81ed38fc5228d4544f69c106f994942a5a06965064598fe10f739a57b37
+  - source: bordodynov
+    name: irf640
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irf640.spi
+      sha256: 8a13f523077aa592b57383a066e336f5a27664ae367215a0720b4f644fa65d9b
+  - source: bordodynov
+    name: irf640
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irf640.spi
+      sha256: 8a13f523077aa592b57383a066e336f5a27664ae367215a0720b4f644fa65d9b
+  - source: kicad-spice-library
+    name: irf640
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/IrfNmosFet.lib
+      sha256: e34cb81ed38fc5228d4544f69c106f994942a5a06965064598fe10f739a57b37
+  - source: kicad-spice-library
+    name: irf640
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf640.spi
+      sha256: b4e732f74da0ab2838cf8072eb13ddf90507571c8c544377d4b2868c784a009b
+  - source: ltwiki
+    name: irf640
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/IrfNmosFet.lib
+      sha256: e34cb81ed38fc5228d4544f69c106f994942a5a06965064598fe10f739a57b37
+  - source: ltwiki
+    name: irf640
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf640.spi
+      sha256: 8a13f523077aa592b57383a066e336f5a27664ae367215a0720b4f644fa65d9b
+  - source: ltwiki
+    name: irf640
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf640.spi
+      sha256: 8a13f523077aa592b57383a066e336f5a27664ae367215a0720b4f644fa65d9b
+  - source: ltwiki
+    name: irf640
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Smps/Ltc/lt1843/irf_mosfet.lib
+      sha256: 32493c0a135172116748fc862a7eca6f4488bf34d1a22a56d288645e832e84f7
+  - source: ltwiki
+    name: irf640
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Smps/Ltc/3phase PFC using LT1249/Irf nmosfet.lib
+      sha256: 38b7ab7698deed078accc7ff29859963108c0f0a05f2c6d127ea9db801a541bb
+  - source: ltwiki
+    name: irf640
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/IrfNmosFet.lib
+      sha256: e34cb81ed38fc5228d4544f69c106f994942a5a06965064598fe10f739a57b37
+  - source: ltwiki
+    name: irf640
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf640.spi
+      sha256: 8a13f523077aa592b57383a066e336f5a27664ae367215a0720b4f644fa65d9b
+  - source: ltwiki
+    name: irf640
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Smps/Ltc/lt1843/irf_mosfet.lib
+      sha256: 32493c0a135172116748fc862a7eca6f4488bf34d1a22a56d288645e832e84f7
+  - source: ltwiki
+    name: irf640
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Smps/Ltc/3phase PFC using LT1249/Irf nmosfet.lib
+      sha256: 38b7ab7698deed078accc7ff29859963108c0f0a05f2c6d127ea9db801a541bb
 - source: infineon
   name: irf640ns
   def: subckt
@@ -57,7 +140,49 @@ models:
     not_measurable: 2
     typical_rows: 3
   symbol: IRF640_infineon-2.asy
-  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: irf640ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irf640ns.spi
+      sha256: a5c86303cb73e598453b012ec5ba6ec854ed59d7e28443318ea81ebdd862159b
+  - source: bordodynov
+    name: irf640ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irf640ns.spi
+      sha256: a5c86303cb73e598453b012ec5ba6ec854ed59d7e28443318ea81ebdd862159b
+  - source: kicad-spice-library
+    name: irf640ns
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf640ns.spi
+      sha256: e335a542c14fecdf8191beac31aee16fa75946226a755ab38d9c519860807b33
+  - source: ltwiki
+    name: irf640ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf640ns.spi
+      sha256: a5c86303cb73e598453b012ec5ba6ec854ed59d7e28443318ea81ebdd862159b
+  - source: ltwiki
+    name: irf640ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf640ns.spi
+      sha256: a5c86303cb73e598453b012ec5ba6ec854ed59d7e28443318ea81ebdd862159b
+  - source: ltwiki
+    name: irf640ns
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf640ns.spi
+      sha256: a5c86303cb73e598453b012ec5ba6ec854ed59d7e28443318ea81ebdd862159b
+  - source: microcap12
+    name: irf640ns
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
 - source: bordodynov
   name: IRF640_
   def: model
@@ -78,7 +203,56 @@ models:
     fail: 0
     not_measurable: 2
     typical_rows: 3
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: IRF640_
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: kicad-spice-library
+    name: IRF640
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: ltwiki
+    name: IRF640_
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: IRF640_
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: IRF640
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: IRF640_
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: IRF640
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: IRF640_
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: IRF640
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: bordodynov
   name: irf640s
   def: subckt
@@ -104,7 +278,43 @@ models:
     not_measurable: 2
     typical_rows: 3
   symbol: IRF640_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irf640s
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: bordodynov
+    name: irf640s
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irf640s.spi
+      sha256: a371ec5438415bb965738d05c4b9288c221b0f3f647a4700ee9067af8e73ff13
+  - source: kicad-spice-library
+    name: irf640s
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf640s.spi
+      sha256: 2b6103bedf84118296468c88e9945fbc4857156afbae71146651606a9ccea2a7
+  - source: ltwiki
+    name: irf640s
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf640s.spi
+      sha256: a371ec5438415bb965738d05c4b9288c221b0f3f647a4700ee9067af8e73ff13
+  - source: ltwiki
+    name: irf640s
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf640s.spi
+      sha256: a371ec5438415bb965738d05c4b9288c221b0f3f647a4700ee9067af8e73ff13
+  - source: ltwiki
+    name: irf640s
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf640s.spi
+      sha256: a371ec5438415bb965738d05c4b9288c221b0f3f647a4700ee9067af8e73ff13
 - source: bordodynov
   name: IRF640
   def: model
@@ -146,7 +356,168 @@ models:
     fail: 1
     not_measurable: 2
     typical_rows: 3
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: IRF640h
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: ltwiki
+    name: IRF640h
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: IRF640h
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: IRF640h
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+- source: spice-model-cd
+  name: IRF640
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/MOSFET.LB
+    sha256: 9287b7f0b7ae8ab0fa02300dfe2bdbf54cd76d2720f610592fdc5fcb2528d29b
+    lines:
+      IRF640: [202, 209]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: irf640_IR
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: irf.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+    lines:
+      irf640_IR: [601, 660]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: irf640_IR
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+      sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+- source: microcap12
+  name: IRF640
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: irpmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 105bbe2b177521de15323aae290e05947c3bb26d62a8ee42fe5da0e351b46ddf
+    lines:
+      IRF640: [495, 499]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: IRF640
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: mpmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: f3a8113e6ad33c866f8d396d65b1d1e98d8b1d17ebaf3390dd611a3181d4fd37
+    lines:
+      IRF640: [502, 506]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: irf640ns_AM
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: apex.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 32f28a857c59ee06357aefa4dd0d238a912620a115f0f2130bd11c66ffbb1144
+    lines:
+      irf640ns_AM: [5274, 5329]
+    fetched: '2026-09-20'
+- source: qspice
+  name: IRF640
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 7e57e30fa48c9cf43578457aa48aaa511c0c6a6a998a334fae970c469e3be74c
+    lines:
+      IRF640: [46, 46]
+    fetched: '2026-09-20'
+- source: duncanamps
+  name: XIRF640
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/mosfets/nemos3t.mod
+    sha256: 927fa85ad71152c8e20938dc7e7d15797d8626ce84f73137e1062849f663ce76
+    lines:
+      XIRF640: [320, 341]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: IRF640
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrmos.lib
+    sha256: cd1b43c7f364ba7d1ebb8af3764d05b8ddaab1d79950e0eedd42a0826cd2c46b
+    lines:
+      IRF640: [1401, 1404]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: IRF640
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWMOS3.LIB
+    sha256: 15daa43bae301f0f87935f96d7a7634586ef2319657a3f622e47f56ae492d6d7
+    lines:
+      IRF640: [470, 492]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: IRF640
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL1.LIB
+    sha256: 8a0af54a34c8e405d5f54f85a9836846c3926f39a0926309907c5f1c3820df13
+    lines:
+      IRF640: [205, 235]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: IRF640M
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+    sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+    lines:
+      IRF640M: [2720, 2765]
+    fetched: '2026-09-14'
 datasheet:
   url: https://www.vishay.com/docs/91036/irf640.pdf
   maker: Vishay Siliconix

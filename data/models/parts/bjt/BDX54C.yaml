@@ -32,6 +32,24 @@ models:
     typical_rows: 0
   symbol: BDX54C_onsemi.asy
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: bdx54c
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_bjt.lib
+      sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77
+- source: ltwiki
+  name: BDX54C
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/darlngtn.lib
+    sha256: 0de1690195b5e2d9dcb42c94c568925f18290582a58ea2de9f625028125725c6
+    lines:
+      BDX54C: [368, 406]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/bdx53b-d.pdf
   maker: onsemi

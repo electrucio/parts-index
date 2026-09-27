@@ -20,3 +20,49 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: FDN360P_FC
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: fairch.lib
+      sha256: 53806c9a42d8b9f44b8c77ed3ae210ad6250b5eacb44d7e7f2b429e8f4559918
+- source: onsemi
+  name: FDN360P
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/mod/fdn360p.mod
+    sha256: 610dced94b1f8c682ce3436e79b8f3e1efb6009afffc20f9277f45b50e96873d
+    lines:
+      FDN360P: [3, 48]
+    fetched: '2026-09-19'
+- source: spice-model-cd
+  name: FDN360P
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Fairchild/FD/FDN360P.lib
+    sha256: fc6ab1827387591e7d3cdc9295bb0db7f3e2611db6d00256e96ca9998f60b792
+    lines:
+      FDN360P: [3, 27]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: FDN360P
+  def: subckt
+  type: SUBCKT
+  deps:
+  - pmos
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      FDN360P: [101522, 101567]
+      pmos: [161510, 161510]
+    fetched: '2026-09-20'

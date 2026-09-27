@@ -95,7 +95,14 @@ models:
       EL80: [1480, 1484]
       PENTODE1: [2046, 2059]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki; pins from inline comment'
+  note: pins from inline comment
+  copies:
+  - source: ltwiki
+    name: EL41
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Koren_Tubes.lib
+      sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
 - source: robrobinette
   name: EL41
   def: subckt
@@ -122,3 +129,10 @@ models:
       PENTODE1: [1317, 1329]
     fetched: '2026-09-14'
   note: pins from inline comment
+  copies:
+  - source: robrobinette
+    name: EL41
+    get:
+      url: https://robrobinette.com/images/Guitar/Spice_Analysis/Deluxe_LTSpice.zip
+      member: Koren_Tubes.INC
+      sha256: 9e27abd35e5f4c28d8e5197292a14af264bfe4d2d8a2747b8bddccb7c1a3a949

@@ -59,8 +59,14 @@ def excluded(file: str) -> bool:
     return any(fnmatch.fnmatch(file, g) for g in EXCLUDE)
 
 
+def registered(source: str) -> str:
+    """The registry id of a source. The indexer names a folder with a manifest of its own after both,
+    `vishay/semis`, which is the right key for its manifest and not a source of its own."""
+    return source.split("/")[0]
+
+
 def rank(source: str) -> int:
-    return RANK.get(source.split("/")[0], 99)
+    return RANK.get(registered(source), 99)
 
 
 # --- reading definitions -----------------------------------------------------------------------------
@@ -283,7 +289,7 @@ def groups_for(entry: dict, files: Files) -> tuple[list[dict], int]:
     groups: dict[str, dict] = {}
     for c in cands:
         try:
-            defs, sp, sha = files.get(c["file"])
+            defs, _, _ = files.get(c["file"])
             chain = closure(defs, c["name"])
             if not chain:
                 continue
@@ -293,22 +299,29 @@ def groups_for(entry: dict, files: Files) -> tuple[list[dict], int]:
         g = groups.setdefault(h, {"hash": h, "members": [], "best": None, "chain": None})
         g["members"].append(c)
         if g["best"] is None or rank(c["source"]) < rank(g["best"]["source"]):
-            g["best"], g["chain"], g["spans"], g["sha"] = c, chain, sp, sha
+            g["best"], g["chain"] = c, chain
     ordered = sorted(groups.values(), key=lambda g: (rank(g["best"]["source"]), -len(g["members"])))
     return ordered, len(groups)
 
 
-def record(g: dict, root: Path) -> dict:
+def located(root: Path, files: Files, c: dict) -> dict:
+    """Where one copy came from, with the line range of each definition it is made of."""
+    defs, sp, sha = files.get(c["file"])
+    prov = provenance(root, c["file"], c["source"], sha)
+    prov["lines"] = {nm: list(sp[nm.lower()]) for _, nm, _ in closure(defs, c["name"]) if nm.lower() in sp}
+    return prov
+
+
+def record(g: dict, root: Path, files: Files) -> dict:
     """One distinct model as the curation and the recipe need it: what it is, where the chosen copy came
-    from, and every other source holding the same code."""
+    from, and where every other source holding the same code has it."""
     c, chain = g["best"], g["chain"]
     kind, name, body = chain[-1]
-    prov = provenance(root, c["file"], c["source"], g["sha"])
-    prov["lines"] = {nm: list(g["spans"][nm.lower()]) for _, nm, _ in chain if nm.lower() in g["spans"]}
-    return {"hash": g["hash"], "source": c["source"], "name": name, "def": kind,
+    return {"hash": g["hash"], "source": registered(c["source"]), "name": name, "def": kind,
             "type": model_type(kind, body), "pins": c["pins"], "match": c["match"],
-            "deps": [nm for _, nm, _ in chain[:-1]], "provenance": prov,
-            "copies": [{"source": m["source"], "file": m["file"], "name": m["name"]}
+            "deps": [nm for _, nm, _ in chain[:-1]], "provenance": located(root, files, c),
+            "copies": [{"source": registered(m["source"]), "file": m["file"], "name": m["name"],
+                        "provenance": located(root, files, m)}
                        for m in g["members"] if m is not c]}
 
 
@@ -318,7 +331,7 @@ def find(matches: dict, root: Path) -> dict:
     for part, entry in matches.items():
         ordered, n = groups_for(entry, files)
         out[part] = {"kind": entry["kind"], "group": entry["group"], "priority": entry["priority"],
-                     "distinct": n, "models": [record(g, root) for g in ordered]}
+                     "distinct": n, "models": [record(g, root, files) for g in ordered]}
     return out
 
 

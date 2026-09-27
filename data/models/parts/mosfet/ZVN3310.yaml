@@ -16,7 +16,34 @@ models:
     lines:
       ZVN3310A_AB: [1516, 1516]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: ZVN3310A_AB
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: ltwiki
+    name: ZVN3310A_AB
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: ZVN3310A_AB
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: ZVN3310A_AB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: ZVN3310A_AB
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: ltwiki
   name: ZVN3310A
   def: subckt
@@ -34,7 +61,60 @@ models:
     lines:
       ZVN3310A: [1402, 1414]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: diodes-inc
+    name: ZVN3310F
+    get:
+      url: https://www.diodes.com/spice/download/2032/ZVN3310F.spice.txt
+      sha256: 6fa306a225575c3201ce629e8684c6fa8126bc00fdf4f197e2beff96af587db1
+  - source: diodes-inc
+    name: ZVN3310F
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8375/collection.spice.txt
+      sha256: 5b45aa3bc2280be6971e3863ce34ff70b2b18015fb62d526160d78441a4a227d
+  - source: kicad-spice-library
+    name: ZVN3310F
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+      sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+  - source: spice-model-cd
+    name: ZVN3310F
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/zvn3310f.lib
+      sha256: 950246bc361121b8013c2e989098f90a64af593afab8bcc9f7350976ddbf316c
+  - source: diodes-inc
+    name: ZVN3310A
+    get:
+      url: https://www.diodes.com/spice/download/2031/ZVN3310A.spice.txt
+      sha256: 982717c0e9ab5d793c2b4710aa827bbe8d6185f213a92100fc8882d033b7710b
+  - source: diodes-inc
+    name: ZVN3310A
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8375/collection.spice.txt
+      sha256: 5b45aa3bc2280be6971e3863ce34ff70b2b18015fb62d526160d78441a4a227d
+  - source: kicad-spice-library
+    name: ZVN3310A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+      sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+  - source: spice-model-cd
+    name: ZVN3310A
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/zvn3310a.lib
+      sha256: 433dfc07f4e01137645c12a59d11561492feb27b834bafb5d1dc97fbbeba1205
+  - source: microcap12
+    name: ZVN3310A_ZX
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
+  - source: microcap12
+    name: ZVN3310F_ZX
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
 - source: ltwiki
   name: ZVN3310F
   def: subckt
@@ -70,6 +150,22 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: spice-model-cd
+    name: ZVN3310F
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/znewmods.lib
+      sha256: 40372fd3658df08e99fdcc96353e1c4dbbfcf004d493c1e461581157969a4e3a
+  - source: spice-model-cd
+    name: ZVN3310A
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/zmodels.lib
+      sha256: df79c20130b55541a1047df22b4cca3bfdb260045dfee6f538354adc6cfb78d6
+  - source: kicad-spice-library
+    name: ZVN3310
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Zetex%20Semiconductors/ZMODELS.LIB
+      sha256: 356f4751706278dd76767c0cbdfceab52ea806ed01a3669b26584507bf29f3e0
 - source: kicad-spice-library
   name: ZVN3310F_ZX
   def: subckt
@@ -104,3 +200,20 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+- source: ltwiki
+  name: ZVN3310A/ZTX
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/Zetex.lib
+    sha256: 801edb075d3bd3995ad94e8dbf3c9a290a89481b1e897b74b75fcb6a6fab8ec0
+    lines:
+      ZVN3310A/ZTX: [3456, 3465]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: ZVN3310F/ZTX
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/Zetex.lib
+      sha256: 801edb075d3bd3995ad94e8dbf3c9a290a89481b1e897b74b75fcb6a6fab8ec0

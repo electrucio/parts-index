@@ -31,7 +31,46 @@ models:
     not_measurable: 1
     typical_rows: 1
   symbol: BS170_diodes-inc.asy
-  note: 'same code also in: ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: BS170
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+      sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+  - source: spice-model-cd
+    name: BS170
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/bs170.lib
+      sha256: 44c147308ad7640f5897365930d1ca96a175d519ede79b36a3d096b2f6952b4a
+  - source: diodes-inc
+    name: BS170P
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+      sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+  - source: diodes-inc
+    name: BS170P
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+      sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+  - source: ltwiki
+    name: BS170P
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ZETEX/LIB/zmodels.lib
+      sha256: 8d3fb488666b5f813a666d5c589ac6c7779a2c44a4b38799b2a41ca0006368e7
+  - source: microcap12
+    name: BS170P
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
+  - source: microcap12
+    name: BS170_ZX
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
 - source: bordodynov
   name: BS170
   def: model
@@ -52,7 +91,34 @@ models:
     fail: 0
     not_measurable: 1
     typical_rows: 1
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: BS170
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: ltwiki
+    name: BS170
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: BS170
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: BS170
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: BS170
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: bordodynov
   name: BS170PLP
   def: subckt
@@ -78,7 +144,54 @@ models:
     not_measurable: 1
     typical_rows: 1
   symbol: BS170_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: spice-model-cd
+    name: BS170
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BS170.t
+      sha256: cda48f6eef7c3e39ae874fe03eb77f7483e02610d6ae21672455f6d3a53bb1ba
+  - source: kicad-spice-library
+    name: BS170PLP
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/NMOS_Philips.lib
+      sha256: ed3135fdb4ff7044442d0bc22b9c7076a200c2ba671011b9cacf98d84e134602
+  - source: ltwiki
+    name: BS170PLP
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/NMOS_Philips.lib
+      sha256: ed3135fdb4ff7044442d0bc22b9c7076a200c2ba671011b9cacf98d84e134602
+  - source: ltwiki
+    name: BS170/PLP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/phil_fet.lib
+      sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
+  - source: ltwiki
+    name: BS170PLP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/NMOSFET/BS170PLP.prm
+      sha256: 7720133be919a0dc4e3390c0bdec5a469bcf57651df90f3f0f536cfa4b2f789d
+  - source: ltwiki
+    name: BS170/PLP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/FET/phil_fet.lib
+      sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
+  - source: ltwiki
+    name: BS170
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Discretos/Bjt/NewModelsAdd.txt
+      sha256: fe99bff753a34d510c52cd5ba5eb5c5df1c739443f20770348b65d6a666443eb
+  - source: ltwiki
+    name: BS170
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Discretos/Bjt/NewModelsAdd.txt
+      sha256: fe99bff753a34d510c52cd5ba5eb5c5df1c739443f20770348b65d6a666443eb
 - source: ltwiki
   name: BS170
   def: subckt
@@ -155,6 +268,173 @@ models:
     typical_rows: 1
   symbol: BS170_ltwiki-3.asy
   note: pins from default order (unverified)
+  copies:
+  - source: duncanamps
+    name: XBS170
+    get:
+      url: https://www.duncanamps.com/spice/mosfets/nemossu3.sub
+      sha256: 676c26c710d7bb0207af41f7e5a4f3a35a0a10875b15ecd5ca4d308947a45bf6
+- source: onsemi
+  name: BS170
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/zip/ncp105x_orcad.zip
+    member: ncp105x.lib
+    archive_sha256: 07bc5595abbb3701cc125963f1325bb9dda971a2860b61a2b6be333c1f769155
+    sha256: 1957a6a6f43ab9461d0661fc6a1afa3fc6fd9bc3fd6f2e564771aa7956414fde
+    lines:
+      BS170: [252, 264]
+    fetched: '2026-09-19'
+- source: spice-model-cd
+  name: BS-170
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Siemens/Bss_l0.lib
+    sha256: 9d08da8e43b5032a11eded06b8919e31ad85448c144db90db8f534cee6ac2088
+    lines:
+      BS-170: [43, 62]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: BS-170
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/BSS_L0.LIB
+      sha256: 681fe248607f8555c1d407566afd1e05bfd22de075b4f9dbba48815e18b94f0a
+  - source: spice-model-cd
+    name: BS-170
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Infineon/Other/MOSFET/Bss_l0.lib
+      sha256: 9d08da8e43b5032a11eded06b8919e31ad85448c144db90db8f534cee6ac2088
+  - source: kicad-spice-library
+    name: BS170/SIE
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/siemens.lib
+      sha256: c1318342f700741e0d97896cf4f77fe203b8923e12b1106c6c14f848c74bdd5b
+  - source: ltwiki
+    name: BS170/SIE
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/siemens.lib
+      sha256: 243664dd487b615b87bd321416060f6822da14486fcece9fd2e3ded453189d81
+- source: spice-model-cd
+  name: BS170
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/zmodels.lib
+    sha256: df79c20130b55541a1047df22b4cca3bfdb260045dfee6f538354adc6cfb78d6
+    lines:
+      BS170: [612, 621]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: BS170
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Zetex%20Semiconductors/ZMODELS.LIB
+      sha256: 356f4751706278dd76767c0cbdfceab52ea806ed01a3669b26584507bf29f3e0
+- source: spice-model-cd
+  name: bs170
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/General_Semi/Small_Signal/DMOS/bs170.t
+    sha256: fc48efdf597dae87bda893a16d26cd5fa2994278ef8017de635cbeae56860d33
+    lines:
+      bs170: [1, 58]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: BS170
+  def: subckt
+  type: SUBCKT
+  deps:
+  - nmos
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      BS170: [155733, 155745]
+      nmos: [161508, 161508]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: BS170
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: microcap12
+  name: BS170
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: mpmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: f3a8113e6ad33c866f8d396d65b1d1e98d8b1d17ebaf3390dd611a3181d4fd37
+    lines:
+      BS170: [96, 100]
+    fetched: '2026-09-20'
+- source: duncanamps
+  name: XBS170
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/mosfets/nemos3t.mod
+    sha256: 927fa85ad71152c8e20938dc7e7d15797d8626ce84f73137e1062849f663ce76
+    lines:
+      XBS170: [58, 66]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: BS170/ZTX
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/Zetex.lib
+    sha256: 801edb075d3bd3995ad94e8dbf3c9a290a89481b1e897b74b75fcb6a6fab8ec0
+    lines:
+      BS170/ZTX: [955, 964]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: BS170_ZX
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zetex.lib
+    sha256: 453392deca3bd0ddfca565d56241c4a5bb4d2e8f14c6efa92c1c453ed434fdca
+    lines:
+      BS170_ZX: [3612, 3621]
+    fetched: '2026-09-14'
+  copies:
+  - source: kicad-spice-library
+    name: BS170Z
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWMOS2.LIB
+      sha256: 29782c795f27c0f4133dea75e4a80c7985135f8ddc6d7392134bfac58a00ee10
+- source: kicad-spice-library
+  name: BS170
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWMOS.LIB
+    sha256: 3a158ee63ad9816d8dcdc0cad0827d2f4646c66b6296d7bbcd2c28d49bf1d219
+    lines:
+      BS170: [4154, 4174]
+    fetched: '2026-09-14'
 datasheet:
   url: http://www.fairchildsemi.com/ds/BS/BS170.pdf
   maker: Fairchild Semiconductor (now onsemi)

@@ -1,0 +1,16 @@
+part: 2N5023
+kind: bjt
+priority: 2
+group: driver_vas
+models:
+- source: ltwiki
+  name: Q2N5023
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/bipolar.lib
+    sha256: c5e0e8839925adb5e550a6654a8d5d1c0634a0fd0f58e03c9701e24d9aa08b5b
+    lines:
+      Q2N5023: [8526, 8529]
+    fetched: '2026-09-21'

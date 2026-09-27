@@ -21,4 +21,41 @@ models:
     lines:
       LM2941: [1, 101]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: LM2941
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/LM2941.lib
+      sha256: 3f1868d462a465ecee12379e1f4a7e1a9586d1e211ae243e64c0dc81459dbac4
+  - source: ltwiki
+    name: LM2941
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LM2941.lib
+      sha256: 3f1868d462a465ecee12379e1f4a7e1a9586d1e211ae243e64c0dc81459dbac4
+- source: ti
+  name: LM2941_F1
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNVMAB1
+    member: LM2941_TRANS_NEW.lib
+    archive_sha256: 60436ad310251c14ec8fe98a92d8a78a3324ad0560c2105edc2656e5982b670c
+    sha256: fbbb3b901bf312748f0c078880b88a737c4259ce7b58bf86889a3d88418332dd
+    lines:
+      LM2941_F1: [95, 98]
+    fetched: '2026-09-19'
+- source: ti
+  name: LM2941_S1
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SNVMAB1
+    member: LM2941_TRANS_NEW.lib
+    archive_sha256: 60436ad310251c14ec8fe98a92d8a78a3324ad0560c2105edc2656e5982b670c
+    sha256: fbbb3b901bf312748f0c078880b88a737c4259ce7b58bf86889a3d88418332dd
+    lines:
+      LM2941_S1: [100, 104]
+    fetched: '2026-09-19'

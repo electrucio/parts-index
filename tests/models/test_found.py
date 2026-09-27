@@ -119,4 +119,11 @@ def test_a_model_record_names_its_lines_its_dependencies_and_its_copies(tmp_path
     (m,) = got["models"]
     assert (m["source"], m["def"], m["type"], m["deps"]) == ("ltwiki", "subckt", "SUBCKT", ["QINNER"])
     assert m["provenance"]["lines"] == {"QINNER": [6, 7], "AMP1": [3, 5]}
-    assert m["copies"] == [{"source": "acme", "file": "sources/acme/raw/a.lib", "name": "AMP1"}]
+    (copy,) = m["copies"]
+    assert (copy["source"], copy["file"], copy["name"]) == ("acme", "sources/acme/raw/a.lib", "AMP1")
+    assert copy["provenance"]["lines"] == {"QINNER": [6, 7], "AMP1": [3, 5]}
+
+
+def test_a_folder_with_its_own_manifest_is_published_under_its_source():
+    assert F.registered("vishay/semis") == "vishay"
+    assert F.rank("vishay/semis") == F.rank("vishay")

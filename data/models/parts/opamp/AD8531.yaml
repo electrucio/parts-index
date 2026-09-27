@@ -28,7 +28,25 @@ models:
       AD8534: [10811, 10878]
       AD9617: [10893, 10957]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: kicad-spice-library
+    name: AD8531
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_AD.lib
+      sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+  - source: ltwiki
+    name: AD8531
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_AD.lib
+      sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+  - source: ltwiki
+    name: AD8531
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OpAmp_AD.lib
+      sha256: cc39d6b59699f9692a349e254842de9cf2fe346877a3428d985609f2dfdf4cb3
 - source: kicad-spice-library
   name: AD8531
   def: subckt
@@ -70,3 +88,32 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from comment words
+  copies:
+  - source: microcap12
+    name: AD8531_AD
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: analog.lib
+      sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+- source: adi
+  name: AD8531
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.analog.com/media/en/simulation-models/spice-models/ad8531.cir?modelType=spice-models
+    sha256: bba39729bc6e64230d7ab6ef70928b7fc54b541eb92f4193812b1921d8e2557e
+    lines:
+      AD8531: [27, 85]
+    fetched: '2026-09-21'
+- source: spice-model-cd
+  name: AD8531/AD
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Analog%20Devices_Spice_Files/OpAmps/Spice/anlg_dev.lib
+    sha256: 6ab38357b65b81a3e4b75284dac1bed7e893f4ee465f998763fd9b4d3ecd4af3
+    lines:
+      AD8531/AD: [32577, 32635]
+    fetched: '2026-09-21'

@@ -21,4 +21,39 @@ models:
     lines:
       HEF4093B: [353, 391]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: HEF4093B
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/HEF4000.lib
+      sha256: 528dd8d15028c9c96b7e08db64d0aa2ce65e17b60b5cd89db746fe380bbe0a7d
+  - source: ltwiki
+    name: HEF4093B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/HEF4000.lib
+      sha256: 9aaa32a8a3c1be7131aa4b9cdf6b12d2364d10aadfe709c6c561abb0f73c05b9
+  - source: ltwiki
+    name: HEF4093B
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Hef4000/HEF4000.lib
+      sha256: a214bda11811341dfe0b2fc50bec0d979077f5426bdf55c5b55f902d68553309
+  - source: ltwiki
+    name: HEF4093B
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Hef4000/Examples/HEF4000.lib
+      sha256: a214bda11811341dfe0b2fc50bec0d979077f5426bdf55c5b55f902d68553309
+  - source: ltwiki
+    name: HEF4093B
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/test_HEF4093B/HEF4000.lib
+      sha256: c789d74800256f205f17790e6286d3e5fb6ae0ef41e843052e9d86472d979193
+  - source: ltwiki
+    name: HEF4093B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/HEF4000.lib
+      sha256: a214bda11811341dfe0b2fc50bec0d979077f5426bdf55c5b55f902d68553309

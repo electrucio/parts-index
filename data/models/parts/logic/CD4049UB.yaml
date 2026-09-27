@@ -61,7 +61,24 @@ models:
     score: null
     error: 'KeyError: ''logic'''
   symbol: CD4049UB_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: CD4049UB
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/cd4049ub.sub
+      sha256: a69a7160043fd9edf39ac93c639d0415fa2e7583b1c236310f8906cb37eb50c7
+  - source: ltwiki
+    name: CD4049UB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/cd4049ub.sub
+      sha256: a69a7160043fd9edf39ac93c639d0415fa2e7583b1c236310f8906cb37eb50c7
+  - source: ltwiki
+    name: CD4049UB
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/cd4049ub.sub
+      sha256: a69a7160043fd9edf39ac93c639d0415fa2e7583b1c236310f8906cb37eb50c7
 - source: kicad-spice-library
   name: CD4049UB
   def: subckt
@@ -103,6 +120,60 @@ models:
     score: null
     error: 'KeyError: ''logic'''
   symbol: CD4049UB_kicad-spice-library-2.asy
+  copies:
+  - source: microcap12
+    name: CD4049UB
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: cmos.lib
+      sha256: 355bb3dfa2be483f7c2d5b8d729acb8221874a18fbf49607f03a0bfc0d753917
+- source: ti
+  name: CD4049UB
+  def: subckt
+  type: SUBCKT
+  deps:
+  - LOGIC_ICC_AHC_1i_NAND_PP_CMOS_CD4049UB
+  - TPD_AHC_1i_NAND_PP_CMOS_CD4049UB
+  - LOGIC_FUNCTION_2_AHC_1i_NAND_PP_CMOS_CD4049UB
+  - LOGIC_INPUT_AHC_1i_NAND_PP_CMOS_CD4049UB
+  - LOGIC_PP_OUTPUT_AHC_1i_NAND_PP_CMOS_CD4049UB
+  - LOGIC_GATE_2PIN_OD_AHC_1i_NAND_PP_CMOS_CD4049UB
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SCHM019
+    member: CD4049UB.cir
+    archive_sha256: 2c357995eb31ace4f3eae6c90a4a6fe9809735f888366243f5ae14f3618434c3
+    sha256: 676487f1448574f0b6bb61acdcc61723046dd0ada65a70a71f592c588bfca386
+    lines:
+      CD4049UB: [35, 37]
+      LOGIC_FUNCTION_2_AHC_1i_NAND_PP_CMOS_CD4049UB: [141, 156]
+      LOGIC_GATE_2PIN_OD_AHC_1i_NAND_PP_CMOS_CD4049UB: [43, 76]
+      LOGIC_ICC_AHC_1i_NAND_PP_CMOS_CD4049UB: [252, 260]
+      LOGIC_INPUT_AHC_1i_NAND_PP_CMOS_CD4049UB: [77, 140]
+      LOGIC_PP_OUTPUT_AHC_1i_NAND_PP_CMOS_CD4049UB: [171, 182]
+      TPD_AHC_1i_NAND_PP_CMOS_CD4049UB: [157, 170]
+    fetched: '2026-09-14'
+  copies:
+  - source: ti
+    name: CD4049UB
+    get:
+      url: https://www.ti.com/lit/zip/SCHM019
+      member: CD4049UB.lib
+      sha256: 676487f1448574f0b6bb61acdcc61723046dd0ada65a70a71f592c588bfca386
+- source: ltwiki
+  name: CD4049UB
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D_CD4049UB
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/cd4000.lib
+    sha256: 01fee132096b681bc7bb8cb653efc6a8a0ea6929099c8aa90057eea83857cba8
+    lines:
+      CD4049UB: [2545, 2551]
+      D_CD4049UB: [2553, 2556]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/cd4049ub.pdf
   maker: Texas Instruments

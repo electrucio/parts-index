@@ -17,3 +17,17 @@ models:
     note: git clone --depth 1, commit a868895
   note: 'STAND-IN: model of MBR0530, not of B0530WS; equivalence declared in catalog/wanted.yaml (see
     its note)'
+- source: microcap12
+  name: B0530WS
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      B0530WS: [9560, 9561]
+    fetched: '2026-09-20'

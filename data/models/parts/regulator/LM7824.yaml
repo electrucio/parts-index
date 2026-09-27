@@ -32,11 +32,22 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: LM7824_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from simulation: of the 6 node orders only
-    IN GND OUT regulates to about 24 V at Vin-Vout 5 V / 5 mA, Vin-Vout 15 V / 5 mA, Vin-Vout 5 V / 100
-    mA (orders tried: IN OUT GND: -24 V, -24 V, -96.5 V; IN GND OUT: 24 V, 24 V, 24 V; OUT IN GND: 26.8
-    V, 36.8 V, 26.8 V; OUT GND IN: 21.2 V, 29.4 V, 6.3 V; GND IN OUT: -0.731 V, -0.731 V, -0.848 V; GND
-    OUT IN: -5.14 V, -4.17 V, -78.1 V)'
+  note: 'pins from simulation: of the 6 node orders only IN GND OUT regulates to about 24 V at Vin-Vout
+    5 V / 5 mA, Vin-Vout 15 V / 5 mA, Vin-Vout 5 V / 100 mA (orders tried: IN OUT GND: -24 V, -24 V, -96.5
+    V; IN GND OUT: 24 V, 24 V, 24 V; OUT IN GND: 26.8 V, 36.8 V, 26.8 V; OUT GND IN: 21.2 V, 29.4 V, 6.3
+    V; GND IN OUT: -0.731 V, -0.731 V, -0.848 V; GND OUT IN: -5.14 V, -4.17 V, -78.1 V)'
+  copies:
+  - source: kicad-spice-library
+    name: LM7824
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/regulators.lib
+      sha256: 0b15463dadbf7c99cb3692aa563c298dd2a488e40122b87c0094158001d08f4c
+  - source: ltwiki
+    name: LM7824
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/regulators.lib
+      sha256: 1998b5aaba8b44019bf630a561c739ff33a83996cd6600bbaa8b8c3e02cf5bf2
 - source: bordodynov
   name: LM7824C
   def: subckt
@@ -62,11 +73,22 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: LM7824_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from simulation: of the 6 node orders only
-    IN GND OUT regulates to about 24 V at Vin-Vout 5 V / 5 mA, Vin-Vout 15 V / 5 mA, Vin-Vout 5 V / 100
-    mA (orders tried: IN OUT GND: -24 V, -24 V, -96.5 V; IN GND OUT: 24 V, 24 V, 24 V; OUT IN GND: 26.8
-    V, 36.8 V, 26.8 V; OUT GND IN: 21.2 V, 29.4 V, 6.3 V; GND IN OUT: -0.731 V, -0.731 V, -0.848 V; GND
-    OUT IN: -5.14 V, -4.2 V, -78.1 V)'
+  note: 'pins from simulation: of the 6 node orders only IN GND OUT regulates to about 24 V at Vin-Vout
+    5 V / 5 mA, Vin-Vout 15 V / 5 mA, Vin-Vout 5 V / 100 mA (orders tried: IN OUT GND: -24 V, -24 V, -96.5
+    V; IN GND OUT: 24 V, 24 V, 24 V; OUT IN GND: 26.8 V, 36.8 V, 26.8 V; OUT GND IN: 21.2 V, 29.4 V, 6.3
+    V; GND IN OUT: -0.731 V, -0.731 V, -0.848 V; GND OUT IN: -5.14 V, -4.2 V, -78.1 V)'
+  copies:
+  - source: kicad-spice-library
+    name: LM7824C
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/regulators.lib
+      sha256: 0b15463dadbf7c99cb3692aa563c298dd2a488e40122b87c0094158001d08f4c
+  - source: ltwiki
+    name: LM7824C
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/regulators.lib
+      sha256: 1998b5aaba8b44019bf630a561c739ff33a83996cd6600bbaa8b8c3e02cf5bf2
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/ua78.pdf
   maker: Texas Instruments

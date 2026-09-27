@@ -32,6 +32,30 @@ models:
       PMBT3904: [11739, 11777]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: spice-model-cd
+    name: QPMBT3904
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/PMBT3904.lib
+      sha256: beda2bdbd839cd99020ff6efe8a0b68ed13f86a09f5b55a1f2f8d47d616eff4e
+  - source: ltwiki
+    name: QPMBT3904
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/PMBT3904.PRM
+      sha256: beda2bdbd839cd99020ff6efe8a0b68ed13f86a09f5b55a1f2f8d47d616eff4e
+  - source: microcap12
+    name: PMBT3904
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_bjt.lib
+      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
+  - source: microcap12
+    name: PMBT3904D
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_bjt.lib
+      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
 - source: kicad-spice-library
   name: PMBT3904D
   def: model
@@ -44,3 +68,38 @@ models:
       PMBT3904D: [11785, 11823]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: microcap12
+  name: PMBT3904VS
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: nxp.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
+    lines:
+      PMBT3904VS: [49163, 49224]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: PMBT3904YS
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: nxp.lib
+      sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
+- source: microcap12
+  name: PMBT3904M
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: nxp.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
+    lines:
+      PMBT3904M: [49074, 49134]
+    fetched: '2026-09-20'

@@ -25,7 +25,30 @@ models:
       74HCT_IN_S_1: [2210, 2224]
       74HCT_OUT_1X: [2239, 2249]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: 74HCT14
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/74hct.lib
+      sha256: 8099ed11f79413969a234f7155695f06b6a3fea73466af6305e94a72d40e1242
+  - source: ltwiki
+    name: 74HCT14
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/74hct.lib
+      sha256: 8099ed11f79413969a234f7155695f06b6a3fea73466af6305e94a72d40e1242
+  - source: ltwiki
+    name: 74HCT14
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/74hct.lib
+      sha256: 0a65be82a2e80abf9f09b62fb9371b56b3caeddbed5393a290b2632c3252db50
+  - source: ltwiki
+    name: 74HCT14
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/74HCT/74hct.lib
+      sha256: a0a1447b30cf1d9db7f032a74dd783dd089ad0d84fd91f565a1d22b267839856
 - source: bordodynov
   name: 74HCT14
   def: subckt
@@ -53,7 +76,24 @@ models:
       DIO1: [2066, 2066]
       DIO2: [2123, 2123]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: 74HCT14
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/74Hct_Don.lib
+      sha256: b3e62e9da9019ec16f44c316c15dd66e76bfe3cb0495280d0f77bb0fe215aefa
+  - source: ltwiki
+    name: 74HCT14
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/74Hct_Don.lib
+      sha256: b3e62e9da9019ec16f44c316c15dd66e76bfe3cb0495280d0f77bb0fe215aefa
+  - source: ltwiki
+    name: 74HCT14
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/74Hct_Don.lib
+      sha256: b3e62e9da9019ec16f44c316c15dd66e76bfe3cb0495280d0f77bb0fe215aefa
 - source: kicad-spice-library
   name: 74HCT14
   def: subckt
@@ -70,6 +110,13 @@ models:
       74HCT14: [2361, 2371]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: 74HCT14
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: dig000.lib
+      sha256: e16fc85bebf1d2fc6da7b1994359ed7612a26b6f553d24748826327924413fa2
 - source: kicad-spice-library
   name: 74HCT14
   def: subckt
@@ -101,3 +148,10 @@ models:
       74HCT14A: [2379, 2389]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: 74HCT14A
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: dig000.lib
+      sha256: e16fc85bebf1d2fc6da7b1994359ed7612a26b6f553d24748826327924413fa2

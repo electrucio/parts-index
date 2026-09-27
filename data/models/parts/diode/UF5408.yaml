@@ -1,0 +1,33 @@
+part: UF5408
+kind: diode
+priority: 3
+group: rectifier
+models:
+- source: microcap12
+  name: UF5408
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: microsem_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 4de9c79b8f465e5a0873f78fe3a8c13a59e9f0cec851134a2e3e7b434b761d74
+    lines:
+      UF5408: [1349, 1350]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: UF5408GP
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: microsem_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 4de9c79b8f465e5a0873f78fe3a8c13a59e9f0cec851134a2e3e7b434b761d74
+    lines:
+      UF5408GP: [1353, 1354]
+    fetched: '2026-09-20'

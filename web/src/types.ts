@@ -90,6 +90,8 @@ export interface PartModel {
   changes?: string[]
   symbol?: string
   get: { url?: string; member?: string; installed_with?: string; file?: string; how?: string }
+  /** The same model in other sources, each with its own link. */
+  copies?: { source: string; name: string; url?: string; member?: string; installed_with?: string }[]
   score?: number
   /** pass, marginal, fail — the datasheet rows this model was judged against. */
   rows?: [number, number, number]

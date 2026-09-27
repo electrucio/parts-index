@@ -94,3 +94,51 @@ models:
     note: git clone --depth 1, commit a868895
   note: 'STAND-IN: model of ss24, not of B240; equivalence declared in catalog/wanted.yaml (see its note);
     pins from default order (unverified)'
+- source: diodes-inc
+  name: B240A
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8075/collection.spice.txt
+    sha256: 0b71cd9c9dd2990c433a5f6920186c68815384e7e0cfcb07af51b532fdd173c3
+    lines:
+      B240A: [944, 948]
+    fetched: '2026-09-21'
+  copies:
+  - source: diodes-inc
+    name: B240A
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8075/collection.spice.txt
+      sha256: 0b71cd9c9dd2990c433a5f6920186c68815384e7e0cfcb07af51b532fdd173c3
+  - source: diodes-inc
+    name: B240A
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8075/collection.spice.txt
+      sha256: 0b71cd9c9dd2990c433a5f6920186c68815384e7e0cfcb07af51b532fdd173c3
+  - source: diodes-inc
+    name: B240A
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8567/collection.spice.txt
+      sha256: eefb2aecbff69bf6f28bc5e8d7066944ff8386c678535ced4ac48193e630f0d5
+- source: microcap12
+  name: B240A
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      B240A: [9688, 9689]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: B240
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc.lib
+      sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15

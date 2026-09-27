@@ -25,6 +25,13 @@ models:
       OPA454: [42, 407]
     fetched: '2026-09-19'
   note: pins from DIP-8 pin numbers (single op-amp pin-out)
+  copies:
+  - source: microcap12
+    name: OPA454
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
 - source: ti
   name: OPA454
   def: subckt
@@ -71,3 +78,10 @@ models:
       OPA454: [19, 381]
     fetched: '2026-09-14'
   note: pins from DIP-8 pin numbers (single op-amp pin-out)
+  copies:
+  - source: bordodynov
+    name: OPA454
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPA454.sub
+      sha256: a12b44fe2332a084704d3118fb2de08de4bb6a8ab25a279ab0861309f77a2c80

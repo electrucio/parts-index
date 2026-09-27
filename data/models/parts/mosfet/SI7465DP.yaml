@@ -16,7 +16,80 @@ models:
     lines:
       Si7465DP: [250, 250]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: bordodynov
+    name: Si7465DP
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: bordodynov
+    name: Si7465DP
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Original/standard.mos
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: bordodynov
+    name: Si7465DP
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Original/standard.mos.bak
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: kicad-spice-library
+    name: Si7465DP
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: kicad-spice-library
+    name: Si7465DP
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: kicad-spice-library
+    name: Si7465DP
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Original/standard.mos
+      sha256: 4ad1e16da6dfb08f9b1d55a27c28ca4a034db3f309073ce070136378fb658ad0
+  - source: ltwiki
+    name: Si7465DP
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: Si7465DP
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: Si7465DP
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: Si7465DP
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: ltwiki
+    name: Si7465DP
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Original/standard.mos
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: ltwiki
+    name: Si7465DP
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Original/standard.mos.bak
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: ltwiki
+    name: Si7465DP
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: ltwiki
   name: Si7465DP
   def: model
@@ -30,7 +103,42 @@ models:
     lines:
       Si7465DP: [246, 246]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: ltwiki
+    name: Si7465DP
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Reg_Vref/lm/LdoReg/bss139.mod
+      sha256: d98105aa9235cae554ad7dbee1e8fda1606da5c422a9dc12f1bcff7721950ef7
+  - source: kicad-spice-library
+    name: Si7465DP
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/MOS.lib
+      sha256: 5a12451d9b52820cc74b1f3c11955dcfbc99cc0ede851dd12587ebbbc9e9531e
+  - source: ltwiki
+    name: Si7465DP
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Reg&Vref/lm/LdoReg/bss139.mod
+      sha256: d98105aa9235cae554ad7dbee1e8fda1606da5c422a9dc12f1bcff7721950ef7
+  - source: ltwiki
+    name: Si7465DP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/cmp/standard.mos
+      sha256: 0f6a0a30f327903e5b61c3764e08354839fed85c6ce2d4a8b3d708d6c2ec9533
+  - source: ltwiki
+    name: Si7465DP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Reg_Vref/lm/LdoReg/bss139.mod
+      sha256: d98105aa9235cae554ad7dbee1e8fda1606da5c422a9dc12f1bcff7721950ef7
+  - source: ltwiki
+    name: Si7465DP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Reg&Vref/lm/LdoReg/bss139.mod
+      sha256: d98105aa9235cae554ad7dbee1e8fda1606da5c422a9dc12f1bcff7721950ef7
 - source: ltwiki
   name: Si7465DP
   def: model
@@ -44,3 +152,120 @@ models:
     lines:
       Si7465DP: [243, 243]
     fetched: '2026-09-14'
+- source: vishay
+  name: Si7465DP
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.vishay.com/en/product/73113/tab/designtools-ppg/
+    member: si7465dp_PS.txt
+    archive_sha256: 766aa3ca9cf1d7a43bf58871d49ca8cfb9743c39bd040cb714f184b3ef657349
+    sha256: 9d5642b52d2f0fe19fcc368e5a97e696571aa205382bcf25b9c7fb52557651d2
+    lines:
+      Si7465DP: [8, 32]
+    fetched: '2026-09-21'
+  copies:
+  - source: microcap12
+    name: Si7465DP
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: vishaymosfet.lib
+      sha256: 23bc5e3e06c64162cbb4b96205c8a4b30b08d7cfd780d41fd3043fede09671f7
+  - source: vishay
+    name: Si7465DP
+    get:
+      url: https://www.vishay.com/en/product/73113/tab/designtools-ppg/
+      member: si7465dp_ps_rc.txt
+      sha256: a13d8bc3bb7eeb5a7423f151be97a1326b9b3b38056be42606b7f6edd57fc61b
+  - source: vishay
+    name: Si7465DP
+    get:
+      url: https://www.vishay.com/en/product/73113/tab/designtools-ppg/
+      member: si7465dp_PS.lib
+      sha256: 9d5642b52d2f0fe19fcc368e5a97e696571aa205382bcf25b9c7fb52557651d2
+  - source: vishay
+    name: Si7465DP
+    get:
+      url: https://www.vishay.com/en/product/73113/tab/designtools-ppg/
+      member: si7465dp_ps_rc.lib
+      sha256: a13d8bc3bb7eeb5a7423f151be97a1326b9b3b38056be42606b7f6edd57fc61b
+  - source: vishay
+    name: Si7465DP
+    get:
+      url: https://www.vishay.com/docs/77476/si7465dp.zip
+      member: si7465dp_PS.txt
+      sha256: 9d5642b52d2f0fe19fcc368e5a97e696571aa205382bcf25b9c7fb52557651d2
+  - source: vishay
+    name: Si7465DP
+    get:
+      url: https://www.vishay.com/docs/77476/si7465dp.zip
+      member: si7465dp_ps_rc.txt
+      sha256: a13d8bc3bb7eeb5a7423f151be97a1326b9b3b38056be42606b7f6edd57fc61b
+  - source: vishay
+    name: Si7465DP
+    get:
+      url: https://www.vishay.com/docs/77476/si7465dp.zip
+      member: si7465dp_PS.lib
+      sha256: 9d5642b52d2f0fe19fcc368e5a97e696571aa205382bcf25b9c7fb52557651d2
+  - source: vishay
+    name: Si7465DP
+    get:
+      url: https://www.vishay.com/docs/77476/si7465dp.zip
+      member: si7465dp_ps_rc.lib
+      sha256: a13d8bc3bb7eeb5a7423f151be97a1326b9b3b38056be42606b7f6edd57fc61b
+- source: vishay
+  name: Si7465DP_PS_RC
+  def: subckt
+  type: SUBCKT
+  deps:
+  - Si7465DP
+  verbatim: true
+  get:
+    url: https://www.vishay.com/en/product/73113/tab/designtools-ppg/
+    member: si7465dp_ps_rc.txt
+    archive_sha256: 766aa3ca9cf1d7a43bf58871d49ca8cfb9743c39bd040cb714f184b3ef657349
+    sha256: a13d8bc3bb7eeb5a7423f151be97a1326b9b3b38056be42606b7f6edd57fc61b
+    lines:
+      Si7465DP: [109, 133]
+      Si7465DP_PS_RC: [9, 104]
+    fetched: '2026-09-21'
+  copies:
+  - source: vishay
+    name: Si7465DP_PS_RC
+    get:
+      url: https://www.vishay.com/en/product/73113/tab/designtools-ppg/
+      member: si7465dp_ps_rc.lib
+      sha256: a13d8bc3bb7eeb5a7423f151be97a1326b9b3b38056be42606b7f6edd57fc61b
+  - source: vishay
+    name: Si7465DP_PS_RC
+    get:
+      url: https://www.vishay.com/docs/77476/si7465dp.zip
+      member: si7465dp_ps_rc.txt
+      sha256: a13d8bc3bb7eeb5a7423f151be97a1326b9b3b38056be42606b7f6edd57fc61b
+  - source: vishay
+    name: Si7465DP_PS_RC
+    get:
+      url: https://www.vishay.com/docs/77476/si7465dp.zip
+      member: si7465dp_ps_rc.lib
+      sha256: a13d8bc3bb7eeb5a7423f151be97a1326b9b3b38056be42606b7f6edd57fc61b
+- source: vishay
+  name: Si7465DP
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.vishay.com/en/product/73113/tab/designtools-ppg/
+    member: si7465dp_HS.txt
+    archive_sha256: 766aa3ca9cf1d7a43bf58871d49ca8cfb9743c39bd040cb714f184b3ef657349
+    sha256: 66f791144dbfafaada441512aaed3a51554777dc9ad52b8119872f109500f642
+    lines:
+      Si7465DP: [7, 32]
+    fetched: '2026-09-21'
+  copies:
+  - source: vishay
+    name: Si7465DP
+    get:
+      url: https://www.vishay.com/docs/77476/si7465dp.zip
+      member: si7465dp_HS.txt
+      sha256: 66f791144dbfafaada441512aaed3a51554777dc9ad52b8119872f109500f642

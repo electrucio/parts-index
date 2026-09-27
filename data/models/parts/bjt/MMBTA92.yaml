@@ -15,6 +15,13 @@ models:
       MMBTA92: [6, 16]
     fetched: '2026-09-14'
     note: 'model(s): MMBTA92 (PNP .model)'
+  copies:
+  - source: microcap12
+    name: MMBTA92
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: ltwiki
   name: MMBTA92
   def: subckt
@@ -33,6 +40,18 @@ models:
       MMBTA92: [2, 53]
     fetched: '2026-09-14'
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: MMBTA92_PH
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_bjt.lib
+      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
+  - source: kicad-spice-library
+    name: MMBTA92_PH
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
+      sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
 - source: kicad-spice-library
   name: MMBTA92_PH
   def: subckt
@@ -50,3 +69,52 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+- source: onsemi
+  name: Qmmbta92lt1
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mmbta92lt1.lib
+    sha256: 9eb1f7f88a2dadc7ede2fbdb4bcbe2827059c86abe350489a5586b081fc17e3a
+    lines:
+      Qmmbta92lt1: [14, 24]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: Qmmbta92lt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: mmbta92lt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_bjt.lib
+      sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77
+- source: qspice
+  name: MMBTA92
+  def: model
+  type: PNP
+  deps:
+  - PNP
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
+    lines:
+      MMBTA92: [1123, 1127]
+      PNP: [2, 2]
+    fetched: '2026-09-20'
+- source: duncanamps
+  name: QMMBTA92
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/bjt/pnp.mod
+    sha256: 9554024b39ab1fa861067c6af517fbe13435370dd0e78c4ed0d461fe355488a1
+    lines:
+      QMMBTA92: [539, 541]
+    fetched: '2026-09-14'

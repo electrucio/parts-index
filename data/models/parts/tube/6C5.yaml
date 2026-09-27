@@ -39,7 +39,14 @@ models:
     lines:
       6C5S: [1631, 1635]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: ltwiki
+    name: 6C5S
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/Tubes/Tube_IM.lib
+      sha256: 8eed72dbd55b52f5eb6004bcaacd3d88c79e3e3df9ef28462570c887a70e0d00
 - source: ltwiki
   name: 6C5
   def: subckt
@@ -58,3 +65,10 @@ models:
       6C5: [1527, 1540]
     fetched: '2026-09-14'
   note: pins from names
+  copies:
+  - source: bordodynov
+    name: 6C5
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Triode_Ayumi.lib
+      sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97

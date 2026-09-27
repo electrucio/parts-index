@@ -22,6 +22,46 @@ models:
       LMC6036: [30, 202]
     fetched: '2026-09-19'
   note: pins from comment words
+  copies:
+  - source: bordodynov
+    name: LMC6036/NS
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: kicad-spice-library
+    name: LMC6036/NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: kicad-spice-library
+    name: LMC6036_NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nation.lib
+      sha256: 97af188e570afc5c2b4b8246ade0670422d90c402c01a0f0383df0a6a37af9ac
+  - source: ltwiki
+    name: LMC6036/NS
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: ltwiki
+    name: LMC6036/NS
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: microcap12
+    name: LMC6036_NS
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: nation.lib
+      sha256: 3fc09b6f184ee48ba06340ee116b44f0650e61c361bb5c44744d6c7a98b2f7ce
+  - source: spice-model-cd
+    name: LMC6036/NS
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/National_Semiconductors/Spice/LMC6036.cir
+      sha256: 4b168555cd5609fff99398c5378b5f31625171aa1adabbfb273bc7ee1d4ddcb4
 - source: bordodynov
   name: LMC6036/NS
   def: subckt
@@ -61,7 +101,25 @@ models:
     lines:
       LMC6036_NSC: [8304, 8476]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: kicad-spice-library
+    name: LMC6036_NSC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: ltwiki
+    name: LMC6036_NSC
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: ltwiki
+    name: LMC6036_NSC
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OpAmp_NSC.lib
+      sha256: 640cf42a735c898a54951becb5657cb42ecbfd75453e22e5d739958213f9cf2c
 - source: kicad-spice-library
   name: LMC6036_NS
   def: subckt

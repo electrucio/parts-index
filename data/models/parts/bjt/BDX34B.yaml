@@ -1,0 +1,23 @@
+part: BDX34B
+kind: bjt
+priority: 3
+group: listed
+models:
+- source: onsemi
+  name: bdx34b
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bdx34b.lib
+    sha256: be77424898e85ec78204f924d7a94497a3f21e65474c1592448ec77d0980086a
+    lines:
+      bdx34b: [12, 50]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: bdx34b
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_bjt.lib
+      sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77

@@ -16,4 +16,29 @@ models:
     lines:
       RB160VAM-60: [2140, 2140]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: RB160VAM-60
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: RB160VAM-60
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+- source: rohm
+  name: DRB160VAM-60
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://fscdn.rohm.com/en/products/library/spice/discrete/diode/schottky_barrier/rb160vam-60_spice.zip
+    member: rb160vam-60.lib
+    archive_sha256: 7302d1436087974684cea7ebf0622e45514449e7f108b92ec021740a2a73cf9c
+    sha256: 4d2792451822702dc2d0414c4c1cf3e2794dfde051a8a72ae9c01c7eaa8e6ab5
+    lines:
+      DRB160VAM-60: [8, 21]
+    fetched: '2026-09-21'

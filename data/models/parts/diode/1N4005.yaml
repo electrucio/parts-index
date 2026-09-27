@@ -15,6 +15,13 @@ models:
       1N4005: [6, 14]
     fetched: '2026-09-19'
     note: '1N4005: 1N4005'
+  copies:
+  - source: microcap12
+    name: 1N4005
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: onsemi
   name: D1n4005rl
   def: model
@@ -27,6 +34,19 @@ models:
       D1n4005rl: [12, 16]
     fetched: '2026-09-19'
     note: '1N4005RL.LIB: D1n4005rl'
+  copies:
+  - source: microcap12
+    name: D1n4005rl
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: 1n4005rl
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_rect.lib
+      sha256: 5d37da736c3d863a34a000b998e990752bd81320e62c69cd2ec73b64a46876bb
 - source: duncanamps
   name: D1N4005
   def: model
@@ -65,7 +85,19 @@ models:
     lines:
       D1N4005: [157, 157]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: D1N4005
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: D1N4005
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
 - source: kicad-spice-library
   name: D1N4005
   def: model
@@ -78,3 +110,124 @@ models:
       D1N4005: [126, 126]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: onsemi
+  name: D1N4005
+  def: model
+  type: D
+  deps:
+  - D1N4001
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/zip/ncv8870%20pspice%20small-signal%20model%20(modeling%20example%20included).zip
+    member: NCV887x_WEB MODEL rev2/diode.lib
+    archive_sha256: 09d9ad961729090a1471436c772b81bf4e90a466232d3d95c0a60fb42540dd5a
+    sha256: 1b6bc4e709a10348038d31d87ab7ce09b41f2043bd734d4561b814a97c853e52
+    lines:
+      D1N4001: [633, 634]
+      D1N4005: [813, 813]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: D1N4005
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+      sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+  - source: ltwiki
+    name: D1N4005
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/diode.lib
+      sha256: 3312e896de50ad3b983aacc61fb142ca5ef79f0824d6bc9427974e94d4c93c7a
+  - source: microcap12
+    name: D1N4005
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: onsemi
+    name: D1N4005
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncv8871%20pspice%20small-signal%20model%20(modeling%20examples%20included).zip
+      member: NCV887x_WEB MODEL rev2/diode.lib
+      sha256: 1b6bc4e709a10348038d31d87ab7ce09b41f2043bd734d4561b814a97c853e52
+- source: spice-model-cd
+  name: d1n4005
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/DIODE.LB
+    sha256: b648c925003b172006c0871521a37a1448d9cd5343fd97cd1426d0ec65a8c324
+    lines:
+      d1n4005: [166, 167]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: 1N4005G
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      1N4005G: [10518, 10519]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: 1N4005GL
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc.lib
+      sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+- source: microcap12
+  name: 1N4005
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: diode.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 4f07396942f9fa67d623899d6904636fa4a5be596d413ed863bc6e2b63a2e01d
+    lines:
+      1N4005: [249, 250]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: 1N4005GP
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: microsem_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 4de9c79b8f465e5a0873f78fe3a8c13a59e9f0cec851134a2e3e7b434b761d74
+    lines:
+      1N4005GP: [29, 30]
+    fetched: '2026-09-20'
+- source: qspice
+  name: 1N4005
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
+    lines:
+      1N4005: [10, 10]
+    fetched: '2026-09-20'
+- source: kicad-spice-library
+  name: D1N4005
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/DIODE/INTERNAT.LIB
+    sha256: 88b223c4822ca05eea2a85a0c7614ba68845bf7d93fba971f22409c4b8322943
+    lines:
+      D1N4005: [79, 94]
+    fetched: '2026-09-14'

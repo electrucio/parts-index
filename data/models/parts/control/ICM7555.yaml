@@ -27,7 +27,30 @@ models:
       ICM7555: [229, 231]
       ICM7555_S: [233, 325]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: microcap12
+    name: ICM7555
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: maxim.lib
+      sha256: 34b79b417eb4b275f2826e20fde5a04d26ec23363ec4abb1de96405eda10d027
+  - source: kicad-spice-library
+    name: ICM7555
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/timers.lib
+      sha256: 5caceb6b0c16c6b684284c8598439454661f6908a926796c1459becf67fc8f85
+  - source: ltwiki
+    name: ICM7555
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/timers.lib
+      sha256: 5caceb6b0c16c6b684284c8598439454661f6908a926796c1459becf67fc8f85
+  - source: ltwiki
+    name: ICM7555
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/timers.lib
+      sha256: 5caceb6b0c16c6b684284c8598439454661f6908a926796c1459becf67fc8f85
 - source: bordodynov
   name: ICM7555_S
   def: subckt
@@ -50,4 +73,27 @@ models:
     lines:
       ICM7555_S: [233, 325]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: microcap12
+    name: ICM7555_S
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: maxim.lib
+      sha256: 34b79b417eb4b275f2826e20fde5a04d26ec23363ec4abb1de96405eda10d027
+  - source: kicad-spice-library
+    name: ICM7555_S
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/timers.lib
+      sha256: 5caceb6b0c16c6b684284c8598439454661f6908a926796c1459becf67fc8f85
+  - source: ltwiki
+    name: ICM7555_S
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/timers.lib
+      sha256: 5caceb6b0c16c6b684284c8598439454661f6908a926796c1459becf67fc8f85
+  - source: ltwiki
+    name: ICM7555_S
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/timers.lib
+      sha256: 5caceb6b0c16c6b684284c8598439454661f6908a926796c1459becf67fc8f85

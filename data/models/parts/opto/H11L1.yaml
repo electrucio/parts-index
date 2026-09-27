@@ -24,7 +24,13 @@ models:
       H11L1: [2452, 2468]
       Q1: [16399, 16440]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: H11L1
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
 - source: kicad-spice-library
   name: H11L1
   def: subckt

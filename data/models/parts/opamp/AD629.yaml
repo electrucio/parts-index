@@ -23,6 +23,18 @@ models:
     lines:
       ad629: [36, 120]
     fetched: '2026-09-14'
+  copies:
+  - source: spice-model-cd
+    name: ad629a/AD
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Analog%20Devices_Spice_Files/OpAmps/Spice/anlg_dev.lib
+      sha256: 6ab38357b65b81a3e4b75284dac1bed7e893f4ee465f998763fd9b4d3ecd4af3
+  - source: ltwiki
+    name: ad629
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/AD629_test/AD629A-typ.cir
+      sha256: 92a2aff384fae8d50ae9526206c8fab04622939ed60c4b47ee76f8f7c768e68e
 - source: ltwiki
   name: ad629
   def: subckt
@@ -44,6 +56,18 @@ models:
     lines:
       ad629: [36, 114]
     fetched: '2026-09-14'
+  copies:
+  - source: spice-model-cd
+    name: ad629b/AD
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Analog%20Devices_Spice_Files/OpAmps/Spice/anlg_dev.lib
+      sha256: 6ab38357b65b81a3e4b75284dac1bed7e893f4ee465f998763fd9b4d3ecd4af3
+  - source: ltwiki
+    name: ad629
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/AD629_test/AD629B-typ.cir
+      sha256: bdc1908158bc3fe3a2490ca44a61137c5ef8ea96543c14f2c80c6e2ade5f071f
 - source: ltwiki
   name: ad629
   def: subckt
@@ -65,6 +89,13 @@ models:
     lines:
       ad629: [36, 110]
     fetched: '2026-09-14'
+  copies:
+  - source: ltwiki
+    name: ad629
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/AD629_test/AD629B-min.cir
+      sha256: 048c9e3cb6dc3d7fa9a8e5c1e3841b0ca08325dd315a70c05e1bbe1f6513466d
 - source: ltwiki
   name: ad629
   def: subckt
@@ -86,6 +117,13 @@ models:
     lines:
       ad629: [35, 114]
     fetched: '2026-09-14'
+  copies:
+  - source: ltwiki
+    name: ad629
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/AD629_test/AD629A-min.cir
+      sha256: c1a57c0b84403ce34cf2125d934b2a44db0717cd678ae40a8069f2f67e5289e2
 - source: kicad-spice-library
   name: AD629A_AD
   def: subckt
@@ -109,6 +147,13 @@ models:
       dx: [72212, 72212]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: AD629A_AD
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: analog.lib
+      sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
 - source: kicad-spice-library
   name: AD629B_AD
   def: subckt
@@ -132,3 +177,10 @@ models:
       dx: [72212, 72212]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: AD629B_AD
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: analog.lib
+      sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6

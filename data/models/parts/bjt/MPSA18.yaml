@@ -29,7 +29,19 @@ models:
     fail: 4
     not_measurable: 0
     typical_rows: 1
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: MPSA18
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: MPSA18
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
 - source: ltwiki
   name: MPSA18
   def: model
@@ -50,7 +62,29 @@ models:
     fail: 4
     not_measurable: 0
     typical_rows: 1
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: ltwiki
+    name: MPSA18
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Mixer/standard.bjt
+      sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+  - source: kicad-spice-library
+    name: MPSA18
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+      sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+  - source: kicad-spice-library
+    name: MPSA18
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJT.lib
+      sha256: 1f07e6e6b38c9b5d8d19dbccfd3c29741281ead66a7b48cc40eb82e9684580eb
+  - source: ltwiki
+    name: MPSA18
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.bjt
+      sha256: 0f87e9840e1130e025a7add442288c0f67048f9755108d0384d1594296884e82
 - source: ltwiki
   name: MPSA18
   def: model
@@ -71,6 +105,17 @@ models:
     fail: 1
     not_measurable: 0
     typical_rows: 1
+  copies:
+  - source: spice-model-cd
+    name: MPSA18
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Fairchild/MP/MPSA18.t
+      sha256: 1d9a313d93c8bbc9175cf69919868bdbdccdc1352feb71873340aa7ac89a18e1
+  - source: ltwiki
+    name: MPSA18
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/bipolar.lib
+      sha256: c5e0e8839925adb5e550a6654a8d5d1c0634a0fd0f58e03c9701e24d9aa08b5b
 - source: kicad-spice-library
   name: MPSA18
   def: model
@@ -90,6 +135,53 @@ models:
     fail: 5
     not_measurable: 0
     typical_rows: 1
+- source: microcap12
+  name: MPSA18
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: msbjt_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 03fbaf82587d859e52f6b3e36166b65d7d6b6f241e460308f37d3b568e5fa96e
+    lines:
+      MPSA18: [3159, 3163]
+    fetched: '2026-09-20'
+- source: duncanamps
+  name: QMPSA18
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/bjt/npn.mod
+    sha256: 57dfef87174fc8f0310bc9527e0bf7ef3fa92d13d295ea8a504d3ba67f13ec87
+    lines:
+      QMPSA18: [665, 667]
+    fetched: '2026-09-14'
+- source: diyaudio
+  name: MPSA18
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
+    sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
+    lines:
+      MPSA18: [257, 265]
+    fetched: '2026-09-20'
+- source: groupsio-ltspice
+  name: MPSA18
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    how: unknown
+    sha256: c2efeb5146d6eec5855876ea76bbcab2e20b845867d62bf17ead9f0a9bb77c0c
+    lines:
+      MPSA18: [1479, 1487]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/mpsa18-d.pdf
   maker: onsemi

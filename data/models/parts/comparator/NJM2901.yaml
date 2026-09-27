@@ -1,0 +1,33 @@
+part: NJM2901
+kind: comparator
+priority: 3
+models:
+- source: nisshinbo
+  name: njm2901
+  def: subckt
+  type: SUBCKT
+  deps:
+  - njm2901_s
+  verbatim: true
+  get:
+    url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm2901_p.zip
+    member: NJM2901/njm2901.lib
+    archive_sha256: 326dc025d0127f1b8b08692d909e637179984d905e17e7af6c8b6add03ab2795
+    sha256: e3ea35c7348a2ba1fde98ee2a226f4ae58811b31909b1bdd0bc84ebf57c6c176
+    lines:
+      njm2901: [6, 12]
+      njm2901_s: [14, 35]
+    fetched: '2026-09-20'
+- source: nisshinbo
+  name: njm2901_s
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm2901_p.zip
+    member: NJM2901/njm2901.lib
+    archive_sha256: 326dc025d0127f1b8b08692d909e637179984d905e17e7af6c8b6add03ab2795
+    sha256: e3ea35c7348a2ba1fde98ee2a226f4ae58811b31909b1bdd0bc84ebf57c6c176
+    lines:
+      njm2901_s: [14, 35]
+    fetched: '2026-09-20'

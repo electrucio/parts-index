@@ -159,3 +159,253 @@ models:
       CD4000: [25, 40]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: CD4000
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: cmos.lib
+      sha256: 355bb3dfa2be483f7c2d5b8d729acb8221874a18fbf49607f03a0bfc0d753917
+- source: microcap12
+  name: CD4000UB
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: cmos.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 355bb3dfa2be483f7c2d5b8d729acb8221874a18fbf49607f03a0bfc0d753917
+    lines:
+      CD4000UB: [51, 66]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: CD4000UB
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cmos.lib
+      sha256: 4ee830d7932c2cdfcd5d21972f96c0387c3440d5d449c6554a0016f8b0f4f5b0
+- source: microcap12
+  name: CD4000_PWR
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: Digio.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 018780a8ac24c8f759551a3ba30c69cc7cb700279d5f97d9ad9cbd2cd11cd7b2
+    lines:
+      CD4000_PWR: [73, 81]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: CD4000_PWR
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/Digio.lib
+      sha256: a954d950911b20f57014c630b367bf0d9338c30082243e1a00cdb3d3514ac247
+- source: bordodynov
+  name: CD4000B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DIO2
+  - CD40_OUT_1X
+  - CD40DIO1
+  - CD40_IN_1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4000_Don.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 47fa60aec4237b21d853cfde5dffd06191f4bd16165aaab6bf2ac16c64839a0d
+    lines:
+      CD4000B: [30, 40]
+      CD40DIO1: [785, 785]
+      CD40_IN_1: [799, 815]
+      CD40_OUT_1X: [848, 858]
+      DIO2: [845, 845]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: CD4000B
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/CD4000_Don.LIB
+      sha256: 47fa60aec4237b21d853cfde5dffd06191f4bd16165aaab6bf2ac16c64839a0d
+  - source: ltwiki
+    name: CD4000B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/CD4000_Don.LIB
+      sha256: 47fa60aec4237b21d853cfde5dffd06191f4bd16165aaab6bf2ac16c64839a0d
+  - source: ltwiki
+    name: CD4000B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/CD4000_Don.LIB
+      sha256: 47fa60aec4237b21d853cfde5dffd06191f4bd16165aaab6bf2ac16c64839a0d
+- source: bordodynov
+  name: CD4000B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - CD40_OUT_1X
+  - CD40_IN_1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4000_v.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: a814b0ca1e4ced9b7963913afd06147754592c9002010ecc1beb635b45e222eb
+    lines:
+      CD4000B: [37, 47]
+      CD40_IN_1: [920, 937]
+      CD40_OUT_1X: [971, 982]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: CD4000B
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/CD4000_v.lib
+      sha256: 160e7f8bc97f0e71541e67941c2442ebef6888026163a64fe1ea4e92854bef25
+  - source: ltwiki
+    name: CD4000B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/CD4000_v.lib
+      sha256: a814b0ca1e4ced9b7963913afd06147754592c9002010ecc1beb635b45e222eb
+- source: bordodynov
+  name: CD4000B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - CD40_OUT_1X
+  - CD40DIO1
+  - CD40_IN_1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/cd4000.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 794f3386c6ab888d2abf2f2c54ec97b6af582b14e138de0252059e9f07107f08
+    lines:
+      CD4000B: [34, 44]
+      CD40DIO1: [902, 902]
+      CD40_IN_1: [917, 930]
+      CD40_OUT_1X: [965, 976]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: CD4000B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/cd4000.lib
+      sha256: 794f3386c6ab888d2abf2f2c54ec97b6af582b14e138de0252059e9f07107f08
+- source: ltwiki
+  name: CD4000B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - CD40_OUT_1X
+  - CD40_IN_1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Digital/cd4xxx/Test Circuit CD4029B/cd4000.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: db071ddc0bc4fe1e6050e259bd9d1917dbbee47101187031e8f27ad1039b5cf1
+    lines:
+      CD4000B: [30, 40]
+      CD40_IN_1: [863, 879]
+      CD40_OUT_1X: [912, 922]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: CD4000B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/cd4000.lib
+      sha256: b782cfaab0d30efd686119cba75054d6d80ea98f2a6dec46ede1ccee4dd5c31d
+  - source: ltwiki
+    name: CD4000B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/CD4000/CD4000.lib
+      sha256: db071ddc0bc4fe1e6050e259bd9d1917dbbee47101187031e8f27ad1039b5cf1
+  - source: ltwiki
+    name: CD4000B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Digital/cd4xxx/Test Circuit CD4029B/cd4000.lib
+      sha256: db071ddc0bc4fe1e6050e259bd9d1917dbbee47101187031e8f27ad1039b5cf1
+- source: ltwiki
+  name: CD4000B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D_CD4000B
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/cd4000.lib
+    sha256: 01fee132096b681bc7bb8cb653efc6a8a0ea6929099c8aa90057eea83857cba8
+    lines:
+      CD4000B: [40, 49]
+      D_CD4000B: [51, 54]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: CD4000UB
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D_CD4000UB
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/cd4000.lib
+    sha256: 01fee132096b681bc7bb8cb653efc6a8a0ea6929099c8aa90057eea83857cba8
+    lines:
+      CD4000UB: [62, 71]
+      D_CD4000UB: [73, 76]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: CD4000_PWR
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/dig_io.lib
+    sha256: 4786ea546301c487bf3ce0d5924d9d25946a1e53747834334664392f8ba7de98
+    lines:
+      CD4000_PWR: [196, 204]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: CD4000A
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D_CD4000A
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/cd4000.lib
+    sha256: 01fee132096b681bc7bb8cb653efc6a8a0ea6929099c8aa90057eea83857cba8
+    lines:
+      CD4000A: [18, 27]
+      D_CD4000A: [29, 32]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: CD4000B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - CD40_OUT_1X
+  - CD40_IN_1
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/cd4000.lib
+    sha256: b30e91bc7f5937fcd4b64fa5f37eabd91619b78de506c64ec29100404f0e5060
+    lines:
+      CD4000B: [34, 44]
+      CD40_IN_1: [917, 934]
+      CD40_OUT_1X: [968, 979]
+    fetched: '2026-09-14'

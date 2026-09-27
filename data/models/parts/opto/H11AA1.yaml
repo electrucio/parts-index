@@ -21,4 +21,21 @@ models:
     lines:
       H11AA1: [1, 15]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: H11AA1
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/H11AA1.sub
+      sha256: 1dc655d88de8760da864c09df4211984dd9466a9d20f5cb72097e6ed9227f700
+  - source: ltwiki
+    name: H11AA1
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/H11AA1.sub
+      sha256: 1dc655d88de8760da864c09df4211984dd9466a9d20f5cb72097e6ed9227f700
+  - source: ltwiki
+    name: H11AA1
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/H11AA1/H11AA1.sub
+      sha256: 1dc655d88de8760da864c09df4211984dd9466a9d20f5cb72097e6ed9227f700

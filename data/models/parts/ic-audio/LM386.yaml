@@ -35,7 +35,37 @@ models:
     not_measurable: 0
     typical_rows: 2
   symbol: LM386_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: Lm386
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Lm386.sub
+      sha256: 48e0a60d0773e7a12faee30c43916269f53f1dad16d077e6e0053c2a6911d8d2
+  - source: ltwiki
+    name: Lm386
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Lm386.sub
+      sha256: 48e0a60d0773e7a12faee30c43916269f53f1dad16d077e6e0053c2a6911d8d2
+  - source: ltwiki
+    name: Lm386
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Amplifiers_/Lm386.sub
+      sha256: 48e0a60d0773e7a12faee30c43916269f53f1dad16d077e6e0053c2a6911d8d2
+  - source: ltwiki
+    name: Lm386
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Amplifiers/Lm386.sub
+      sha256: 48e0a60d0773e7a12faee30c43916269f53f1dad16d077e6e0053c2a6911d8d2
+  - source: ltwiki
+    name: Lm386
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Lm386.sub
+      sha256: 48e0a60d0773e7a12faee30c43916269f53f1dad16d077e6e0053c2a6911d8d2
 - source: bordodynov
   name: Lm386_
   def: subckt
@@ -66,7 +96,37 @@ models:
     not_measurable: 0
     typical_rows: 2
   symbol: LM386_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: Lm386_
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Lm386.sub
+      sha256: 48e0a60d0773e7a12faee30c43916269f53f1dad16d077e6e0053c2a6911d8d2
+  - source: ltwiki
+    name: Lm386_
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Lm386.sub
+      sha256: 48e0a60d0773e7a12faee30c43916269f53f1dad16d077e6e0053c2a6911d8d2
+  - source: ltwiki
+    name: Lm386_
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Amplifiers_/Lm386.sub
+      sha256: 48e0a60d0773e7a12faee30c43916269f53f1dad16d077e6e0053c2a6911d8d2
+  - source: ltwiki
+    name: Lm386_
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Amplifiers/Lm386.sub
+      sha256: 48e0a60d0773e7a12faee30c43916269f53f1dad16d077e6e0053c2a6911d8d2
+  - source: ltwiki
+    name: Lm386_
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Lm386.sub
+      sha256: 48e0a60d0773e7a12faee30c43916269f53f1dad16d077e6e0053c2a6911d8d2
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/lm386.pdf
   maker: Texas Instruments (National Semiconductor)

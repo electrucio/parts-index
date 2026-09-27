@@ -1,0 +1,20 @@
+part: AD8000
+kind: opamp
+priority: 3
+models:
+- source: adi
+  name: AD8000
+  def: subckt
+  type: SUBCKT
+  deps:
+  - Rvar
+  - SWHYSTE2
+  verbatim: true
+  get:
+    url: https://www.analog.com/media/en/simulation-models/spice-models/ad8000p.cir
+    sha256: 30928c4f1a1d62c33ed4b6d4110406419dfaac8a8e5cdf897167badb3044c9e2
+    lines:
+      AD8000: [60, 141]
+      Rvar: [154, 160]
+      SWHYSTE2: [142, 152]
+    fetched: '2026-09-20'

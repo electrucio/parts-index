@@ -21,7 +21,51 @@ models:
     lines:
       LMC6484A/NS: [13354, 13452]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: spice-model-cd
+    name: LMC6484A/NS
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/National_Semiconductors/Spice/LMC6484A.cir
+      sha256: 851cd680886c7548d6aa7773d2d53c41b144ae8cf2a3e2be676b62fe53d9515c
+  - source: kicad-spice-library
+    name: LMC6484A/NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: kicad-spice-library
+    name: LMC6484A/NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nat_semi.lib
+      sha256: 15227be98f4559bf0b6fcabdea3c86cbd6c5f1d41d47ecf7375d001362f06a28
+  - source: kicad-spice-library
+    name: LMC6484A_NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nation.lib
+      sha256: 97af188e570afc5c2b4b8246ade0670422d90c402c01a0f0383df0a6a37af9ac
+  - source: ltwiki
+    name: LMC6484A/NS
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/nat_semi.lib
+      sha256: 410011a53d15a487fda9fb1f4f6cbd0747427cf9274b6dbd90625f580bf75fe7
+  - source: ltwiki
+    name: LMC6484A/NS
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: ltwiki
+    name: LMC6484A/NS
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: microcap12
+    name: LMC6484A_NS
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: nation.lib
+      sha256: 3fc09b6f184ee48ba06340ee116b44f0650e61c361bb5c44744d6c7a98b2f7ce
 - source: bordodynov
   name: LMC6484A_NSC
   def: subckt
@@ -41,7 +85,25 @@ models:
     lines:
       LMC6484A_NSC: [10445, 10543]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: kicad-spice-library
+    name: LMC6484A_NSC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: ltwiki
+    name: LMC6484A_NSC
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: ltwiki
+    name: LMC6484A_NSC
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OpAmp_NSC.lib
+      sha256: 640cf42a735c898a54951becb5657cb42ecbfd75453e22e5d739958213f9cf2c
 - source: kicad-spice-library
   name: LMC6484A_NS
   def: subckt
@@ -80,6 +142,18 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from comment words
+  copies:
+  - source: microcap12
+    name: LMC6484_NS
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: nation.lib
+      sha256: 3fc09b6f184ee48ba06340ee116b44f0650e61c361bb5c44744d6c7a98b2f7ce
+  - source: kicad-spice-library
+    name: LMC6484N
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/NATCMOS.LIB
+      sha256: a0b607588540966f2014f31336312d918278481cda6056eb6e6315c9d55f3247
 - source: kicad-spice-library
   name: LMC6484N
   def: subckt

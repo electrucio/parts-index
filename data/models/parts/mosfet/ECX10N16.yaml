@@ -1,0 +1,19 @@
+part: ECX10N16
+kind: mosfet
+priority: 3
+group: power_lateral
+models:
+- source: microcap12
+  name: ECX10N16
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: profmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 58b94e8ea84dba579a8f6c334d2d78630cd77955e852f5bd1afeca3ce57c3b3c
+    lines:
+      ECX10N16: [89, 93]
+    fetched: '2026-09-20'

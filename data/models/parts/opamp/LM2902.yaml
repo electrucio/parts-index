@@ -21,7 +21,37 @@ models:
     lines:
       LM2902: [598, 632]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: LM2902
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: LM2902
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: LM2902
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: LM2902
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: LM2902
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraOpamps/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
 - source: bordodynov
   name: LM2902/NS
   def: subckt
@@ -41,7 +71,56 @@ models:
     lines:
       LM2902/NS: [3374, 3461]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: spice-model-cd
+    name: LM2902/NS
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/National_Semiconductors/Spice/LM2902.cir
+      sha256: 615dd1954520d633f44dd281cb2f57b2f4876af5ae386b263e27368d310d55c1
+  - source: kicad-spice-library
+    name: LM2902/NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: kicad-spice-library
+    name: LM2902/NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nat_semi.lib
+      sha256: 15227be98f4559bf0b6fcabdea3c86cbd6c5f1d41d47ecf7375d001362f06a28
+  - source: kicad-spice-library
+    name: LM2902_NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nation.lib
+      sha256: 97af188e570afc5c2b4b8246ade0670422d90c402c01a0f0383df0a6a37af9ac
+  - source: ltwiki
+    name: LM2902/NS
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/nat_semi.lib
+      sha256: 410011a53d15a487fda9fb1f4f6cbd0747427cf9274b6dbd90625f580bf75fe7
+  - source: ltwiki
+    name: LM2902/NS
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: ltwiki
+    name: LM2902/NS
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: microcap12
+    name: LM2902_NS
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: nation.lib
+      sha256: 3fc09b6f184ee48ba06340ee116b44f0650e61c361bb5c44744d6c7a98b2f7ce
+  - source: kicad-spice-library
+    name: LM2902N
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/NATBJT.LIB
+      sha256: cf6a0a8ae76413edbbe02dda7fa5372957d07a3454547dfb80f3bff10d99492a
 - source: bordodynov
   name: LM2902/MC
   def: subckt
@@ -61,7 +140,81 @@ models:
     lines:
       LM2902/MC: [1943, 1979]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+  note: pins from numbered connections table
+  copies:
+  - source: onsemi
+    name: LM2902
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp1205is.zip
+      member: ONIC.LIB
+      sha256: 2205b1dca9be0f1465a30b1880ff6f9b9bf273bfdd12359dcd4622db942cba8c
+  - source: onsemi
+    name: LM2902
+    get:
+      url: https://www.onsemi.com/download/models/zip/mc33163_model.zip
+      member: MC33163 MODEL/onic.lib
+      sha256: 4b75d2a5b998dbc4b9048dda08ddab54587bf815a725128b3f9f747851cacfb7
+  - source: onsemi
+    name: LM2902
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp101x_isspice.zip
+      member: onic.lib
+      sha256: 3bba6f67478987c9d9d436d24fa9b82e91d92888f20a34d59fd5c0dae0de189c
+  - source: kicad-spice-library
+    name: LM2902/ON
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+  - source: ltwiki
+    name: LM2902/ON
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+  - source: ltwiki
+    name: LM2902/ON
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+  - source: kicad-spice-library
+    name: LM2902/MC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+  - source: kicad-spice-library
+    name: LM2902/MC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/motoramp.lib
+      sha256: 0ba056430160e40251c7364b88b06f43dc3c8b095ef04aed9b898f8a0aa5e57b
+  - source: kicad-spice-library
+    name: LM2902_MC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_opamp.lib
+      sha256: bfbf4e51462367a37800fa5c0f5a2b3190a30da3e6321416caa3e14b91ff274a
+  - source: ltwiki
+    name: LM2902/MC
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/motoramp.lib
+      sha256: 97b71bfffb93dae60222a64a71347274be2cec93a83d7edb267b1e0d4bfa57e0
+  - source: ltwiki
+    name: LM2902/MC
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+  - source: ltwiki
+    name: LM2902/MC
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+  - source: microcap12
+    name: LM2902_MC
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: m_opamp.lib
+      sha256: 6b96d357d32e315e8e5c5d9fc2835ffffa23b6371aa0fe1a5475ebb6b2c776a0
 - source: bordodynov
   name: LM2902
   def: subckt
@@ -114,7 +267,25 @@ models:
       TL072: [837, 869]
       TL074: [878, 910]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: kicad-spice-library
+    name: LM2902
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_TI.lib
+      sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+  - source: ltwiki
+    name: LM2902
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_TI.lib
+      sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+  - source: ltwiki
+    name: LM2902
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OpAmp_TI.lib
+      sha256: 9527567b0cc2c8a3023a6eed5baeb2ccabc2a67a41227a6c95866ece0253dc52
 - source: bordodynov
   name: LM2902_AB
   def: subckt
@@ -134,7 +305,25 @@ models:
     lines:
       LM2902_AB: [1, 43]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: LM2902_AB
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/LM2902_AB.sub
+      sha256: 7c0329de32299c0881b51b3b05ce1df2d1c8858d2474bdb7788d7672e817b55a
+  - source: ltwiki
+    name: LM2902_AB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LM2902_AB.sub
+      sha256: 7c0329de32299c0881b51b3b05ce1df2d1c8858d2474bdb7788d7672e817b55a
+  - source: ltwiki
+    name: LM2902_AB
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/LM2902_AB/LM2902_AB.sub
+      sha256: 7c0329de32299c0881b51b3b05ce1df2d1c8858d2474bdb7788d7672e817b55a
 - source: bordodynov
   name: LM2902/ST
   def: subckt
@@ -154,4 +343,216 @@ models:
     lines:
       LM2902/ST: [98, 143]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+  note: pins from numbered connections table
+  copies:
+  - source: kicad-spice-library
+    name: LM2902/ST
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/st_models.lib
+      sha256: 359721d36d29fd723643f91c1dab9cb6f6ab2a844230d8b5a1d7de00b8080ebb
+  - source: ltwiki
+    name: LM2902/ST
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/st_models.lib
+      sha256: 359721d36d29fd723643f91c1dab9cb6f6ab2a844230d8b5a1d7de00b8080ebb
+  - source: ltwiki
+    name: LM2902/ST
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/st_models.lib
+      sha256: 359721d36d29fd723643f91c1dab9cb6f6ab2a844230d8b5a1d7de00b8080ebb
+- source: onsemi
+  name: LM2902
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/mod/lm2902%20spice%20model%20.mod
+    sha256: a052c2ad5a45d0e60de1fdd0f7c1ea99930ddce1e0df15a63bbbf0b07a520d28
+    lines:
+      LM2902: [29, 85]
+    fetched: '2026-09-19'
+- source: spice-model-cd
+  name: LM2902
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/STMicroelectronics/Standard%20Linear%20ICs/Spice/lm2902.txt
+    sha256: f1af1a587dd319e66c54ccd41c1c5d19105f14a48027947e8ea475e0b078c532
+    lines:
+      LM2902: [25, 70]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: LM2902
+  def: subckt
+  type: SUBCKT
+  deps:
+  - nmos
+  - Q1
+  - pmos
+  - Q2
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      LM2902: [210689, 210725]
+      Q1: [78385, 78412]
+      Q2: [78417, 78442]
+      nmos: [161508, 161508]
+      pmos: [161510, 161510]
+    fetched: '2026-09-20'
+- source: bordodynov
+  name: LM2902_NSC
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_NSC.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+    lines:
+      LM2902_NSC: [2603, 2690]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM2902_NSC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: ltwiki
+    name: LM2902_NSC
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: ltwiki
+    name: LM2902_NSC
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OpAmp_NSC.lib
+      sha256: 640cf42a735c898a54951becb5657cb42ecbfd75453e22e5d739958213f9cf2c
+- source: bordodynov
+  name: LM2902
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_ST.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d90f4c4fd1a82f698bcdd91bde8be169c258e283648fef8a669e0d1ced09e50a
+    lines:
+      LM2902: [25, 70]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM2902
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_ST.lib
+      sha256: d90f4c4fd1a82f698bcdd91bde8be169c258e283648fef8a669e0d1ced09e50a
+  - source: ltwiki
+    name: LM2902
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_ST.lib
+      sha256: d90f4c4fd1a82f698bcdd91bde8be169c258e283648fef8a669e0d1ced09e50a
+- source: bordodynov
+  name: LM2902_AB
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM2902_AB.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8b6fe10829f8a845110b74394338c92ffa34b3f78f36c476378d6b2ad017fd10
+    lines:
+      LM2902_AB: [1, 37]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM2902_AB
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/LM2902_AB.txt
+      sha256: 8b6fe10829f8a845110b74394338c92ffa34b3f78f36c476378d6b2ad017fd10
+  - source: ltwiki
+    name: LM2902_AB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LM2902_AB.txt
+      sha256: 8b6fe10829f8a845110b74394338c92ffa34b3f78f36c476378d6b2ad017fd10
+- source: ltwiki
+  name: LM2902_ST
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/LM2902_AB/LM2902_ST.sub
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 9ea96fb8ca5202f8362009f7d2353379ecfae4fe6997844ea5f6aa09e57c6d9e
+    lines:
+      LM2902_ST: [3, 37]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: LM2902_ST
+    get:
+      url: https://ltwiki.org/files/LM2902_AB.ZIP
+      member: LM2902_AB/LM2902_ST.sub
+      sha256: 9ea96fb8ca5202f8362009f7d2353379ecfae4fe6997844ea5f6aa09e57c6d9e
+- source: ltwiki
+  name: LM2902
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/Op Amps/lm2902new.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 961926dbb7133742f3199a3e2dc6310cac1d08b1614f7296aeec25a4709b920c
+    lines:
+      LM2902: [25, 70]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: LM2902_AB
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LM2902_AB.ZIP
+    member: LM2902_AB/LM2902_AB.sub
+    archive_sha256: 78f2f0abb2669b4fc9be74a97997fd2293f1f4bb86ee256a77be0d91ece6b939
+    sha256: a1b6a1571668c3b4f59fbb256e071276c67afcc24267f3a6481421a55957563f
+    lines:
+      LM2902_AB: [1, 42]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: LM2902M
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/MOTOR.LIB
+    sha256: 44f08a5cfceeb4c72d4f6e77e1eac1d108b46f7cb81dee8f3296a908b1eb53e6
+    lines:
+      LM2902M: [635, 671]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: LM2902S
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/SGS.LIB
+    sha256: 9dca4e312e997d808a21cfa05a667948fe085291fa3433406b85d9d7e53a4832
+    lines:
+      LM2902S: [702, 746]
+    fetched: '2026-09-14'

@@ -87,6 +87,27 @@ models:
     typical_rows: 3
   symbol: BSS138_diodes-inc.asy
   note: pins from default order (unverified)
+  copies:
+  - source: diodes-inc
+    name: BSS138/ZTX
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+      sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+  - source: diodes-inc
+    name: BSS138/ZTX
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+      sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+  - source: diodes-inc
+    name: BSS138Q/ZTX
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+      sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+  - source: diodes-inc
+    name: BSS138Q/ZTX
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+      sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
 - source: bordodynov
   name: BSS138
   def: subckt
@@ -112,7 +133,25 @@ models:
     not_measurable: 2
     typical_rows: 3
   symbol: BSS138_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: BSS138
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: BSS138
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+  - source: ltwiki
+    name: BSS138
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ZETEX/LIB/zmodels.lib
+      sha256: 8d3fb488666b5f813a666d5c589ac6c7779a2c44a4b38799b2a41ca0006368e7
 - source: bordodynov
   name: BSS138/FAI
   def: subckt
@@ -141,7 +180,19 @@ models:
     not_measurable: 2
     typical_rows: 3
   symbol: BSS138_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: BSS138/FAI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: BSS138/FAI
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
 - source: bordodynov
   name: BSS138/FAI
   def: subckt
@@ -167,7 +218,431 @@ models:
     not_measurable: 2
     typical_rows: 3
   symbol: BSS138_bordodynov-3.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: BSS138/FAI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/fairchild_NMOS.lib
+      sha256: 1a975526cba57c9199b644b4b6a662a0dbb285a7e2b7b89a01dd05c50e9bc2f0
+  - source: ltwiki
+    name: BSS138/FAI
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/fairchild_NMOS.lib
+      sha256: 1a975526cba57c9199b644b4b6a662a0dbb285a7e2b7b89a01dd05c50e9bc2f0
+- source: onsemi
+  name: bss138lt1
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bss138lt1.lib
+    sha256: d4ff91e7a7f0c6f6db05729537eec4aa2c24d1ddd9707c9c08ca1ddae3e16c6d
+    lines:
+      bss138lt1: [1, 60]
+    fetched: '2026-09-19'
+  copies:
+  - source: bordodynov
+    name: bss138lt1
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/BSS138LT1.SP3
+      sha256: b822ffe49d12618722449a71ef3437c752f959e3f17f419ed4f51209bd2b39c1
+  - source: kicad-spice-library
+    name: bss138lt1
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/BSS138LT1.SP3
+      sha256: b822ffe49d12618722449a71ef3437c752f959e3f17f419ed4f51209bd2b39c1
+  - source: ltwiki
+    name: bss138lt1
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/BSS138LT1.SP3
+      sha256: b822ffe49d12618722449a71ef3437c752f959e3f17f419ed4f51209bd2b39c1
+  - source: microcap12
+    name: bss138lt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_fet.lib
+      sha256: 9b68f867d49f3f5c7f8313d34e42073e408ccb5020d4cdec8e0168d84275f49d
+- source: onsemi
+  name: BSS138W
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bss138w.lib
+    sha256: 547ad671460c828a56ad1014a9b220d562b986509b570d26158e81cf02a48fe1
+    lines:
+      BSS138W: [7, 38]
+    fetched: '2026-09-19'
+- source: infineon
+  name: BSS138N
+  def: subckt
+  type: SUBCKT
+  deps:
+  - K_60_a_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-n-channel-simulationmodels-en.zip
+    member: small_signal/small_signal_60V.lib
+    archive_sha256: 3c602849e1ef0512854142e6b85786e3d0f893f4f8028977e3ee2b3bb2d86e0c
+    sha256: 3e2f14948f35d4b652131d02e7ba9c5e6905aaf3c320c1e478e1fdcdf41979d6
+    lines:
+      BSS138N: [400, 428]
+      K_60_a_var: [65, 143]
+    fetched: '2026-09-19'
+  copies:
+  - source: ltwiki
+    name: BSS138N
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/BSS606N/small_signal_60V.lib
+      sha256: 22b9cd34c7ea86afceb379ac8151948b11ebd281a00ddf7980397a8d500a8199
+  - source: infineon
+    name: BSS138I
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-n-channel-simulationmodels-en.zip
+      member: small_signal/small_signal_60V.lib
+      sha256: 3e2f14948f35d4b652131d02e7ba9c5e6905aaf3c320c1e478e1fdcdf41979d6
+- source: infineon
+  name: BSS138W
+  def: subckt
+  type: SUBCKT
+  deps:
+  - K_60_a_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-n-channel-simulationmodels-en.zip
+    member: small_signal/small_signal_60V.lib
+    archive_sha256: 3c602849e1ef0512854142e6b85786e3d0f893f4f8028977e3ee2b3bb2d86e0c
+    sha256: 3e2f14948f35d4b652131d02e7ba9c5e6905aaf3c320c1e478e1fdcdf41979d6
+    lines:
+      BSS138W: [496, 524]
+      K_60_a_var: [65, 143]
+    fetched: '2026-09-19'
+  copies:
+  - source: ltwiki
+    name: BSS138W
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/BSS606N/small_signal_60V.lib
+      sha256: 22b9cd34c7ea86afceb379ac8151948b11ebd281a00ddf7980397a8d500a8199
+- source: diodes-inc
+  name: BSS138DW
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/1839/BSS138DW.spice.txt
+    sha256: 4d0fa9cad6a143676646351ad1131e01bfad1b7e27667404edbb68c992aa0c93
+    lines:
+      BSS138DW: [18, 41]
+    fetched: '2026-09-19'
+  copies:
+  - source: diodes-inc
+    name: BSS138DW
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+      sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+  - source: diodes-inc
+    name: BSS138Z
+    get:
+      url: https://www.diodes.com/spice/download/3604/BSS138(Z).spice.txt
+      sha256: d7b8aabc13f66e92a2e5fd37349c533a8e3973a51f4cadea7b713026b84d1ada
+  - source: diodes-inc
+    name: BSS138DWQ
+    get:
+      url: https://www.diodes.com/spice/download/1961/BSS138DWQ.spice.txt
+      sha256: 992c6db0bd104ccd700540f93c6c730294be075716162663f000f3eeff7a3324
+  - source: diodes-inc
+    name: BSS138DWQ
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+      sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+  - source: diodes-inc
+    name: BSS138W
+    get:
+      url: https://www.diodes.com/spice/download/1840/BSS138W.spice.txt
+      sha256: a26bff5692fb6ed4de6b53299e760ee3ad7296e7d924537488b38b1d2b2f4bbf
+  - source: diodes-inc
+    name: BSS138W
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+      sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+- source: diodes-inc
+  name: BSS138DW
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+    sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+    lines:
+      BSS138DW: [705, 728]
+      DCGD: [1642, 1642]
+      DLIM: [1645, 1645]
+      DSUB: [1643, 1644]
+    fetched: '2026-09-21'
+  copies:
+  - source: diodes-inc
+    name: BSS138DWQ
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+      sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+  - source: diodes-inc
+    name: BSS138W
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+      sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+- source: diodes-inc
+  name: BSS138DWK
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+    sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+    lines:
+      BSS138DWK: [733, 758]
+      DCGD: [1642, 1642]
+      DLIM: [1645, 1645]
+      DSUB: [1643, 1644]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: BSS138DWK
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+    sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+    lines:
+      BSS138DWK: [483, 508]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: BSS138DWQ
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - NMOS
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8522/collection.spice.txt
+    sha256: d5fb01a0d34edf74987add96b4f8859357c1501648119dd5bebc0f6d32fec8bf
+    lines:
+      BSS138DWQ: [174, 197]
+      DCGD: [1511, 1511]
+      DLIM: [1514, 1514]
+      DSUB: [1512, 1513]
+      NMOS: [1509, 1510]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: BSS138Q/ZTX
+  def: subckt
+  type: SUBCKT
+  deps:
+  - NMOS
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8522/collection.spice.txt
+    sha256: d5fb01a0d34edf74987add96b4f8859357c1501648119dd5bebc0f6d32fec8bf
+    lines:
+      BSS138Q/ZTX: [203, 223]
+      NMOS: [1509, 1510]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: BSS138WQ
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - NMOS
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8522/collection.spice.txt
+    sha256: d5fb01a0d34edf74987add96b4f8859357c1501648119dd5bebc0f6d32fec8bf
+    lines:
+      BSS138WQ: [229, 254]
+      DCGD: [1511, 1511]
+      DLIM: [1514, 1514]
+      DSUB: [1512, 1513]
+      NMOS: [1509, 1510]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: BSS138WQ
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+    sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+    lines:
+      BSS138WQ: [846, 871]
+      DCGD: [1642, 1642]
+      DLIM: [1645, 1645]
+      DSUB: [1643, 1644]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: BSS138WQ
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+    sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+    lines:
+      BSS138WQ: [596, 621]
+    fetched: '2026-09-21'
+- source: spice-model-cd
+  name: BSS-138
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Siemens/Bss_l0.lib
+    sha256: 9d08da8e43b5032a11eded06b8919e31ad85448c144db90db8f534cee6ac2088
+    lines:
+      BSS-138: [489, 508]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: BSS-138
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/BSS_L0.LIB
+      sha256: 681fe248607f8555c1d407566afd1e05bfd22de075b4f9dbba48815e18b94f0a
+  - source: spice-model-cd
+    name: BSS-138
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Infineon/Other/MOSFET/Bss_l0.lib
+      sha256: 9d08da8e43b5032a11eded06b8919e31ad85448c144db90db8f534cee6ac2088
+  - source: kicad-spice-library
+    name: BSS138/SIE
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/siemens.lib
+      sha256: c1318342f700741e0d97896cf4f77fe203b8923e12b1106c6c14f848c74bdd5b
+  - source: ltwiki
+    name: BSS138/SIE
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/siemens.lib
+      sha256: 243664dd487b615b87bd321416060f6822da14486fcece9fd2e3ded453189d81
+- source: spice-model-cd
+  name: BSS138
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Fairchild/BS/BSS138.lib
+    sha256: 2fd4b026eeb8318b1c99c4d8424a3e488366092a55e06159ecadafb7cd47897c
+    lines:
+      BSS138: [3, 27]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: BSS138DW
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc_FET.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 956632bc5a1ed7ee02659e697171e34e8db51019468b28123788f7f5a8669cb0
+    lines:
+      BSS138DW: [2272, 2275]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: BSS138W
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc_FET.lib
+      sha256: 956632bc5a1ed7ee02659e697171e34e8db51019468b28123788f7f5a8669cb0
+- source: microcap12
+  name: BSS138_FC
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: fairch.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 53806c9a42d8b9f44b8c77ed3ae210ad6250b5eacb44d7e7f2b429e8f4559918
+    lines:
+      BSS138_FC: [3, 27]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: BSS138_FC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/fairch.lib
+      sha256: 7a65c19aecd31354d0fec1166479cad2d1453948039b85b0d6d15d51ed4b963d
+- source: microcap12
+  name: BSS138/FAI
+  def: subckt
+  type: SUBCKT
+  deps:
+  - nmos
+  - BSS138
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      BSS138: [13355, 13400]
+      BSS138/FAI: [13406, 13430]
+      nmos: [161508, 161508]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: BSS138
+  def: subckt
+  type: SUBCKT
+  deps:
+  - nmos
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      BSS138: [13355, 13400]
+      nmos: [161508, 161508]
+    fetched: '2026-09-20'
+- source: ltwiki
+  name: BSS138/ZTX
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/Zetex.lib
+    sha256: 801edb075d3bd3995ad94e8dbf3c9a290a89481b1e897b74b75fcb6a6fab8ec0
+    lines:
+      BSS138/ZTX: [968, 977]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/bss138-d.pdf
   maker: onsemi (ex-Fairchild)

@@ -1,0 +1,142 @@
+part: CD4538
+kind: logic
+priority: 3
+models:
+- source: bordodynov
+  name: CD4538B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - CD40_IN_1
+  - CD40_IN_0
+  - CD40_OUT_1X
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4000_v.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: a814b0ca1e4ced9b7963913afd06147754592c9002010ecc1beb635b45e222eb
+    lines:
+      CD40_IN_0: [907, 917]
+      CD40_IN_1: [920, 937]
+      CD40_OUT_1X: [971, 982]
+      CD4538B: [840, 895]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: CD4538B
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/CD4000_v.lib
+      sha256: 160e7f8bc97f0e71541e67941c2442ebef6888026163a64fe1ea4e92854bef25
+  - source: ltwiki
+    name: CD4538B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/CD4000_v.lib
+      sha256: a814b0ca1e4ced9b7963913afd06147754592c9002010ecc1beb635b45e222eb
+- source: bordodynov
+  name: CD4538B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - CD40DIO1
+  - CD40_IN_1
+  - CD40_IN_0
+  - CD40_OUT_1X
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/cd4000.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 794f3386c6ab888d2abf2f2c54ec97b6af582b14e138de0252059e9f07107f08
+    lines:
+      CD40DIO1: [902, 902]
+      CD40_IN_0: [904, 914]
+      CD40_IN_1: [917, 930]
+      CD40_OUT_1X: [965, 976]
+      CD4538B: [837, 892]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: CD4538B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/cd4000.lib
+      sha256: 794f3386c6ab888d2abf2f2c54ec97b6af582b14e138de0252059e9f07107f08
+- source: ltwiki
+  name: CD4538B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - CD40_IN_1
+  - CD40_IN_0
+  - CD40_OUT_1X
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Digital/cd4xxx/Test Circuit CD4029B/cd4000.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: db071ddc0bc4fe1e6050e259bd9d1917dbbee47101187031e8f27ad1039b5cf1
+    lines:
+      CD40_IN_0: [851, 860]
+      CD40_IN_1: [863, 879]
+      CD40_OUT_1X: [912, 922]
+      CD4538B: [784, 839]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: CD4538B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/cd4000.lib
+      sha256: b782cfaab0d30efd686119cba75054d6d80ea98f2a6dec46ede1ccee4dd5c31d
+  - source: ltwiki
+    name: CD4538B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/CD4000/CD4000.lib
+      sha256: db071ddc0bc4fe1e6050e259bd9d1917dbbee47101187031e8f27ad1039b5cf1
+  - source: ltwiki
+    name: CD4538B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Digital/cd4xxx/Test Circuit CD4029B/cd4000.lib
+      sha256: db071ddc0bc4fe1e6050e259bd9d1917dbbee47101187031e8f27ad1039b5cf1
+- source: ltwiki
+  name: CD4538B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D_CD4538B_Outputs
+  - D_CD4538B_edge
+  - D_CD4538B_tedge
+  - D_CD4538B_trigdly
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/1_shot.lib
+    sha256: 070a5034ba75265177651d890adb21c50cf0c1d71e988ea08b5e93a643f441a7
+    lines:
+      CD4538B: [1115, 1192]
+      D_CD4538B_Outputs: [1194, 1200]
+      D_CD4538B_edge: [1204, 1206]
+      D_CD4538B_tedge: [1207, 1209]
+      D_CD4538B_trigdly: [1201, 1203]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: CD4538B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - CD40_IN_1
+  - CD40_IN_0
+  - CD40_OUT_1X
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/cd4000.lib
+    sha256: b30e91bc7f5937fcd4b64fa5f37eabd91619b78de506c64ec29100404f0e5060
+    lines:
+      CD40_IN_0: [904, 914]
+      CD40_IN_1: [917, 934]
+      CD40_OUT_1X: [968, 979]
+      CD4538B: [837, 892]
+    fetched: '2026-09-14'

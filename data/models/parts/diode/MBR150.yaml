@@ -1,0 +1,43 @@
+part: MBR150
+kind: diode
+priority: 2
+group: listed
+models:
+- source: onsemi
+  name: Dmbr150rl
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mbr150rl.lib
+    sha256: b4b96780a73c54edff2940a8b0e63713405f7ba0559ebb320dde9d0b1618e974
+    lines:
+      Dmbr150rl: [12, 16]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: Dmbr150rl
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: mbr150rl
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_diode.lib
+      sha256: b22e1d5ee75d5fe192f4e75a25f3addd1671eb17659c3b2a8cb964cfc96d10bc
+- source: microcap12
+  name: MBR150
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: diode.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 4f07396942f9fa67d623899d6904636fa4a5be596d413ed863bc6e2b63a2e01d
+    lines:
+      MBR150: [457, 458]
+    fetched: '2026-09-20'

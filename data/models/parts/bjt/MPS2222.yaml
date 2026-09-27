@@ -27,3 +27,46 @@ models:
       MPS2222A: [1684, 1701]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: microcap12
+  name: MPS2222A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: msbjt_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 03fbaf82587d859e52f6b3e36166b65d7d6b6f241e460308f37d3b568e5fa96e
+    lines:
+      MPS2222A: [2948, 2951]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: MPS2222
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: msbjt_lbr.lib
+      sha256: 03fbaf82587d859e52f6b3e36166b65d7d6b6f241e460308f37d3b568e5fa96e
+- source: duncanamps
+  name: QMPS2222A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/bjt/npn.mod
+    sha256: 57dfef87174fc8f0310bc9527e0bf7ef3fa92d13d295ea8a504d3ba67f13ec87
+    lines:
+      QMPS2222A: [581, 583]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: MPS2222
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/bipolar.lib
+    sha256: c5e0e8839925adb5e550a6654a8d5d1c0634a0fd0f58e03c9701e24d9aa08b5b
+    lines:
+      MPS2222: [9189, 9192]
+    fetched: '2026-09-21'

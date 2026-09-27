@@ -20,7 +20,37 @@ models:
     lines:
       irf130: [1, 60]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: irf130
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irf130.spi
+      sha256: b565c866edbfa632b65cef313353197852c5bdd3420557e8c983f09f91254c04
+  - source: kicad-spice-library
+    name: irf130
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf130.spi
+      sha256: 223b43d40b8aec9f97aa014902fedcb605ca1454b2925a4eb4449ab7c3d86f02
+  - source: ltwiki
+    name: irf130
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf130.spi
+      sha256: b565c866edbfa632b65cef313353197852c5bdd3420557e8c983f09f91254c04
+  - source: ltwiki
+    name: irf130
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf130.spi
+      sha256: b565c866edbfa632b65cef313353197852c5bdd3420557e8c983f09f91254c04
+  - source: ltwiki
+    name: irf130
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf130.spi
+      sha256: b565c866edbfa632b65cef313353197852c5bdd3420557e8c983f09f91254c04
 - source: kicad-spice-library
   name: IRF130
   def: subckt
@@ -55,6 +85,19 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irf130_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: UC1845_BOOST.CIR
+      sha256: 8c36885e3412332013fcdb9ca11a62418b776836f1262267604164887c19f813
+  - source: microcap12
+    name: irf130_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
 - source: kicad-spice-library
   name: IRF130M
   def: subckt
@@ -72,3 +115,25 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+- source: ltwiki
+  name: IRF130
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrmos.lib
+    sha256: cd1b43c7f364ba7d1ebb8af3764d05b8ddaab1d79950e0eedd42a0826cd2c46b
+    lines:
+      IRF130: [650, 653]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: IRF130/HA
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/harris.lib
+    sha256: 5e556916203cdb4cc4a4e500efe41f531e4c2b12aa26d4d3181891c94ce0c506
+    lines:
+      IRF130/HA: [3976, 4005]
+    fetched: '2026-09-21'

@@ -1,0 +1,32 @@
+part: IRFU9024N
+kind: mosfet
+priority: 2
+group: listed
+models:
+- source: microcap12
+  name: IRFU9024
+  def: model
+  type: PMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: irpmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 105bbe2b177521de15323aae290e05947c3bb26d62a8ee42fe5da0e351b46ddf
+    lines:
+      IRFU9024: [2000, 2004]
+    fetched: '2026-09-20'
+  note: found under the alias IRFU9024
+- source: kicad-spice-library
+  name: IRFU9024
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWMOS3.LIB
+    sha256: 15daa43bae301f0f87935f96d7a7634586ef2319657a3f622e47f56ae492d6d7
+    lines:
+      IRFU9024: [4735, 4757]
+    fetched: '2026-09-14'
+  note: found under the alias IRFU9024

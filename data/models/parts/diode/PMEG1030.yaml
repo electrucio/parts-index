@@ -18,7 +18,32 @@ models:
       PMEG1030EJ: [33, 49]
     fetched: '2026-09-19'
     note: 'PMEG1030EJ: PMEG1030EJ, PMEG1030EJ'
-  note: 'same code also in: ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: ltwiki
+    name: PMEG1030EH
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG1030EH.PRM
+      sha256: 609e719ebe1530250528150502437584fc0b1bf9d021445356b7f68d09f86dda
+  - source: microcap12
+    name: PMEG1030EH
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_shot.lib
+      sha256: c6367af2c60015e9fb5ecc3771d731c998ee74c0f74ef57bce37e58e08532f5d
+  - source: ltwiki
+    name: PMEG1030EJ
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG1030EJ.PRM
+      sha256: a47c17c7bc073b448e15bd8adc2b124c060ea419c90bdb50f1c0e86ec55936f7
+  - source: microcap12
+    name: PMEG1030EJ
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_shot.lib
+      sha256: c6367af2c60015e9fb5ecc3771d731c998ee74c0f74ef57bce37e58e08532f5d
 - source: ltwiki
   name: PMEG1030EH
   def: subckt

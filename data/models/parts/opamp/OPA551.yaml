@@ -23,3 +23,24 @@ models:
       OPA551: [46, 425]
     fetched: '2026-09-19'
   note: pins from DIP-8 pin numbers (single op-amp pin-out)
+  copies:
+  - source: ti
+    name: OPA551
+    get:
+      url: https://www.ti.com/lit/zip/SBOM090
+      member: OPA551_PSPICE_AIO/OPA551.LIB
+      sha256: f6a290d95ae324c5e64ef0d21a72c53e4c8d4f8a919bae60193e7ff5db1dd8fc
+- source: microcap12
+  name: OPA551
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ti.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+    lines:
+      OPA551: [30885, 30954]
+    fetched: '2026-09-20'

@@ -522,6 +522,12 @@ def trim_models(doc: dict) -> dict:
         get = m.get("get") or {}
         e["get"] = {k: get[k] for k in ("url", "member", "installed_with", "file", "how")
                     if get.get(k)}
+        if m.get("copies"):
+            # The same model elsewhere, with the link from each: often the file a collection copied is the
+            # vendor's original, and that is where a reader should go.
+            e["copies"] = [{"source": c["source"], "name": c["name"],
+                            **{k: (c.get("get") or {})[k] for k in ("url", "member", "installed_with")
+                               if (c.get("get") or {}).get(k)}} for c in m["copies"]]
         v = m.get("verification") or {}
         if v.get("score") is not None:
             e["score"] = v["score"]

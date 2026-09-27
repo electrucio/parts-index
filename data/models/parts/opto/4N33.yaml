@@ -23,3 +23,37 @@ models:
       4n33_dar_MC: [23, 60]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: 4n33_MC
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: m_opto.lib
+      sha256: 0e56809d146c3d0239c0c1e062fe4abef68249f972a3763635315a8cf3755802
+- source: spice-model-cd
+  name: 4n33
+  def: subckt
+  type: SUBCKT
+  deps:
+  - 4n33_dar
+  - 4n33_dio
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Motorola/Spice/Optoelectronic/4N33.lib
+    sha256: b3ca92e67b2f1aa0577641727164a1284ddba03fa60cf82a50a692a63e2be38e
+    lines:
+      4n33: [3, 16]
+      4n33_dar: [25, 62]
+      4n33_dio: [19, 23]
+    fetched: '2026-09-21'
+- source: spice-model-cd
+  name: 4n33_dar
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Motorola/Spice/Optoelectronic/4N33.lib
+    sha256: b3ca92e67b2f1aa0577641727164a1284ddba03fa60cf82a50a692a63e2be38e
+    lines:
+      4n33_dar: [25, 62]
+    fetched: '2026-09-21'

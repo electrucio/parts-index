@@ -1,0 +1,25 @@
+part: BZX55C39
+kind: zener
+priority: 2
+models:
+- source: microcap12
+  name: 1N5259B
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ph_diode.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: f9df24ec0c294f52c0b42dcb8aa86242c24d1c52b5df04656c47544b89fac977
+    lines:
+      1N5259B: [3, 14]
+    fetched: '2026-09-20'
+  note: found under the alias 1N5259B
+  copies:
+  - source: kicad-spice-library
+    name: 1N5259B
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_diode.lib
+      sha256: 7680dbb1c2759df426558d45db01f9c601fc0821e7bef837b2d652fe6abfcbce

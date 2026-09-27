@@ -1,0 +1,18 @@
+part: LM201
+kind: opamp
+priority: 2
+models:
+- source: ltwiki
+  name: LM201A
+  def: subckt
+  type: SUBCKT
+  deps:
+  - LM101A
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+    sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+    lines:
+      LM101A: [1412, 1446]
+      LM201A: [2042, 2045]
+    fetched: '2026-09-21'

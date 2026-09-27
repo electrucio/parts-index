@@ -30,3 +30,16 @@ models:
       STTH102RL: [1540, 1542]
     fetched: '2026-09-14'
   note: found under the alias STTH102
+- source: stmicro
+  name: STTH102A
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.st.com/resource/en/spice_model/st_ultrafast_200v_300v_400v_diodes_pspice_models_v4.zip
+    member: ST_ULTRAFAST_200V_300V_400V_V9.LIB
+    archive_sha256: 1c5316dc7d2ea3bed5dd4c60bc088a10b1d3049ee8e0682ab6c11288135dbb0c
+    sha256: ec67b1873e3383acbbe37b39e5f49ccc56a1b58c13ba7a60782612533b72016c
+    lines:
+      STTH102A: [86, 88]
+    fetched: '2026-09-21'

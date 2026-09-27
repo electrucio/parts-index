@@ -15,6 +15,13 @@ models:
       MMBT3906: [5, 16]
     fetched: '2026-09-14'
     note: 'model(s): MMBT3906 (PNP .model)'
+  copies:
+  - source: microcap12
+    name: MMBT3906
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: bordodynov
   name: MMBT3906
   def: model
@@ -28,7 +35,47 @@ models:
     lines:
       MMBT3906: [1010, 1010]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: MMBT3906
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+      sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+  - source: kicad-spice-library
+    name: MMBT3906
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJT.lib
+      sha256: 1f07e6e6b38c9b5d8d19dbccfd3c29741281ead66a7b48cc40eb82e9684580eb
+  - source: ltwiki
+    name: MMBT3906
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: MMBT3906
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Mixer/standard.bjt
+      sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+  - source: ltwiki
+    name: MMBT3906
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: MMBT3906
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.bjt
+      sha256: 0f87e9840e1130e025a7add442288c0f67048f9755108d0384d1594296884e82
+  - source: ltwiki
+    name: MMBT3906
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
+      sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
 - source: kicad-spice-library
   name: MMBT3906
   def: model
@@ -41,3 +88,180 @@ models:
       MMBT3906: [7059, 7097]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: MMBT3906
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_bjt.lib
+      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
+  - source: ltwiki
+    name: QMMBT3906
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/MMBT3906.PRM
+      sha256: 9d5a0e9f20d03ebc45670bf09226d8fe58131ae0ce3d91a7cd2435eb54544897
+- source: onsemi
+  name: Qmmbt3906lt1
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/pspice%20model%20lib%20file.lib
+    sha256: 16ab7d5006d8506b2b7a4f28a33657dced8ed0efaf984c0dcfc2f7dfc83ed48f
+    lines:
+      Qmmbt3906lt1: [14, 24]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: Qmmbt3906lt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: onsemi
+    name: mmbt3906lt1
+    get:
+      url: https://www.onsemi.com/download/models/sp3/mmbt3906lt1.sp3
+      sha256: eb275a5f0784944d1c26f123db96da092b98e8592c25a7a926dc27c9ac053630
+  - source: onsemi
+    name: mmbt3906lt1
+    get:
+      url: https://www.onsemi.com/download/models/sp3/pspice%20model%20sp3%20file.sp3
+      sha256: eb275a5f0784944d1c26f123db96da092b98e8592c25a7a926dc27c9ac053630
+- source: onsemi
+  name: MMBT3906SL
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mmbt3906sl.lib
+    sha256: 2463fa59b05c297152f2a709550e6b06458c3c81c0c78c8fe907171db583d72f
+    lines:
+      MMBT3906SL: [5, 16]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: MMBT3906SL
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: onsemi
+  name: Qmmbt3906tt1
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mmbt3906tt1.lib
+    sha256: bcf1a4a1da31cbdc187fd56e51f20a4d12a2673a92b01867b7b46de0cc5b75d9
+    lines:
+      Qmmbt3906tt1: [14, 24]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: Qmmbt3906tt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: diodes-inc
+  name: MMBT3906FA
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/3000/MMBT3906FA.spice.txt
+    sha256: c717fb9a39114a6ba0ddf110d2bdb889a8f78a47719a19d3b8928b9c860a158a
+    lines:
+      MMBT3906FA: [24, 24]
+    fetched: '2026-09-19'
+  copies:
+  - source: diodes-inc
+    name: MMBT3906FA
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8429/collection.spice.txt
+      sha256: 25759a6cbafe23350b32480fe33bf874370db0e87a747168f643ea8b1031ac30
+  - source: diodes-inc
+    name: MMBT3906LP
+    get:
+      url: https://www.diodes.com/spice/download/2963/MMBT3906LP.spice.txt
+      sha256: c3d4ec694db34aea9d3ab1dc9b7c5925bcd04006c835ebaf36a4ec869005a15d
+  - source: diodes-inc
+    name: MMBT3906LP
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8429/collection.spice.txt
+      sha256: 25759a6cbafe23350b32480fe33bf874370db0e87a747168f643ea8b1031ac30
+- source: microcap12
+  name: MMBT3906T
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc_BJT.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
+    lines:
+      MMBT3906T: [910, 914]
+    fetched: '2026-09-20'
+- source: qspice
+  name: MMBT3906FA
+  def: model
+  type: PNP
+  deps:
+  - PNP
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
+    lines:
+      MMBT3906FA: [524, 527]
+      PNP: [2, 2]
+    fetched: '2026-09-20'
+  copies:
+  - source: qspice
+    name: MMBT3906LP
+    get:
+      url: https://getqspice.com/InstallQSPICE.exe
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
+- source: qspice
+  name: MMBT3906
+  def: model
+  type: PNP
+  deps:
+  - PNP
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
+    lines:
+      MMBT3906: [348, 352]
+      PNP: [2, 2]
+    fetched: '2026-09-20'
+- source: qspice
+  name: MMBT3906T
+  def: model
+  type: PNP
+  deps:
+  - PNP
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
+    lines:
+      MMBT3906T: [359, 363]
+      PNP: [2, 2]
+    fetched: '2026-09-20'
+- source: duncanamps
+  name: QMMBT3906
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/bjt/pnp.mod
+    sha256: 9554024b39ab1fa861067c6af517fbe13435370dd0e78c4ed0d461fe355488a1
+    lines:
+      QMMBT3906: [493, 495]
+    fetched: '2026-09-14'

@@ -1,0 +1,52 @@
+part: CD4028
+kind: logic
+priority: 3
+models:
+- source: microcap12
+  name: CD4028B
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: cmos.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 355bb3dfa2be483f7c2d5b8d729acb8221874a18fbf49607f03a0bfc0d753917
+    lines:
+      CD4028B: [1512, 1552]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: CD4028B
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cmos.lib
+      sha256: 4ee830d7932c2cdfcd5d21972f96c0387c3440d5d449c6554a0016f8b0f4f5b0
+- source: ltwiki
+  name: CD4028B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D_CD4028B
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/cd4000.lib
+    sha256: 01fee132096b681bc7bb8cb653efc6a8a0ea6929099c8aa90057eea83857cba8
+    lines:
+      CD4028B: [1676, 1709]
+      D_CD4028B: [1711, 1714]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: CD4028A
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D_CD4028A
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/cd4000.lib
+    sha256: 01fee132096b681bc7bb8cb653efc6a8a0ea6929099c8aa90057eea83857cba8
+    lines:
+      CD4028A: [1630, 1663]
+      D_CD4028A: [1665, 1668]
+    fetched: '2026-09-21'

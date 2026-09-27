@@ -80,3 +80,44 @@ models:
       acpl-c87at: [18305, 18360]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: bordodynov
+  name: acpl-c87at
+  def: subckt
+  type: SUBCKT
+  deps:
+  - GND1
+  - Rb
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      GND1: [863, 865]
+      Rb: [564, 570]
+      acpl-c87at: [18439, 18495]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: acpl-c87at
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+- source: kicad-spice-library
+  name: acpl-c87at
+  def: subckt
+  type: SUBCKT
+  deps:
+  - GND1
+  - Rb
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+    sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+    lines:
+      GND1: [843, 845]
+      Rb: [546, 552]
+      acpl-c87at: [18305, 18360]
+    fetched: '2026-09-14'

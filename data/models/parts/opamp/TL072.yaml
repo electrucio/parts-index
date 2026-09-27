@@ -32,7 +32,124 @@ models:
     not_measurable: 0
     typical_rows: 2
   symbol: TL072_ti.asy
-  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki, spiceypedals; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: bordodynov
+    name: TL072
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/TL072.cir
+      sha256: 74e89d558163615ac7a19f0c783101a6f8af77fb6d80bd3c20c6ab66426561cd
+  - source: bordodynov
+    name: TL072
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: bordodynov
+    name: TL072
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: bordodynov
+    name: TL072
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: kicad-spice-library
+    name: TL072
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Operational%20Amplifier/Tl072.mod
+      sha256: 84be84894966afa84006514201412e1651e36f0b18a5d98208a058c5c2865906
+  - source: kicad-spice-library
+    name: TL072
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/TL072.cir
+      sha256: 74e89d558163615ac7a19f0c783101a6f8af77fb6d80bd3c20c6ab66426561cd
+  - source: kicad-spice-library
+    name: TL072
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: kicad-spice-library
+    name: TL072
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Texas%20Instruments/tl072.mod
+      sha256: e4f9aa3f387a17ec10d735c2056d29f3ff5b078afe97fb3eb818f9d268259951
+  - source: ltwiki
+    name: TL072
+    get:
+      url: https://ltwiki.org/images/f/f0/TL072.sub
+      sha256: 7993891d660571df36d8c49e12c1021ea95e0fe4ecb754d6dd6de360550f3371
+  - source: ltwiki
+    name: TL072
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/TL072.cir
+      sha256: 74e89d558163615ac7a19f0c783101a6f8af77fb6d80bd3c20c6ab66426561cd
+  - source: ltwiki
+    name: TL072
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: TL072
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: ltwiki
+    name: TL072
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: ltwiki
+    name: TL072
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: TL072
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/TI/TL072.301
+      sha256: 74e89d558163615ac7a19f0c783101a6f8af77fb6d80bd3c20c6ab66426561cd
+  - source: spice-model-cd
+    name: TL072
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/TI/TL072.301
+      sha256: 74e89d558163615ac7a19f0c783101a6f8af77fb6d80bd3c20c6ab66426561cd
+  - source: spiceypedals
+    name: TL072
+    get:
+      url: https://raw.githubusercontent.com/thecowgoesmoo/SPICEyPedals/60f67a6fdb14b9d7c83630b1cade358bfdd4e638/PartModels/TL072.301
+      sha256: 74e89d558163615ac7a19f0c783101a6f8af77fb6d80bd3c20c6ab66426561cd
+  - source: spiceypedals
+    name: TL072
+    get:
+      url: https://raw.githubusercontent.com/thecowgoesmoo/SPICEyPedals/60f67a6fdb14b9d7c83630b1cade358bfdd4e638/PartModels/basic_models/OpAmps/Tl072.mod
+      sha256: 1d698381c8f5970f9e0b032e34598a7acc0a30b8304efb647c74836cc315a6da
+  - source: spiceypedals
+    name: TL072
+    get:
+      url: https://raw.githubusercontent.com/thecowgoesmoo/SPICEyPedals/60f67a6fdb14b9d7c83630b1cade358bfdd4e638/PartModels/basic_models/OpAmps/TL072.301
+      sha256: 74e89d558163615ac7a19f0c783101a6f8af77fb6d80bd3c20c6ab66426561cd
+  - source: kicad-spice-library
+    name: TL072_TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+      sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+  - source: microcap12
+    name: TL072_TI
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
 - source: stmicro
   name: TL072
   def: subckt
@@ -88,7 +205,37 @@ models:
     not_measurable: 0
     typical_rows: 2
   symbol: TL072_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: TL072
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: TL072
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: TL072
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: TL072
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: TL072
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraOpamps/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
 - source: bordodynov
   name: TL072
   def: subckt
@@ -119,7 +266,25 @@ models:
     not_measurable: 0
     typical_rows: 2
   symbol: TL072_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: kicad-spice-library
+    name: TL072
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_TI.lib
+      sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+  - source: ltwiki
+    name: TL072
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_TI.lib
+      sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+  - source: ltwiki
+    name: TL072
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OpAmp_TI.lib
+      sha256: 9527567b0cc2c8a3023a6eed5baeb2ccabc2a67a41227a6c95866ece0253dc52
 - source: bordodynov
   name: TL072s
   def: subckt
@@ -147,7 +312,24 @@ models:
     not_measurable: 10
     typical_rows: 0
   symbol: TL072_bordodynov-3.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: TL072s
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: TL072s
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: TL072s
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
 - source: bordodynov
   name: TL072-R
   def: subckt
@@ -175,7 +357,36 @@ models:
     not_measurable: 0
     typical_rows: 2
   symbol: TL072_bordodynov-4.asy
-  note: 'same code also in: ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: ltwiki
+    name: TL072-R
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/TL072-R.sub
+      sha256: 58ab27f43c6cb5da77dd7ea49242416e56ced6006ef221280e2a3efcfc35d99e
+- source: kicad-spice-library
+  name: TL072-R
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/TL072-R.sub
+    sha256: 2205b88b163e27e4d5660391ae07c67b4d472c926f8c4406395a2aca2ffa3d9f
+    lines:
+      TL072-R: [1, 46]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: TL072T
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TIA.LIB
+    sha256: 9ab15d59dfe2a0a2393f98d60244934f66a2fdae82a8815b49b7517010d7b4ac
+    lines:
+      TL072T: [633, 665]
+    fetched: '2026-09-14'
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/tl072.pdf
   maker: Texas Instruments

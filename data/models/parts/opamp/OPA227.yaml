@@ -21,4 +21,39 @@ models:
     lines:
       OPA227: [4, 115]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+  copies:
+  - source: microcap12
+    name: OPA227
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+  - source: bordodynov
+    name: OPA227
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Operational_Amplifiers.LIB
+      sha256: a23e6b6cd7f13ddcbd76cc0a88987255186bf1dca04a8349a968e4dad0daf832
+  - source: kicad-spice-library
+    name: OPA227
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OPA227.MOD
+      sha256: 586926e3b50fae120f44b8e88fb8fe2b371f76eecd2f1baef02af0e60772087f
+  - source: kicad-spice-library
+    name: OPA227
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Operational_Amplifiers.LIB
+      sha256: a23e6b6cd7f13ddcbd76cc0a88987255186bf1dca04a8349a968e4dad0daf832
+  - source: ltwiki
+    name: OPA227
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPA227.MOD
+      sha256: 586926e3b50fae120f44b8e88fb8fe2b371f76eecd2f1baef02af0e60772087f
+  - source: ltwiki
+    name: OPA227
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Operational_Amplifiers.LIB
+      sha256: a23e6b6cd7f13ddcbd76cc0a88987255186bf1dca04a8349a968e4dad0daf832

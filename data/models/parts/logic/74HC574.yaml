@@ -34,6 +34,13 @@ models:
       74HC574: [11845, 11873]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: 74HC574
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: dig381.lib
+      sha256: 8a1fe96a6d44cefc90e57a25845cde32a8eab698a7cf8408ebbc8bb17fb1a00c
 - source: kicad-spice-library
   name: 74HC574A
   def: subckt
@@ -66,3 +73,26 @@ models:
       74HC574A: [11881, 11923]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: 74HC574A
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: dig381.lib
+      sha256: 8a1fe96a6d44cefc90e57a25845cde32a8eab698a7cf8408ebbc8bb17fb1a00c
+- source: ltwiki
+  name: 74HC574
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D_HC574_1
+  - D_HC574_2
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/74hc.lib
+    sha256: dccb8e657468084e31c48df0ebddad613c233d126647ab3270e4c705c1497d71
+    lines:
+      74HC574: [6516, 6533]
+      D_HC574_1: [6535, 6540]
+      D_HC574_2: [6541, 6548]
+    fetched: '2026-09-21'

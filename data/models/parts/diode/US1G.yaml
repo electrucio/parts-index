@@ -20,6 +20,25 @@ models:
       US1G: [133, 137]
     fetched: '2026-09-14'
   note: pins from names
+  copies:
+  - source: ltwiki
+    name: US1G
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Basso/BassoBook20100103/New2/D.lib
+      sha256: 4aa55e403008035c4f0065b93108abf95382d86498e6a25c499fb9e3061e656d
+  - source: ltwiki
+    name: US1G
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/Basso/BassoBook20100103/D.lib
+      sha256: 4aa55e403008035c4f0065b93108abf95382d86498e6a25c499fb9e3061e656d
+  - source: ltwiki
+    name: US1G
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/Basso/BassoBook20100103/New2/D.lib
+      sha256: 4aa55e403008035c4f0065b93108abf95382d86498e6a25c499fb9e3061e656d
 - source: kicad-spice-library
   name: US1G
   def: model
@@ -32,3 +51,52 @@ models:
       US1G: [717, 731]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: vishay
+    name: US1G
+    get:
+      url: https://www.vishay.com/docs/88194/us1g.txt
+      sha256: f8669a85e8f3ed412ba97ab72bc6b7b0facbdf57111187ede39a365801324ec3
+  - source: kicad-spice-library
+    name: US1G
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/gensemi.lib
+      sha256: a6cf7dd0be40fa8de86b574b20c2481a4be41a33f77d1893d66664f19e3fe8d9
+  - source: kicad-spice-library
+    name: US1G
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/General%20Semiconductor/General%20Semiconductor.lb5
+      sha256: 29db97b9e48c44570530220654814e32bc2a2cb0d10d0a4a018887fb43ef592d
+  - source: microcap12
+    name: US1G
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: gensemi.lib
+      sha256: a91e073b84759dcbe41d4ae51687287a413fc12865804565e488f747b57b3d6c
+  - source: spice-model-cd
+    name: US1G
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/General_Semi/Rectifiers/Ultrafast/us1g.lib
+      sha256: f8669a85e8f3ed412ba97ab72bc6b7b0facbdf57111187ede39a365801324ec3
+- source: onsemi
+  name: US1GFA
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/us1gfa(pspice%20model).lib
+    sha256: 2f9dad681e181568eb971ca4f48d14f79b96424740b2e85c2df2289a6dd0114c
+    lines:
+      US1GFA: [7, 12]
+    fetched: '2026-09-19'
+- source: qspice
+  name: US1G
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
+    lines:
+      US1G: [152, 152]
+    fetched: '2026-09-20'

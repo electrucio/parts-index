@@ -1,0 +1,33 @@
+part: NJM4565
+kind: opamp
+priority: 3
+models:
+- source: nisshinbo
+  name: NJM4565
+  def: subckt
+  type: SUBCKT
+  deps:
+  - njm4565_s
+  verbatim: true
+  get:
+    url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm4565_v2_p.zip
+    member: NJM4565_v2_NewJRC/njm4565_v2.lib
+    archive_sha256: f1a4315154af6285574838b8f1e4408a0b4b4d688b3ff28a365fa54fcab83728
+    sha256: 52c7c6aeedfbf8da2fa88077668b0924c884241646753a49077afeba0972a82b
+    lines:
+      NJM4565: [13, 16]
+      njm4565_s: [25, 88]
+    fetched: '2026-09-20'
+- source: nisshinbo
+  name: njm4565_s
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm4565_v2_p.zip
+    member: NJM4565_v2_NewJRC/njm4565_v2.lib
+    archive_sha256: f1a4315154af6285574838b8f1e4408a0b4b4d688b3ff28a365fa54fcab83728
+    sha256: 52c7c6aeedfbf8da2fa88077668b0924c884241646753a49077afeba0972a82b
+    lines:
+      njm4565_s: [25, 88]
+    fetched: '2026-09-20'

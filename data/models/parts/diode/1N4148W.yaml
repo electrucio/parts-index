@@ -31,6 +31,12 @@ models:
     typical_rows: 3
   symbol: 1N4148W_onsemi.asy
   note: pins from default order (unverified)
+  copies:
+  - source: onsemi
+    name: 1N4148WT
+    get:
+      url: https://www.onsemi.com/download/models/lib/1n4148wt.lib
+      sha256: f96cb71a2bb9de8848f4069cd9f14754b5182ffb39a5c4f05a25d5113784e68c
 - source: diodes-inc
   name: 1N4148W
   def: model
@@ -50,6 +56,64 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 3
+  copies:
+  - source: diodes-inc
+    name: 1N4148WS
+    get:
+      url: https://www.diodes.com/spice/download/1491/1N4148WS.spice.txt
+      sha256: fc11f92fe72ebfb649dfc740380acd5a89b0539e5fb0eebd48f462f8f75b01bf
+  - source: diodes-inc
+    name: 1N4148WS
+    get:
+      url: https://www.diodes.com/spice/download/1593/1N4148WSQ.spice.txt
+      sha256: fc11f92fe72ebfb649dfc740380acd5a89b0539e5fb0eebd48f462f8f75b01bf
+  - source: diodes-inc
+    name: 1N4148WS
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8348/collection.spice.txt
+      sha256: a574bf04bdb37004ffcdf1735f89e9ac6e60c5be2713ccd0124603550eedfa96
+  - source: diodes-inc
+    name: 1N4148WS
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8348/collection.spice.txt
+      sha256: a574bf04bdb37004ffcdf1735f89e9ac6e60c5be2713ccd0124603550eedfa96
+  - source: microcap12
+    name: 1N4148WS
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc.lib
+      sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+  - source: spice-model-cd
+    name: 1N4148WS
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Diodes%20Incorporated/Spice/spicemodels_switching_diodes.txt
+      sha256: b52ef8ad47d136ea6c399e3c3d1870cdeff29bfa7113e8f181aa447ddc1bdc82
+  - source: diodes-inc
+    name: 1N4148W
+    get:
+      url: https://www.diodes.com/spice/download/1592/1N4148WQ.spice.txt
+      sha256: eac112ab3b235eb9f54916f7f9d793ba15091a1fb6988e4eef5652aad393437a
+  - source: diodes-inc
+    name: 1N4148W
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8348/collection.spice.txt
+      sha256: a574bf04bdb37004ffcdf1735f89e9ac6e60c5be2713ccd0124603550eedfa96
+  - source: diodes-inc
+    name: 1N4148W
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8348/collection.spice.txt
+      sha256: a574bf04bdb37004ffcdf1735f89e9ac6e60c5be2713ccd0124603550eedfa96
+  - source: microcap12
+    name: 1N4148W
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc.lib
+      sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+  - source: spice-model-cd
+    name: 1N4148W
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Diodes%20Incorporated/Spice/spicemodels_switching_diodes.txt
+      sha256: b52ef8ad47d136ea6c399e3c3d1870cdeff29bfa7113e8f181aa447ddc1bdc82
 - source: kicad-spice-library
   name: 1N4148WS
   def: subckt
@@ -101,6 +165,20 @@ models:
     typical_rows: 3
   symbol: 1N4148W_kicad-spice-library-2.asy
   note: pins from default order (unverified)
+- source: microcap12
+  name: 1N4148WT
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      1N4148WT: [9241, 9242]
+    fetched: '2026-09-20'
 datasheet:
   url: https://www.diodes.com/assets/Datasheets/ds30086.pdf
   maker: Diodes Incorporated

@@ -26,7 +26,54 @@ models:
     fail: 3
     not_measurable: 0
     typical_rows: 2
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: 2SC5198
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+      sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+  - source: ltwiki
+    name: 2SC5198
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: 2SC5198
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Mixer/standard.bjt
+      sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+  - source: ltwiki
+    name: 2SC5198
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+- source: toshiba
+  name: 2SC5198
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://toshiba.semicon-storage.com/info/docget.jsp?did=59266&prodName=2SC5198&displang=en
+    member: 2SC5198.lib
+    archive_sha256: 683d496e6e7d0913b377e6561dfd4726abebc824148ddf44f55dca71352866bb
+    sha256: d370bafdb2cb48cedfdf5efed606335bc904670ccc57695c30d45d44003a442d
+    lines:
+      2SC5198: [14, 59]
+    fetched: '2026-09-20'
+- source: ltwiki
+  name: Q2SC5198
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/jpwrbjt.lib
+    sha256: 4820b209a2d9611c90461add6db411abc0c8d995398a5bf9227703dfce96af66
+    lines:
+      Q2SC5198: [5175, 5191]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.mouser.com/catalog/specsheets/toshiba%20america%20electronic%20components%20inc_2sc5198_en_datasheet_101102.pdf
   maker: toshiba

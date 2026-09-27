@@ -21,4 +21,83 @@ models:
     lines:
       W10G: [816, 822]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: W10G
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/BridgeRectifier.lib
+      sha256: fbfb3a0f1eea17cd703938e0e44356ba1a3307af63e67ba4bd963a0596fd1d94
+  - source: ltwiki
+    name: W10G
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/BridgeRectifier.lib
+      sha256: fbfb3a0f1eea17cd703938e0e44356ba1a3307af63e67ba4bd963a0596fd1d94
+  - source: ltwiki
+    name: W10G
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Discretos/Diodos/Bridge Rectifiers/BridgeRectifier.lib
+      sha256: 3dd7dc13aac41971c3c3de552976f4bb69ce43e83b359bbfc7979f6dcbc4249c
+  - source: ltwiki
+    name: W10G
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/PFnew/BridgeRectifier.lib
+      sha256: 7387d3fc3c7ff72d8e43f2b9d2c15abc0706d13b044d9f30532c8dea8dff53e1
+  - source: ltwiki
+    name: W10G
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Stab_0to30V_3A_v4/BridgeRectifier.lib
+      sha256: 7387d3fc3c7ff72d8e43f2b9d2c15abc0706d13b044d9f30532c8dea8dff53e1
+  - source: ltwiki
+    name: W10G
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Basso/BassoBook20100103/New2/LTspice.bridge
+      sha256: c1c347fcffe0a18d2a652d6abe7519558f49ff3188456b185f68a3064a1eb821
+  - source: ltwiki
+    name: W10G
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Basso/BassoBook20100103/New2/BridgeRectifier.lib
+      sha256: 61326d0fb5f625a346e8744b202a0b40b29a8177d57807c7ff8049ac3ea1d762
+  - source: ltwiki
+    name: W10G
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/SBORKA/bridgerectifier/BridgeRectifier.lib
+      sha256: 7387d3fc3c7ff72d8e43f2b9d2c15abc0706d13b044d9f30532c8dea8dff53e1
+  - source: ltwiki
+    name: W10G
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Discretos/Diodos/Bridge Rectifiers/BridgeRectifier.lib
+      sha256: 3dd7dc13aac41971c3c3de552976f4bb69ce43e83b359bbfc7979f6dcbc4249c
+  - source: ltwiki
+    name: W10G
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/Basso/BassoBook20100103/New2/LTspice.bridge
+      sha256: c1c347fcffe0a18d2a652d6abe7519558f49ff3188456b185f68a3064a1eb821
+  - source: ltwiki
+    name: W10G
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/Basso/BassoBook20100103/New2/BridgeRectifier.lib
+      sha256: 61326d0fb5f625a346e8744b202a0b40b29a8177d57807c7ff8049ac3ea1d762
+- source: microcap12
+  name: W10G
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      W10G: [11483, 11484]
+    fetched: '2026-09-20'

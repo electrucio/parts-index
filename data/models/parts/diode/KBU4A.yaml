@@ -1,0 +1,47 @@
+part: KBU4A
+kind: diode
+priority: 2
+group: listed
+models:
+- source: vishay
+  name: KBU4A
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/99020/p_kbu4a.txt
+    sha256: 802fd4c0f480e35dc612c7b09c3e186efccf71e6306d831072c78d5250f7d49b
+    lines:
+      KBU4A: [6, 12]
+    fetched: '2026-09-19'
+- source: bordodynov
+  name: KBU4A
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/diode_fullbridge.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 2e0399bfb1c1da49c79e1aa6fffe5fac3c723bb9e1a559d02d15e385ccf8376f
+    lines:
+      KBU4A: [962, 980]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: KBU4A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/diode_fullbridge.lib
+      sha256: 2e0399bfb1c1da49c79e1aa6fffe5fac3c723bb9e1a559d02d15e385ccf8376f
+- source: kicad-spice-library
+  name: KBU4A
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/DIODE3.LIB
+    sha256: 88ceba16090e9038958260ddfeaada17f266d72cde791f865efa4a903dfb91d3
+    lines:
+      KBU4A: [436, 445]
+    fetched: '2026-09-14'

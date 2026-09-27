@@ -20,7 +20,81 @@ models:
     lines:
       BSN20: [102, 114]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: BSN20_PH
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_mos.lib
+      sha256: d27a8c869acadbdfd055eba6519c0c67fbcfdf5fd4550c2f8b4fb6ae44b6739a
+  - source: kicad-spice-library
+    name: BSN20
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/NMOS_Philips.lib
+      sha256: ed3135fdb4ff7044442d0bc22b9c7076a200c2ba671011b9cacf98d84e134602
+  - source: ltwiki
+    name: BSN20
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/NMOS_Philips.lib
+      sha256: ed3135fdb4ff7044442d0bc22b9c7076a200c2ba671011b9cacf98d84e134602
+  - source: ltwiki
+    name: BSN20
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/NMOSFET/BSN20.PRM
+      sha256: 541f6df00718c5c5e51dcdf219a94ace0cd339e74969058288276f6497fd71a3
+  - source: kicad-spice-library
+    name: BSN20/PLP
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/phil_fet.lib
+      sha256: e37b90dac4163b3951640614f87eaf6ee6e8336448ca408aab462f05415fd5a7
+  - source: ltwiki
+    name: BSN20/PLP
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/phil_fet.lib
+      sha256: 98b9f890eb0732e8fa1b127fb16ec31cedebda98a072b65832a301e58cb5c1cf
+  - source: ltwiki
+    name: BSN20/PLP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/phil_fet.lib
+      sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
+  - source: ltwiki
+    name: BSN20/PLP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/FET/phil_fet.lib
+      sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
+  - source: kicad-spice-library
+    name: BSN20_PH
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_mos.lib
+      sha256: 795bf5362d9c9ce1e5b504e78b48671614a7585f75d3533c2585557571d04168
+  - source: kicad-spice-library
+    name: BSN20W_PH
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_mos.lib
+      sha256: 795bf5362d9c9ce1e5b504e78b48671614a7585f75d3533c2585557571d04168
+  - source: microcap12
+    name: BSN20W_PH
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_mos.lib
+      sha256: d27a8c869acadbdfd055eba6519c0c67fbcfdf5fd4550c2f8b4fb6ae44b6739a
+  - source: ltwiki
+    name: BSN20W/PLP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/phil_fet.lib
+      sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
+  - source: ltwiki
+    name: BSN20W/PLP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/FET/phil_fet.lib
+      sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
 - source: ltwiki
   name: BSN20/PLP
   def: subckt
@@ -91,3 +165,38 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+- source: diodes-inc
+  name: BSN20
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/1866/BSN20.spice.txt
+    sha256: 07877bd8df3f1b84b01db20c9346210d1e86e8c5920efcab7df45661cb77f1ef
+    lines:
+      BSN20: [18, 41]
+    fetched: '2026-09-19'
+  copies:
+  - source: diodes-inc
+    name: BSN20
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+      sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+- source: diodes-inc
+  name: BSN20
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+    sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+    lines:
+      BSN20: [460, 483]
+      DCGD: [1642, 1642]
+      DLIM: [1645, 1645]
+      DSUB: [1643, 1644]
+    fetched: '2026-09-21'

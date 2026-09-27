@@ -72,3 +72,89 @@ models:
     lines:
       bcm857bs: [1, 1]
     fetched: '2026-09-14'
+  copies:
+  - source: ltwiki
+    name: bcm857bs
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/AmpliferZoutCurrentAC/models.lib
+      sha256: 68455c852f18e43fef0ad6e4f13d356c2b0c258617469256c2e8102798ad8941
+- source: microcap12
+  name: BCM857BS
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ph_complex.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 54753ca5ae9f13c277d26074a3a93f34627ecb135ebd2a3db7f69d41f71f5ff1
+    lines:
+      BCM857BS: [101, 147]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: BCM857DS
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_complex.lib
+      sha256: 54753ca5ae9f13c277d26074a3a93f34627ecb135ebd2a3db7f69d41f71f5ff1
+- source: microcap12
+  name: BCM857BV
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: nxp.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
+    lines:
+      BCM857BV: [288, 334]
+    fetched: '2026-09-20'
+- source: bordodynov
+  name: BCM857BS
+  def: subckt
+  type: SUBCKT
+  deps:
+  - Q1
+  - Q2
+  - Rb
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      BCM857BS: [1320, 1328]
+      Q1: [16399, 16440]
+      Q2: [16442, 16483]
+      Rb: [564, 570]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: BCM857BS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: BCM857BS
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+  - source: bordodynov
+    name: BCM857BV
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+  - source: ltwiki
+    name: BCM857BV
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5

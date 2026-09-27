@@ -27,6 +27,13 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 0
+  copies:
+  - source: microcap12
+    name: 2N5088
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: cs.lib
+      sha256: 4daf7b77d9c13771dc3a2e074d972af2c69c71839a7469d1915bdd9c39e69f3d
 - source: bordodynov
   name: 2N5088
   def: model
@@ -50,7 +57,19 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 0
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: 2N5088
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: 2N5088
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
 - source: bordodynov
   name: 2N5088_F
   def: model
@@ -74,7 +93,19 @@ models:
     fail: 1
     not_measurable: 0
     typical_rows: 0
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: 2N5088_F
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: 2N5088_F
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
 - source: ltwiki
   name: 2N5088
   def: model
@@ -95,7 +126,29 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 0
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: ltwiki
+    name: 2N5088
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Mixer/standard.bjt
+      sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+  - source: kicad-spice-library
+    name: 2N5088
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+      sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+  - source: kicad-spice-library
+    name: 2N5088
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJT.lib
+      sha256: 1f07e6e6b38c9b5d8d19dbccfd3c29741281ead66a7b48cc40eb82e9684580eb
+  - source: ltwiki
+    name: 2N5088
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.bjt
+      sha256: 0f87e9840e1130e025a7add442288c0f67048f9755108d0384d1594296884e82
 - source: ltwiki
   name: 2N5088_F
   def: model
@@ -116,7 +169,29 @@ models:
     fail: 1
     not_measurable: 0
     typical_rows: 0
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: ltwiki
+    name: 2N5088_F
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Mixer/standard.bjt
+      sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+  - source: kicad-spice-library
+    name: 2N5088_F
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+      sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+  - source: kicad-spice-library
+    name: 2N5088_F
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJT.lib
+      sha256: 1f07e6e6b38c9b5d8d19dbccfd3c29741281ead66a7b48cc40eb82e9684580eb
+  - source: ltwiki
+    name: 2N5088_F
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.bjt
+      sha256: 0f87e9840e1130e025a7add442288c0f67048f9755108d0384d1594296884e82
 - source: spiceypedals
   name: 2N5088
   def: model
@@ -136,6 +211,76 @@ models:
     fail: 1
     not_measurable: 0
     typical_rows: 0
+- source: spice-model-cd
+  name: 2N5088
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Fairchild/2N/2N5088.t
+    sha256: a82e1bb6dba7a012ee625678c041fa5cab61511079f37942122a0e65d22c8439
+    lines:
+      2N5088: [1, 4]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: Q2N5088
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/bipolar.lib
+      sha256: c5e0e8839925adb5e550a6654a8d5d1c0634a0fd0f58e03c9701e24d9aa08b5b
+- source: microcap12
+  name: 2N5088
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: msbjt_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 03fbaf82587d859e52f6b3e36166b65d7d6b6f241e460308f37d3b568e5fa96e
+    lines:
+      2N5088: [901, 904]
+    fetched: '2026-09-20'
+- source: diyaudio
+  name: 2N5088
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.diyaudio.com/community/attachments/lin-1956-amplifier-and-germanium-models-zip.1642963/
+    sha256: 13115647726b2cef332c9af2fcad7a417d900e8d66d0c34f2c4992bdde82cbd0
+    lines:
+      2N5088: [55, 68]
+    fetched: '2026-09-20'
+  copies:
+  - source: diyaudio-germanio
+    name: 2N5088
+    get:
+      url: https://www.diyaudio.com/community/attachments/lin-1956-amplifier-and-germanium-models-zip.1642963/
+      sha256: 13115647726b2cef332c9af2fcad7a417d900e8d66d0c34f2c4992bdde82cbd0
+- source: diyaudio
+  name: 2N5088
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
+    sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
+    lines:
+      2N5088: [59, 67]
+    fetched: '2026-09-20'
+- source: groupsio-ltspice
+  name: 2N5088
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    how: unknown
+    sha256: c2efeb5146d6eec5855876ea76bbcab2e20b845867d62bf17ead9f0a9bb77c0c
+    lines:
+      2N5088: [274, 282]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/2n5088-d.pdf
   maker: fairchild (onsemi-hosted)

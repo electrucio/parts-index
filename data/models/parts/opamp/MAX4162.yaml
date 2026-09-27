@@ -21,7 +21,56 @@ models:
     lines:
       MAX4162: [9691, 9764]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: spice-model-cd
+    name: MAX4162
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Maxim/Spice/MAXIM_C.LIB
+      sha256: 5cdd3977de4e1207da88ce22cb82704445da85bbd1a622c4707eda964947905b
+  - source: kicad-spice-library
+    name: MAX4162
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: kicad-spice-library
+    name: MAX4162
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/MAXIM3.LIB
+      sha256: c81c1928212520d1cd325fd0fff318814e3575b1aad8823e40de424156edc8a7
+  - source: kicad-spice-library
+    name: MAX4162
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Maxim%20Integrated/MAX4162.FAM
+      sha256: aa1f8be39a126cb51a4c8e354e664a2dcf4898c0d3f994b79a3e2e999617e1e9
+  - source: ltwiki
+    name: MAX4162
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: MAX4162
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: kicad-spice-library
+    name: MAX4162_MX
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/maxim.lib
+      sha256: e97fbf2f56019ebda651dca119228f99fa026c55a98d08346bae6f155a5a80f5
+  - source: microcap12
+    name: MAX4162_MX
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: maxim.lib
+      sha256: 34b79b417eb4b275f2826e20fde5a04d26ec23363ec4abb1de96405eda10d027
+  - source: spice-model-cd
+    name: MAX4162_MX
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Maxim/Spice/MAXIM_A.LIB
+      sha256: 302844201bc15ee4ce7b0c7ee848b9ef791e16ac2a02996315142901d120af72
 - source: kicad-spice-library
   name: MAX4162_MX
   def: subckt

@@ -1,0 +1,23 @@
+part: MJE803
+kind: bjt
+priority: 3
+group: listed
+models:
+- source: onsemi
+  name: mje803
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mje803.lib
+    sha256: a2f080717cf74844f46fdb89c471d709850d6cc90dab758365bf6935a70dac94
+    lines:
+      mje803: [12, 50]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: mje803
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_bjt.lib
+      sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77

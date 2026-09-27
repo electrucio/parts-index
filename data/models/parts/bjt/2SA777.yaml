@@ -15,3 +15,14 @@ models:
       Q2SA777: [1364, 1366]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: ltwiki
+  name: Q2sa777
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/jbipolar.lib
+    sha256: 0918e78e635212ebc891072f11282cbf2e370a4163cd9a0794cfc1a50dddf89a
+    lines:
+      Q2sa777: [505, 508]
+    fetched: '2026-09-21'

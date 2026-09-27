@@ -96,7 +96,119 @@ models:
     not_measurable: 1
     typical_rows: 2
   symbol: LM324_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: spice-model-cd
+    name: LM324/NS
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/National_Semiconductors/Spice/LM324.cir
+      sha256: 0dde0daf9b991a0425b76301a1dfa8fcf419dccbf290f2b69979a2f79d5c76bd
+  - source: kicad-spice-library
+    name: LM324/NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/lm324.mod
+      sha256: 0169591aa059ee347eaf22a9d8ae9fdadf0d2fb7581d2f1908aa2deacbcf6ee8
+  - source: kicad-spice-library
+    name: LM324/NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: kicad-spice-library
+    name: LM324/NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nat_semi.lib
+      sha256: 15227be98f4559bf0b6fcabdea3c86cbd6c5f1d41d47ecf7375d001362f06a28
+  - source: kicad-spice-library
+    name: LM324_NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nation.lib
+      sha256: 97af188e570afc5c2b4b8246ade0670422d90c402c01a0f0383df0a6a37af9ac
+  - source: ltwiki
+    name: LM324/NS
+    get:
+      url: https://ltwiki.org/files/LM324.MOD
+      sha256: 0169591aa059ee347eaf22a9d8ae9fdadf0d2fb7581d2f1908aa2deacbcf6ee8
+  - source: ltwiki
+    name: LM324/NS
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/nat_semi.lib
+      sha256: 410011a53d15a487fda9fb1f4f6cbd0747427cf9274b6dbd90625f580bf75fe7
+  - source: ltwiki
+    name: LM324/NS
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: ltwiki
+    name: LM324/NS
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LTspiceWorldTour2011/LM324.MOD
+      sha256: 0169591aa059ee347eaf22a9d8ae9fdadf0d2fb7581d2f1908aa2deacbcf6ee8
+  - source: ltwiki
+    name: LM324/NS
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LTspiceWorldTour2011/LM324.txt
+      sha256: 0dde0daf9b991a0425b76301a1dfa8fcf419dccbf290f2b69979a2f79d5c76bd
+  - source: ltwiki
+    name: LM324/NS
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LTspiceWorldTour2009/Misc/3rdPartyParts/lm324.txt
+      sha256: 0169591aa059ee347eaf22a9d8ae9fdadf0d2fb7581d2f1908aa2deacbcf6ee8
+  - source: ltwiki
+    name: LM324/NS
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LTspiceWorldTour2009/Analis&Aids/Loop&LoopGain/lm324.mod
+      sha256: 0169591aa059ee347eaf22a9d8ae9fdadf0d2fb7581d2f1908aa2deacbcf6ee8
+  - source: ltwiki
+    name: LM324/NS
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: ltwiki
+    name: LM324/NS
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LTspiceWorldTour2011/LM324.MOD
+      sha256: 0169591aa059ee347eaf22a9d8ae9fdadf0d2fb7581d2f1908aa2deacbcf6ee8
+  - source: ltwiki
+    name: LM324/NS
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LTspiceWorldTour2011/LM324.txt
+      sha256: 0dde0daf9b991a0425b76301a1dfa8fcf419dccbf290f2b69979a2f79d5c76bd
+  - source: ltwiki
+    name: LM324/NS
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LTspiceWorldTour2009/Misc/3rdPartyParts/lm324.txt
+      sha256: 0169591aa059ee347eaf22a9d8ae9fdadf0d2fb7581d2f1908aa2deacbcf6ee8
+  - source: ltwiki
+    name: LM324/NS
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LTspiceWorldTour2009/Analis&Aids/Loop&LoopGain/lm324.mod
+      sha256: 0169591aa059ee347eaf22a9d8ae9fdadf0d2fb7581d2f1908aa2deacbcf6ee8
+  - source: microcap12
+    name: LM324_NS
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: nation.lib
+      sha256: 3fc09b6f184ee48ba06340ee116b44f0650e61c361bb5c44744d6c7a98b2f7ce
+  - source: kicad-spice-library
+    name: LM324N
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/NONLIN.LIB
+      sha256: 69207a978c970ac7da3929409b0188fad477d4289939755abbde979c13214be7
+  - source: kicad-spice-library
+    name: LM324N
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/NATBJT.LIB
+      sha256: cf6a0a8ae76413edbbe02dda7fa5372957d07a3454547dfb80f3bff10d99492a
 - source: bordodynov
   name: LM324
   def: subckt
@@ -124,7 +236,37 @@ models:
     not_measurable: 2
     typical_rows: 1
   symbol: LM324_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: LM324
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: LM324
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: LM324
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: LM324
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: LM324
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraOpamps/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
 - source: bordodynov
   name: LM324/MC
   def: subckt
@@ -152,7 +294,81 @@ models:
     not_measurable: 1
     typical_rows: 2
   symbol: LM324_bordodynov-3.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+  note: pins from numbered connections table
+  copies:
+  - source: onsemi
+    name: LM324
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp1205is.zip
+      member: ONIC.LIB
+      sha256: 2205b1dca9be0f1465a30b1880ff6f9b9bf273bfdd12359dcd4622db942cba8c
+  - source: onsemi
+    name: LM324
+    get:
+      url: https://www.onsemi.com/download/models/zip/mc33163_model.zip
+      member: MC33163 MODEL/onic.lib
+      sha256: 4b75d2a5b998dbc4b9048dda08ddab54587bf815a725128b3f9f747851cacfb7
+  - source: onsemi
+    name: LM324
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp101x_isspice.zip
+      member: onic.lib
+      sha256: 3bba6f67478987c9d9d436d24fa9b82e91d92888f20a34d59fd5c0dae0de189c
+  - source: kicad-spice-library
+    name: LM324/ON
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+  - source: ltwiki
+    name: LM324/ON
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+  - source: ltwiki
+    name: LM324/ON
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+  - source: kicad-spice-library
+    name: LM324/MC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+  - source: kicad-spice-library
+    name: LM324/MC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/motoramp.lib
+      sha256: 0ba056430160e40251c7364b88b06f43dc3c8b095ef04aed9b898f8a0aa5e57b
+  - source: kicad-spice-library
+    name: LM324_MC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_opamp.lib
+      sha256: bfbf4e51462367a37800fa5c0f5a2b3190a30da3e6321416caa3e14b91ff274a
+  - source: ltwiki
+    name: LM324/MC
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/motoramp.lib
+      sha256: 97b71bfffb93dae60222a64a71347274be2cec93a83d7edb267b1e0d4bfa57e0
+  - source: ltwiki
+    name: LM324/MC
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+  - source: ltwiki
+    name: LM324/MC
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+  - source: microcap12
+    name: LM324_MC
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: m_opamp.lib
+      sha256: 6b96d357d32e315e8e5c5d9fc2835ffffa23b6371aa0fe1a5475ebb6b2c776a0
 - source: bordodynov
   name: LM324
   def: subckt
@@ -205,7 +421,25 @@ models:
     not_measurable: 2
     typical_rows: 1
   symbol: LM324_bordodynov-4.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: kicad-spice-library
+    name: LM324
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_TI.lib
+      sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+  - source: ltwiki
+    name: LM324
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_TI.lib
+      sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+  - source: ltwiki
+    name: LM324
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OpAmp_TI.lib
+      sha256: 9527567b0cc2c8a3023a6eed5baeb2ccabc2a67a41227a6c95866ece0253dc52
 - source: bordodynov
   name: LM324/ON
   def: subckt
@@ -234,6 +468,446 @@ models:
     typical_rows: 2
   symbol: LM324_bordodynov-5.asy
   note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+- source: onsemi
+  name: LM324
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/mod/lm324%20spice%20model%20.mod
+    sha256: 40966c2d653fe897ff642fbd95f264eddee3ed737692ff08fc031163d5802e50
+    lines:
+      LM324: [29, 85]
+    fetched: '2026-09-19'
+- source: ti
+  name: LMX24_LM2902
+  def: subckt
+  type: SUBCKT
+  deps:
+  - VCCS_EXT_LIM_0
+  - VCCS_LIMIT_IQ_0
+  - VCCS_LIM_4_0
+  - VCCS_LIM_1_0
+  - CRS_DIST_0
+  - VCCS_LIM_GR_0
+  - VCCS_LIM_ZO_0
+  - FEMT_0
+  - VNSE_0
+  - VCCS_LIM_CLAW-_0
+  - VCCS_LIM_3_0
+  - CLAMP_AMP_LO_0
+  - CLAMP_AMP_HI_0
+  - VCCS_LIM_2_EN_0
+  - OL_SENSE_0
+  - VCCS_LIM_CLAW+_0
+  - PHASEREV_0
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SGLM009
+    member: lmx24_lm2902.lib
+    archive_sha256: dfdae2b8f22ad13d2ca34bd4647e9c83a8f7b4da825a9c47d9053ae4a986f901
+    sha256: 816b9a73a5cdd5986c783000acfc276dcbf8f2e6427e3a26fcc148f026c337ec
+    lines:
+      CLAMP_AMP_HI_0: [338, 342]
+      CLAMP_AMP_LO_0: [330, 334]
+      CRS_DIST_0: [234, 242]
+      FEMT_0: [264, 285]
+      LMX24_LM2902: [33, 225]
+      OL_SENSE_0: [407, 409]
+      PHASEREV_0: [227, 230]
+      VCCS_EXT_LIM_0: [413, 416]
+      VCCS_LIMIT_IQ_0: [323, 326]
+      VCCS_LIM_1_0: [314, 319]
+      VCCS_LIM_2_EN_0: [255, 260]
+      VCCS_LIM_3_0: [398, 403]
+      VCCS_LIM_4_0: [355, 360]
+      VCCS_LIM_CLAW+_0: [364, 374]
+      VCCS_LIM_CLAW-_0: [378, 393]
+      VCCS_LIM_GR_0: [346, 351]
+      VCCS_LIM_ZO_0: [246, 251]
+      VNSE_0: [289, 310]
+    fetched: '2026-09-14'
+  note: found under the alias LMX24_LM2902
+- source: microcap12
+  name: LM324_TI
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ti.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+    lines:
+      LM324_TI: [3479, 3513]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: LM324
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Texas%20Instruments/lm324.mod
+      sha256: ec8b987d6573fc17eb9c7e67152a09606ffb808eb03c63a3972872078c57750b
+  - source: kicad-spice-library
+    name: LM324_TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+      sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+- source: microcap12
+  name: LM324
+  def: subckt
+  type: SUBCKT
+  deps:
+  - nmos
+  - Q1
+  - pmos
+  - Q2
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      LM324: [210494, 210530]
+      Q1: [78385, 78412]
+      Q2: [78417, 78442]
+      nmos: [161508, 161508]
+      pmos: [161510, 161510]
+    fetched: '2026-09-20'
+- source: bordodynov
+  name: LM324
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Opamp5.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+    lines:
+      LM324: [2416, 2460]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM324
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: LM324
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: LM324
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+- source: bordodynov
+  name: XLM324
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Opamp5.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+    lines:
+      XLM324: [2462, 2496]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: XLM324
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: XLM324
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: XLM324
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+- source: bordodynov
+  name: LM324/NS
+  def: subckt
+  type: SUBCKT
+  deps:
+  - LM324
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Opamp5.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+    lines:
+      LM324: [2416, 2460]
+      LM324/NS: [2327, 2414]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM324/NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: LM324/NS
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: LM324/NS
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+- source: bordodynov
+  name: LM324/ST
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/st_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 359721d36d29fd723643f91c1dab9cb6f6ab2a844230d8b5a1d7de00b8080ebb
+    lines:
+      LM324/ST: [25, 70]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM324/ST
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/st_models.lib
+      sha256: 359721d36d29fd723643f91c1dab9cb6f6ab2a844230d8b5a1d7de00b8080ebb
+  - source: ltwiki
+    name: LM324/ST
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/st_models.lib
+      sha256: 359721d36d29fd723643f91c1dab9cb6f6ab2a844230d8b5a1d7de00b8080ebb
+  - source: ltwiki
+    name: LM324/ST
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/st_models.lib
+      sha256: 359721d36d29fd723643f91c1dab9cb6f6ab2a844230d8b5a1d7de00b8080ebb
+- source: bordodynov
+  name: LM324_NSC
+  def: subckt
+  type: SUBCKT
+  deps:
+  - LM348
+  - LM339
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_NSC.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+    lines:
+      LM324_NSC: [2901, 2988]
+      LM339: [2997, 3016]
+      LM348: [3026, 3060]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM324_NSC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: ltwiki
+    name: LM324_NSC
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: ltwiki
+    name: LM324_NSC
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OpAmp_NSC.lib
+      sha256: 640cf42a735c898a54951becb5657cb42ecbfd75453e22e5d739958213f9cf2c
+- source: bordodynov
+  name: LM324_AB
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM324_AB.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ec3f74afee8baebeb0d0641791cdd770bf7138f2b6a445d066e88b755808add1
+    lines:
+      LM324_AB: [1, 43]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM324_AB
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/LM324_AB.sub
+      sha256: ec3f74afee8baebeb0d0641791cdd770bf7138f2b6a445d066e88b755808add1
+  - source: ltwiki
+    name: LM324_AB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LM324_AB.sub
+      sha256: ec3f74afee8baebeb0d0641791cdd770bf7138f2b6a445d066e88b755808add1
+  - source: ltwiki
+    name: LM324_AB
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Stab_0to30V_3A_v4/LM324_AB.sub
+      sha256: ec3f74afee8baebeb0d0641791cdd770bf7138f2b6a445d066e88b755808add1
+- source: bordodynov
+  name: LM324
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_ST.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d90f4c4fd1a82f698bcdd91bde8be169c258e283648fef8a669e0d1ced09e50a
+    lines:
+      LM324: [163, 208]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM324
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_ST.lib
+      sha256: d90f4c4fd1a82f698bcdd91bde8be169c258e283648fef8a669e0d1ced09e50a
+  - source: ltwiki
+    name: LM324
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_ST.lib
+      sha256: d90f4c4fd1a82f698bcdd91bde8be169c258e283648fef8a669e0d1ced09e50a
+- source: bordodynov
+  name: LM324LV
+  def: subckt
+  type: SUBCKT
+  deps:
+  - VCCS_EXT_LIM_0
+  - VCCS_LIMIT_IQ_0
+  - VCCS_LIM_2_0
+  - VCCS_LIM_4_0
+  - VCCS_LIM_1_0
+  - VCCS_LIM_GR_0
+  - VCCS_LIM_ZO_0
+  - VNSE_0
+  - VCCS_LIM_CLAW-_0
+  - VCCS_LIM_3_0
+  - CLAMP_AMP_LO_0
+  - CLAMP_AMP_HI_0
+  - OL_SENSE_0
+  - VCCS_LIM_CLAW+_0
+  - FEMT_0_0
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM324LV.cir
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 495c0f46b9ab0fd8dce13dba69ad0deef3101e42b8667134217f178981fadd04
+    lines:
+      CLAMP_AMP_HI_0: [333, 337]
+      CLAMP_AMP_LO_0: [326, 330]
+      FEMT_0_0: [280, 301]
+      LM324LV: [32, 231]
+      OL_SENSE_0: [379, 381]
+      VCCS_EXT_LIM_0: [384, 387]
+      VCCS_LIMIT_IQ_0: [320, 323]
+      VCCS_LIM_1_0: [312, 317]
+      VCCS_LIM_2_0: [304, 309]
+      VCCS_LIM_3_0: [371, 376]
+      VCCS_LIM_4_0: [348, 353]
+      VCCS_LIM_CLAW+_0: [356, 368]
+      VCCS_LIM_CLAW-_0: [241, 253]
+      VCCS_LIM_GR_0: [340, 345]
+      VCCS_LIM_ZO_0: [233, 238]
+      VNSE_0: [256, 277]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM324LV
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/LM324LV.cir
+      sha256: 495c0f46b9ab0fd8dce13dba69ad0deef3101e42b8667134217f178981fadd04
+  - source: ltwiki
+    name: LM324LV
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LM324LV.cir
+      sha256: 495c0f46b9ab0fd8dce13dba69ad0deef3101e42b8667134217f178981fadd04
+- source: ltwiki
+  name: LM324
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+    sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+    lines:
+      LM324: [2235, 2284]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: LM324
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/Op Amps/lm324new.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 42ef9442b8c249724ca832e0d427a901486baf3205c3758481b1a9d8e628bdf2
+    lines:
+      LM324: [25, 70]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: LM324
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      LM324: [1443, 1477]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: LM324M
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/MOTOR.LIB
+    sha256: 44f08a5cfceeb4c72d4f6e77e1eac1d108b46f7cb81dee8f3296a908b1eb53e6
+    lines:
+      LM324M: [440, 476]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: LM324T
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TIA.LIB
+    sha256: 9ab15d59dfe2a0a2393f98d60244934f66a2fdae82a8815b49b7517010d7b4ac
+    lines:
+      LM324T: [2848, 2882]
+    fetched: '2026-09-14'
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/lm324.pdf
   maker: Texas Instruments

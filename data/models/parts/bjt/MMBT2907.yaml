@@ -15,3 +15,100 @@ models:
       MMBT2907A: [6, 13]
     fetched: '2026-09-14'
     note: 'model(s): MMBT2907A (PNP .model)'
+  copies:
+  - source: microcap12
+    name: MMBT2907A
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: onsemi
+  name: Qmmbt2907alt1
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mmbt2907alt1.lib
+    sha256: f7949e153b4614b1aba21eb8458b9cfad5bff271408bb4724cb33a51db9e7d73
+    lines:
+      Qmmbt2907alt1: [14, 24]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: Qmmbt2907alt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: mmbt2907alt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_bjt.lib
+      sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77
+  - source: onsemi
+    name: Qmmbt2907alt1
+    get:
+      url: https://www.onsemi.com/download/models/lib/mps2907a.lib
+      sha256: f7949e153b4614b1aba21eb8458b9cfad5bff271408bb4724cb33a51db9e7d73
+  - source: onsemi
+    name: Qmmbt2907alt1
+    get:
+      url: https://www.onsemi.com/download/models/lib/pzt2907at1.lib
+      sha256: f7949e153b4614b1aba21eb8458b9cfad5bff271408bb4724cb33a51db9e7d73
+- source: microcap12
+  name: MMBT2907A
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc_BJT.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
+    lines:
+      MMBT2907A: [1700, 1704]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: MMBT2907AT
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc_BJT.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
+    lines:
+      MMBT2907AT: [1721, 1725]
+    fetched: '2026-09-20'
+- source: qspice
+  name: MMBT2907A
+  def: model
+  type: PNP
+  deps:
+  - PNP
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
+    lines:
+      MMBT2907A: [718, 722]
+      PNP: [2, 2]
+    fetched: '2026-09-20'
+- source: qspice
+  name: MMBT2907AT
+  def: model
+  type: PNP
+  deps:
+  - PNP
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
+    lines:
+      MMBT2907AT: [724, 728]
+      PNP: [2, 2]
+    fetched: '2026-09-20'

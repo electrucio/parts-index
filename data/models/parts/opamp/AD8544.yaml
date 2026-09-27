@@ -24,3 +24,21 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from comment words
+  copies:
+  - source: microcap12
+    name: AD8544_AD
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: analog.lib
+      sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+- source: adi
+  name: AD8544
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.analog.com/media/en/simulation-models/spice-models/AD8544.cir?modelType=spice-models
+    sha256: 47589588649d1d8f892f438b2656e08d7fa5337f889a1f93c0f2648578e2cb6e
+    lines:
+      AD8544: [28, 111]
+    fetched: '2026-09-21'

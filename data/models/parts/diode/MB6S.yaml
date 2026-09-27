@@ -15,6 +15,13 @@ models:
       MB6S: [6, 9]
     fetched: '2026-09-19'
     note: 'MB6S: MB6S'
+  copies:
+  - source: microcap12
+    name: MB6S
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: vishay
   name: mb6s
   def: subckt
@@ -50,7 +57,13 @@ models:
     lines:
       MB6S: [1444, 1463]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: MB6S
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/diode_fullbridge.lib
+      sha256: 2e0399bfb1c1da49c79e1aa6fffe5fac3c723bb9e1a559d02d15e385ccf8376f
 - source: bordodynov
   name: MB6S
   def: subckt
@@ -69,7 +82,13 @@ models:
     lines:
       MB6S: [335, 344]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: MB6S
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Rect.lib
+      sha256: 3dab7411e3d6a910ab3ed22381558611ec155f6fcfdda94949e9d21907efa409
 - source: kicad-spice-library
   name: MB6S_GN
   def: subckt
@@ -87,3 +106,20 @@ models:
       MB6S_GN: [176, 196]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: vishay
+    name: MB6S
+    get:
+      url: https://www.vishay.com/docs/88059/mb6s.txt
+      sha256: 07c6820f645103bf8ec5d4faffdb0d37ef94776901939cc0a8ea46301cd300f6
+  - source: spice-model-cd
+    name: MB6S
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/General_Semi/Rectifiers/Bridge/mb6s.lib
+      sha256: 07c6820f645103bf8ec5d4faffdb0d37ef94776901939cc0a8ea46301cd300f6
+  - source: microcap12
+    name: MB6S_GN
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: gensemi.lib
+      sha256: a91e073b84759dcbe41d4ae51687287a413fc12865804565e488f747b57b3d6c

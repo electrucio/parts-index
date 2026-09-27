@@ -26,6 +26,25 @@ models:
       Si1308EDL_mos: [110, 136]
     fetched: '2026-09-19'
   note: pins from names
+  copies:
+  - source: vishay
+    name: Si1308EDL
+    get:
+      url: https://www.vishay.com/docs/64539/si1308edl_ps.zip
+      member: Si1308EDL_PS_RC.LIB
+      sha256: d3a6bab548d9862420582957ec4aa6d0c7101d62ed5c19fa891cf8a1c400f55d
+  - source: vishay
+    name: Si1308EDL
+    get:
+      url: https://www.vishay.com/docs/64539/si1308edl_ps.zip
+      member: Si1308EDL_PS.LIB
+      sha256: 7a303019e15a9fbd85e34855756fe9532c585ba9adb49a595cfd8b1e54d8e2c4
+  - source: vishay
+    name: Si1308EDL
+    get:
+      url: https://www.vishay.com/docs/64539/si1308edl_ps.zip
+      member: Si1308EDL_PS.TXT
+      sha256: 7a303019e15a9fbd85e34855756fe9532c585ba9adb49a595cfd8b1e54d8e2c4
 - source: vishay
   name: Si1308EDL
   def: subckt

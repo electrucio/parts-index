@@ -20,4 +20,40 @@ models:
     lines:
       irf3708: [1, 56]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irf3708
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: bordodynov
+    name: irf3708
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irf3708.spi
+      sha256: 6e52b55ac84a1035f1c867b87c6d50d51e9199ac9256b620c40983230e84226c
+  - source: kicad-spice-library
+    name: irf3708
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf3708.spi
+      sha256: ec73f764d85dff7171591e3de89fe6fac8bb3259343e05142ff7941788fb9795
+  - source: ltwiki
+    name: irf3708
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf3708.spi
+      sha256: 6e52b55ac84a1035f1c867b87c6d50d51e9199ac9256b620c40983230e84226c
+  - source: ltwiki
+    name: irf3708
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf3708.spi
+      sha256: 6e52b55ac84a1035f1c867b87c6d50d51e9199ac9256b620c40983230e84226c
+  - source: ltwiki
+    name: irf3708
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf3708.spi
+      sha256: 6e52b55ac84a1035f1c867b87c6d50d51e9199ac9256b620c40983230e84226c

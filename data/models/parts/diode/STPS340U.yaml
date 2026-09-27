@@ -76,6 +76,13 @@ models:
       STPS340U: [1134, 1136]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: stmicro
+    name: STPS340U
+    get:
+      url: https://www.st.com/resource/en/spice_model/st_power_schottky_diodes_pspice_models_v6.zip
+      member: ST_POWER_SCHOTTKY_V10.LIB
+      sha256: 633fb9263215d27c308e42fa32be0577889347a388021460cf87ddfe9e4e7bad
 - source: kicad-spice-library
   name: STPS340B
   def: model

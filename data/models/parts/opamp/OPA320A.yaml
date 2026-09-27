@@ -54,3 +54,83 @@ models:
       VOS_OPA320S: [211, 222]
     fetched: '2026-09-19'
   note: found under the alias OPA320
+- source: microcap12
+  name: OPA320
+  def: subckt
+  type: SUBCKT
+  deps:
+  - VCCS_EXT_LIM_0
+  - VCCS_LIMIT_IQ_0
+  - OL_SENSE_0
+  - VCCS_LIM_CLAW+_0
+  - VCCS_LIM_2_0
+  - VCCS_LIM_1_0
+  - VCCS_LIM_ZO_0
+  - AOL_ZO_0
+  - VCCS_LIM_4_0
+  - VNSE_0
+  - PSRR_CMRR_0
+  - VCCS_LIM_CLAW-_0
+  - ESD_0
+  - VCCS_LIM_3_0
+  - CLAMP_AMP_HI_0
+  - VCCS_LIM_GR_0
+  - PSRR_CMRR_2
+  - PSRR_CMRR_1
+  - CLAMP_AMP_LO_0
+  - FEMT_0
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ti.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+    lines:
+      AOL_ZO_0: [207, 242]
+      CLAMP_AMP_HI_0: [306, 310]
+      CLAMP_AMP_LO_0: [299, 303]
+      ESD_0: [161, 167]
+      FEMT_0: [245, 266]
+      OL_SENSE_0: [368, 370]
+      OPA320: [20, 158]
+      PSRR_CMRR_0: [170, 184]
+      PSRR_CMRR_1: [187, 194]
+      PSRR_CMRR_2: [197, 204]
+      VCCS_EXT_LIM_0: [373, 376]
+      VCCS_LIMIT_IQ_0: [293, 296]
+      VCCS_LIM_1_0: [387, 392]
+      VCCS_LIM_2_0: [379, 384]
+      VCCS_LIM_3_0: [360, 365]
+      VCCS_LIM_4_0: [321, 326]
+      VCCS_LIM_CLAW+_0: [329, 342]
+      VCCS_LIM_CLAW-_0: [345, 357]
+      VCCS_LIM_GR_0: [313, 318]
+      VCCS_LIM_ZO_0: [395, 400]
+      VNSE_0: [269, 290]
+    fetched: '2026-09-20'
+- source: bordodynov
+  name: OPA320
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/opa320.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 557cb06b8761fc37e615299c20aaa7b5d2f84e9b7d653373c60a11ae83581218
+    lines:
+      OPA320: [1, 25]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: OPA320
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/opa320.sub
+      sha256: 557cb06b8761fc37e615299c20aaa7b5d2f84e9b7d653373c60a11ae83581218
+  - source: ltwiki
+    name: OPA320
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/opa320.sub
+      sha256: 557cb06b8761fc37e615299c20aaa7b5d2f84e9b7d653373c60a11ae83581218

@@ -53,6 +53,12 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 5
+  copies:
+  - source: cordell
+    name: BAT85C
+    get:
+      how: unknown
+      sha256: eee2b330ada2b89057d41e4dc2107ba39d4eaf9aa2335e7bb94cd5e1e0b8f48c
 - source: bordodynov
   name: BAT85
   def: model
@@ -73,7 +79,24 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 5
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: BAT85
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.dio
+      sha256: 85043335b56cc10779c03bcd2c237472827cf28c004628c9ddacb6fb3d8705c7
+  - source: ltwiki
+    name: BAT85
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: BAT85
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
 - source: ltwiki
   name: BAT85
   def: subckt
@@ -142,6 +165,31 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 5
+- source: spice-model-cd
+  name: BAT85
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/DIODE.LB
+    sha256: b648c925003b172006c0871521a37a1448d9cd5343fd97cd1426d0ec65a8c324
+    lines:
+      BAT85: [374, 376]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: BAT85
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ediode_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 2e50d524139f4241c5345aa22e759f4b47df02a98f9343c9c753c201ba13d8c9
+    lines:
+      BAT85: [181, 182]
+    fetched: '2026-09-20'
 datasheet:
   url: https://assets.nexperia.com/documents/data-sheet/BAT85.pdf
   maker: Nexperia

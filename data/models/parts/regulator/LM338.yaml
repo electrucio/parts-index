@@ -33,7 +33,19 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: LM338_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: LM338
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/LM338.txt
+      sha256: acd955748f1dea2f1a26704cc171915f2492547dcf2dbcde187bccd9103b9d1e
+  - source: ltwiki
+    name: LM338
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LM338.txt
+      sha256: acd955748f1dea2f1a26704cc171915f2492547dcf2dbcde187bccd9103b9d1e
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/lm338.pdf
   maker: Texas Instruments (National Semiconductor)

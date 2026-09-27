@@ -18,7 +18,20 @@ models:
       PMEG1020EA: [33, 49]
     fetched: '2026-09-19'
     note: 'PMEG1020EA: PMEG1020EA, PMEG1020EA'
-  note: 'same code also in: ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: ltwiki
+    name: PMEG1020EA
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG1020EA.PRM
+      sha256: 7b343a4aefc0db1fea1eb7a431072b43d64955875b0f065587a9a9ffbebd7d55
+  - source: microcap12
+    name: PMEG1020EA
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_shot.lib
+      sha256: c6367af2c60015e9fb5ecc3771d731c998ee74c0f74ef57bce37e58e08532f5d
 - source: ltwiki
   name: PMEG1020EJ
   def: subckt

@@ -22,6 +22,13 @@ models:
     lines:
       6N136: [11, 34]
     fetched: '2026-09-19'
+  copies:
+  - source: vishay
+    name: 6N136
+    get:
+      url: https://www.vishay.com/docs/84425/pspice6n136.zip
+      member: 6N136.txt
+      sha256: 87e7f6fcd61a404a4efb1e7923b8614eac497ddcdeb5fa9a73696e21166ab06a
 - source: bordodynov
   name: 6N136
   def: subckt
@@ -45,4 +52,29 @@ models:
       6N136: [2471, 2490]
       Q1: [16399, 16440]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: 6N136
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: 6N136
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+- source: microcap12
+  name: 6N136
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: VishayOpto.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 9b987f03000d4f793b271b55b9c75cd913596936cf1e0edc51a590c26243482e
+    lines:
+      6N136: [40, 63]
+    fetched: '2026-09-20'

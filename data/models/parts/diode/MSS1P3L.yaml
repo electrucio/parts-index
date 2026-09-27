@@ -19,3 +19,17 @@ models:
     fetched: '2026-09-19'
     note: 'Schottky, SPICE 3 Models (*.txt): mss1p3l, legd, grd'
   note: pins from default order (unverified)
+- source: microcap12
+  name: mss1p3l
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: vishaydiode.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 2e5a5b32069cd4d1a0382ca39515c84572862176aedccfab1f7f124818db2018
+    lines:
+      mss1p3l: [8219, 8228]
+    fetched: '2026-09-20'

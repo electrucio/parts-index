@@ -31,7 +31,34 @@ models:
     not_measurable: 0
     typical_rows: 9
   symbol: ECX10P20_exicon.asy
-  note: 'same code also in: bordodynov, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: ECX10P20
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/exicon_mosfet.lib
+      sha256: a4592d488914f08380aae349ae1f97b8d307f0e09f94cf7e218af8aad2d2929a
+  - source: ltwiki
+    name: ECX10P20
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/exicon_mosfet.lib
+      sha256: a4592d488914f08380aae349ae1f97b8d307f0e09f94cf7e218af8aad2d2929a
+- source: microcap12
+  name: ECX10P20
+  def: model
+  type: PMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: profmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 58b94e8ea84dba579a8f6c334d2d78630cd77955e852f5bd1afeca3ce57c3b3c
+    lines:
+      ECX10P20: [110, 114]
+    fetched: '2026-09-20'
 datasheet:
   url: https://www.exicon.info/PDFs/ecx10p20.pdf
   maker: Exicon

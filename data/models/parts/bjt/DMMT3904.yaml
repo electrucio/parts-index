@@ -23,3 +23,24 @@ models:
     lines:
       DMMT3904W: [3, 12]
     fetched: '2026-09-14'
+  copies:
+  - source: bordodynov
+    name: DMMT3904W
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/DMMT3904W.sub
+      sha256: 6f2e0b4e86b5b7a602e80ae9bf03246e12ea8ccdba0c301aa940b629f3250b83
+- source: microcap12
+  name: DMMT3904W
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc_BJT.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
+    lines:
+      DMMT3904W: [2486, 2490]
+    fetched: '2026-09-20'

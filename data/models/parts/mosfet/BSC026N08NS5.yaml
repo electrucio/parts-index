@@ -26,6 +26,19 @@ models:
       S5_80_e_var: [208, 333]
     fetched: '2026-09-19'
   note: pins from names
+  copies:
+  - source: infineon
+    name: BSC026N08NS5
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-80v-n-channel-simulationmodels-en.zip
+      member: OptiMOS5/OptiMOS5_80V_Spice.lib
+      sha256: fc2b9524e8b0186c93dd94df576aa5052bd531043a69556caaf5e5d5f213f5c4
+  - source: infineon
+    name: BSC026N08NS5
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-80v-n-channel-simulationmodels-en.zip
+      member: OptiMOS5/OptiMOS5_80V_LTSpice.lib
+      sha256: f90200848836cbf98a8b779ff4033fe206ec0fb0cff6c3f942460a18295f4b7e
 - source: infineon
   name: BSC026N08NS5_L1
   def: subckt
@@ -47,6 +60,19 @@ models:
       S5_80_e_var: [208, 333]
     fetched: '2026-09-19'
   note: pins from names
+  copies:
+  - source: infineon
+    name: BSC026N08NS5_L1
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-80v-n-channel-simulationmodels-en.zip
+      member: OptiMOS5/OptiMOS5_80V_Spice.lib
+      sha256: fc2b9524e8b0186c93dd94df576aa5052bd531043a69556caaf5e5d5f213f5c4
+  - source: infineon
+    name: BSC026N08NS5_L1
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-80v-n-channel-simulationmodels-en.zip
+      member: OptiMOS5/OptiMOS5_80V_LTSpice.lib
+      sha256: f90200848836cbf98a8b779ff4033fe206ec0fb0cff6c3f942460a18295f4b7e
 - source: infineon
   name: BSC026N08NS5_L0
   def: subckt
@@ -65,6 +91,19 @@ models:
       BSC026N08NS5_L0: [5629, 5665]
     fetched: '2026-09-19'
   note: pins from names
+  copies:
+  - source: infineon
+    name: BSC026N08NS5_L0
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-80v-n-channel-simulationmodels-en.zip
+      member: OptiMOS5/OptiMOS5_80V_Spice.lib
+      sha256: fc2b9524e8b0186c93dd94df576aa5052bd531043a69556caaf5e5d5f213f5c4
+  - source: infineon
+    name: BSC026N08NS5_L0
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-80v-n-channel-simulationmodels-en.zip
+      member: OptiMOS5/OptiMOS5_80V_LTSpice.lib
+      sha256: f90200848836cbf98a8b779ff4033fe206ec0fb0cff6c3f942460a18295f4b7e
 - source: bordodynov
   name: BSC026N08NS5
   def: model
@@ -78,4 +117,21 @@ models:
     lines:
       BSC026N08NS5: [1577, 1577]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: BSC026N08NS5
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: BSC026N08NS5
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: BSC026N08NS5
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3

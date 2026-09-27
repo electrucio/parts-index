@@ -28,7 +28,29 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 0
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: spice-model-cd
+    name: Qmj15002
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Motorola/Spice/PowerBJT/MJ15002.LIB
+      sha256: c54330f1e4b9cda6c71e78fe424e49fdd41734ce75ccc8d4bc3c43962d55c38a
+  - source: kicad-spice-library
+    name: MJ15002M
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+      sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+  - source: ltwiki
+    name: MJ15002M
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: MJ15002M
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
 - source: kicad-spice-library
   name: MJ15002
   def: subckt
@@ -54,6 +76,38 @@ models:
     typical_rows: 0
   symbol: MJ15002_kicad-spice-library.asy
   note: pins from default order (unverified)
+- source: onsemi
+  name: Qmj15002
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mj15002.lib
+    sha256: 62e88e3956e1e604f5086b9957e628fd41a4caeaebe298687bee66a0fabe39ae
+    lines:
+      Qmj15002: [12, 22]
+    fetched: '2026-09-14'
+  copies:
+  - source: microcap12
+    name: Qmj15002
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: microcap12
+  name: MJ15002
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: mpbjt.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 809a83e6faeda5c9408c63742c5b83c822ce0dfb08886e6178b44281a94ac21b
+    lines:
+      MJ15002: [3332, 3339]
+    fetched: '2026-09-20'
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/mj15001-d.pdf
   maker: onsemi

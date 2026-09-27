@@ -145,6 +145,19 @@ function Models({ page }: { page: PartPage }) {
                 <td>
                   {mo.source}
                   {mo.source === m.preferred && <> <span class="pill acc">preferred</span></>}
+                  {mo.copies && mo.copies.length > 0 && (
+                    <div class="muted small">
+                      same model in{' '}
+                      {mo.copies.map((c, j) => (
+                        <span key={j}>
+                          {j > 0 && ', '}
+                          {c.url
+                            ? <a href={c.url} title={[c.name, c.member].filter(Boolean).join(' · ')}>{c.source}</a>
+                            : <span title={c.installed_with ? `ships with ${c.installed_with}` : c.name}>{c.source}</span>}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </td>
                 <td><code>{mo.name}</code></td>
                 <td>{mo.type || mo.def}</td>

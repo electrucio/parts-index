@@ -1,0 +1,33 @@
+part: MPS6523
+kind: bjt
+priority: 3
+group: listed
+models:
+- source: spice-model-cd
+  name: MPS6523
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Fairchild/MP/MPS6523.t
+    sha256: 73c4ab03eb6199729161b14f4c3d877a107a13b9bb219be56d35654b4e936842
+    lines:
+      MPS6523: [1, 4]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: MPS6523
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/fairch.lib
+      sha256: 7a65c19aecd31354d0fec1166479cad2d1453948039b85b0d6d15d51ed4b963d
+  - source: ltwiki
+    name: MPS6523
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/bipolar.lib
+      sha256: c5e0e8839925adb5e550a6654a8d5d1c0634a0fd0f58e03c9701e24d9aa08b5b
+  - source: microcap12
+    name: MPS6523
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: fairch.lib
+      sha256: 53806c9a42d8b9f44b8c77ed3ae210ad6250b5eacb44d7e7f2b429e8f4559918

@@ -24,7 +24,24 @@ models:
       LT1807: [19022, 19024]
       LT1807MD: [19026, 19145]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: LT1807
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: linear.lib
+      sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
+  - source: kicad-spice-library
+    name: LT1807
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Ltc_Old_Big.lib
+      sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+  - source: kicad-spice-library
+    name: LT1807
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Linear%20Technology%20Corporation/LinearTech.lib
+      sha256: d08734cb6f0f2b03fe160350f7a07747c6e026f53ca9e3a0b281b9fbd2e23306
 - source: ltwiki
   name: LT1807MD
   def: subckt
@@ -44,7 +61,24 @@ models:
     lines:
       LT1807MD: [19026, 19145]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: LT1807MD
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: linear.lib
+      sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
+  - source: kicad-spice-library
+    name: LT1807MD
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Ltc_Old_Big.lib
+      sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+  - source: kicad-spice-library
+    name: LT1807MD
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Linear%20Technology%20Corporation/LinearTech.lib
+      sha256: d08734cb6f0f2b03fe160350f7a07747c6e026f53ca9e3a0b281b9fbd2e23306
 - source: kicad-spice-library
   name: LT1807
   def: subckt

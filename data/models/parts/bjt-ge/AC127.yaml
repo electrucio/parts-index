@@ -48,7 +48,19 @@ models:
     fail: 0
     not_measurable: 4
     typical_rows: 1
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: AC127
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: AC127
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
 - source: ltwiki
   name: AC127
   def: model
@@ -69,7 +81,29 @@ models:
     fail: 0
     not_measurable: 4
     typical_rows: 1
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: ltwiki
+    name: AC127
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Mixer/standard.bjt
+      sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+  - source: groups-io
+    name: AC127
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/Germanium/Germanium.lib
+      sha256: ecf123dfc87c5454687a9b0c68c5b6aa633fb7e47d1ede1b1100afbd5916ab63
+  - source: kicad-spice-library
+    name: AC127
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJT.lib
+      sha256: 1f07e6e6b38c9b5d8d19dbccfd3c29741281ead66a7b48cc40eb82e9684580eb
+  - source: ltwiki
+    name: AC127
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.bjt
+      sha256: 0f87e9840e1130e025a7add442288c0f67048f9755108d0384d1594296884e82
 - source: kicad-spice-library
   name: AC127
   def: model
@@ -89,6 +123,77 @@ models:
     fail: 0
     not_measurable: 4
     typical_rows: 1
+- source: diyaudio
+  name: AC127_X
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.diyaudio.com/community/threads/ac128-pnp-germanium-transistor-spice-model-rare.117257/post-1425650
+    sha256: 079edce0e0582e8f252f5232975b03ec0e556d6bf0159883595474551bf9aebc
+    lines:
+      AC127_X: [13, 16]
+    fetched: '2026-09-20'
+  copies:
+  - source: diyaudio
+    name: AC127_X
+    get:
+      url: https://www.diyaudio.com/community/threads/ac128-pnp-germanium-transistor-spice-model-rare.117257/
+      sha256: 7544a031848aee5a54a79846072979d00315366ecac5de9beb9fd76dca26d6fb
+  - source: diyaudio-germanio
+    name: AC127_X
+    get:
+      url: https://www.diyaudio.com/community/threads/ac128-pnp-germanium-transistor-spice-model-rare.117257/
+      sha256: 7544a031848aee5a54a79846072979d00315366ecac5de9beb9fd76dca26d6fb
+  - source: groupsio-ltspice
+    name: AC127_X
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/LM3886_test.zip
+      sha256: 5b15ed01aa401bdb7c7be2ec67986eda5d531ef41af3b2c6fee10495bab9be34
+- source: diyaudio
+  name: AC127
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.diyaudio.com/community/threads/ac128-pnp-germanium-transistor-spice-model-rare.117257/post-1425650
+    sha256: 079edce0e0582e8f252f5232975b03ec0e556d6bf0159883595474551bf9aebc
+    lines:
+      AC127: [37, 38]
+    fetched: '2026-09-20'
+- source: diystompboxes
+  name: AC127
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.diystompboxes.com/smfforum/index.php?topic=78932.0
+    sha256: adfe930a1b749513833791af4df2b5ab8ec72624fc9ba936383bb5550ee23f3e
+    lines:
+      AC127: [68, 78]
+    fetched: '2026-09-20'
+- source: groups-io
+  name: AC127
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Examples/Apps/Electric%20Guitar%20Fuzz%20Effect/Distortion%20Preamp/ac127.mod
+    sha256: 6e3e4718c27874ca0cbc46ed089a9bb8be44541b2222d3cf12c9fcb80d7057be
+    lines:
+      AC127: [3, 6]
+    fetched: '2026-09-20'
+- source: diystompboxes
+  name: AC127_XP
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.diystompboxes.com/smfforum/index.php?topic=78932.0
+    sha256: 631a915ef54cc1705f7a381240242e831cb1d95d28ba9c802cb729d93e6c8c51
+    lines:
+      AC127_XP: [7, 7]
+    fetched: '2026-09-20'
 datasheet:
   url: https://www.worldradiohistory.com/Archive-Catalogs/Suppliers/MNO/Mullard-Technical-Handbook-Book1-Part1-1974-695-pages.pdf
   maker: mullard

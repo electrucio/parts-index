@@ -114,7 +114,20 @@ models:
     not_measurable: 0
     typical_rows: 11
   symbol: 6AL5_suusi-tubes.asy
-  note: 'same code also in: bordodynov, ltwiki; pins from inline comment'
+  note: pins from inline comment
+  copies:
+  - source: bordodynov
+    name: 6AL5
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Koren_Tubes.lib
+      sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
+  - source: ltwiki
+    name: 6AL5
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Koren_Tubes.lib
+      sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
 - source: suusi-tubes
   name: EB91
   def: subckt
@@ -142,7 +155,20 @@ models:
     not_measurable: 0
     typical_rows: 11
   symbol: 6AL5_suusi-tubes-2.asy
-  note: 'found under the alias EB91; same code also in: bordodynov, ltwiki; pins from inline comment'
+  note: found under the alias EB91; pins from inline comment
+  copies:
+  - source: bordodynov
+    name: EB91
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Koren_Tubes.lib
+      sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
+  - source: ltwiki
+    name: EB91
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Koren_Tubes.lib
+      sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
 - source: suusi-tubes
   name: 6AL5
   def: subckt
@@ -229,7 +255,48 @@ models:
     not_measurable: 11
     typical_rows: 0
   symbol: 6AL5_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: bordodynov
+    name: 6AL5
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Rydel_tubes.lib
+      sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+  - source: ltwiki
+    name: 6AL5
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Rydel_tubes.lib
+      sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+  - source: kicad-spice-library
+    name: 6AL5RY
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: ltwiki
+    name: 6AL5RY
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: ltwiki
+    name: 6AL5RY
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
+      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
+  - source: ltwiki
+    name: 6AL5RY
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Valves.Lib
+      sha256: cf7b995102b452efb5b8e7b07168a3a7df1931ca1db84b3aa54433452ab11dfd
+  - source: ltwiki
+    name: 6AL5RY
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
+      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
 - source: bordodynov
   name: 6AL5
   def: subckt
@@ -257,7 +324,14 @@ models:
     not_measurable: 0
     typical_rows: 11
   symbol: 6AL5_bordodynov-2.asy
-  note: 'same code also in: ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: ltwiki
+    name: 6AL5
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/vdiodes.txt
+      sha256: 15a266203f60b399e8f85ba362b55ee2d88f177ba196fc97f05fcc2eb9ccb3d8
 - source: bordodynov
   name: 6AL5
   def: subckt
@@ -286,7 +360,105 @@ models:
     not_measurable: 11
     typical_rows: 0
   symbol: 6AL5_bordodynov-3.asy
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: 6AL5
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/vrectifier.txt
+      sha256: 6f39b4729541ad16b04e62a45667127a910029cc5c095d49dc8622ca11a85443
+- source: bordodynov
+  name: 6AL5
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Diode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 58fd9e1eba78d4f20d75d4d1a7d289ff8f337f5e17184bcfcf27ad75aade4a1f
+    lines:
+      6AL5: [96, 98]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: 6AL5
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Diode_Ayumi.lib
+      sha256: 58fd9e1eba78d4f20d75d4d1a7d289ff8f337f5e17184bcfcf27ad75aade4a1f
+- source: bordodynov
+  name: EB91
+  def: subckt
+  type: SUBCKT
+  deps:
+  - VDIODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/vdiodes.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 15a266203f60b399e8f85ba362b55ee2d88f177ba196fc97f05fcc2eb9ccb3d8
+    lines:
+      EB91: [43, 47]
+      VDIODE: [18, 31]
+    fetched: '2026-09-21'
+  note: found under the alias EB91
+  copies:
+  - source: ltwiki
+    name: EB91
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/vdiodes.txt
+      sha256: 15a266203f60b399e8f85ba362b55ee2d88f177ba196fc97f05fcc2eb9ccb3d8
+- source: bordodynov
+  name: EB91
+  def: subckt
+  type: SUBCKT
+  deps:
+  - VRECTIFIER
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/vrectifier.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6f39b4729541ad16b04e62a45667127a910029cc5c095d49dc8622ca11a85443
+    lines:
+      EB91: [121, 126]
+      VRECTIFIER: [19, 35]
+    fetched: '2026-09-21'
+  note: found under the alias EB91
+  copies:
+  - source: ltwiki
+    name: EB91
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/vrectifier.txt
+      sha256: 6f39b4729541ad16b04e62a45667127a910029cc5c095d49dc8622ca11a85443
+- source: bordodynov
+  name: EB91a
+  def: subckt
+  type: SUBCKT
+  deps:
+  - VDIODE
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/vdiodes.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 15a266203f60b399e8f85ba362b55ee2d88f177ba196fc97f05fcc2eb9ccb3d8
+    lines:
+      EB91a: [55, 59]
+      VDIODE: [18, 31]
+    fetched: '2026-09-21'
+  note: found under the alias EB91
+  copies:
+  - source: ltwiki
+    name: EB91a
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/vdiodes.txt
+      sha256: 15a266203f60b399e8f85ba362b55ee2d88f177ba196fc97f05fcc2eb9ccb3d8
 datasheet:
   url: https://frank.pocnet.net/sheets/093/6/6AL5.pdf
   maker: General Electric

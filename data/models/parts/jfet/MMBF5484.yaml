@@ -15,3 +15,26 @@ models:
       mmbf5484lt1: [190, 193]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: onsemi
+    name: Jmmbf5484lt1
+    get:
+      url: https://www.onsemi.com/download/models/lib/mmbf5484lt1.lib
+      sha256: 2e7cded40eff67193a40bbd7b8c488c4d45fe294614c5c81795691ae200a77bd
+  - source: microcap12
+    name: mmbf5484lt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: m_small.lib
+      sha256: c403ca137e1d5d18c11cc981157276d7856cd98f9b8dd32cf3a51a2f3054d7cd
+  - source: microcap12
+    name: Jmmbf5484lt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: spice-model-cd
+    name: mmbf5484lt1
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Motorola/Spice/SmallSig/mmbf5484lt1.lib
+      sha256: b063354ef575f57b757475a8ed749849736b251f9cede116c6bd86605b065bd9

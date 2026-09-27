@@ -20,7 +20,48 @@ models:
     lines:
       BSH205: [80, 101]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: BSH205_PH
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_mos.lib
+      sha256: d27a8c869acadbdfd055eba6519c0c67fbcfdf5fd4550c2f8b4fb6ae44b6739a
+  - source: kicad-spice-library
+    name: BSH205
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/PMOS_Philips.lib
+      sha256: ddd5efafd062e94ad879688bea4de9115bf23caaa761c0ba40ab2e63e3458a45
+  - source: ltwiki
+    name: BSH205
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/PMOS_Philips.lib
+      sha256: ddd5efafd062e94ad879688bea4de9115bf23caaa761c0ba40ab2e63e3458a45
+  - source: ltwiki
+    name: BSH205
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/PMOSFET/BSH205.PRM
+      sha256: 2d7143ee03041e75b33f5ae5421e727a5e9c0bc35704db116a1b6df01aeeb0a6
+  - source: kicad-spice-library
+    name: BSH205_PH
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_mos.lib
+      sha256: 795bf5362d9c9ce1e5b504e78b48671614a7585f75d3533c2585557571d04168
+  - source: ltwiki
+    name: BSH205/PLP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/phil_fet.lib
+      sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
+  - source: ltwiki
+    name: BSH205/PLP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/FET/phil_fet.lib
+      sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
 - source: ltwiki
   name: BSH205/PLP
   def: subckt

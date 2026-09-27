@@ -31,7 +31,40 @@ models:
     not_measurable: 1
     typical_rows: 2
   symbol: BS250_diodes-inc.asy
-  note: 'same code also in: ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: diodes-inc
+    name: BS250P
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8402/collection.spice.txt
+      sha256: dfcbbbc10b04f76b269852ab545ea063cc65bf4827e949557d2a1df8daabd917
+  - source: ltwiki
+    name: BS250P
+    get:
+      url: https://ltwiki.org/index.php?title=Bs250
+      sha256: eeca2f02ea9f9b36996483dbe4eb69919857260f97e7afcf719def70da1cb589
+  - source: ltwiki
+    name: BS250P
+    get:
+      url: https://ltwiki.org/index.php?title=Bs250
+      sha256: eeca2f02ea9f9b36996483dbe4eb69919857260f97e7afcf719def70da1cb589
+  - source: ltwiki
+    name: BS250P
+    get:
+      url: https://ltwiki.org/index.php?title=Bs250
+      sha256: eeca2f02ea9f9b36996483dbe4eb69919857260f97e7afcf719def70da1cb589
+  - source: ltwiki
+    name: BS250P
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ZETEX/LIB/zmodels.lib
+      sha256: 8d3fb488666b5f813a666d5c589ac6c7779a2c44a4b38799b2a41ca0006368e7
+  - source: microcap12
+    name: BS250P
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
 - source: bordodynov
   name: BS250P
   def: model
@@ -52,7 +85,24 @@ models:
     fail: 0
     not_measurable: 1
     typical_rows: 2
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: BS250P
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: BS250P
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: BS250P
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: bordodynov
   name: BS250PLP
   def: subckt
@@ -78,7 +128,53 @@ models:
     not_measurable: 1
     typical_rows: 2
   symbol: BS250_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: spice-model-cd
+    name: BS250
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BS250.t
+      sha256: c0c602f9f67f220b471d9658156d18fc487d3697c13bbbbab9ff1a911a743251
+  - source: kicad-spice-library
+    name: BS250PLP
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/PMOS_Philips.lib
+      sha256: ddd5efafd062e94ad879688bea4de9115bf23caaa761c0ba40ab2e63e3458a45
+  - source: ltwiki
+    name: BS250PLP
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/PMOS_Philips.lib
+      sha256: ddd5efafd062e94ad879688bea4de9115bf23caaa761c0ba40ab2e63e3458a45
+  - source: ltwiki
+    name: BS250/PLP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/phil_fet.lib
+      sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
+  - source: ltwiki
+    name: BS250PLP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/PMOSFET/BS250PLP.prm
+      sha256: f623c2bd99f61188a0dff0560846d775d124b3439ef31cbacfb78a8c93f66c10
+  - source: ltwiki
+    name: BS250/PLP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/FET/phil_fet.lib
+      sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
+  - source: kicad-spice-library
+    name: BS250_PH
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_fet.lib
+      sha256: 36f1889d3f9333d570d781d32641ae906508f4365fe9158d7341714639b922f0
+  - source: microcap12
+    name: BS250_PH
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_fet.lib
+      sha256: f44cdc6cb051bc1a9039d79b0f2cddfe5d56e5164b8c75a66f1e67d680342d12
 - source: bordodynov
   name: BS250P
   def: subckt
@@ -104,7 +200,19 @@ models:
     not_measurable: 1
     typical_rows: 2
   symbol: BS250_bordodynov-3.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: BS250P
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: BS250P
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
 - source: ltwiki
   name: BS250P
   def: model
@@ -125,7 +233,12 @@ models:
     not_measurable: 1
     typical_rows: 2
   symbol: BS250_ltwiki.asy
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: kicad-spice-library
+    name: BS250P
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
 - source: ltwiki
   name: BS250/PLP
   def: subckt
@@ -152,6 +265,31 @@ models:
     typical_rows: 2
   symbol: BS250_ltwiki-2.asy
   note: pins from default order (unverified)
+- source: diodes-inc
+  name: BS250P
+  def: subckt
+  type: SUBCKT
+  deps:
+  - PMOS
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+    sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+    lines:
+      BS250P: [427, 439]
+      PMOS: [1640, 1641]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: BS250
+  def: model
+  type: PMOS
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/MOSFET.LIB
+    sha256: 1751c109a541fbf073d7f75840dc63faa70953cc4a96930ee53180e215c4a2a0
+    lines:
+      BS250: [195, 197]
+    fetched: '2026-09-14'
 datasheet:
   url: https://www.diodes.com/assets/Datasheets/BS250P.pdf
   maker: Diodes Incorporated (ex-Zetex)

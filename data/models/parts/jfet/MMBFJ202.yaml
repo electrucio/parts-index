@@ -1,0 +1,30 @@
+part: MMBFJ202
+kind: jfet
+priority: 2
+group: listed
+models:
+- source: onsemi
+  name: MMBFJ202
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mmbfj202%20(spice%20model).lib
+    sha256: d0eb23d5f580339fab319b6bcaed5ccd3f9eaf03ee031dc507e2dbb8c0531862
+    lines:
+      MMBFJ202: [7, 13]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: MMBFJ202
+  def: model
+  type: NJF
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      MMBFJ202: [140177, 140195]
+    fetched: '2026-09-20'

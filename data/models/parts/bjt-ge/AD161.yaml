@@ -15,4 +15,31 @@ models:
     lines:
       AD161: [1426, 1426]
     fetched: '2026-09-14'
-  note: 'same code also in: diyaudio, kicad-spice-library, ltwiki'
+  copies:
+  - source: diyaudio
+    name: AD161
+    get:
+      url: https://www.diyaudio.com/community/attachments/lin-1956-amplifier-and-germanium-models-zip.1642963/
+      sha256: 13115647726b2cef332c9af2fcad7a417d900e8d66d0c34f2c4992bdde82cbd0
+  - source: diyaudio-germanio
+    name: AD161
+    get:
+      url: https://www.diyaudio.com/community/attachments/lin-1956-amplifier-and-germanium-models-zip.1642963/
+      sha256: 13115647726b2cef332c9af2fcad7a417d900e8d66d0c34f2c4992bdde82cbd0
+  - source: kicad-spice-library
+    name: AD161
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+      sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+  - source: ltwiki
+    name: AD161
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: AD161
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3

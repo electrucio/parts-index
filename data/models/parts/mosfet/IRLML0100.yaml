@@ -20,7 +20,55 @@ models:
     lines:
       irlml0100: [14910, 14966]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irlml0100
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: bordodynov
+    name: irlml0100
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irlml0100.spi
+      sha256: 48b1f5e07cb4ca635a46f059da09e7c1e0ca6671172b733b1341c96e1f409948
+  - source: bordodynov
+    name: irlml0100
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irlml0100.spi
+      sha256: 48b1f5e07cb4ca635a46f059da09e7c1e0ca6671172b733b1341c96e1f409948
+  - source: kicad-spice-library
+    name: irlml0100
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: irlml0100
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+  - source: ltwiki
+    name: irlml0100
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irlml0100.spi
+      sha256: 48b1f5e07cb4ca635a46f059da09e7c1e0ca6671172b733b1341c96e1f409948
+  - source: ltwiki
+    name: irlml0100
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irlml0100.spi
+      sha256: 48b1f5e07cb4ca635a46f059da09e7c1e0ca6671172b733b1341c96e1f409948
+  - source: ltwiki
+    name: irlml0100
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irlml0100.spi
+      sha256: 48b1f5e07cb4ca635a46f059da09e7c1e0ca6671172b733b1341c96e1f409948
 - source: bordodynov
   name: irlml0100t
   def: subckt
@@ -37,4 +85,42 @@ models:
     lines:
       irlml0100t: [60, 70]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: bordodynov
+    name: irlml0100t
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irlml0100.spi
+      sha256: 48b1f5e07cb4ca635a46f059da09e7c1e0ca6671172b733b1341c96e1f409948
+  - source: ltwiki
+    name: irlml0100t
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irlml0100.spi
+      sha256: 48b1f5e07cb4ca635a46f059da09e7c1e0ca6671172b733b1341c96e1f409948
+  - source: ltwiki
+    name: irlml0100t
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irlml0100.spi
+      sha256: 48b1f5e07cb4ca635a46f059da09e7c1e0ca6671172b733b1341c96e1f409948
+  - source: ltwiki
+    name: irlml0100t
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irlml0100.spi
+      sha256: 48b1f5e07cb4ca635a46f059da09e7c1e0ca6671172b733b1341c96e1f409948
+- source: microcap12
+  name: irlml0100t
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: irf.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+    lines:
+      irlml0100t: [71999, 72009]
+    fetched: '2026-09-20'

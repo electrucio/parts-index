@@ -20,7 +20,37 @@ models:
     lines:
       irf230: [1, 60]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: irf230
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irf230.spi
+      sha256: 6ad6f43f5ea11360e79bc6de05a7543bc6af71217ab28d67da4aba5b0752bff2
+  - source: kicad-spice-library
+    name: irf230
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf230.spi
+      sha256: 4e8f1e2aed52b2e3ea374be61d4a39e9d76f415ab5fa89f5648549a5ca622e62
+  - source: ltwiki
+    name: irf230
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf230.spi
+      sha256: 6ad6f43f5ea11360e79bc6de05a7543bc6af71217ab28d67da4aba5b0752bff2
+  - source: ltwiki
+    name: irf230
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf230.spi
+      sha256: 6ad6f43f5ea11360e79bc6de05a7543bc6af71217ab28d67da4aba5b0752bff2
+  - source: ltwiki
+    name: irf230
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf230.spi
+      sha256: 6ad6f43f5ea11360e79bc6de05a7543bc6af71217ab28d67da4aba5b0752bff2
 - source: kicad-spice-library
   name: IRF230
   def: subckt
@@ -55,6 +85,13 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irf230_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
 - source: kicad-spice-library
   name: IRF230M
   def: subckt
@@ -72,3 +109,42 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+- source: microcap12
+  name: IRF230
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: irpmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 105bbe2b177521de15323aae290e05947c3bb26d62a8ee42fe5da0e351b46ddf
+    lines:
+      IRF230: [166, 170]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: IRF230
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: mpmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: f3a8113e6ad33c866f8d396d65b1d1e98d8b1d17ebaf3390dd611a3181d4fd37
+    lines:
+      IRF230: [208, 212]
+    fetched: '2026-09-20'
+- source: ltwiki
+  name: IRF230
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrmos.lib
+    sha256: cd1b43c7f364ba7d1ebb8af3764d05b8ddaab1d79950e0eedd42a0826cd2c46b
+    lines:
+      IRF230: [776, 779]
+    fetched: '2026-09-21'

@@ -29,6 +29,46 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 0
+- source: onsemi
+  name: Qmje3055t
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mje3055t.lib
+    sha256: 4ee8ccf0cc09a0fc46e5046056f34f793dd6f655a5b3ddbf45573f1ca1fff837
+    lines:
+      Qmje3055t: [12, 22]
+    fetched: '2026-09-14'
+  copies:
+  - source: microcap12
+    name: Qmje3055t
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: mje3055t
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_bjt.lib
+      sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77
+  - source: onsemi
+    name: mje3055t
+    get:
+      url: https://www.onsemi.com/download/models/sp3/mje3055t.sp3
+      sha256: e899a30d02cd37466abd46afbfc042019aaa7a75bb486281d6f233340dcaaef2
+- source: ltwiki
+  name: MJE3055T
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrbjt.lib
+    sha256: 30a0b2113b846773bf8dc3f872c0edaed5312f72b3907f053aaba5badf6b8034
+    lines:
+      MJE3055T: [3850, 3854]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/mje2955t-d.pdf
   maker: onsemi

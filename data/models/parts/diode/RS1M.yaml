@@ -19,6 +19,12 @@ models:
     fetched: '2026-09-19'
     note: 'model(s): RS1MSWF, DF, DR'
   note: pins from default order (unverified)
+  copies:
+  - source: diodes-inc
+    name: RS1MSWFQ
+    get:
+      url: https://www.diodes.com/spice/download/730/RS1MSWFQ.spice.txt
+      sha256: 5fb2bcd92b9180164ac4a4cd098c87f99a17929b41bee42ada74022860e0444c
 - source: diodes-inc
   name: RS1MWF
   def: subckt
@@ -35,6 +41,12 @@ models:
     fetched: '2026-09-19'
     note: 'model(s): RS1MWF, DF, DR'
   note: pins from default order (unverified)
+  copies:
+  - source: diodes-inc
+    name: RS1MWF
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8339/collection.spice.txt
+      sha256: 24b8b04f2944b24e630687a686ecbb5d708f49a4beccdde78fe36d0115cfecc7
 - source: diodes-inc
   name: RS1MSWFQ
   def: subckt
@@ -51,3 +63,63 @@ models:
     fetched: '2026-09-19'
     note: 'model(s): RS1MSWFQ, DF, DR'
   note: pins from default order (unverified)
+- source: onsemi
+  name: RS1M
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/rs1a_rs1m%20spice%20model.lib
+    sha256: 42f955dbd58b053a4b22d1715928d4c58ef0ae3526acbdf30ae7ec6093a5688c
+    lines:
+      RS1M: [90, 95]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: RS1M
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      RS1M: [10887, 10888]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: RS1MB
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc.lib
+      sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+- source: qspice
+  name: RS1M
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
+    lines:
+      RS1M: [98, 98]
+    fetched: '2026-09-20'
+  copies:
+  - source: qspice
+    name: RS1MB
+    get:
+      url: https://getqspice.com/InstallQSPICE.exe
+      sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
+- source: qspice
+  name: RS1MWF
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
+    lines:
+      RS1MWF: [23, 23]
+    fetched: '2026-09-20'

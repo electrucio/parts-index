@@ -20,4 +20,127 @@ models:
     lines:
       Si2337DS: [15378, 15397]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: Si2337DS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: Si2337DS
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+- source: vishay
+  name: Si2337DS
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.vishay.com/en/product/73533/tab/designtools-ppg/
+    member: si2337ds_ps Rev B.lib
+    archive_sha256: 8b435ae25385abcc500fcf05418c203f413ed0d4acc9af000980bcb14b6996d3
+    sha256: ce760c92e9a0b8d3be27523fab9e5def3724562f01a68451e22f2f7cc4ffc7f0
+    lines:
+      Si2337DS: [12, 36]
+    fetched: '2026-09-21'
+  copies:
+  - source: vishay
+    name: Si2337DS
+    get:
+      url: https://www.vishay.com/en/product/73533/tab/designtools-ppg/
+      member: si2337ds_ps Rev B.txt
+      sha256: ce760c92e9a0b8d3be27523fab9e5def3724562f01a68451e22f2f7cc4ffc7f0
+  - source: vishay
+    name: Si2337DS
+    get:
+      url: https://www.vishay.com/en/product/73533/tab/designtools-ppg/
+      member: si2337ds_ps_rc Rev B.lib
+      sha256: 0ba8f011d74bf86e30d5408f6119be6b464eeb7e2be2cc5f63016cc5024e682e
+  - source: vishay
+    name: Si2337DS
+    get:
+      url: https://www.vishay.com/en/product/73533/tab/designtools-ppg/
+      member: si2337ds_ps_rc Rev B.txt
+      sha256: 0ba8f011d74bf86e30d5408f6119be6b464eeb7e2be2cc5f63016cc5024e682e
+  - source: vishay
+    name: Si2337DS
+    get:
+      url: https://www.vishay.com/docs/78225/si2337ds_ps_revb.zip
+      member: si2337ds_ps Rev B.lib
+      sha256: ce760c92e9a0b8d3be27523fab9e5def3724562f01a68451e22f2f7cc4ffc7f0
+  - source: vishay
+    name: Si2337DS
+    get:
+      url: https://www.vishay.com/docs/78225/si2337ds_ps_revb.zip
+      member: si2337ds_ps Rev B.txt
+      sha256: ce760c92e9a0b8d3be27523fab9e5def3724562f01a68451e22f2f7cc4ffc7f0
+  - source: vishay
+    name: Si2337DS
+    get:
+      url: https://www.vishay.com/docs/78225/si2337ds_ps_revb.zip
+      member: si2337ds_ps_rc Rev B.lib
+      sha256: 0ba8f011d74bf86e30d5408f6119be6b464eeb7e2be2cc5f63016cc5024e682e
+  - source: vishay
+    name: Si2337DS
+    get:
+      url: https://www.vishay.com/docs/78225/si2337ds_ps_revb.zip
+      member: si2337ds_ps_rc Rev B.txt
+      sha256: 0ba8f011d74bf86e30d5408f6119be6b464eeb7e2be2cc5f63016cc5024e682e
+- source: vishay
+  name: Si2337DS_PS_RC
+  def: subckt
+  type: SUBCKT
+  deps:
+  - Si2337DS
+  verbatim: true
+  get:
+    url: https://www.vishay.com/en/product/73533/tab/designtools-ppg/
+    member: si2337ds_ps_rc Rev B.lib
+    archive_sha256: 8b435ae25385abcc500fcf05418c203f413ed0d4acc9af000980bcb14b6996d3
+    sha256: 0ba8f011d74bf86e30d5408f6119be6b464eeb7e2be2cc5f63016cc5024e682e
+    lines:
+      Si2337DS: [12, 36]
+      Si2337DS_PS_RC: [39, 134]
+    fetched: '2026-09-21'
+  copies:
+  - source: vishay
+    name: Si2337DS_PS_RC
+    get:
+      url: https://www.vishay.com/en/product/73533/tab/designtools-ppg/
+      member: si2337ds_ps_rc Rev B.txt
+      sha256: 0ba8f011d74bf86e30d5408f6119be6b464eeb7e2be2cc5f63016cc5024e682e
+  - source: vishay
+    name: Si2337DS_PS_RC
+    get:
+      url: https://www.vishay.com/docs/78225/si2337ds_ps_revb.zip
+      member: si2337ds_ps_rc Rev B.lib
+      sha256: 0ba8f011d74bf86e30d5408f6119be6b464eeb7e2be2cc5f63016cc5024e682e
+  - source: vishay
+    name: Si2337DS_PS_RC
+    get:
+      url: https://www.vishay.com/docs/78225/si2337ds_ps_revb.zip
+      member: si2337ds_ps_rc Rev B.txt
+      sha256: 0ba8f011d74bf86e30d5408f6119be6b464eeb7e2be2cc5f63016cc5024e682e
+- source: vishay
+  name: Si2337DS
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.vishay.com/en/product/73533/tab/designtools-ppg/
+    member: si2337ds_HS Rev B.txt
+    archive_sha256: 8b435ae25385abcc500fcf05418c203f413ed0d4acc9af000980bcb14b6996d3
+    sha256: 80f683d08373849185abc5d33d54e7a1250ac19fb8bba278c533b48e9d1de813
+    lines:
+      Si2337DS: [11, 36]
+    fetched: '2026-09-21'
+  copies:
+  - source: vishay
+    name: Si2337DS
+    get:
+      url: https://www.vishay.com/docs/78225/si2337ds_ps_revb.zip
+      member: si2337ds_HS Rev B.txt
+      sha256: 80f683d08373849185abc5d33d54e7a1250ac19fb8bba278c533b48e9d1de813

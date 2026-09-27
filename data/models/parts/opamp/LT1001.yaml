@@ -21,7 +21,89 @@ models:
     lines:
       LT1001: [8927, 8969]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+  copies:
+  - source: spice-model-cd
+    name: LT1001
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/LTC37.lib
+      sha256: d067d03736b9b3410257d9d18783c6af42ad7b1ed4a7c3217e0e4744cebe97e6
+  - source: bordodynov
+    name: LT1001
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: LT1001
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: LT1001
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Ltc_Old_Big.lib
+      sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+  - source: kicad-spice-library
+    name: LT1001
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/LTC_ampliop.lib
+      sha256: 140c4a222da3dfce63a2a5af619a118436c566ab1db5ac47c8fc5dfcec8f7a68
+  - source: kicad-spice-library
+    name: LT1001
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Linear%20Technology%20Corporation/LinearTech.lib
+      sha256: d08734cb6f0f2b03fe160350f7a07747c6e026f53ca9e3a0b281b9fbd2e23306
+  - source: ltwiki
+    name: LT1001
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: LT1001
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: LT1001
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+      sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+  - source: ltwiki
+    name: LT1001
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraOpamps/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: spice-model-cd
+    name: LT1001
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/LT1001.lib
+      sha256: 71eb17399abd5fe3829074812e34025b31f7ced77d286adb26636b8759d66206
+  - source: kicad-spice-library
+    name: LT1001_LT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/linear.lib
+      sha256: 025903d9677acbc507e2eaa578ba581d9e52f17c10dbf286da658f1af22dd5ba
+  - source: kicad-spice-library
+    name: LT1001/LT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/lin_tech.lib
+      sha256: ecf83f07a8bd4c59f1b672a6af78483039b75f982c54349f9eca7641007da6d9
+  - source: ltwiki
+    name: LT1001/LT
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/lin_tech.lib
+      sha256: c9cfd53f29fe02a95b03ffef81e14fb60e113d71f019d165db9de905746f6345
+  - source: microcap12
+    name: LT1001_LT
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: linear.lib
+      sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
 - source: bordodynov
   name: LT1001A
   def: subckt
@@ -41,7 +123,89 @@ models:
     lines:
       LT1001A: [8999, 9041]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+  copies:
+  - source: spice-model-cd
+    name: LT1001A
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/LT1001A.lib
+      sha256: f30b67b6294036a8b7c02485b6826e05813cb734e14f635a35cdcc308e126071
+  - source: bordodynov
+    name: LT1001A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: LT1001A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: LT1001A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Ltc_Old_Big.lib
+      sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+  - source: kicad-spice-library
+    name: LT1001A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/LTC_ampliop.lib
+      sha256: 140c4a222da3dfce63a2a5af619a118436c566ab1db5ac47c8fc5dfcec8f7a68
+  - source: kicad-spice-library
+    name: LT1001A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Linear%20Technology%20Corporation/LinearTech.lib
+      sha256: d08734cb6f0f2b03fe160350f7a07747c6e026f53ca9e3a0b281b9fbd2e23306
+  - source: ltwiki
+    name: LT1001A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: LT1001A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: LT1001A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+      sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+  - source: ltwiki
+    name: LT1001A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraOpamps/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: spice-model-cd
+    name: LT1001A
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/LTC37.lib
+      sha256: d067d03736b9b3410257d9d18783c6af42ad7b1ed4a7c3217e0e4744cebe97e6
+  - source: kicad-spice-library
+    name: LT1001A_LT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/linear.lib
+      sha256: 025903d9677acbc507e2eaa578ba581d9e52f17c10dbf286da658f1af22dd5ba
+  - source: kicad-spice-library
+    name: LT1001A/LT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/lin_tech.lib
+      sha256: ecf83f07a8bd4c59f1b672a6af78483039b75f982c54349f9eca7641007da6d9
+  - source: ltwiki
+    name: LT1001A/LT
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/lin_tech.lib
+      sha256: c9cfd53f29fe02a95b03ffef81e14fb60e113d71f019d165db9de905746f6345
+  - source: microcap12
+    name: LT1001A_LT
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: linear.lib
+      sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
 - source: bordodynov
   name: LT1001S8
   def: subckt
@@ -81,7 +245,19 @@ models:
     lines:
       LT1001: [3921, 3955]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: bordodynov
+    name: LT1001
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: kicad-spice-library
+    name: LT1001
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Texas%20Instruments/lt1001.mod
+      sha256: 33402ec691358d6805bb060445fd4a2257e3b33ff55cc3616277d6f7091e5a7e
 - source: ltwiki
   name: LT1001S8
   def: subckt
@@ -125,3 +301,113 @@ models:
       LT1001A: [637, 679]
     fetched: '2026-09-14'
   note: pins from DIP-8 pin numbers (single op-amp pin-out)
+  copies:
+  - source: ltwiki
+    name: LT1001A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Symbol Types For Subcircuits/ltcx_test1.lib
+      sha256: 5ca7b948e6a0217e51b78d49213e5d5720bf26d849d52a60584fedd5e133c1ce
+  - source: ltwiki
+    name: LT1001A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Symbol Types For Subcircuits/ltcx_test1.lib
+      sha256: 5ca7b948e6a0217e51b78d49213e5d5720bf26d849d52a60584fedd5e133c1ce
+- source: spice-model-cd
+  name: LT1001
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DM1
+  - DM2
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/Ltc-spice-collection.lib
+    sha256: eae1fee2fa8143907eba7c718c30c3e9a912814c4cbbeecad8984874a31ab269
+    lines:
+      DM1: [7066, 7066]
+      DM2: [7068, 7068]
+      LT1001: [1800, 1842]
+    fetched: '2026-09-21'
+  copies:
+  - source: spice-model-cd
+    name: LT1001
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/Ltc.lib
+      sha256: eae1fee2fa8143907eba7c718c30c3e9a912814c4cbbeecad8984874a31ab269
+- source: spice-model-cd
+  name: LT1001A
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DM1
+  - DM2
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/Ltc-spice-collection.lib
+    sha256: eae1fee2fa8143907eba7c718c30c3e9a912814c4cbbeecad8984874a31ab269
+    lines:
+      DM1: [7066, 7066]
+      DM2: [7068, 7068]
+      LT1001A: [1854, 1896]
+    fetched: '2026-09-21'
+  copies:
+  - source: spice-model-cd
+    name: LT1001A
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/Ltc.lib
+      sha256: eae1fee2fa8143907eba7c718c30c3e9a912814c4cbbeecad8984874a31ab269
+- source: microcap12
+  name: LT1001_TI
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ti.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+    lines:
+      LT1001_TI: [4041, 4075]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: LT1001_TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+      sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+- source: kicad-spice-library
+  name: LT1001
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/RF.LIB
+    sha256: 1dbe17939b9daf9678c0911dc71fa26a5cc6d8e402dac29efb74990ebbb63834
+    lines:
+      LT1001: [257, 271]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: LT1001AL
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/OPLTC.LIB
+    sha256: 0bb0c1e2ab47a36f3cc696d94f2944cb645528b29ffce4720f52863baacfc0d1
+    lines:
+      LT1001AL: [3441, 3483]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: LT1001L
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/OPLTC.LIB
+    sha256: 0bb0c1e2ab47a36f3cc696d94f2944cb645528b29ffce4720f52863baacfc0d1
+    lines:
+      LT1001L: [3707, 3749]
+    fetched: '2026-09-14'

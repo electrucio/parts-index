@@ -24,7 +24,23 @@ models:
     lines:
       AD623: [31, 216]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: adi
+    name: AD623
+    get:
+      url: https://www.analog.com/media/en/simulation-models/spice-models/ad623.cir
+      sha256: 62fa9eb32f31bb53517e4cd5908a93487e00cb6b2e4998c4b847a339641fae85
+  - source: kicad-spice-library
+    name: AD623
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/ad623.cir
+      sha256: 2300b3c9f2e2a62b0c7fc08871bb68f97f79b223e6bf09d93d2dd92528a23334
+  - source: ltwiki
+    name: AD623
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/ad623.cir
+      sha256: 2300b3c9f2e2a62b0c7fc08871bb68f97f79b223e6bf09d93d2dd92528a23334
 - source: kicad-spice-library
   name: AD623_AD
   def: subckt
@@ -49,3 +65,21 @@ models:
       dx: [72212, 72212]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: AD623_AD
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: analog.lib
+      sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+- source: spice-model-cd
+  name: AD623/AD
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Analog%20Devices_Spice_Files/OpAmps/Spice/anlg_dev.lib
+    sha256: 6ab38357b65b81a3e4b75284dac1bed7e893f4ee465f998763fd9b4d3ecd4af3
+    lines:
+      AD623/AD: [6356, 6539]
+    fetched: '2026-09-21'

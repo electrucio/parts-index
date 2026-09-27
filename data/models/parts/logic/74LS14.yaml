@@ -18,6 +18,13 @@ models:
       74LS14: [2397, 2407]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: 74LS14
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: dig000.lib
+      sha256: e16fc85bebf1d2fc6da7b1994359ed7612a26b6f553d24748826327924413fa2
 - source: kicad-spice-library
   name: 74LS14
   def: subckt
@@ -33,3 +40,17 @@ models:
       74LS14: [236, 246]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: ltwiki
+  name: 74LS14
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D_LS14
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/74ls.lib
+    sha256: 1a3fc139003ba53119805e469c8c7d464ec28fab6ab216986e6ed79e137bdb4b
+    lines:
+      74LS14: [249, 258]
+      D_LS14: [260, 263]
+    fetched: '2026-09-21'

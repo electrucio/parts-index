@@ -20,7 +20,50 @@ models:
     lines:
       irl540ns: [1, 56]
     fetched: '2026-09-19'
-  note: 'same code also in: bordodynov, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: irl540ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irl540ns.spi
+      sha256: 36af99ed392e17282a0878c13042b37143676c2582bda42956f11cfcc9825ce8
+  - source: bordodynov
+    name: irl540ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irl540ns.spi
+      sha256: 36af99ed392e17282a0878c13042b37143676c2582bda42956f11cfcc9825ce8
+  - source: infineon
+    name: irl540ns
+    get:
+      member: irl540ns.spi
+      how: unknown
+      sha256: 36af99ed392e17282a0878c13042b37143676c2582bda42956f11cfcc9825ce8
+  - source: ltwiki
+    name: irl540ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irl540ns.spi
+      sha256: 36af99ed392e17282a0878c13042b37143676c2582bda42956f11cfcc9825ce8
+  - source: ltwiki
+    name: irl540ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irl540ns.spi
+      sha256: 36af99ed392e17282a0878c13042b37143676c2582bda42956f11cfcc9825ce8
+  - source: ltwiki
+    name: irl540ns
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irl540ns.spi
+      sha256: 36af99ed392e17282a0878c13042b37143676c2582bda42956f11cfcc9825ce8
+  - source: microcap12
+    name: irl540ns
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
 - source: bordodynov
   name: irl540
   def: subckt
@@ -53,7 +96,34 @@ models:
     lines:
       IRL540N: [1168, 1168]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: IRL540N
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: ltwiki
+    name: IRL540N
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: IRL540N
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: IRL540N
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: IRL540N
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: bordodynov
   name: IRL540
   def: model
@@ -102,3 +172,14 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: found under the alias IRL540; pins from default order (unverified)
+- source: spice-model-cd
+  name: IRL540N
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/MOSFET.LB
+    sha256: 9287b7f0b7ae8ab0fa02300dfe2bdbf54cd76d2720f610592fdc5fcb2528d29b
+    lines:
+      IRL540N: [1066, 1073]
+    fetched: '2026-09-21'

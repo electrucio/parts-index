@@ -20,4 +20,33 @@ models:
       BS270: [3, 48]
     fetched: '2026-09-19'
     note: 'BS270.mod: BS270, DMOS, DDS, DBODY, INTER, DGD …'
-  note: 'same code also in: bordodynov, ltwiki'
+  copies:
+  - source: bordodynov
+    name: BS270
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ValVol/Fairchild/MOSFET/BS270.mod
+      sha256: 2d9a0ac255b67e884bd0d16565bca12c1e1a913cf067f46e60790249149cf1a0
+  - source: ltwiki
+    name: BS270
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/Fairchild/MOSFET/BS270.mod
+      sha256: 2d9a0ac255b67e884bd0d16565bca12c1e1a913cf067f46e60790249149cf1a0
+- source: microcap12
+  name: BS270
+  def: subckt
+  type: SUBCKT
+  deps:
+  - nmos
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      BS270: [13155, 13200]
+      nmos: [161508, 161508]
+    fetched: '2026-09-20'

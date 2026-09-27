@@ -1,0 +1,65 @@
+part: BD240
+kind: bjt
+priority: 3
+group: listed
+models:
+- source: microcap12
+  name: BD240
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: mpbjt.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 809a83e6faeda5c9408c63742c5b83c822ce0dfb08886e6178b44281a94ac21b
+    lines:
+      BD240: [2978, 2983]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: BD240A
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: mpbjt.lib
+      sha256: 809a83e6faeda5c9408c63742c5b83c822ce0dfb08886e6178b44281a94ac21b
+  - source: microcap12
+    name: BD240B
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: mpbjt.lib
+      sha256: 809a83e6faeda5c9408c63742c5b83c822ce0dfb08886e6178b44281a94ac21b
+  - source: microcap12
+    name: BD240C
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: mpbjt.lib
+      sha256: 809a83e6faeda5c9408c63742c5b83c822ce0dfb08886e6178b44281a94ac21b
+- source: ltwiki
+  name: BD240
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrbjt.lib
+    sha256: 30a0b2113b846773bf8dc3f872c0edaed5312f72b3907f053aaba5badf6b8034
+    lines:
+      BD240: [7030, 7034]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: BD240A
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrbjt.lib
+      sha256: 30a0b2113b846773bf8dc3f872c0edaed5312f72b3907f053aaba5badf6b8034
+  - source: ltwiki
+    name: BD240B
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrbjt.lib
+      sha256: 30a0b2113b846773bf8dc3f872c0edaed5312f72b3907f053aaba5badf6b8034
+  - source: ltwiki
+    name: BD240C
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrbjt.lib
+      sha256: 30a0b2113b846773bf8dc3f872c0edaed5312f72b3907f053aaba5badf6b8034

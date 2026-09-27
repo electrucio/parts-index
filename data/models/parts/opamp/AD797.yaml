@@ -35,7 +35,47 @@ models:
     not_measurable: 16
     typical_rows: 0
   symbol: AD797_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: adi
+    name: AD797
+    get:
+      url: https://www.analog.com/media/en/simulation-models/spice-models/ad797.cir
+      sha256: 167b9f33574a367e35406532da7d2b0fc1b221a61e618034eb656d39414eebff
+  - source: kicad-spice-library
+    name: AD797
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/ad797.sub
+      sha256: edd24a5262c76adce65b63f1bccc2dba502d6c0cc27363ada5d8d5bc1776faff
+  - source: ltwiki
+    name: AD797
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/ad797.sub
+      sha256: edd24a5262c76adce65b63f1bccc2dba502d6c0cc27363ada5d8d5bc1776faff
+  - source: ltwiki
+    name: AD797
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/ad797/ad797.cir
+      sha256: edd24a5262c76adce65b63f1bccc2dba502d6c0cc27363ada5d8d5bc1776faff
+  - source: ltwiki
+    name: AD797
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/ad797.sub
+      sha256: edd24a5262c76adce65b63f1bccc2dba502d6c0cc27363ada5d8d5bc1776faff
+  - source: ltwiki
+    name: AD797
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/AD/ad797.cir
+      sha256: edd24a5262c76adce65b63f1bccc2dba502d6c0cc27363ada5d8d5bc1776faff
+  - source: ltwiki
+    name: AD797
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/ad797/ad797.cir
+      sha256: edd24a5262c76adce65b63f1bccc2dba502d6c0cc27363ada5d8d5bc1776faff
 - source: ltwiki
   name: AD797A
   def: subckt
@@ -64,6 +104,13 @@ models:
     not_measurable: 16
     typical_rows: 0
   symbol: AD797_ltwiki.asy
+  copies:
+  - source: ltwiki
+    name: AD797S
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/AD/ad797s.cir
+      sha256: bda0830f68c7bae424ca7a2c36f01a39afc28ec8cdd485d48507c5b7110997b5
 - source: ltwiki
   name: AD797B
   def: subckt
@@ -177,6 +224,179 @@ models:
     not_measurable: 16
     typical_rows: 0
   symbol: AD797_kicad-spice-library-2.asy
+  copies:
+  - source: microcap12
+    name: AD797_AD
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: analog.lib
+      sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+- source: spice-model-cd
+  name: AD797A/AD
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Analog%20Devices_Spice_Files/OpAmps/Spice/anlg_dev.lib
+    sha256: 6ab38357b65b81a3e4b75284dac1bed7e893f4ee465f998763fd9b4d3ecd4af3
+    lines:
+      AD797A/AD: [18727, 18868]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: AD797A/AD
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/anlg_dev.lib
+      sha256: 505283370bc2c5b5cb15401e3a43d58793d1598e62e1b422bb333be402ada1b9
+  - source: ltwiki
+    name: AD797A/AD
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/anlg_dev.lib
+      sha256: d35db6d0ae84971c8fbeea5cf543df725be973dce3bb9a4e9d881b1bf8f519ec
+  - source: kicad-spice-library
+    name: AD797S/AD
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/anlg_dev.lib
+      sha256: 505283370bc2c5b5cb15401e3a43d58793d1598e62e1b422bb333be402ada1b9
+  - source: ltwiki
+    name: AD797S/AD
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/anlg_dev.lib
+      sha256: d35db6d0ae84971c8fbeea5cf543df725be973dce3bb9a4e9d881b1bf8f519ec
+  - source: spice-model-cd
+    name: AD797S/AD
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Analog%20Devices_Spice_Files/OpAmps/Spice/anlg_dev.lib
+      sha256: 6ab38357b65b81a3e4b75284dac1bed7e893f4ee465f998763fd9b4d3ecd4af3
+- source: spice-model-cd
+  name: AD797/AD
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Analog%20Devices_Spice_Files/OpAmps/Spice/anlg_dev.lib
+    sha256: 6ab38357b65b81a3e4b75284dac1bed7e893f4ee465f998763fd9b4d3ecd4af3
+    lines:
+      AD797/AD: [18563, 18704]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: AD797/AD
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/anlg_dev.lib
+      sha256: 505283370bc2c5b5cb15401e3a43d58793d1598e62e1b422bb333be402ada1b9
+  - source: ltwiki
+    name: AD797/AD
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/anlg_dev.lib
+      sha256: d35db6d0ae84971c8fbeea5cf543df725be973dce3bb9a4e9d881b1bf8f519ec
+- source: spice-model-cd
+  name: AD797B/AD
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Analog%20Devices_Spice_Files/OpAmps/Spice/anlg_dev.lib
+    sha256: 6ab38357b65b81a3e4b75284dac1bed7e893f4ee465f998763fd9b4d3ecd4af3
+    lines:
+      AD797B/AD: [18891, 19032]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: AD797B/AD
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/anlg_dev.lib
+      sha256: 505283370bc2c5b5cb15401e3a43d58793d1598e62e1b422bb333be402ada1b9
+  - source: ltwiki
+    name: AD797B/AD
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/anlg_dev.lib
+      sha256: d35db6d0ae84971c8fbeea5cf543df725be973dce3bb9a4e9d881b1bf8f519ec
+- source: microcap12
+  name: AD797A_AD
+  def: subckt
+  type: SUBCKT
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: analog.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+    lines:
+      AD797A_AD: [17504, 17645]
+      dx: [77076, 77076]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: AD797A_AD
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+      sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+  - source: kicad-spice-library
+    name: AD797S_AD
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+      sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+  - source: microcap12
+    name: AD797S_AD
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: analog.lib
+      sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+- source: microcap12
+  name: AD797B_AD
+  def: subckt
+  type: SUBCKT
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: analog.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+    lines:
+      AD797B_AD: [17667, 17808]
+      dx: [77076, 77076]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: AD797B_AD
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+      sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+- source: kicad-spice-library
+  name: AD797A
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/AD4A.LIB
+    sha256: 2e0cebf7aaf8debe59afc1ead869b6b82d5b198fe0a2202b8615551773615e55
+    lines:
+      AD797A: [559, 700]
+    fetched: '2026-09-14'
+  copies:
+  - source: kicad-spice-library
+    name: AD797S
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/AD4A.LIB
+      sha256: 2e0cebf7aaf8debe59afc1ead869b6b82d5b198fe0a2202b8615551773615e55
+- source: kicad-spice-library
+  name: AD797B
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/AD4A.LIB
+    sha256: 2e0cebf7aaf8debe59afc1ead869b6b82d5b198fe0a2202b8615551773615e55
+    lines:
+      AD797B: [714, 855]
+    fetched: '2026-09-14'
 datasheet:
   url: https://www.analog.com/media/en/technical-documentation/data-sheets/ad797.pdf
   maker: Analog Devices

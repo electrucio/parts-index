@@ -1,0 +1,27 @@
+part: 2N2924
+kind: bjt
+priority: 2
+group: listed
+models:
+- source: spice-model-cd
+  name: 2N2924
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Fairchild/2N/2N2924.t
+    sha256: 4ff695b88696f723b3e8fd5a8d8656ce0d28c2dc020d5e58ff91a1f51afddf60
+    lines:
+      2N2924: [1, 4]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: Q2N2924
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/bipolar.lib
+    sha256: c5e0e8839925adb5e550a6654a8d5d1c0634a0fd0f58e03c9701e24d9aa08b5b
+    lines:
+      Q2N2924: [4692, 4695]
+    fetched: '2026-09-21'

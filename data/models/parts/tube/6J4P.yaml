@@ -20,7 +20,14 @@ models:
     lines:
       6J4P_T: [2084, 2099]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki; pins from inline comment'
+  note: pins from inline comment
+  copies:
+  - source: ltwiki
+    name: 6J4P_T
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/Tubes/Tube_IM.lib
+      sha256: 8eed72dbd55b52f5eb6004bcaacd3d88c79e3e3df9ef28462570c887a70e0d00
 - source: ltwiki
   name: 6J4PP
   def: subckt
@@ -40,6 +47,25 @@ models:
       6J4PP: [4007, 4024]
     fetched: '2026-09-14'
   note: pins from names
+  copies:
+  - source: bordodynov
+    name: 6J4PP
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Triode_Ayumi.lib
+      sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+  - source: bordodynov
+    name: 6J4PP
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Pentode_Ayumi.lib
+      sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
+  - source: ltwiki
+    name: 6J4PP
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Pentode_Ayumi.lib
+      sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
 - source: ltwiki
   name: 6J4PT
   def: subckt
@@ -58,3 +84,10 @@ models:
       6J4PT: [4033, 4045]
     fetched: '2026-09-14'
   note: pins from names
+  copies:
+  - source: bordodynov
+    name: 6J4PT
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Triode_Ayumi.lib
+      sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97

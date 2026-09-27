@@ -35,7 +35,10 @@ from parts_index.core.config import (
     model_symbol,
     require,
     spice_curated,
+    spice_found,
+    spice_models_root,
 )
+from parts_index.models import found as F
 from parts_index.models.fetch import archive_for, source_files
 
 
@@ -46,7 +49,7 @@ class Flow(list):
 yaml.SafeDumper.add_representer(
     Flow, lambda d, data: d.represent_sequence("tag:yaml.org,2002:seq", data, flow_style=True))
 
-VERSION = "promote_models-1"
+VERSION = "promote_models-2"
 # `preferred_why` was written for the maintainer and ends by naming the tool that decided. That file is
 # not published, so the sentence keeps its reasoning and loses the reference.
 TOOL_REF = re.compile(r"\s*\((?:tools/)?[\w/]+\.py\)\s*$")
@@ -267,6 +270,100 @@ def write(path: Path, doc: dict) -> int:
     return len(text.encode("utf-8"))
 
 
+# --- what the catalogue holds beyond the curation ------------------------------------------------------
+# The old curation's own sentence for what `copies` now lists with a link each.
+SAME_CODE = re.compile(r";?\s*same code also in: [^;]*")
+
+
+def found_models() -> dict:
+    """`pidx models found`: every distinct model per part, with its copies. Empty when it has not run."""
+    p = spice_found()
+    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+
+
+def curated_hash(c: dict, files: F.Files) -> str | None:
+    """The identity `pidx models found` gives this curated model, read from the file it was taken from."""
+    file = (c.get("provenance") or {}).get("file") or ""
+    if not file.startswith("sources/"):
+        return None
+    try:
+        chain = F.closure(files.get(file)[0], c.get("name", ""))
+    except OSError:
+        return None
+    return F.code_hash(chain) if chain else None
+
+
+# A copy is a pointer to the same bytes elsewhere: where to get them and the checksum that proves it is
+# them. The line ranges and fetch dates are on the model itself; repeated for every copy they made the
+# recipes four times larger for nothing a reader follows.
+COPY_GET = ("url", "member", "installed_with", "file", "how", "sha256")
+
+
+def copy_entry(x: dict) -> dict:
+    """Another source holding the same model: who, under which name, and how to get it from there."""
+    get = get_block(x.get("provenance") or {})
+    return {"source": x["source"], "name": x["name"], "get": {k: get[k] for k in COPY_GET if get.get(k)}}
+
+
+def match_note(part: str, how: str) -> str:
+    """What the part page must say about a model found under a name other than the part's own."""
+    if how.startswith("stand-in:"):
+        return (f"STAND-IN: model of {how[9:].split('/')[0]}, not of {part}; the equivalence is declared "
+                f"in data/models/wanted.yaml")
+    if how.startswith("alias:"):
+        return f"found under the alias {how[6:].split('/')[0]}"
+    return ""
+
+
+def uncurated(part: str, m: dict) -> dict:
+    """A model the catalogue holds for this part and the curation never judged."""
+    out: dict = {"source": m["source"], "name": m["name"], "def": m["def"]}
+    if m.get("type"):
+        out["type"] = m["type"]
+    if m.get("deps"):
+        out["deps"] = list(m["deps"])
+    out["verbatim"] = True
+    out["get"] = get_block(m.get("provenance") or {})
+    note = match_note(part, m.get("match", ""))
+    if note:
+        out["note"] = note
+    if m.get("copies"):
+        out["copies"] = [copy_entry(x) for x in m["copies"]]
+    return out
+
+
+def join_found(doc: dict, data: dict, entry: dict, files: F.Files) -> int:
+    """Add to a recipe what the catalogue holds beyond its curated models. Returns how many were added.
+
+    A curated model the catalogue also holds elsewhere gains those copies, each with its own link — the
+    file a collection copied is often the vendor's original, and it is the one a reader should be sent to.
+    A model no curated one matches is appended, unjudged: the page shows it as not measured.
+    """
+    hashes = {}
+    for i, c in enumerate(data.get("candidates") or []):
+        h = curated_hash(c, files)
+        if h:
+            hashes.setdefault(h, i)
+    added = 0
+    for m in entry.get("models") or []:
+        i = hashes.get(m["hash"])
+        if i is None:
+            doc["models"].append(uncurated(doc["part"], m))
+            added += 1
+            continue
+        own = (data["candidates"][i].get("provenance") or {}).get("file")
+        others = [dict(m, file=m["provenance"].get("file"))] + list(m.get("copies") or [])
+        copies = [copy_entry(x) for x in others if x.get("file") != own]
+        if copies:
+            model = doc["models"][i]
+            model["copies"] = copies
+            if model.get("note"):
+                model["note"] = SAME_CODE.sub("", model["note"]).strip("; ")
+                if not model["note"]:
+                    del model["note"]
+    return added
+
+
 def known_sources() -> set[str]:
     return {p.stem for p in model_sources().glob("*.yaml")}
 
@@ -274,9 +371,35 @@ def known_sources() -> set[str]:
 def promote(only: str | None = None, dry: bool = False) -> dict:
     root = require(spice_curated(), "promoting the curated models")
     known = known_sources()
+    found = found_models()
+    files = F.Files(spice_models_root())
     counts = {"parts": 0, "models": 0, "verified": 0, "with_datasheet": 0, "bytes": 0,
-              "symbols": 0, "orphan_symbols": 0, "unknown_sources": 0}
+              "symbols": 0, "orphan_symbols": 0, "unknown_sources": 0, "uncurated_parts": 0,
+              "uncurated_models": 0, "with_copies": 0}
     unknown: set[str] = set()
+
+    def publish(doc: dict, part_dir: Path | None) -> None:
+        kept = {m["symbol"] for m in doc["models"] if m.get("symbol")}
+        counts["symbols"] += len(kept)
+        if part_dir is not None:
+            counts["orphan_symbols"] += len(list(part_dir.glob("*.asy"))) - len(kept)
+            if not dry:
+                for name in sorted(kept):
+                    target = model_symbol(doc["kind"], doc["part"], name)
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    target.write_bytes((part_dir / name).read_bytes())
+        counts["parts"] += 1
+        counts["models"] += len(doc["models"])
+        counts["verified"] += sum(1 for m in doc["models"] if m.get("verification"))
+        counts["with_copies"] += sum(1 for m in doc["models"] if m.get("copies"))
+        counts["with_datasheet"] += 1 if doc.get("datasheet") else 0
+        for m in doc["models"]:
+            if m["source"] not in known:
+                unknown.add(m["source"])
+        if not dry:
+            counts["bytes"] += write(model_part(doc["kind"], doc["part"]), doc)
+
+    curated: set[str] = set()
     for p in parts(root):
         data = json.loads(p.read_text(encoding="utf-8"))
         if only and data.get("kind") != only:
@@ -285,23 +408,23 @@ def promote(only: str | None = None, dry: bool = False) -> dict:
         doc = recipe(data, syms)
         if not doc["part"] or not doc["kind"]:
             continue
-        kept = {m["symbol"] for m in doc["models"] if m.get("symbol")}
-        counts["symbols"] += len(kept)
-        counts["orphan_symbols"] += len(list(p.parent.glob("*.asy"))) - len(kept)
-        if not dry:
-            for name in sorted(kept):
-                target = model_symbol(doc["kind"], doc["part"], name)
-                target.parent.mkdir(parents=True, exist_ok=True)
-                target.write_bytes((p.parent / name).read_bytes())
-        counts["parts"] += 1
-        counts["models"] += len(doc["models"])
-        counts["verified"] += sum(1 for m in doc["models"] if m.get("verification"))
-        counts["with_datasheet"] += 1 if doc.get("datasheet") else 0
-        for m in doc["models"]:
-            if m["source"] not in known:
-                unknown.add(m["source"])
-        if not dry:
-            counts["bytes"] += write(model_part(doc["kind"], doc["part"]), doc)
+        curated.add(doc["part"].upper())
+        counts["uncurated_models"] += join_found(doc, data, found.get(doc["part"]) or {}, files)
+        publish(doc, p.parent)
+    # Parts the curation never reached, with every model the catalogue holds for them. Found entries are
+    # keyed by the name the wanted list gives, which the curation may have spelt in another case.
+    for part, entry in sorted(found.items()):
+        if part.upper() in curated or not entry.get("models") or (only and entry["kind"] != only):
+            continue
+        doc = {"part": part, "kind": entry["kind"]}
+        if entry.get("priority"):
+            doc["priority"] = entry["priority"]
+        if entry.get("group"):
+            doc["group"] = entry["group"]
+        doc["models"] = [uncurated(part, m) for m in entry["models"]]
+        counts["uncurated_parts"] += 1
+        counts["uncurated_models"] += len(doc["models"])
+        publish(doc, None)
     kinds = change_kinds(root)
     counts["change_kinds"] = len(kinds)
     if kinds and not dry:
@@ -325,6 +448,8 @@ def main(argv=None) -> int:
     print(f"{counts['parts']:,} parts, {counts['models']:,} candidate models "
           f"({counts['verified']:,} scored against a datasheet, {counts['with_datasheet']:,} parts "
           f"with a datasheet link)" + (" — dry run" if a.dry else ""))
+    print(f"{counts['uncurated_models']:,} models the curation never judged, {counts['uncurated_parts']:,} of "
+          f"them for parts it never reached; {counts['with_copies']:,} models list their copies elsewhere")
     print(f"{counts['change_kinds']} kinds of fixup, each with its reason, in {model_changes().name}")
     print(f"{counts['symbols']:,} LTspice symbols published"
           + (f", {counts['orphan_symbols']:,} left behind for candidates the curation dropped"

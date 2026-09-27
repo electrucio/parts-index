@@ -90,7 +90,25 @@ models:
     lines:
       LM311: [112, 136]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: LM311
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Occomp.lib
+      sha256: d4e98ddcd8fabe3cd892bb2be1e2447639c10f9f8759ce47b8b5c101a6999049
+  - source: bordodynov
+    name: LM311/UK
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/unknown.lib
+      sha256: 7e231c76416356a5e6557f8ffe95eceaddd400f54eccfd0e4b67831c7c182008
+  - source: ltwiki
+    name: LM311/UK
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/unknown.lib
+      sha256: 7e231c76416356a5e6557f8ffe95eceaddd400f54eccfd0e4b67831c7c182008
 - source: bordodynov
   name: LM311/UK
   def: subckt
@@ -132,7 +150,13 @@ models:
     lines:
       LM311/TI: [11, 35]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: LM311/TI
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/ti_models.lib
+      sha256: 91cd41205c65eb69c8d88ac91cb6c5678c6bedc408aaafc9b8d047f2c3c02d60
 - source: ltwiki
   name: LM311
   def: subckt
@@ -153,7 +177,46 @@ models:
     lines:
       LM311: [61, 82]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: ltwiki
+    name: LM311
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+      sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+  - source: kicad-spice-library
+    name: LM311
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Occomp.lib
+      sha256: 43034148edb87c8b5281df8a394fb79962ff67147f9fba6349b2fcbb8346e17f
+  - source: ltwiki
+    name: LM311
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Occomp.lib
+      sha256: 43034148edb87c8b5281df8a394fb79962ff67147f9fba6349b2fcbb8346e17f
+  - source: ltwiki
+    name: LM311
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Compara/lm311/lm311.301
+      sha256: 5d708ece3ee4df737e17f0e78e89ff186dae4ee563d305b6ea66b763102ad831
+  - source: ltwiki
+    name: LM311
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Compara/lm311/lm311.301
+      sha256: 5d708ece3ee4df737e17f0e78e89ff186dae4ee563d305b6ea66b763102ad831
+  - source: kicad-spice-library
+    name: LM311/UK
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/unknown.lib
+      sha256: d782a7e6e0a014e119008ecb20e640b104c9396f4d2ca90b3c29505aabe8ff46
+  - source: ltwiki
+    name: LM311/UK
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/unknown.lib
+      sha256: d782a7e6e0a014e119008ecb20e640b104c9396f4d2ca90b3c29505aabe8ff46
 - source: ltwiki
   name: LM311/UK
   def: subckt
@@ -175,3 +238,132 @@ models:
       LM311/UK: [41, 62]
     fetched: '2026-09-14'
   note: 'same code also in: kicad-spice-library'
+- source: ti
+  name: LM311
+  def: subckt
+  type: SUBCKT
+  deps:
+  - Top_Level_S2
+  - VINRANGE_393
+  - 4ORGATE
+  - INPUTRANGE
+  - Prop_Delay
+  - VCC_Range
+  - Difference
+  - ORGATE
+  - Supply_Enable
+  - Top_Level_S1
+  - SUPPLY_BUFFER1
+  - Input_Buffer
+  - Output_Stage_SVOL
+  - ANDGATE
+  - INVERTER
+  - MID_SUPPLY
+  - Output_Stage_H1
+  - DIGLEVSHIFT
+  - Output_Stage_SHIZ
+  - Output_Stage_SMID
+  - Output_Stage
+  - Supply_Buffer
+  - HPA_COMPHYS
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLCM011
+    member: lm311.lib
+    archive_sha256: ebcedff925d15dde13fa8b2f8ff37964605ed1fde26fa2d0a08a041aadf7242b
+    sha256: 3de567b27649784e7909b085bf1a8f2b892e353f8cfabd9c5a0413efefba693e
+    lines:
+      4ORGATE: [356, 359]
+      ANDGATE: [171, 175]
+      DIGLEVSHIFT: [186, 192]
+      Difference: [259, 263]
+      HPA_COMPHYS: [177, 184]
+      INPUTRANGE: [118, 128]
+      INVERTER: [227, 230]
+      Input_Buffer: [70, 72]
+      LM311: [44, 68]
+      MID_SUPPLY: [232, 235]
+      ORGATE: [237, 241]
+      Output_Stage: [90, 116]
+      Output_Stage_H1: [166, 169]
+      Output_Stage_SHIZ: [154, 158]
+      Output_Stage_SMID: [148, 152]
+      Output_Stage_SVOL: [160, 164]
+      Prop_Delay: [130, 134]
+      SUPPLY_BUFFER1: [265, 268]
+      Supply_Buffer: [86, 88]
+      Supply_Enable: [74, 84]
+      Top_Level_S1: [136, 140]
+      Top_Level_S2: [142, 146]
+      VCC_Range: [270, 274]
+      VINRANGE_393: [276, 280]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: LM311_TI
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ti.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+    lines:
+      LM311_TI: [1518, 1539]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: LM311/TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/ti_models.lib
+      sha256: 79e148c879b17ad4479d794456a0f79f687a87ca85e4f1505d9242f964a3c871
+  - source: kicad-spice-library
+    name: LM311_TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+      sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+  - source: ltwiki
+    name: LM311/TI
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/ti_models.lib
+      sha256: 79e148c879b17ad4479d794456a0f79f687a87ca85e4f1505d9242f964a3c871
+  - source: kicad-spice-library
+    name: LM311T
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TICOMP.LIB
+      sha256: d4980b8365b4590602ff9cca722294b2ec0125e2ef169e5a6a66dab2a6411001
+- source: kicad-spice-library
+  name: LM311
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      LM311: [1506, 1527]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: LM311
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/COMPARE.LIB
+    sha256: 79c636906dd36f814e899aa36bb7934d45720275ed2da76b6eee74613c304cdf
+    lines:
+      LM311: [45, 78]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: LM311S
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/SGS.LIB
+    sha256: 9dca4e312e997d808a21cfa05a667948fe085291fa3433406b85d9d7e53a4832
+    lines:
+      LM311S: [199, 241]
+    fetched: '2026-09-14'

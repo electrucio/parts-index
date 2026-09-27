@@ -20,7 +20,18 @@ models:
     lines:
       Vtl5c2: [1, 20]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: Vtl5c2
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Vtl5c2.sub
+      sha256: 731bbb43758ba649dcea5417e99f53c72f2d4fee5d085f6f42890ed5526a40d0
+  - source: ltwiki
+    name: Vtl5c2
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Vtl5c2.sub
+      sha256: 731bbb43758ba649dcea5417e99f53c72f2d4fee5d085f6f42890ed5526a40d0
 - source: ltwiki
   name: Vtl5c2_A
   def: subckt

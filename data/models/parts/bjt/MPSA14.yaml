@@ -26,6 +26,17 @@ models:
     fail: 3
     not_measurable: 0
     typical_rows: 0
+- source: ltwiki
+  name: MPSA14
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/darlngtn.lib
+    sha256: 0de1690195b5e2d9dcb42c94c568925f18290582a58ea2de9f625028125725c6
+    lines:
+      MPSA14: [1617, 1647]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/mpsa13-d.pdf
   maker: onsemi

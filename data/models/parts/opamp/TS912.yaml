@@ -21,7 +21,31 @@ models:
     lines:
       TS912: [1346, 1405]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+  note: pins from numbered connections table
+  copies:
+  - source: stmicro
+    name: TS912
+    get:
+      url: https://www.st.com/resource/en/spice_model/ts912_spice.zip
+      member: ts912_spice.txt
+      sha256: b54918461d7d322699084b8aae70af9f1523443808e194da654e4ff960ad720e
+  - source: kicad-spice-library
+    name: TS912
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_ST.lib
+      sha256: d90f4c4fd1a82f698bcdd91bde8be169c258e283648fef8a669e0d1ced09e50a
+  - source: ltwiki
+    name: TS912
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_ST.lib
+      sha256: d90f4c4fd1a82f698bcdd91bde8be169c258e283648fef8a669e0d1ced09e50a
+  - source: ltwiki
+    name: TS912
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/Op Amps/ts912.lib
+      sha256: b54918461d7d322699084b8aae70af9f1523443808e194da654e4ff960ad720e
 - source: kicad-spice-library
   name: TS912S
   def: subckt
@@ -60,3 +84,21 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from numbered connections table
+  copies:
+  - source: microcap12
+    name: TS912_ST
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: stmicro.lib
+      sha256: 8b10b5822cbfd368b6a77b5f8ab8c41c191aef0d5459ab81e192ea85054beec6
+- source: spice-model-cd
+  name: TS912
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/STMicroelectronics/Standard%20Linear%20ICs/Spice/ts912.txt
+    sha256: b8a5c97615d9bf9aeea2bb5a6f0f0db4e54ede614b5f72ba8aa45aef395b518c
+    lines:
+      TS912: [25, 84]
+    fetched: '2026-09-21'

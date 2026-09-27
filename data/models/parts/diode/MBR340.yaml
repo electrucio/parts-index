@@ -15,3 +15,178 @@ models:
       mbr340_ON: [4158, 4172]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: spice-model-cd
+    name: mbr340
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Motorola/Spice/Rectifier/Schottky/MBR340.LIB
+      sha256: 4cdc0b80b3c8f0bdf20ac05572f4f7e620a229a5b3ecef4e5b9bd99159064300
+  - source: microcap12
+    name: mbr340_ON
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: onsemi.lib
+      sha256: 9db393d63d35620960bb85f1f09b73f52ed86bf361fa71ecb8c69cb7bae90764
+- source: onsemi
+  name: MBR340
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/zip/ncv8870%20pspice%20small-signal%20model%20(modeling%20example%20included).zip
+    member: NCV887x_WEB MODEL rev2/diode.lib
+    archive_sha256: 09d9ad961729090a1471436c772b81bf4e90a466232d3d95c0a60fb42540dd5a
+    sha256: 1b6bc4e709a10348038d31d87ab7ce09b41f2043bd734d4561b814a97c853e52
+    lines:
+      MBR340: [22233, 22234]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: MBR340
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/diode.lib
+      sha256: 3312e896de50ad3b983aacc61fb142ca5ef79f0824d6bc9427974e94d4c93c7a
+  - source: microcap12
+    name: MBR340
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: onsemi
+    name: MBR340
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncv8871%20pspice%20small-signal%20model%20(modeling%20examples%20included).zip
+      member: NCV887x_WEB MODEL rev2/diode.lib
+      sha256: 1b6bc4e709a10348038d31d87ab7ce09b41f2043bd734d4561b814a97c853e52
+- source: onsemi
+  name: MBR340M
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/zip/ncv8870%20pspice%20small-signal%20model%20(modeling%20example%20included).zip
+    member: NCV887x_WEB MODEL rev2/diode.lib
+    archive_sha256: 09d9ad961729090a1471436c772b81bf4e90a466232d3d95c0a60fb42540dd5a
+    sha256: 1b6bc4e709a10348038d31d87ab7ce09b41f2043bd734d4561b814a97c853e52
+    lines:
+      MBR340M: [22238, 22239]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: MBR340M
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/diode.lib
+      sha256: 3312e896de50ad3b983aacc61fb142ca5ef79f0824d6bc9427974e94d4c93c7a
+  - source: microcap12
+    name: MBR340M
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: onsemi
+    name: MBR340M
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncv8871%20pspice%20small-signal%20model%20(modeling%20examples%20included).zip
+      member: NCV887x_WEB MODEL rev2/diode.lib
+      sha256: 1b6bc4e709a10348038d31d87ab7ce09b41f2043bd734d4561b814a97c853e52
+- source: onsemi
+  name: MBR340P
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/zip/ncv8870%20pspice%20small-signal%20model%20(modeling%20example%20included).zip
+    member: NCV887x_WEB MODEL rev2/diode.lib
+    archive_sha256: 09d9ad961729090a1471436c772b81bf4e90a466232d3d95c0a60fb42540dd5a
+    sha256: 1b6bc4e709a10348038d31d87ab7ce09b41f2043bd734d4561b814a97c853e52
+    lines:
+      MBR340P: [22243, 22244]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: MBR340P
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/diode.lib
+      sha256: 3312e896de50ad3b983aacc61fb142ca5ef79f0824d6bc9427974e94d4c93c7a
+  - source: microcap12
+    name: MBR340P
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: onsemi
+    name: MBR340P
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncv8871%20pspice%20small-signal%20model%20(modeling%20examples%20included).zip
+      member: NCV887x_WEB MODEL rev2/diode.lib
+      sha256: 1b6bc4e709a10348038d31d87ab7ce09b41f2043bd734d4561b814a97c853e52
+- source: onsemi
+  name: Dmbr340rl
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mur340rl.lib
+    sha256: 49dbe8e03a17d552e0c2b24e9a2e1e53616f2bc518baa9b66b78d91f40898998
+    lines:
+      Dmbr340rl: [12, 16]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: Dmbr340rl
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: mbr340rl
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_diode.lib
+      sha256: b22e1d5ee75d5fe192f4e75a25f3addd1671eb17659c3b2a8cb964cfc96d10bc
+  - source: onsemi
+    name: mbr340rl
+    get:
+      url: https://www.onsemi.com/download/models/sp3/mbr340rl.sp3
+      sha256: 9ce1518d7d1f6c050fd80a56617ae320311f93055c7e61c7e30fd9940aa3c40a
+- source: onsemi
+  name: MBR340
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/zip/ncp101x_orcad.zip
+    member: application.lib
+    archive_sha256: b3da9c86bc1c88acb93f742903c134013e2a6c5549863bf03be6f03e6f401e46
+    sha256: 6d62c098ddb50ce60fd5348a5b764a9018fd1522a2bf4dee60665517f06519a3
+    lines:
+      MBR340: [130, 131]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: MBR340
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: diode.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 4f07396942f9fa67d623899d6904636fa4a5be596d413ed863bc6e2b63a2e01d
+    lines:
+      MBR340: [481, 482]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: MBR340P
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: diode.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 4f07396942f9fa67d623899d6904636fa4a5be596d413ed863bc6e2b63a2e01d
+    lines:
+      MBR340P: [485, 486]
+    fetched: '2026-09-20'

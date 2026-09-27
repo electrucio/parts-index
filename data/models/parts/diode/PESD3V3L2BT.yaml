@@ -20,3 +20,28 @@ models:
     lines:
       PESD3V3L2BT: [2, 20]
     fetched: '2026-09-14'
+- source: nexperia
+  name: PESD3V3L2BT
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://assets.nexperia.com/documents/spice-model/PESD3V3L2BT.txt
+    sha256: 93079d0f45b7e6e1f7bb223097bf7d0bc0f7603b953897fdffd8777ffa8f32c6
+    lines:
+      PESD3V3L2BT: [32, 66]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: PESD3V3L2BT
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ph_diode.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: f9df24ec0c294f52c0b42dcb8aa86242c24d1c52b5df04656c47544b89fac977
+    lines:
+      PESD3V3L2BT: [2839, 2857]
+    fetched: '2026-09-20'

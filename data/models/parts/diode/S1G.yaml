@@ -27,3 +27,64 @@ models:
       S1G: [1286, 1296]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: S1G
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: gensemi.lib
+      sha256: a91e073b84759dcbe41d4ae51687287a413fc12865804565e488f747b57b3d6c
+- source: onsemi
+  name: S1GHE
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/s1ghe(pspice%20model).lib
+    sha256: 78f519407e7775f5ea7d34a75e211b5f321c584dc48e2960a276e2c28dd78ff1
+    lines:
+      S1GHE: [6, 10]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: S1GHE
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: vishay
+  name: s1g
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89821/s1g.txt
+    sha256: c43af72ae9a80ceb0df90466ae2ad2a072cc82a45be3b75d01793ede8b14e1aa
+    lines:
+      s1g: [7, 10]
+    fetched: '2026-09-19'
+- source: vishay
+  name: s1g
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/87317/_p_s1g.txt
+    sha256: a43a8826ae707edf3769ead5aecd7b0622541d37f07a3d8ff87da370398ee6be
+    lines:
+      s1g: [4, 7]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: S1GB
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      S1GB: [10562, 10563]
+    fetched: '2026-09-20'

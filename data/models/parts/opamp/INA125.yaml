@@ -38,3 +38,65 @@ models:
       INA125: [62, 122]
       REF_125E: [244, 289]
     fetched: '2026-09-19'
+- source: ti
+  name: INA125
+  def: subckt
+  type: SUBCKT
+  deps:
+  - REF_125E
+  - A1_125E
+  - A2_125E
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SBOM020
+    member: INA125.LIB
+    archive_sha256: 5550971044284790a9dc37541157d4b7f45b6d6db9b1b10c6a851765a1aaf7d9
+    sha256: 383c8cead37b9dd44c5497620b5b3e12253c1d035791ea350880f29c9fd37728
+    lines:
+      A1_125E: [134, 179]
+      A2_125E: [191, 236]
+      INA125: [62, 122]
+      REF_125E: [244, 289]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: INA125
+  def: subckt
+  type: SUBCKT
+  deps:
+  - REF_125
+  - A2_125
+  - A1_125
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ti.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+    lines:
+      A1_125: [20170, 20238]
+      A2_125: [20264, 20332]
+      INA125: [20105, 20146]
+      REF_125: [20350, 20418]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: INA125E
+  def: subckt
+  type: SUBCKT
+  deps:
+  - REF_125E
+  - A1_125E
+  - A2_125E
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ti.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+    lines:
+      A1_125E: [20615, 20705]
+      A2_125E: [20731, 20821]
+      INA125E: [20457, 20591]
+      REF_125E: [20839, 20929]
+    fetched: '2026-09-20'

@@ -31,4 +31,38 @@ models:
       CD4047B: [20, 98]
     fetched: '2026-09-14'
   symbol: CD4047B_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: bordodynov
+    name: CD4047B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/cd4047b.spi
+      sha256: f7a9f698d46ddc69744d98713aff535a52cb42adb888d6fb44c43eba7daacb04
+  - source: kicad-spice-library
+    name: CD4047B
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/CD4047B.sub
+      sha256: acb801163827e41919749a47a87338c7b5d80140486e10e0f07712136cd98470
+  - source: kicad-spice-library
+    name: CD4047B
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/cd4047b.spi
+      sha256: f7a9f698d46ddc69744d98713aff535a52cb42adb888d6fb44c43eba7daacb04
+  - source: ltwiki
+    name: CD4047B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/CD4047B.sub
+      sha256: acb801163827e41919749a47a87338c7b5d80140486e10e0f07712136cd98470
+  - source: ltwiki
+    name: CD4047B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/cd4047b.spi
+      sha256: f7a9f698d46ddc69744d98713aff535a52cb42adb888d6fb44c43eba7daacb04
+  - source: ltwiki
+    name: CD4047B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/Dig_Add/CD4xxx/CD4047B.sub
+      sha256: acb801163827e41919749a47a87338c7b5d80140486e10e0f07712136cd98470

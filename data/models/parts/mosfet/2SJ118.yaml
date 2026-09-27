@@ -1,0 +1,30 @@
+part: 2SJ118
+kind: mosfet
+priority: 3
+group: power_vertical
+models:
+- source: microcap12
+  name: 2SJ118
+  def: model
+  type: PMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: hpmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 4d5b32208d929ab48abe098ba755d57094bc9faadd8f519bd904aecfc7f1115a
+    lines:
+      2SJ118: [110, 114]
+    fetched: '2026-09-20'
+- source: ltwiki
+  name: M2SJ118
+  def: model
+  type: PMOS
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/jpwrmos.lib
+    sha256: f2e492f05b48b845dbed7153404409e50591086f82d3b32ee203ddce30cda22d
+    lines:
+      M2SJ118: [33, 36]
+    fetched: '2026-09-21'

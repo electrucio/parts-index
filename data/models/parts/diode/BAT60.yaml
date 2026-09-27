@@ -16,7 +16,19 @@ models:
     lines:
       BAT60A: [1923, 1923]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: BAT60A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: BAT60A
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
 - source: kicad-spice-library
   name: BAT60A/SIE
   def: subckt
@@ -65,6 +77,18 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: spice-model-cd
+    name: BAT60A
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Infineon/Other/DIODE/Sidi.lib
+      sha256: a29477b10bb53cf870b534d604ed24a11d2821191cba0567cb9bc5d4576932b0
+  - source: microcap12
+    name: BAT60A_IN
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: infineon.lib
+      sha256: cdae8e9767d8fccbc81f94acb925cc440425a03e902d86cd8c5591d87131e175
 - source: kicad-spice-library
   name: BAT60B_IN
   def: subckt
@@ -81,3 +105,32 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: spice-model-cd
+    name: BAT60B
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Infineon/Other/DIODE/Sidi.lib
+      sha256: a29477b10bb53cf870b534d604ed24a11d2821191cba0567cb9bc5d4576932b0
+  - source: microcap12
+    name: BAT60B_IN
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: infineon.lib
+      sha256: cdae8e9767d8fccbc81f94acb925cc440425a03e902d86cd8c5591d87131e175
+- source: spice-model-cd
+  name: BAT60A
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Infineon/Other/DIODE/S_DIODE.LIB
+    sha256: 5b0c047f0241963047cfdccac9eb3038eecfe7d78d04fc568cd0ac9135423c2a
+    lines:
+      BAT60A: [33, 34]
+    fetched: '2026-09-21'
+  copies:
+  - source: spice-model-cd
+    name: BAT60A/SIE
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Siemens/S_diode.lib
+      sha256: 5db13a4ff341739aa880aa23a7c2a0378e5c0a9f01d9c1ef30d8f9965b1fea64

@@ -105,7 +105,24 @@ models:
     lines:
       CD4049UB: [4, 14]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: CD4049UB
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/cd4049ub.sub
+      sha256: a69a7160043fd9edf39ac93c639d0415fa2e7583b1c236310f8906cb37eb50c7
+  - source: ltwiki
+    name: CD4049UB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/cd4049ub.sub
+      sha256: a69a7160043fd9edf39ac93c639d0415fa2e7583b1c236310f8906cb37eb50c7
+  - source: ltwiki
+    name: CD4049UB
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/cd4049ub.sub
+      sha256: a69a7160043fd9edf39ac93c639d0415fa2e7583b1c236310f8906cb37eb50c7
 - source: bordodynov
   name: CD4049B
   def: subckt
@@ -154,4 +171,291 @@ models:
       CD4049B: [496, 504]
       CD40_IN_1: [863, 879]
       CD40_OUT_2X: [927, 937]
+    fetched: '2026-09-14'
+- source: ti
+  name: CD4049UB
+  def: subckt
+  type: SUBCKT
+  deps:
+  - LOGIC_ICC_AHC_1i_NAND_PP_CMOS_CD4049UB
+  - TPD_AHC_1i_NAND_PP_CMOS_CD4049UB
+  - LOGIC_FUNCTION_2_AHC_1i_NAND_PP_CMOS_CD4049UB
+  - LOGIC_INPUT_AHC_1i_NAND_PP_CMOS_CD4049UB
+  - LOGIC_PP_OUTPUT_AHC_1i_NAND_PP_CMOS_CD4049UB
+  - LOGIC_GATE_2PIN_OD_AHC_1i_NAND_PP_CMOS_CD4049UB
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SCHM019
+    member: CD4049UB.cir
+    archive_sha256: 2c357995eb31ace4f3eae6c90a4a6fe9809735f888366243f5ae14f3618434c3
+    sha256: 676487f1448574f0b6bb61acdcc61723046dd0ada65a70a71f592c588bfca386
+    lines:
+      CD4049UB: [35, 37]
+      LOGIC_FUNCTION_2_AHC_1i_NAND_PP_CMOS_CD4049UB: [141, 156]
+      LOGIC_GATE_2PIN_OD_AHC_1i_NAND_PP_CMOS_CD4049UB: [43, 76]
+      LOGIC_ICC_AHC_1i_NAND_PP_CMOS_CD4049UB: [252, 260]
+      LOGIC_INPUT_AHC_1i_NAND_PP_CMOS_CD4049UB: [77, 140]
+      LOGIC_PP_OUTPUT_AHC_1i_NAND_PP_CMOS_CD4049UB: [171, 182]
+      TPD_AHC_1i_NAND_PP_CMOS_CD4049UB: [157, 170]
+    fetched: '2026-09-14'
+  copies:
+  - source: ti
+    name: CD4049UB
+    get:
+      url: https://www.ti.com/lit/zip/SCHM019
+      member: CD4049UB.lib
+      sha256: 676487f1448574f0b6bb61acdcc61723046dd0ada65a70a71f592c588bfca386
+- source: microcap12
+  name: CD4049B
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: cmos.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 355bb3dfa2be483f7c2d5b8d729acb8221874a18fbf49607f03a0bfc0d753917
+    lines:
+      CD4049B: [2719, 2730]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: CD4049B
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cmos.lib
+      sha256: 4ee830d7932c2cdfcd5d21972f96c0387c3440d5d449c6554a0016f8b0f4f5b0
+- source: microcap12
+  name: CD4049UB
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: cmos.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 355bb3dfa2be483f7c2d5b8d729acb8221874a18fbf49607f03a0bfc0d753917
+    lines:
+      CD4049UB: [2739, 2750]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: CD4049UB
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cmos.lib
+      sha256: 4ee830d7932c2cdfcd5d21972f96c0387c3440d5d449c6554a0016f8b0f4f5b0
+- source: bordodynov
+  name: CD4049B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DIO2
+  - CD40_OUT_2X
+  - CD40DIO1
+  - CD40_IN_1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4000_Don.LIB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 47fa60aec4237b21d853cfde5dffd06191f4bd16165aaab6bf2ac16c64839a0d
+    lines:
+      CD4049B: [496, 504]
+      CD40DIO1: [785, 785]
+      CD40_IN_1: [799, 815]
+      CD40_OUT_2X: [863, 873]
+      DIO2: [845, 845]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: CD4049B
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/CD4000_Don.LIB
+      sha256: 47fa60aec4237b21d853cfde5dffd06191f4bd16165aaab6bf2ac16c64839a0d
+  - source: ltwiki
+    name: CD4049B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/CD4000_Don.LIB
+      sha256: 47fa60aec4237b21d853cfde5dffd06191f4bd16165aaab6bf2ac16c64839a0d
+  - source: ltwiki
+    name: CD4049B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/CD4000_Don.LIB
+      sha256: 47fa60aec4237b21d853cfde5dffd06191f4bd16165aaab6bf2ac16c64839a0d
+- source: bordodynov
+  name: CD4049B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - CD40_OUT_2X
+  - CD40_IN_1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/CD4000_v.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: a814b0ca1e4ced9b7963913afd06147754592c9002010ecc1beb635b45e222eb
+    lines:
+      CD4049B: [552, 560]
+      CD40_IN_1: [920, 937]
+      CD40_OUT_2X: [987, 998]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: CD4049B
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/CD4000_v.lib
+      sha256: 160e7f8bc97f0e71541e67941c2442ebef6888026163a64fe1ea4e92854bef25
+  - source: ltwiki
+    name: CD4049B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/CD4000_v.lib
+      sha256: a814b0ca1e4ced9b7963913afd06147754592c9002010ecc1beb635b45e222eb
+- source: bordodynov
+  name: CD4049B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - CD40_OUT_2X
+  - CD40DIO1
+  - CD40_IN_1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/cd4000.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 794f3386c6ab888d2abf2f2c54ec97b6af582b14e138de0252059e9f07107f08
+    lines:
+      CD4049B: [549, 557]
+      CD40DIO1: [902, 902]
+      CD40_IN_1: [917, 930]
+      CD40_OUT_2X: [981, 992]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: CD4049B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/cd4000.lib
+      sha256: 794f3386c6ab888d2abf2f2c54ec97b6af582b14e138de0252059e9f07107f08
+- source: ltwiki
+  name: CD4049B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - CD40_OUT_2X
+  - CD40_IN_1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Digital/cd4xxx/Test Circuit CD4029B/cd4000.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: db071ddc0bc4fe1e6050e259bd9d1917dbbee47101187031e8f27ad1039b5cf1
+    lines:
+      CD4049B: [496, 504]
+      CD40_IN_1: [863, 879]
+      CD40_OUT_2X: [927, 937]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: CD4049B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/cd4000.lib
+      sha256: b782cfaab0d30efd686119cba75054d6d80ea98f2a6dec46ede1ccee4dd5c31d
+  - source: ltwiki
+    name: CD4049B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/CD4000/CD4000.lib
+      sha256: db071ddc0bc4fe1e6050e259bd9d1917dbbee47101187031e8f27ad1039b5cf1
+  - source: ltwiki
+    name: CD4049B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Digital/cd4xxx/Test Circuit CD4029B/cd4000.lib
+      sha256: db071ddc0bc4fe1e6050e259bd9d1917dbbee47101187031e8f27ad1039b5cf1
+- source: ltwiki
+  name: CD4049B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - CD40_OUT_2X
+  - CD40_IN_1
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Miscel/X1G example/cd4000.txt
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 3e6332ef6a304eb6d2a0da594d511c3c3e5a04edaf6da45ce20f247c5c0a43fa
+    lines:
+      CD4049B: [5, 13]
+      CD40_IN_1: [70, 86]
+      CD40_OUT_2X: [134, 144]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: CD4049B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Miscel/X1G example/cd4000.txt
+      sha256: 3e6332ef6a304eb6d2a0da594d511c3c3e5a04edaf6da45ce20f247c5c0a43fa
+- source: ltwiki
+  name: CD4049UB
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D_CD4049UB
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/cd4000.lib
+    sha256: 01fee132096b681bc7bb8cb653efc6a8a0ea6929099c8aa90057eea83857cba8
+    lines:
+      CD4049UB: [2545, 2551]
+      D_CD4049UB: [2553, 2556]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: CD4049A
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D_CD4049A
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/cd4000.lib
+    sha256: 01fee132096b681bc7bb8cb653efc6a8a0ea6929099c8aa90057eea83857cba8
+    lines:
+      CD4049A: [2526, 2532]
+      D_CD4049A: [2534, 2537]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: CD4049B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - CD40_OUT_2X
+  - CD40_IN_1
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/cd4000.lib
+    sha256: b30e91bc7f5937fcd4b64fa5f37eabd91619b78de506c64ec29100404f0e5060
+    lines:
+      CD4049B: [549, 557]
+      CD40_IN_1: [917, 934]
+      CD40_OUT_2X: [984, 995]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: CD4049UB
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/DIGITAL.LIB
+    sha256: 480f028d2ccb230322f645d30135f1297937e1e9dad6433093f763534087750d
+    lines:
+      CD4049UB: [580, 591]
     fetched: '2026-09-14'

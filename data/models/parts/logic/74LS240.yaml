@@ -1,0 +1,38 @@
+part: 74LS240
+kind: logic
+priority: 3
+models:
+- source: microcap12
+  name: 74LS240
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: dig195.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 9a6d4d02b74d59be945eea8204d207f00bcec03f011510af679aae412465eb09
+    lines:
+      74LS240: [3098, 3119]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: 74LS240
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/dig195.lib
+      sha256: f7afdc196bede5eed8ced25db9123fd2c7afee8f4e7e5f99437f22f3adf46f8e
+- source: ltwiki
+  name: 74LS240
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D_LS240
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/74ls.lib
+    sha256: 1a3fc139003ba53119805e469c8c7d464ec28fab6ab216986e6ed79e137bdb4b
+    lines:
+      74LS240: [6434, 6447]
+      D_LS240: [6449, 6456]
+    fetched: '2026-09-21'

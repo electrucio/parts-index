@@ -70,7 +70,18 @@ models:
     score: null
     error: 'KeyError: ''smps'''
   symbol: UC3845_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: uc3845a
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/uc3845a.sub
+      sha256: 0b34dbac699c79d8c20b6eac0bc253f881f638a60b77cbeaa458efd7b5d07ccd
+  - source: ltwiki
+    name: uc3845a
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/uc3845a.sub
+      sha256: 0b34dbac699c79d8c20b6eac0bc253f881f638a60b77cbeaa458efd7b5d07ccd
 - source: ltwiki
   name: UC3845A1
   def: subckt
@@ -97,6 +108,118 @@ models:
     score: null
     error: 'KeyError: ''smps'''
   symbol: UC3845_ltwiki.asy
+- source: onsemi
+  name: UC3845B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D2
+  - DCLAMP
+  - INV
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/zip/ncp101x_isspice.zip
+    member: onic.lib
+    archive_sha256: ce0a7c791a59c07b4f51dbc47e26695a7409dd3222c1008ef7cba577db156e57
+    sha256: 3bba6f67478987c9d9d436d24fa9b82e91d92888f20a34d59fd5c0dae0de189c
+    lines:
+      D2: [6780, 6780]
+      DCLAMP: [6782, 6782]
+      INV: [6755, 6759]
+      UC3845B: [8755, 8866]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: UC3845B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D2
+  - DCLAMP
+  - nmos
+  - Q1
+  - INV
+  - INV_05
+  - NAND30_05
+  - NAND31_05
+  - FFLOP
+  - pmos
+  - Q2
+  - S1
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      D2: [212863, 212863]
+      DCLAMP: [212865, 212865]
+      FFLOP: [161153, 161163]
+      INV: [213025, 213029]
+      INV_05: [161177, 161181]
+      NAND30_05: [161165, 161169]
+      NAND31_05: [161171, 161175]
+      Q1: [78385, 78412]
+      Q2: [78417, 78442]
+      S1: [159252, 159256]
+      UC3845B: [215021, 215132]
+      nmos: [161508, 161508]
+      pmos: [161510, 161510]
+    fetched: '2026-09-20'
+- source: bordodynov
+  name: UC3845B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - SWhyste
+  - NAND3_1
+  - NAND3_0
+  - INV
+  - FFLOP
+  - 1845AMP
+  - 1845OUT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/UC384xB.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 94006e2482dc5254c8121e572eecd40e9ed102888b6624b3ca8b73a8bc9b8df2
+    lines:
+      1845AMP: [273, 297]
+      1845OUT: [299, 316]
+      FFLOP: [318, 328]
+      INV: [342, 346]
+      NAND3_0: [330, 334]
+      NAND3_1: [336, 340]
+      SWhyste: [348, 358]
+      UC3845B: [230, 271]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov
+    name: UC3845B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/uc384x.lib
+      sha256: 0fe8a81fe2482c450ee7df0d988df7140eee83a5db1314bbb8c173945db1f020
+  - source: ltwiki
+    name: UC3845B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/UC384xB.lib
+      sha256: 94006e2482dc5254c8121e572eecd40e9ed102888b6624b3ca8b73a8bc9b8df2
+  - source: ltwiki
+    name: UC3845B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/uc384x.lib
+      sha256: 0fe8a81fe2482c450ee7df0d988df7140eee83a5db1314bbb8c173945db1f020
+  - source: ltwiki
+    name: UC3845B
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/UC3844A&B/uc384x.lib
+      sha256: 0fe8a81fe2482c450ee7df0d988df7140eee83a5db1314bbb8c173945db1f020
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/uc3842.pdf
   maker: Texas Instruments (Unitrode)

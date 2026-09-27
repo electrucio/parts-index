@@ -1,0 +1,16 @@
+part: 2SK2013
+kind: mosfet
+priority: 3
+group: power_vertical
+models:
+- source: ltwiki
+  name: M2SK2013
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/jpwrmos.lib
+    sha256: f2e492f05b48b845dbed7153404409e50591086f82d3b32ee203ddce30cda22d
+    lines:
+      M2SK2013: [1049, 1067]
+    fetched: '2026-09-21'

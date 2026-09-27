@@ -31,7 +31,43 @@ models:
     not_measurable: 2
     typical_rows: 3
   symbol: IRFP140_infineon.asy
-  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: irfp140n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irfp140n.spi
+      sha256: 511061535a4182540a1b58581c87edd592f0cf7eb8e0abd55c833cbdfbbc92b9
+  - source: bordodynov
+    name: irfp140n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irfp140n.spi
+      sha256: 511061535a4182540a1b58581c87edd592f0cf7eb8e0abd55c833cbdfbbc92b9
+  - source: kicad-spice-library
+    name: irfp140n
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irfp140n.spi
+      sha256: 47ae493de6b09aa61a132b7c9acecc33dbc7d6c865236cdd94fef2378a4dc812
+  - source: ltwiki
+    name: irfp140n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irfp140n.spi
+      sha256: 511061535a4182540a1b58581c87edd592f0cf7eb8e0abd55c833cbdfbbc92b9
+  - source: ltwiki
+    name: irfp140n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irfp140n.spi
+      sha256: 511061535a4182540a1b58581c87edd592f0cf7eb8e0abd55c833cbdfbbc92b9
+  - source: ltwiki
+    name: irfp140n
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irfp140n.spi
+      sha256: 511061535a4182540a1b58581c87edd592f0cf7eb8e0abd55c833cbdfbbc92b9
 - source: bordodynov
   name: IRFP140
   def: model
@@ -52,7 +88,29 @@ models:
     fail: 0
     not_measurable: 2
     typical_rows: 3
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: IRFP140
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: IRFP140
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrmos.lib
+      sha256: cd1b43c7f364ba7d1ebb8af3764d05b8ddaab1d79950e0eedd42a0826cd2c46b
+  - source: ltwiki
+    name: IRFP140
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: IRFP140
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: kicad-spice-library
   name: irfp140n
   def: subckt
@@ -78,6 +136,23 @@ models:
     typical_rows: 3
   symbol: IRFP140_kicad-spice-library.asy
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irfp140n_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: kicad-spice-library
+    name: IRFP140N
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+      sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+  - source: kicad-spice-library
+    name: irfp140n_IR
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+      sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
 - source: kicad-spice-library
   name: IRFP140N
   def: subckt
@@ -147,6 +222,20 @@ models:
     fail: 2
     not_measurable: 3
     typical_rows: 3
+- source: microcap12
+  name: IRFP140
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: irpmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 105bbe2b177521de15323aae290e05947c3bb26d62a8ee42fe5da0e351b46ddf
+    lines:
+      IRFP140: [1447, 1451]
+    fetched: '2026-09-20'
 datasheet:
   url: https://www.vishay.com/docs/91202/irfp140.pdf
   maker: Vishay Siliconix

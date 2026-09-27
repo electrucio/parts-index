@@ -1,0 +1,17 @@
+part: RC4580
+kind: opamp
+priority: 2
+models:
+- source: ti
+  name: RC4580
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLOJ175
+    member: rc4580.inc
+    archive_sha256: 38b57b591981b526dd4ae970ca84167b068534234ff1b3505b62ac4dcfc4326f
+    sha256: 929ef19de535c01d2b13f0eb99ea843ea1048c1da9b9fce8178ca0a81eb682f7
+    lines:
+      RC4580: [44, 220]
+    fetched: '2026-09-19'

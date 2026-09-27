@@ -35,6 +35,17 @@ models:
   symbol: AD8620_ltwiki.asy
   note: 'STAND-IN: model of AD8610, not of AD8620; equivalence declared in catalog/wanted.yaml (see its
     note); pins from comment words'
+- source: adi
+  name: AD8620
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.analog.com/media/en/simulation-models/spice-models/ad8620.cir
+    sha256: 76dbda0c576b36dc25458add4177ce93f02f5fac099851f4a16f40f57663a6f5
+    lines:
+      AD8620: [33, 138]
+    fetched: '2026-09-20'
 datasheet:
   url: https://www.analog.com/media/en/technical-documentation/data-sheets/ad8610_8620.pdf
   maker: Analog Devices

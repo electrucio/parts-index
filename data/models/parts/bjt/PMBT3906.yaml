@@ -32,3 +32,34 @@ models:
       PMBT3906: [11827, 11865]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: PMBT3906
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_bjt.lib
+      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
+  - source: ltwiki
+    name: QPMBT3906
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/PMBT3906.PRM
+      sha256: b5093b58f0fe4f324a8b525dd2a63e62788ffba0efece936ef296496e1902f87
+  - source: microcap12
+    name: PMBT3906M
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: nxp.lib
+      sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
+  - source: microcap12
+    name: PMBT3906VS
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: nxp.lib
+      sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
+  - source: microcap12
+    name: PMBT3906YS
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: nxp.lib
+      sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde

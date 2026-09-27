@@ -27,7 +27,13 @@ models:
       NJM4580: [8, 43]
       NJM4580_SUB: [4, 7]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: NJM4580_SUB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/NJM4580.lib
+      sha256: 52a5a7666749668dd7b38d092cecf9a7f12ada580309245ddd7899fba26ac120
 - source: bordodynov
   name: NJM4580
   def: subckt
@@ -47,4 +53,40 @@ models:
     lines:
       NJM4580: [8, 43]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: ltwiki
+    name: NJM4580
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/NJM4580.lib
+      sha256: 52a5a7666749668dd7b38d092cecf9a7f12ada580309245ddd7899fba26ac120
+- source: nisshinbo
+  name: NJM4580
+  def: subckt
+  type: SUBCKT
+  deps:
+  - njm4580_s
+  verbatim: true
+  get:
+    url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm4580_v2_p.zip
+    member: NJM4580_v2_NewJRC/njm4580_v2.lib
+    archive_sha256: b8980a7ca355a1a67d76949b505ea3a34ce1fd80c30ca71753841048d7be83be
+    sha256: b3bef6dde7c3edc9c727e554e5bb57cf16e3ceb4c91f77b3a0ee76c20f798c87
+    lines:
+      NJM4580: [13, 16]
+      njm4580_s: [25, 88]
+    fetched: '2026-09-20'
+- source: nisshinbo
+  name: njm4580_s
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm4580_v2_p.zip
+    member: NJM4580_v2_NewJRC/njm4580_v2.lib
+    archive_sha256: b8980a7ca355a1a67d76949b505ea3a34ce1fd80c30ca71753841048d7be83be
+    sha256: b3bef6dde7c3edc9c727e554e5bb57cf16e3ceb4c91f77b3a0ee76c20f798c87
+    lines:
+      njm4580_s: [25, 88]
+    fetched: '2026-09-20'

@@ -1,0 +1,38 @@
+part: INA134
+kind: ic-audio
+priority: 2
+models:
+- source: microcap12
+  name: INA134
+  def: subckt
+  type: SUBCKT
+  deps:
+  - A3_134
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ti.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+    lines:
+      A3_134: [23727, 23795]
+      INA134: [23679, 23703]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: INA134E
+  def: subckt
+  type: SUBCKT
+  deps:
+  - A3_134E
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ti.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+    lines:
+      A3_134E: [23881, 23975]
+      INA134E: [23833, 23857]
+    fetched: '2026-09-20'

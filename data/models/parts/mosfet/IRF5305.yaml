@@ -20,7 +20,72 @@ models:
     lines:
       irf5305s: [1, 60]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: irf5305s
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irf5305s.spi
+      sha256: 1dee511c2e8203dd55580c3bbe738eae565fb48b23a55a98d87a192a1055b166
+  - source: kicad-spice-library
+    name: irf5305s
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf5305s.spi
+      sha256: 7af94b14d443596bcaaa6b9b3cb9eefbac38b06f0b57833ac5252877abe73311
+  - source: ltwiki
+    name: irf5305s
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf5305s.spi
+      sha256: 1dee511c2e8203dd55580c3bbe738eae565fb48b23a55a98d87a192a1055b166
+  - source: ltwiki
+    name: irf5305s
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf5305s.spi
+      sha256: 1dee511c2e8203dd55580c3bbe738eae565fb48b23a55a98d87a192a1055b166
+  - source: ltwiki
+    name: irf5305s
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf5305s.spi
+      sha256: 1dee511c2e8203dd55580c3bbe738eae565fb48b23a55a98d87a192a1055b166
+  - source: bordodynov
+    name: irf5305
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irf5305.spi
+      sha256: a17abefeb9eed069d6eccc2db1a56662086bf5c1295dd3a95fff4017e2afac68
+  - source: bordodynov
+    name: irf5305
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irf5305.spi
+      sha256: a17abefeb9eed069d6eccc2db1a56662086bf5c1295dd3a95fff4017e2afac68
+  - source: kicad-spice-library
+    name: irf5305
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf5305.spi
+      sha256: 07f853df2a47bad8c6540780e14c1b57ed45c8fc59661bf0a8c65703e2f3d648
+  - source: ltwiki
+    name: irf5305
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf5305.spi
+      sha256: a17abefeb9eed069d6eccc2db1a56662086bf5c1295dd3a95fff4017e2afac68
+  - source: ltwiki
+    name: irf5305
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf5305.spi
+      sha256: a17abefeb9eed069d6eccc2db1a56662086bf5c1295dd3a95fff4017e2afac68
+  - source: ltwiki
+    name: irf5305
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf5305.spi
+      sha256: a17abefeb9eed069d6eccc2db1a56662086bf5c1295dd3a95fff4017e2afac68
 - source: bordodynov
   name: irf5305
   def: subckt
@@ -56,6 +121,39 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irf5305_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: kicad-spice-library
+    name: IRF5305S
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+      sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+  - source: kicad-spice-library
+    name: IRF5305
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+      sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+  - source: kicad-spice-library
+    name: irf5305_IR
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+      sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+  - source: kicad-spice-library
+    name: irf5305s_IR
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+      sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+  - source: microcap12
+    name: irf5305s_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
 - source: kicad-spice-library
   name: irf5305
   def: subckt

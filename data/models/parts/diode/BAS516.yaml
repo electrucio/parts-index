@@ -32,7 +32,41 @@ models:
     lines:
       BAS516: [865, 865]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: BAS516
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.dio
+      sha256: 85043335b56cc10779c03bcd2c237472827cf28c004628c9ddacb6fb3d8705c7
+  - source: kicad-spice-library
+    name: BAS516
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Diode/DIODE2.lib
+      sha256: 30ed855dc84e2de25e560deac3c77134cb73d072e10199aa8de3d2a7155af902
+  - source: ltwiki
+    name: BAS516
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: BAS516
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: BAS516
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.dio
+      sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+  - source: ltwiki
+    name: BAS516
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/cmp/standard.dio
+      sha256: c37cd3feda2bf48e371d1b329a4f08dcedf3e90acb6a8b98ec28a8063b633c21
 - source: ltwiki
   name: BAS516
   def: model
@@ -45,4 +79,23 @@ models:
     sha256: 613c48d8f47f8afb83dc8a410814ca9b0549c9aff14ac60acc396e58605ab003
     lines:
       BAS516: [3, 15]
+    fetched: '2026-09-14'
+  copies:
+  - source: microcap12
+    name: BAS516
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_diode.lib
+      sha256: f9df24ec0c294f52c0b42dcb8aa86242c24d1c52b5df04656c47544b89fac977
+- source: toshiba
+  name: BAS516
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    member: PSpice_20260827/Toshiba-lib-PSpice_20260827/Switching Diodes/BAS516_PSpice_20250213/BAS516_PSpice_rev1.lib
+    how: unknown
+    sha256: f1c2586a6eb534b76f87a5bb34f4a2e30f37ba305c4ee0bb27f25447b74e9d1b
+    lines:
+      BAS516: [29, 53]
     fetched: '2026-09-14'

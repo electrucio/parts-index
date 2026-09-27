@@ -21,7 +21,24 @@ models:
     lines:
       CNY17: [211, 219]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: CNY17
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OptoAcop.lib
+      sha256: afc41e67a056aadd6af70da491aedd69fb6e66a9f20ffe644c8b39d92e8ad025
+  - source: ltwiki
+    name: CNY17
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OptoAcop.lib
+      sha256: afc41e67a056aadd6af70da491aedd69fb6e66a9f20ffe644c8b39d92e8ad025
+  - source: ltwiki
+    name: CNY17
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OptoAcop.lib
+      sha256: e1cc58e7df7070c4b67ca9ba29d04f8ede1394d26c33951fbd6e7923ecc6a694
 - source: bordodynov
   name: CNY17
   def: subckt
@@ -41,7 +58,30 @@ models:
     lines:
       CNY17: [3, 11]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: CNY17
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/CNY17.sub
+      sha256: 6f5f549318ed850c85a888868fe41400d86cf532121cc9d2b6b3189ca40679a7
+  - source: ltwiki
+    name: CNY17
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/CNY17.sub
+      sha256: 6f5f549318ed850c85a888868fe41400d86cf532121cc9d2b6b3189ca40679a7
+  - source: ltwiki
+    name: CNY17
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Test_Optocoupler/CNY17.sub
+      sha256: 6f5f549318ed850c85a888868fe41400d86cf532121cc9d2b6b3189ca40679a7
+  - source: ltwiki
+    name: CNY17
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/CNY17.sub
+      sha256: 6f5f549318ed850c85a888868fe41400d86cf532121cc9d2b6b3189ca40679a7
 - source: ltwiki
   name: CNY17F3M
   def: subckt

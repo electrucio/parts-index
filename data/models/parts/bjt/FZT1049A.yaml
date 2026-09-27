@@ -16,7 +16,24 @@ models:
     lines:
       FZT1049A: [1592, 1592]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: FZT1049A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+      sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+  - source: ltwiki
+    name: FZT1049A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: FZT1049A
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
 - source: ltwiki
   name: FZT1049A
   def: model
@@ -30,7 +47,53 @@ models:
     lines:
       FZT1049A: [883, 887]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: diodes-inc
+    name: FZT1049A
+    get:
+      url: https://www.diodes.com/spice/download/2865/FZT1049A.spice.txt
+      sha256: 30be7bf73b703427b9313735be6d24e063c9e7cee07274214abc688c7e0e6e3c
+  - source: diodes-inc
+    name: FZT1049A
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8420/collection.spice.txt
+      sha256: 48d15d3ef3258950652e6e3347013e5d63d1655e95ac38675a0f140c2b781ff0
+  - source: kicad-spice-library
+    name: FZT1049A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zetex.lib
+      sha256: 453392deca3bd0ddfca565d56241c4a5bb4d2e8f14c6efa92c1c453ed434fdca
+  - source: kicad-spice-library
+    name: FZT1049A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+      sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+  - source: microcap12
+    name: FZT1049A
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
+  - source: spice-model-cd
+    name: FZT1049A
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/znewmods.lib
+      sha256: 40372fd3658df08e99fdcc96353e1c4dbbfcf004d493c1e461581157969a4e3a
+  - source: spice-model-cd
+    name: FZT1049A
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/fzt1049a.lib
+      sha256: 29ebb3b00bd243f0af53fd267b62e6a0b5bff317f2a65f7ad0bfb22328647eb1
+  - source: kicad-spice-library
+    name: FZT1049A_ZX
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zetex.lib
+      sha256: 453392deca3bd0ddfca565d56241c4a5bb4d2e8f14c6efa92c1c453ed434fdca
+  - source: ltwiki
+    name: FZT1049A/ZTX
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/Zetex.lib
+      sha256: 801edb075d3bd3995ad94e8dbf3c9a290a89481b1e897b74b75fcb6a6fab8ec0
 - source: kicad-spice-library
   name: FZT1049A_ZX
   def: model
@@ -43,3 +106,14 @@ models:
       FZT1049A_ZX: [7995, 7999]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: qspice
+  name: FZT1049A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 02e7f34086291154c4ad5a23bd7be80641cec3ccd61609bfc623a1231183224b
+    lines:
+      FZT1049A: [444, 448]
+    fetched: '2026-09-20'

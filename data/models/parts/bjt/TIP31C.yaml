@@ -27,6 +27,13 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 0
+  copies:
+  - source: microcap12
+    name: TIP31C
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: cs.lib
+      sha256: 4daf7b77d9c13771dc3a2e074d972af2c69c71839a7469d1915bdd9c39e69f3d
 - source: cordell
   name: TIP31C
   def: model
@@ -67,7 +74,19 @@ models:
     fail: 2
     not_measurable: 2
     typical_rows: 0
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: TIP31C
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: TIP31C
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
 - source: ltwiki
   name: TIP31C
   def: model
@@ -88,6 +107,49 @@ models:
     fail: 1
     not_measurable: 3
     typical_rows: 0
+  copies:
+  - source: ltwiki
+    name: TIP31C
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/TIP31C/TIP31C.txt
+      sha256: 93725063848d2489e94153db9af529ff284e1ed9bf886b5a561c1437a363970a
+  - source: ltwiki
+    name: TIP31C
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/TIP31C/TIP31C.txt
+      sha256: 93725063848d2489e94153db9af529ff284e1ed9bf886b5a561c1437a363970a
+  - source: ltwiki
+    name: tip31c
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/TIP31C/TIP31C.txt
+      sha256: 93725063848d2489e94153db9af529ff284e1ed9bf886b5a561c1437a363970a
+  - source: ltwiki
+    name: TIP31C
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/TIP31C/TIP31C.txt
+      sha256: 93725063848d2489e94153db9af529ff284e1ed9bf886b5a561c1437a363970a
+  - source: ltwiki
+    name: tip31c
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/TIP31C/TIP31C.txt
+      sha256: 93725063848d2489e94153db9af529ff284e1ed9bf886b5a561c1437a363970a
+  - source: ltwiki
+    name: TIP31C
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/TIP31C/TIP31C.txt
+      sha256: 93725063848d2489e94153db9af529ff284e1ed9bf886b5a561c1437a363970a
+  - source: ltwiki
+    name: TIP31C
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/TIP31C/TIP31C.txt
+      sha256: 93725063848d2489e94153db9af529ff284e1ed9bf886b5a561c1437a363970a
 - source: ltwiki
   name: TIP31C
   def: model
@@ -108,7 +170,29 @@ models:
     fail: 2
     not_measurable: 2
     typical_rows: 0
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: ltwiki
+    name: TIP31C
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Mixer/standard.bjt
+      sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+  - source: kicad-spice-library
+    name: TIP31C
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+      sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+  - source: kicad-spice-library
+    name: TIP31C
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJT.lib
+      sha256: 1f07e6e6b38c9b5d8d19dbccfd3c29741281ead66a7b48cc40eb82e9684580eb
+  - source: ltwiki
+    name: TIP31C
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.bjt
+      sha256: 0f87e9840e1130e025a7add442288c0f67048f9755108d0384d1594296884e82
 - source: ltwiki
   name: tip31c/ON
   def: model
@@ -132,6 +216,98 @@ models:
     fail: 1
     not_measurable: 0
     typical_rows: 0
+  copies:
+  - source: ltwiki
+    name: tip31c/ON
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/TIP31C/TIP31C.txt
+      sha256: 93725063848d2489e94153db9af529ff284e1ed9bf886b5a561c1437a363970a
+- source: onsemi
+  name: Qtip31c
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/tip31c.lib
+    sha256: df97566b7c68d9458131672a7db52ef24516a70521fe0c5c74e74e3ea9e77faa
+    lines:
+      Qtip31c: [12, 22]
+    fetched: '2026-09-14'
+  copies:
+  - source: microcap12
+    name: Qtip31c
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: spice-model-cd
+  name: Qtip31c
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Motorola/Spice/PowerBJT/TIP31C.LIB
+    sha256: 59a08119c75f11a976dc5a721935b4f2ad6df5a5e07737b0790e3be5727c941c
+    lines:
+      Qtip31c: [14, 24]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: tip31c
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_powbjt.lib
+      sha256: 88828d7a2e59690284185f63603712cda84ab642abd65fee1f239a7aca6f38bb
+  - source: microcap12
+    name: tip31c
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: m_powbjt.lib
+      sha256: fca3b3421fa8e11f35bf81024e0fca7fc3b0d6644ab70ac81827475a47168548
+- source: spice-model-cd
+  name: TIP31C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/BJTPWR.LB
+    sha256: d6d6b87bad9bc60f921d7865ee3cfe7791d745515ad2c54cd335cf3cd2941826
+    lines:
+      TIP31C: [30, 33]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: TIP31C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrbjt.lib
+    sha256: 30a0b2113b846773bf8dc3f872c0edaed5312f72b3907f053aaba5badf6b8034
+    lines:
+      TIP31C: [6426, 6430]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: TIP31C
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWBJT.LIB
+    sha256: a64b2703fc28c849c7760139346aa1e0c31b83f7701a15e8e7a8d12b01c7befc
+    lines:
+      TIP31C: [2616, 2625]
+    fetched: '2026-09-14'
+- source: groupsio-ltspice
+  name: TIP31C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    how: unknown
+    sha256: c2efeb5146d6eec5855876ea76bbcab2e20b845867d62bf17ead9f0a9bb77c0c
+    lines:
+      TIP31C: [1561, 1569]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/tip31a-d.pdf
   maker: onsemi

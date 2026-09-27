@@ -74,6 +74,34 @@ models:
       BC847CW: [1521, 1559]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: spice-model-cd
+    name: QBC847CW
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BC847CW.lib
+      sha256: cca108a7583643ae707dd20c916abc91d380adf95ac39bb5a094d7842727dd73
+  - source: ltwiki
+    name: QBC847CW
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/BC847CW.PRM
+      sha256: cca108a7583643ae707dd20c916abc91d380adf95ac39bb5a094d7842727dd73
+  - source: microcap12
+    name: BC847CW
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_bjt.lib
+      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
+  - source: kicad-spice-library
+    name: QBC847CW/PLP
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/phil_bjt.lib
+      sha256: b04fec0197e8e7b6c8e1dfad671d6b27c716f7e541ea3a50bbcdafa5c7a20e20
+  - source: ltwiki
+    name: QBC847CW/PLP
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/phil_bjt.lib
+      sha256: b623268d86bce75fdf51394d854e686cdc6a6cd2ace376954bc24bf15056d79f
 - source: kicad-spice-library
   name: BC847CT
   def: model
@@ -87,3 +115,14 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: found under the alias BC847C
+- source: qspice
+  name: BC847CW
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 02e7f34086291154c4ad5a23bd7be80641cec3ccd61609bfc623a1231183224b
+    lines:
+      BC847CW: [386, 390]
+    fetched: '2026-09-20'

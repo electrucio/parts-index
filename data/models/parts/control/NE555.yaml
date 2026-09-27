@@ -53,7 +53,18 @@ models:
     score: null
     error: 'KeyError: ''control'''
   symbol: NE555_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: NE555_R
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: NE555_R
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
 - source: bordodynov
   name: NE555
   def: subckt
@@ -80,7 +91,24 @@ models:
     score: null
     error: 'KeyError: ''control'''
   symbol: NE555_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: NE555
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/timers.lib
+      sha256: 5caceb6b0c16c6b684284c8598439454661f6908a926796c1459becf67fc8f85
+  - source: ltwiki
+    name: NE555
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/timers.lib
+      sha256: 5caceb6b0c16c6b684284c8598439454661f6908a926796c1459becf67fc8f85
+  - source: ltwiki
+    name: NE555
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/timers.lib
+      sha256: 5caceb6b0c16c6b684284c8598439454661f6908a926796c1459becf67fc8f85
 - source: ltwiki
   name: NE555
   def: subckt
@@ -107,6 +135,13 @@ models:
     score: null
     error: 'KeyError: ''control'''
   symbol: NE555_ltwiki.asy
+  copies:
+  - source: ltwiki
+    name: NE555
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/Basso/BassoBook20100103/New2/TL555.sub
+      sha256: a1cd2142091273d4325964316ca6a0f4220f67397a8fd83068be25cab435162c
 - source: ltwiki
   name: ne555h3
   def: subckt
@@ -172,6 +207,44 @@ models:
     score: null
     error: 'KeyError: ''control'''
   symbol: NE555_ltwiki-3.asy
+  copies:
+  - source: bordodynov
+    name: ne555_ab
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/ne555_ab.sub
+      sha256: 36e7495e6420405bfeec50b9c17646307cf8910314c28083bdb0e2aed086cab1
+- source: bordodynov
+  name: NE555
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/NE555.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ec1f7b7ad7fed806a334512159956b77cdff15b698158d3cf23dc62ff506f74e
+    lines:
+      NE555: [3, 26]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: NE555
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/NE555.sub
+      sha256: ec1f7b7ad7fed806a334512159956b77cdff15b698158d3cf23dc62ff506f74e
+  - source: ltwiki
+    name: NE555
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/NE555.sub
+      sha256: ec1f7b7ad7fed806a334512159956b77cdff15b698158d3cf23dc62ff506f74e
+  - source: ltwiki
+    name: NE555
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/NE555.sub
+      sha256: ec1f7b7ad7fed806a334512159956b77cdff15b698158d3cf23dc62ff506f74e
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/ne555.pdf
   maker: Texas Instruments

@@ -21,4 +21,11 @@ models:
     lines:
       TLV9001: [33, 420]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: ltwiki
+    name: TLV9001
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/TLV9001.sub
+      sha256: 45060d533ea1bdeb55c82561ac5dec24149b440fd465e8a870c2bf0d7a178b53

@@ -19,6 +19,28 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: vishay
+    name: SB540
+    get:
+      url: https://www.vishay.com/docs/88115/sb540.txt
+      sha256: 01eb08edbbe94a322aba02bc950d4f271ffe78c4e7942b5e3212284d0b1f3dad
+  - source: microcap12
+    name: SB540_GN
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: gensemi.lib
+      sha256: a91e073b84759dcbe41d4ae51687287a413fc12865804565e488f747b57b3d6c
+  - source: kicad-spice-library
+    name: SB540
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/SemiGenSchottkyRect.lib
+      sha256: d165361125280de311667a3cd347670774ffdf2bbd93f2360d2ebd8c3baebfe0
+  - source: spice-model-cd
+    name: SB540
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/General_Semi/Rectifiers/Schottky/sb540.lib
+      sha256: 01eb08edbbe94a322aba02bc950d4f271ffe78c4e7942b5e3212284d0b1f3dad
 - source: kicad-spice-library
   name: SB540
   def: subckt

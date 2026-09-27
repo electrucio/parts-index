@@ -20,3 +20,26 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: spice-model-cd
+    name: mun5214t1
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Motorola/Spice/SmallSig/mun5214t1.t
+      sha256: 75fbf6848aebe462384ec83dce3bcd33a9015543894e89f72142c00009e8b42b
+  - source: microcap12
+    name: mun5214t1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: m_small.lib
+      sha256: c403ca137e1d5d18c11cc981157276d7856cd98f9b8dd32cf3a51a2f3054d7cd
+- source: onsemi
+  name: mun5214t1
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mun5214t1.lib
+    sha256: c52ff21a9ce42a9731bca273ba901cda8d72639143c8b643955bc70840456b55
+    lines:
+      mun5214t1: [1, 31]
+    fetched: '2026-09-19'

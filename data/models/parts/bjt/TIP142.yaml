@@ -30,7 +30,31 @@ models:
     not_measurable: 2
     typical_rows: 1
   symbol: TIP142_onsemi.asy
-  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: TIP142
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/NPNdarlington.lib
+      sha256: 807671d304dd74e6ece6d7da13675cd8730356ed292fe05efe3a611da6b98ab5
+  - source: kicad-spice-library
+    name: TIP142
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/NPNdarlington.lib
+      sha256: 807671d304dd74e6ece6d7da13675cd8730356ed292fe05efe3a611da6b98ab5
+  - source: ltwiki
+    name: TIP142
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/NPNdarlington.lib
+      sha256: 807671d304dd74e6ece6d7da13675cd8730356ed292fe05efe3a611da6b98ab5
+  - source: ltwiki
+    name: TIP142
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Darlington/NPNdarlington.lib
+      sha256: 4ce414c0015ac72a9be2b93a94e4fd8bb1ec8ec81bb9cb66d93c766e1fc14806
 - source: bordodynov
   name: TIP142
   def: subckt
@@ -56,7 +80,47 @@ models:
     not_measurable: 0
     typical_rows: 1
   symbol: TIP142_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: onsemi
+    name: TIP142
+    get:
+      url: https://www.onsemi.com/download/models/lib/tip140_141_142.lib
+      sha256: a9211d9b1ffff951b1a36ceb1bfde63716b74955a5070bd3611191c1a341fc5c
+  - source: kicad-spice-library
+    name: TIP142
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/TIP121%26131.SUB
+      sha256: 6f4f88067a664168de8c881cafc983aecacc5b918b104b92ecf2a7539d3e50c0
+  - source: ltwiki
+    name: TIP142
+    get:
+      url: https://ltwiki.org/images/4/49/TIP142.sub
+      sha256: 7521011df93acf5377e50052a56fe2e82bf661f1270b932e4441e49362075f85
+  - source: ltwiki
+    name: TIP142
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/TIP121&131.SUB
+      sha256: 6f4f88067a664168de8c881cafc983aecacc5b918b104b92ecf2a7539d3e50c0
+  - source: ltwiki
+    name: TIP142
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Discretos/Bjt/TIP142_test/TIP140_141_142.lib
+      sha256: 7521011df93acf5377e50052a56fe2e82bf661f1270b932e4441e49362075f85
+  - source: ltwiki
+    name: TIP142
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/TIP121&131.SUB
+      sha256: 6f4f88067a664168de8c881cafc983aecacc5b918b104b92ecf2a7539d3e50c0
+  - source: ltwiki
+    name: TIP142
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Discretos/Bjt/TIP142_test/TIP140_141_142.lib
+      sha256: 7521011df93acf5377e50052a56fe2e82bf661f1270b932e4441e49362075f85
 - source: kicad-spice-library
   name: TIP142
   def: subckt
@@ -107,6 +171,54 @@ models:
     typical_rows: 1
   symbol: TIP142_kicad-spice-library-2.asy
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: TIP142_FC
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: fairch.lib
+      sha256: 53806c9a42d8b9f44b8c77ed3ae210ad6250b5eacb44d7e7f2b429e8f4559918
+- source: microcap12
+  name: tip142
+  def: subckt
+  type: SUBCKT
+  deps:
+  - nmos
+  - Q1
+  - pmos
+  - Q2
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      Q1: [78385, 78412]
+      Q2: [78417, 78442]
+      nmos: [161508, 161508]
+      pmos: [161510, 161510]
+      tip142: [224741, 224779]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: tip142
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: ltwiki
+  name: TIP142
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/darlngtn.lib
+    sha256: 0de1690195b5e2d9dcb42c94c568925f18290582a58ea2de9f625028125725c6
+    lines:
+      TIP142: [2634, 2672]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/tip140-d.pdf
   maker: onsemi

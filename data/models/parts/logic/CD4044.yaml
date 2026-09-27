@@ -29,3 +29,33 @@ models:
       CD4044B: [2551, 2647]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: microcap12
+  name: CD4044B
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: cmos.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 355bb3dfa2be483f7c2d5b8d729acb8221874a18fbf49607f03a0bfc0d753917
+    lines:
+      CD4044B: [2551, 2662]
+    fetched: '2026-09-20'
+- source: ltwiki
+  name: CD4044B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D_CD4044B_2
+  - D_CD4044B_1
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/cd4000.lib
+    sha256: 01fee132096b681bc7bb8cb653efc6a8a0ea6929099c8aa90057eea83857cba8
+    lines:
+      CD4044B: [2303, 2329]
+      D_CD4044B_1: [2331, 2335]
+      D_CD4044B_2: [2336, 2340]
+    fetched: '2026-09-21'

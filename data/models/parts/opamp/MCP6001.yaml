@@ -21,7 +21,19 @@ models:
     lines:
       MCP6001_AB: [1, 27]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: MCP6001_AB
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/MCP6001_AB.sub
+      sha256: 2ae64051e963077b7f6e42cde175cdc272d968aa22974c745f3c31cf283bda8c
+  - source: ltwiki
+    name: MCP6001_AB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/MCP6001_AB.sub
+      sha256: 2ae64051e963077b7f6e42cde175cdc272d968aa22974c745f3c31cf283bda8c
 - source: bordodynov
   name: MCP6001
   def: subckt
@@ -41,7 +53,19 @@ models:
     lines:
       MCP6001: [2, 178]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: MCP6001
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/MCP6001.lib
+      sha256: c2b9b7f6b80d25f2c3b587c39143477962c7b78d0446d8562e124158cfeda722
+  - source: ltwiki
+    name: MCP6001
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/MCP6001.lib
+      sha256: c2b9b7f6b80d25f2c3b587c39143477962c7b78d0446d8562e124158cfeda722
 - source: bordodynov
   name: MCP6001_JT
   def: subckt
@@ -64,7 +88,19 @@ models:
       MCP6001_JT: [6, 13]
       OpAmpCore: [15, 24]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: MCP6001_JT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/MCP6001_JT.lib
+      sha256: bccc80a76dc6e4384cfd5bb73de55dfc944a7b5b355d50a011dac32a84bf7ae1
+  - source: ltwiki
+    name: MCP6001_JT
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/MCP6001_JT.lib
+      sha256: bccc80a76dc6e4384cfd5bb73de55dfc944a7b5b355d50a011dac32a84bf7ae1
 - source: ltwiki
   name: MCP6001
   def: subckt
@@ -85,6 +121,49 @@ models:
       MCP6001: [2, 165]
     fetched: '2026-09-14'
   note: pins from default order (unverified)
+  copies:
+  - source: ltwiki
+    name: MCP6001
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/OpAmps/By_Marks_Type/Microchip/microchip.lib
+      sha256: fcf9f73a4588bfa6d11727c2fd34ca2bda1b4e469de4a4c954781f95bc101801
+  - source: ltwiki
+    name: MCP6001
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/OpAmps/By_Marks_Type/microchip_conv_solution/microchip.lib
+      sha256: fcf9f73a4588bfa6d11727c2fd34ca2bda1b4e469de4a4c954781f95bc101801
+  - source: ltwiki
+    name: MCP6001
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/MCP6001/MCP6001.sub
+      sha256: 249dab35de18dd7c59cb435ca536078ca6a26df068b182c9c536cd9dca9f7791
+  - source: ltwiki
+    name: MCP6001
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/test_MCP6001_bap/MCP6001.txt
+      sha256: 249dab35de18dd7c59cb435ca536078ca6a26df068b182c9c536cd9dca9f7791
+  - source: ltwiki
+    name: MCP6001
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/Filtros/FilterLab Example/microchip_conv_solution/microchip.lib
+      sha256: fcf9f73a4588bfa6d11727c2fd34ca2bda1b4e469de4a4c954781f95bc101801
+  - source: ltwiki
+    name: MCP6001
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/Microchip/microchip.lib
+      sha256: fcf9f73a4588bfa6d11727c2fd34ca2bda1b4e469de4a4c954781f95bc101801
+  - source: ltwiki
+    name: MCP6001
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/microchip_conv_solution/microchip.lib
+      sha256: fcf9f73a4588bfa6d11727c2fd34ca2bda1b4e469de4a4c954781f95bc101801
 - source: ltwiki
   name: MCP6001
   def: subckt
@@ -125,3 +204,36 @@ models:
       MCP6001: [2, 181]
     fetched: '2026-09-14'
   note: pins from default order (unverified)
+- source: microchip
+  name: MCP6001
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/BoardDesignFiles/MCP6001_MM_G.zip
+    member: MCP6001.txt
+    archive_sha256: 2b64f9e1b672649fe420b2edf23c949e49b814757f0badaf5b3216f50c1c18d4
+    sha256: c510804933f8b3224f7c0b2064c98f7728ec81d3ce2052046a9b754dd8d482bf
+    lines:
+      MCP6001: [1, 166]
+    fetched: '2026-09-21'
+  copies:
+  - source: microcap12
+    name: MCP6001
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: mc.lib
+      sha256: 9e6a5b46e8405605b3f004924fa5b2852f67b9470fe1c5bec2c8e144400f2abe
+- source: ltwiki
+  name: MCP6001
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/MCP6001.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: 63d56e3c25f54c200df91a632ba67464011abf95434422e7df055b0752c4e4d2
+    lines:
+      MCP6001: [1, 168]
+    fetched: '2026-09-21'

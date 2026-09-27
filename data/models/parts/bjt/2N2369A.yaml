@@ -1,0 +1,59 @@
+part: 2N2369A
+kind: bjt
+priority: 2
+group: listed
+models:
+- source: central-semi
+  name: 2N2369A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.centralsemi.com/docs/ENGINEERING/csm/2N2369A.LIB
+    sha256: bd7e9a1a1dfc7187a976bfd8e70b2183aff4e0e9fe295fd5d55da04b3342a18f
+    lines:
+      2N2369A: [24, 49]
+    fetched: '2026-09-14'
+  copies:
+  - source: microcap12
+    name: 2N2369A
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: cs.lib
+      sha256: 4daf7b77d9c13771dc3a2e074d972af2c69c71839a7469d1915bdd9c39e69f3d
+- source: microcap12
+  name: 2N2369A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: msbjt_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 03fbaf82587d859e52f6b3e36166b65d7d6b6f241e460308f37d3b568e5fa96e
+    lines:
+      2N2369A: [216, 220]
+    fetched: '2026-09-20'
+- source: duncanamps
+  name: Q2N2369A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/bjt/npn.mod
+    sha256: 57dfef87174fc8f0310bc9527e0bf7ef3fa92d13d295ea8a504d3ba67f13ec87
+    lines:
+      Q2N2369A: [32, 34]
+    fetched: '2026-09-14'
+- source: ltwiki
+  name: Q2N2369A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/bipolar.lib
+    sha256: c5e0e8839925adb5e550a6654a8d5d1c0634a0fd0f58e03c9701e24d9aa08b5b
+    lines:
+      Q2N2369A: [1699, 1702]
+    fetched: '2026-09-21'

@@ -15,7 +15,29 @@ models:
       mbrs130lt3: [38, 52]
     fetched: '2026-09-14'
     note: 'model(s): mbrs130lt3 (D .model)'
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: kicad-spice-library
+    name: mbrs130lt3
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_rect.lib
+      sha256: 4280e2f5339d54da1e9eda2a615c5b783b50e01b2cacde8c6bbc21649adfa347
+  - source: microcap12
+    name: mbrs130lt3
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: m_rect.lib
+      sha256: 307f442b92fbc7c5f238c9f560a6fe2c9882ed67e4ac1baf8487fd962fc59558
+  - source: microcap12
+    name: mbrs130lt3
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: spice-model-cd
+    name: mbrs130lt3
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Motorola/Spice/Rectifier/Schottky/MBRS130.LIB
+      sha256: b0338f0c3dffa5c164c5611a2797d19985a6ccddd36aa3a975c23589f04716e9
 - source: bordodynov
   name: MBRS130L
   def: model
@@ -44,3 +66,27 @@ models:
       MBRS130L: [45, 45]
     fetched: '2026-09-14'
   note: 'found under the alias MBRS130L; same code also in: kicad-spice-library'
+- source: onsemi
+  name: Dmbrs130lt3
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mbrs130lt3.lib
+    sha256: c55ae8393326c99cbc74966d0321485b42bc83aa467c50b3fd8a41d49f7c3193
+    lines:
+      Dmbrs130lt3: [14, 18]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: Dmbrs130lt3
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: mbrs130lt3
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_diode.lib
+      sha256: b22e1d5ee75d5fe192f4e75a25f3addd1671eb17659c3b2a8cb964cfc96d10bc

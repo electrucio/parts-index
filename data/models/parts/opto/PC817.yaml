@@ -23,6 +23,37 @@ models:
     error: 'KeyError: ''opto'''
   symbol: PC817_ltspice-native.asy
   note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+- source: bordodynov
+  name: PC817
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/PC817.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0c80f3110eb3c20c73e940201df25f5ef96bd7397c389eca5d9e2d036fa038e1
+    lines:
+      PC817: [3, 11]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: PC817
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/PC817.sub
+      sha256: 0c80f3110eb3c20c73e940201df25f5ef96bd7397c389eca5d9e2d036fa038e1
+  - source: ltwiki
+    name: PC817
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/PC817.sub
+      sha256: 0c80f3110eb3c20c73e940201df25f5ef96bd7397c389eca5d9e2d036fa038e1
+  - source: ltwiki
+    name: PC817
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/PC817.sub
+      sha256: 0c80f3110eb3c20c73e940201df25f5ef96bd7397c389eca5d9e2d036fa038e1
 datasheet:
   url: https://global.sharp/products/device/lineup/data/pdf/datasheet/PC817XxNSZ1B_e.pdf
   maker: Sharp

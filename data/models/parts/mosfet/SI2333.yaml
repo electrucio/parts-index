@@ -20,6 +20,13 @@ models:
     fetched: '2026-09-19'
     note: 'MOSFETs, PSpice Models (*.txt): Si2333DS, PMOS, NMOS, DBD, RTEMP'
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: Si2333DS
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: vishaymosfet.lib
+      sha256: 23bc5e3e06c64162cbb4b96205c8a4b30b08d7cfd780d41fd3043fede09671f7
 - source: vishay
   name: Si2333CDS
   def: subckt
@@ -37,3 +44,48 @@ models:
     fetched: '2026-09-19'
     note: 'MOSFETs, PSpice Models (*.txt): Si2333CDS, PMOS, NMOS, DBD, RTEMP'
   note: pins from names
+- source: vishay
+  name: Si2333DDS
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/63609/si2333dds.zip
+    member: Si2333DDS_PS.TXT
+    archive_sha256: cc9b29cdb0afc9a8d767eb53abf692bb125d24234c3113632e5aa8409fbc5f5c
+    sha256: b7e5cf248a6c4825c28a0390209d37e65042c1883f88fb8fffcf8e65d9f387af
+    lines:
+      Si2333DDS: [8, 34]
+    fetched: '2026-09-19'
+  copies:
+  - source: vishay
+    name: Si2333DDS
+    get:
+      url: https://www.vishay.com/docs/63609/si2333dds.zip
+      member: Si2333DDS_PS_RC.LIB
+      sha256: a49308dcd7812a50af6cf9f2b9eadb53e7951dc32cd1754e8f8a494218c25df1
+  - source: vishay
+    name: Si2333DDS
+    get:
+      url: https://www.vishay.com/docs/63609/si2333dds.zip
+      member: Si2333DDS_PS.LIB
+      sha256: b7e5cf248a6c4825c28a0390209d37e65042c1883f88fb8fffcf8e65d9f387af
+  - source: vishay
+    name: Si2333DDS
+    get:
+      url: https://www.vishay.com/docs/63609/si2333dds.zip
+      member: Si2333DDS_PS_RC.txt
+      sha256: a49308dcd7812a50af6cf9f2b9eadb53e7951dc32cd1754e8f8a494218c25df1
+- source: vishay
+  name: Si2333DDS
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/63609/si2333dds.zip
+    member: Si2333DDS_HS.TXT
+    archive_sha256: cc9b29cdb0afc9a8d767eb53abf692bb125d24234c3113632e5aa8409fbc5f5c
+    sha256: 8cecf3a25821f50cfac17acd6e5af99e0691d499b853a66a3e65e65d9a050195
+    lines:
+      Si2333DDS: [7, 33]
+    fetched: '2026-09-19'

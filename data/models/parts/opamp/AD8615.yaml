@@ -21,4 +21,33 @@ models:
     lines:
       AD8615: [28, 116]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: adi
+    name: AD8615
+    get:
+      url: https://www.analog.com/media/en/simulation-models/spice-models/AD8615.cir?modelType=spice-models
+      sha256: c556e5572a6c4cfd2793e014a9415fb9081de23bd8c49747a5bf806182901960
+  - source: ltwiki
+    name: AD8615
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/AD/AD8615.TXT
+      sha256: f0d3507a176ab17efca811f6a12f420e7b859c1a88618b875ef0a6048e270bb0
+- source: microcap12
+  name: AD8615
+  def: subckt
+  type: SUBCKT
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: analog.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+    lines:
+      AD8615: [85142, 85230]
+      dx: [77076, 77076]
+    fetched: '2026-09-20'

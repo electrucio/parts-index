@@ -21,7 +21,29 @@ models:
     lines:
       CD4016A: [44, 77]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: CD4016A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/SwitchAna.Lib
+      sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
+  - source: ltwiki
+    name: CD4016A
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/ana_swit.lib
+      sha256: a1481fb77365606c680cdb6d9fd2a3d144c4c0135f92e1d35428797831386a04
+  - source: ltwiki
+    name: CD4016A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/SwitchAna.Lib
+      sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
+  - source: ltwiki
+    name: CD4016A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/SwitchAna.Lib
+      sha256: bdc1ed4314c28014a88c6c98fee7934edf64321f0d1e3ff50101fce2a6793fda
 - source: bordodynov
   name: CD4016B
   def: subckt
@@ -41,4 +63,26 @@ models:
     lines:
       CD4016B: [78, 111]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: CD4016B
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/SwitchAna.Lib
+      sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
+  - source: ltwiki
+    name: CD4016B
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/ana_swit.lib
+      sha256: a1481fb77365606c680cdb6d9fd2a3d144c4c0135f92e1d35428797831386a04
+  - source: ltwiki
+    name: CD4016B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/SwitchAna.Lib
+      sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
+  - source: ltwiki
+    name: CD4016B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/SwitchAna.Lib
+      sha256: bdc1ed4314c28014a88c6c98fee7934edf64321f0d1e3ff50101fce2a6793fda

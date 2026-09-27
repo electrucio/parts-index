@@ -1,0 +1,69 @@
+part: TIP32B
+kind: bjt
+priority: 3
+group: listed
+models:
+- source: onsemi
+  name: Qtip32b
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/tip32b.lib
+    sha256: 059c9aec7eaf5151218eeb81cd6adf1ab2f24171bcaaf1d4769278071ea7ed52
+    lines:
+      Qtip32b: [12, 22]
+    fetched: '2026-09-19'
+  copies:
+  - source: ltwiki
+    name: Qtip32b
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Miscel/NUD4001_lt/nud4001p.lib
+      sha256: 0972dffca437f578418e6ec1a6cf68806a88d0f44e873852a40af543f9e66f08
+  - source: ltwiki
+    name: Qtip32b
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Miscel/NUD4001_lt/nud4001p.lib
+      sha256: 0972dffca437f578418e6ec1a6cf68806a88d0f44e873852a40af543f9e66f08
+  - source: microcap12
+    name: Qtip32b
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: tip32b
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_bjt.lib
+      sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77
+  - source: onsemi
+    name: Qtip32b
+    get:
+      url: https://www.onsemi.com/download/models/zip/nud4001.models.zip
+      member: nud4001p.lib
+      sha256: 1577e6cacf2cfaee80160b796c7d711743eae365212bdbb5d4011b09a4c2fb4c
+- source: ltwiki
+  name: TIP32B
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrbjt.lib
+    sha256: 30a0b2113b846773bf8dc3f872c0edaed5312f72b3907f053aaba5badf6b8034
+    lines:
+      TIP32B: [6447, 6451]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: TIP32B
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWBJT.LIB
+    sha256: a64b2703fc28c849c7760139346aa1e0c31b83f7701a15e8e7a8d12b01c7befc
+    lines:
+      TIP32B: [682, 691]
+    fetched: '2026-09-14'

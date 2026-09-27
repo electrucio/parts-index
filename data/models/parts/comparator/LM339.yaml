@@ -37,7 +37,25 @@ models:
     not_measurable: 1
     typical_rows: 0
   symbol: LM339_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: LM339
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: ltwiki
+    name: LM339
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: ltwiki
+    name: LM339
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OpAmp_NSC.lib
+      sha256: 640cf42a735c898a54951becb5657cb42ecbfd75453e22e5d739958213f9cf2c
 - source: bordodynov
   name: LM339_jim
   def: subckt
@@ -65,7 +83,25 @@ models:
     not_measurable: 1
     typical_rows: 0
   symbol: LM339_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: LM339_jim
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Occomp.lib
+      sha256: 43034148edb87c8b5281df8a394fb79962ff67147f9fba6349b2fcbb8346e17f
+  - source: ltwiki
+    name: LM339_jim
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Occomp.lib
+      sha256: d4e98ddcd8fabe3cd892bb2be1e2447639c10f9f8759ce47b8b5c101a6999049
+  - source: ltwiki
+    name: LM339_jim
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Occomp.lib
+      sha256: 43034148edb87c8b5281df8a394fb79962ff67147f9fba6349b2fcbb8346e17f
 - source: bordodynov
   name: LM339A/TI
   def: subckt
@@ -93,7 +129,14 @@ models:
     not_measurable: 1
     typical_rows: 0
   symbol: LM339_bordodynov-3.asy
-  note: 'same code also in: ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: ltwiki
+    name: LM339A/TI
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/ti_models.lib
+      sha256: 91cd41205c65eb69c8d88ac91cb6c5678c6bedc408aaafc9b8d047f2c3c02d60
 - source: bordodynov
   name: LM339
   def: subckt
@@ -126,7 +169,14 @@ models:
     not_measurable: 1
     typical_rows: 0
   symbol: LM339_bordodynov-4.asy
-  note: 'same code also in: ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: ltwiki
+    name: LM339
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Occomp.lib
+      sha256: d4e98ddcd8fabe3cd892bb2be1e2447639c10f9f8759ce47b8b5c101a6999049
 - source: bordodynov
   name: LM_339
   def: subckt
@@ -154,7 +204,14 @@ models:
     not_measurable: 1
     typical_rows: 0
   symbol: LM339_bordodynov-5.asy
-  note: 'same code also in: ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: ltwiki
+    name: LM_339
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Occomp.lib
+      sha256: d4e98ddcd8fabe3cd892bb2be1e2447639c10f9f8759ce47b8b5c101a6999049
 - source: ltwiki
   name: LM339
   def: subckt
@@ -181,7 +238,109 @@ models:
     not_measurable: 1
     typical_rows: 0
   symbol: LM339_ltwiki.asy
-  note: 'same code also in: electrucio; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: microcap12
+    name: LM339A_TI
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+  - source: electrucio
+    name: LM339
+    get:
+      how: unknown
+      sha256: b2b112bb6bcd88421cf95de421b3846b2b320f15902de6e460f54521ddfe79df
+  - source: electrucio
+    name: LM339
+    get:
+      how: unknown
+      sha256: b2b112bb6bcd88421cf95de421b3846b2b320f15902de6e460f54521ddfe79df
+  - source: kicad-spice-library
+    name: LM_339
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Occomp.lib
+      sha256: 43034148edb87c8b5281df8a394fb79962ff67147f9fba6349b2fcbb8346e17f
+  - source: ltwiki
+    name: LM_339
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Occomp.lib
+      sha256: 43034148edb87c8b5281df8a394fb79962ff67147f9fba6349b2fcbb8346e17f
+  - source: kicad-spice-library
+    name: LM339A/TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/ti_models.lib
+      sha256: 79e148c879b17ad4479d794456a0f79f687a87ca85e4f1505d9242f964a3c871
+  - source: kicad-spice-library
+    name: LM339A_TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+      sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+  - source: ltwiki
+    name: LM339A/TI
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/ti_models.lib
+      sha256: 79e148c879b17ad4479d794456a0f79f687a87ca85e4f1505d9242f964a3c871
+  - source: kicad-spice-library
+    name: LM339_TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+      sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+  - source: microcap12
+    name: LM339_TI
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+  - source: kicad-spice-library
+    name: LM339T
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TICOMP.LIB
+      sha256: d4980b8365b4590602ff9cca722294b2ec0125e2ef169e5a6a66dab2a6411001
+  - source: kicad-spice-library
+    name: LM339AT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TICOMP.LIB
+      sha256: d4980b8365b4590602ff9cca722294b2ec0125e2ef169e5a6a66dab2a6411001
+- source: ltwiki
+  name: LM339
+  def: subckt
+  type: SUBCKT
+  deps:
+  - LM139
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+    sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+    lines:
+      LM139: [4544, 4565]
+      LM339: [4698, 4704]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM339
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Occomp.lib
+      sha256: 43034148edb87c8b5281df8a394fb79962ff67147f9fba6349b2fcbb8346e17f
+  - source: ltwiki
+    name: LM339
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Occomp.lib
+      sha256: 43034148edb87c8b5281df8a394fb79962ff67147f9fba6349b2fcbb8346e17f
+- source: kicad-spice-library
+  name: LM339
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+    sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+    lines:
+      LM339: [1536, 1557]
+    fetched: '2026-09-14'
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/lm339.pdf
   maker: Texas Instruments

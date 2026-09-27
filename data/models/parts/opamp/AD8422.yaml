@@ -24,3 +24,15 @@ models:
     lines:
       AD8422: [4981, 5133]
     fetched: '2026-09-14'
+  copies:
+  - source: adi
+    name: AD8422
+    get:
+      url: https://www.analog.com/media/en/simulation-models/spice-models/AD8422.cir?modelType=spice-models
+      sha256: 6d6de8c8dff94003a877baff00e5e36d2d01387cac8398e94f54adfb4044d213
+  - source: bordodynov
+    name: AD8422
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/ADI1.lib
+      sha256: 56007b832dfb995c0072377bc98125b86a2ee7e9dd4d109d29d4c295aa6a265d

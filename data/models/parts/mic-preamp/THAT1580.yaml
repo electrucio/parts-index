@@ -34,6 +34,13 @@ models:
     score: null
     error: 'KeyError: ''mic-preamp'''
   symbol: THAT1580_thatcorp.asy
+  copies:
+  - source: thatcorp
+    name: THAT1580
+    get:
+      url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+      member: 1580_Macro_01.lib
+      sha256: 5bef594645ffd3f4c64908b6734705ea90cf5ecc5c8c5d0ce1e9965b93dc9edf
 - source: thatcorp
   name: THAT1583
   def: subckt
@@ -67,6 +74,13 @@ models:
     error: 'KeyError: ''mic-preamp'''
   symbol: THAT1580_thatcorp-2.asy
   note: found under the alias THAT1583
+  copies:
+  - source: thatcorp
+    name: THAT1583
+    get:
+      url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+      member: 1583_Macro_02.lib
+      sha256: dc26d94b58088b76148b0536433e281c3b35bf7fe79946614132ee6c30003659
 datasheet:
   url: https://www.thatcorp.com/datashts/THAT_1580_Datasheet.pdf
   maker: THAT Corporation

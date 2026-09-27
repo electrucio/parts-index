@@ -16,7 +16,34 @@ models:
     lines:
       IRFR9024: [1149, 1149]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: IRFR9024
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: ltwiki
+    name: IRFR9024
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: IRFR9024
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: IRFR9024
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: IRFR9024
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: bordodynov
   name: irfr9024
   def: subckt
@@ -34,7 +61,37 @@ models:
     lines:
       irfr9024: [1, 60]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: irfr9024
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irfr9024.spi
+      sha256: ddb56b098559a6ac6633edf1933f7c21e484d8fe42f6f8f6ab1b9fb42c2a9b28
+  - source: kicad-spice-library
+    name: irfr9024
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irfr9024.spi
+      sha256: 78568e6a7d0b1ead17831966a587e81859017d78b60d3317e737891ad376bed7
+  - source: ltwiki
+    name: irfr9024
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irfr9024.spi
+      sha256: ddb56b098559a6ac6633edf1933f7c21e484d8fe42f6f8f6ab1b9fb42c2a9b28
+  - source: ltwiki
+    name: irfr9024
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irfr9024.spi
+      sha256: ddb56b098559a6ac6633edf1933f7c21e484d8fe42f6f8f6ab1b9fb42c2a9b28
+  - source: ltwiki
+    name: irfr9024
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irfr9024.spi
+      sha256: ddb56b098559a6ac6633edf1933f7c21e484d8fe42f6f8f6ab1b9fb42c2a9b28
 - source: bordodynov
   name: irfr9024n
   def: subckt
@@ -52,7 +109,38 @@ models:
     lines:
       irfr9024n: [1, 56]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irfr9024n
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: bordodynov
+    name: irfr9024n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irfr9024n.spi
+      sha256: 3d01adade2445ca42021af376259fd03c2d726cd64134e41a4d473e22cb27445
+  - source: ltwiki
+    name: irfr9024n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irfr9024n.spi
+      sha256: 3d01adade2445ca42021af376259fd03c2d726cd64134e41a4d473e22cb27445
+  - source: ltwiki
+    name: irfr9024n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irfr9024n.spi
+      sha256: 3d01adade2445ca42021af376259fd03c2d726cd64134e41a4d473e22cb27445
+  - source: ltwiki
+    name: irfr9024n
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irfr9024n.spi
+      sha256: 3d01adade2445ca42021af376259fd03c2d726cd64134e41a4d473e22cb27445
 - source: kicad-spice-library
   name: IRFR9024
   def: subckt
@@ -104,3 +192,46 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irfr9024_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+- source: spice-model-cd
+  name: IRFR9024
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/MOSFET.LB
+    sha256: 9287b7f0b7ae8ab0fa02300dfe2bdbf54cd76d2720f610592fdc5fcb2528d29b
+    lines:
+      IRFR9024: [914, 921]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: IRFR9024
+  def: model
+  type: PMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: irpmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 105bbe2b177521de15323aae290e05947c3bb26d62a8ee42fe5da0e351b46ddf
+    lines:
+      IRFR9024: [1937, 1941]
+    fetched: '2026-09-20'
+- source: kicad-spice-library
+  name: IRFR9024M
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+    sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+    lines:
+      IRFR9024M: [7882, 7927]
+    fetched: '2026-09-14'

@@ -27,3 +27,35 @@ models:
       S1D: [1275, 1285]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: S1D
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: gensemi.lib
+      sha256: a91e073b84759dcbe41d4ae51687287a413fc12865804565e488f747b57b3d6c
+- source: vishay
+  name: s1d
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89824/s1d.txt
+    sha256: 94213ca80f26fe12faeb665a805d4bdd65bf87061a00b1062b1857cb43003744
+    lines:
+      s1d: [7, 10]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: S1DB
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      S1DB: [10558, 10559]
+    fetched: '2026-09-20'

@@ -25,7 +25,13 @@ models:
       LM119: [64, 86]
       LM319: [146, 152]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: LM319
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Occomp.lib
+      sha256: d4e98ddcd8fabe3cd892bb2be1e2447639c10f9f8759ce47b8b5c101a6999049
 - source: ltwiki
   name: LM319
   def: subckt
@@ -49,7 +55,22 @@ models:
       LM119: [62, 81]
       LM319: [138, 144]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: ltwiki
+    name: LM319
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+      sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+  - source: kicad-spice-library
+    name: LM319
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Occomp.lib
+      sha256: 43034148edb87c8b5281df8a394fb79962ff67147f9fba6349b2fcbb8346e17f
+  - source: kicad-spice-library
+    name: LM319
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+      sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
 - source: kicad-spice-library
   name: LM319S
   def: subckt

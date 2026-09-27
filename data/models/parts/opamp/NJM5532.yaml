@@ -22,3 +22,74 @@ models:
       NJM5532_SN: [1374, 1495]
     fetched: '2026-09-14'
   note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: NJM5532_SN
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OpAmp_Nazar_Shtybel.lib
+      sha256: 4781654faf3d2ec54bf5acd80471ac9d119fb98d495698f460aa8839ee45e05d
+  - source: bordodynov
+    name: NJM5532_SN
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OpAmp_Nazar_Shtybel.lib
+      sha256: 4781654faf3d2ec54bf5acd80471ac9d119fb98d495698f460aa8839ee45e05d
+- source: nisshinbo
+  name: NJM5532x
+  def: subckt
+  type: SUBCKT
+  deps:
+  - njm5532_s
+  verbatim: true
+  get:
+    url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm5532_p.zip
+    member: SPM_NJM5532x_v0301/NJM5532x_v0301_Z.lib
+    archive_sha256: e9c21c87e1944db4faa14f2736abca6477f8dfc47bcd31d8648a6d86ddefa35e
+    sha256: 50b3b4ff434402031f8bb000cd305b1edacdda61f0c2436f06789bc821078731
+    lines:
+      NJM5532x: [10, 13]
+      njm5532_s: [22, 85]
+    fetched: '2026-09-20'
+- source: nisshinbo
+  name: njm5532_s
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm5532_p.zip
+    member: SPM_NJM5532x_v0301/NJM5532x_v0301_Z.lib
+    archive_sha256: e9c21c87e1944db4faa14f2736abca6477f8dfc47bcd31d8648a6d86ddefa35e
+    sha256: 50b3b4ff434402031f8bb000cd305b1edacdda61f0c2436f06789bc821078731
+    lines:
+      njm5532_s: [22, 85]
+    fetched: '2026-09-20'
+- source: nisshinbo
+  name: NJM5532Cx
+  def: subckt
+  type: SUBCKT
+  deps:
+  - njm5532C_s
+  verbatim: true
+  get:
+    url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm5532c_p.zip
+    member: SPM_NJM5532Cx_v0301/NJM5532Cx_v0301_Z.lib
+    archive_sha256: a801f372bac79a0e8646b0eeb9797185fc9a1845f83344b4d1d5a986e1805807
+    sha256: 59e5fd62e2b0748b8bb4ddb32a38f6ef63837cb4b73ae531d15042927e51830c
+    lines:
+      NJM5532Cx: [10, 13]
+      njm5532C_s: [22, 85]
+    fetched: '2026-09-20'
+- source: nisshinbo
+  name: njm5532C_s
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm5532c_p.zip
+    member: SPM_NJM5532Cx_v0301/NJM5532Cx_v0301_Z.lib
+    archive_sha256: a801f372bac79a0e8646b0eeb9797185fc9a1845f83344b4d1d5a986e1805807
+    sha256: 59e5fd62e2b0748b8bb4ddb32a38f6ef63837cb4b73ae531d15042927e51830c
+    lines:
+      njm5532C_s: [22, 85]
+    fetched: '2026-09-20'

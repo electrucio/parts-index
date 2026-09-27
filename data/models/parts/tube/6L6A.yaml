@@ -22,3 +22,24 @@ models:
       6L6_AN: [1450, 1470]
     fetched: '2026-09-14'
   note: pins from names
+  copies:
+  - source: bordodynov
+    name: 6L6_AN
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Pentode_Ayumi.lib
+      sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
+- source: microcap12
+  name: 6L6_ayumi
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: Ayumi_Pentode.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: b20f109b443614b28d014113e25ed3c4af19a9494e2e946b401e5c5a18514b12
+    lines:
+      6L6_ayumi: [1510, 1533]
+    fetched: '2026-09-20'

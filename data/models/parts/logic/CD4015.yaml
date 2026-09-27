@@ -1,0 +1,40 @@
+part: CD4015
+kind: logic
+priority: 3
+models:
+- source: microcap12
+  name: CD4015B
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: cmos.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 355bb3dfa2be483f7c2d5b8d729acb8221874a18fbf49607f03a0bfc0d753917
+    lines:
+      CD4015B: [539, 579]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: CD4015B
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cmos.lib
+      sha256: 4ee830d7932c2cdfcd5d21972f96c0387c3440d5d449c6554a0016f8b0f4f5b0
+- source: kicad-spice-library
+  name: CD4015B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - CD40_IN_1
+  - CD40_OUT_1X
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/CD4000_v.lib
+    sha256: 160e7f8bc97f0e71541e67941c2442ebef6888026163a64fe1ea4e92854bef25
+    lines:
+      CD4015B: [1329, 1359]
+      CD40_IN_1: [870, 887]
+      CD40_OUT_1X: [921, 932]
+    fetched: '2026-09-14'

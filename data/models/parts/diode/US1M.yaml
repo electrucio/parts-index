@@ -32,7 +32,19 @@ models:
     lines:
       US1M: [323, 323]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: US1M
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: US1M
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
 - source: kicad-spice-library
   name: US1M
   def: model
@@ -45,3 +57,50 @@ models:
       US1M: [292, 292]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: vishay
+  name: us1m
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/98132/_p_us1m.txt
+    sha256: 9e68c1ed7a82125766a76b66b5a54523f76a12c17025d580ab3429dd37515c88
+    lines:
+      us1m: [4, 5]
+    fetched: '2026-09-19'
+- source: vishay
+  name: us1m
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89605/us1m.txt
+    sha256: 7b2de4c1ea22c54b1c8ce2df2b53a26b3799a34a08c5163ff50ebf9b5d0f5407
+    lines:
+      us1m: [7, 10]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: US1M
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      US1M: [11095, 11096]
+    fetched: '2026-09-20'
+- source: qspice
+  name: US1M
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
+    lines:
+      US1M: [155, 155]
+    fetched: '2026-09-20'

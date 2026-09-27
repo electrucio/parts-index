@@ -16,7 +16,34 @@ models:
     lines:
       TN0702: [1357, 1357]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: TN0702
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: ltwiki
+    name: TN0702
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: TN0702
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: TN0702
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: TN0702
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: ltwiki
   name: TN0702
   def: model
@@ -30,7 +57,30 @@ models:
     lines:
       TN0702: [196, 201]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: microcap12
+    name: TN0702
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: supertex.lib
+      sha256: 3fdc8cc325649bfeb8e3dfb022e1ad75934ac87ff5f8b5bf3e4d611de9da113c
+  - source: kicad-spice-library
+    name: TN0702
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/supertex.lib
+      sha256: fcd0189532b781a04c4e30a021b5debaec3913ab4ddb0e63717153c92df613b5
+  - source: ltwiki
+    name: TN0702
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Discretos/Mos&Fet/lnd250/supertex.lib
+      sha256: bee2ceb743df92ef4c2c95e8784a0e1bfac5674feaab21e8c42723f3c9104084
+  - source: microcap12
+    name: TN0702
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: mc_mosfet.lib
+      sha256: 506a1884ae51450c6e44b2eac1d25b6248da20cfdfcaa748271f7faff241f7e9
 - source: kicad-spice-library
   name: TN0702
   def: subckt

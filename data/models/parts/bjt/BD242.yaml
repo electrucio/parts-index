@@ -1,0 +1,101 @@
+part: BD242
+kind: bjt
+priority: 2
+group: listed
+models:
+- source: onsemi
+  name: Qbd242b
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bd242b.lib
+    sha256: f0962667ea502e0e47aaca92543953ff2b79fc2426e7004ba0f708eb95b56bdc
+    lines:
+      Qbd242b: [12, 22]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: Qbd242b
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: onsemi
+  name: Qbd242c
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bd242c.lib
+    sha256: 32e42d3bc8043da526c160f4b2b07514fecfd529cf645f0c3c2940bcc47ed803
+    lines:
+      Qbd242c: [12, 22]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: Qbd242c
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: microcap12
+  name: BD242
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: mpbjt.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 809a83e6faeda5c9408c63742c5b83c822ce0dfb08886e6178b44281a94ac21b
+    lines:
+      BD242: [3006, 3013]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: BD242A
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: mpbjt.lib
+      sha256: 809a83e6faeda5c9408c63742c5b83c822ce0dfb08886e6178b44281a94ac21b
+  - source: microcap12
+    name: BD242B
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: mpbjt.lib
+      sha256: 809a83e6faeda5c9408c63742c5b83c822ce0dfb08886e6178b44281a94ac21b
+  - source: microcap12
+    name: BD242C
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: mpbjt.lib
+      sha256: 809a83e6faeda5c9408c63742c5b83c822ce0dfb08886e6178b44281a94ac21b
+- source: ltwiki
+  name: BD242
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrbjt.lib
+    sha256: 30a0b2113b846773bf8dc3f872c0edaed5312f72b3907f053aaba5badf6b8034
+    lines:
+      BD242: [7086, 7090]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: BD242A
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrbjt.lib
+      sha256: 30a0b2113b846773bf8dc3f872c0edaed5312f72b3907f053aaba5badf6b8034
+  - source: ltwiki
+    name: BD242B
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrbjt.lib
+      sha256: 30a0b2113b846773bf8dc3f872c0edaed5312f72b3907f053aaba5badf6b8034
+  - source: ltwiki
+    name: BD242C
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrbjt.lib
+      sha256: 30a0b2113b846773bf8dc3f872c0edaed5312f72b3907f053aaba5badf6b8034

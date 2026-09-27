@@ -21,7 +21,24 @@ models:
     lines:
       CD4066: [187, 224]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: CD4066
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/SwitchAna.Lib
+      sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
+  - source: ltwiki
+    name: CD4066
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/SwitchAna.Lib
+      sha256: 65715dcfd779fa76cc3829293e6d071699122ff261ac420893e2a0bf219ffb0e
+  - source: ltwiki
+    name: CD4066
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/SwitchAna.Lib
+      sha256: bdc1ed4314c28014a88c6c98fee7934edf64321f0d1e3ff50101fce2a6793fda
 - source: bordodynov
   name: CD4066B
   def: subckt
@@ -44,7 +61,24 @@ models:
       CD4066B: [2, 23]
       CD4066_INVERT: [25, 41]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: CD4066B
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/CD4066B.lib
+      sha256: fecc7d5e8ebb2c5dda40c8cf09165c26ec63ec452bfe0f2c8020c2acf049298a
+  - source: ltwiki
+    name: CD4066B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/CD4066B.lib
+      sha256: fecc7d5e8ebb2c5dda40c8cf09165c26ec63ec452bfe0f2c8020c2acf049298a
+  - source: ltwiki
+    name: CD4066B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/CD4000/CD4066B.lib
+      sha256: fecc7d5e8ebb2c5dda40c8cf09165c26ec63ec452bfe0f2c8020c2acf049298a
 - source: kicad-spice-library
   name: CD4066B
   def: subckt

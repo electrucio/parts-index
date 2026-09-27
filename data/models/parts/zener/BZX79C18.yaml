@@ -54,8 +54,36 @@ models:
     typical_rows: 0
   symbol: BZX79C18_diodes-inc.asy
   note: 'STAND-IN: model of DI_BZX84C18, not of BZX79C18; equivalence declared in catalog/wanted.yaml
-    (see its note); same code also in: bordodynov, kicad-spice-library, ltwiki; pins from default order
-    (unverified)'
+    (see its note); pins from default order (unverified)'
+  copies:
+  - source: bordodynov
+    name: DI_BZX84C18
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/zener.lib
+      sha256: 8d38737d9771d4ca6d8e3394f3e18499568bacd1e4cf61cdd7b094ad337f92e3
+  - source: kicad-spice-library
+    name: DI_BZX84C18
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/zener.lib
+      sha256: 8d38737d9771d4ca6d8e3394f3e18499568bacd1e4cf61cdd7b094ad337f92e3
+  - source: kicad-spice-library
+    name: DI_BZX84C18
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Diode/zener.lib
+      sha256: 3d2df1d6cf28a21f84965a37718a2b6531092b0686919fa189ccacda5d7fc194
+  - source: ltwiki
+    name: DI_BZX84C18
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/zener.lib
+      sha256: 8d38737d9771d4ca6d8e3394f3e18499568bacd1e4cf61cdd7b094ad337f92e3
+  - source: ltwiki
+    name: DI_BZX84C18
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/DIODES.COM/ZENER/LIB/zener.lib
+      sha256: 6a9b1f3823ca8671b8cd73d91b5565680e6e287ecafcdc8f90055614b7dd5629
 - source: bordodynov
   name: BZX84C18
   def: model
@@ -77,7 +105,25 @@ models:
     not_measurable: 0
     typical_rows: 0
   note: 'STAND-IN: model of BZX84C18, not of BZX79C18; equivalence declared in catalog/wanted.yaml (see
-    its note); same code also in: kicad-spice-library, ltwiki'
+    its note)'
+  copies:
+  - source: kicad-spice-library
+    name: BZX84C18
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.dio
+      sha256: 85043335b56cc10779c03bcd2c237472827cf28c004628c9ddacb6fb3d8705c7
+  - source: ltwiki
+    name: BZX84C18
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: BZX84C18
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
 - source: bordodynov
   name: BZX84C18
   def: subckt
@@ -106,7 +152,25 @@ models:
     typical_rows: 0
   symbol: BZX79C18_bordodynov-2.asy
   note: 'STAND-IN: model of BZX84C18, not of BZX79C18; equivalence declared in catalog/wanted.yaml (see
-    its note); same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+    its note); pins from default order (unverified)'
+  copies:
+  - source: kicad-spice-library
+    name: BZX84C18
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Zener_DiodesInc.lib
+      sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+  - source: ltwiki
+    name: BZX84C18
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Zener_DiodesInc.lib
+      sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+  - source: ltwiki
+    name: BZX84C18
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Zener_DiodesInc.lib
+      sha256: 44998eb950913c32209f9f24b702e8290a29c0ec6ee2e81d3a34388e40a89406
 - source: kicad-spice-library
   name: BZX79A18
   def: model
@@ -149,6 +213,37 @@ models:
     typical_rows: 0
   note: 'STAND-IN: model of BZX84C18, not of BZX79C18; equivalence declared in catalog/wanted.yaml (see
     its note)'
+  copies:
+  - source: spice-model-cd
+    name: BZX84C18
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/znewmods.lib
+      sha256: 40372fd3658df08e99fdcc96353e1c4dbbfcf004d493c1e461581157969a4e3a
+  - source: microcap12
+    name: BZX84C18
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
+- source: onsemi
+  name: BZX84C18
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bzx84c18.lib
+    sha256: 74fedbf6e24e94675b5477f393c124bd83768a50402957bf7f452883b63969e7
+    lines:
+      BZX84C18: [4, 8]
+    fetched: '2026-09-19'
+  note: 'STAND-IN: model of BZX84-C18, not of BZX79C18; the equivalence is declared in data/models/wanted.yaml'
+  copies:
+  - source: microcap12
+    name: BZX84C18
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 datasheet:
   url: https://assets.nexperia.com/documents/data-sheet/BZX79.pdf
   maker: Nexperia

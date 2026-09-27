@@ -136,10 +136,13 @@ follows is what they do not cover yet, roughly in order of what a reader would n
   the day it happened, instead of after the archives had been deleted. It found one stale record when run
   by hand, so it is worth having as a step with its own `make` target.
 - **2,029 parts have a model in the catalogue and no published recipe**, and between them they appear in
-  25,764 documents. The curation reached 1,712 parts; the catalogue holds definitions for far more. The
-  worst of it is the most looked-up parts in the whole index: ECC83 (908 documents, 7 sources hold a
-  model), 6L6 (725, 6), BC547 (702, 3), 2N2222 (631, 7), GZ34 (420, 3). Two different causes, both
-  fixable:
+  25,764 documents. The curation reached 1,712 parts; the catalogue holds definitions for far more.
+  Since 2026-09-27 `pidx models match` + `found` + `promote` publish every model the catalogue holds for
+  each *wanted* part, judged or not — 1,954 recipes — so a wanted part never waits for the curation
+  again. What is left is the parts the site shows and no list wants: the most looked-up in the whole
+  index are among them — ECC83 (908 documents, 7 sources hold a model), 6L6 (725, 6), BC547 (702, 3),
+  2N2222 (631, 7), GZ34 (420, 3). The next step is to match the site's own part names too, exact names
+  only. Two different causes, both fixable:
     - **A variant was curated and the bare number was not.** `2N2222A` has a recipe, `2N2222` does not,
       although five sources hold a definition called exactly `2N2222`. Same for `12AX7A` against
       `12AX7`, which *is* curated — so the A variant is the orphan there.

@@ -24,7 +24,24 @@ models:
     lines:
       AD620A: [31, 134]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: AD620A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/ad620a.cir
+      sha256: 203444d6d246be6a836c040b50802e991a8098d307deac6b71a0fc49a8dfe2f3
+  - source: ltwiki
+    name: AD620A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/ad620a.cir
+      sha256: 203444d6d246be6a836c040b50802e991a8098d307deac6b71a0fc49a8dfe2f3
+  - source: ltwiki
+    name: AD620A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/ad620a.cir
+      sha256: 203444d6d246be6a836c040b50802e991a8098d307deac6b71a0fc49a8dfe2f3
 - source: bordodynov
   name: AD620S
   def: subckt
@@ -47,7 +64,24 @@ models:
     lines:
       AD620S: [23, 118]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: AD620S
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/ad620s.cir
+      sha256: 0c3f35f8406f369e0988e5471d8baf6db133be5597b06f5bcd25814c388c8619
+  - source: ltwiki
+    name: AD620S
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/ad620s.cir
+      sha256: 0c3f35f8406f369e0988e5471d8baf6db133be5597b06f5bcd25814c388c8619
+  - source: ltwiki
+    name: AD620S
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/ad620s.cir
+      sha256: 0c3f35f8406f369e0988e5471d8baf6db133be5597b06f5bcd25814c388c8619
 - source: ltwiki
   name: AD620B
   def: subckt
@@ -71,6 +105,13 @@ models:
     lines:
       AD620B: [31, 134]
     fetched: '2026-09-14'
+  copies:
+  - source: ltwiki
+    name: AD620B
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Analisis/Hierarch/TEC_Servo_082505/ad620b.cir
+      sha256: 9d5ff3cc3e7d9531c547a66c9c4ab62b044d95c6cb57c4dd44ee57842c3185fe
 - source: kicad-spice-library
   name: AD620A
   def: subckt
@@ -134,3 +175,199 @@ models:
       AD620: [28, 131]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: adi
+  name: AD620
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.analog.com/media/en/simulation-models/spice-models/ad620.cir
+    sha256: 99c3a83c8e4a44fc1c2e5b878a061e03f959e223fa646bb849589e68f603f395
+    lines:
+      AD620: [30, 133]
+    fetched: '2026-09-21'
+- source: spice-model-cd
+  name: AD620/AD
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Analog%20Devices_Spice_Files/OpAmps/Spice/anlg_dev.lib
+    sha256: 6ab38357b65b81a3e4b75284dac1bed7e893f4ee465f998763fd9b4d3ecd4af3
+    lines:
+      AD620/AD: [5836, 5939]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: AD620/AD
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/anlg_dev.lib
+      sha256: 505283370bc2c5b5cb15401e3a43d58793d1598e62e1b422bb333be402ada1b9
+  - source: ltwiki
+    name: AD620/AD
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/anlg_dev.lib
+      sha256: d35db6d0ae84971c8fbeea5cf543df725be973dce3bb9a4e9d881b1bf8f519ec
+- source: spice-model-cd
+  name: AD620A/AD
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Analog%20Devices_Spice_Files/OpAmps/Spice/anlg_dev.lib
+    sha256: 6ab38357b65b81a3e4b75284dac1bed7e893f4ee465f998763fd9b4d3ecd4af3
+    lines:
+      AD620A/AD: [5971, 6074]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: AD620A/AD
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/anlg_dev.lib
+      sha256: 505283370bc2c5b5cb15401e3a43d58793d1598e62e1b422bb333be402ada1b9
+  - source: ltwiki
+    name: AD620A/AD
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/anlg_dev.lib
+      sha256: d35db6d0ae84971c8fbeea5cf543df725be973dce3bb9a4e9d881b1bf8f519ec
+- source: spice-model-cd
+  name: AD620B/AD
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Analog%20Devices_Spice_Files/OpAmps/Spice/anlg_dev.lib
+    sha256: 6ab38357b65b81a3e4b75284dac1bed7e893f4ee465f998763fd9b4d3ecd4af3
+    lines:
+      AD620B/AD: [6106, 6209]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: AD620B/AD
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/anlg_dev.lib
+      sha256: 505283370bc2c5b5cb15401e3a43d58793d1598e62e1b422bb333be402ada1b9
+  - source: ltwiki
+    name: AD620B/AD
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/anlg_dev.lib
+      sha256: d35db6d0ae84971c8fbeea5cf543df725be973dce3bb9a4e9d881b1bf8f519ec
+- source: spice-model-cd
+  name: AD620S/AD
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Analog%20Devices_Spice_Files/OpAmps/Spice/anlg_dev.lib
+    sha256: 6ab38357b65b81a3e4b75284dac1bed7e893f4ee465f998763fd9b4d3ecd4af3
+    lines:
+      AD620S/AD: [6241, 6336]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: AD620S/AD
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/anlg_dev.lib
+      sha256: 505283370bc2c5b5cb15401e3a43d58793d1598e62e1b422bb333be402ada1b9
+  - source: ltwiki
+    name: AD620S/AD
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/anlg_dev.lib
+      sha256: d35db6d0ae84971c8fbeea5cf543df725be973dce3bb9a4e9d881b1bf8f519ec
+- source: microcap12
+  name: AD620A_AD
+  def: subckt
+  type: SUBCKT
+  deps:
+  - dx
+  - qn1
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: analog.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+    lines:
+      AD620A_AD: [6677, 6772]
+      dx: [77076, 77076]
+      qn1: [77075, 77075]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: AD620A_AD
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+      sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+  - source: kicad-spice-library
+    name: AD620S_AD
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+      sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+  - source: microcap12
+    name: AD620S_AD
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: analog.lib
+      sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+- source: microcap12
+  name: AD620_AD
+  def: subckt
+  type: SUBCKT
+  deps:
+  - dx
+  - qn1
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: analog.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+    lines:
+      AD620_AD: [6558, 6653]
+      dx: [77076, 77076]
+      qn1: [77075, 77075]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: AD620_AD
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+      sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+- source: microcap12
+  name: AD620B_AD
+  def: subckt
+  type: SUBCKT
+  deps:
+  - dx
+  - qn1
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: analog.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+    lines:
+      AD620B_AD: [6796, 6891]
+      dx: [77076, 77076]
+      qn1: [77075, 77075]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: AD620B_AD
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/analog.lib
+      sha256: 891567143abd57db103fb307b2ffe6554b4dbdeac745b3348fcf8e20c2d619f0
+- source: kicad-spice-library
+  name: AD620B
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/AD4A.LIB
+    sha256: 2e0cebf7aaf8debe59afc1ead869b6b82d5b198fe0a2202b8615551773615e55
+    lines:
+      AD620B: [163, 266]
+    fetched: '2026-09-14'

@@ -23,7 +23,14 @@ models:
       ECC99: [337, 345]
       TriodeK: [2345, 2357]
     fetched: '2026-09-14'
-  note: 'same code also in: kurtblum; pins from inline comment'
+  note: pins from inline comment
+  copies:
+  - source: kurtblum
+    name: ECC99
+    get:
+      url: https://kurtblum.com/wp-content/uploads/2020/11/PP-Poweramp_02.zip
+      member: ECC99.inc
+      sha256: d548d9943b221b141a5d4ce55e624fe690c95675e7fd271038d5ab9f4a6be636
 - source: suusi-tubes
   name: ECC99
   def: subckt
@@ -62,7 +69,19 @@ models:
     lines:
       ECC99: [899, 915]
     fetched: '2026-09-14'
-  note: 'same code also in: gist-chanmix51, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: gist-chanmix51
+    name: ECC99
+    get:
+      url: https://gist.github.com/chanmix51/6947361/raw/57aa4f0baec33aaaecdfa64d99f4e0a2434be1a4/triodes.sub
+      sha256: 5a946644246b6dfa6b961fecd642dcefe0205f2db65392fda8cf7f502e0fa797
+  - source: ltwiki
+    name: ECC99
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/Tubes/triodes.sub
+      sha256: 1e31c73aba86877020a0740d279066992ad7c2cd57aed56223b59706e68a7f44
 - source: bordodynov
   name: ECC99
   def: subckt
@@ -83,4 +102,11 @@ models:
       ECC99: [311, 315]
       Triode: [31, 49]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: ltwiki
+    name: ECC99
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/new_triodes.txt
+      sha256: 4c621c85eb3b9d3dd97622ff9d25c1c1dcf93bc76e9dc887a946205326f08da2

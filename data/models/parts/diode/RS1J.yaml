@@ -15,3 +15,63 @@ models:
       rs1j: [7, 10]
     fetched: '2026-09-19'
     note: 'Power Rectifiers, PSpice Models (*.txt): rs1j'
+- source: onsemi
+  name: RS1J
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/rs1a_rs1m%20spice%20model.lib
+    sha256: 42f955dbd58b053a4b22d1715928d4c58ef0ae3526acbdf30ae7ec6093a5688c
+    lines:
+      RS1J: [62, 67]
+    fetched: '2026-09-19'
+- source: vishay
+  name: rs1j
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/87886/rs1j.txt
+    sha256: bb16028b567ca9905af0c219935801836d9c14feda888498edb82554a87295fe
+    lines:
+      rs1j: [7, 10]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: RS1J
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      RS1J: [10875, 10876]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: RS1JB
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc.lib
+      sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+- source: qspice
+  name: RS1J
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
+    lines:
+      RS1J: [94, 94]
+    fetched: '2026-09-20'
+  copies:
+  - source: qspice
+    name: RS1JB
+    get:
+      url: https://getqspice.com/InstallQSPICE.exe
+      sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367

@@ -51,6 +51,12 @@ models:
       PMEG3005EH: [2, 24]
     fetched: '2026-09-14'
   note: found under the alias PMEG3005E; pins from default order (unverified)
+  copies:
+  - source: nexperia
+    name: PMEG3005ET
+    get:
+      url: https://assets.nexperia.com/documents/spice-model/PMEG3005ET.txt
+      sha256: eea341699625971927a292a090e618dbe9c8a502f34ba43f0b7aa565c036ad1c
 - source: ltwiki
   name: PMEG3005EJ
   def: subckt
@@ -68,3 +74,17 @@ models:
       PMEG3005EJ: [2, 24]
     fetched: '2026-09-14'
   note: found under the alias PMEG3005E; pins from default order (unverified)
+- source: microcap12
+  name: PMEG3005ET
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ph_shot.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: c6367af2c60015e9fb5ecc3771d731c998ee74c0f74ef57bce37e58e08532f5d
+    lines:
+      PMEG3005ET: [3569, 3591]
+    fetched: '2026-09-20'

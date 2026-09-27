@@ -136,3 +136,41 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: found under the alias MC33063A
+- source: onsemi
+  name: MC34063A
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/zip/mc34063a%20orcad%20models.zip
+    member: mc34063.lib
+    archive_sha256: 312469dc34b8d04ffcdef6d5909591458ae2976dc107a7b9f1910a50d18fe2c4
+    sha256: d2cbcb0fb8bc58964bfabbe4a0eea2f5e439d061f3c8fc25e4b6e6bc015a7013
+    lines:
+      MC34063A: [90, 145]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: MC34063A
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D2
+  - nmos
+  - Q1
+  - pmos
+  - Q2
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      D2: [212863, 212863]
+      MC34063A: [135265, 135320]
+      Q1: [78385, 78412]
+      Q2: [78417, 78442]
+      nmos: [161508, 161508]
+      pmos: [161510, 161510]
+    fetched: '2026-09-20'

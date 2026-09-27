@@ -32,7 +32,35 @@ models:
     not_measurable: 3
     typical_rows: 0
   symbol: BSS84_diodes-inc.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: diodes-inc
+    name: BSS84
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8402/collection.spice.txt
+      sha256: dfcbbbc10b04f76b269852ab545ea063cc65bf4827e949557d2a1df8daabd917
+  - source: kicad-spice-library
+    name: BSS84
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+      sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+  - source: ltwiki
+    name: BSS84
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ZETEX/LIB/zmodels.lib
+      sha256: 8d3fb488666b5f813a666d5c589ac6c7779a2c44a4b38799b2a41ca0006368e7
+  - source: spice-model-cd
+    name: BSS84
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/bss84.lib
+      sha256: 3a012979cfa516c8980b1481e15eb237d68870fa4d951dea5eac6b76264fece8
+  - source: microcap12
+    name: BSS84_ZX
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
 - source: ltspice-native
   name: BSS84
   def: model
@@ -72,7 +100,34 @@ models:
     fail: 0
     not_measurable: 3
     typical_rows: 0
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: bss84_AB
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: ltwiki
+    name: bss84_AB
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: bss84_AB
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: bss84_AB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: bss84_AB
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: bordodynov
   name: BSS84
   def: subckt
@@ -98,7 +153,52 @@ models:
     not_measurable: 3
     typical_rows: 0
   symbol: BSS84_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: spice-model-cd
+    name: BSS84
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BSS84.t
+      sha256: c51651fb88d1c7ac9c301711746e2bbd58f79950441c7597034c635a2f7e99c6
+  - source: kicad-spice-library
+    name: BSS84
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/PMOS_Philips.lib
+      sha256: ddd5efafd062e94ad879688bea4de9115bf23caaa761c0ba40ab2e63e3458a45
+  - source: ltwiki
+    name: BSS84
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/PMOS_Philips.lib
+      sha256: ddd5efafd062e94ad879688bea4de9115bf23caaa761c0ba40ab2e63e3458a45
+  - source: ltwiki
+    name: BSS84
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/PMOSFET/BSS84.PRM
+      sha256: 3b4ae8f11c1215fb99efe3e875798ed7843f0b9ab5c132a17902b528548ac839
+  - source: kicad-spice-library
+    name: BSS84/PLP
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/phil_fet.lib
+      sha256: e37b90dac4163b3951640614f87eaf6ee6e8336448ca408aab462f05415fd5a7
+  - source: ltwiki
+    name: BSS84/PLP
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/phil_fet.lib
+      sha256: 98b9f890eb0732e8fa1b127fb16ec31cedebda98a072b65832a301e58cb5c1cf
+  - source: ltwiki
+    name: BSS84/PLP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/phil_fet.lib
+      sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
+  - source: ltwiki
+    name: BSS84/PLP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/FET/phil_fet.lib
+      sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
 - source: bordodynov
   name: BSS84
   def: subckt
@@ -125,7 +225,18 @@ models:
     not_measurable: 9
     typical_rows: 0
   symbol: BSS84_bordodynov-3.asy
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: onsemi
+    name: BSS84
+    get:
+      url: https://www.onsemi.com/download/models/mod/bss84.mod
+      sha256: 9a7bd2e0442defc53f3e599b39d153b11ccd64e415cc426449a46b54f61a2334
+  - source: ltwiki
+    name: BSS84
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/Fairchild/MOSFET/BSS84.mod
+      sha256: 9a7bd2e0442defc53f3e599b39d153b11ccd64e415cc426449a46b54f61a2334
 - source: ltwiki
   name: BSS84
   def: model
@@ -146,7 +257,489 @@ models:
     fail: 1
     not_measurable: 3
     typical_rows: 0
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: ltwiki
+    name: BSS84
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Reg_Vref/lm/LdoReg/bss139.mod
+      sha256: d98105aa9235cae554ad7dbee1e8fda1606da5c422a9dc12f1bcff7721950ef7
+  - source: kicad-spice-library
+    name: BSS84
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/MOS.lib
+      sha256: 5a12451d9b52820cc74b1f3c11955dcfbc99cc0ede851dd12587ebbbc9e9531e
+  - source: ltwiki
+    name: BSS84
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Reg&Vref/lm/LdoReg/bss139.mod
+      sha256: d98105aa9235cae554ad7dbee1e8fda1606da5c422a9dc12f1bcff7721950ef7
+  - source: ltwiki
+    name: BSS84
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.mos
+      sha256: 0f6a0a30f327903e5b61c3764e08354839fed85c6ce2d4a8b3d708d6c2ec9533
+  - source: ltwiki
+    name: BSS84
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Reg_Vref/lm/LdoReg/bss139.mod
+      sha256: d98105aa9235cae554ad7dbee1e8fda1606da5c422a9dc12f1bcff7721950ef7
+  - source: ltwiki
+    name: BSS84
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Reg&Vref/lm/LdoReg/bss139.mod
+      sha256: d98105aa9235cae554ad7dbee1e8fda1606da5c422a9dc12f1bcff7721950ef7
+- source: onsemi
+  name: BSS84
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/zip/ncp105x_orcad.zip
+    member: ncp105x.lib
+    archive_sha256: 07bc5595abbb3701cc125963f1325bb9dda971a2860b61a2b6be333c1f769155
+    sha256: 1957a6a6f43ab9461d0661fc6a1afa3fc6fd9bc3fd6f2e564771aa7956414fde
+    lines:
+      BSS84: [241, 250]
+    fetched: '2026-09-19'
+- source: infineon
+  name: BSS84P
+  def: subckt
+  type: SUBCKT
+  deps:
+  - P_60_l_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-p-channel-simulationmodels-en.zip
+    member: PFET_60V.lib
+    archive_sha256: 4379de08425f66db93152b54d46fc15bdb89cde7fa3933ee24c7845ef783214f
+    sha256: ced67279b86f185176f71a3cb622eec175b3a5d6d2d9eadc28b5930e5e970747
+    lines:
+      BSS84P: [225, 262]
+      P_60_l_var: [60, 117]
+    fetched: '2026-09-19'
+- source: infineon
+  name: BSS84PW
+  def: subckt
+  type: SUBCKT
+  deps:
+  - P_60_l_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-p-channel-simulationmodels-en.zip
+    member: PFET_60V.lib
+    archive_sha256: 4379de08425f66db93152b54d46fc15bdb89cde7fa3933ee24c7845ef783214f
+    sha256: ced67279b86f185176f71a3cb622eec175b3a5d6d2d9eadc28b5930e5e970747
+    lines:
+      BSS84PW: [266, 303]
+      P_60_l_var: [60, 117]
+    fetched: '2026-09-19'
+- source: diodes-inc
+  name: BSS84DW
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/2326/BSS84DW.spice.txt
+    sha256: d488430ff802c154e244f4dff6cf9effa85588b88e839d52ec286b14185d9742
+    lines:
+      BSS84DW: [18, 39]
+    fetched: '2026-09-19'
+  copies:
+  - source: diodes-inc
+    name: BSS84DW
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8402/collection.spice.txt
+      sha256: dfcbbbc10b04f76b269852ab545ea063cc65bf4827e949557d2a1df8daabd917
+  - source: diodes-inc
+    name: BSS84W
+    get:
+      url: https://www.diodes.com/spice/download/2328/BSS84W.spice.txt
+      sha256: 3b6a649553e3f5b242e73deb04b37656f1f9c5086455c57c100b75883bac6402
+  - source: diodes-inc
+    name: BSS84W
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8402/collection.spice.txt
+      sha256: dfcbbbc10b04f76b269852ab545ea063cc65bf4827e949557d2a1df8daabd917
+  - source: diodes-inc
+    name: BSS84DWQ
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8402/collection.spice.txt
+      sha256: dfcbbbc10b04f76b269852ab545ea063cc65bf4827e949557d2a1df8daabd917
+  - source: diodes-inc
+    name: BSS84V
+    get:
+      url: https://www.diodes.com/spice/download/2327/BSS84V.spice.txt
+      sha256: 4784830c1098407720a6d78d7cc449a5af046949c92a64cb75d98e27e6c8d55e
+- source: diodes-inc
+  name: BSS84DW
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - PMOS
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+    sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+    lines:
+      BSS84DW: [911, 932]
+      DCGD: [1642, 1642]
+      DLIM: [1645, 1645]
+      DSUB: [1643, 1644]
+      PMOS: [1640, 1641]
+    fetched: '2026-09-21'
+  copies:
+  - source: diodes-inc
+    name: BSS84W
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+      sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+  - source: diodes-inc
+    name: BSS84DWQ
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+      sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+- source: diodes-inc
+  name: BSS84
+  def: subckt
+  type: SUBCKT
+  deps:
+  - PMOS
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+    sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+    lines:
+      BSS84: [877, 889]
+      PMOS: [1640, 1641]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: BSS84DWQ
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8522/collection.spice.txt
+    sha256: d5fb01a0d34edf74987add96b4f8859357c1501648119dd5bebc0f6d32fec8bf
+    lines:
+      BSS84DWQ: [259, 280]
+      DCGD: [1511, 1511]
+      DLIM: [1514, 1514]
+      DSUB: [1512, 1513]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: BSS84Q
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8522/collection.spice.txt
+    sha256: d5fb01a0d34edf74987add96b4f8859357c1501648119dd5bebc0f6d32fec8bf
+    lines:
+      BSS84Q: [285, 310]
+      DCGD: [1511, 1511]
+      DLIM: [1514, 1514]
+      DSUB: [1512, 1513]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: BSS84Q
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - PMOS
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+    sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+    lines:
+      BSS84Q: [963, 988]
+      DCGD: [1642, 1642]
+      DLIM: [1645, 1645]
+      DSUB: [1643, 1644]
+      PMOS: [1640, 1641]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: BSS84Q
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8402/collection.spice.txt
+    sha256: dfcbbbc10b04f76b269852ab545ea063cc65bf4827e949557d2a1df8daabd917
+    lines:
+      BSS84Q: [109, 134]
+    fetched: '2026-09-21'
+- source: spice-model-cd
+  name: BSS-84
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Siemens/Bss_l0.lib
+    sha256: 9d08da8e43b5032a11eded06b8919e31ad85448c144db90db8f534cee6ac2088
+    lines:
+      BSS-84: [625, 642]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: BSS-84
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/BSS_L0.LIB
+      sha256: 681fe248607f8555c1d407566afd1e05bfd22de075b4f9dbba48815e18b94f0a
+  - source: spice-model-cd
+    name: BSS-84
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Infineon/Other/MOSFET/Bss_l0.lib
+      sha256: 9d08da8e43b5032a11eded06b8919e31ad85448c144db90db8f534cee6ac2088
+  - source: kicad-spice-library
+    name: BSS84/SIE
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/siemens.lib
+      sha256: c1318342f700741e0d97896cf4f77fe203b8923e12b1106c6c14f848c74bdd5b
+  - source: ltwiki
+    name: BSS84/SIE
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/siemens.lib
+      sha256: 243664dd487b615b87bd321416060f6822da14486fcece9fd2e3ded453189d81
+- source: spice-model-cd
+  name: BSS84
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/zmodels.lib
+    sha256: df79c20130b55541a1047df22b4cca3bfdb260045dfee6f538354adc6cfb78d6
+    lines:
+      BSS84: [625, 634]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: BSS84
+  def: subckt
+  type: SUBCKT
+  deps:
+  - pmos
+  - Diode1
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      BSS84: [155722, 155731]
+      Diode1: [184678, 184682]
+      pmos: [161510, 161510]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: BSS84DW
+  def: model
+  type: PMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc_FET.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 956632bc5a1ed7ee02659e697171e34e8db51019468b28123788f7f5a8669cb0
+    lines:
+      BSS84DW: [3876, 3879]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: BSS84W
+  def: model
+  type: PMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc_FET.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 956632bc5a1ed7ee02659e697171e34e8db51019468b28123788f7f5a8669cb0
+    lines:
+      BSS84W: [3883, 3886]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: BSS84V
+  def: model
+  type: PMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc_FET.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 956632bc5a1ed7ee02659e697171e34e8db51019468b28123788f7f5a8669cb0
+    lines:
+      BSS84V: [3890, 3893]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: bss84lt1
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: on_fet.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 9b68f867d49f3f5c7f8313d34e42073e408ccb5020d4cdec8e0168d84275f49d
+    lines:
+      bss84lt1: [13357, 13416]
+    fetched: '2026-09-20'
+- source: bordodynov
+  name: BSS84
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      BSS84: [25, 25]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov
+    name: BSS84
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: bordodynov
+    name: BSS84
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Original/standard.mos
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: bordodynov
+    name: BSS84
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Original/standard.mos.bak
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: kicad-spice-library
+    name: BSS84
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: kicad-spice-library
+    name: BSS84
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: kicad-spice-library
+    name: BSS84
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Original/standard.mos
+      sha256: 4ad1e16da6dfb08f9b1d55a27c28ca4a034db3f309073ce070136378fb658ad0
+  - source: ltwiki
+    name: BSS84
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: BSS84
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: BSS84
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: BSS84
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: ltwiki
+    name: BSS84
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Original/standard.mos
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: ltwiki
+    name: BSS84
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Original/standard.mos.bak
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: ltwiki
+    name: BSS84
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+- source: ltwiki
+  name: BSS84/ZTX
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/LtSpicePlus/Audio/ClaseD/Ej/misc_1.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 5155eecba7e61c21f462dc136e9b31df3fba67fd453acd7ee2a0687bb4faf3fa
+    lines:
+      BSS84/ZTX: [110, 121]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: BSS84/ZTX
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Audio/ClaseD/Ej/misc_1.lib
+      sha256: 5155eecba7e61c21f462dc136e9b31df3fba67fd453acd7ee2a0687bb4faf3fa
+- source: ltwiki
+  name: BSS84/ZTX
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/Zetex.lib
+    sha256: 801edb075d3bd3995ad94e8dbf3c9a290a89481b1e897b74b75fcb6a6fab8ec0
+    lines:
+      BSS84/ZTX: [983, 992]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: BSS84
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Zetex%20Semiconductors/ZMODELS.LIB
+    sha256: 356f4751706278dd76767c0cbdfceab52ea806ed01a3669b26584507bf29f3e0
+    lines:
+      BSS84: [633, 642]
+    fetched: '2026-09-14'
+  copies:
+  - source: kicad-spice-library
+    name: BSS84_ZX
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zetex.lib
+      sha256: 453392deca3bd0ddfca565d56241c4a5bb4d2e8f14c6efa92c1c453ed434fdca
 datasheet:
   url: https://assets.nexperia.com/documents/data-sheet/BSS84.pdf
   maker: Nexperia (NXP)

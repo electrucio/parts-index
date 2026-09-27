@@ -38,6 +38,13 @@ models:
     fetched: '2026-09-19'
     note: 'NUP2105L: nup2105lt1, nup2105l-tvs, MDD1, MDR, MDD3, MDRBV'
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: nup2105l-tvs
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: ltwiki
   name: NUP2105
   def: subckt
@@ -60,3 +67,51 @@ models:
       HALFNUP2105: [21, 52]
       NUP2105: [13, 17]
     fetched: '2026-09-14'
+  copies:
+  - source: ltwiki
+    name: NUP2105
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Discretos/Diodos/Avalancha/NUP2105TVS.sub
+      sha256: a82ca4db2591080daf6557fec6e6b169e3c383267cc79a74a6c72bc0f4e9b919
+- source: microcap12
+  name: nup2105lt1
+  def: subckt
+  type: SUBCKT
+  deps:
+  - halfnup2105lt1
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      halfnup2105lt1: [199929, 199952]
+      nup2105lt1: [199924, 199927]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: nup2105lt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: microcap12
+  name: nup2105lt1
+  def: subckt
+  type: SUBCKT
+  deps:
+  - halfnup2105lt1
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: on_diode.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: b22e1d5ee75d5fe192f4e75a25f3addd1671eb17659c3b2a8cb964cfc96d10bc
+    lines:
+      halfnup2105lt1: [173, 196]
+      nup2105lt1: [168, 171]
+    fetched: '2026-09-20'

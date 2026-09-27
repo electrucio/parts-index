@@ -16,7 +16,37 @@ models:
     lines:
       ZTX851: [767, 771]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: diodes-inc
+    name: ZTX851
+    get:
+      url: https://www.diodes.com/spice/download/2662/ZTX851.spice.txt
+      sha256: 68feb28ef0e6ebd35d309e0752138281340f469b6533d80da6a5622e404cbd95
+  - source: kicad-spice-library
+    name: ZTX851
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+      sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+  - source: kicad-spice-library
+    name: ZTX851
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Zetex%20Semiconductors/ZMODELS.LIB
+      sha256: 356f4751706278dd76767c0cbdfceab52ea806ed01a3669b26584507bf29f3e0
+  - source: spice-model-cd
+    name: ZTX851
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/ztx851.lib
+      sha256: 579cda6d3f2ec575430a7ee29474e3a6b308b327b43482e6876e491e4f9fa2c2
+  - source: spice-model-cd
+    name: ZTX851
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/zmodels.lib
+      sha256: df79c20130b55541a1047df22b4cca3bfdb260045dfee6f538354adc6cfb78d6
+  - source: ltwiki
+    name: ZTX851/ZTX
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/Zetex.lib
+      sha256: 801edb075d3bd3995ad94e8dbf3c9a290a89481b1e897b74b75fcb6a6fab8ec0
 - source: kicad-spice-library
   name: ZTX851_ZX
   def: subckt
@@ -34,6 +64,13 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: ZTX851_ZX
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
 - source: kicad-spice-library
   name: ZTX851
   def: model
@@ -46,3 +83,14 @@ models:
       ZTX851: [2095, 2099]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: qspice
+  name: ZTX851
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 02e7f34086291154c4ad5a23bd7be80641cec3ccd61609bfc623a1231183224b
+    lines:
+      ZTX851: [824, 828]
+    fetched: '2026-09-20'

@@ -20,7 +20,58 @@ models:
     lines:
       irfp244: [1, 60]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irfp244_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: bordodynov
+    name: irfp244
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irfp244.spi
+      sha256: 7937edd337e13f688c425935dc4ce39fbc45c5a977b509ee90e882db2c00b33f
+  - source: kicad-spice-library
+    name: irfp244
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irfp244.spi
+      sha256: 3f212853c97fc65c12bd14fcec1bb9e947477409be14f1350a957d9a07a8d589
+  - source: kicad-spice-library
+    name: irfp244
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+      sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+  - source: ltwiki
+    name: irfp244
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irfp244.spi
+      sha256: 7937edd337e13f688c425935dc4ce39fbc45c5a977b509ee90e882db2c00b33f
+  - source: ltwiki
+    name: irfp244
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irfp244.spi
+      sha256: 7937edd337e13f688c425935dc4ce39fbc45c5a977b509ee90e882db2c00b33f
+  - source: ltwiki
+    name: irfp244
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irfp244.spi
+      sha256: 7937edd337e13f688c425935dc4ce39fbc45c5a977b509ee90e882db2c00b33f
+  - source: kicad-spice-library
+    name: irfp244_IR
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+      sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+  - source: kicad-spice-library
+    name: IRFP244M
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+      sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
 - source: ltwiki
   name: IRFP244
   def: subckt
@@ -39,6 +90,13 @@ models:
       IRFP244: [8, 52]
     fetched: '2026-09-14'
   note: pins from names
+  copies:
+  - source: ltwiki
+    name: IRFP244
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Discretos/Mos&Fet/IRFP244_EKV_rev1/IRFP244_ekv.sub
+      sha256: c676b68ecae02f5d4c76bd5358ec3ee6929b0dd83adf07b793ee4447ee78987b
 - source: kicad-spice-library
   name: IRFP244
   def: subckt
@@ -102,3 +160,28 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+- source: microcap12
+  name: IRFP244
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: irpmos_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 105bbe2b177521de15323aae290e05947c3bb26d62a8ee42fe5da0e351b46ddf
+    lines:
+      IRFP244: [1531, 1535]
+    fetched: '2026-09-20'
+- source: ltwiki
+  name: IRFP244
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrmos.lib
+    sha256: cd1b43c7f364ba7d1ebb8af3764d05b8ddaab1d79950e0eedd42a0826cd2c46b
+    lines:
+      IRFP244: [3723, 3726]
+    fetched: '2026-09-21'

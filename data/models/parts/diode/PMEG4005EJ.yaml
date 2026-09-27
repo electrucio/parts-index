@@ -18,7 +18,20 @@ models:
       PMEG4005EJ: [33, 49]
     fetched: '2026-09-19'
     note: 'PMEG4005EJ: PMEG4005EJ, PMEG4005EJ'
-  note: 'same code also in: ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: ltwiki
+    name: PMEG4005EJ
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG4005EJ.PRM
+      sha256: c4604a3ebd25fef17fed538916f0b3dd1a91e08cc1c9110563f2d78e5d5d44fe
+  - source: microcap12
+    name: PMEG4005EJ
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_shot.lib
+      sha256: c6367af2c60015e9fb5ecc3771d731c998ee74c0f74ef57bce37e58e08532f5d
 - source: ltwiki
   name: PMEG4005ET
   def: subckt

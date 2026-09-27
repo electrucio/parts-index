@@ -62,6 +62,13 @@ models:
       PMEG2005EL: [2, 24]
     fetched: '2026-09-14'
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: PMEG2005EL
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_shot.lib
+      sha256: c6367af2c60015e9fb5ecc3771d731c998ee74c0f74ef57bce37e58e08532f5d
 - source: ltwiki
   name: PMEG2005EB
   def: subckt
@@ -96,3 +103,17 @@ models:
       PMEG2005EH: [2, 24]
     fetched: '2026-09-14'
   note: found under the alias PMEG2005E; pins from default order (unverified)
+- source: microcap12
+  name: PMEG2005ELD
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: nxp.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
+    lines:
+      PMEG2005ELD: [25122, 25152]
+    fetched: '2026-09-20'

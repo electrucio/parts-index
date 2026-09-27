@@ -19,6 +19,18 @@ models:
       '7400': [8, 18]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: '7400'
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: dig000.lib
+      sha256: e16fc85bebf1d2fc6da7b1994359ed7612a26b6f553d24748826327924413fa2
+  - source: kicad-spice-library
+    name: '7400'
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/dig000.lib
+      sha256: 4dcd1b5764cd8e069c91e0a9c93d16e0ea6a638f01dbf39fdba8805ef3d0c0ac
 - source: kicad-spice-library
   name: '7400'
   def: subckt
@@ -35,3 +47,17 @@ models:
       '7400': [21, 28]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: ltwiki
+  name: '7400'
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D_00
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/7400.lib
+    sha256: 8cb1e590d7c3c1544728275fb1b4d5feb4dd468e1a2c18c1a24f811ec26c6d27
+    lines:
+      '7400': [18, 24]
+      D_00: [26, 29]
+    fetched: '2026-09-21'

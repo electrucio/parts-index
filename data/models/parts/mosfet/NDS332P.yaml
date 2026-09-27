@@ -20,7 +20,19 @@ models:
     lines:
       nds332p: [16311, 16335]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: nds332p
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: nds332p
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
 - source: bordodynov
   name: NDS332P/FAI
   def: subckt
@@ -38,7 +50,19 @@ models:
     lines:
       NDS332P/FAI: [146, 170]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: NDS332P/FAI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/fairchild_PMOS.lib
+      sha256: d88f18d0155c7045c4329c6973396514f3166d17e7874cf26ed6e425dd030223
+  - source: ltwiki
+    name: NDS332P/FAI
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/fairchild_PMOS.lib
+      sha256: d88f18d0155c7045c4329c6973396514f3166d17e7874cf26ed6e425dd030223
 - source: kicad-spice-library
   name: NDS332P_FC
   def: subckt
@@ -56,3 +80,37 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: onsemi
+    name: NDS332P
+    get:
+      url: https://www.onsemi.com/download/models/mod/nds332p.mod
+      sha256: 9bbb66eb8bbe36e288471a11b91e09634582d19d795f422d20be556394949631
+  - source: spice-model-cd
+    name: NDS332P
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Fairchild/ND/NDS332P.lib
+      sha256: 8173c868209fcb71130e2c64486af9558aed8cc3e10f4a8e1cb559426f3c14c2
+  - source: microcap12
+    name: NDS332P_FC
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: fairch.lib
+      sha256: 53806c9a42d8b9f44b8c77ed3ae210ad6250b5eacb44d7e7f2b429e8f4559918
+- source: microcap12
+  name: NDS332P
+  def: subckt
+  type: SUBCKT
+  deps:
+  - pmos
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      NDS332P: [178006, 178030]
+      pmos: [161510, 161510]
+    fetched: '2026-09-20'

@@ -1,0 +1,24 @@
+part: CD4098
+kind: logic
+priority: 3
+models:
+- source: ltwiki
+  name: CD4098B
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D_CD4098B_Outputs
+  - D_CD4098B_edge
+  - D_CD4098B_tedge
+  - D_CD4098B_trigdly
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/1_shot.lib
+    sha256: 070a5034ba75265177651d890adb21c50cf0c1d71e988ea08b5e93a643f441a7
+    lines:
+      CD4098B: [997, 1074]
+      D_CD4098B_Outputs: [1076, 1082]
+      D_CD4098B_edge: [1086, 1088]
+      D_CD4098B_tedge: [1089, 1091]
+      D_CD4098B_trigdly: [1083, 1085]
+    fetched: '2026-09-21'

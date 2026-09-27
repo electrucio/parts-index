@@ -93,3 +93,86 @@ models:
     note: git clone --depth 1, commit a868895
   note: 'STAND-IN: model of Q2N5401, not of MMBT5401; equivalence declared in catalog/wanted.yaml (see
     its note)'
+- source: onsemi
+  name: Qmmbt5401lt1
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mmbt5401lt1.lib
+    sha256: 50770a74b8f840a6e7d9ae47bc09364e5c9db2e72f3487a3784ff9800e2271fd
+    lines:
+      Qmmbt5401lt1: [14, 24]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: Qmmbt5401lt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: mmbt5401lt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_bjt.lib
+      sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77
+  - source: microcap12
+    name: Qmmbt5401wt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: onsemi
+    name: Qmmbt5401wt1
+    get:
+      url: https://www.onsemi.com/download/models/lib/mmbt5401wt1.lib
+      sha256: dae5a70373cd4aac068a73bd57d5fece7e856dc0b53e19a4a40be8018f2007e6
+- source: diodes-inc
+  name: MMBT5401
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/2587/MMBT5401.spice.txt
+    sha256: 6c56762cb7a91a530c9d9cf92160b1a6e774c34d79c3016249bba2e2e6b080d5
+    lines:
+      MMBT5401: [24, 27]
+    fetched: '2026-09-19'
+  copies:
+  - source: diodes-inc
+    name: MMBT5401
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8423/collection.spice.txt
+      sha256: 29a331433039eecc5f40d2202d1675ada0c61df76aa492b6773e7c4107fbac71
+  - source: microcap12
+    name: MMBT5401
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc_BJT.lib
+      sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
+- source: qspice
+  name: MMBT5401
+  def: model
+  type: PNP
+  deps:
+  - PNP
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
+    lines:
+      MMBT5401: [1117, 1121]
+      PNP: [2, 2]
+    fetched: '2026-09-20'
+- source: duncanamps
+  name: QMMBT5401
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.duncanamps.com/spice/bjt/pnp.mod
+    sha256: 9554024b39ab1fa861067c6af517fbe13435370dd0e78c4ed0d461fe355488a1
+    lines:
+      QMMBT5401: [511, 514]
+    fetched: '2026-09-14'

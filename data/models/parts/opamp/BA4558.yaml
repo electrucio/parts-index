@@ -1,0 +1,33 @@
+part: BA4558
+kind: opamp
+priority: 3
+models:
+- source: rohm
+  name: BA4558
+  def: subckt
+  type: SUBCKT
+  deps:
+  - ba4558_sub
+  verbatim: true
+  get:
+    url: https://www.rohm.com/products/amplifiers-and-linear/operational-amplifiers/low-noise/dual-supply-voltage/ba4558f-product
+    member: BA4558_Rev002.lib
+    archive_sha256: d7eda9fa30a0c9993f4374bfa27f5ca3ff6c81a8d3233fe76117fb56d0eae11a
+    sha256: 0ecd9a0e5344f2b2bb949b9df17b516c45b2f0526d38b045a916280c3339f6ed
+    lines:
+      BA4558: [11, 14]
+      ba4558_sub: [16, 94]
+    fetched: '2026-09-20'
+- source: rohm
+  name: ba4558_sub
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.rohm.com/products/amplifiers-and-linear/operational-amplifiers/low-noise/dual-supply-voltage/ba4558f-product
+    member: BA4558_Rev002.lib
+    archive_sha256: d7eda9fa30a0c9993f4374bfa27f5ca3ff6c81a8d3233fe76117fb56d0eae11a
+    sha256: 0ecd9a0e5344f2b2bb949b9df17b516c45b2f0526d38b045a916280c3339f6ed
+    lines:
+      ba4558_sub: [16, 94]
+    fetched: '2026-09-20'

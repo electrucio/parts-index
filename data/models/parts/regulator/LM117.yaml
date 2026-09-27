@@ -20,6 +20,25 @@ models:
       LM117_MC: [1, 67]
     fetched: '2026-09-14'
   note: pins from names
+  copies:
+  - source: bordodynov
+    name: LM117_MC
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/LM117_MC.sub
+      sha256: 89ab78ffbef8ec8b9c09fca5ccce269ef44ca931805bf25d6cace5f05fdaa263
+  - source: bordodynov
+    name: LM117
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/LM117.txt
+      sha256: 731daf583599ea19041e20af584012b630ab38f0db70f209dda83bdf3165c38a
+  - source: ltwiki
+    name: LM117
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LM117.txt
+      sha256: 731daf583599ea19041e20af584012b630ab38f0db70f209dda83bdf3165c38a
 - source: ltwiki
   name: LM117
   def: subckt
@@ -74,3 +93,25 @@ models:
       LM117PSp: [836, 879]
     fetched: '2026-09-14'
   note: pins from names
+- source: ltwiki
+  name: LM117
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+    sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+    lines:
+      LM117: [9520, 9563]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: LM117HV
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+    sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+    lines:
+      LM117HV: [9619, 9718]
+    fetched: '2026-09-21'

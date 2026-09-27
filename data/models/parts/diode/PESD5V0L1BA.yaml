@@ -35,7 +35,19 @@ models:
     lines:
       PESD5V0L1BA: [16, 54]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: PESD5V0L1BA
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/PESDxxx.txt
+      sha256: ff3b4d96c3410ac7dab23c71f52fb60399171b2f9f91d47d80801d9864f1935e
+  - source: ltwiki
+    name: PESD5V0L1BA
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/PESDxxx.txt
+      sha256: ff3b4d96c3410ac7dab23c71f52fb60399171b2f9f91d47d80801d9864f1935e
 - source: ltwiki
   name: PESD5V0L1BA
   def: subckt
@@ -53,3 +65,10 @@ models:
       PESD5V0L1BA: [2, 17]
     fetched: '2026-09-14'
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: PESD5V0L1BA
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_diode.lib
+      sha256: f9df24ec0c294f52c0b42dcb8aa86242c24d1c52b5df04656c47544b89fac977

@@ -26,7 +26,14 @@ models:
       LM139: [160, 184]
       LM239: [192, 198]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: ltwiki
+    name: LM239
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Occomp.lib
+      sha256: d4e98ddcd8fabe3cd892bb2be1e2447639c10f9f8759ce47b8b5c101a6999049
 - source: ltwiki
   name: LM239
   def: subckt
@@ -51,7 +58,18 @@ models:
       LM139: [152, 173]
       LM239: [181, 187]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: ltwiki
+    name: LM239
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+      sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+  - source: kicad-spice-library
+    name: LM239
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Occomp.lib
+      sha256: 43034148edb87c8b5281df8a394fb79962ff67147f9fba6349b2fcbb8346e17f
 - source: kicad-spice-library
   name: LM239_TI
   def: subckt
@@ -71,6 +89,35 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from comment words
+  copies:
+  - source: ti
+    name: LM239
+    get:
+      url: https://www.ti.com/lit/zip/SLCJ006
+      member: LM239.5_1
+      sha256: e5a3cdee458c652699520be18b31ead0fc2356aa221af0327d2b83c918ada6bd
+  - source: microcap12
+    name: LM239_TI
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+  - source: microcap12
+    name: LM239A_TI
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+  - source: kicad-spice-library
+    name: LM239T
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TICOMP.LIB
+      sha256: d4980b8365b4590602ff9cca722294b2ec0125e2ef169e5a6a66dab2a6411001
+  - source: kicad-spice-library
+    name: LM239AT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TICOMP.LIB
+      sha256: d4980b8365b4590602ff9cca722294b2ec0125e2ef169e5a6a66dab2a6411001
 - source: kicad-spice-library
   name: LM239A_TI
   def: subckt

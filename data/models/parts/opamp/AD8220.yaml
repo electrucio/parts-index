@@ -24,3 +24,15 @@ models:
     lines:
       AD8220: [3693, 3790]
     fetched: '2026-09-14'
+  copies:
+  - source: adi
+    name: AD8220
+    get:
+      url: https://www.analog.com/media/en/simulation-models/spice-models/ad8220.cir?modelType=spice-models
+      sha256: 079439a08bfa883574d8e24f393c76678612f3519925349973a279d4f8ead098
+  - source: bordodynov
+    name: AD8220
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/ADI1.lib
+      sha256: 56007b832dfb995c0072377bc98125b86a2ee7e9dd4d109d29d4c295aa6a265d

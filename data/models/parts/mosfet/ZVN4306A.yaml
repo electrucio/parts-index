@@ -20,7 +20,40 @@ models:
     lines:
       ZVN4306A: [1492, 1504]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: diodes-inc
+    name: ZVN4306A
+    get:
+      url: https://www.diodes.com/spice/download/1809/ZVN4306A.spice.txt
+      sha256: 7586f92d96a85f9b33f70d81bc6b23d4ebb9bfb1314305a60be570c9c62d10d9
+  - source: kicad-spice-library
+    name: ZVN4306A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+      sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+  - source: spice-model-cd
+    name: ZVN4306A
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/zvn4306a.lib
+      sha256: 18cd75f71b07db30c0a5c011843ad4eff0a197f0efc0666fa7af07a17c453408
+  - source: diodes-inc
+    name: ZVN4306AV
+    get:
+      url: https://www.diodes.com/spice/download/1810/ZVN4306AV.spice.txt
+      sha256: 8764016b61ae72ae97afe2af58e38691d708160a79ab619ad75a47b99616943b
+  - source: microcap12
+    name: ZVN4306AV
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
+  - source: microcap12
+    name: ZVN4306A_ZX
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
 - source: ltwiki
   name: ZVN4306G
   def: subckt
@@ -57,6 +90,12 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: spice-model-cd
+    name: ZVN4306A
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/zmodels.lib
+      sha256: df79c20130b55541a1047df22b4cca3bfdb260045dfee6f538354adc6cfb78d6
 - source: kicad-spice-library
   name: ZVN4306G_ZX
   def: subckt
@@ -74,3 +113,14 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: found under the alias ZVN4306; pins from default order (unverified)
+- source: ltwiki
+  name: ZVN4306A/ZTX
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/Zetex.lib
+    sha256: 801edb075d3bd3995ad94e8dbf3c9a290a89481b1e897b74b75fcb6a6fab8ec0
+    lines:
+      ZVN4306A/ZTX: [3526, 3535]
+    fetched: '2026-09-21'

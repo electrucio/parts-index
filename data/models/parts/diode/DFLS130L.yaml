@@ -15,3 +15,23 @@ models:
       DFLS130L: [23, 24]
     fetched: '2026-09-19'
     note: 'model(s): DFLS130L'
+  copies:
+  - source: diodes-inc
+    name: DFLS130L
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8309/collection.spice.txt
+      sha256: 37ef6786527ef08385ae88aea28c117181cd001c823c404e3da838b82c469ad0
+- source: microcap12
+  name: DFLS130L
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      DFLS130L: [9858, 9859]
+    fetched: '2026-09-20'

@@ -27,4 +27,27 @@ models:
     lines:
       INA163: [3226, 3519]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: microcap12
+    name: INA163
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+  - source: kicad-spice-library
+    name: INA163
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/ina.lib
+      sha256: 526200d0189cd3bc5865e5e4c37dc2f7f9f264dcf636497cca8177d9b00a8763
+  - source: ltwiki
+    name: INA163
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/ina.lib
+      sha256: 526200d0189cd3bc5865e5e4c37dc2f7f9f264dcf636497cca8177d9b00a8763
+  - source: ltwiki
+    name: INA163
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/ina.lib
+      sha256: 526200d0189cd3bc5865e5e4c37dc2f7f9f264dcf636497cca8177d9b00a8763

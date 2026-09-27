@@ -36,7 +36,25 @@ models:
     typical_rows: 0
   symbol: BZX85C6V2_bordodynov.asy
   note: 'STAND-IN: model of 1N4735A, not of BZX85C6V2; equivalence declared in catalog/wanted.yaml (see
-    its note); same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+    its note); pins from default order (unverified)'
+  copies:
+  - source: kicad-spice-library
+    name: 1N4735A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Zener_DiodesInc.lib
+      sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+  - source: ltwiki
+    name: 1N4735A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Zener_DiodesInc.lib
+      sha256: ae0d0b4352e26a1d406418807419ae5abea815ddaec54567653d10423d9a61b1
+  - source: ltwiki
+    name: 1N4735A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Zener_DiodesInc.lib
+      sha256: 44998eb950913c32209f9f24b702e8290a29c0ec6ee2e81d3a34388e40a89406
 - source: ltwiki
   name: 1N4735A
   def: subckt
@@ -63,6 +81,13 @@ models:
   symbol: BZX85C6V2_ltwiki.asy
   note: 'STAND-IN: model of 1N4735A, not of BZX85C6V2; equivalence declared in catalog/wanted.yaml (see
     its note); pins from default order (unverified)'
+  copies:
+  - source: microcap12
+    name: 1N4735A
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_diode.lib
+      sha256: f9df24ec0c294f52c0b42dcb8aa86242c24d1c52b5df04656c47544b89fac977
 - source: ltwiki
   name: 1N4735A
   def: subckt
@@ -89,6 +114,37 @@ models:
   symbol: BZX85C6V2_ltwiki-2.asy
   note: 'STAND-IN: model of 1N4735A, not of BZX85C6V2; equivalence declared in catalog/wanted.yaml (see
     its note); pins from default order (unverified)'
+  copies:
+  - source: ltwiki
+    name: 1N4735A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Discretos/Diodos/Zener/1n4736.sub
+      sha256: 6b064772cdb842752fbacda9b8ae1d3c027c309b96d076cc76c3f45701ee7f13
+- source: onsemi
+  name: D1N4735A
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/1n4735a%20(spice%20model).lib
+    sha256: e8fc30028a1f91a4229ff6bffbec13f256dc0eb5f417f49b32c27fb713d299cd
+    lines:
+      D1N4735A: [6, 23]
+    fetched: '2026-09-19'
+  note: 'STAND-IN: model of 1N4735A, not of BZX85C6V2; the equivalence is declared in data/models/wanted.yaml'
+- source: spice-model-cd
+  name: D1N4735A
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/ZENER.LB
+    sha256: 304e2ababc567483e0e387fdba860dac263b00f29acbc7966994954c43804f7f
+    lines:
+      D1N4735A: [747, 754]
+    fetched: '2026-09-21'
+  note: 'STAND-IN: model of 1N4735A, not of BZX85C6V2; the equivalence is declared in data/models/wanted.yaml'
 datasheet:
   url: https://www.vishay.com/docs/85607/bzx85.pdf
   maker: Vishay

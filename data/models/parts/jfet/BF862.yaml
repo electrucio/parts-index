@@ -46,7 +46,24 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 3
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: bf862
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.jft
+      sha256: 818a99dfe7a395e2b42662a223e2d2259401d97ce60ba4532cc4b56b93fd2c3b
+  - source: ltwiki
+    name: bf862
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.jft
+      sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
+  - source: ltwiki
+    name: bf862
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.jft
+      sha256: 31210a0eaf3deaf9973f440c43e5e8dcec09704be2ecd8f750e3e9caa4c1348a
 - source: bordodynov
   name: BF862
   def: subckt
@@ -72,7 +89,25 @@ models:
     not_measurable: 0
     typical_rows: 3
   symbol: BF862_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: kicad-spice-library
+    name: BF862
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/BF862.sub
+      sha256: 5b030bfa76931bfbb677627cbd0c8d6135230be329c814d13b4d5c5e95bcab84
+  - source: ltwiki
+    name: BF862
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/BF862.sub
+      sha256: 5b030bfa76931bfbb677627cbd0c8d6135230be329c814d13b4d5c5e95bcab84
+  - source: ltwiki
+    name: BF862
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/BF862/BF862.sub
+      sha256: 5b030bfa76931bfbb677627cbd0c8d6135230be329c814d13b4d5c5e95bcab84
 - source: bordodynov
   name: BF862_x
   def: subckt
@@ -128,7 +163,18 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 3
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: ltwiki
+    name: bf862
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.jft
+      sha256: e129c65d0238559c9fe2d25e47143d11aa57115e1ff5d8747d9a45db57f83e37
+  - source: kicad-spice-library
+    name: bf862
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/JFET2.lib
+      sha256: 32fd0651eba7dea99ca263c60007ec76d9f93d82bef9624fd89cc36d7d62d960
 - source: kicad-spice-library
   name: BF862_x
   def: subckt
@@ -163,6 +209,61 @@ models:
     typical_rows: 3
   symbol: BF862_kicad-spice-library.asy
   note: pins from names
+- source: bordodynov
+  name: BF862_x
+  def: subckt
+  type: SUBCKT
+  deps:
+  - Di
+  - Msub
+  - Dpns
+  - Dpnd
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/njf_subthres.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 3e3e0211d414d146dbecc59788f743b54ef4ffef41c468373d03e91ba3c7753a
+    lines:
+      BF862_x: [91, 105]
+      Di: [70, 70]
+      Dpnd: [71, 71]
+      Dpns: [72, 72]
+      Msub: [69, 69]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: BF862_x
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/njf_subthres.lib
+      sha256: 3e3e0211d414d146dbecc59788f743b54ef4ffef41c468373d03e91ba3c7753a
+  - source: ltwiki
+    name: BF862_x
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/NJF_Subthres/njf_subthres.lib
+      sha256: 3e3e0211d414d146dbecc59788f743b54ef4ffef41c468373d03e91ba3c7753a
+- source: kicad-spice-library
+  name: BF862_x
+  def: subckt
+  type: SUBCKT
+  deps:
+  - Di
+  - Msub
+  - Dpns
+  - Dpnd
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/njf_subthres.lib
+    sha256: 4c3628b4d8ce7a8488edaa8413a58b1139a64d7acdf3468ee6d0de9bd35d626e
+    lines:
+      BF862_x: [91, 105]
+      Di: [70, 70]
+      Dpnd: [71, 71]
+      Dpns: [72, 72]
+      Msub: [69, 69]
+    fetched: '2026-09-14'
 datasheet:
   url: http://www.nxp.com/documents/data_sheet/BF862.pdf
   maker: NXP Semiconductors (Philips)

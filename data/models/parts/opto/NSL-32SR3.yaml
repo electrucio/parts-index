@@ -39,4 +39,21 @@ models:
     lines:
       nsl-32sr3: [1, 13]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: nsl-32sr3
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/NSL-32SR3.sub
+      sha256: 84edacb753f896ebfedab540cc5d44420567fdb1ed725d624b8ce509c16de0ba
+  - source: ltwiki
+    name: nsl-32sr3
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/NSL-32SR3.sub
+      sha256: 84edacb753f896ebfedab540cc5d44420567fdb1ed725d624b8ce509c16de0ba
+  - source: ltwiki
+    name: nsl-32sr3
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/NSL-32SR3/NSL-32SR3.sub
+      sha256: 84edacb753f896ebfedab540cc5d44420567fdb1ed725d624b8ce509c16de0ba

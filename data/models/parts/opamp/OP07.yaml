@@ -165,6 +165,754 @@ models:
     typical_rows: 8
   symbol: OP07_ltspice-native-4.asy
   note: pins from DIP-8 pin numbers (single op-amp pin-out)
+- source: spice-model-cd
+  name: OP07
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/OP07.lib
+    sha256: 07e6dc4b04781d3e47ca337ccd4141dba9a0c46a627d76e5ee42032e1c33a33b
+    lines:
+      OP07: [11, 53]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov
+    name: OP07
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: bordodynov
+    name: OP07
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: OP07
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Operational%20Amplifier/Op07.mod
+      sha256: 9d2ddac5b7423d605a4c2b81b9db0b2548e48333071a733ac5578b03139942b2
+  - source: kicad-spice-library
+    name: OP07
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: OP07
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Ltc_Old_Big.lib
+      sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+  - source: kicad-spice-library
+    name: OP07
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/LTC_ampliop.lib
+      sha256: 140c4a222da3dfce63a2a5af619a118436c566ab1db5ac47c8fc5dfcec8f7a68
+  - source: kicad-spice-library
+    name: OP07
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Linear%20Technology%20Corporation/LinearTech.lib
+      sha256: d08734cb6f0f2b03fe160350f7a07747c6e026f53ca9e3a0b281b9fbd2e23306
+  - source: ltwiki
+    name: OP07
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: OP07
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: OP07
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+      sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+  - source: ltwiki
+    name: OP07
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraOpamps/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: spice-model-cd
+    name: OP07
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/LTC37.lib
+      sha256: d067d03736b9b3410257d9d18783c6af42ad7b1ed4a7c3217e0e4744cebe97e6
+  - source: spiceypedals
+    name: OP07
+    get:
+      url: https://raw.githubusercontent.com/thecowgoesmoo/SPICEyPedals/60f67a6fdb14b9d7c83630b1cade358bfdd4e638/PedalNetlists/ProcoRatV6.cir
+      sha256: 2b27f94ef4851c751f9601fea64f4f1ff4622fb8751301a40e3be336042cf1bb
+  - source: spiceypedals
+    name: OP07
+    get:
+      url: https://raw.githubusercontent.com/thecowgoesmoo/SPICEyPedals/60f67a6fdb14b9d7c83630b1cade358bfdd4e638/PartModels/basic_models/OpAmps/Op07.mod
+      sha256: 887e0c4f5cb0d8fa156c58a258f7e4ec7b5619d42c6a76718f8ad7cf5b50091d
+  - source: spiceypedals
+    name: OP07
+    get:
+      url: https://raw.githubusercontent.com/thecowgoesmoo/SPICEyPedals/60f67a6fdb14b9d7c83630b1cade358bfdd4e638/tools/Marshall_Blues_Breaker_After.cir
+      sha256: 5389a74d593ab4dd94fbbba02dd340262cc48201cb912e4df6af691d324cf5d9
+  - source: kicad-spice-library
+    name: OP07_LT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/linear.lib
+      sha256: 025903d9677acbc507e2eaa578ba581d9e52f17c10dbf286da658f1af22dd5ba
+  - source: kicad-spice-library
+    name: OP-07/LT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/lin_tech.lib
+      sha256: ecf83f07a8bd4c59f1b672a6af78483039b75f982c54349f9eca7641007da6d9
+  - source: ltwiki
+    name: OP-07/LT
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/lin_tech.lib
+      sha256: c9cfd53f29fe02a95b03ffef81e14fb60e113d71f019d165db9de905746f6345
+  - source: microcap12
+    name: OP07_LT
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: linear.lib
+      sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
+- source: spice-model-cd
+  name: OP07A
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/OP07A.lib
+    sha256: 1535dc0343cb8788a5531349be3dbec9ab6541dc904432ba539b558e01199c21
+    lines:
+      OP07A: [12, 54]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov
+    name: OP07A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: bordodynov
+    name: OP07A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: OP07A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: OP07A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Ltc_Old_Big.lib
+      sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+  - source: kicad-spice-library
+    name: OP07A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/LTC_ampliop.lib
+      sha256: 140c4a222da3dfce63a2a5af619a118436c566ab1db5ac47c8fc5dfcec8f7a68
+  - source: kicad-spice-library
+    name: OP07A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Linear%20Technology%20Corporation/LinearTech.lib
+      sha256: d08734cb6f0f2b03fe160350f7a07747c6e026f53ca9e3a0b281b9fbd2e23306
+  - source: ltwiki
+    name: OP07A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: OP07A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: OP07A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+      sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+  - source: ltwiki
+    name: OP07A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraOpamps/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: spice-model-cd
+    name: OP07A
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/LTC37.lib
+      sha256: d067d03736b9b3410257d9d18783c6af42ad7b1ed4a7c3217e0e4744cebe97e6
+  - source: kicad-spice-library
+    name: OP07A_LT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/linear.lib
+      sha256: 025903d9677acbc507e2eaa578ba581d9e52f17c10dbf286da658f1af22dd5ba
+  - source: kicad-spice-library
+    name: OP-07A/LT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/lin_tech.lib
+      sha256: ecf83f07a8bd4c59f1b672a6af78483039b75f982c54349f9eca7641007da6d9
+  - source: ltwiki
+    name: OP-07A/LT
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/lin_tech.lib
+      sha256: c9cfd53f29fe02a95b03ffef81e14fb60e113d71f019d165db9de905746f6345
+  - source: microcap12
+    name: OP07A_LT
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: linear.lib
+      sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
+- source: spice-model-cd
+  name: OP07C
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/LTC37.lib
+    sha256: d067d03736b9b3410257d9d18783c6af42ad7b1ed4a7c3217e0e4744cebe97e6
+    lines:
+      OP07C: [15479, 15521]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov
+    name: OP07C
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: bordodynov
+    name: OP07C
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: OP07C
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: OP07C
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Ltc_Old_Big.lib
+      sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+  - source: kicad-spice-library
+    name: OP07C
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/LTC_ampliop.lib
+      sha256: 140c4a222da3dfce63a2a5af619a118436c566ab1db5ac47c8fc5dfcec8f7a68
+  - source: kicad-spice-library
+    name: OP07C
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Linear%20Technology%20Corporation/LinearTech.lib
+      sha256: d08734cb6f0f2b03fe160350f7a07747c6e026f53ca9e3a0b281b9fbd2e23306
+  - source: ltwiki
+    name: OP07C
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: OP07C
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: OP07C
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+      sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+  - source: ltwiki
+    name: OP07C
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraOpamps/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: spice-model-cd
+    name: OP07C
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/OP07C.lib
+      sha256: 6149357a3ea5d80054e920ba6b48002a46d3833c0708b8eb52d25ff9759179a1
+  - source: kicad-spice-library
+    name: OP07C_LT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/linear.lib
+      sha256: 025903d9677acbc507e2eaa578ba581d9e52f17c10dbf286da658f1af22dd5ba
+  - source: kicad-spice-library
+    name: OP-07C/LT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/lin_tech.lib
+      sha256: ecf83f07a8bd4c59f1b672a6af78483039b75f982c54349f9eca7641007da6d9
+  - source: ltwiki
+    name: OP-07C/LT
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/lin_tech.lib
+      sha256: c9cfd53f29fe02a95b03ffef81e14fb60e113d71f019d165db9de905746f6345
+  - source: microcap12
+    name: OP07C_LT
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: linear.lib
+      sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
+- source: spice-model-cd
+  name: OP07E
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/LTC37.lib
+    sha256: d067d03736b9b3410257d9d18783c6af42ad7b1ed4a7c3217e0e4744cebe97e6
+    lines:
+      OP07E: [15529, 15571]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov
+    name: OP07E
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: bordodynov
+    name: OP07E
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: OP07E
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: OP07E
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Ltc_Old_Big.lib
+      sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+  - source: kicad-spice-library
+    name: OP07E
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/LTC_ampliop.lib
+      sha256: 140c4a222da3dfce63a2a5af619a118436c566ab1db5ac47c8fc5dfcec8f7a68
+  - source: kicad-spice-library
+    name: OP07E
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Linear%20Technology%20Corporation/LinearTech.lib
+      sha256: d08734cb6f0f2b03fe160350f7a07747c6e026f53ca9e3a0b281b9fbd2e23306
+  - source: ltwiki
+    name: OP07E
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: OP07E
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: OP07E
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Ltc_Old_Big.lib
+      sha256: 772dc45b523640300266c1a903e594080f7a1b7bad38860df54bd753339707a9
+  - source: ltwiki
+    name: OP07E
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraOpamps/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: spice-model-cd
+    name: OP07E
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/OP07E.lib
+      sha256: 6c72aa28deecac0aa6d0a702c782b6384c3023c5e520f90b6478276d1eafcf7c
+  - source: kicad-spice-library
+    name: OP07E_LT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/linear.lib
+      sha256: 025903d9677acbc507e2eaa578ba581d9e52f17c10dbf286da658f1af22dd5ba
+  - source: kicad-spice-library
+    name: OP-07E/LT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/lin_tech.lib
+      sha256: ecf83f07a8bd4c59f1b672a6af78483039b75f982c54349f9eca7641007da6d9
+  - source: ltwiki
+    name: OP-07E/LT
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/lin_tech.lib
+      sha256: c9cfd53f29fe02a95b03ffef81e14fb60e113d71f019d165db9de905746f6345
+  - source: microcap12
+    name: OP07E_LT
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: linear.lib
+      sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
+- source: spice-model-cd
+  name: OP07
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DM1
+  - DM2
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/Ltc-spice-collection.lib
+    sha256: eae1fee2fa8143907eba7c718c30c3e9a912814c4cbbeecad8984874a31ab269
+    lines:
+      DM1: [7066, 7066]
+      DM2: [7068, 7068]
+      OP07: [9874, 9916]
+    fetched: '2026-09-21'
+  copies:
+  - source: spice-model-cd
+    name: OP07
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/Ltc.lib
+      sha256: eae1fee2fa8143907eba7c718c30c3e9a912814c4cbbeecad8984874a31ab269
+- source: spice-model-cd
+  name: OP07A
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DM1
+  - DM2
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/Ltc-spice-collection.lib
+    sha256: eae1fee2fa8143907eba7c718c30c3e9a912814c4cbbeecad8984874a31ab269
+    lines:
+      DM1: [7066, 7066]
+      DM2: [7068, 7068]
+      OP07A: [9096, 9138]
+    fetched: '2026-09-21'
+  copies:
+  - source: spice-model-cd
+    name: OP07A
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/Ltc.lib
+      sha256: eae1fee2fa8143907eba7c718c30c3e9a912814c4cbbeecad8984874a31ab269
+- source: spice-model-cd
+  name: OP07C
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DM1
+  - DM2
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/Ltc-spice-collection.lib
+    sha256: eae1fee2fa8143907eba7c718c30c3e9a912814c4cbbeecad8984874a31ab269
+    lines:
+      DM1: [7066, 7066]
+      DM2: [7068, 7068]
+      OP07C: [9000, 9042]
+    fetched: '2026-09-21'
+  copies:
+  - source: spice-model-cd
+    name: OP07C
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/Ltc.lib
+      sha256: eae1fee2fa8143907eba7c718c30c3e9a912814c4cbbeecad8984874a31ab269
+- source: spice-model-cd
+  name: OP07E
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DM1
+  - DM2
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/Ltc-spice-collection.lib
+    sha256: eae1fee2fa8143907eba7c718c30c3e9a912814c4cbbeecad8984874a31ab269
+    lines:
+      DM1: [7066, 7066]
+      DM2: [7068, 7068]
+      OP07E: [9050, 9092]
+    fetched: '2026-09-21'
+  copies:
+  - source: spice-model-cd
+    name: OP07E
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/LinearTech/Ltc.lib
+      sha256: eae1fee2fa8143907eba7c718c30c3e9a912814c4cbbeecad8984874a31ab269
+- source: microcap12
+  name: OP-07C_TI
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ti.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+    lines:
+      OP-07C_TI: [4437, 4471]
+    fetched: '2026-09-20'
+  copies:
+  - source: bordodynov
+    name: OP-07C
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: kicad-spice-library
+    name: OP-07C
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Texas%20Instruments/op-07c.mod
+      sha256: c1d38d4ff4b8da4b5e1aa10394fd16fdbe94955fd76504f09e1d2a27985e4ee0
+  - source: ltwiki
+    name: OP-07C
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: bordodynov
+    name: OP-07E
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: kicad-spice-library
+    name: OP-07E
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Texas%20Instruments/op-07e.mod
+      sha256: 8db306030059a850e4a66628d3d6dd3370eca460abea4aeb7f61b5d216ce5a9a
+  - source: ltwiki
+    name: OP-07E
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: kicad-spice-library
+    name: OP-07C_TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+      sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+  - source: kicad-spice-library
+    name: OP-07E_TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+      sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+  - source: microcap12
+    name: OP-07E_TI
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+- source: microcap12
+  name: OP-07D_TI
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ti.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+    lines:
+      OP-07D_TI: [4481, 4515]
+    fetched: '2026-09-20'
+  copies:
+  - source: bordodynov
+    name: OP-07D
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: kicad-spice-library
+    name: OP-07D
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Texas%20Instruments/op-07d.mod
+      sha256: 0ed5ca7a5b02f023394d6cda7b65f9474dac50051624cf755e97f7e070214db6
+  - source: ltwiki
+    name: OP-07D
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: kicad-spice-library
+    name: OP-07D_TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+      sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+- source: bordodynov
+  name: OP07A
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_AD.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+    lines:
+      OP07A: [12013, 12055]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: OP07A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_AD.lib
+      sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+  - source: ltwiki
+    name: OP07A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_AD.lib
+      sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+  - source: ltwiki
+    name: OP07A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OpAmp_AD.lib
+      sha256: cc39d6b59699f9692a349e254842de9cf2fe346877a3428d985609f2dfdf4cb3
+- source: bordodynov
+  name: OP07E
+  def: subckt
+  type: SUBCKT
+  deps:
+  - OP113
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_AD.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+    lines:
+      OP07E: [12072, 12114]
+      OP113: [12131, 12233]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: OP07E
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_AD.lib
+      sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+  - source: ltwiki
+    name: OP07E
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_AD.lib
+      sha256: 6c6cb70a324726f5e4bffba49b1355b4666d00d2ace4f17a0459dad156dd6375
+  - source: ltwiki
+    name: OP07E
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OpAmp_AD.lib
+      sha256: cc39d6b59699f9692a349e254842de9cf2fe346877a3428d985609f2dfdf4cb3
+- source: bordodynov
+  name: OP07_SN
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_Nazar_Shtybel.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4781654faf3d2ec54bf5acd80471ac9d119fb98d495698f460aa8839ee45e05d
+    lines:
+      OP07_SN: [173, 278]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: OP07_SN
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_Nazar_Shtybel.lib
+      sha256: 4781654faf3d2ec54bf5acd80471ac9d119fb98d495698f460aa8839ee45e05d
+- source: ltwiki
+  name: OP-07
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+    sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+    lines:
+      OP-07: [3214, 3249]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: OP07
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/NONLIN.LIB
+    sha256: 69207a978c970ac7da3929409b0188fad477d4289939755abbde979c13214be7
+    lines:
+      OP07: [1686, 1727]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: OP07S
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/SGS2.LIB
+    sha256: de2cf3e62490babc0d41be58bf08dd647938f83af9f43fdc287064f7024c1cfa
+    lines:
+      OP07S: [395, 441]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: OP07L
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/OPLTC.LIB
+    sha256: 0bb0c1e2ab47a36f3cc696d94f2944cb645528b29ffce4720f52863baacfc0d1
+    lines:
+      OP07L: [749, 791]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: OP07AL
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/OPLTC.LIB
+    sha256: 0bb0c1e2ab47a36f3cc696d94f2944cb645528b29ffce4720f52863baacfc0d1
+    lines:
+      OP07AL: [4825, 4867]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: OP07EL
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/OPLTC.LIB
+    sha256: 0bb0c1e2ab47a36f3cc696d94f2944cb645528b29ffce4720f52863baacfc0d1
+    lines:
+      OP07EL: [4881, 4923]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: OP07CL
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/OPLTC.LIB
+    sha256: 0bb0c1e2ab47a36f3cc696d94f2944cb645528b29ffce4720f52863baacfc0d1
+    lines:
+      OP07CL: [4937, 4979]
+    fetched: '2026-09-14'
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/op07c.pdf
   maker: Texas Instruments

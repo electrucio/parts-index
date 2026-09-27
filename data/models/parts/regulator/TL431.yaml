@@ -32,7 +32,25 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: TL431_ti.asy
-  note: 'same code also in: ltwiki; pins from TL431 package pin numbers (unverified)'
+  note: pins from TL431 package pin numbers (unverified)
+  copies:
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/VolReg/tl431.mod
+      sha256: 239c7cdb9bced084049b4769b9903357b80f1cf143eee2f40526626d35542602
+  - source: kicad-spice-library
+    name: TL431_TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+      sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+  - source: microcap12
+    name: TL431_TI
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
 - source: ti
   name: TL431
   def: subckt
@@ -114,7 +132,43 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: TL431_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: TL431A
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/TL431A.lib
+      sha256: 48c90b8c628933d6b1a1c6aa630acae5a2fe7ab55b8ee66b657570e9b61091f3
+  - source: ltwiki
+    name: TL431A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/TL431A.lib
+      sha256: 48c90b8c628933d6b1a1c6aa630acae5a2fe7ab55b8ee66b657570e9b61091f3
+  - source: ltwiki
+    name: TL431A
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Compare_Stab_HV/TL431A.lib
+      sha256: c566ce4e17b110313425466431b1064bc565a9aad72ba5c842617f027d225a11
+  - source: ltwiki
+    name: TL431A
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/amplifier_TL431/TL431A.lib
+      sha256: 48c90b8c628933d6b1a1c6aa630acae5a2fe7ab55b8ee66b657570e9b61091f3
+  - source: ltwiki
+    name: TL431A
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/AmpliferZoutCurrentAC/TL431A.lib
+      sha256: 48c90b8c628933d6b1a1c6aa630acae5a2fe7ab55b8ee66b657570e9b61091f3
+  - source: ltwiki
+    name: TL431A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/VolReg/TL431A.lib
+      sha256: c566ce4e17b110313425466431b1064bc565a9aad72ba5c842617f027d225a11
 - source: bordodynov
   name: TL431AS
   def: subckt
@@ -140,7 +194,26 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: TL431_bordodynov-2.asy
-  note: 'same code also in: ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: ltwiki
+    name: TL431AS
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/REF/TL431A_models.lib
+      sha256: 586f8326dafe8a5ec92510eefc0d6e00cdf6c82190cc4bbca58223db0ee04c60
+  - source: ltwiki
+    name: TL431AS
+    get:
+      url: https://ltwiki.org/files/TL431A-Test.zip
+      member: TL431A_models.lib
+      sha256: 5490ded88fb501e292a5a12b9f263d35e8df06c6ee7de4744d3a491c315e94c3
+  - source: ltwiki
+    name: TL431AS
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/SBORKA/REF/TL431A_models.lib
+      sha256: 586f8326dafe8a5ec92510eefc0d6e00cdf6c82190cc4bbca58223db0ee04c60
 - source: bordodynov
   name: TL431ED
   def: subckt
@@ -166,7 +239,786 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: TL431_bordodynov-3.asy
-  note: 'same code also in: ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: ltwiki
+    name: TL431ED
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/REF/TL431A_models.lib
+      sha256: 586f8326dafe8a5ec92510eefc0d6e00cdf6c82190cc4bbca58223db0ee04c60
+  - source: ltwiki
+    name: TL431ED
+    get:
+      url: https://ltwiki.org/files/TL431A-Test.zip
+      member: TL431A_models.lib
+      sha256: 5490ded88fb501e292a5a12b9f263d35e8df06c6ee7de4744d3a491c315e94c3
+  - source: ltwiki
+    name: TL431ED
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/SBORKA/REF/TL431A_models.lib
+      sha256: 586f8326dafe8a5ec92510eefc0d6e00cdf6c82190cc4bbca58223db0ee04c60
+- source: onsemi
+  name: TL431
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/zip/ncp1252%20spice%20model.zip
+    member: Spice model/ncp1252.lib
+    archive_sha256: 4a8068fae80ce1238bf3787d68385b58794ccb98c2595d9f2239b71dfa3ec491
+    sha256: f26b36b9088672a892714f942a6b88617703c46e2778cb0132b0b0b4b8bf362c
+    lines:
+      TL431: [208, 229]
+    fetched: '2026-09-19'
+  copies:
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Smps/Basic_llc_Simulation/application.lib
+      sha256: b3a43b752f8b73ee657501e5070722a5bf0600c25c5e91549cc2afaad2b3c274
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Smps/Basic_llc_Simulation/application.lib
+      sha256: b3a43b752f8b73ee657501e5070722a5bf0600c25c5e91549cc2afaad2b3c274
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Basso/BassoBook20100103/application.lib
+      sha256: 5d29041032ba900f2d5cf36b92bfc8f65ba9f0fef305040427717fbfc1135ea3
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Basso/BassoBook20100103/New2/projet.lib
+      sha256: 0b95f175118c7d98573785426840db03f5ff55a806fb4f81906d4b6cfd80f008
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Basso/BassoBook20100103/New2/application.lib
+      sha256: 7a484eca08638843df08ecb90b4c024ea0dcc5a731eed715de8cc14885229529
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Basso/BassoBook20100103/New2/application.lib
+      sha256: 7a484eca08638843df08ecb90b4c024ea0dcc5a731eed715de8cc14885229529
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Smps/Basic_llc_Simulation/application.lib
+      sha256: b3a43b752f8b73ee657501e5070722a5bf0600c25c5e91549cc2afaad2b3c274
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Smps/Basic_llc_Simulation/application.lib
+      sha256: b3a43b752f8b73ee657501e5070722a5bf0600c25c5e91549cc2afaad2b3c274
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/Basso/BassoBook20100103/application.lib
+      sha256: 5d29041032ba900f2d5cf36b92bfc8f65ba9f0fef305040427717fbfc1135ea3
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/Basso/BassoBook20100103/New2/projet.lib
+      sha256: 0b95f175118c7d98573785426840db03f5ff55a806fb4f81906d4b6cfd80f008
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/Basso/BassoBook20100103/New2/application.lib
+      sha256: 7a484eca08638843df08ecb90b4c024ea0dcc5a731eed715de8cc14885229529
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/Basso/BassoBook20100103/New2/application.lib
+      sha256: 7a484eca08638843df08ecb90b4c024ea0dcc5a731eed715de8cc14885229529
+  - source: microcap12
+    name: TL431
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: application.lib
+      sha256: 06aae6687ff489edc6225db6ca5259d07e507c8a9c728970da1da7e95062639a
+  - source: onsemi
+    name: TL431_G
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp1351%20pspice%20model.zip
+      member: ncp1351_ORCAD/ncp1351bis.lib
+      sha256: 6aa489e636600f8740c23a5a76dd57b5e7ce04c9e0da8da902e8c3c88ed9fd1b
+- source: onsemi
+  name: TL431
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/zip/ncp4326%20demo%20board%20simulation%20(pspice).zip
+    member: NCP4326 model rev0-PSpiceFiles/Libraries/freerun.lib
+    archive_sha256: 6818c6e2e3e5b61b9d860e1a231f1932825f77ff8b0d66903bea3e65b70781a8
+    sha256: e659adcc4b0aef1ca66196bace5ef8a8aa5487b275635b9f3cf2f018d5f91fbc
+    lines:
+      TL431: [223, 238]
+    fetched: '2026-09-19'
+  copies:
+  - source: onsemi
+    name: TL431
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp1207acps.zip
+      member: freerun.lib
+      sha256: 46b05fe3b7140295e6e10368391f20175f7b5c3830cb3a9d215560df5d006d0b
+  - source: onsemi
+    name: TL431
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp1207ps.zip
+      member: freerun.lib
+      sha256: 117ea8fed8310e3d77f1c575b66cd4fdbd827d0799a3a5d50ea844dcdd565680
+  - source: onsemi
+    name: TL431
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp1205ps.zip
+      member: ncp1205.lib
+      sha256: 8eb5fe954b6782d40b8eb3f0200fcd8ff4648e9124e0ef2a1a8d32a83f36885f
+  - source: onsemi
+    name: TL431
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp1205ps.zip
+      member: freerun.lib
+      sha256: 117ea8fed8310e3d77f1c575b66cd4fdbd827d0799a3a5d50ea844dcdd565680
+  - source: kicad-spice-library
+    name: TL431_MC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_ic.lib
+      sha256: a65b6137b043cdfba9ba017e7868529253f21c9df27c4fbdf08fbd6c37ecf93e
+  - source: kicad-spice-library
+    name: TL431_MC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_ic.lib
+      sha256: a65b6137b043cdfba9ba017e7868529253f21c9df27c4fbdf08fbd6c37ecf93e
+  - source: kicad-spice-library
+    name: TL431_MC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_ic.lib
+      sha256: a65b6137b043cdfba9ba017e7868529253f21c9df27c4fbdf08fbd6c37ecf93e
+  - source: microcap12
+    name: TL431_MC
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: m_ic.lib
+      sha256: 6a45216c3c97aa5ae80cb0693c68a80de011f41be3560d02873e41ad6d5ce102
+  - source: microcap12
+    name: TL431_MC
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: m_ic.lib
+      sha256: 6a45216c3c97aa5ae80cb0693c68a80de011f41be3560d02873e41ad6d5ce102
+  - source: microcap12
+    name: TL431_MC
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: m_ic.lib
+      sha256: 6a45216c3c97aa5ae80cb0693c68a80de011f41be3560d02873e41ad6d5ce102
+- source: onsemi
+  name: TL431
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/zip/ncp1250_orcad_model.zip
+    member: Userdata/PSpice/NCP1250/application.lib
+    archive_sha256: 611312bf76b0e852e2a8857ec2de0edc73caa329392af775311b7e3857cbbd29
+    sha256: 779e6370deba1aa437ec52f094b838d0bc11be2eeac9f9a2d5bd2c624d27ec18
+    lines:
+      TL431: [32, 48]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov
+    name: TL431
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/UC384xB.lib
+      sha256: 94006e2482dc5254c8121e572eecd40e9ed102888b6624b3ca8b73a8bc9b8df2
+  - source: bordodynov
+    name: TL431
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/uc384x.lib
+      sha256: 0fe8a81fe2482c450ee7df0d988df7140eee83a5db1314bbb8c173945db1f020
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/UC384xB.lib
+      sha256: 94006e2482dc5254c8121e572eecd40e9ed102888b6624b3ca8b73a8bc9b8df2
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/uc384x.lib
+      sha256: 0fe8a81fe2482c450ee7df0d988df7140eee83a5db1314bbb8c173945db1f020
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/UC3844A&B/uc384x.lib
+      sha256: 0fe8a81fe2482c450ee7df0d988df7140eee83a5db1314bbb8c173945db1f020
+  - source: onsemi
+    name: TL431
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp1395%20orcad%20model.zip
+      member: UserData/PSpice/NCP1395/archive LLC/application.lib
+      sha256: e63062f7fc6c5eca1c7d04f94e4713fb95f6d2cd34b3ac20d957561a4840e037
+  - source: onsemi
+    name: TL431
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp101x_orcad.zip
+      member: application.lib
+      sha256: 6d62c098ddb50ce60fd5348a5b764a9018fd1522a2bf4dee60665517f06519a3
+  - source: onsemi
+    name: TL431
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp1351%20pspice%20model.zip
+      member: ncp1351_ORCAD/application.lib
+      sha256: 5617ad21da819be996732ece6f515658a40de55ea6685e48fcd3ec27b14a1159
+- source: onsemi
+  name: TL431
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/zip/ncp105x_orcad.zip
+    member: ncp105x.lib
+    archive_sha256: 07bc5595abbb3701cc125963f1325bb9dda971a2860b61a2b6be333c1f769155
+    sha256: 1957a6a6f43ab9461d0661fc6a1afa3fc6fd9bc3fd6f2e564771aa7956414fde
+    lines:
+      TL431: [322, 337]
+    fetched: '2026-09-19'
+  copies:
+  - source: kicad-spice-library
+    name: TL431
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/smps_cb.lib
+      sha256: 522a347f5d80efea02d8787d699b77716263fd262a7e78eab6a6d237289a4373
+  - source: kicad-spice-library
+    name: TL431
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/REG.LIB
+      sha256: 2581c0d0d57c3f5d13826e1be3608d8c05c6b9d033ddf76d398df2bd7dbd98bc
+- source: onsemi
+  name: TL431_G
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DN4148
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/zip/ncp1250_orcad_model.zip
+    member: Userdata/PSpice/NCP1250/Kraken test final circuit.CIR
+    archive_sha256: 611312bf76b0e852e2a8857ec2de0edc73caa329392af775311b7e3857cbbd29
+    sha256: 7bdb8699c46488588bdd22c895bd4f15c0902df5cce9c6a9687fffe843524640
+    lines:
+      DN4148: [66, 67]
+      TL431_G: [120, 140]
+    fetched: '2026-09-21'
+  copies:
+  - source: onsemi
+    name: TL431_G
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp1250_orcad_model.zip
+      member: Userdata/PSpice/NCP1250/Kraken test final circuit.out
+      sha256: d54e28d50baa278451c6f1107c9dff9df4c8a805b31880361cf76f7002ca6263
+  - source: onsemi
+    name: TL431_G
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp1250_orcad_model.zip
+      member: Userdata/PSpice/NCP1250/Kraken test final circuit.out.1
+      sha256: 98a8a19aec25237a2cf8cece1368bc5e120aea76e213cfb1d0fe149062c32209
+- source: onsemi
+  name: TL431_ON
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D2
+  - DCLAMP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/zip/ncp101x_isspice.zip
+    member: onic.lib
+    archive_sha256: ce0a7c791a59c07b4f51dbc47e26695a7409dd3222c1008ef7cba577db156e57
+    sha256: 3bba6f67478987c9d9d436d24fa9b82e91d92888f20a34d59fd5c0dae0de189c
+    lines:
+      D2: [6780, 6780]
+      DCLAMP: [6782, 6782]
+      TL431_ON: [3777, 3793]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: TL431_ON
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: onsemi
+  name: TL431
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/lib%20model%20for%20tlv431a%20(orcad).lib
+    sha256: ce7ce37dbab17035b4a7dba16dc9e39360ef9af64dfbadb6e469687e71764956
+    lines:
+      TL431: [59, 78]
+    fetched: '2026-09-19'
+- source: onsemi
+  name: TL431_ON
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/zip/mc33163_model.zip
+    member: MC33163 MODEL/onic.lib
+    archive_sha256: 9a2c3d4e5fd4cac8c077696b7589a4f75e12ab29049cbdad1da48101e6ea1d95
+    sha256: 4b75d2a5b998dbc4b9048dda08ddab54587bf815a725128b3f9f747851cacfb7
+    lines:
+      TL431_ON: [3569, 3585]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: TL431
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCLAMP
+  - D2
+  - limit2
+  - limit
+  - a
+  - nmos
+  - Q1
+  - DN4148
+  - pmos
+  - Q2
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      D2: [212863, 212863]
+      DCLAMP: [212865, 212865]
+      DN4148: [158540, 158541]
+      Q1: [78385, 78412]
+      Q2: [78417, 78442]
+      TL431: [159800, 159821]
+      a: [219198, 219213]
+      limit: [219382, 219391]
+      limit2: [219393, 219403]
+      nmos: [161508, 161508]
+      pmos: [161510, 161510]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: TL431
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: TL431
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: TL431
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: TL431
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: TL431
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: TL431_G
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: bordodynov
+  name: TL431A
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/REF/TL431A_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 586f8326dafe8a5ec92510eefc0d6e00cdf6c82190cc4bbca58223db0ee04c60
+    lines:
+      TL431A: [107, 120]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: TL431A
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/REF/TL431A_models.lib
+      sha256: 586f8326dafe8a5ec92510eefc0d6e00cdf6c82190cc4bbca58223db0ee04c60
+  - source: ltwiki
+    name: TL431A
+    get:
+      url: https://ltwiki.org/files/TL431A-Test.zip
+      member: TL431A_models.lib
+      sha256: 5490ded88fb501e292a5a12b9f263d35e8df06c6ee7de4744d3a491c315e94c3
+  - source: ltwiki
+    name: TL431A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/SBORKA/REF/TL431A_models.lib
+      sha256: 586f8326dafe8a5ec92510eefc0d6e00cdf6c82190cc4bbca58223db0ee04c60
+- source: bordodynov
+  name: TL431
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/tl431.mod
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8730ef5745f356496da3b9a5bbfaebe643265ce1076a60be175fad5986557e29
+    lines:
+      TL431: [2, 14]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: TL431
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/tl431.mod
+      sha256: 8730ef5745f356496da3b9a5bbfaebe643265ce1076a60be175fad5986557e29
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/tl431.mod
+      sha256: 8730ef5745f356496da3b9a5bbfaebe643265ce1076a60be175fad5986557e29
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Compare_Stab_HV/TL431.sub
+      sha256: 8730ef5745f356496da3b9a5bbfaebe643265ce1076a60be175fad5986557e29
+- source: bordodynov
+  name: TL431AH
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sym/ZZZ/REF/TL431A_models.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 586f8326dafe8a5ec92510eefc0d6e00cdf6c82190cc4bbca58223db0ee04c60
+    lines:
+      TL431AH: [68, 100]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: TL431AH
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/REF/TL431A_models.lib
+      sha256: 586f8326dafe8a5ec92510eefc0d6e00cdf6c82190cc4bbca58223db0ee04c60
+  - source: ltwiki
+    name: TL431AH
+    get:
+      url: https://ltwiki.org/files/TL431A-Test.zip
+      member: TL431A_models.lib
+      sha256: 5490ded88fb501e292a5a12b9f263d35e8df06c6ee7de4744d3a491c315e94c3
+  - source: ltwiki
+    name: TL431AH
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/SBORKA/REF/TL431A_models.lib
+      sha256: 586f8326dafe8a5ec92510eefc0d6e00cdf6c82190cc4bbca58223db0ee04c60
+- source: bordodynov
+  name: TL431AS
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      TL431AS: [17509, 17532]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: TL431AS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: TL431AS
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+- source: bordodynov
+  name: TL431-R
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/TL431-R.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 16a9681e700874537fb0f409cdb2b3a769eee2bac8c79e15997d80673cc05f10
+    lines:
+      TL431-R: [1, 31]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: TL431-R
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/TL431-R.sub
+      sha256: 16a9681e700874537fb0f409cdb2b3a769eee2bac8c79e15997d80673cc05f10
+  - source: ltwiki
+    name: TL431-R
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/TL431-R.sub
+      sha256: 16a9681e700874537fb0f409cdb2b3a769eee2bac8c79e15997d80673cc05f10
+- source: bordodynov
+  name: TL431ED
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/TL431ED.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 9f678efa6a0a43278666c4d33c4f7d2cc61db30eed6c8e71c4ef66bb5410a602
+    lines:
+      TL431ED: [4, 33]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: TL431ED
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/TL431ED.sub
+      sha256: 9f678efa6a0a43278666c4d33c4f7d2cc61db30eed6c8e71c4ef66bb5410a602
+- source: bordodynov
+  name: TL431AB
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/TL431AB.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 0da45cac8097f90545e998869e6d05e58ae2db28f2938dab4c12340eb98b60bb
+    lines:
+      TL431AB: [2, 39]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: TL431AB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/TL431AB.sub
+      sha256: 0da45cac8097f90545e998869e6d05e58ae2db28f2938dab4c12340eb98b60bb
+- source: ltwiki
+  name: TL431
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/images/e/e4/TL431.sub
+    sha256: 3a0d89f27d431af798e63f14a18270428d60edda852befb261a7c696ae131d66
+    lines:
+      TL431: [2, 14]
+    fetched: '2026-09-14'
+  copies:
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Smps/Ltc/LTC3805_tlv43_test/TL431.sub
+      sha256: 3a0d89f27d431af798e63f14a18270428d60edda852befb261a7c696ae131d66
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Smps/Ltc/LTC3805_tlv43_test/TL431.sub
+      sha256: 3a0d89f27d431af798e63f14a18270428d60edda852befb261a7c696ae131d66
+- source: ltwiki
+  name: TL431
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Basso/BassoBook20100103/New2/TL431.lib
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 43210841dd2f4138d398d5cdf181b4b2d2a572c7ece653e8842bbb3097bcd454
+    lines:
+      TL431: [2, 16]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: TL431
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/Basso/BassoBook20100103/New2/TL431.lib
+      sha256: 43210841dd2f4138d398d5cdf181b4b2d2a572c7ece653e8842bbb3097bcd454
+- source: ltwiki
+  name: TL431ED
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/TL431A-Test.zip
+    member: TL431ED.sub
+    archive_sha256: 0c77e4fd2c18c9d3f3796cbaf56aebccb3a2468c306b70e4ded4667d40058dbb
+    sha256: 03b63e43ec90539cccc316c1081664c678b7d3d4227e68693dc1c29232cc34e2
+    lines:
+      TL431ED: [8, 37]
+    fetched: '2026-09-14'
+  copies:
+  - source: electrucio
+    name: TL431ED
+    get:
+      how: unknown
+      sha256: 1bd4c888e3185e05bae56b94e919e16007ec545117cb7f951b4613f5808b58eb
+- source: ltwiki
+  name: TL431A
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Compare_Stab_HV/tl431a.sub
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: ad50f0ea3b01f669bf88787015b45f3c5e9d1149195a6d6d8bb9ac73343d3a9e
+    lines:
+      TL431A: [12, 46]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: TL431_A
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/regulators.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: ba2105aa53d2db16001d205924af438b7c473ed9a864ce8e7ef13fcd71a7fcf7
+    lines:
+      TL431_A: [1529, 1545]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: TL431A
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/regulators.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: ba2105aa53d2db16001d205924af438b7c473ed9a864ce8e7ef13fcd71a7fcf7
+    lines:
+      TL431A: [1555, 1588]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: TL431
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/regulators.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: ba2105aa53d2db16001d205924af438b7c473ed9a864ce8e7ef13fcd71a7fcf7
+    lines:
+      TL431: [1514, 1527]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: TL_431
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/regulators.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: ba2105aa53d2db16001d205924af438b7c473ed9a864ce8e7ef13fcd71a7fcf7
+    lines:
+      TL_431: [1589, 1604]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: TL431X
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/TL431A-Test.zip
+    member: TL431A_models.lib
+    archive_sha256: 0c77e4fd2c18c9d3f3796cbaf56aebccb3a2468c306b70e4ded4667d40058dbb
+    sha256: 5490ded88fb501e292a5a12b9f263d35e8df06c6ee7de4744d3a491c315e94c3
+    lines:
+      TL431X: [126, 139]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: TL431ED
+  def: subckt
+  type: SUBCKT
+  deps:
+  - Q1
+  - Q2
+  - Rb
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+    sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+    lines:
+      Q1: [16233, 16274]
+      Q2: [16276, 16317]
+      Rb: [546, 552]
+      TL431ED: [17371, 17400]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: TL431ED
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/TL431ED.sub
+    sha256: 9fc2103345ea1754d622b6ccde0f8c0cc3a3e70c747abfc076ebef47d3093b90
+    lines:
+      TL431ED: [1, 33]
+    fetched: '2026-09-14'
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/tl431.pdf
   maker: Texas Instruments

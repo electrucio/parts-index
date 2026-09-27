@@ -21,6 +21,28 @@ models:
       ZVP3310F: [3867, 3888]
     fetched: '2026-09-14'
   note: pins from default order (unverified)
+  copies:
+  - source: diodes-inc
+    name: ZVP3310F
+    get:
+      url: https://www.diodes.com/spice/download/2150/ZVP3310F.spice.txt
+      sha256: dc42602a7a0cbefe90595a7d85ba8f8b5f1de70ca3c816dac0cfe649250ddaf6
+  - source: diodes-inc
+    name: ZVP3310F
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8393/collection.spice.txt
+      sha256: 8e48bc6b5b8b3539a783ee1f41fc4e1286d5798edacfd30b5163b4141e6d1aac
+  - source: microcap12
+    name: ZVP3310F
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
+  - source: diodes-inc
+    name: ZVP3310FQ
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8522/collection.spice.txt
+      sha256: d5fb01a0d34edf74987add96b4f8859357c1501648119dd5bebc0f6d32fec8bf
 - source: ltwiki
   name: ZVP3310A
   def: subckt

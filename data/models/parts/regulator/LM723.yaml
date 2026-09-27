@@ -40,7 +40,54 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: LM723_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from LM723 DIP-14 pin numbers'
+  note: pins from LM723 DIP-14 pin numbers
+  copies:
+  - source: kicad-spice-library
+    name: LM723
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Lm723.sub
+      sha256: 758a4009de4de8198f1a1a84b3151e00d74c18c980d595aad27504b931c13bc9
+  - source: kicad-spice-library
+    name: LM723
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/cadlab.lib
+      sha256: 41bfabd0cbebf1ec6b9f7a8ddb4b8f420ecb70788d795f8068d0a207de2f5ffb
+  - source: ltwiki
+    name: LM723
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Lm723.sub
+      sha256: 758a4009de4de8198f1a1a84b3151e00d74c18c980d595aad27504b931c13bc9
+  - source: ltwiki
+    name: LM723
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Reg_Vref/lm/723Reg-DCsupply/Models.lib
+      sha256: d93ad29c658c801ebb3a0e5e1f8155084f689ddcd56791d87b61c8436b5851b8
+  - source: ltwiki
+    name: LM723
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Reg&Vref/lm/723Reg-DCsupply/Models.lib
+      sha256: d93ad29c658c801ebb3a0e5e1f8155084f689ddcd56791d87b61c8436b5851b8
+  - source: ltwiki
+    name: LM723
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Lm723.sub
+      sha256: 758a4009de4de8198f1a1a84b3151e00d74c18c980d595aad27504b931c13bc9
+  - source: ltwiki
+    name: LM723
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Reg_Vref/lm/723Reg-DCsupply/Models.lib
+      sha256: d93ad29c658c801ebb3a0e5e1f8155084f689ddcd56791d87b61c8436b5851b8
+  - source: ltwiki
+    name: LM723
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Reg&Vref/lm/723Reg-DCsupply/Models.lib
+      sha256: d93ad29c658c801ebb3a0e5e1f8155084f689ddcd56791d87b61c8436b5851b8
 - source: kicad-spice-library
   name: LM723C
   def: subckt
@@ -77,6 +124,31 @@ models:
     typical_rows: 0
   symbol: LM723_kicad-spice-library.asy
   note: pins from LM723 DIP-14 pin numbers
+- source: ltwiki
+  name: LM723
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+    sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+    lines:
+      LM723: [11017, 11076]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: LM723C
+  def: subckt
+  type: SUBCKT
+  deps:
+  - LM723
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+    sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+    lines:
+      LM723: [11017, 11076]
+      LM723C: [11090, 11097]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/lm723.pdf
   maker: Texas Instruments (National Semiconductor)

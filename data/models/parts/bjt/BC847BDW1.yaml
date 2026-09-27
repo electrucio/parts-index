@@ -104,3 +104,21 @@ models:
       Rb: [564, 570]
     fetched: '2026-09-14'
   note: 'found under the alias BC847B; same code also in: kicad-spice-library, ltwiki'
+- source: onsemi
+  name: Qbc847bdw1t1
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bc847bdw1t1.lib
+    sha256: f7a6632f74f47eb6ea679cf5d0d94600051dba0a40ca51c8dc75ec1f1f699297
+    lines:
+      Qbc847bdw1t1: [14, 24]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: Qbc847bdw1t1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86

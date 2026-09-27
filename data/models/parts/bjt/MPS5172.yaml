@@ -1,0 +1,22 @@
+part: MPS5172
+kind: bjt
+priority: 3
+group: listed
+models:
+- source: spice-model-cd
+  name: MPS5172
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Fairchild/MP/MPS5172.t
+    sha256: 51a084d8a8bc10a16ded7f35c3a7039118bc0395224f71a0b93cde684a8f905e
+    lines:
+      MPS5172: [1, 4]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: MPS5172
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/bipolar.lib
+      sha256: c5e0e8839925adb5e550a6654a8d5d1c0634a0fd0f58e03c9701e24d9aa08b5b

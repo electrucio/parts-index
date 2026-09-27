@@ -31,11 +31,18 @@ models:
     not_measurable: 0
     typical_rows: 1
   symbol: LM317_bordodynov.asy
-  note: 'same code also in: ltwiki; pins from simulation: of the 6 node orders only IN ADJ OUT regulates
-    to about 1.25 V at Vin-Vout 5 V / 20 mA, Vin-Vout 15 V / 20 mA, Vin-Vout 5 V / 100 mA (orders tried:
-    IN OUT ADJ: -3.49 V, -3.49 V, -8.97 V; IN ADJ OUT: 1.25 V, 1.25 V, 1.25 V; OUT IN ADJ: -0.718 V, -0.718
-    V, -0.774 V; OUT ADJ IN: 2.28 V, 4.74 V, 2.27 V; ADJ IN OUT: 0.703 V, 0.733 V, 0.661 V; ADJ OUT IN:
-    -3.48 V, -3.48 V, -8.35 V)'
+  note: 'pins from simulation: of the 6 node orders only IN ADJ OUT regulates to about 1.25 V at Vin-Vout
+    5 V / 20 mA, Vin-Vout 15 V / 20 mA, Vin-Vout 5 V / 100 mA (orders tried: IN OUT ADJ: -3.49 V, -3.49
+    V, -8.97 V; IN ADJ OUT: 1.25 V, 1.25 V, 1.25 V; OUT IN ADJ: -0.718 V, -0.718 V, -0.774 V; OUT ADJ
+    IN: 2.28 V, 4.74 V, 2.27 V; ADJ IN OUT: 0.703 V, 0.733 V, 0.661 V; ADJ OUT IN: -3.48 V, -3.48 V, -8.35
+    V)'
+  copies:
+  - source: ltwiki
+    name: LM317
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/regulators.lib
+      sha256: 1998b5aaba8b44019bf630a561c739ff33a83996cd6600bbaa8b8c3e02cf5bf2
 - source: bordodynov
   name: LM317-TI
   def: subckt
@@ -61,11 +68,18 @@ models:
     not_measurable: 0
     typical_rows: 1
   symbol: LM317_bordodynov-2.asy
-  note: 'same code also in: ltwiki; pins from simulation: of the 6 node orders only IN ADJ OUT regulates
-    to about 1.25 V at Vin-Vout 5 V / 20 mA, Vin-Vout 15 V / 20 mA, Vin-Vout 5 V / 100 mA (orders tried:
-    IN OUT ADJ: -3.5 V, -3.5 V, -22.3 V; IN ADJ OUT: 1.3 V, 1.3 V, 1.29 V; OUT IN ADJ: -0.72 V, -0.72
-    V, -0.774 V; OUT ADJ IN: 2.28 V, 4.74 V, 2.27 V; ADJ IN OUT: -1.56 V, -1.56 V, -1.66 V; ADJ OUT IN:
-    -3.48 V, -3.48 V, -22.3 V)'
+  note: 'pins from simulation: of the 6 node orders only IN ADJ OUT regulates to about 1.25 V at Vin-Vout
+    5 V / 20 mA, Vin-Vout 15 V / 20 mA, Vin-Vout 5 V / 100 mA (orders tried: IN OUT ADJ: -3.5 V, -3.5
+    V, -22.3 V; IN ADJ OUT: 1.3 V, 1.3 V, 1.29 V; OUT IN ADJ: -0.72 V, -0.72 V, -0.774 V; OUT ADJ IN:
+    2.28 V, 4.74 V, 2.27 V; ADJ IN OUT: -1.56 V, -1.56 V, -1.66 V; ADJ OUT IN: -3.48 V, -3.48 V, -22.3
+    V)'
+  copies:
+  - source: ltwiki
+    name: LM317-TI
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/regulators.lib
+      sha256: 1998b5aaba8b44019bf630a561c739ff33a83996cd6600bbaa8b8c3e02cf5bf2
 - source: bordodynov
   name: LM317-MOT
   def: subckt
@@ -91,11 +105,18 @@ models:
     not_measurable: 0
     typical_rows: 1
   symbol: LM317_bordodynov-3.asy
-  note: 'same code also in: ltwiki; pins from simulation: of the 6 node orders only IN ADJ OUT regulates
-    to about 1.25 V at Vin-Vout 5 V / 20 mA, Vin-Vout 15 V / 20 mA, Vin-Vout 5 V / 100 mA (orders tried:
-    IN OUT ADJ: -3.5 V, -3.5 V, -22.3 V; IN ADJ OUT: 1.32 V, 1.32 V, 1.32 V; OUT IN ADJ: -0.72 V, -0.72
-    V, -0.774 V; OUT ADJ IN: 2.28 V, 4.75 V, 2.27 V; ADJ IN OUT: -1.56 V, -1.56 V, -1.65 V; ADJ OUT IN:
-    -3.48 V, -3.48 V, -22.3 V)'
+  note: 'pins from simulation: of the 6 node orders only IN ADJ OUT regulates to about 1.25 V at Vin-Vout
+    5 V / 20 mA, Vin-Vout 15 V / 20 mA, Vin-Vout 5 V / 100 mA (orders tried: IN OUT ADJ: -3.5 V, -3.5
+    V, -22.3 V; IN ADJ OUT: 1.32 V, 1.32 V, 1.32 V; OUT IN ADJ: -0.72 V, -0.72 V, -0.774 V; OUT ADJ IN:
+    2.28 V, 4.75 V, 2.27 V; ADJ IN OUT: -1.56 V, -1.56 V, -1.65 V; ADJ OUT IN: -3.48 V, -3.48 V, -22.3
+    V)'
+  copies:
+  - source: ltwiki
+    name: LM317-MOT
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/regulators.lib
+      sha256: 1998b5aaba8b44019bf630a561c739ff33a83996cd6600bbaa8b8c3e02cf5bf2
 - source: bordodynov
   name: LM317-TI2
   def: subckt
@@ -181,11 +202,169 @@ models:
     not_measurable: 0
     typical_rows: 1
   symbol: LM317_ltwiki.asy
-  note: 'same code also in: kicad-spice-library; pins from simulation: of the 6 node orders only IN ADJ
-    OUT regulates to about 1.25 V at Vin-Vout 5 V / 20 mA, Vin-Vout 15 V / 20 mA, Vin-Vout 5 V / 100 mA
-    (orders tried: IN OUT ADJ: -3.5 V, -3.5 V, -22.3 V; IN ADJ OUT: 1.3 V, 1.3 V, 1.29 V; OUT IN ADJ:
-    -0.72 V, -0.72 V, -0.774 V; OUT ADJ IN: 2.28 V, 4.74 V, 2.27 V; ADJ IN OUT: -1.56 V, -1.56 V, -1.67
-    V; ADJ OUT IN: -3.48 V, -3.48 V, -22.3 V)'
+  note: 'pins from simulation: of the 6 node orders only IN ADJ OUT regulates to about 1.25 V at Vin-Vout
+    5 V / 20 mA, Vin-Vout 15 V / 20 mA, Vin-Vout 5 V / 100 mA (orders tried: IN OUT ADJ: -3.5 V, -3.5
+    V, -22.3 V; IN ADJ OUT: 1.3 V, 1.3 V, 1.29 V; OUT IN ADJ: -0.72 V, -0.72 V, -0.774 V; OUT ADJ IN:
+    2.28 V, 4.74 V, 2.27 V; ADJ IN OUT: -1.56 V, -1.56 V, -1.67 V; ADJ OUT IN: -3.48 V, -3.48 V, -22.3
+    V)'
+  copies:
+  - source: ltwiki
+    name: LM317TI
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/regulators.lib
+      sha256: ba2105aa53d2db16001d205924af438b7c473ed9a864ce8e7ef13fcd71a7fcf7
+  - source: kicad-spice-library
+    name: LM317-TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/regulators.lib
+      sha256: 0b15463dadbf7c99cb3692aa563c298dd2a488e40122b87c0094158001d08f4c
+- source: bordodynov
+  name: LM317-mod
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM317-mod.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 9af75705dce5e3a0385612198f2d458de699087ec28aa42d4498350425e07316
+    lines:
+      LM317-mod: [1, 86]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: LM317-mod
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LM317-mod.lib
+      sha256: 9af75705dce5e3a0385612198f2d458de699087ec28aa42d4498350425e07316
+- source: ltwiki
+  name: LM317MOT
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/regulators.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: ba2105aa53d2db16001d205924af438b7c473ed9a864ce8e7ef13fcd71a7fcf7
+    lines:
+      LM317MOT: [961, 1032]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM317-MOT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/regulators.lib
+      sha256: 0b15463dadbf7c99cb3692aa563c298dd2a488e40122b87c0094158001d08f4c
+  - source: ltwiki
+    name: LM317-MOT
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/VolReg/regulators.lib
+      sha256: 3a5a237a61cd02955ecdd4e705bbce05b7983f9ff1c8ba1c060cf6ae30015c3d
+- source: ltwiki
+  name: LM317
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+    sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+    lines:
+      LM317: [2602, 2647]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: LM317
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/regulators.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: ba2105aa53d2db16001d205924af438b7c473ed9a864ce8e7ef13fcd71a7fcf7
+    lines:
+      LM317: [886, 958]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: LM317Psp
+  def: subckt
+  type: SUBCKT
+  deps:
+  - LM117PSp
+  verbatim: true
+  get:
+    url: http://ltwiki.org/files/LargeCollection.zip
+    member: LargeCollection/LTspiceIV/lib/sub/regulators.lib
+    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
+    sha256: ba2105aa53d2db16001d205924af438b7c473ed9a864ce8e7ef13fcd71a7fcf7
+    lines:
+      LM117PSp: [836, 879]
+      LM317Psp: [881, 883]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: LM317
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/regulators.lib
+    sha256: 0b15463dadbf7c99cb3692aa563c298dd2a488e40122b87c0094158001d08f4c
+    lines:
+      LM317: [1179, 1251]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: LM317TI
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/REG.LIB
+    sha256: 2581c0d0d57c3f5d13826e1be3608d8c05c6b9d033ddf76d398df2bd7dbd98bc
+    lines:
+      LM317TI: [66, 137]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: LM317MOT
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/REG.LIB
+    sha256: 2581c0d0d57c3f5d13826e1be3608d8c05c6b9d033ddf76d398df2bd7dbd98bc
+    lines:
+      LM317MOT: [141, 212]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: LM317NC
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/REG.LIB
+    sha256: 2581c0d0d57c3f5d13826e1be3608d8c05c6b9d033ddf76d398df2bd7dbd98bc
+    lines:
+      LM317NC: [216, 284]
+    fetched: '2026-09-14'
+- source: electrucio
+  name: LM317HV
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    how: unknown
+    sha256: a45ae9c90cedc30602e5beef743cdcb4a93abc9b5e2fded8b12a8c04167aa138
+    lines:
+      LM317HV: [26, 68]
+    fetched: '2026-09-14'
+  copies:
+  - source: electrucio
+    name: LM317HV
+    get:
+      how: unknown
+      sha256: a45ae9c90cedc30602e5beef743cdcb4a93abc9b5e2fded8b12a8c04167aa138
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/lm317.pdf
   maker: Texas Instruments

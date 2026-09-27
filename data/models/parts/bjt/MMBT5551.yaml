@@ -15,3 +15,68 @@ models:
       MMBT5551: [7, 57]
     fetched: '2026-09-14'
     note: 'model(s): MMBT5551 (NPN .model)'
+  copies:
+  - source: microcap12
+    name: MMBT5551
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: onsemi
+  name: Qmmbt5551lt1
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mmbt5551lt1.lib
+    sha256: 6c2ecc752bccb8ef92bfdd75836d340d2f50586da74e4550f1ac58316ebd7c42
+    lines:
+      Qmmbt5551lt1: [14, 24]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: Qmmbt5551lt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: mmbt5551lt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_bjt.lib
+      sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77
+- source: diodes-inc
+  name: MMBT5551
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/2541/MMBT5551.spice.txt
+    sha256: 38624454abd3eecad3761af8449495b20d6409aa25c5acef960f60b44549e492
+    lines:
+      MMBT5551: [24, 27]
+    fetched: '2026-09-19'
+  copies:
+  - source: diodes-inc
+    name: MMBT5551
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8423/collection.spice.txt
+      sha256: 29a331433039eecc5f40d2202d1675ada0c61df76aa492b6773e7c4107fbac71
+  - source: microcap12
+    name: MMBT5551
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc_BJT.lib
+      sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
+- source: qspice
+  name: MMBT5551
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 02e7f34086291154c4ad5a23bd7be80641cec3ccd61609bfc623a1231183224b
+    lines:
+      MMBT5551: [1270, 1274]
+    fetched: '2026-09-20'

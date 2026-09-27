@@ -6,6 +6,7 @@ import json
 import pytest
 import yaml
 
+from parts_index.models import found as F
 from parts_index.models import promote as P
 
 PROV = {
@@ -123,3 +124,46 @@ def test_verbatim_says_whether_we_changed_the_text(changes, expected):
 def test_a_signed_judgement_keeps_its_date_and_loses_the_name(prose, expected):
     """Notes are prose the maintainer wrote for themselves, and the public side carries no names."""
     assert P.unsigned(prose) == expected
+
+
+# --- what the catalogue holds beyond the curation ---------------------------------------------------------
+def found_model(source, name, file, url, copies=(), match="exact"):
+    return {"hash": "", "source": source, "name": name, "def": "model", "type": "NPN", "pins": [],
+            "match": match, "deps": [], "provenance": {"source": source, "file": file, "url": url},
+            "copies": [{"source": s, "file": f, "name": n, "provenance": {"source": s, "file": f, "url": u}}
+                       for s, f, n, u in copies]}
+
+
+def test_a_curated_model_gains_its_copies_and_the_rest_are_added_unjudged(tmp_path, monkeypatch):
+    lib = tmp_path / "sources" / "bordodynov" / "raw" / "standard.bjt"
+    lib.parent.mkdir(parents=True)
+    lib.write_text(".MODEL MJ15001M NPN (BF=115.914 IS=1.23312E-13)\n", encoding="utf-8")
+    files = F.Files(tmp_path)
+    data = {"part": "MJ15001", "kind": "bjt", "candidates": [
+        {"file": "bordodynov.lib", "source": "bordodynov", "name": "MJ15001M", "def": "model", "type": "NPN",
+         "note": "same code also in: kicad-spice-library, ltwiki",
+         "provenance": {"source": "bordodynov", "file": "sources/bordodynov/raw/standard.bjt",
+                        "url": "http://bordodynov.ltwiki.org/lib.zip"}}]}
+    doc = P.recipe(data)
+    motorola = "https://ltwiki.org/files/LTspiceIV/Vendor%20List/Motorola/Spice/PowerBJT/MJ15001.LIB"
+    same = found_model("spice-model-cd", "Qmj15001", "sources/spice-model-cd/raw/MJ15001.LIB", motorola,
+                       copies=[("bordodynov", "sources/bordodynov/raw/standard.bjt", "MJ15001M", "x"),
+                               ("ltwiki", "sources/ltwiki/raw/standard.bjt", "MJ15001M", "y")])
+    same["hash"] = F.code_hash(F.closure(files.get("sources/bordodynov/raw/standard.bjt")[0], "MJ15001M"))
+    other = found_model("onsemi", "Qmj15001", "sources/onsemi/raw/mj15001.lib",
+                        "https://www.onsemi.com/download/models/lib/mj15001.lib")
+    other["hash"] = "different"
+    assert P.join_found(doc, data, {"models": [same, other]}, files) == 1
+    first, added = doc["models"]
+    # the curated copy is not listed as a copy of itself, and the note no longer repeats the list
+    assert [(c["source"], c["get"]["url"]) for c in first["copies"]] == [("spice-model-cd", motorola), ("ltwiki", "y")]
+    assert "note" not in first
+    assert (added["source"], added["verbatim"], added["get"]["url"]) == ("onsemi", True, other["provenance"]["url"])
+    assert "verification" not in added
+
+
+def test_a_model_found_under_another_name_says_whose_model_it_is():
+    m = found_model("acme", "BC547", "sources/acme/raw/a.lib", "https://acme.example/a.lib", match="stand-in:BC547/exact")
+    assert P.uncurated("BC183", m)["note"].startswith("STAND-IN: model of BC547, not of BC183")
+    m["match"] = "alias:ECC83/exact"
+    assert P.uncurated("12AX7", m)["note"] == "found under the alias ECC83"

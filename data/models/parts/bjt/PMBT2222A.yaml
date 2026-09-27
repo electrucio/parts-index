@@ -32,3 +32,21 @@ models:
       PMBT2222A: [11560, 11598]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: spice-model-cd
+    name: QPMBT2222A
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/MBT2222A.lib
+      sha256: a31806a722ed91919f84d19911951f140598a01ac9fb19eaa38cf4e8a6cb74fb
+  - source: ltwiki
+    name: QPMBT2222A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/PMBT2222A.PRM
+      sha256: a31806a722ed91919f84d19911951f140598a01ac9fb19eaa38cf4e8a6cb74fb
+  - source: microcap12
+    name: PMBT2222A
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_bjt.lib
+      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb

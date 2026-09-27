@@ -22,6 +22,12 @@ models:
       AD825: [16, 83]
     fetched: '2026-09-14'
   note: pins from comment words
+  copies:
+  - source: spice-model-cd
+    name: AD825/AD
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Analog%20Devices_Spice_Files/OpAmps/Spice/anlg_dev.lib
+      sha256: 6ab38357b65b81a3e4b75284dac1bed7e893f4ee465f998763fd9b4d3ecd4af3
 - source: kicad-spice-library
   name: AD825_AD
   def: subckt
@@ -44,3 +50,20 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from comment words
+- source: microcap12
+  name: AD825_AD
+  def: subckt
+  type: SUBCKT
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: analog.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+    lines:
+      AD825_AD: [71641, 71708]
+      dx: [77076, 77076]
+    fetched: '2026-09-20'

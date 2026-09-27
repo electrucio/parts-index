@@ -21,4 +21,49 @@ models:
     lines:
       MCP6L01: [10278, 10447]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: MCP6L01
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: MCP6L01
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: MCP6L01
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+- source: microchip
+  name: MCP6L01
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/BoardDesignFiles/MCP6L01_MM_B.zip
+    member: MCP6L01.txt
+    archive_sha256: 69f8c962118d836987cdcf50ddd02f8164f49315860768c9bc8c2d2f04e99da0
+    sha256: 6372991b0f6632e13c6f39f5743e68d99a75b9d589686fe83b0a2cd75734e0bc
+    lines:
+      MCP6L01: [1, 160]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: MCP6L01
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: mc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 9e6a5b46e8405605b3f004924fa5b2852f67b9470fe1c5bec2c8e144400f2abe
+    lines:
+      MCP6L01: [8026, 8185]
+    fetched: '2026-09-20'

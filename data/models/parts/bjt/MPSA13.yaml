@@ -33,7 +33,24 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: MPSA13_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: duncanamps
+    name: XMPSA13
+    get:
+      url: https://www.duncanamps.com/spice/bjt/npndarl1.sub
+      sha256: 370f7408ca9e7009c6e0874e70cb77e6764a9464cb603b6757c641bdc46262e1
+  - source: kicad-spice-library
+    name: MPSA13
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/npndarl1.sub
+      sha256: 97eb3a2e17b3116552d87018994f7c5ca365b1b8b976e434e6982c003632fbef
+  - source: ltwiki
+    name: MPSA13
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/npndarl1.sub
+      sha256: 97eb3a2e17b3116552d87018994f7c5ca365b1b8b976e434e6982c003632fbef
 - source: kicad-spice-library
   name: MPSA13
   def: subckt

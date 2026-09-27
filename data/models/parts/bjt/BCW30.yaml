@@ -1,0 +1,80 @@
+part: BCW30
+kind: bjt
+priority: 3
+group: listed
+models:
+- source: onsemi
+  name: BCW30
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/bcw30.lib
+    sha256: aee3e3be7ea568cc50585aea690d3c30f5f16f503f03a38cbd8e2c36f56c1fd4
+    lines:
+      BCW30: [6, 17]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: BCW30
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: onsemi
+  name: bcw30lt1
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/sp3/bcw30lt.sp3
+    sha256: 48de5ad65f22bdfbf39b396820cac8ec33e8d82da7d57fef594cb412a113a037
+    lines:
+      bcw30lt1: [14, 24]
+    fetched: '2026-09-21'
+- source: spice-model-cd
+  name: QBCW30
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BCW30.lib
+    sha256: cc87efb65e260d3f7f4a35c131cbd57efe190ffdafb6ff946b083db591c79335
+    lines:
+      QBCW30: [2, 40]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: QBCW30
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/BCW30.PRM
+      sha256: cc87efb65e260d3f7f4a35c131cbd57efe190ffdafb6ff946b083db591c79335
+- source: microcap12
+  name: BCW30
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: europe_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 42216566abb79c5af5cc97e223623ed0f689b725fcb876c2b4e00d8298ba8e02
+    lines:
+      BCW30: [505, 508]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: BCW30L
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: msbjt_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 03fbaf82587d859e52f6b3e36166b65d7d6b6f241e460308f37d3b568e5fa96e
+    lines:
+      BCW30L: [2269, 2272]
+    fetched: '2026-09-20'

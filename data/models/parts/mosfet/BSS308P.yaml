@@ -26,6 +26,13 @@ models:
       P4_30_u_var: [262, 348]
     fetched: '2026-09-19'
   note: pins from names
+  copies:
+  - source: infineon
+    name: BSS308PE
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-30v-p-channel-simulationmodels-en.zip
+      member: OptiMOS_P3/OptiMOS_P3_30V.lib
+      sha256: c139058ae46848b3df0e09e7549d2b8521abd0b75126dbef3e54fbeef9037196
 - source: infineon
   name: BSS308PE_L1
   def: subckt

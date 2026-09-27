@@ -150,3 +150,29 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: found under the alias 74HC00
+- source: ti
+  name: SN74HC00
+  def: subckt
+  type: SUBCKT
+  deps:
+  - LOGIC_FUNCTION_2_LVC_2i_NAND_PP_CMOS_SN74HC00
+  - LOGIC_PP_OUTPUT_LVC_2i_NAND_PP_CMOS_SN74HC00
+  - TPD_LVC_2i_NAND_PP_CMOS_SN74HC00
+  - LOGIC_INPUT_LVC_2i_NAND_PP_CMOS_SN74HC00
+  - LOGIC_ICC_LVC_2i_NAND_PP_CMOS_SN74HC00
+  - LOGIC_GATE_2PIN_OD_LVC_2i_NAND_PP_CMOS_SN74HC00
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SCLM235
+    member: SN74HC00.cir
+    archive_sha256: 0d4b430672fdfb86a51943d5a48290962d6342cffe213b8fceab12e4faf41437
+    sha256: 5471e927b2635c7fddb4d3c72572f7efb5701b651c24cef0d0559bcf838e635e
+    lines:
+      LOGIC_FUNCTION_2_LVC_2i_NAND_PP_CMOS_SN74HC00: [147, 162]
+      LOGIC_GATE_2PIN_OD_LVC_2i_NAND_PP_CMOS_SN74HC00: [43, 79]
+      LOGIC_ICC_LVC_2i_NAND_PP_CMOS_SN74HC00: [189, 197]
+      LOGIC_INPUT_LVC_2i_NAND_PP_CMOS_SN74HC00: [80, 146]
+      LOGIC_PP_OUTPUT_LVC_2i_NAND_PP_CMOS_SN74HC00: [177, 188]
+      SN74HC00: [37, 39]
+      TPD_LVC_2i_NAND_PP_CMOS_SN74HC00: [163, 176]
+    fetched: '2026-09-19'

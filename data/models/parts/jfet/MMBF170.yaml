@@ -20,3 +20,59 @@ models:
     fetched: '2026-09-19'
     note: 'MMBF170: mmbf170lt1, MM, MD, MD1, MD2, MD3'
   note: pins from default order (unverified)
+  copies:
+  - source: spice-model-cd
+    name: mmbf170lt1
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Motorola/Spice/SmallSig/mmbf170lt1.t
+      sha256: b582ec3cfa427dd1d7650f9985836c1f0ab30924a55df2286151670447b68e94
+- source: diodes-inc
+  name: MMBF170Q
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/1947/MMBF170Q.spice.txt
+    sha256: 8dddf1496a5eb8a5f2d29323dad2034885634e48c3473f1ec179ebe75fc7cc11
+    lines:
+      MMBF170Q: [18, 40]
+    fetched: '2026-09-19'
+- source: diodes-inc
+  name: MMBF170Q
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - DLIM
+  - NMOS
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8522/collection.spice.txt
+    sha256: d5fb01a0d34edf74987add96b4f8859357c1501648119dd5bebc0f6d32fec8bf
+    lines:
+      DCGD: [1511, 1511]
+      DLIM: [1514, 1514]
+      DSUB: [1512, 1513]
+      MMBF170Q: [15334, 15356]
+      NMOS: [1509, 1510]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: mmbf170lt1
+  def: subckt
+  type: SUBCKT
+  deps:
+  - D2
+  - nmos
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      D2: [212863, 212863]
+      mmbf170lt1: [139704, 139752]
+      nmos: [161508, 161508]
+    fetched: '2026-09-20'

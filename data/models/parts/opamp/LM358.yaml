@@ -32,7 +32,72 @@ models:
     not_measurable: 1
     typical_rows: 2
   symbol: LM358_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki, spiceypedals; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: spice-model-cd
+    name: LM358/NS
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/National_Semiconductors/Spice/LM358.cir
+      sha256: bc6c1cc9b1d8c91522c9bd69891b2440523a6d8b00a2a654eb0609eaf798beef
+  - source: kicad-spice-library
+    name: LM358/NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Operational%20Amplifier/Lm358.mod
+      sha256: 945dc6c9237683f3a1addedd0075862305c26a8456e9f6d4cb41f57454787545
+  - source: kicad-spice-library
+    name: LM358/NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: kicad-spice-library
+    name: LM358/NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nat_semi.lib
+      sha256: 15227be98f4559bf0b6fcabdea3c86cbd6c5f1d41d47ecf7375d001362f06a28
+  - source: kicad-spice-library
+    name: LM358_NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nation.lib
+      sha256: 97af188e570afc5c2b4b8246ade0670422d90c402c01a0f0383df0a6a37af9ac
+  - source: ltwiki
+    name: LM358/NS
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/nat_semi.lib
+      sha256: 410011a53d15a487fda9fb1f4f6cbd0747427cf9274b6dbd90625f580bf75fe7
+  - source: ltwiki
+    name: LM358/NS
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: ltwiki
+    name: LM358/NS
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/LM358V2/LM358_NS.txt
+      sha256: ebe4ecda401e21cb84ccf71daec5aef3d4e5aa772b40eccd061cae73a4708069
+  - source: ltwiki
+    name: LM358/NS
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: microcap12
+    name: LM358_NS
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: nation.lib
+      sha256: 3fc09b6f184ee48ba06340ee116b44f0650e61c361bb5c44744d6c7a98b2f7ce
+  - source: spiceypedals
+    name: LM358/NS
+    get:
+      url: https://raw.githubusercontent.com/thecowgoesmoo/SPICEyPedals/60f67a6fdb14b9d7c83630b1cade358bfdd4e638/PartModels/basic_models/OpAmps/Lm358.mod
+      sha256: 945dc6c9237683f3a1addedd0075862305c26a8456e9f6d4cb41f57454787545
+  - source: kicad-spice-library
+    name: LM358N
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/NATBJT.LIB
+      sha256: cf6a0a8ae76413edbbe02dda7fa5372957d07a3454547dfb80f3bff10d99492a
 - source: bordodynov
   name: LM358
   def: subckt
@@ -60,7 +125,37 @@ models:
     not_measurable: 2
     typical_rows: 1
   symbol: LM358_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: LM358
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: kicad-spice-library
+    name: LM358
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: LM358
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: LM358
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPAMP_.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
+  - source: ltwiki
+    name: LM358
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraOpamps/OPAMPS.LIB
+      sha256: 4c97d1d4c5a7e4da1aad54aaebf412c399d2ae61c64db78a831607944d1e3788
 - source: bordodynov
   name: LM358/MC
   def: subckt
@@ -88,7 +183,81 @@ models:
     not_measurable: 2
     typical_rows: 1
   symbol: LM358_bordodynov-3.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+  note: pins from numbered connections table
+  copies:
+  - source: onsemi
+    name: LM358
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp1205is.zip
+      member: ONIC.LIB
+      sha256: 2205b1dca9be0f1465a30b1880ff6f9b9bf273bfdd12359dcd4622db942cba8c
+  - source: onsemi
+    name: LM358
+    get:
+      url: https://www.onsemi.com/download/models/zip/mc33163_model.zip
+      member: MC33163 MODEL/onic.lib
+      sha256: 4b75d2a5b998dbc4b9048dda08ddab54587bf815a725128b3f9f747851cacfb7
+  - source: onsemi
+    name: LM358
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp101x_isspice.zip
+      member: onic.lib
+      sha256: 3bba6f67478987c9d9d436d24fa9b82e91d92888f20a34d59fd5c0dae0de189c
+  - source: kicad-spice-library
+    name: LM358/MC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+  - source: kicad-spice-library
+    name: LM358/MC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/motoramp.lib
+      sha256: 0ba056430160e40251c7364b88b06f43dc3c8b095ef04aed9b898f8a0aa5e57b
+  - source: kicad-spice-library
+    name: LM358_MC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_opamp.lib
+      sha256: bfbf4e51462367a37800fa5c0f5a2b3190a30da3e6321416caa3e14b91ff274a
+  - source: ltwiki
+    name: LM358/MC
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/motoramp.lib
+      sha256: 97b71bfffb93dae60222a64a71347274be2cec93a83d7edb267b1e0d4bfa57e0
+  - source: ltwiki
+    name: LM358/MC
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+  - source: ltwiki
+    name: LM358/MC
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+  - source: microcap12
+    name: LM358_MC
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: m_opamp.lib
+      sha256: 6b96d357d32e315e8e5c5d9fc2835ffffa23b6371aa0fe1a5475ebb6b2c776a0
+  - source: kicad-spice-library
+    name: LM358/ON
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+  - source: ltwiki
+    name: LM358/ON
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
+  - source: ltwiki
+    name: LM358/ON
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/on_amp.lib
+      sha256: 5c6c06417c2f34175b2f0bbd544a5586530aa9b861e01f68cd1a158b87eb24e4
 - source: bordodynov
   name: LM358/ST
   def: subckt
@@ -116,7 +285,31 @@ models:
     not_measurable: 0
     typical_rows: 3
   symbol: LM358_bordodynov-4.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+  note: pins from numbered connections table
+  copies:
+  - source: kicad-spice-library
+    name: LM358/ST
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/st_models.lib
+      sha256: 359721d36d29fd723643f91c1dab9cb6f6ab2a844230d8b5a1d7de00b8080ebb
+  - source: ltwiki
+    name: LM358/ST
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/st_models.lib
+      sha256: 359721d36d29fd723643f91c1dab9cb6f6ab2a844230d8b5a1d7de00b8080ebb
+  - source: ltwiki
+    name: LM358/ST
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/LM358V2/LM358_ST.txt
+      sha256: 923ab24df71d963c2b92ea7e7e02b7360e4952935d3f75dcea883e4ade9ced19
+  - source: ltwiki
+    name: LM358/ST
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/st_models.lib
+      sha256: 359721d36d29fd723643f91c1dab9cb6f6ab2a844230d8b5a1d7de00b8080ebb
 - source: bordodynov
   name: LM358
   def: subckt
@@ -165,7 +358,25 @@ models:
     not_measurable: 2
     typical_rows: 1
   symbol: LM358_bordodynov-5.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: kicad-spice-library
+    name: LM358
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_TI.lib
+      sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+  - source: ltwiki
+    name: LM358
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_TI.lib
+      sha256: 1d143c9a49dfa3c3755932427487dc1a79064210dc2b0919c6f07134d1c191d8
+  - source: ltwiki
+    name: LM358
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OpAmp_TI.lib
+      sha256: 9527567b0cc2c8a3023a6eed5baeb2ccabc2a67a41227a6c95866ece0253dc52
 - source: bordodynov
   name: LM358/ON
   def: subckt
@@ -194,6 +405,597 @@ models:
     typical_rows: 1
   symbol: LM358_bordodynov-6.asy
   note: 'same code also in: kicad-spice-library, ltwiki; pins from numbered connections table'
+- source: onsemi
+  name: LM358
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/mod/lm358%20spice%20model.mod
+    sha256: a49cd8a91f18cf171c8cf8dc7f17b9460d6f5fac463abf9edb4bde8f780a605c
+    lines:
+      LM358: [29, 85]
+    fetched: '2026-09-19'
+- source: stmicro
+  name: LM358
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.st.com/resource/en/spice_model/lm358.zip
+    member: lm358.txt
+    archive_sha256: f7813fcb3ba5083188ee0f77922349becc97a9820c17891e9cda41ab652bd3fb
+    sha256: f1483adeea467580976476283379df5eb726de0b012daf1ea724dc5b4c422f2e
+    lines:
+      LM358: [25, 70]
+    fetched: '2026-09-20'
+  copies:
+  - source: ltwiki
+    name: LM358
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ST/Op Amps/lm358new.lib
+      sha256: f1483adeea467580976476283379df5eb726de0b012daf1ea724dc5b4c422f2e
+- source: microcap12
+  name: LM358_TI
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ti.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+    lines:
+      LM358_TI: [3158, 3192]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: LM358
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Texas%20Instruments/lm358.mod
+      sha256: 93a3d17c202527bc49756184d11b9151ea56251409336216f5771361f2b5f7f8
+  - source: kicad-spice-library
+    name: LM358_TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+      sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+- source: microcap12
+  name: LM358
+  def: subckt
+  type: SUBCKT
+  deps:
+  - nmos
+  - Q1
+  - pmos
+  - Q2
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      LM358: [210559, 210597]
+      Q1: [78385, 78412]
+      Q2: [78417, 78442]
+      nmos: [161508, 161508]
+      pmos: [161510, 161510]
+    fetched: '2026-09-20'
+- source: bordodynov
+  name: LM358
+  def: subckt
+  type: SUBCKT
+  deps:
+  - LM324
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Opamp5.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+    lines:
+      LM324: [2416, 2460]
+      LM358: [2534, 2537]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM358
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: LM358
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: LM358
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+- source: bordodynov
+  name: LM358/NS
+  def: subckt
+  type: SUBCKT
+  deps:
+  - LM324
+  - LM358
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Opamp5.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+    lines:
+      LM324: [2416, 2460]
+      LM358: [2534, 2537]
+      LM358/NS: [2569, 2656]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM358/NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: LM358/NS
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: LM358/NS
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+- source: bordodynov
+  name: LM358/NS_BV
+  def: subckt
+  type: SUBCKT
+  deps:
+  - LM324
+  - LM358
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Opamp5.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+    lines:
+      LM324: [2416, 2460]
+      LM358: [2534, 2537]
+      LM358/NS_BV: [2687, 2776]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM358/NS_BV
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: LM358/NS_BV
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: LM358/NS_BV
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+- source: bordodynov
+  name: LM358/MC
+  def: subckt
+  type: SUBCKT
+  deps:
+  - LM324
+  - LM358
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Opamp5.Lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+    lines:
+      LM324: [2416, 2460]
+      LM358: [2534, 2537]
+      LM358/MC: [2789, 2826]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM358/MC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: LM358/MC
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: LM358/MC
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+- source: bordodynov
+  name: LM358_NSC
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_NSC.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+    lines:
+      LM358_NSC: [3071, 3158]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM358_NSC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: ltwiki
+    name: LM358_NSC
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: ltwiki
+    name: LM358_NSC
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OpAmp_NSC.lib
+      sha256: 640cf42a735c898a54951becb5657cb42ecbfd75453e22e5d739958213f9cf2c
+- source: bordodynov
+  name: LM358
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_ST.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: d90f4c4fd1a82f698bcdd91bde8be169c258e283648fef8a669e0d1ced09e50a
+    lines:
+      LM358: [232, 277]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM358
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_ST.lib
+      sha256: d90f4c4fd1a82f698bcdd91bde8be169c258e283648fef8a669e0d1ced09e50a
+  - source: ltwiki
+    name: LM358
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_ST.lib
+      sha256: d90f4c4fd1a82f698bcdd91bde8be169c258e283648fef8a669e0d1ced09e50a
+- source: bordodynov
+  name: LM358_TI
+  def: subckt
+  type: SUBCKT
+  deps:
+  - Q1
+  - Q2
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      LM358_TI: [3898, 3932]
+      Q1: [16399, 16440]
+      Q2: [16442, 16483]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM358_TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: LM358_TI
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+- source: bordodynov
+  name: LM358LV
+  def: subckt
+  type: SUBCKT
+  deps:
+  - VCCS_EXT_LIM_0
+  - VCCS_LIMIT_IQ_0
+  - VCCS_LIM_2_0
+  - VCCS_LIM_4_0
+  - VCCS_LIM_1_0
+  - VCCS_LIM_GR_0
+  - VCCS_LIM_ZO_0
+  - VNSE_0
+  - VCCS_LIM_CLAW-_0
+  - VCCS_LIM_3_0
+  - CLAMP_AMP_LO_0
+  - CLAMP_AMP_HI_0
+  - OL_SENSE_0
+  - VCCS_LIM_CLAW+_0
+  - FEMT_0_0
+  - LM324LV
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM324LV.cir
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 495c0f46b9ab0fd8dce13dba69ad0deef3101e42b8667134217f178981fadd04
+    lines:
+      CLAMP_AMP_HI_0: [333, 337]
+      CLAMP_AMP_LO_0: [326, 330]
+      FEMT_0_0: [280, 301]
+      LM324LV: [32, 231]
+      LM358LV: [394, 396]
+      OL_SENSE_0: [379, 381]
+      VCCS_EXT_LIM_0: [384, 387]
+      VCCS_LIMIT_IQ_0: [320, 323]
+      VCCS_LIM_1_0: [312, 317]
+      VCCS_LIM_2_0: [304, 309]
+      VCCS_LIM_3_0: [371, 376]
+      VCCS_LIM_4_0: [348, 353]
+      VCCS_LIM_CLAW+_0: [356, 368]
+      VCCS_LIM_CLAW-_0: [241, 253]
+      VCCS_LIM_GR_0: [340, 345]
+      VCCS_LIM_ZO_0: [233, 238]
+      VNSE_0: [256, 277]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM358LV
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/LM324LV.cir
+      sha256: 495c0f46b9ab0fd8dce13dba69ad0deef3101e42b8667134217f178981fadd04
+  - source: ltwiki
+    name: LM358LV
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LM324LV.cir
+      sha256: 495c0f46b9ab0fd8dce13dba69ad0deef3101e42b8667134217f178981fadd04
+- source: bordodynov
+  name: LM358As
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM358As.SUB
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 71504ccf34075653d8f5153a9ad03d40e03b92c15f3edc41373606a15bda8626
+    lines:
+      LM358As: [2, 33]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM358As
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/LM358As.SUB
+      sha256: 71504ccf34075653d8f5153a9ad03d40e03b92c15f3edc41373606a15bda8626
+  - source: ltwiki
+    name: LM358As
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LM358As.SUB
+      sha256: 71504ccf34075653d8f5153a9ad03d40e03b92c15f3edc41373606a15bda8626
+- source: bordodynov
+  name: LM358
+  def: subckt
+  type: SUBCKT
+  deps:
+  - Q1
+  - Q2
+  - Rb
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Sborka.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+    lines:
+      LM358: [3962, 4018]
+      Q1: [16399, 16440]
+      Q2: [16442, 16483]
+      Rb: [564, 570]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: LM358
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+- source: bordodynov
+  name: LM358TI
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/lm358TI.cir
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4cd33823ddc6733deace2a99909071360c2967d41427acb93aa593160fd0c6e9
+    lines:
+      LM358TI: [1279, 1663]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: LM358TI
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/lm358TI.cir
+      sha256: 4cd33823ddc6733deace2a99909071360c2967d41427acb93aa593160fd0c6e9
+- source: bordodynov
+  name: LM358LV
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/lm358TI.cir
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4cd33823ddc6733deace2a99909071360c2967d41427acb93aa593160fd0c6e9
+    lines:
+      LM358LV: [35, 406]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: LM358LV
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/lm358TI.cir
+      sha256: 4cd33823ddc6733deace2a99909071360c2967d41427acb93aa593160fd0c6e9
+- source: bordodynov
+  name: LM358_AB
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/LM358_AB.sub
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 13c1c172803af73c7634f1dd8651de8dd4266d8bf0512388a1e861720bc24916
+    lines:
+      LM358_AB: [1, 44]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: LM358_AB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LM358_AB.sub
+      sha256: 13c1c172803af73c7634f1dd8651de8dd4266d8bf0512388a1e861720bc24916
+- source: bordodynov
+  name: LM358BTI
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/lm358TI.cir
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4cd33823ddc6733deace2a99909071360c2967d41427acb93aa593160fd0c6e9
+    lines:
+      LM358BTI: [860, 1244]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: LM358BTI
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/lm358TI.cir
+      sha256: 4cd33823ddc6733deace2a99909071360c2967d41427acb93aa593160fd0c6e9
+- source: ltwiki
+  name: LM358_AB
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/LM358As_LM358_AB/LM358_AB.sub
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 92eddbab9b7fa51423a24a5ad975a303b9c6c3ae06467e6fe123f85240ee89bb
+    lines:
+      LM358_AB: [1, 43]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: LM358_AB
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/LM358_AB.sub
+      sha256: 9a942567de05fc225549a0f0a2d09253b4e0331a1ea670edf917fbd3cc7a3571
+  - source: ltwiki
+    name: LM358_AB
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/LM358V2/LM358_AB.sub
+      sha256: 92eddbab9b7fa51423a24a5ad975a303b9c6c3ae06467e6fe123f85240ee89bb
+- source: ltwiki
+  name: LM358_AB
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/Amplifiers_/LM358_AB.sub
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 7e50fe4863c34b577187c76040dd10b71cb4f4a501a8dfbf27a241408c350247
+    lines:
+      LM358_AB: [1, 37]
+    fetched: '2026-09-21'
+  copies:
+  - source: ltwiki
+    name: LM358_AB
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Amplifiers/LM358_AB.sub
+      sha256: 7e50fe4863c34b577187c76040dd10b71cb4f4a501a8dfbf27a241408c350247
+- source: ltwiki
+  name: LM358
+  def: subckt
+  type: SUBCKT
+  deps:
+  - LM324
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+    sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+    lines:
+      LM324: [2235, 2284]
+      LM358: [2293, 2296]
+    fetched: '2026-09-21'
+- source: ltwiki
+  name: LM358As
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/example.zip
+    member: examples/Bordodynov/LM358As_LM358_AB/LM358As.SUB
+    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
+    sha256: 7f028159f5a2da90d17e455bcca06cf3a74cdcad35bda370f552914ca553778f
+    lines:
+      LM358As: [2, 34]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: LM358M
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/MOTOR.LIB
+    sha256: 44f08a5cfceeb4c72d4f6e77e1eac1d108b46f7cb81dee8f3296a908b1eb53e6
+    lines:
+      LM358M: [537, 575]
+    fetched: '2026-09-14'
+- source: electrucio
+  name: LM358
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    how: unknown
+    sha256: 04aa89aa2759a723eedb73527fda4246e3fe1a0438b35972d2f8424e981c564b
+    lines:
+      LM358: [22, 33]
+    fetched: '2026-09-14'
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/lm358.pdf
   maker: Texas Instruments

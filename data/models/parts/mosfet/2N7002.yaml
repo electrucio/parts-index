@@ -27,6 +27,13 @@ models:
     fail: 0
     not_measurable: 2
     typical_rows: 0
+  copies:
+  - source: microcap12
+    name: 2N7002
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: cs.lib
+      sha256: 4daf7b77d9c13771dc3a2e074d972af2c69c71839a7469d1915bdd9c39e69f3d
 - source: ltspice-native
   name: 2N7002
   def: model
@@ -116,7 +123,34 @@ models:
     fail: 2
     not_measurable: 2
     typical_rows: 0
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: 2n7002new
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: ltwiki
+    name: 2n7002new
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: 2n7002new
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: 2n7002new
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: 2n7002new
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: bordodynov
   name: 2N7002
   def: subckt
@@ -142,7 +176,1043 @@ models:
     not_measurable: 2
     typical_rows: 0
   symbol: 2N7002_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: spice-model-cd
+    name: 2N7002
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Fairchild/2N/2N7002.lib
+      sha256: 727d24f43ff29ed7351ae5e6896170ec8cb675ccc4da18e88bc50a3fcda71b28
+  - source: kicad-spice-library
+    name: 2N7002
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/2N7002.mod
+      sha256: 233908c27e8cc47e56577edac60554343afb1bc84a8f4df7127298f85c738eff
+  - source: ltwiki
+    name: 2N7002
+    get:
+      url: https://ltwiki.org/images/b/b2/2N7002.sub
+      sha256: 233908c27e8cc47e56577edac60554343afb1bc84a8f4df7127298f85c738eff
+  - source: ltwiki
+    name: 2N7002
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/2N7002.mod
+      sha256: 233908c27e8cc47e56577edac60554343afb1bc84a8f4df7127298f85c738eff
+  - source: ltwiki
+    name: 2N7002
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/2N7002.mod
+      sha256: 233908c27e8cc47e56577edac60554343afb1bc84a8f4df7127298f85c738eff
+- source: onsemi
+  name: 2n7002k
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/txt/2n7002e.lib.txt
+    sha256: 274596f914278f7eaeae6b80a7a7b78753bbce82aba606742e0a3404c3deaeec
+    lines:
+      2n7002k: [1, 60]
+    fetched: '2026-09-19'
+  copies:
+  - source: onsemi
+    name: 2n7002k
+    get:
+      url: https://www.onsemi.com/download/models/txt/2n7002k.lib.txt
+      sha256: 274596f914278f7eaeae6b80a7a7b78753bbce82aba606742e0a3404c3deaeec
+  - source: onsemi
+    name: 2n7002k
+    get:
+      url: https://www.onsemi.com/download/models/txt/2n7002e.sp3.txt
+      sha256: 3cf75559db3fe02b4d8809af102e09933f31869d0ffae3dd0dfb42244cfd8548
+  - source: onsemi
+    name: 2n7002k
+    get:
+      url: https://www.onsemi.com/download/models/txt/2n7002k.sp3.txt
+      sha256: 3cf75559db3fe02b4d8809af102e09933f31869d0ffae3dd0dfb42244cfd8548
+- source: onsemi
+  name: 2n7002l
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/2n7002l.rev0.lib
+    sha256: e878ccc8e04c7b4505c72653d677bfa9807860076dbed1a134b51a248c52a8d5
+    lines:
+      2n7002l: [1, 60]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: 2n7002l
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: on_fet.lib
+      sha256: 9b68f867d49f3f5c7f8313d34e42073e408ccb5020d4cdec8e0168d84275f49d
+- source: onsemi
+  name: X2n7002k
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/txt/2n7002e.sp2.txt
+    sha256: 9432368cf5423bbaf2a99447e67c5354247292611686a4626f639a3f8ba76420
+    lines:
+      X2n7002k: [1, 60]
+    fetched: '2026-09-19'
+- source: infineon
+  name: 2N7002
+  def: subckt
+  type: SUBCKT
+  deps:
+  - S2_60_i_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-n-channel-simulationmodels-en.zip
+    member: 01_OptiMOS/OptiMOS__60V_Spice.lib
+    archive_sha256: 3c602849e1ef0512854142e6b85786e3d0f893f4f8028977e3ee2b3bb2d86e0c
+    sha256: 81ea8f993d77e15c3c380143b58bff5e886f9338c91eeb05fdf9e916751bf16c
+    lines:
+      2N7002: [1516, 1553]
+      S2_60_i_var: [259, 362]
+    fetched: '2026-09-19'
+  copies:
+  - source: infineon
+    name: 2N7002
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-n-channel-simulationmodels-en.zip
+      member: 01_OptiMOS/OptiMOS__60V_Cadence_PSpice.lib
+      sha256: 3f9114f10ac901312ffaa2496a19d976276d3cda53780e7e20778525d611ab3b
+  - source: infineon
+    name: 2N7002
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-n-channel-simulationmodels-en.zip
+      member: 01_OptiMOS/OptiMOS__60V_LTSpice.lib
+      sha256: 2e4d301b9813e1a21777969d114db83caff5ec96f17dcc8e4ade5c750aed563a
+- source: infineon
+  name: 2N7002DW
+  def: subckt
+  type: SUBCKT
+  deps:
+  - S2_60_i_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-n-channel-simulationmodels-en.zip
+    member: 01_OptiMOS/OptiMOS__60V_Spice.lib
+    archive_sha256: 3c602849e1ef0512854142e6b85786e3d0f893f4f8028977e3ee2b3bb2d86e0c
+    sha256: 81ea8f993d77e15c3c380143b58bff5e886f9338c91eeb05fdf9e916751bf16c
+    lines:
+      2N7002DW: [1557, 1594]
+      S2_60_i_var: [259, 362]
+    fetched: '2026-09-19'
+  copies:
+  - source: infineon
+    name: 2N7002DW
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-n-channel-simulationmodels-en.zip
+      member: 01_OptiMOS/OptiMOS__60V_Cadence_PSpice.lib
+      sha256: 3f9114f10ac901312ffaa2496a19d976276d3cda53780e7e20778525d611ab3b
+  - source: infineon
+    name: 2N7002DW
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-n-channel-simulationmodels-en.zip
+      member: 01_OptiMOS/OptiMOS__60V_LTSpice.lib
+      sha256: 2e4d301b9813e1a21777969d114db83caff5ec96f17dcc8e4ade5c750aed563a
+- source: infineon
+  name: 2N7002_L1
+  def: subckt
+  type: SUBCKT
+  deps:
+  - S2_60_i_var
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-n-channel-simulationmodels-en.zip
+    member: 01_OptiMOS/OptiMOS__60V_Spice.lib
+    archive_sha256: 3c602849e1ef0512854142e6b85786e3d0f893f4f8028977e3ee2b3bb2d86e0c
+    sha256: 81ea8f993d77e15c3c380143b58bff5e886f9338c91eeb05fdf9e916751bf16c
+    lines:
+      2N7002_L1: [2243, 2262]
+      S2_60_i_var: [259, 362]
+    fetched: '2026-09-19'
+  copies:
+  - source: infineon
+    name: 2N7002_L1
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-n-channel-simulationmodels-en.zip
+      member: 01_OptiMOS/OptiMOS__60V_Cadence_PSpice.lib
+      sha256: 3f9114f10ac901312ffaa2496a19d976276d3cda53780e7e20778525d611ab3b
+  - source: infineon
+    name: 2N7002_L1
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-n-channel-simulationmodels-en.zip
+      member: 01_OptiMOS/OptiMOS__60V_LTSpice.lib
+      sha256: 2e4d301b9813e1a21777969d114db83caff5ec96f17dcc8e4ade5c750aed563a
+- source: infineon
+  name: 2N7002_L0
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-n-channel-simulationmodels-en.zip
+    member: 01_OptiMOS/OptiMOS__60V_Spice.lib
+    archive_sha256: 3c602849e1ef0512854142e6b85786e3d0f893f4f8028977e3ee2b3bb2d86e0c
+    sha256: 81ea8f993d77e15c3c380143b58bff5e886f9338c91eeb05fdf9e916751bf16c
+    lines:
+      2N7002_L0: [3241, 3272]
+    fetched: '2026-09-19'
+  copies:
+  - source: infineon
+    name: 2N7002_L0
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-n-channel-simulationmodels-en.zip
+      member: 01_OptiMOS/OptiMOS__60V_Cadence_PSpice.lib
+      sha256: 3f9114f10ac901312ffaa2496a19d976276d3cda53780e7e20778525d611ab3b
+  - source: infineon
+    name: 2N7002_L0
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-60v-n-channel-simulationmodels-en.zip
+      member: 01_OptiMOS/OptiMOS__60V_LTSpice.lib
+      sha256: 2e4d301b9813e1a21777969d114db83caff5ec96f17dcc8e4ade5c750aed563a
+- source: vishay
+  name: 2N7002K
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/77603/2n7002k_ps_revb.zip
+    member: 2n7002k_ps Rev B.txt
+    archive_sha256: 418a0ccb1e31c07c6f42e911514bb51b3a6d2ee7b5d13df12faa46c2e6467db1
+    sha256: d59ce922b2c814e4aaa63f27459696b8c71494fac61f47c8cf8c093eba273111
+    lines:
+      2N7002K: [12, 36]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: 2N7002K
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: vishaymosfet.lib
+      sha256: 23bc5e3e06c64162cbb4b96205c8a4b30b08d7cfd780d41fd3043fede09671f7
+  - source: vishay
+    name: 2N7002K
+    get:
+      url: https://www.vishay.com/docs/77603/2n7002k_ps_revb.zip
+      member: 2n7002k_ps Rev B.lib
+      sha256: d59ce922b2c814e4aaa63f27459696b8c71494fac61f47c8cf8c093eba273111
+  - source: vishay
+    name: 2N7002K
+    get:
+      url: https://www.vishay.com/docs/77603/2n7002k_ps_revb.zip
+      member: 2n7002k_ps_rc Rev B.lib
+      sha256: 478c9e5fa2f19af58e3d1755f6b90b1de525a29b26a441c2f48d6e08c7fe3c8e
+  - source: vishay
+    name: 2N7002K
+    get:
+      url: https://www.vishay.com/docs/77603/2n7002k_ps_revb.zip
+      member: 2n7002k_ps_rc Rev B.txt
+      sha256: 478c9e5fa2f19af58e3d1755f6b90b1de525a29b26a441c2f48d6e08c7fe3c8e
+- source: vishay
+  name: 2N7002E
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/76769/2n7002e_.txt
+    sha256: 3c7151880139dd399bc1908b592c5dddd0d6de1390e215dbd53f83cbc067ed5c
+    lines:
+      2N7002E: [4, 28]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: 2N7002E
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: vishaymosfet.lib
+      sha256: 23bc5e3e06c64162cbb4b96205c8a4b30b08d7cfd780d41fd3043fede09671f7
+- source: vishay
+  name: 2N7002K
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/77603/2n7002k_ps_revb.zip
+    member: 2n7002k_HS Rev B.txt
+    archive_sha256: 418a0ccb1e31c07c6f42e911514bb51b3a6d2ee7b5d13df12faa46c2e6467db1
+    sha256: 871887d707eff1ebd9d87b7ed9e0ccfa474f56803cf039b9615a5003aa03ca32
+    lines:
+      2N7002K: [11, 36]
+    fetched: '2026-09-19'
+- source: diodes-inc
+  name: 2N7002
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/2123/BSS8402DW.spice.txt
+    sha256: adad1572c870b605896a30ffb7e78cabed56ff64fbaf9902df74f71d2febb8d6
+    lines:
+      2N7002: [25, 28]
+    fetched: '2026-09-19'
+  copies:
+  - source: diodes-inc
+    name: 2N7002
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+      sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+  - source: spice-model-cd
+    name: 2N7002
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Diodes%20Incorporated/Spice/spicemodels_mosfets.txt
+      sha256: aecec388f5d1249a6b76c87ce3965e49d304f1cb817fd8c427c3ee8f5fae8b5a
+  - source: spice-model-cd
+    name: 2N7002
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Diodes%20Incorporated/Spice/spicemodels_mosfets.txt
+      sha256: aecec388f5d1249a6b76c87ce3965e49d304f1cb817fd8c427c3ee8f5fae8b5a
+- source: diodes-inc
+  name: 2N7002AQ
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/1993/2N7002AQ.spice.txt
+    sha256: 6cc9289dc3afa98822a63a92031df80d6dc61c4cac8cfc4b8e4cf7d5eb39fb9b
+    lines:
+      2N7002AQ: [18, 44]
+    fetched: '2026-09-19'
+  copies:
+  - source: diodes-inc
+    name: 2N7002AQ
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+      sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+  - source: diodes-inc
+    name: 2N7002A
+    get:
+      url: https://www.diodes.com/spice/download/1831/2N7002A.spice.txt
+      sha256: 87e6db5a6f8250c5a525daabcbc3b0558a683c53a4b38c4fa354ce4f1cdced70
+  - source: diodes-inc
+    name: 2N7002A
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+      sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+- source: diodes-inc
+  name: 2N7002VAC
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/1945/2N7002VAC.spice.txt
+    sha256: 6235d11f2b00fedd4d65acc85bfdf1cdc77193b0955bc7f85e3265a917e8a299
+    lines:
+      2N7002VAC: [18, 40]
+    fetched: '2026-09-19'
+  copies:
+  - source: diodes-inc
+    name: 2N7002VAC
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+      sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+  - source: diodes-inc
+    name: 2N7002VC
+    get:
+      url: https://www.diodes.com/spice/download/1946/2N7002VC.spice.txt
+      sha256: ee113e807c746a00f2ad366d6efbf04de5b4f0c3e4780b5798fad9f9d7e98557
+  - source: diodes-inc
+    name: 2N7002VC
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+      sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+- source: diodes-inc
+  name: 2N7002AQ
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+    sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+    lines:
+      2N7002AQ: [75, 101]
+      DCGD: [1642, 1642]
+      DLIM: [1645, 1645]
+      DSUB: [1643, 1644]
+    fetched: '2026-09-21'
+  copies:
+  - source: diodes-inc
+    name: 2N7002A
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+      sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+- source: diodes-inc
+  name: 2N7002VAC
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+    sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+    lines:
+      2N7002VAC: [312, 334]
+      DCGD: [1642, 1642]
+      DLIM: [1645, 1645]
+      DSUB: [1643, 1644]
+    fetched: '2026-09-21'
+  copies:
+  - source: diodes-inc
+    name: 2N7002VC
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+      sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+- source: diodes-inc
+  name: 2N7002DWS
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/4075/2N7002DWS%20.spice.txt
+    sha256: 1db50cd6664399ade0acebda11334b73de0d562109d818b4def35409898896df
+    lines:
+      2N7002DWS: [18, 41]
+    fetched: '2026-09-19'
+  copies:
+  - source: diodes-inc
+    name: 2N7002DWS
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+      sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+- source: diodes-inc
+  name: 2N7002H
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/1915/2N7002H.spice.txt
+    sha256: d61aa212bf79244cf4ec85641d2d71083ee2f4c27b982552ea5a455920c3ca18
+    lines:
+      2N7002H: [18, 40]
+    fetched: '2026-09-19'
+  copies:
+  - source: diodes-inc
+    name: 2N7002H
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+      sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+- source: diodes-inc
+  name: 2N7002T
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/1835/2N7002T.spice.txt
+    sha256: ede3b67679151402e3ac3393096c6a7571d898eacfcfe1ad5586467efd8b8886
+    lines:
+      2N7002T: [18, 40]
+    fetched: '2026-09-19'
+  copies:
+  - source: diodes-inc
+    name: 2N7002T
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+      sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+- source: diodes-inc
+  name: 2N7002
+  def: model
+  type: NMOS
+  deps:
+  - NMOS
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8384/collection.spice.txt
+    sha256: eec9f993d468843cbef456601bb6042601b5bd465d3b324c88bcdb85bd9b4e7c
+    lines:
+      2N7002: [24, 27]
+      NMOS: [507, 508]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: 2N7002AQ
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - NMOS
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8522/collection.spice.txt
+    sha256: d5fb01a0d34edf74987add96b4f8859357c1501648119dd5bebc0f6d32fec8bf
+    lines:
+      2N7002AQ: [17, 43]
+      DCGD: [1511, 1511]
+      DLIM: [1514, 1514]
+      DSUB: [1512, 1513]
+      NMOS: [1509, 1510]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: 2N7002DWK
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+    sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+    lines:
+      2N7002DWK: [113, 138]
+      DCGD: [1642, 1642]
+      DLIM: [1645, 1645]
+      DSUB: [1643, 1644]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: 2N7002DWK
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+    sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+    lines:
+      2N7002DWK: [113, 138]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: 2N7002DWS
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+    sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+    lines:
+      2N7002DWS: [150, 173]
+      DCGD: [1642, 1642]
+      DLIM: [1645, 1645]
+      DSUB: [1643, 1644]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: 2N7002EQ
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - NMOS
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8522/collection.spice.txt
+    sha256: d5fb01a0d34edf74987add96b4f8859357c1501648119dd5bebc0f6d32fec8bf
+    lines:
+      2N7002EQ: [55, 80]
+      DCGD: [1511, 1511]
+      DLIM: [1514, 1514]
+      DSUB: [1512, 1513]
+      NMOS: [1509, 1510]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: 2N7002EQ
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+    sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+    lines:
+      2N7002EQ: [185, 210]
+      DCGD: [1642, 1642]
+      DLIM: [1645, 1645]
+      DSUB: [1643, 1644]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: 2N7002EQ
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+    sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+    lines:
+      2N7002EQ: [185, 210]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: 2N7002H
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+    sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+    lines:
+      2N7002H: [215, 237]
+      DCGD: [1642, 1642]
+      DLIM: [1645, 1645]
+      DSUB: [1643, 1644]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: 2N7002Q
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - DLIM
+  - NMOS
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8522/collection.spice.txt
+    sha256: d5fb01a0d34edf74987add96b4f8859357c1501648119dd5bebc0f6d32fec8bf
+    lines:
+      2N7002Q: [93, 115]
+      DCGD: [1511, 1511]
+      DLIM: [1514, 1514]
+      DSUB: [1512, 1513]
+      NMOS: [1509, 1510]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: 2N7002Q
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+    sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+    lines:
+      2N7002Q: [258, 280]
+      DCGD: [1642, 1642]
+      DLIM: [1645, 1645]
+      DSUB: [1643, 1644]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: 2N7002Q
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8372/collection.spice.txt
+    sha256: 9e9167e7df89c7c684e61885ea33a9d01d95376a7dc3d48ca58ef3c20953f4f9
+    lines:
+      2N7002Q: [250, 272]
+    fetched: '2026-09-21'
+- source: diodes-inc
+  name: 2N7002T
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DCGD
+  - DLIM
+  - DSUB
+  verbatim: true
+  get:
+    url: https://www.diodes.com/productcollection/spicemodels/8360/collection.spice.txt
+    sha256: a66b7da5de6fd80f639ed8025a28f6308c097f94c03f8a8e84324558c2a2e648
+    lines:
+      2N7002T: [285, 307]
+      DCGD: [1642, 1642]
+      DLIM: [1645, 1645]
+      DSUB: [1643, 1644]
+    fetched: '2026-09-21'
+- source: spice-model-cd
+  name: 2N7002
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/2n7002.lib
+    sha256: ef98350c05915346f696432728bf2f5a3ff3501828c7c53e53100574de4480c6
+    lines:
+      2N7002: [4, 16]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: 2N7002
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+      sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+  - source: ltwiki
+    name: 2N7002
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ZETEX/LIB/zmodels.lib
+      sha256: 8d3fb488666b5f813a666d5c589ac6c7779a2c44a4b38799b2a41ca0006368e7
+  - source: microcap12
+    name: 2N7002_ZX
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
+- source: spice-model-cd
+  name: 2N7002
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/zmodels.lib
+    sha256: df79c20130b55541a1047df22b4cca3bfdb260045dfee6f538354adc6cfb78d6
+    lines:
+      2N7002: [43, 52]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: 2N7002
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Zetex%20Semiconductors/ZMODELS.LIB
+      sha256: 356f4751706278dd76767c0cbdfceab52ea806ed01a3669b26584507bf29f3e0
+- source: spice-model-cd
+  name: 2N7002THM
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Fairchild/2N/2N7002.lib
+    sha256: 727d24f43ff29ed7351ae5e6896170ec8cb675ccc4da18e88bc50a3fcda71b28
+    lines:
+      2N7002THM: [31, 61]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: 2N7002
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: supertex.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 3fdc8cc325649bfeb8e3dfb022e1ad75934ac87ff5f8b5bf3e4d611de9da113c
+    lines:
+      2N7002: [36, 41]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: 2N7002
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/supertex.lib
+      sha256: fcd0189532b781a04c4e30a021b5debaec3913ab4ddb0e63717153c92df613b5
+  - source: ltwiki
+    name: 2N7002
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Discretos/Mos&Fet/lnd250/supertex.lib
+      sha256: bee2ceb743df92ef4c2c95e8784a0e1bfac5674feaab21e8c42723f3c9104084
+  - source: ltwiki
+    name: 2N7002
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Discretos/Mos&Fet/lnd250/supertex.lib
+      sha256: bee2ceb743df92ef4c2c95e8784a0e1bfac5674feaab21e8c42723f3c9104084
+- source: microcap12
+  name: 2N7002A
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc_FET.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 956632bc5a1ed7ee02659e697171e34e8db51019468b28123788f7f5a8669cb0
+    lines:
+      2N7002A: [2237, 2240]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: 2N7002T
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc_FET.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 956632bc5a1ed7ee02659e697171e34e8db51019468b28123788f7f5a8669cb0
+    lines:
+      2N7002T: [2251, 2254]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: 2N7002DW
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc_FET.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 956632bc5a1ed7ee02659e697171e34e8db51019468b28123788f7f5a8669cb0
+    lines:
+      2N7002DW: [2244, 2247]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: 2N7002W
+  def: model
+  type: NMOS
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc_FET.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 956632bc5a1ed7ee02659e697171e34e8db51019468b28123788f7f5a8669cb0
+    lines:
+      2N7002W: [2258, 2261]
+    fetched: '2026-09-20'
+- source: qspice
+  name: 2N7002
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 7e57e30fa48c9cf43578457aa48aaa511c0c6a6a998a334fae970c469e3be74c
+    lines:
+      2N7002: [2, 2]
+    fetched: '2026-09-20'
+- source: bordodynov
+  name: 2N7002
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.mos
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+    lines:
+      2N7002: [802, 802]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov
+    name: 2N7002
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: bordodynov
+    name: 2N7002
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Original/standard.mos
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: bordodynov
+    name: 2N7002
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: cmp/Original/standard.mos.bak
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: kicad-spice-library
+    name: 2N7002
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: kicad-spice-library
+    name: 2N7002
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: kicad-spice-library
+    name: 2N7002
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/Original/standard.mos
+      sha256: 4ad1e16da6dfb08f9b1d55a27c28ca4a034db3f309073ce070136378fb658ad0
+  - source: ltwiki
+    name: 2N7002
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: 2N7002
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: 2N7002
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: 2N7002
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Standard/standard.mos
+      sha256: af27c0c28fa3a8c1dfc25df8c1e115f55f29cc93602d6cad5c2758fbccf8ff11
+  - source: ltwiki
+    name: 2N7002
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Original/standard.mos
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: ltwiki
+    name: 2N7002
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/Original/standard.mos.bak
+      sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: ltwiki
+    name: 2N7002
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+- source: bordodynov
+  name: 2N7002
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/NMOS_Philips.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ed3135fdb4ff7044442d0bc22b9c7076a200c2ba671011b9cacf98d84e134602
+    lines:
+      2N7002: [23, 44]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: 2N7002
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/NMOS_Philips.lib
+      sha256: ed3135fdb4ff7044442d0bc22b9c7076a200c2ba671011b9cacf98d84e134602
+  - source: ltwiki
+    name: 2N7002
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/NMOS_Philips.lib
+      sha256: ed3135fdb4ff7044442d0bc22b9c7076a200c2ba671011b9cacf98d84e134602
+  - source: ltwiki
+    name: 2N7002
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/NMOSFET/2N7002.PRM
+      sha256: 0787269b448410a706d4a499193b8dbbb30f2265de93c59cad3924a339fd715f
+- source: bordodynov
+  name: 2N7002/FAI
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/fairchild_NMOS.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 1a975526cba57c9199b644b4b6a662a0dbb285a7e2b7b89a01dd05c50e9bc2f0
+    lines:
+      2N7002/FAI: [33, 57]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: 2N7002/FAI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/fairchild_NMOS.lib
+      sha256: 1a975526cba57c9199b644b4b6a662a0dbb285a7e2b7b89a01dd05c50e9bc2f0
+  - source: ltwiki
+    name: 2N7002/FAI
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/fairchild_NMOS.lib
+      sha256: 1a975526cba57c9199b644b4b6a662a0dbb285a7e2b7b89a01dd05c50e9bc2f0
+- source: ltwiki
+  name: 2N7002/PLP
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/phil_fet.lib
+    sha256: 98b9f890eb0732e8fa1b127fb16ec31cedebda98a072b65832a301e58cb5c1cf
+    lines:
+      2N7002/PLP: [3056, 3067]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: 2N7002/PLP
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/phil_fet.lib
+      sha256: e37b90dac4163b3951640614f87eaf6ee6e8336448ca408aab462f05415fd5a7
+  - source: ltwiki
+    name: 2N7002/PLP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/phil_fet.lib
+      sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
+  - source: ltwiki
+    name: 2N7002/PLP
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/FET/phil_fet.lib
+      sha256: 076ac616a0609f62809b545ebb366d97166bc3f492193100395aaa8fff9d6b56
+- source: ltwiki
+  name: 2N7002
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/Standard.zip
+    member: Standard/standard.mos
+    archive_sha256: 97e47470aefa994e7cdf520fc8a8a1d24f9598060b213146903870757a7a4687
+    sha256: 0f6a0a30f327903e5b61c3764e08354839fed85c6ce2d4a8b3d708d6c2ec9533
+    lines:
+      2N7002: [801, 801]
+    fetched: '2026-09-21'
+  copies:
+  - source: kicad-spice-library
+    name: 2N7002
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/FET/MOS.lib
+      sha256: 5a12451d9b52820cc74b1f3c11955dcfbc99cc0ede851dd12587ebbbc9e9531e
+  - source: ltwiki
+    name: 2N7002
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/cmp/standard.mos
+      sha256: 0f6a0a30f327903e5b61c3764e08354839fed85c6ce2d4a8b3d708d6c2ec9533
+- source: ltwiki
+  name: M2N7002/ZTX
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/Zetex.lib
+    sha256: 801edb075d3bd3995ad94e8dbf3c9a290a89481b1e897b74b75fcb6a6fab8ec0
+    lines:
+      M2N7002/ZTX: [2269, 2278]
+    fetched: '2026-09-21'
+- source: kicad-spice-library
+  name: 2N7002_ZX
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zetex.lib
+    sha256: 453392deca3bd0ddfca565d56241c4a5bb4d2e8f14c6efa92c1c453ed434fdca
+    lines:
+      2N7002_ZX: [2709, 2718]
+    fetched: '2026-09-14'
 datasheet:
   url: https://assets.nexperia.com/documents/data-sheet/2N7002.pdf
   maker: Nexperia

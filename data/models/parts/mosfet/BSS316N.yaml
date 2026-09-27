@@ -26,6 +26,19 @@ models:
       S3_30_l_var: [90, 169]
     fetched: '2026-09-19'
   note: pins from names
+  copies:
+  - source: infineon
+    name: BSS316N
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-30v-n-channel-simulationmodels-en.zip
+      member: 01_OptiMOS2_OptiMOS3/OptiMOS2_OptiMOS3_30V.lib
+      sha256: f919393158122ff2f9e9b5ec69582081a69ed410fd6adbf8247a962a5362c941
+  - source: infineon
+    name: BSS316N
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-30v-n-channel-simulationmodels-en.zip
+      member: 01_OptiMOS2_OptiMOS3/OptiMOS2_OptiMOS3_30V_CadencePSpice.lib
+      sha256: c93093164a851e752762997620b59a5a92259808fe6e546ac0a581e96704086c
 - source: infineon
   name: BSS316N_L1
   def: subckt
@@ -47,6 +60,19 @@ models:
       S3_30_l_var1: [173, 234]
     fetched: '2026-09-19'
   note: pins from names
+  copies:
+  - source: infineon
+    name: BSS316N_L1
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-30v-n-channel-simulationmodels-en.zip
+      member: 01_OptiMOS2_OptiMOS3/OptiMOS2_OptiMOS3_30V.lib
+      sha256: f919393158122ff2f9e9b5ec69582081a69ed410fd6adbf8247a962a5362c941
+  - source: infineon
+    name: BSS316N_L1
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-30v-n-channel-simulationmodels-en.zip
+      member: 01_OptiMOS2_OptiMOS3/OptiMOS2_OptiMOS3_30V_CadencePSpice.lib
+      sha256: c93093164a851e752762997620b59a5a92259808fe6e546ac0a581e96704086c
 - source: infineon
   name: BSS316N_L0
   def: subckt
@@ -65,3 +91,16 @@ models:
       BSS316N_L0: [7450, 7481]
     fetched: '2026-09-19'
   note: pins from names
+  copies:
+  - source: infineon
+    name: BSS316N_L0
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-30v-n-channel-simulationmodels-en.zip
+      member: 01_OptiMOS2_OptiMOS3/OptiMOS2_OptiMOS3_30V.lib
+      sha256: f919393158122ff2f9e9b5ec69582081a69ed410fd6adbf8247a962a5362c941
+  - source: infineon
+    name: BSS316N_L0
+    get:
+      url: https://www.infineon.com/assets/row/public/documents/24/50/infineon-optimos-powermosfet-pspice-30v-n-channel-simulationmodels-en.zip
+      member: 01_OptiMOS2_OptiMOS3/OptiMOS2_OptiMOS3_30V_CadencePSpice.lib
+      sha256: c93093164a851e752762997620b59a5a92259808fe6e546ac0a581e96704086c

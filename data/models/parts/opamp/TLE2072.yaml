@@ -34,6 +34,19 @@ models:
     typical_rows: 5
   symbol: TLE2072_ltwiki.asy
   note: pins from comment words
+  copies:
+  - source: bordodynov
+    name: TLE2072
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
+  - source: bordodynov
+    name: TLE2072
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/texas.lib
+      sha256: 011d267514db76d7e8dd8bcffcc1ba9a5288edef9dc322b5b800b777c67e4429
 - source: kicad-spice-library
   name: TLE2072_TI_30
   def: subckt
@@ -61,6 +74,13 @@ models:
     typical_rows: 5
   symbol: TLE2072_kicad-spice-library.asy
   note: pins from comment words
+  copies:
+  - source: microcap12
+    name: TLE2072_TI_30
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/tle2072.pdf
   maker: Texas Instruments

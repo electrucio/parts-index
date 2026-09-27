@@ -21,4 +21,43 @@ models:
     lines:
       MCP6401: [6065, 6244]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: MCP6401
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: MCP6401
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+- source: microchip
+  name: MCP6401
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/BoardDesignFiles/MCP6401_MM_B.zip
+    member: MCP6401.txt
+    archive_sha256: 39a754fe544a91ed411e7a2b0645806758c9789a558f8f8e2727e8f3d2679768
+    sha256: 17be115ff2f2b7f7acd82fb9738a03b762275dcb7e381bf9e0065623d9e492bb
+    lines:
+      MCP6401: [1, 180]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: MCP6401
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: mc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 9e6a5b46e8405605b3f004924fa5b2852f67b9470fe1c5bec2c8e144400f2abe
+    lines:
+      MCP6401: [3805, 3984]
+    fetched: '2026-09-20'

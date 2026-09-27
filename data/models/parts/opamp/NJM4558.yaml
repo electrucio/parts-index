@@ -32,7 +32,48 @@ models:
     not_measurable: 7
     typical_rows: 0
   symbol: NJM4558_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: njm4558
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/njm4558.sub
+      sha256: 37e0682461fd85f56cb5ac4c0169137499af7324710609f4dc47a887a900ef49
+  - source: ltwiki
+    name: njm4558
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/njm4558.sub
+      sha256: 37e0682461fd85f56cb5ac4c0169137499af7324710609f4dc47a887a900ef49
+- source: nisshinbo
+  name: NJM4558
+  def: subckt
+  type: SUBCKT
+  deps:
+  - njm4558_s
+  verbatim: true
+  get:
+    url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm4558_v2_p.zip
+    member: NJM4558_v2_NewJRC/njm4558_v2.lib
+    archive_sha256: 089397cd54e0f01bde72e89c3a8d33e1cf8e52ad6c26f412e40ec2ecdb761cf0
+    sha256: 487c197aa4002bb066ee1343147397132af9dc33ee12234328310c8b9c748676
+    lines:
+      NJM4558: [13, 16]
+      njm4558_s: [25, 88]
+    fetched: '2026-09-20'
+- source: nisshinbo
+  name: njm4558_s
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm4558_v2_p.zip
+    member: NJM4558_v2_NewJRC/njm4558_v2.lib
+    archive_sha256: 089397cd54e0f01bde72e89c3a8d33e1cf8e52ad6c26f412e40ec2ecdb761cf0
+    sha256: 487c197aa4002bb066ee1343147397132af9dc33ee12234328310c8b9c748676
+    lines:
+      njm4558_s: [25, 88]
+    fetched: '2026-09-20'
 datasheet:
   url: https://www.nisshinbo-microdevices.co.jp/en/pdf/datasheet/NJM4558_E.pdf
   maker: Nisshinbo Micro Devices (ex New Japan Radio / JRC)

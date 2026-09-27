@@ -1,0 +1,33 @@
+part: BA4560
+kind: opamp
+priority: 2
+models:
+- source: rohm
+  name: BA4560
+  def: subckt
+  type: SUBCKT
+  deps:
+  - ba4560_sub
+  verbatim: true
+  get:
+    url: https://www.rohm.com/products/amplifiers-and-linear/operational-amplifiers/low-noise/dual-supply-voltage/ba4560f-product
+    member: BA4560_Rev002.lib
+    archive_sha256: 02b464420b962a6ed4484cd33c61a0f426a6bb745e2aeb2bc96dd84a87442a05
+    sha256: 48c3f5f2c8bce05fc5e2e7313546292f57224bf170da7fa457ba517718925fd6
+    lines:
+      BA4560: [11, 14]
+      ba4560_sub: [16, 94]
+    fetched: '2026-09-20'
+- source: rohm
+  name: ba4560_sub
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.rohm.com/products/amplifiers-and-linear/operational-amplifiers/low-noise/dual-supply-voltage/ba4560f-product
+    member: BA4560_Rev002.lib
+    archive_sha256: 02b464420b962a6ed4484cd33c61a0f426a6bb745e2aeb2bc96dd84a87442a05
+    sha256: 48c3f5f2c8bce05fc5e2e7313546292f57224bf170da7fa457ba517718925fd6
+    lines:
+      ba4560_sub: [16, 94]
+    fetched: '2026-09-20'

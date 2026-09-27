@@ -20,4 +20,16 @@ models:
     lines:
       PSMN3R3-80PS: [9726, 9787]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: PSMN3R3-80PS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/PSMNxx.lib
+      sha256: ada45e06c49830748b805afea7223fc285f5328b106490087e218f50ce51824e
+  - source: ltwiki
+    name: PSMN3R3-80PS
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/PSMNxx.lib
+      sha256: ada45e06c49830748b805afea7223fc285f5328b106490087e218f50ce51824e

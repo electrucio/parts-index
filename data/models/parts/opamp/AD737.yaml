@@ -1,0 +1,18 @@
+part: AD737
+kind: opamp
+priority: 3
+models:
+- source: adi
+  name: AD737
+  def: subckt
+  type: SUBCKT
+  deps:
+  - AEIOPAMP0
+  verbatim: true
+  get:
+    url: https://www.analog.com/media/en/simulation-models/spice-models/AD737P.cir
+    sha256: 4ed62c6cfa3e7c8b5618aa872bfac665e3b71062f5920459092e8cc78628f163
+    lines:
+      AD737: [42, 67]
+      AEIOPAMP0: [69, 99]
+    fetched: '2026-09-20'

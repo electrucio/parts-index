@@ -86,6 +86,13 @@ models:
     error: 'KeyError: ''vca'''
   symbol: THAT4301_thatcorp-2.asy
   note: found under the alias THAT4305
+  copies:
+  - source: thatcorp
+    name: THAT4305
+    get:
+      url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+      member: 4305_Macro_02.lib
+      sha256: 91ec782361b9adf34d73fce8e249451c1949d721709ae8f69c09e31a2cb332df
 - source: thatcorp
   name: THAT4315
   def: subckt
@@ -124,6 +131,42 @@ models:
     error: 'KeyError: ''vca'''
   symbol: THAT4301_thatcorp-3.asy
   note: found under the alias THAT4315
+  copies:
+  - source: thatcorp
+    name: THAT4315
+    get:
+      url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+      member: 4315_Macro_03.lib
+      sha256: 27a87a3bd104634c7182211034646ce70497f69a97ba48b81fc18636310bdee6
+- source: thatcorp
+  name: THAT4301
+  def: subckt
+  type: SUBCKT
+  deps:
+  - 4301VCA
+  - 4301OA2
+  - 4301OA1
+  - 4301OA3
+  - 4301RMS
+  verbatim: true
+  get:
+    url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+    sha256: 3fc8e958934e874a6dcc1edc2d54b5bd8bb2075cd0903d64dbfd26b4c4fe9b70
+    lines:
+      4301OA1: [108, 142]
+      4301OA2: [158, 192]
+      4301OA3: [209, 243]
+      4301RMS: [260, 299]
+      4301VCA: [53, 92]
+      THAT4301: [33, 39]
+    fetched: '2026-09-14'
+  copies:
+  - source: thatcorp
+    name: THAT4301
+    get:
+      url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+      member: 4301_Macro_01.lib
+      sha256: 3fc8e958934e874a6dcc1edc2d54b5bd8bb2075cd0903d64dbfd26b4c4fe9b70
 datasheet:
   url: https://www.thatcorp.com/datashts/THAT_4301_Datasheet.pdf
   maker: THAT Corporation

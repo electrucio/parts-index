@@ -22,6 +22,13 @@ models:
       TLV2372: [74, 287]
     fetched: '2026-09-19'
   note: pins from default order (unverified)
+  copies:
+  - source: ti
+    name: TLV2372
+    get:
+      url: https://www.ti.com/lit/zip/SBOM370
+      member: TLV2372_TINA_AIO/TLV2372.LIB
+      sha256: 3261c2570edd2108f26c78765e3465ccecfdcf04b6210f1a1ab52e121aa2c75b
 - source: bordodynov
   name: TLV2372
   def: subckt
@@ -44,4 +51,36 @@ models:
       TLV2371: [7174, 7417]
       TLV2372: [7420, 7422]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: TLV2372
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: TLV2372
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: TLV2372
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+- source: microcap12
+  name: TLV2372
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ti.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+    lines:
+      TLV2372: [59497, 59740]
+    fetched: '2026-09-20'

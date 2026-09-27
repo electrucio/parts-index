@@ -32,6 +32,24 @@ models:
     typical_rows: 0
   symbol: TL783_ltwiki.asy
   note: pins from names
+  copies:
+  - source: bordodynov
+    name: TL783C
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/TL783.sub
+      sha256: 4cc5f6e020847e2570dbb7093844968ce87457fad83e133cc25a1444f474a07d
+- source: ltwiki
+  name: TL783C
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+    sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+    lines:
+      TL783C: [10233, 10277]
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/tl783.pdf
   maker: Texas Instruments

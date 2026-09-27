@@ -21,6 +21,25 @@ models:
       SUD50P04-08: [8, 34]
     fetched: '2026-09-19'
   note: pins from names
+  copies:
+  - source: vishay
+    name: SUD50P04-08
+    get:
+      url: https://www.vishay.com/docs/65631/sud50p04.zip
+      member: sud50p04-08_ps_rc.txt
+      sha256: 0efee8e2722fce2acde1d8a27506ed7b384dd4e71f6460e2db5ad24e9811ea16
+  - source: vishay
+    name: SUD50P04-08
+    get:
+      url: https://www.vishay.com/docs/65631/sud50p04.zip
+      member: sud50p04-08_ps_rc.lib
+      sha256: 0efee8e2722fce2acde1d8a27506ed7b384dd4e71f6460e2db5ad24e9811ea16
+  - source: vishay
+    name: SUD50P04-08
+    get:
+      url: https://www.vishay.com/docs/65631/sud50p04.zip
+      member: SUD50P04-08_PS.txt
+      sha256: 4643282d340d507ad27e8c709bd77533e36df8c822ba3ef7ee37a551570d5f98
 - source: vishay
   name: SUD50P04-08_PS_RC
   def: subckt
@@ -42,6 +61,13 @@ models:
       SUD50P04-08_PS_RC: [9, 104]
     fetched: '2026-09-19'
   note: pins from names
+  copies:
+  - source: vishay
+    name: SUD50P04-08_PS_RC
+    get:
+      url: https://www.vishay.com/docs/65631/sud50p04.zip
+      member: sud50p04-08_ps_rc.lib
+      sha256: 0efee8e2722fce2acde1d8a27506ed7b384dd4e71f6460e2db5ad24e9811ea16
 - source: vishay
   name: SUD50P04-08
   def: subckt
@@ -60,3 +86,17 @@ models:
       SUD50P04-08: [7, 33]
     fetched: '2026-09-19'
   note: pins from names
+- source: microcap12
+  name: SUD50P04-08
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: vishaymosfet.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 23bc5e3e06c64162cbb4b96205c8a4b30b08d7cfd780d41fd3043fede09671f7
+    lines:
+      SUD50P04-08: [40141, 40167]
+    fetched: '2026-09-20'

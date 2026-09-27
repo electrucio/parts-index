@@ -20,7 +20,38 @@ models:
     lines:
       irf6645: [1, 57]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irf6645
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: bordodynov
+    name: irf6645
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irf6645.spi
+      sha256: 752b40790d93ce97b8ce3da1aaec3edfeb8dafc57c47bf7e8ed0010dd7fbba9b
+  - source: ltwiki
+    name: irf6645
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf6645.spi
+      sha256: 752b40790d93ce97b8ce3da1aaec3edfeb8dafc57c47bf7e8ed0010dd7fbba9b
+  - source: ltwiki
+    name: irf6645
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf6645.spi
+      sha256: 752b40790d93ce97b8ce3da1aaec3edfeb8dafc57c47bf7e8ed0010dd7fbba9b
+  - source: ltwiki
+    name: irf6645
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf6645.spi
+      sha256: 752b40790d93ce97b8ce3da1aaec3edfeb8dafc57c47bf7e8ed0010dd7fbba9b
 - source: bordodynov
   name: irf6645t
   def: subckt
@@ -37,4 +68,42 @@ models:
     lines:
       irf6645t: [60, 73]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: bordodynov
+    name: irf6645t
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irf6645.spi
+      sha256: 752b40790d93ce97b8ce3da1aaec3edfeb8dafc57c47bf7e8ed0010dd7fbba9b
+  - source: ltwiki
+    name: irf6645t
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf6645.spi
+      sha256: 752b40790d93ce97b8ce3da1aaec3edfeb8dafc57c47bf7e8ed0010dd7fbba9b
+  - source: ltwiki
+    name: irf6645t
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf6645.spi
+      sha256: 752b40790d93ce97b8ce3da1aaec3edfeb8dafc57c47bf7e8ed0010dd7fbba9b
+  - source: ltwiki
+    name: irf6645t
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf6645.spi
+      sha256: 752b40790d93ce97b8ce3da1aaec3edfeb8dafc57c47bf7e8ed0010dd7fbba9b
+- source: microcap12
+  name: irf6645t
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: irf.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+    lines:
+      irf6645t: [29867, 29880]
+    fetched: '2026-09-20'

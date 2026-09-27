@@ -79,3 +79,95 @@ models:
     note: git clone --depth 1, commit a868895
   note: 'STAND-IN: model of Q2N4401, not of MMBT4401; equivalence declared in catalog/wanted.yaml (see
     its note)'
+- source: onsemi
+  name: Qmmbt4401lt1
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mmbt4401lt1.lib
+    sha256: 975c1390f9593ed524f4c4b7aef4e0fd24ef8787c14edd62d96777fa9be5375b
+    lines:
+      Qmmbt4401lt1: [14, 24]
+    fetched: '2026-09-19'
+  copies:
+  - source: ltwiki
+    name: Qmmbt4401lt1
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/Miscel/NUD4001_lt/nud4001p.lib
+      sha256: 0972dffca437f578418e6ec1a6cf68806a88d0f44e873852a40af543f9e66f08
+  - source: ltwiki
+    name: Qmmbt4401lt1
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Miscel/NUD4001_lt/nud4001p.lib
+      sha256: 0972dffca437f578418e6ec1a6cf68806a88d0f44e873852a40af543f9e66f08
+  - source: microcap12
+    name: Qmmbt4401lt1
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: onsemi
+    name: Qmmbt4401lt1
+    get:
+      url: https://www.onsemi.com/download/models/zip/nud4001.models.zip
+      member: nud4001p.lib
+      sha256: 1577e6cacf2cfaee80160b796c7d711743eae365212bdbb5d4011b09a4c2fb4c
+  - source: onsemi
+    name: mmbt4401lt1
+    get:
+      url: https://www.onsemi.com/download/models/zip/ncp1351%20pspice%20model.zip
+      member: ncp1351_ORCAD/application.lib
+      sha256: 5617ad21da819be996732ece6f515658a40de55ea6685e48fcd3ec27b14a1159
+- source: microcap12
+  name: MMBT4401
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc_BJT.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
+    lines:
+      MMBT4401: [903, 907]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: MMBT4401T
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc_BJT.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
+    lines:
+      MMBT4401T: [917, 921]
+    fetched: '2026-09-20'
+- source: qspice
+  name: MMBT4401
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 02e7f34086291154c4ad5a23bd7be80641cec3ccd61609bfc623a1231183224b
+    lines:
+      MMBT4401: [486, 490]
+    fetched: '2026-09-20'
+- source: qspice
+  name: MMBT4401T
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 02e7f34086291154c4ad5a23bd7be80641cec3ccd61609bfc623a1231183224b
+    lines:
+      MMBT4401T: [492, 496]
+    fetched: '2026-09-20'

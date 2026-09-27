@@ -15,6 +15,13 @@ models:
       MMBT2222A: [6, 17]
     fetched: '2026-09-14'
     note: 'model(s): MMBT2222A (NPN .model)'
+  copies:
+  - source: microcap12
+    name: MMBT2222A
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: kicad-spice-library
   name: MMBT2222A
   def: model
@@ -27,3 +34,70 @@ models:
       MMBT2222A: [6975, 7013]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: microcap12
+    name: MMBT2222A
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_bjt.lib
+      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
+  - source: ltwiki
+    name: QMMBT2222A
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/MMBT2222A.PRM
+      sha256: c860e211496653b145ea8b90e83bcfed28095ee5faa91d611592811e676221d7
+- source: onsemi
+  name: Qmmbt2222alt1g
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/mmbt2222alt1.lib
+    sha256: c871fadcc42fedc0e7a811745ad96f36cafd5e425c83442f24bb87d2f41716e3
+    lines:
+      Qmmbt2222alt1g: [14, 24]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: Qmmbt2222alt1g
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: microcap12
+  name: MMBT2222AT
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc_BJT.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
+    lines:
+      MMBT2222AT: [889, 893]
+    fetched: '2026-09-20'
+- source: qspice
+  name: MMBT2222A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 02e7f34086291154c4ad5a23bd7be80641cec3ccd61609bfc623a1231183224b
+    lines:
+      MMBT2222A: [456, 460]
+    fetched: '2026-09-20'
+- source: qspice
+  name: MMBT2222AT
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 02e7f34086291154c4ad5a23bd7be80641cec3ccd61609bfc623a1231183224b
+    lines:
+      MMBT2222AT: [462, 466]
+    fetched: '2026-09-20'

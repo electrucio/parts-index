@@ -20,7 +20,19 @@ models:
     lines:
       fdv303n: [15750, 15777]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: fdv303n
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: fdv303n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
 - source: kicad-spice-library
   name: FDV303N_FC
   def: subckt
@@ -38,3 +50,37 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: onsemi
+    name: FDV303N
+    get:
+      url: https://www.onsemi.com/download/models/mod/fdv303n.mod
+      sha256: 3bcc57a7e305680290c40998434898484e9f673c4870f10bf6eed57def76aca0
+  - source: spice-model-cd
+    name: FDV303N
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Fairchild/FD/FDV303N.lib
+      sha256: a0431049e04ee23036ca52e713643bc5a21180b6ebe8f61a449ce454f6f6f308
+  - source: microcap12
+    name: FDV303N_FC
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: fairch.lib
+      sha256: 53806c9a42d8b9f44b8c77ed3ae210ad6250b5eacb44d7e7f2b429e8f4559918
+- source: microcap12
+  name: FDV303N
+  def: subckt
+  type: SUBCKT
+  deps:
+  - nmos
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      FDV303N: [115103, 115127]
+      nmos: [161508, 161508]
+    fetched: '2026-09-20'

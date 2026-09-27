@@ -17,7 +17,25 @@ models:
       AO3401: [1328, 1328]
     fetched: '2026-09-14'
   note: 'STAND-IN: model of AO3401, not of AO3401A; equivalence declared in catalog/wanted.yaml (see its
-    note); same code also in: ltwiki'
+    note)'
+  copies:
+  - source: ltwiki
+    name: AO3401
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: AO3401
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: AO3401
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: ltwiki
   name: AO3401
   def: model
@@ -31,4 +49,10 @@ models:
     fetched: '2026-09-14'
     note: Bordodynov VDMOS collection for LTspice IV
   note: 'STAND-IN: model of AO3401, not of AO3401A; equivalence declared in catalog/wanted.yaml (see its
-    note); same code also in: kicad-spice-library'
+    note)'
+  copies:
+  - source: kicad-spice-library
+    name: AO3401
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb

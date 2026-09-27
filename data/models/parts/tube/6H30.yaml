@@ -21,7 +21,19 @@ models:
       6H30: [345, 347]
     fetched: '2026-09-14'
   symbol: 6H30_bordodynov.asy
-  note: 'same code also in: gist-chanmix51, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: gist-chanmix51
+    name: 6H30
+    get:
+      url: https://gist.github.com/chanmix51/6947361/raw/57aa4f0baec33aaaecdfa64d99f4e0a2434be1a4/triodes.sub
+      sha256: 5a946644246b6dfa6b961fecd642dcefe0205f2db65392fda8cf7f502e0fa797
+  - source: ltwiki
+    name: 6H30
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/Tubes/triodes.sub
+      sha256: 1e31c73aba86877020a0740d279066992ad7c2cd57aed56223b59706e68a7f44
 - source: bordodynov
   name: 6H30
   def: subckt
@@ -40,7 +52,14 @@ models:
       6H30: [1563, 1575]
     fetched: '2026-09-14'
   symbol: 6H30_bordodynov-2.asy
-  note: 'same code also in: ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: ltwiki
+    name: 6H30
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/Tubes/tube.lib
+      sha256: 0eeca282ba6506a1a4826c5833c023b17df0c557ef46c9ade79abe98a9c24a3f
 - source: ltwiki
   name: 6H30
   def: subckt
@@ -60,3 +79,10 @@ models:
     fetched: '2026-09-14'
   symbol: 6H30_ltwiki.asy
   note: pins from names
+  copies:
+  - source: bordodynov
+    name: 6H30
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Triode_Ayumi.lib
+      sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97

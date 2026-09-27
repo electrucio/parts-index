@@ -45,3 +45,30 @@ models:
       MCP6566_JT2: [32, 48]
     fetched: '2026-09-14'
   note: pins from names
+- source: microchip
+  name: MCP6566
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/BoardDesignFiles/MCP6566_MM_B.zip
+    member: MCP6566.txt
+    archive_sha256: 95253c30b802c17cc3a83956753b8352cf5721c21774b93da8b024addf769491
+    sha256: f54fa01b51b5fdc75a0f2d02a8f637d825d0337c8556e5dc131e1c207a37a91f
+    lines:
+      MCP6566: [1, 205]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: MCP6566
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: mc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 9e6a5b46e8405605b3f004924fa5b2852f67b9470fe1c5bec2c8e144400f2abe
+    lines:
+      MCP6566: [6020, 6224]
+    fetched: '2026-09-20'

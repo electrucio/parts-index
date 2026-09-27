@@ -29,7 +29,60 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 0
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: diodes-inc
+    name: ZTX653
+    get:
+      url: https://www.diodes.com/spice/download/2660/ZTX653.spice.txt
+      sha256: 845596f88538bf28a6afcce426774b7389cee717ba6427f833a0b0d479b53660
+  - source: diodes-inc
+    name: ZTX653
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8426/collection.spice.txt
+      sha256: ca5759f37375eed975f03f72dafec9c3338930de6cfafaecda91fdca1fd33379
+  - source: kicad-spice-library
+    name: ZTX653
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/zmodels.lib
+      sha256: 044af538d5f9c5ca0e2600f281950d11f666576107b0af16a9a414c7ba506739
+  - source: kicad-spice-library
+    name: ZTX653
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/Zetex%20Semiconductors/ZMODELS.LIB
+      sha256: 356f4751706278dd76767c0cbdfceab52ea806ed01a3669b26584507bf29f3e0
+  - source: ltwiki
+    name: ZTX653
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: ZTX653
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: ZTX653
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ZETEX/LIB/zmodels.lib
+      sha256: 8d3fb488666b5f813a666d5c589ac6c7779a2c44a4b38799b2a41ca0006368e7
+  - source: spice-model-cd
+    name: ZTX653
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/ztx653.lib
+      sha256: 1bf20680068f598282e7c9e97d14c853ffda824660b6b21b53a83c0f72648753
+  - source: spice-model-cd
+    name: ZTX653
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/zmodels.lib
+      sha256: df79c20130b55541a1047df22b4cca3bfdb260045dfee6f538354adc6cfb78d6
+  - source: ltwiki
+    name: ZTX653/ZTX
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/Zetex.lib
+      sha256: 801edb075d3bd3995ad94e8dbf3c9a290a89481b1e897b74b75fcb6a6fab8ec0
 - source: ltwiki
   name: ZTX653
   def: model
@@ -95,6 +148,35 @@ models:
     typical_rows: 0
   symbol: ZTX653_kicad-spice-library-2.asy
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: ZTX653_ZX
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: zetex.lib
+      sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
+- source: qspice
+  name: ZTX653
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: 02e7f34086291154c4ad5a23bd7be80641cec3ccd61609bfc623a1231183224b
+    lines:
+      ZTX653: [813, 817]
+    fetched: '2026-09-20'
+- source: diyaudio
+  name: ZTX653
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
+    sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
+    lines:
+      ZTX653: [306, 313]
+    fetched: '2026-09-20'
 datasheet:
   url: https://www.diodes.com/datasheet/download/ZTX653.pdf
   maker: diodes (zetex)

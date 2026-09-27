@@ -26,7 +26,22 @@ models:
     fail: 2
     not_measurable: 0
     typical_rows: 4
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: kicad-spice-library
+    name: UF4007
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/GenSemiUltraRect.lib
+      sha256: 43f8d9ef8b0f17890590821a887eb76a131c531f450f5579fb43d62b8417c709
+  - source: kicad-spice-library
+    name: UF4007
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Manufacturer/General%20Semiconductor/General%20Semiconductor.lb5
+      sha256: 29db97b9e48c44570530220654814e32bc2a2cb0d10d0a4a018887fb43ef592d
+  - source: spice-model-cd
+    name: UF4007
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/General_Semi/Rectifiers/Ultrafast/uf4007.lib
+      sha256: 397fc424c372501d3a3cc3a3a6bd8c66772039e31f6e242a30b783cf5a7b2bee
 - source: bordodynov
   name: UF4007
   def: model
@@ -47,7 +62,19 @@ models:
     fail: 2
     not_measurable: 0
     typical_rows: 4
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: UF4007
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: UF4007
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
 - source: ltwiki
   name: UF4007
   def: model
@@ -68,7 +95,18 @@ models:
     fail: 2
     not_measurable: 0
     typical_rows: 4
-  note: 'same code also in: kicad-spice-library'
+  copies:
+  - source: ltwiki
+    name: UF4007
+    get:
+      url: https://ltwiki.org/files/Standard.zip
+      member: Standard/standard.dio
+      sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+  - source: kicad-spice-library
+    name: UF4007
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Diode/DIODE2.lib
+      sha256: 30ed855dc84e2de25e560deac3c77134cb73d072e10199aa8de3d2a7155af902
 - source: ltwiki
   name: UF4007
   def: subckt
@@ -94,6 +132,25 @@ models:
     typical_rows: 4
   symbol: UF4007_ltwiki-2.asy
   note: pins from names
+  copies:
+  - source: ltwiki
+    name: UF4007
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Basso/BassoBook20100103/New2/D.lib
+      sha256: 4aa55e403008035c4f0065b93108abf95382d86498e6a25c499fb9e3061e656d
+  - source: ltwiki
+    name: UF4007
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/Basso/BassoBook20100103/D.lib
+      sha256: 4aa55e403008035c4f0065b93108abf95382d86498e6a25c499fb9e3061e656d
+  - source: ltwiki
+    name: UF4007
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/Basso/BassoBook20100103/New2/D.lib
+      sha256: 4aa55e403008035c4f0065b93108abf95382d86498e6a25c499fb9e3061e656d
 - source: kicad-spice-library
   name: UF4007
   def: model
@@ -113,6 +170,34 @@ models:
     fail: 2
     not_measurable: 0
     typical_rows: 4
+- source: microcap12
+  name: UF4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: microsem_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 4de9c79b8f465e5a0873f78fe3a8c13a59e9f0cec851134a2e3e7b434b761d74
+    lines:
+      UF4007: [1293, 1294]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: UF4007GP
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: microsem_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 4de9c79b8f465e5a0873f78fe3a8c13a59e9f0cec851134a2e3e7b434b761d74
+    lines:
+      UF4007GP: [1297, 1298]
+    fetched: '2026-09-20'
 datasheet:
   url: https://www.vishay.com/docs/88755/uf4001.pdf
   maker: Vishay

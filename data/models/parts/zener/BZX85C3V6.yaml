@@ -1,0 +1,16 @@
+part: BZX85C3V6
+kind: zener
+priority: 2
+models:
+- source: spice-model-cd
+  name: D1N4729A
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/ZENER.LB
+    sha256: 304e2ababc567483e0e387fdba860dac263b00f29acbc7966994954c43804f7f
+    lines:
+      D1N4729A: [693, 700]
+    fetched: '2026-09-21'
+  note: found under the alias 1N4729A

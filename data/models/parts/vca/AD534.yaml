@@ -32,6 +32,13 @@ models:
     score: null
     error: 'KeyError: ''vca'''
   symbol: AD534_ltwiki.asy
+  copies:
+  - source: ltwiki
+    name: ad534
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Multiplicadores/ad534/ad534.sub
+      sha256: ce14e646cbba8081082efd214ea6ce3b7425e8299a3803bf0d7587a2c5ea94de
 datasheet:
   url: https://www.analog.com/media/en/technical-documentation/data-sheets/AD534.pdf
   maker: Analog Devices

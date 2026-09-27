@@ -38,7 +38,25 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: LM3080_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: LM3080/NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Ota.Lib
+      sha256: 0145d7cd9827eb8a14113da0b4eb56b0f1e39b9041dee087068d3a7bef873777
+  - source: ltwiki
+    name: LM3080/NS
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Ota.Lib
+      sha256: 0145d7cd9827eb8a14113da0b4eb56b0f1e39b9041dee087068d3a7bef873777
+  - source: ltwiki
+    name: LM3080/NS
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Ota.Lib
+      sha256: 0145d7cd9827eb8a14113da0b4eb56b0f1e39b9041dee087068d3a7bef873777
 - source: bordodynov
   name: lm3080
   def: subckt
@@ -67,7 +85,25 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: LM3080_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: lm3080
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Ota.Lib
+      sha256: 0145d7cd9827eb8a14113da0b4eb56b0f1e39b9041dee087068d3a7bef873777
+  - source: ltwiki
+    name: lm3080
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Ota.Lib
+      sha256: 0145d7cd9827eb8a14113da0b4eb56b0f1e39b9041dee087068d3a7bef873777
+  - source: ltwiki
+    name: lm3080
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Ota.Lib
+      sha256: 0145d7cd9827eb8a14113da0b4eb56b0f1e39b9041dee087068d3a7bef873777
 datasheet:
   url: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8885/LM3080-Datasheet.pdf
   maker: National Semiconductor (TI literature SNOSBQ5A)

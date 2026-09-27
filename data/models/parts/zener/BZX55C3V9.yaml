@@ -18,3 +18,23 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from comment words
+  copies:
+  - source: spice-model-cd
+    name: bzx55c3v9
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/General_Semi/Zener_TVS/Zener_Diodes/bzx55c3v9.lib
+      sha256: fde73662dc676112272792b1173958e2c34aaa980a083cb50397c7baf552ce9d
+- source: microcap12
+  name: bzx55c3v9
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: vishaydiode.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 2e5a5b32069cd4d1a0382ca39515c84572862176aedccfab1f7f124818db2018
+    lines:
+      bzx55c3v9: [1074, 1094]
+    fetched: '2026-09-20'

@@ -24,3 +24,15 @@ models:
     lines:
       AD8226: [4352, 4448]
     fetched: '2026-09-14'
+  copies:
+  - source: adi
+    name: AD8226
+    get:
+      url: https://www.analog.com/media/en/simulation-models/spice-models/ad8226.cir?modelType=spice-models
+      sha256: 4895bb097de1b0c311742066215dc70cc8e156c1f0ef6eff48df82d44ca7696b
+  - source: bordodynov
+    name: AD8226
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/ADI1.lib
+      sha256: 56007b832dfb995c0072377bc98125b86a2ee7e9dd4d109d29d4c295aa6a265d

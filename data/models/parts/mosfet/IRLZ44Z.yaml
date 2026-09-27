@@ -20,7 +20,38 @@ models:
     lines:
       irlz44zsl: [1, 57]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irlz44zsl
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: bordodynov
+    name: irlz44zsl
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irlz44zsl.spi
+      sha256: 6dc7fa2f2eb0e8a99e4fa4f4a0880aaa5cc89aea7209bfff115dae6a257aba12
+  - source: ltwiki
+    name: irlz44zsl
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irlz44zsl.spi
+      sha256: 6dc7fa2f2eb0e8a99e4fa4f4a0880aaa5cc89aea7209bfff115dae6a257aba12
+  - source: ltwiki
+    name: irlz44zsl
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irlz44zsl.spi
+      sha256: 6dc7fa2f2eb0e8a99e4fa4f4a0880aaa5cc89aea7209bfff115dae6a257aba12
+  - source: ltwiki
+    name: irlz44zsl
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irlz44zsl.spi
+      sha256: 6dc7fa2f2eb0e8a99e4fa4f4a0880aaa5cc89aea7209bfff115dae6a257aba12
 - source: bordodynov
   name: irlz44zslt
   def: subckt
@@ -37,4 +68,42 @@ models:
     lines:
       irlz44zslt: [62, 71]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: bordodynov
+    name: irlz44zslt
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irlz44zsl.spi
+      sha256: 6dc7fa2f2eb0e8a99e4fa4f4a0880aaa5cc89aea7209bfff115dae6a257aba12
+  - source: ltwiki
+    name: irlz44zslt
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irlz44zsl.spi
+      sha256: 6dc7fa2f2eb0e8a99e4fa4f4a0880aaa5cc89aea7209bfff115dae6a257aba12
+  - source: ltwiki
+    name: irlz44zslt
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irlz44zsl.spi
+      sha256: 6dc7fa2f2eb0e8a99e4fa4f4a0880aaa5cc89aea7209bfff115dae6a257aba12
+  - source: ltwiki
+    name: irlz44zslt
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irlz44zsl.spi
+      sha256: 6dc7fa2f2eb0e8a99e4fa4f4a0880aaa5cc89aea7209bfff115dae6a257aba12
+- source: microcap12
+  name: irlz44zslt
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: irf.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+    lines:
+      irlz44zslt: [52846, 52855]
+    fetched: '2026-09-20'

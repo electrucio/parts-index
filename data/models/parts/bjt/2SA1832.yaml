@@ -19,7 +19,19 @@ models:
       '2': [519, 519]
       2SA1832: [1595, 1595]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: 2SA1832
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: 2SA1832
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
 - source: kicad-spice-library
   name: 2SA1832
   def: model
@@ -32,3 +44,23 @@ models:
       2SA1832: [1575, 1575]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+- source: toshiba
+  name: 2SA1832
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://toshiba.semicon-storage.com/info/docget.jsp?did=55824&prodName=2SA1832&displang=en
+    member: 2SA1832.lib
+    archive_sha256: 8c355a1d361a6f71a7ec3e621cd0560b961ac21deabbe604be5ca3d13596ff9f
+    sha256: 1a71aa49eb099c2bbdc9117c8b80bf9a8591006061eeccf13001bca7437858ba
+    lines:
+      2SA1832: [12, 51]
+    fetched: '2026-09-21'
+  copies:
+  - source: toshiba
+    name: 2SA1832
+    get:
+      member: PSpice_20260827/Toshiba-lib-PSpice_20260827/Bipolar Transistors/2SA1832_PSpice_20161208/2SA1832.lib
+      how: unknown
+      sha256: 1a71aa49eb099c2bbdc9117c8b80bf9a8591006061eeccf13001bca7437858ba

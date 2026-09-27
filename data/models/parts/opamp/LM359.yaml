@@ -24,7 +24,56 @@ models:
     lines:
       LM359/NS: [3879, 3915]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+  copies:
+  - source: spice-model-cd
+    name: LM359/NS
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/National_Semiconductors/Spice/LM359.cir
+      sha256: 44a147ca1d95b4a7a1e84b94f9f85cdc07d6bee61ccdd956f5c73533d1b82948
+  - source: kicad-spice-library
+    name: LM359/NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: kicad-spice-library
+    name: LM359/NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nat_semi.lib
+      sha256: 15227be98f4559bf0b6fcabdea3c86cbd6c5f1d41d47ecf7375d001362f06a28
+  - source: kicad-spice-library
+    name: LM359_NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/nation.lib
+      sha256: 97af188e570afc5c2b4b8246ade0670422d90c402c01a0f0383df0a6a37af9ac
+  - source: ltwiki
+    name: LM359/NS
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/nat_semi.lib
+      sha256: 410011a53d15a487fda9fb1f4f6cbd0747427cf9274b6dbd90625f580bf75fe7
+  - source: ltwiki
+    name: LM359/NS
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: ltwiki
+    name: LM359/NS
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/ExtraComparators/ns_models.lib
+      sha256: 5742c699db56b65894a4b57ff011ad190ba22361cf79b5a3bf4761063d142434
+  - source: microcap12
+    name: LM359_NS
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: nation.lib
+      sha256: 3fc09b6f184ee48ba06340ee116b44f0650e61c361bb5c44744d6c7a98b2f7ce
+  - source: kicad-spice-library
+    name: LM359
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/NATBJT.LIB
+      sha256: cf6a0a8ae76413edbbe02dda7fa5372957d07a3454547dfb80f3bff10d99492a
 - source: bordodynov
   name: LM359_NSC
   def: subckt
@@ -47,7 +96,25 @@ models:
     lines:
       LM359_NSC: [3170, 3206]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+  copies:
+  - source: kicad-spice-library
+    name: LM359_NSC
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: ltwiki
+    name: LM359_NSC
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_NSC.lib
+      sha256: 550c8ef5e03f37440e21036d4893441275208962052f8aa522027fde738fec84
+  - source: ltwiki
+    name: LM359_NSC
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/OpAmp_NSC.lib
+      sha256: 640cf42a735c898a54951becb5657cb42ecbfd75453e22e5d739958213f9cf2c
 - source: bordodynov
   name: LM359
   def: subckt
@@ -70,7 +137,25 @@ models:
     lines:
       LM359: [14, 49]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+  copies:
+  - source: kicad-spice-library
+    name: LM359
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/lm359.sub
+      sha256: b5f07b641f53be873832bbf7c60b544069dd0c61b18912ee82771bcc028ed226
+  - source: ltwiki
+    name: LM359
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/lm359.sub
+      sha256: b5f07b641f53be873832bbf7c60b544069dd0c61b18912ee82771bcc028ed226
+  - source: ltwiki
+    name: LM359
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/lm359.sub
+      sha256: b5f07b641f53be873832bbf7c60b544069dd0c61b18912ee82771bcc028ed226
 - source: bordodynov
   name: LM359N
   def: subckt
@@ -102,7 +187,24 @@ models:
       LM359: [14, 49]
       LM359N: [51, 54]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: LM359N
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/lm359.sub
+      sha256: b5f07b641f53be873832bbf7c60b544069dd0c61b18912ee82771bcc028ed226
+  - source: ltwiki
+    name: LM359N
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/lm359.sub
+      sha256: b5f07b641f53be873832bbf7c60b544069dd0c61b18912ee82771bcc028ed226
+  - source: ltwiki
+    name: LM359N
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/lm359.sub
+      sha256: b5f07b641f53be873832bbf7c60b544069dd0c61b18912ee82771bcc028ed226
 - source: kicad-spice-library
   name: LM359_NS
   def: subckt

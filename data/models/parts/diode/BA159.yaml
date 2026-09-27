@@ -15,3 +15,21 @@ models:
       ba159: [7, 10]
     fetched: '2026-09-19'
     note: 'Standard and Fast Recovery, PSpice Models (*.txt): ba159'
+  copies:
+  - source: microcap12
+    name: ba159
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: vishaydiode.lib
+      sha256: 2e5a5b32069cd4d1a0382ca39515c84572862176aedccfab1f7f124818db2018
+- source: vishay
+  name: ba159
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/89774/ba159.txt
+    sha256: 410a91d73851b36abaa1a61f55c28c23d97c578b64d57fd0514f0edae1680290
+    lines:
+      ba159: [7, 10]
+    fetched: '2026-09-19'

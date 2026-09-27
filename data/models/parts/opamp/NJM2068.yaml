@@ -32,7 +32,48 @@ models:
     not_measurable: 2
     typical_rows: 1
   symbol: NJM2068_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+  copies:
+  - source: kicad-spice-library
+    name: njm2068
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/njm2068.sub
+      sha256: 45495b14033b85b3ad26bf4033fb6b07e0c01182433dfafadfa026fe7e65d601
+  - source: ltwiki
+    name: njm2068
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/njm2068.sub
+      sha256: 45495b14033b85b3ad26bf4033fb6b07e0c01182433dfafadfa026fe7e65d601
+- source: nisshinbo
+  name: NJM2068
+  def: subckt
+  type: SUBCKT
+  deps:
+  - njm2068_s
+  verbatim: true
+  get:
+    url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm2068_v2_p.zip
+    member: NJM2068_v2_NewJRC/njm2068_v2.lib
+    archive_sha256: 6c0d7b79f865478ced3ea3f762fe3deea1f270170a5a860037611da9c53a3441
+    sha256: ddd69d07f51513e1ce5f14cb91590c3eb275d17868e8d28c7bf4798173eac05e
+    lines:
+      NJM2068: [13, 16]
+      njm2068_s: [25, 88]
+    fetched: '2026-09-20'
+- source: nisshinbo
+  name: njm2068_s
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.nisshinbo-microdevices.co.jp/mynisd/dl/macro/pspice/njm2068_v2_p.zip
+    member: NJM2068_v2_NewJRC/njm2068_v2.lib
+    archive_sha256: 6c0d7b79f865478ced3ea3f762fe3deea1f270170a5a860037611da9c53a3441
+    sha256: ddd69d07f51513e1ce5f14cb91590c3eb275d17868e8d28c7bf4798173eac05e
+    lines:
+      njm2068_s: [25, 88]
+    fetched: '2026-09-20'
 datasheet:
   url: https://www.nisshinbo-microdevices.co.jp/en/pdf/datasheet/NJM2068_E.pdf
   maker: Nisshinbo Micro Devices (ex New Japan Radio / JRC)

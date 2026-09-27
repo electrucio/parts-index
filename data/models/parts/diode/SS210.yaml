@@ -15,3 +15,31 @@ models:
       ss210: [1047, 1051]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: spice-model-cd
+    name: Dss210
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/General_Semi/Rectifiers/Schottky/ss210.lib
+      sha256: eb73fd5271adb258f81f45d2a9b69e2aa21856e5db997b87d145bd94d662a73a
+  - source: kicad-spice-library
+    name: ss210
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/SemiGenSchottkyRect.lib
+      sha256: d165361125280de311667a3cd347670774ffdf2bbd93f2360d2ebd8c3baebfe0
+  - source: microcap12
+    name: ss210
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: gensemi.lib
+      sha256: a91e073b84759dcbe41d4ae51687287a413fc12865804565e488f747b57b3d6c
+- source: vishay
+  name: ss210
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/98080/_p_ss210.txt
+    sha256: 8c0789db56e20996834dfdb6f72896cc6d1040680962cd0860e8b7e0d740610c
+    lines:
+      ss210: [4, 7]
+    fetched: '2026-09-19'

@@ -33,6 +33,34 @@ models:
     typical_rows: 2
   symbol: AD8610_ltwiki.asy
   note: pins from comment words
+- source: adi
+  name: AD8610
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.analog.com/media/en/simulation-models/spice-models/ad8610.cir
+    sha256: de2d72335d933c6db0ed87802289a03adebf9bff4e4e648de1386c5a9beb756e
+    lines:
+      AD8610: [33, 138]
+    fetched: '2026-09-20'
+- source: microcap12
+  name: AD8610
+  def: subckt
+  type: SUBCKT
+  deps:
+  - dx
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: analog.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
+    lines:
+      AD8610: [75021, 75128]
+      dx: [77076, 77076]
+    fetched: '2026-09-20'
 datasheet:
   url: https://www.analog.com/media/en/technical-documentation/data-sheets/ad8610_8620.pdf
   maker: Analog Devices

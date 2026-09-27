@@ -36,7 +36,18 @@ models:
     score: null
     error: 'KeyError: ''smps'''
   symbol: TL494_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: tl494
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: tl494
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
 - source: bordodynov
   name: tl494h
   def: subckt
@@ -71,7 +82,18 @@ models:
     score: null
     error: 'KeyError: ''smps'''
   symbol: TL494_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: tl494h
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: tl494h
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
 - source: bordodynov
   name: tl494
   def: subckt
@@ -106,7 +128,13 @@ models:
     score: null
     error: 'KeyError: ''smps'''
   symbol: TL494_bordodynov-3.asy
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: tl494
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ValVol/ValVol.lib
+      sha256: c12415c540e806c1348c9c16e84708c84fe8c9c6cb59b5ade3420c0fbb85e44d
 - source: ltwiki
   name: tl494
   def: subckt
@@ -175,6 +203,13 @@ models:
     score: null
     error: 'KeyError: ''smps'''
   symbol: TL494_ltwiki-2.asy
+  copies:
+  - source: ltwiki
+    name: tl494
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/Robertugo/Modelos/tl494/Final/tl494.sub
+      sha256: d0a3d13497f8dcfbd13c857472d08da6601367abc6565265ee6cb699e8693219
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/tl494.pdf
   maker: Texas Instruments

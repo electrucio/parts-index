@@ -26,7 +26,19 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 5
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: FR107
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: FR107
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
 - source: kicad-spice-library
   name: FR107
   def: model
@@ -46,6 +58,38 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 5
+- source: microcap12
+  name: FR107
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: microsem_lbr.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 4de9c79b8f465e5a0873f78fe3a8c13a59e9f0cec851134a2e3e7b434b761d74
+    lines:
+      FR107: [753, 754]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: FR107GP
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: microsem_lbr.lib
+      sha256: 4de9c79b8f465e5a0873f78fe3a8c13a59e9f0cec851134a2e3e7b434b761d74
+- source: qspice
+  name: FR107
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://getqspice.com/InstallQSPICE.exe
+    sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
+    lines:
+      FR107: [25, 25]
+    fetched: '2026-09-20'
 datasheet:
   url: https://services.taiwansemi.com/storage/resources/datasheet/FR101G%20SERIES_H2104.pdf
   maker: Taiwan Semiconductor

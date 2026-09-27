@@ -38,7 +38,14 @@ models:
     not_measurable: 1
     typical_rows: 0
   symbol: LM393_bordodynov.asy
-  note: 'same code also in: ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: ltwiki
+    name: LM393
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
 - source: bordodynov
   name: LM393
   def: subckt
@@ -71,7 +78,14 @@ models:
     not_measurable: 1
     typical_rows: 0
   symbol: LM393_bordodynov-2.asy
-  note: 'same code also in: ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: ltwiki
+    name: LM393
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Occomp.lib
+      sha256: d4e98ddcd8fabe3cd892bb2be1e2447639c10f9f8759ce47b8b5c101a6999049
 - source: ltwiki
   name: LM393
   def: subckt
@@ -104,7 +118,18 @@ models:
     not_measurable: 1
     typical_rows: 0
   symbol: LM393_ltwiki.asy
-  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: ltwiki
+    name: LM393
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+      sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+  - source: kicad-spice-library
+    name: LM393
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Occomp.lib
+      sha256: 43034148edb87c8b5281df8a394fb79962ff67147f9fba6349b2fcbb8346e17f
 - source: ltwiki
   name: LM393
   def: subckt
@@ -133,6 +158,13 @@ models:
     typical_rows: 0
   symbol: LM393_ltwiki-2.asy
   note: pins from comment words
+  copies:
+  - source: ltwiki
+    name: LM393
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Miscel/X1G example/lm393.sub
+      sha256: 758c572a3e32aef98c36398a900f6be640ce73a5e7e40b3aeb9b28b511083eb5
 - source: ltwiki
   name: lm393_ab
   def: subckt
@@ -161,6 +193,13 @@ models:
     typical_rows: 0
   symbol: LM393_ltwiki-3.asy
   note: pins from names
+  copies:
+  - source: bordodynov
+    name: lm393_ab
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/LM393_AB.sub
+      sha256: 60cd4d399daa10cf09ead935fdebe9f0055dbb9c964ec1fb04928910dabf7c9c
 - source: kicad-spice-library
   name: LM393
   def: subckt
@@ -193,6 +232,47 @@ models:
     typical_rows: 0
   symbol: LM393_kicad-spice-library.asy
   note: pins from comment words
+- source: microcap12
+  name: LM393_TI
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: ti.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+    lines:
+      LM393_TI: [1985, 2006]
+    fetched: '2026-09-20'
+  copies:
+  - source: kicad-spice-library
+    name: LM393_TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+      sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+  - source: kicad-spice-library
+    name: LM393A_TI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ti.lib
+      sha256: dd9664528e86f9ade2b8c226e22193fe1e4733d95fe8bda19f1630f573be1ee2
+  - source: microcap12
+    name: LM393A_TI
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+  - source: kicad-spice-library
+    name: LM393T
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TICOMP.LIB
+      sha256: d4980b8365b4590602ff9cca722294b2ec0125e2ef169e5a6a66dab2a6411001
+  - source: kicad-spice-library
+    name: LM393AT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TICOMP.LIB
+      sha256: d4980b8365b4590602ff9cca722294b2ec0125e2ef169e5a6a66dab2a6411001
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/lm393.pdf
   maker: Texas Instruments

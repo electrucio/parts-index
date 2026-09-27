@@ -1,0 +1,15 @@
+part: MC1741
+kind: opamp
+priority: 2
+models:
+- source: ltwiki
+  name: mc1741
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+    sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+    lines:
+      mc1741: [3029, 3064]
+    fetched: '2026-09-21'

@@ -18,7 +18,20 @@ models:
       PMEG3010EJ: [33, 49]
     fetched: '2026-09-19'
     note: 'PMEG3010EJ: PMEG3010EJ, PMEG3010EJ'
-  note: 'same code also in: ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: ltwiki
+    name: PMEG3010EJ
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/SCHOTTKY/PMEG3010EJ.PRM
+      sha256: 54321cd33a5ac8ce0c63393c19f00798546acd1718ebfe6d049b020cc1f19519
+  - source: microcap12
+    name: PMEG3010EJ
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ph_shot.lib
+      sha256: c6367af2c60015e9fb5ecc3771d731c998ee74c0f74ef57bce37e58e08532f5d
 - source: nexperia
   name: PMEG3010ER
   def: subckt

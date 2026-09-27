@@ -1,0 +1,16 @@
+part: LM394
+kind: bjt
+priority: 3
+group: small_signal_npn
+models:
+- source: diyaudio
+  name: LM394
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
+    sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
+    lines:
+      LM394: [212, 219]
+    fetched: '2026-09-20'

@@ -40,7 +40,13 @@ models:
     score: null
     error: 'KeyError: ''control'''
   symbol: LM3914_bordodynov.asy
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: lm3914
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LM3914.sub
+      sha256: 0d7c8eadf79439ee42654d91628b7ab57bb12c02ae4af8dd46402d4cc5bd9a1f
 - source: spiceypedals
   name: lm3914
   def: subckt

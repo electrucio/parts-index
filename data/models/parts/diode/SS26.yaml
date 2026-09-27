@@ -19,3 +19,62 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: vishay
+    name: ss26
+    get:
+      url: https://www.vishay.com/docs/88169/ss26.txt
+      sha256: 38533e80dc649c3bb2278f8d27329ad9ac26f48027536f98cf54f5065d43771d
+  - source: microcap12
+    name: ss26
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: vishaydiode.lib
+      sha256: 2e5a5b32069cd4d1a0382ca39515c84572862176aedccfab1f7f124818db2018
+- source: onsemi
+  name: Dss26
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/ss26.lib
+    sha256: ea602767da4112ed2c696d1cd3c732566de265c564bb9c23a4b88fdfd13fe716
+    lines:
+      Dss26: [14, 18]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: Dss26
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: onsemi
+  name: SS26FL
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/lib/ss26fl.lib
+    sha256: 175189ba7c0035523b525bb7c40ec12865b1ff296f95680613a3727dbc4500e5
+    lines:
+      SS26FL: [7, 11]
+    fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: SS26FL
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+- source: vishay
+  name: SS26S
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/98354/p_ss26s.txt
+    sha256: 575f2caab3988d8d168d4dfeb2a6c8f54aa3ab41076478aed393b4054843769a
+    lines:
+      SS26S: [20, 32]
+    fetched: '2026-09-19'

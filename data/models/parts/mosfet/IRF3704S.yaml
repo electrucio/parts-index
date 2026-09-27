@@ -21,3 +21,53 @@ models:
       irf3704zsl: [62, 71]
     fetched: '2026-09-14'
   note: 'found under the alias IRF3704; same code also in: ltwiki; pins from default order (unverified)'
+- source: microcap12
+  name: irf3704
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: irf.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+    lines:
+      irf3704: [27745, 27800]
+    fetched: '2026-09-20'
+  copies:
+  - source: bordodynov
+    name: irf3704
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irf3704.spi
+      sha256: 51614a35508aa46d8fc17d741e1bb32ac7a98a90c0f12e6b857cd2b71f39ecbf
+  - source: bordodynov
+    name: irf3704
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irf3704.spi
+      sha256: 51614a35508aa46d8fc17d741e1bb32ac7a98a90c0f12e6b857cd2b71f39ecbf
+  - source: kicad-spice-library
+    name: irf3704
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf3704.spi
+      sha256: 22c575d800b304e489e1380a5091f8065dac1c1b780e7eb90bf429efb02165ee
+  - source: ltwiki
+    name: irf3704
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf3704.spi
+      sha256: 51614a35508aa46d8fc17d741e1bb32ac7a98a90c0f12e6b857cd2b71f39ecbf
+  - source: ltwiki
+    name: irf3704
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf3704.spi
+      sha256: 51614a35508aa46d8fc17d741e1bb32ac7a98a90c0f12e6b857cd2b71f39ecbf
+  - source: ltwiki
+    name: irf3704
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf3704.spi
+      sha256: 51614a35508aa46d8fc17d741e1bb32ac7a98a90c0f12e6b857cd2b71f39ecbf

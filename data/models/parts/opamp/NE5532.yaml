@@ -32,7 +32,14 @@ models:
     not_measurable: 2
     typical_rows: 4
   symbol: NE5532_bordodynov.asy
-  note: 'same code also in: ltwiki; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: ltwiki
+    name: NE5532
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/NE553x.lib
+      sha256: 0b90f4ac73ed328341114e02953781ab5106be95fb2e65cc4ff6535bd0e08564
 - source: ltwiki
   name: NE5532
   def: subckt
@@ -60,7 +67,13 @@ models:
     not_measurable: 2
     typical_rows: 4
   symbol: NE5532_ltwiki.asy
-  note: 'same code also in: kicad-spice-library; pins from comment words'
+  note: pins from comment words
+  copies:
+  - source: kicad-spice-library
+    name: NE5532
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/NE553x.lib
+      sha256: 7b937dff803cc78a682d8e71deed484d90f657584406f255beec85b67fd697f8
 - source: ltwiki
   name: NE5532TI_SN
   def: subckt
@@ -89,6 +102,19 @@ models:
     typical_rows: 4
   symbol: NE5532_ltwiki-2.asy
   note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: NE5532TI_SN
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OpAmp_Nazar_Shtybel.lib
+      sha256: 4781654faf3d2ec54bf5acd80471ac9d119fb98d495698f460aa8839ee45e05d
+  - source: bordodynov
+    name: NE5532TI_SN
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/OpAmp_Nazar_Shtybel.lib
+      sha256: 4781654faf3d2ec54bf5acd80471ac9d119fb98d495698f460aa8839ee45e05d
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/ne5532.pdf
   maker: Texas Instruments

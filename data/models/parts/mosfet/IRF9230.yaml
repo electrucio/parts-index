@@ -20,7 +20,37 @@ models:
     lines:
       irf9230: [1, 60]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: irf9230
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irf9230.spi
+      sha256: f5ae24d592e40aea6ace78b74c01b09efeed08f4979ee4f05cba67857c40c955
+  - source: kicad-spice-library
+    name: irf9230
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf9230.spi
+      sha256: 34db906dfc77349768262434d58c9a31ee8dfc6d5d0311d1b94e5bd633ea4b00
+  - source: ltwiki
+    name: irf9230
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf9230.spi
+      sha256: f5ae24d592e40aea6ace78b74c01b09efeed08f4979ee4f05cba67857c40c955
+  - source: ltwiki
+    name: irf9230
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf9230.spi
+      sha256: f5ae24d592e40aea6ace78b74c01b09efeed08f4979ee4f05cba67857c40c955
+  - source: ltwiki
+    name: irf9230
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf9230.spi
+      sha256: f5ae24d592e40aea6ace78b74c01b09efeed08f4979ee4f05cba67857c40c955
 - source: kicad-spice-library
   name: IRF9230
   def: subckt
@@ -55,3 +85,21 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: microcap12
+    name: irf9230_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+- source: ltwiki
+  name: IRF9230
+  def: model
+  type: PMOS
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrmos.lib
+    sha256: cd1b43c7f364ba7d1ebb8af3764d05b8ddaab1d79950e0eedd42a0826cd2c46b
+    lines:
+      IRF9230: [1693, 1696]
+    fetched: '2026-09-21'

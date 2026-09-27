@@ -31,11 +31,22 @@ models:
     not_measurable: 0
     typical_rows: 0
   symbol: LM7924_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from simulation: of the 6 node orders only
-    IN GND OUT regulates to about -24 V at Vin-Vout 5 V / 5 mA, Vin-Vout 15 V / 5 mA, Vin-Vout 5 V / 100
-    mA (orders tried: IN OUT GND: -23 V, -32.8 V, 947 V; IN GND OUT: -23.6 V, -23.5 V, -23.6 V; OUT IN
-    GND: -27.5 V, -37.5 V, -27.3 V; OUT GND IN: -22.1 V, -31.9 V, 1.64 V; GND IN OUT: 34.4 V, 28.7 V,
-    64.2 V; GND OUT IN: 5.42 V, 5.28 V, 1.01e+03 V)'
+  note: 'pins from simulation: of the 6 node orders only IN GND OUT regulates to about -24 V at Vin-Vout
+    5 V / 5 mA, Vin-Vout 15 V / 5 mA, Vin-Vout 5 V / 100 mA (orders tried: IN OUT GND: -23 V, -32.8 V,
+    947 V; IN GND OUT: -23.6 V, -23.5 V, -23.6 V; OUT IN GND: -27.5 V, -37.5 V, -27.3 V; OUT GND IN: -22.1
+    V, -31.9 V, 1.64 V; GND IN OUT: 34.4 V, 28.7 V, 64.2 V; GND OUT IN: 5.42 V, 5.28 V, 1.01e+03 V)'
+  copies:
+  - source: kicad-spice-library
+    name: LM7924
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/regulators.lib
+      sha256: 0b15463dadbf7c99cb3692aa563c298dd2a488e40122b87c0094158001d08f4c
+  - source: ltwiki
+    name: LM7924
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/regulators.lib
+      sha256: 1998b5aaba8b44019bf630a561c739ff33a83996cd6600bbaa8b8c3e02cf5bf2
 datasheet:
   url: https://www.onsemi.com/pub/Collateral/MC7900-D.PDF
   maker: onsemi (Motorola MC7900 series)

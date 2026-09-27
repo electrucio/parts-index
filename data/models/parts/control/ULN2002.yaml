@@ -32,7 +32,13 @@ models:
     lines:
       ULN2002: [2, 70]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: ULN2002
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/ULN2002.sub
+      sha256: 346d4f9c96a7b7b2478d75ffc43905b3fe298718c84657d6ef350c8b75b0a9d9
 - source: kicad-spice-library
   name: ULN2002
   def: subckt

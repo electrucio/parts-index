@@ -31,7 +31,95 @@ models:
     not_measurable: 1
     typical_rows: 3
   symbol: IRF540N_infineon.asy
-  note: 'same code also in: kicad-spice-library; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: IRF540N
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+      sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+  - source: kicad-spice-library
+    name: irf540n
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+      sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+  - source: kicad-spice-library
+    name: irf540n
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+      sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+  - source: bordodynov
+    name: irf540ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irf540ns.spi
+      sha256: 87dcef71e99d07ee0bafbf5bd23428063bb9f2419d67bfc2446dfc91972ce3c1
+  - source: bordodynov
+    name: irf540ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/MOS/IRF/LIB/irf540ns.spi
+      sha256: 87dcef71e99d07ee0bafbf5bd23428063bb9f2419d67bfc2446dfc91972ce3c1
+  - source: kicad-spice-library
+    name: IRF540NS
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IR.LIB
+      sha256: cbd1531949740d20c36c70e120ddea022bbdc236ba952745695131c8ea298718
+  - source: kicad-spice-library
+    name: irf540ns
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf540ns.spi
+      sha256: 1a6fb618f8240b12589f5c876dccfbea72a2730ce52fc7fc02466974b53426f2
+  - source: kicad-spice-library
+    name: irf540ns
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+      sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+  - source: kicad-spice-library
+    name: irf540ns
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/MOS_3TEN/INTRNTL2.LIB
+      sha256: 5e6d2a192f54b7e957f81573a6cbb8a0d9f59dcf4a64b887a76f2315358c51c8
+  - source: ltwiki
+    name: irf540ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf540ns.spi
+      sha256: 87dcef71e99d07ee0bafbf5bd23428063bb9f2419d67bfc2446dfc91972ce3c1
+  - source: ltwiki
+    name: irf540ns
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf540ns.spi
+      sha256: 87dcef71e99d07ee0bafbf5bd23428063bb9f2419d67bfc2446dfc91972ce3c1
+  - source: ltwiki
+    name: irf540ns
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf540ns.spi
+      sha256: 87dcef71e99d07ee0bafbf5bd23428063bb9f2419d67bfc2446dfc91972ce3c1
+  - source: kicad-spice-library
+    name: irf540n_IR
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+      sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+  - source: microcap12
+    name: irf540n_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
+  - source: kicad-spice-library
+    name: irf540ns_IR
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/irf.lib
+      sha256: 565ac7c67bbca13525a3703823cf88a0be040e4904412caff5c018586020578c
+  - source: microcap12
+    name: irf540ns_IR
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: irf.lib
+      sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
 - source: bordodynov
   name: irf540ns
   def: subckt
@@ -83,7 +171,37 @@ models:
     not_measurable: 1
     typical_rows: 3
   symbol: IRF540N_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: bordodynov
+    name: irf540n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irf540n.spi
+      sha256: 9d368875d0a3a3185827e83dde737e7fcd6b75947fd3bde36df497d1548c7e65
+  - source: kicad-spice-library
+    name: irf540n
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf540n.spi
+      sha256: 75e3aa477c1a9ca1706f87123e733764f3ab1d9f00d9aa9ad734ba5b98cae1b2
+  - source: ltwiki
+    name: irf540n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf540n.spi
+      sha256: 9d368875d0a3a3185827e83dde737e7fcd6b75947fd3bde36df497d1548c7e65
+  - source: ltwiki
+    name: irf540n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf540n.spi
+      sha256: 9d368875d0a3a3185827e83dde737e7fcd6b75947fd3bde36df497d1548c7e65
+  - source: ltwiki
+    name: irf540n
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf540n.spi
+      sha256: 9d368875d0a3a3185827e83dde737e7fcd6b75947fd3bde36df497d1548c7e65
 - source: bordodynov
   name: IRF540N
   def: model
@@ -104,7 +222,34 @@ models:
     fail: 1
     not_measurable: 1
     typical_rows: 3
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: IRF540N
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: ltwiki
+    name: IRF540N
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.IV.txt
+      sha256: 2553d2c9f4f11801190c5f3ad8387bb38b5521632244feb150188419b12e9482
+  - source: ltwiki
+    name: IRF540N
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: IRF540N
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: IRF540N
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: bordodynov
   name: irf540nt
   def: subckt
@@ -129,7 +274,36 @@ models:
     not_measurable: 7
     typical_rows: 0
   symbol: IRF540N_bordodynov-4.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: bordodynov
+    name: irf540nt
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sym/ZZZ/IGBT/IRF/LIB/irf540n.spi
+      sha256: 9d368875d0a3a3185827e83dde737e7fcd6b75947fd3bde36df497d1548c7e65
+  - source: kicad-spice-library
+    name: irf540nt
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/ir_lib/irf540n.spi
+      sha256: 75e3aa477c1a9ca1706f87123e733764f3ab1d9f00d9aa9ad734ba5b98cae1b2
+  - source: ltwiki
+    name: irf540nt
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/IGBT/IRF/LIB/irf540n.spi
+      sha256: 9d368875d0a3a3185827e83dde737e7fcd6b75947fd3bde36df497d1548c7e65
+  - source: ltwiki
+    name: irf540nt
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sym/ZZZ/MOS/IRF/LIB/irf540n.spi
+      sha256: 9d368875d0a3a3185827e83dde737e7fcd6b75947fd3bde36df497d1548c7e65
+  - source: ltwiki
+    name: irf540nt
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/IRF/LIB/irf540n.spi
+      sha256: 9d368875d0a3a3185827e83dde737e7fcd6b75947fd3bde36df497d1548c7e65
 - source: kicad-spice-library
   name: IRF540NS
   def: subckt
@@ -155,6 +329,31 @@ models:
     typical_rows: 3
   symbol: IRF540N_kicad-spice-library.asy
   note: pins from default order (unverified)
+- source: spice-model-cd
+  name: IRF540N
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/MOSFET.LB
+    sha256: 9287b7f0b7ae8ab0fa02300dfe2bdbf54cd76d2720f610592fdc5fcb2528d29b
+    lines:
+      IRF540N: [146, 153]
+    fetched: '2026-09-21'
+- source: microcap12
+  name: irf540ns_AM
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: apex.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 32f28a857c59ee06357aefa4dd0d238a912620a115f0f2130bd11c66ffbb1144
+    lines:
+      irf540ns_AM: [5024, 5083]
+    fetched: '2026-09-20'
 datasheet:
   url: https://www.infineon.com/assets/row/public/documents/24/49/infineon-irf540n-datasheet-en.pdf
   maker: Infineon (International Rectifier)

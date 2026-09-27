@@ -21,7 +21,13 @@ models:
     lines:
       RMB4S: [1308, 1317]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: RMB4S
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Rect.lib
+      sha256: 3dab7411e3d6a910ab3ed22381558611ec155f6fcfdda94949e9d21907efa409
 - source: kicad-spice-library
   name: RMB4S_GN
   def: subckt
@@ -39,3 +45,20 @@ models:
       RMB4S_GN: [207, 227]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
+  copies:
+  - source: vishay
+    name: RMB4S
+    get:
+      url: https://www.vishay.com/docs/88100/rmb4s.txt
+      sha256: ce92c3b67a064bd65deefc4d5ea460f562e43313cd1904d3a24ad36aba75c9cb
+  - source: spice-model-cd
+    name: RMB4S
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/General_Semi/Rectifiers/Bridge/rmb4s.lib
+      sha256: ce92c3b67a064bd65deefc4d5ea460f562e43313cd1904d3a24ad36aba75c9cb
+  - source: microcap12
+    name: RMB4S_GN
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: gensemi.lib
+      sha256: a91e073b84759dcbe41d4ae51687287a413fc12865804565e488f747b57b3d6c

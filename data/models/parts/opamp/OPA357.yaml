@@ -22,3 +22,16 @@ models:
     lines:
       OPA357: [84, 268]
     fetched: '2026-09-19'
+  copies:
+  - source: microcap12
+    name: OPA357
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
+  - source: ti
+    name: OPA357
+    get:
+      url: https://www.ti.com/lit/zip/SBOM284
+      member: OPA357_TINA_AIO/OPA357.LIB
+      sha256: 4a5d9979e262fcb5fd9e29ac5b812479e456116e72018ba2685466eb607374a5

@@ -24,4 +24,38 @@ models:
     lines:
       LMH6552: [45, 147]
     fetched: '2026-09-19'
-  note: 'same code also in: bordodynov, kicad-spice-library, ltwiki'
+  copies:
+  - source: bordodynov
+    name: LMH6552
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/LMH6552.MOD
+      sha256: 3ed86357f219eb7950192c5a4379a0930cde8320271cbbcd4f4245509c29f26f
+  - source: kicad-spice-library
+    name: LMH6552
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/LMH6552.MOD
+      sha256: 3ed86357f219eb7950192c5a4379a0930cde8320271cbbcd4f4245509c29f26f
+  - source: ltwiki
+    name: LMH6552
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/LMH6552.MOD
+      sha256: 3ed86357f219eb7950192c5a4379a0930cde8320271cbbcd4f4245509c29f26f
+- source: microcap12
+  name: lmh6552
+  def: subckt
+  type: SUBCKT
+  deps:
+  - output_stage
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: nation.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 3fc09b6f184ee48ba06340ee116b44f0650e61c361bb5c44744d6c7a98b2f7ce
+    lines:
+      lmh6552: [37408, 37480]
+      output_stage: [37487, 37498]
+    fetched: '2026-09-20'

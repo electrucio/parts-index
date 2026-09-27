@@ -88,3 +88,52 @@ models:
     fetched: '2026-09-14'
   note: 'STAND-IN: model of 1N4007, not of S1M; equivalence declared in catalog/wanted.yaml (see its note);
     same code also in: ltwiki'
+- source: vishay
+  name: s1m
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/87318/_p_s1m.txt
+    sha256: 316d3dd84f08b378ebba3b387fc51e6406255bc76cc5ccc5c834d5b7da98975e
+    lines:
+      s1m: [4, 7]
+    fetched: '2026-09-19'
+- source: diodes-inc
+  name: S1MSWFQ
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.diodes.com/spice/download/4122/S1MSWFQ.spice.txt
+    sha256: 697a2fece513d258dfd95ecb2c59ee998b8a969b9994d1a3966b05eb2f70aa5f
+    lines:
+      S1MSWFQ: [18, 28]
+    fetched: '2026-09-19'
+  copies:
+  - source: diodes-inc
+    name: S1MSWFQ
+    get:
+      url: https://www.diodes.com/productcollection/spicemodels/8327/collection.spice.txt
+      sha256: 19fd482d351be3caa4131a11e2663b37a7f93f716ca1b1ba2b27a30236f65a00
+- source: microcap12
+  name: S1M
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: DiodesInc.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
+    lines:
+      S1M: [10574, 10575]
+    fetched: '2026-09-20'
+  copies:
+  - source: microcap12
+    name: S1MB
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: DiodesInc.lib
+      sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15

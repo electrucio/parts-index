@@ -22,3 +22,17 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from names
+- source: ltwiki
+  name: MC7805C
+  def: subckt
+  type: SUBCKT
+  deps:
+  - x_LM78XX
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/opamp.lib
+    sha256: cca2ffc86103953c905f8efb48d96743b09d297fa79bbf22478c4979e4d08f66
+    lines:
+      MC7805C: [6655, 6658]
+      x_LM78XX: [4741, 4845]
+    fetched: '2026-09-21'

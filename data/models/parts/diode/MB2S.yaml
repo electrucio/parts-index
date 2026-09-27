@@ -15,6 +15,13 @@ models:
       MB2S: [6, 9]
     fetched: '2026-09-19'
     note: 'MB2S: MB2S'
+  copies:
+  - source: microcap12
+    name: MB2S
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: bordodynov
   name: MB2S
   def: subckt
@@ -33,4 +40,21 @@ models:
     lines:
       MB2S: [1486, 1505]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: MB2S
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/diode_fullbridge.lib
+      sha256: 2e0399bfb1c1da49c79e1aa6fffe5fac3c723bb9e1a559d02d15e385ccf8376f
+- source: vishay
+  name: MB2S
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://www.vishay.com/docs/98590/p_mb2s.txt
+    sha256: 1daf7263ba979c39100315c055501649c71001de6898845d7d83218dcf76f719
+    lines:
+      MB2S: [9, 11]
+    fetched: '2026-09-19'

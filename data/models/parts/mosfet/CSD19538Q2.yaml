@@ -28,3 +28,23 @@ models:
       csd19538q3a: [575, 641]
     fetched: '2026-09-19'
   note: found under the alias CSD19538; pins from default order (unverified)
+- source: ti
+  name: CSD19538Q2
+  def: subckt
+  type: SUBCKT
+  deps:
+  - cgs
+  - cds
+  - cgd
+  verbatim: true
+  get:
+    url: https://www.ti.com/lit/zip/SLPM188
+    member: CSD19538Q2.LIB
+    archive_sha256: 9bdf25348c69e3903e0055173618e4acff94044c49f760323f9de7262da022ad
+    sha256: 49a4734e9ca06c2d29680eff6fef77a6ee0b6c9932a3a565e18d7449c472ed03
+    lines:
+      CSD19538Q2: [37, 103]
+      cds: [429, 640]
+      cgd: [217, 428]
+      cgs: [105, 216]
+    fetched: '2026-09-19'

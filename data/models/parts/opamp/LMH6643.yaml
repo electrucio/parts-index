@@ -41,7 +41,32 @@ models:
     lines:
       LMH6643: [753, 859]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+  copies:
+  - source: microcap12
+    name: LMH6643
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: nation.lib
+      sha256: 3fc09b6f184ee48ba06340ee116b44f0650e61c361bb5c44744d6c7a98b2f7ce
+  - source: ltwiki
+    name: LMH6643
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/nationalhighspeed.lib
+      sha256: c6298db6b8e8d12c131dcf39a79d4c069d84ce3655ed0a01e7da05b5df958f21
+  - source: ltwiki
+    name: LMH6643
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/adsl/nationalhighspeed.lib
+      sha256: c6298db6b8e8d12c131dcf39a79d4c069d84ce3655ed0a01e7da05b5df958f21
+  - source: ltwiki
+    name: LMH6643
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/adsl/nationalhighspeed.lib
+      sha256: c6298db6b8e8d12c131dcf39a79d4c069d84ce3655ed0a01e7da05b5df958f21
 - source: bordodynov
   name: LMH6643
   def: subckt
@@ -61,4 +86,22 @@ models:
     lines:
       LMH6643: [3745, 3851]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+  copies:
+  - source: kicad-spice-library
+    name: LMH6643
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: LMH6643
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47
+  - source: ltwiki
+    name: LMH6643
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Opamp5.Lib
+      sha256: 516235bcd01c53a4481f0fa61938da45d598af7edcb478d94943772330a11f47

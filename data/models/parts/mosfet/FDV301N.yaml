@@ -16,7 +16,29 @@ models:
     lines:
       FDV301N_AB: [4, 4]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: kicad-spice-library
+    name: FDV301N_AB
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.mos
+      sha256: 076067315c9d28cde3f0f26dac7a9e8beb537e7412992cd5ecc53bfb7ef6a4cb
+  - source: ltwiki
+    name: FDV301N_AB
+    get:
+      url: http://bordodynov.ltwiki.org/standard.mos.XVII.txt
+      sha256: b2e9468b7304ac412108e29242a96aaa20f9dd68f826444c03b92cae51e5bfad
+  - source: ltwiki
+    name: FDV301N_AB
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: ltwiki
+    name: FDV301N_AB
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.mos
+      sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
 - source: bordodynov
   name: fdv301n
   def: subckt
@@ -34,7 +56,25 @@ models:
     lines:
       fdv301n: [15847, 15873]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: fdv301n
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Sborka.lib
+      sha256: 4e8d7a6bf0bd47bd876d4fa21302fd7cd2fad4eb84720b0201a76d27d401e793
+  - source: ltwiki
+    name: fdv301n
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Sborka.lib
+      sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
+  - source: ltwiki
+    name: fdv301n
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/FDV301N/Sborka.lib
+      sha256: 1566913b6edeb51d56c447fdd47b7868df8f038812db596dcd10bc960ae1af03
 - source: bordodynov
   name: FDV301N/FAI
   def: subckt
@@ -52,7 +92,19 @@ models:
     lines:
       FDV301N/FAI: [149, 173]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
+  note: pins from default order (unverified)
+  copies:
+  - source: kicad-spice-library
+    name: FDV301N/FAI
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/fairchild_NMOS.lib
+      sha256: 1a975526cba57c9199b644b4b6a662a0dbb285a7e2b7b89a01dd05c50e9bc2f0
+  - source: ltwiki
+    name: FDV301N/FAI
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/fairchild_NMOS.lib
+      sha256: 1a975526cba57c9199b644b4b6a662a0dbb285a7e2b7b89a01dd05c50e9bc2f0
 - source: ltwiki
   name: FDV301N
   def: subckt
@@ -71,6 +123,13 @@ models:
     lines:
       FDV301N: [3, 48]
     fetched: '2026-09-14'
+  copies:
+  - source: ltwiki
+    name: FDV301N
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Discretos/Mos&Fet/fdv301n/fdv301n.mod
+      sha256: 3a4ad55e7027d1e535597a58ba14ec2024538389812c2c5e343ed2ce8f25bac0
 - source: ltwiki
   name: FDV301N_AB
   def: model
@@ -100,3 +159,43 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from default order (unverified)
+  copies:
+  - source: spice-model-cd
+    name: FDV301N
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Fairchild/FD/FDV301N.lib
+      sha256: dc7121b9e891dd29d75bb5aa2d34f434054fd29f27d4e4215a9b9f54a4d333c3
+  - source: microcap12
+    name: FDV301N_FC
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: fairch.lib
+      sha256: 53806c9a42d8b9f44b8c77ed3ae210ad6250b5eacb44d7e7f2b429e8f4559918
+- source: onsemi
+  name: FDV301N
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/mod/fdv301n.mod
+    sha256: e2249a5e3a3f435952f7a8037686ba646009ce5e075bdedb1cdeb0e3b6ab230c
+    lines:
+      FDV301N: [3, 48]
+    fetched: '2026-09-19'
+- source: microcap12
+  name: FDV301N
+  def: subckt
+  type: SUBCKT
+  deps:
+  - nmos
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: On_Semi.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    archive_inferred: true
+    sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+    lines:
+      FDV301N: [114958, 115003]
+      nmos: [161508, 161508]
+    fetched: '2026-09-20'
