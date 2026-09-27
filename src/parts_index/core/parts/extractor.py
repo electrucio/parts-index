@@ -290,6 +290,8 @@ WILDCARD = re.compile(r"[A-Z]{2,4}\d+X{1,2}")
 # how it was published on 1,767 documents and vouched as a valve for 6K8), LED1 is a designator, CH16 a
 # channel. Measured on the export of 2026-09-27.
 LABEL = re.compile(r"(?:IN|OUT|LED|CH)\d{1,2}")
+# A net named after a chip's pin: 4053INH is the INH pin of a 4053 (and was in the dictionary as a part).
+PIN_LABEL = re.compile(r"\d{3,5}(?:INH|EN|OE|CS|CLK|RST|RESET)")
 # A value written the way a resistor is marked. 6K8 and 1R5 are valve types too, but printed bare on a
 # drawing they are 6.8 kilohm and 1.5 ohm - 6K8 came out on 1,121 documents, eleven of them eurorack
 # modules with no valve in sight. Only E24 values: 6K6 and 6K7 are not one, and 6K8GT keeps its suffix.
@@ -312,7 +314,7 @@ def _judge(tok, text, pos, isolated, raw=""):
         return None
     if tok in NOT_PARTS or (re.fullmatch(r"\d{1,2}X\d{1,2}[A-Z]{0,3}", tok) and not REAL_X.match(tok)):
         return None
-    if LABEL.fullmatch(tok) or FAMILY_X.fullmatch(tok):
+    if LABEL.fullmatch(tok) or FAMILY_X.fullmatch(tok) or PIN_LABEL.fullmatch(tok):
         return None
     if tok.isdigit() and POSTCODE_BEFORE.search(text[max(0, pos - 12):pos]):
         return None                                             # Bridport, TAS 7262: Elby's address, on every page
@@ -330,6 +332,13 @@ def _judge(tok, text, pos, isolated, raw=""):
     if re.fullmatch(r"B[A-Z]\d{1,2}[A-Z]?", tok) and not k:           # BD23 5AA, BS1 4DJ: UK postcodes; Pro Electron numbers have three digits
         return None
     fam = family_of(tok)
+    # The European valve names are a closed list and the census holds it: 377 of them are published. A
+    # name of that shape the census and the dictionary have never heard of is something else - PL001 to
+    # PL905 are plugs on a service manual's wiring, EM401 and KT13 connectors, PY16 a CD player's socket -
+    # and 1,983 of them came out on 11,405 documents on 2026-09-27.
+    if fam and fam[0] == "valve, European" and not k and not (
+            CENSUS.get(norm(tok)) or CENSUS.get(norm(base_part(tok))) or KNOWN.get(norm(base_part(tok)))):
+        return None
     cen = None if norm(tok) in NOT_HERE else CENSUS.get(norm(tok))
     if tok in REJECTED and not k and not cen and not (fam and fam[2]):         # the LLM pass also threw away a few strict type numbers (AC187)
         return None

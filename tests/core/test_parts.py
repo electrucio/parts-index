@@ -348,3 +348,16 @@ def test_a_postcode_is_not_a_valve():
 def test_a_design_that_declares_a_designator_as_its_value_declares_no_part():
     page = {"blocks": [{"text": "LED1", "conf": 1.0, "field": "value"}, {"text": "TL072", "conf": 1.0, "field": "value"}]}
     assert [h.part for h in parts.extract_page(page)] == ["TL072"]
+
+
+def test_a_european_valve_name_the_census_never_heard_of_is_a_plug():
+    """PL001-PL905 are plugs in a service manual's wiring, PY16 a CD player's socket; EL34 and PCL86 are valves."""
+    def mkpage(words):
+        return {"blocks": [{"text": w, "conf": 1.0} for w in words]}
+    found = [h.part for h in parts.extract_page(mkpage("V1 EL34 V2 PCL86 PL001 PL701 PY16 valve".split()))]
+    assert "EL34" in found and "PCL86" in found
+    assert not {"PL001", "PL701", "PY16"} & set(found)
+
+
+def test_a_net_named_after_a_pin_is_not_a_part():
+    assert [h.part for h in parts.extract("4053INH", isolated=True)] == []
