@@ -38,9 +38,11 @@ from collections import Counter, defaultdict
 import yaml
 
 from parts_index.core.config import (
+    census_registry,
     dataset_table,
     known_parts,
     model_part,
+    parts_census,
     schematics_documents,
     schematics_lines,
     schematics_pages,
@@ -49,7 +51,8 @@ from parts_index.core.config import (
     schematics_uses,
     wanted_parts,
 )
-from parts_index.core.parts.extractor import canonical, family_of
+from parts_index.core.parts import catalogue, schemes
+from parts_index.core.parts.extractor import base_part, canonical, family_of
 
 REPO_CAP = 200        # GitHub projects listed for one part
 # The kinds of use `summarise` tells apart, and which of them is a use at all. A page that only names the
@@ -211,9 +214,178 @@ def index() -> dict:
                     for r in rows(schematics_lines(s))}
         for u in rows(schematics_uses(s)):
             uses[u["part"]].append((i, u))
-    return {"sources": sources(), "kinds": kinds(), "documents": docs, "pages": pages, "lines": lines,
-            "uses": uses, "repos": repos(), "wanted": wanted(),
-            "wanted_kind": {r["part"]: r["kind"] for r in rows(wanted_parts()) if r.get("kind")}}
+    idx = {"sources": sources(), "kinds": kinds(), "documents": docs, "pages": pages, "lines": lines,
+           "uses": uses, "repos": repos(), "wanted": wanted(),
+           "wanted_kind": {r["part"]: r["kind"] for r in rows(wanted_parts()) if r.get("kind")},
+           "dictionary": dictionary_kinds()}
+    idx["listed_by"], idx["listings"] = census_listings()
+    idx["first"] = first_seen(idx)
+    return idx
+
+
+# The census sources that list parts as a publisher of their data sheets does: a manufacturer's own
+# catalogue, or an archive of the sheets themselves. A model library is also in the census, and it says
+# a model exists, not who makes the part.
+LISTING_KINDS = ("manufacturer catalogue", "datasheet archive")
+
+
+def census_listings() -> tuple[dict[str, list[list]], dict[str, dict]]:
+    """Which catalogues list each part today, with the link, and what each catalogue is.
+
+    "Texas Instruments lists it today" is not "Texas Instruments designed it" — TI lists every National
+    part since 2011 — so the page says listed, and the organisation's own record says the rest.
+    """
+    reg = yaml.safe_load(census_registry().read_text(encoding="utf-8")) if census_registry().exists() else {}
+    out: dict[str, list[list]] = defaultdict(list)
+    meta = {}
+    for src, e in (reg or {}).items():
+        if (e or {}).get("kind") not in LISTING_KINDS:
+            continue
+        meta[src] = {"title": e.get("title", src), "kind": e["kind"], "maker": e.get("maker", "")}
+        for r in rows(parts_census(src)):
+            out[r["part"]].append([src, r["url"]])
+    return out, meta
+
+
+def first_seen(idx: dict) -> dict[str, list]:
+    """The oldest dated document in the index that prints each part: year, title, source, link.
+
+    A floor, not a date of birth. The index holds what was scanned, and a part is older than the first
+    magazine here that happened to print it; the page says so, and links the page so it can be checked.
+    """
+    out: dict[str, list] = {}
+    for part, us in idx["uses"].items():
+        best = None
+        for si, u in us:
+            doc = idx["documents"][idx["sources"][si]].get(u["doc"]) or {}
+            y = (doc.get("year") or "")[:4]
+            if not y.isdigit():
+                continue
+            if best is None or int(y) < best[0]:
+                best = [int(y), doc.get("title", ""), si, doc.get("url", "")]
+        if best:
+            out[part] = best
+    return out
+
+
+VARIANT_DOCS = 5      # documents a variant nothing else vouches for must be printed in to be listed
+
+
+def vouched(idx: dict, recipes: dict, search: list[list]) -> set[str]:
+    """Numbers worth listing as a variant of a type: a curated recipe, the dictionary or a manufacturer's
+    catalogue says they exist, or enough documents print them that they are not one misread.
+
+    BC548BIC and 12AX7BLK fold onto their types as neatly as BC548C does, and each is on one or two pages:
+    what the OCR made of a line, not a part anybody sells.
+    """
+    docs = {r[0]: r[1] for r in search}
+    return (set(recipes) | set(idx.get("dictionary", {})) | set(idx.get("listed_by", {}))
+            | {p for p, d in docs.items() if d >= VARIANT_DOCS})
+
+
+def variant_groups(names, keep: set[str] | None = None) -> dict[str, list[str]]:
+    """The numbers that fold onto each type: BC548 -> BC548A, BC548B, BC548C."""
+    out: dict[str, list[str]] = defaultdict(list)
+    for p in names:
+        if keep is not None and p not in keep:
+            continue
+        b = base_part(p)
+        if b != p:
+            out[b].append(p)
+    return {k: sorted(v) for k, v in out.items()}
+
+
+def known_kinds(idx: dict, recipes: dict, names) -> dict[str, tuple[str, ...]]:
+    """Every number the project knows, with the device kinds it answers to.
+
+    The naming schemes ask two questions of it: is a shorter number a part of its own (1X2A is the 1X2,
+    revised), and is it a part of another kind (27C64N is an EPROM). A catalogue that says only
+    "semiconductor" answers the first and says no valve to the second.
+    """
+    out: dict[str, tuple[str, ...]] = {}
+    for src in idx.get("listings", {}):
+        for r in rows(parts_census(src)):
+            out.setdefault(r["part"], KIND_MAP.get(r.get("kind", ""), ()))
+    dictionary = idx.get("dictionary", {})
+    for p in names:
+        devs = KIND_MAP.get(part_kind(p, recipes, dictionary) or idx.get("wanted_kind", {}).get(p, ""), ())
+        if devs or p not in out:             # a kind the index cannot tell does not erase the catalogue's
+            out[p] = devs
+    return out
+
+
+def kind_of(part: str, recipe: dict | None, idx: dict) -> str:
+    """The same answer `part_kind` gives the search index, from what one part's page already has."""
+    if recipe:
+        return recipe.get("kind", "")
+    k = idx.get("dictionary", {}).get(part)
+    if k:
+        return k
+    fam = family_of(canonical(part) or part)
+    return fam[1] if fam else idx.get("wanted_kind", {}).get(part, "")
+
+
+def about(part: str, idx: dict, recipe: dict | None) -> dict:
+    """What the part is, as far as something says so — each piece carrying where it came from.
+
+    The name read under the standard that assigned it; the family, from the maker's own sheet when one
+    says, from the kind otherwise; who published the sheet the models were measured against, and who
+    lists the part today; the oldest dated document here that prints it; and the numbers that are
+    grades or packages of the same type. Nothing here is a guess dressed as a fact: a piece that no
+    source gives is simply absent, and the page shows nothing for it.
+    """
+    out: dict = {}
+    devices = KIND_MAP.get(kind_of(part, recipe, idx), ())
+    d = schemes.decode(part, devices, idx.get("known"))
+    if d:
+        out["name"] = d.as_dict()
+    fid, basis = catalogue.family_of(part, devices)
+    if fid:
+        out["family"] = [fid, basis]
+    doc = catalogue.documented().get(part)
+    if doc:
+        out["documented"] = {"note": doc["note"], "refs": doc["refs"].split(), "status": doc["status"]}
+    ds = (recipe or {}).get("datasheet") or {}
+    if ds.get("maker"):
+        m, lineage = catalogue.maker_of(ds["maker"])
+        if m:
+            out["maker"] = [m, lineage]
+    listed = idx.get("listed_by", {}).get(part)
+    if listed:
+        out["listed"] = listed
+    first = idx.get("first", {}).get(part)
+    if first:
+        out["first"] = first
+    groups = idx.get("variants", {})
+    base = base_part(part)
+    if base != part:
+        out["base"] = base
+        siblings = [v for v in groups.get(base, []) if v != part]
+        if siblings:
+            out["variants"] = siblings
+    elif groups.get(part):
+        out["variants"] = groups[part]
+    return out
+
+
+def catalogue_payload(idx: dict) -> dict:
+    """The catalogue, once for the whole site: families, organisations, naming schemes, references and the
+    catalogues parts are listed in. A part file names them by id."""
+    # Families and a scheme's fields are in the order their files give, which is the order a reader meets
+    # them — material before function, diodes before transistors — and JSON objects are written with
+    # sorted keys, so both travel as lists.
+    def scheme(sc: dict) -> dict:
+        out = {x: v for x, v in sc.items() if not x.startswith("_") and x not in ("id", "order", "fields")}
+        out["fields"] = [[k, f] for k, f in (sc.get("fields") or {}).items()]
+        return out
+    return {
+        "families": [f for f in catalogue.families().values()],
+        "makers": {k: {x: v for x, v in m.items() if x not in ("id", "aliases")} for k, m in catalogue.makers().items()},
+        "schemes": {k: scheme(sc) for k, sc in schemes.schemes().items()},
+        "refs": {k: {x: r[x] for x in ("title", "author", "url", "consulted", "link")}
+                 for k, r in catalogue.references().items()},
+        "listings": idx.get("listings", {}),
+    }
 
 
 def model_recipes() -> tuple[dict[str, dict], list[str]]:
@@ -346,6 +518,9 @@ def part_payload(part: str, idx: dict, recipe: dict | None) -> dict:
         out["listed"] = out_listed
     if recipe:
         out["models"] = trim_models(recipe)
+    info = about(part, idx, recipe)
+    if info:
+        out["about"] = info
     return out
 
 
@@ -372,6 +547,7 @@ def search_index(idx: dict, recipes: dict) -> tuple[list[list], list[dict]]:
     dictionary = dictionary_kinds()
     listed_kind = idx.get("wanted_kind", {})
     cache: dict[str, int] = {}
+    fam_at = {fid: i for i, fid in enumerate(catalogue.families())}
     out = []
     tally = Counter()
     for part in sorted(set(counts) | set(recipes) | set(listed_kind)):
@@ -383,7 +559,9 @@ def search_index(idx: dict, recipes: dict) -> tuple[list[list], list[dict]]:
         for i, (key, _) in enumerate(DEVICES):
             if bits & (1 << i):
                 tally[key] += 1
-        out.append([part, docs, uses, len(recipes.get(part, {}).get("models") or []), bits])
+        fid, _ = catalogue.family_of(part, KIND_MAP.get(kind, ()))
+        out.append([part, docs, uses, len(recipes.get(part, {}).get("models") or []), bits,
+                    fam_at.get(fid, -1)])
     # Every device ships, even the ones nothing answers to, because the bit a part carries is its
     # position here. Dropping the empty ones would renumber the rest, and a filter would quietly select
     # the wrong device — which is what the fixture caught. The site hides an entry with nothing in it.

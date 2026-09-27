@@ -243,3 +243,18 @@ def test_a_document_that_only_mentions_the_part_sorts_after_one_that_uses_it(dat
              ["2", "1", "TL072", "advert", "Offered at a price in a mail-order list."]])
     page = P.part_payload("TL072", P.index(), None)
     assert [d["t"] for d in page["docs"]] == ["Bassman 5F6-A", "A Sale", "Opamp Bypassing"]
+
+
+def test_a_part_says_the_oldest_dated_document_that_prints_it(data):
+    idx = P.index()
+    page = P.part_payload("12AX7", idx, None)
+    year, title, si, url = page["about"]["first"]
+    assert year == 1959 and title in ("Bassman 5F6-A", "Fender Bassman")    # both copies are from 1959
+    assert url.endswith("bassman.pdf")
+
+
+def test_what_no_source_says_is_left_out_rather_than_guessed(data):
+    # The fixture has no naming schemes, no families and no catalogue: the page gets the first appearance,
+    # which the index itself vouches for, and nothing else.
+    idx = P.index()
+    assert set(P.part_payload("TL072", idx, None).get("about", {})) <= {"first"}

@@ -5,10 +5,15 @@ order: 50
 applies_to: [tube]
 forms:
   - example: 6N2P-EV
-    pattern: '^(?P<heater>\d{1,2})(?P<device>ZH|SH|KH|TS|[ABCDEFGHIJKLNPRSUVX])(?P<serial>[1-9]\d{0,2})(?P<envelope>[PRABSNKD])(?:-?(?P<special>YEV|EV|VR|DR|YE|V|R|E|D|I|K))?$'
-    # The envelope letters are also American revision letters and the ends of other part numbers: 1X2A is
-    # the 1X2 revised, 27C64N an EPROM. Read as an envelope only when the number without it is not a part
-    # of its own.
+    pattern: '^(?P<heater>[1-9]|[1-3]\d|40)(?P<device>ZH|SH|KH|TS|[ABCDEFGHIJKLNPRSUVX])(?P<serial>[1-9]\d{0,2})(?P<envelope>[PRSNK])(?:-?(?P<special>YEV|EV|VR|DR|YE|V|R|E|D|I|K))?$'
+    # 27C64N is an EPROM the dictionary filed as a valve: the number without the envelope letter is a part
+    # of another kind, so it is not read. 6N2P stays a Soviet valve although a 6N2 exists, because that is
+    # a valve too.
+    unless_known_as_other: envelope
+  # A, B and D are also American revision letters: 1X2A is the 1X2 revised. Read as an envelope only when
+  # the number without it is not a part of its own at all.
+  - example: 6J1B
+    pattern: '^(?P<heater>[1-9]|[1-3]\d|40)(?P<device>ZH|SH|KH|TS|[ABCDEFGHIJKLNPRSUVX])(?P<serial>[1-9]\d{0,2})(?P<envelope>[ABD])(?:-?(?P<special>YEV|EV|VR|DR|YE|V|R|E|D|I|K))?$'
     unless_known_without: envelope
 fields:
   heater:

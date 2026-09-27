@@ -23,6 +23,7 @@ four-fifths of an explanation.
 from __future__ import annotations
 
 import re
+from collections.abc import Mapping
 from dataclasses import dataclass, field
 from functools import cache
 from pathlib import Path
@@ -110,22 +111,42 @@ def meaning_of(value: str, spec: dict) -> str | None:
     return None
 
 
-def read_with(scheme: dict, part: str, known: frozenset[str] | set[str] | None = None) -> Decoding | None:
+Known = Mapping[str, tuple[str, ...]] | frozenset[str] | set[str]
+
+
+def _devices_of(known: Known, name: str) -> tuple[str, ...] | None:
+    """The device kinds a known part answers to; () when known but of no kind; None when unknown."""
+    if name not in known:
+        return None
+    return tuple(known[name]) if isinstance(known, Mapping) else ()
+
+
+def read_with(scheme: dict, part: str, known: Known | None = None) -> Decoding | None:
     """The first form of `scheme` that reads `part` completely.
 
-    A form marked `unless_known_without: <group>` stands aside when the number without that group is a
-    part in its own right: the Soviet envelope letters A, B and D are also American revision letters,
-    and 1X2A is the 1X2 revised, not a Soviet subminiature. Without the list of known parts such a form
-    is not tried at all.
+    Two guards stand a form aside, both about the number with one group taken off it:
+    `unless_known_without: <group>` when that shorter number is a part in its own right — the Soviet
+    envelope letters A, B and D are also American revision letters, and 1X2A is the 1X2 revised;
+    `unless_known_as_other: <group>` when it is a part of a kind this scheme does not number — 27C64N is
+    an EPROM with a letter after it, while 6N2P is still a valve although a 6N2 exists. Without the known
+    parts, a guarded form is not tried at all.
     """
     fields = scheme.get("fields") or {}
+    applies = set(scheme.get("applies_to") or ())
     for rx, form in scheme["_forms"]:
         m = rx.fullmatch(part)
         if not m:
             continue
         g = form.get("unless_known_without")
-        if g and (known is None or part[:m.start(g)] in known):
+        if g and (known is None or _devices_of(known, part[:m.start(g)]) is not None):
             continue
+        g = form.get("unless_known_as_other")
+        if g:
+            if known is None:
+                continue
+            devs = _devices_of(known, part[:m.start(g)])
+            if devs is not None and not set(devs) & applies:
+                continue
         segments, ok = [], True
         for name, value in sorted(((k, v) for k, v in m.groupdict().items() if v is not None),
                                   key=lambda kv: m.start(kv[0])):
@@ -143,11 +164,11 @@ def read_with(scheme: dict, part: str, known: frozenset[str] | set[str] | None =
     return None
 
 
-def decode(part: str, devices: tuple[str, ...] | list[str],
-           known: frozenset[str] | set[str] | None = None) -> Decoding | None:
+def decode(part: str, devices: tuple[str, ...] | list[str], known: Known | None = None) -> Decoding | None:
     """How the number reads under the first scheme that numbers this kind of device and knows every letter.
 
-    `known` is every part number the project knows, for the forms that must not read a revision letter as
+    `known` is every part number the project knows — with the device kinds of each, where it matters that
+    a shorter number is a valve and not an EPROM — for the forms that must not read a revision letter as
     something else; without it those forms are skipped.
     """
     if not part or not devices:

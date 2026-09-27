@@ -37,6 +37,7 @@ spice_definitions:
 ti_datasheets:
   kind: manufacturer catalogue
   title: Texas Instruments data sheets, one per part
+  maker: texas-instruments          # an organisation of makers.yaml: who is listing its own parts
   home_url: https://www.ti.com/
   index_url: https://www.ti.com/lit/gpn/sitemap-datasheets-standard.xml
   part_from: '/lit/gpn/([^/?#]+)$'
@@ -54,6 +55,7 @@ ti_datasheets:
 renesas_products:
   kind: manufacturer catalogue
   title: Renesas product catalogue, including the Intersil analogue legacy
+  maker: renesas
   home_url: https://www.renesas.com/
   index_url: https://www.renesas.com/sitemap.xml
   part_from: '/products/([^/]+)/part-details/'

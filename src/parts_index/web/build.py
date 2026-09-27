@@ -84,6 +84,11 @@ def build(out: Path | None = None) -> dict:
     idx = part_pages.index()
     recipes, clashes = part_pages.model_recipes()
     search, kind_names = part_pages.search_index(idx, recipes)
+    names = [r[0] for r in search]
+    # Every number the project knows, for the naming schemes that must not read an American revision
+    # letter as a Soviet envelope: 1X2A is the 1X2, revised, because 1X2 is a part of its own.
+    idx["known"] = part_pages.known_kinds(idx, recipes, names)
+    idx["variants"] = part_pages.variant_groups(names, part_pages.vouched(idx, recipes, search))
     if search:
         sizes["parts.json"] = write_json(out, "parts.json", {
             "schema": SCHEMA, "sources": idx["sources"],
@@ -91,7 +96,10 @@ def build(out: Path | None = None) -> dict:
             "kinds": [idx["kinds"].get(s, "") for s in idx["sources"]],
             # the vocabulary of device kinds; a part row names one by position
             "deviceKinds": kind_names,
+            # the families, in the order a part row names one by position
+            "families": list(part_pages.catalogue.families()),
             "parts": search})
+        sizes["catalogue.json"] = write_json(out, "catalogue.json", part_pages.catalogue_payload(idx))
         total = 0
         for name, *_ in search:
             total += write_json(out / "part", f"{name}.json",

@@ -61,9 +61,10 @@ export interface DeviceKind {
   n: number
 }
 
-/** One row of the search index: part, documents, uses, model candidates, devices.
- *  The last is a bit per entry of `PartIndex.deviceKinds`, because a part can answer to several. */
-export type PartRow = [string, number, number, number, number]
+/** One row of the search index: part, documents, uses, model candidates, devices, family.
+ *  Devices is a bit per entry of `PartIndex.deviceKinds`, because a part can answer to several; family
+ *  is a position in `PartIndex.families`, or -1 when nothing says which. */
+export type PartRow = [string, number, number, number, number] | [string, number, number, number, number, number]
 
 export interface PartIndex {
   schema: number
@@ -73,6 +74,8 @@ export interface PartIndex {
   kinds: string[]
   /** The device filter's menu, in menu order. A part row carries one bit per entry. */
   deviceKinds: DeviceKind[]
+  /** Family ids, in the order a part row names one. */
+  families?: string[]
   parts: PartRow[]
 }
 
@@ -125,4 +128,95 @@ export interface PartPage {
     models: PartModel[]
     datasheet?: { url: string; maker?: string; doc?: string; date?: string }
   }
+  /** What the part is, each piece present only when something says so. */
+  about?: About
+}
+
+/** A part number read under the standard that assigned it: text, what the piece is, what it says. */
+export interface NameReading {
+  scheme: string
+  label: string
+  segments: [string, string, string][]
+  caveats: string[]
+  refs: string[]
+}
+
+export interface About {
+  name?: NameReading
+  /** The family, and whether a maker's sheet says so or the part's kind implies it. */
+  family?: [string, 'documented' | 'kind']
+  documented?: { note: string; refs: string[]; status: 'draft' | 'reviewed' }
+  /** Who published the sheet the models were measured against, and the organisations it descends from. */
+  maker?: [string, string[]]
+  /** Catalogues that list the part today: census source, link. */
+  listed?: [string, string][]
+  /** The oldest dated document here that prints it: year, title, source position, link. */
+  first?: [number, string, number, string]
+  /** The type this number is a grade or package of. */
+  base?: string
+  variants?: string[]
+}
+
+export interface Family {
+  id: string
+  label: string
+  broader?: string
+  definition: string
+  question?: string
+  key_params?: string[]
+  examples?: string[]
+  external?: string[]
+  kinds?: string[]
+  refs?: string[]
+}
+
+/** [year, what happened, the other organisation's id, source] */
+export type MakerEvent = [number | null, string, string, string]
+
+export interface Maker {
+  name: string
+  country?: string
+  hq_as_of?: string
+  founded?: number
+  events?: MakerEvent[]
+  source?: string
+}
+
+export interface SchemeField {
+  label: string
+  values?: Record<string, string>
+  each?: Record<string, string>
+  tokens?: Record<string, string>
+  ranges?: [number, number, string][]
+  meaning?: string
+  first?: Record<string, string>
+  optional?: boolean
+}
+
+export interface Scheme {
+  label: string
+  summary: string
+  applies_to: string[]
+  forms: { example: string; pattern: string }[]
+  /** In the order the parts of a number are read. */
+  fields: [string, SchemeField][]
+  caveats?: string[]
+  refs?: string[]
+}
+
+export interface Reference {
+  title: string
+  author: string
+  url: string
+  consulted: string
+  link: string
+}
+
+export interface Catalogue {
+  /** In the order of the file: broad before narrow, the way the menu reads. */
+  families: Family[]
+  makers: Record<string, Maker>
+  schemes: Record<string, Scheme>
+  refs: Record<string, Reference>
+  listings: Record<string, { title: string; kind: string; maker: string }>
 }

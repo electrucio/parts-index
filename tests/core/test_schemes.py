@@ -4,7 +4,8 @@ import pytest
 from parts_index.core.parts import catalogue, schemes
 from parts_index.web.parts import KIND_MAP
 
-KNOWN = frozenset({"1X2", "12B4", "27C64"})   # two American valves with revised versions, and an EPROM
+# Two American valves with revised versions, a Soviet valve's shorter namesake, and an EPROM.
+KNOWN = {"1X2": ("tube",), "12B4": ("tube",), "6N2": ("tube",), "27C64": ()}
 
 
 def read(part, kind):
@@ -38,7 +39,7 @@ def test_every_scheme_reads_its_own_example_and_cites_what_exists():
     ("GZ34", "tube", "mullard-philips-tube", ["G", "Z", "34"]),
     ("PL500", "tube", "mullard-philips-tube", ["P", "L", "500"]),
     ("E88CC", "tube", "mullard-philips-tube", ["E", "88", "CC"]),
-    ("6N2P", "tube", "soviet-tube", ["6", "N", "2", "P"]),
+    ("6N2P", "tube", "soviet-tube", ["6", "N", "2", "P"]),              # a 6N2 exists, and it is a valve too
     ("6P14P", "tube", "soviet-tube", ["6", "P", "14", "P"]),
     ("6N2PEV", "tube", "soviet-tube", ["6", "N", "2", "P", "EV"]),
     ("6SH9P", "tube", "soviet-tube", ["6", "SH", "9", "P"]),
@@ -54,7 +55,7 @@ def test_a_number_reads_letter_by_letter(part, kind, scheme, pieces):
 
 def test_the_letters_say_what_the_standard_says():
     m = [meaning for _, meaning in read("BC548B", "bjt")[1]]
-    assert m[0].startswith("silicon") and m[1].startswith("transistor") and m[3].startswith("not part of")
+    assert m[0].startswith("silicon") and m[1].startswith("transistor") and m[3].startswith("not Pro Electron")
     assert read("AC128", "bjt-ge")[1][0][1].startswith("germanium")
     assert dict(read("ECC83", "tube")[1])["CC"] == "a small-signal triode + a small-signal triode"
     assert "Noval" in dict(read("ECC83", "tube")[1])["83"]

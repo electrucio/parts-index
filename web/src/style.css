@@ -171,3 +171,14 @@ details.uses .uses { border-top: 1px solid var(--rule); }
 details.uses .uses .uses { border-top: 0; }
 details.uses summary strong { font-weight: 600; }
 .plist a .dot { margin-right: 2px; }
+
+/* What a part's name says, and the catalogue pages */
+.segs { display: flex; flex-wrap: wrap; gap: 8px; }
+.seg { display: grid; grid-template-rows: auto auto 1fr; gap: 2px; min-width: 64px; max-width: 260px; padding: 8px 10px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; }
+.seg code { font: 700 1.3rem var(--mono); color: var(--accent-ink); }
+.seg .f { font: 600 0.7rem var(--body); text-transform: uppercase; letter-spacing: 0.07em; color: var(--faint); }
+.seg .m { font-size: 0.88rem; line-height: 1.35; }
+.refs a, a.refs { font: 0.74rem var(--mono); }
+.prose-wide { max-width: 90ch; }
+ul.tree { list-style: none; margin: 0; padding-left: 0; display: grid; gap: 4px; }
+ul.tree ul.tree { padding-left: 20px; border-left: 2px solid var(--rule); margin: 4px 0 6px 4px; }

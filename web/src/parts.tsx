@@ -12,10 +12,10 @@
 import type preact from 'preact'
 import { useEffect, useMemo, useState } from 'preact/hooks'
 
+import { AboutPart } from './about'
+import { DATA, loadIndex } from './data'
 import { forViewer } from './links'
 import type { DeviceKind, PageUse, PartIndex, PartModel, PartPage, PartRow, UseKind } from './types'
-
-const DATA = `${import.meta.env.BASE_URL}data`
 export const n = (v: number) => v.toLocaleString('en-GB')
 
 type Sort = 'documents' | 'models' | 'name'
@@ -436,6 +436,7 @@ export function Detail({ part, sources, kinds }: { part: string; sources: string
       {!error && !page && <p class="muted">Loading…</p>}
       {page && (
         <>
+          <AboutPart page={page} sources={sources} />
           <Listed page={page} />
           <Models page={page} />
           <Uses page={page} sources={sources} kinds={kinds} />
@@ -459,12 +460,7 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
   const [device, setDevice] = useState('')
   const [shown, setShown] = useState(PAGE)
 
-  useEffect(() => {
-    fetch(`${DATA}/parts.json`)
-      .then((r) => r.json() as Promise<PartIndex>)
-      .then(setIndex)
-      .catch(() => setIndex({ schema: 0, sources: [], kinds: [], deviceKinds: [], parts: [] }))
-  }, [])
+  useEffect(() => { loadIndex().then(setIndex) }, [])
 
   const searching = q.trim().length >= 2
   const list = useMemo(() => {
