@@ -80,6 +80,31 @@ vouches for is dropped by a shape rule (`test_nothing_the_dictionary_or_the_cens
 runs the whole vocabulary). The rules that once dropped 1N4148 as a nanofarad, 2SC1815 as an SC-18 case
 and ISO7721 as an SO-77 are the reason it exists; a new filter that swallows a real part fails it.
 
+## What a part is
+
+The catalogue under `data/parts/` (families, naming schemes, organisations, relations, references) and the
+data-sheet register under `data/datasheets/` began on 2026-09-27. Everything in them cites a source; what
+follows is what they do not cover yet, roughly in order of what a reader would notice.
+
+- **The drafts need a reading.** The 69 rows of `part_families.csv` and the 30 of `relations.csv` are
+  marked `draft` and the site says "not yet reviewed" beside each. Reviewing one is opening its reference
+  and checking the row says what it says; then `status: reviewed`.
+- **Manufacturer prefixes.** LM, NE, CA, MC, TL, NJM, uPC: the part page says nothing about them yet,
+  because none of the sources read states which company registered which prefix, and a prefix is a habit,
+  not a registration (TI sells National's LM parts, and several companies made NE5532s). The evidence is
+  already in the repository: the 508 recipes with a datasheet say who published each part's sheet, and
+  the register adds TI's. A prefix page could say "the sheets linked here for LM parts come from National
+  Semiconductor and, since 2011, from TI" and be true.
+- **Integrated-circuit numbering.** Pro Electron numbered ICs on its own plan (TDA, TBA, SAA); JEDEC's
+  7400 and 4000 series have their own logic. Neither is read yet.
+- **The register's other catalogues.** Renesas (840 indexed parts; its robots.txt allows this by name),
+  then onsemi, Nexperia and ST, each needing its own reader. Only facts leave a page.
+- **Pictures of the letters.** A drawing of a TO-92 with its pins, as inventable.eu does for the BC548, is
+  a thing a family page could carry — drawn here, never copied.
+- **Longer family pages.** The twelve to twenty families a reader of audio circuits meets most (dual
+  triode, JFET, OTA, BBD, VCA, op-amp input stages) deserve a page of their own words, with a schematic
+  from this index as the example.
+
 ## Links
 
 - **Nothing re-checks links.** Some will rot, and at least one archive.org item is a private upload that

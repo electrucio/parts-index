@@ -12,12 +12,16 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
   (the one polite client), `ledger` (what has been processed), `pagesio` (OCR page records), `adfilter`,
   `links` (the deep link, with `web/src/links.ts` as its other half and one golden fixture over both),
   `llm` (the two ways to ask a model — paid at OpenAI, or the local server — with one cache over both),
-  and `parts/` (the part-number extractor, single source of truth). **(todo)** `table`.
+  and `parts/` (the part-number extractor, single source of truth; `catalogue` and `schemes`, what a part
+  is — its family, the organisation behind it, how it relates to others, and what the letters of its name
+  say under the standard that assigned them). **(todo)** `table`.
 - `src/parts_index/schematics/` pillar 1: `download` (the sources whose URLs are already listed),
   `summarise` (one line per published use, saying what that part does on that page), `export` (the
   index into `data/`) and `titles`. **(todo)** crawl → ocr → index → linkcheck.
 - `src/parts_index/models/` pillar 2: fetch, ingest, index, recover and promote (the public recipe
   per part). **(todo)** curate and `datasheets/`.
+- `src/parts_index/datasheets/` `register`: what a manufacturer's own catalogue says about each indexed
+  part — category, production status, data sheet title and revision — facts and links only.
 - `src/parts_index/web/` builds the site's data from `data/` alone: `build` and `parts` (one file
   per part, already joined and grouped, because a static site has nobody to ask). **(todo)** `src/parts_index/bench/`
   pillar 3: simulate models (ngspice is the reference engine) and score them against datasheet rows.
@@ -28,7 +32,8 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
   the exported schematic index
   (documents, pages, uses, the line each use gets, and the parts those lines cast doubt on), the model
   recipes with their verification results, the LTspice symbols
-  drawn for them, and what was distilled from the research datasets. **(todo)** the licence notes.
+  drawn for them, what was distilled from the research datasets, and the catalogue of what a part is
+  (`data/parts/`: families, naming schemes, organisations, relations and the references they cite). **(todo)** the licence notes.
 - `web/` the site (Vite + TypeScript + Preact): the parts browser and the coverage record. Its look
   is the previous project's site, carried over. `docs/` the roadmap. **(todo)** the maintainer runbook.
 - `src/parts_index/datasets/` what is kept from the research datasets: `repos` reads how much
