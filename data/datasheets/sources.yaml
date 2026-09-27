@@ -291,8 +291,9 @@ toshiba_wayback:
   maker: toshiba
   prefixes:
     - www.semicon.toshiba.co.jp/td/en/
-  keep: '(?i)/td/en/.+\.pdf$'
-  strip: '^en_\d{8}_|_datasheet$'
+    - www.semicon.toshiba.co.jp/td/ja/
+  keep: '(?i)/td/(?:en|ja)/.+\.pdf$'
+  strip: '^(?:en_|ja_)?\d{8}_|_datasheet$'   # ja: 20011207_TA7317P_datasheet.pdf
   status: active
   delay: 10
   notes: 'Toshiba''s semiconductor site before 2017 (semicon.toshiba.co.jp) filed its English data sheets
@@ -390,7 +391,8 @@ sanyo_wayback:
   maker: sanyo
   prefixes:
   - service.semic.sanyo.co.jp/semi/ds_pdf_e/
-  keep: /ds_pdf_e/[^/]+\.pdf$
+  - service.semic.sanyo.co.jp/semi/ds_pdf_j/
+  keep: /ds_pdf_[ej]/[^/]+\.pdf$
   strip: -.*$
   status: active
   delay: 10
@@ -401,7 +403,7 @@ panasonic_wayback:
   prefixes:
   - www.semicon.panasonic.co.jp/ds4/
   - industrial.panasonic.com/content/data/SC/ds/ds4/
-  keep: (?i)/ds4/[^/]+_(?:_?E|[A-Z]ED)(?:_discon)?\.pdf$
+  keep: (?i)/ds4/[^/]+_(?:_?[EJ]|[A-Z][EJ]D)(?:_discon)?\.pdf$
   strip: _.*$
   status: active
   delay: 10

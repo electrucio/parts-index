@@ -364,7 +364,9 @@ function Datasheets({ page, cat }: { page: PartPage; cat: Catalogue }) {
       <p class="muted small">
         Links only: each sheet stays where its publisher or archive keeps it.{' '}
         <a href={`https://www.alldatasheet.com/view.jsp?Searchword=${encodeURIComponent(page.part)}`} target="_blank" rel="noopener">Search alldatasheet</a>
-        {' '}for more — a search, not a checked link.
+        {' '}or{' '}
+        <a href={`https://www.datasheetarchive.com/?q=${encodeURIComponent(page.part.toLowerCase())}`} target="_blank" rel="noopener">Datasheet Archive</a>
+        {' '}for more — searches, not checked links.
       </p>
     </section>
   )
