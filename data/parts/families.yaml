@@ -1,0 +1,593 @@
+# What each family of parts is, in a sentence, and what it is for — the page a part links to when it
+# says "a JFET" or "a BBD", and the menu somebody browses who does not know the part number yet.
+#
+# A family here is an editorial concept, not a claim about any one part. Three kinds are mixed on purpose,
+# because a reader asks all three questions: a structure (JFET), a function (rectifier) and an
+# architecture (current-feedback op-amp). A numbering series (BC546 to BC550) is not a family: it belongs
+# to the parts themselves and to the naming schemes. A part can answer to several families; the site shows
+# the one it was filed under.
+#
+# Fields
+#   label        what the menu says
+#   broader      the family this one sits inside; the top level has none
+#   definition   one sentence, own words
+#   question     what choosing a part of this family comes down to — the reason the page exists
+#   key_params   the datasheet quantities worth comparing, in the order a designer reads them
+#   examples     parts of this family, preferably ones this index holds
+#   external     examples from outside the index: the family is worth explaining even when nothing in
+#                the collection belongs to it yet, and the page then says so
+#   kinds        the device kinds of the site menu (web/parts.py, DEVICES) that
+#                default to this family when nothing more precise is known. Each appears once; a part
+#                whose kind could be several devices (a JEDEC 2N number: bjt, jfet or mosfet) gets the
+#                family they share (transistor).
+#   refs         ids in references.csv
+#
+# Seeded on 2026-09-27 from a classification proposal (sixty concepts, eighty-three annotated references)
+# drafted with GPT for the maintainer and reviewed here: the states it listed as families ("identity
+# pending", "IC of unknown function") were dropped, because an unknown is a state of our knowledge and
+# not a kind of part — the site says "not known" instead. Every reference link was requested on that
+# date, and references.csv says how each one answered.
+
+# --- top level: how a reader first splits the world ------------------------------------------------
+discrete:
+  label: Discrete semiconductors
+  definition: Single semiconductor devices, or a few of them in one package, each doing one job.
+  question: Is one device enough, or does the job need a whole integrated block?
+  refs: [S01, S09, S10]
+
+tube:
+  label: Tubes and valves
+  definition: Devices in which electrons travel through vacuum or gas between electrodes.
+  question: The number of electrodes, how the cathode is heated and what fills the envelope matter more than its shape.
+  key_params: [electrodes, sections, heater voltage and current, base, anode limits, characteristic curves]
+  examples: [12AX7, EL84, 0A2, 10BP4]
+  kinds: [tube]
+  refs: [S07, S17]
+
+ic:
+  label: Integrated circuits
+  definition: Many devices formed on one chip to perform a whole function.
+  question: Which function is needed, and what does the package ask of the circuit around it?
+  refs: [S01, S05]
+
+optoelectronic:
+  label: Optoelectronics
+  definition: Devices that emit, detect or couple through light.
+  question: What does the light carry — a signal, an indication, or isolation between two circuits?
+  refs: [S01]
+
+module:
+  label: Modules and hybrids
+  definition: Several dies or components assembled into one package that is sold as one part.
+  question: A packaged function is not the same as a monolithic one; dissipation and pinout come from the assembly.
+  key_params: [integration technology, power, load, pinout, dissipation]
+  examples: [STK4040]
+  refs: [S03, S04]
+
+transducer:
+  label: Transducers
+  definition: Devices that convert between an electrical signal and sound, light, pressure or another physical quantity.
+  question: What physical quantity is converted, and what interface does the electrical side present?
+  refs: [S64]
+
+other:
+  label: Other system parts
+  definition: Batteries, sensors, connectors and the rest of a system that is not an active signal device.
+  question: The index needs the rest of the system as well as the analogue core.
+  examples: [PP3, PT100]
+  kinds: [passive]
+  refs: [S01]
+
+# --- diodes ----------------------------------------------------------------------------------------
+diode:
+  label: Diodes
+  broader: discrete
+  definition: Two-terminal semiconductor devices that conduct far more easily in one direction than the other.
+  question: Rectify, limit, protect, regulate — or use the capacitance that changes with voltage?
+  key_params: [VR, IF, VF at IF, IR at VR and temperature, capacitance, reverse recovery]
+  examples: [1N4148, 1N4007, BAT85, BZX55]
+  kinds: [diode, diode-ge]
+  refs: [S10, S53, S54]
+
+signal-diode:
+  label: Signal diodes
+  broader: diode
+  definition: Small diodes for signals and fast switching.
+  question: Speed, leakage and capacitance can matter more than the maximum current.
+  key_params: [trr, CJ, VF, IR]
+  examples: [1N4148, 1N914, 1N34A]
+  refs: [S10, S54]
+
+rectifier:
+  label: Rectifiers
+  broader: diode
+  definition: Diodes made to turn alternating current into direct current in a power supply.
+  question: What voltage, current and surges must the supply survive?
+  key_params: [VRRM, IF(AV), IFSM, VF, trr]
+  examples: [1N4001, 1N4007, UF4007]
+  refs: [S10, S53]
+
+zener:
+  label: Zener and reference diodes
+  broader: diode
+  definition: Diodes used in a characterised breakdown region to hold a voltage.
+  question: How precise and how much power — a clipper, a reference or a shunt regulator?
+  key_params: [VZ at IZ, tolerance, dynamic resistance, power]
+  examples: [BZX55, BZY88, 1N4733A]
+  kinds: [zener]
+  refs: [S10, S15]
+
+tvs:
+  label: Transient suppressors
+  broader: diode
+  definition: Diodes made to absorb or clamp short over-voltage pulses.
+  question: The stand-off voltage alone does not say how the device behaves during a pulse.
+  key_params: [VRWM, VBR, VC, pulse shape and power, direction]
+  examples: [SMAJ5.0A, SMBJ5.0A]
+  refs: [S10]
+
+varactor:
+  label: Varactors
+  broader: diode
+  definition: Diodes used for the capacitance that changes with reverse voltage.
+  question: The variable capacitance is the useful function, so its range and Q decide.
+  key_params: [C(V), Q, leakage, bias range]
+  examples: [BB112, MV2109]
+  refs: [S15, S66]
+
+tunnel-diode:
+  label: Tunnel diodes
+  broader: diode
+  definition: Heavily doped diodes whose tunnelling current gives a region of negative differential resistance.
+  question: The physical mechanism is what makes oscillation or very fast switching possible.
+  key_params: [peak current, valley current, negative resistance, capacitance]
+  examples: [1N3716]
+  refs: [S70]
+
+current-regulator-diode:
+  label: Current regulator diodes
+  broader: diode
+  definition: Two-terminal devices that hold a current nearly constant over a range of voltage.
+  question: Looks like a diode, but inside it is usually a JFET with its gate tied to its source.
+  key_params: [regulated current, tolerance, voltage range, noise]
+  examples: [1N5283]
+  refs: [S01, S10]
+
+# --- transistors -----------------------------------------------------------------------------------
+transistor:
+  label: Transistors
+  broader: discrete
+  definition: Three-terminal devices in which a small signal controls a larger current.
+  question: The structure — bipolar, field-effect, unijunction — decides how it is biased and driven.
+  refs: [S01, S82]
+
+bjt:
+  label: Bipolar transistors
+  broader: transistor
+  definition: Transistors in which a base current controls a collector current; NPN or PNP.
+  question: What current, noise, speed and dissipation does the circuit need? Polarity, gain, noise and power are separate axes.
+  key_params: [polarity, material, VCEO, IC, hFE at IC and VCE, fT, SOA]
+  examples: [BC547, 2N3904, AC128, BD139]
+  kinds: [bjt, bjt-ge]
+  refs: [S09, S29]
+
+bjt-array:
+  label: Transistor pairs and arrays
+  broader: bjt
+  definition: Several transistors in one package, often matched and thermally coupled.
+  question: Do matching and thermal tracking matter more than the individual device?
+  key_params: [count, polarities, matching, differential drift, pinout]
+  examples: [CA3046, SSM2210, SSM2220]
+  refs: [S09, S21]
+
+point-contact:
+  label: Point-contact transistors
+  broader: transistor
+  definition: The first transistors, made with metal points pressed onto germanium rather than with junctions.
+  question: Why did mechanical fragility push the industry to junction transistors?
+  key_params: [material, contacts, bias, process, date, package]
+  external: [2N32]
+  refs: [S77, S79]
+
+fet:
+  label: Field-effect transistors
+  broader: transistor
+  definition: Transistors in which a voltage on the gate controls the conductance of a channel.
+  question: How is the channel controlled, and what does that impose on the input and on biasing?
+  key_params: [channel, structure, mode, voltages, currents]
+  examples: [2SK170, 2SJ74]
+  refs: [S01, S16]
+
+jfet:
+  label: JFETs
+  broader: fet
+  definition: Field-effect transistors whose gate is a reverse-biased junction.
+  question: Very high input impedance and low noise, at the price of a wide spread in bias from part to part.
+  key_params: [channel, IDSS, VGS(off), gm, noise, capacitances]
+  examples: [J201, 2SK170, LSK170]
+  kinds: [jfet]
+  refs: [S01, S32]
+
+mosfet:
+  label: MOSFETs
+  broader: fet
+  definition: Field-effect transistors whose gate is insulated from the channel by an oxide.
+  question: Switching capability, linear operation and physical architecture are three different questions.
+  key_params: [channel, enhancement or depletion, architecture, RDS(on) at VGS and temperature, Qg, SOA]
+  examples: [BS170, IRF540, ECX10N20, LND150, C3M0280090D]
+  kinds: [mosfet]
+  refs: [S10, S13, S33, S74]
+
+gan-fet:
+  label: GaN power transistors
+  broader: fet
+  definition: Power transistors built in gallium nitride.
+  question: What does the material give in switching loss and frequency, and what does it ask of the gate driver?
+  key_params: [structure, VDS, Qg, driver, thermal]
+  external: [EPC2034C]
+  refs: [S63]
+
+hemt:
+  label: HEMTs and pHEMTs
+  broader: fet
+  definition: High-electron-mobility field-effect transistors, mostly for radio frequencies.
+  question: The field-effect family does not end at JFET and MOSFET.
+  key_params: [material, structure, frequency, noise figure, linearity]
+  external: [ATF-54143]
+  refs: [S68]
+
+igbt:
+  label: IGBTs
+  broader: transistor
+  definition: Power transistors with an insulated gate and bipolar conduction.
+  question: Structure and role in power switching, with a current tail a MOSFET does not have.
+  key_params: [VCE, IC, gate, losses, tail current, SOA]
+  examples: [IRG4PC50U]
+  refs: [S01, S10]
+
+ujt:
+  label: Unijunction transistors
+  broader: transistor
+  definition: A bar of silicon with one junction that fires when its emitter voltage reaches a fixed fraction of the supply.
+  question: How to make a trigger or a relaxation oscillator with one device. A 2N number, not a bipolar transistor.
+  key_params: [intrinsic stand-off ratio, peak and valley current, interbase voltage]
+  examples: [2N2646, 2N2647]
+  refs: [S60]
+
+put:
+  label: Programmable unijunction transistors
+  broader: transistor
+  definition: A four-layer device that behaves like a unijunction transistor whose firing point is set by two external resistors.
+  question: How to set the trigger threshold from outside.
+  key_params: [threshold, peak and valley current, voltages]
+  examples: [2N6027, 2N6028]
+  refs: [S61]
+
+thyristor:
+  label: Thyristors and triggers
+  broader: discrete
+  definition: Four-layer switches that latch on once triggered — SCR, TRIAC, DIAC.
+  question: Must the device latch, and must it conduct in both half-cycles?
+  key_params: [type, IT, IGT, IH, dV/dt]
+  examples: [BT136, BT138, BTA41]
+  refs: [S15]
+
+gunn:
+  label: Gunn devices
+  broader: discrete
+  definition: Microwave oscillator devices that use the Gunn effect in compound semiconductors, with no junction at all.
+  question: Negative resistance has more than one physical mechanism.
+  key_params: [material, band, bias, power]
+  external: [MG1001]
+  refs: [S66]
+
+# --- tubes -----------------------------------------------------------------------------------------
+triode:
+  label: Triodes and double triodes
+  broader: tube
+  definition: Tubes with a cathode, one control grid and an anode; often two in one envelope.
+  question: Amplification factor, internal resistance and transconductance set what the stage can do.
+  key_params: [mu, gm, ra, anode dissipation, sections, heater]
+  examples: [12AX7, ECC83, 12AU7, 6SN7, 300B]
+  refs: [S07, S08, S17, S18]
+
+pentode:
+  label: Pentodes
+  broader: tube
+  definition: Tubes with five electrodes, made for small signals or for power.
+  question: The structure of the tube is not the class A or AB of the circuit it sits in.
+  key_params: [grids, anode dissipation, screen dissipation, curves, screen voltage and current]
+  examples: [EF86, EL84, EL34]
+  refs: [S07, S17]
+
+beam-tetrode:
+  label: Beam power tubes
+  broader: tube
+  definition: Tetrodes whose electrons are formed into beams, doing the job of a suppressor grid another way.
+  question: Relate the structure to the curves without turning it into a label for a sound.
+  key_params: [beam forming, screen, anode dissipation, curves]
+  examples: [6L6GC, 6V6GT]
+  refs: [S07, S17]
+
+tube-rectifier:
+  label: Rectifier tubes
+  broader: tube
+  definition: Thermionic diodes for power supplies; gas-filled types are a separate case.
+  question: Rectification, voltage drop and the slow warm-up that delays the high voltage.
+  key_params: [heater, current, peak inverse voltage, drop, fill]
+  examples: [5Y3, GZ34, 5AR4]
+  refs: [S17]
+
+gas-tube:
+  label: Gas-filled tubes
+  broader: tube
+  definition: Voltage regulators, indicators, thyratrons and counters that work by gas discharge.
+  question: Not every tube is a vacuum amplifier.
+  key_params: [gas, striking voltage, maintaining voltage, current]
+  examples: [0A2, 0B2, 0D3, NE2]
+  refs: [S17]
+
+crt:
+  label: Cathode-ray tubes
+  broader: tube
+  definition: Tubes that draw with an electron beam on a phosphor screen.
+  question: A display or measuring device, not an amplifying valve.
+  key_params: [screen, deflection, voltages, base]
+  examples: [10BP4]
+  refs: [S17]
+
+photomultiplier:
+  label: Photomultiplier tubes
+  broader: tube
+  definition: A photocathode followed by a chain of electrodes that multiply each electron.
+  question: Optical detection crosses into the tube family.
+  key_params: [spectral response, gain, noise, voltage, linearity]
+  examples: [1P21, 1P28]
+  refs: [S67]
+
+# --- integrated: amplifiers ------------------------------------------------------------------------
+opamp:
+  label: Operational amplifiers
+  broader: ic
+  definition: High-gain differential amplifiers made to be used with feedback.
+  question: What input stage, load, supply and feedback does the job need? There is no single best audio op-amp.
+  key_params: [input stage (BJT, JFET, CMOS), voltage or current feedback, channels, noise voltage and current, GBW, slew rate, input and output range, stability]
+  examples: [NE5532, TL072, NJM4558, OPA2134, AD844, LM3900, ADA4522-1]
+  kinds: [opamp]
+  refs: [S02, S05, S11, S26, S27, S28, S34, S57, S58, S73]
+
+ota:
+  label: Transconductance amplifiers (OTAs)
+  broader: ic
+  definition: Amplifiers that turn a differential voltage into an output current, with a transconductance set by a control current.
+  question: Is the point to control a signal current, or a gain, with another signal?
+  key_params: [gm at control current, input range, linearising diodes, buffers]
+  examples: [LM13700, CA3080]
+  kinds: [ota]
+  refs: [S23]
+
+vca:
+  label: Voltage-controlled amplifiers
+  broader: ic
+  definition: Blocks whose gain is set by a control voltage; built on several different architectures.
+  question: Level control, compression and automation need a characterised control law, low noise and low control feedthrough.
+  key_params: [control law, range, THD, noise, control feedthrough, trim]
+  examples: [THAT2180, THAT2162, SSM2164]
+  kinds: [vca]
+  refs: [S19, S20, S22]
+
+mic-preamp:
+  label: Microphone preamplifiers
+  broader: ic
+  definition: Amplifiers for the very small, balanced signal of a microphone.
+  question: Noise against the source impedance, gain range and common-mode rejection decide.
+  key_params: [EIN with bandwidth and source, gain range, CMRR, input]
+  examples: [THAT1510, THAT1580, SSM2017]
+  kinds: [mic-preamp]
+  refs: [S02, S21]
+
+line-interface:
+  label: Balanced line receivers and drivers
+  broader: ic
+  definition: Interfaces that send or receive a balanced signal over a cable.
+  question: Common-mode rejection and driving a cable are not the same job as general amplification.
+  key_params: [direction, CMRR, gain, load, differential output]
+  examples: [THAT1200, THAT1646, SSM2141, SSM2142]
+  refs: [S21, S52]
+
+power-amp:
+  label: Audio power amplifier ICs
+  broader: ic
+  definition: Integrated amplifiers made to drive a loudspeaker or another power load.
+  question: Output power into the load, dissipation and protection decide; the output class is a separate question from the input signal.
+  key_params: [power at load, THD and supply, output class, temperature, protection]
+  examples: [LM386, TDA2030, TDA7294, TPA3116D2]
+  kinds: [ic-audio]
+  refs: [S03, S50, S71]
+
+comparator:
+  label: Comparators
+  broader: ic
+  definition: Blocks that decide which of two voltages is higher.
+  question: The output stage and the recovery from saturation differ from an op-amp used without feedback.
+  key_params: [propagation delay, input range, hysteresis, open-collector or push-pull output]
+  examples: [LM393, LM311]
+  kinds: [comparator]
+  refs: [S56]
+
+# --- integrated: signal routing and processing -----------------------------------------------------
+analog-switch:
+  label: Analogue switches and multiplexers
+  broader: ic
+  definition: Switches that route an analogue signal under logic control.
+  question: On-resistance, charge injection and signal range are what matter for audio.
+  key_params: [RON at supply and signal, leakage, charge injection, THD, signal range]
+  examples: [CD4066, CD4051, DG211]
+  refs: [S30, S10]
+
+mos-array:
+  label: MOS transistor arrays
+  broader: ic
+  definition: Several MOS transistors with their terminals brought out, some already wired as an inverter.
+  question: The same package can become an analogue circuit or a logic gate.
+  key_params: [devices, connections, polarities, pinout]
+  examples: [CD4007UB]
+  refs: [S31]
+
+processing:
+  label: Delay and signal processing
+  broader: ic
+  definition: Blocks that delay, multiply, convert or compute an audio signal.
+  question: Sampling a signal, storing charge and processing bits are different mechanisms that answer the same musical wish.
+  kinds: [digital-audio]
+  refs: [S24, S25, S62]
+
+bbd:
+  label: Bucket-brigade delays
+  broader: processing
+  definition: Chains of capacitors that pass a sampled analogue charge along at each clock tick.
+  question: Sampling a signal does not mean representing it digitally.
+  key_params: [stages, clock, delay range, noise, filters, supply]
+  examples: [MN3007, MN3005, MN3207, SAD1024]
+  refs: [S25]
+
+digital-delay:
+  label: Digital delays with analogue I/O
+  broader: processing
+  definition: Chips that take audio in and out as analogue and delay it through a converter and memory.
+  question: The analogue pins do not make the delay analogue.
+  key_params: [conversion, memory, delay, bandwidth, THD, noise]
+  examples: [PT2399]
+  refs: [S24]
+
+dsp:
+  label: Digital audio processors
+  broader: processing
+  definition: Programmable signal processors, sometimes with converters on board.
+  question: An analogue interface does not make the algorithm analogue.
+  key_params: [program, memory, sample rate, converters, latency]
+  examples: [FV1]
+  refs: [S62]
+
+converter:
+  label: Data converters
+  broader: processing
+  definition: ADCs, DACs and codecs.
+  question: Bandwidth, resolution and dynamic range are separate dimensions.
+  key_params: [ADC or DAC, architecture, sample rate, bits, SNR, THD+N, interface]
+  examples: [PCM1802, PCM2902]
+  refs: [S04, S05]
+
+multiplier:
+  label: Analogue multipliers
+  broader: processing
+  definition: Circuits whose output is the product of two input voltages.
+  question: How many quadrants, and at what signal scale?
+  key_params: [quadrants, scale factor, error, bandwidth, inputs]
+  examples: [AD633, AD534]
+  refs: [S72]
+
+switched-capacitor-filter:
+  label: Switched-capacitor filters
+  broader: processing
+  definition: Analogue filters whose resistors are replaced by switched capacitors, tuned by a clock.
+  question: Sampled in time without being quantised.
+  key_params: [order, response, clock-to-corner ratio, bandwidth, noise, aliasing]
+  external: [MAX7400]
+  refs: [S65]
+
+digital-volume:
+  label: Digitally controlled volume
+  broader: processing
+  definition: Analogue gain stages whose gain is set through a digital interface.
+  question: The control is digital and the signal is not.
+  key_params: [steps, range, THD+N, noise, signal voltage]
+  examples: [PGA2311]
+  refs: [S75]
+
+digipot:
+  label: Digital potentiometers
+  broader: processing
+  definition: Resistor ladders whose wiper is set digitally.
+  question: A programmable resistance is not a programmable audio gain.
+  key_params: [end-to-end resistance, steps, wiper resistance, terminal voltage, interface]
+  external: [MCP4131]
+  refs: [S69]
+
+# --- integrated: power, timing, logic --------------------------------------------------------------
+regulator:
+  label: Regulators and references
+  broader: ic
+  definition: Circuits that hold a supply voltage or set a reference; series, shunt or reference.
+  question: Stabilising a supply and setting a reference are related tasks with different figures of merit.
+  key_params: [topology, range, current, dropout, noise, stability]
+  examples: [LM317, 7805, TL431]
+  kinds: [regulator]
+  refs: [S05, S51]
+
+smps:
+  label: Switching power conversion
+  broader: ic
+  definition: Regulators and controllers for switching converters.
+  question: Efficiency, transients and the noise spectrum all reach the audio.
+  key_params: [topology, frequency, current, ripple, control]
+  examples: [LM2596, MC34063]
+  kinds: [smps]
+  refs: [S01, S10]
+
+timer:
+  label: Timers and generators
+  broader: ic
+  definition: Timers, oscillators and waveform generators.
+  question: The same part can clock a control circuit or be the audio source.
+  key_params: [mode, frequency, thresholds, supply, drift]
+  examples: [NE555, XR2206, CEM3340]
+  refs: [S01, S55]
+
+control:
+  label: Control and utility ICs
+  broader: ic
+  definition: A broad label for support ICs whose exact function is not pinned down yet.
+  question: Name the specific block before giving it a role.
+  examples: [LM3914]
+  kinds: [control]
+  refs: [S01]
+
+logic:
+  label: Logic
+  broader: ic
+  definition: Gates, counters, registers and other digital functions; the same series also hold analogue exceptions.
+  question: The logic family and the Boolean function are different axes.
+  key_params: [function, logic family, levels, supply, delay, output type]
+  examples: [74HC00, 74LS00, CD4011, Z80]
+  kinds: [logic]
+  refs: [S10]
+
+# --- optoelectronics and transducers ---------------------------------------------------------------
+opto:
+  label: Optocouplers and light-dependent resistors
+  broader: optoelectronic
+  definition: A light source and a detector in one package; the detector may be a transistor, a photodiode or a resistor.
+  question: A transistor-output coupler and a resistive one respond very differently.
+  key_params: [emitter and receiver structure, CTR or resistance against light, response time, isolation]
+  examples: [4N25, 6N137, VTL5C2, NSL32]
+  kinds: [opto]
+  refs: [S01]
+
+led:
+  label: LEDs and emitters
+  broader: optoelectronic
+  definition: Diodes that emit light; in audio they also turn up as soft clippers.
+  question: Colour, material, emission and role in the circuit are separate.
+  key_params: [wavelength, IF, VF, intensity]
+  kinds: [led]
+  refs: [S10]
+
+mems-microphone:
+  label: MEMS microphones
+  broader: transducer
+  definition: Microphones machined in silicon, with an analogue or digital output.
+  question: What noise and acoustic overload point does the pickup need?
+  key_params: [SNR, acoustic overload point, sensitivity, interface, consumption]
+  external: [IM69D130]
+  refs: [S64]

@@ -184,6 +184,37 @@ def rejected_tokens() -> Path:
     return PUBLIC_DATA / "parts" / "rejected_tokens.txt"
 
 
+# --- public: what each part is — the catalogue beside the dictionary ---------------------------------
+def part_families() -> Path:
+    """The families a part can belong to, each with a definition, what choosing one comes down to, and
+    the device kinds of the site that default to it."""
+    return PUBLIC_DATA / "parts" / "families.yaml"
+
+
+def documented_families() -> Path:
+    """Parts whose family a manufacturer's own document states, with the reference that says so."""
+    return PUBLIC_DATA / "parts" / "part_families.csv"
+
+
+def part_references() -> Path:
+    """The books, datasheets, standards and histories the catalogue cites, as S01, S02… with how each
+    link answered when it was last requested."""
+    return PUBLIC_DATA / "parts" / "references.csv"
+
+
+def naming_schemes(scheme: str | None = None) -> Path:
+    """What the letters and digits of a part number mean, one file per numbering system (Pro Electron,
+    JIS, JEDEC, the valve codes), transcribed from the standard or from the manufacturer that printed it."""
+    d = PUBLIC_DATA / "parts" / "schemes"
+    return d / f"{scheme}.yaml" if scheme else d
+
+
+def part_makers() -> Path:
+    """The organisations behind the parts: former names, headquarters with the date it was read, the
+    prefixes they registered, and dated events such as acquisitions — each with its source."""
+    return PUBLIC_DATA / "parts" / "makers.yaml"
+
+
 def parts_census(source: str = "*") -> Path:
     """Which part numbers exist, according to a list whose job was to be complete about them.
 
@@ -443,6 +474,11 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("known_parts", "public", ()),
     ("wanted_parts", "public", ()),
     ("rejected_tokens", "public", ()),
+    ("part_families", "public", ()),
+    ("documented_families", "public", ()),
+    ("part_references", "public", ()),
+    ("naming_schemes", "public", ("pro-electron",)),
+    ("part_makers", "public", ()),
     ("parts_census", "public", ()),
     ("parts_benchmark", "public", ()),
     ("parts_verdicts", "public", ()),
