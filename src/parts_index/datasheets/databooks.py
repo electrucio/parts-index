@@ -42,7 +42,7 @@ HEAD_LINES = 6          # a sheet names its type in its first lines
 MAX_HEADS = 4           # a page heading more parts than this is an index or a selector guide
 MAX_ON_PAGE = 12        # nor is a page naming more than this anywhere on it a sheet
 NOT_A_SHEET = re.compile(r"\b(index|selection|selector|chart|cross.?reference|contents|replacement guide)\b", re.I)
-YEAR = re.compile(r"\b(19[3-9]\d|20[0-2]\d)\b")
+YEAR = re.compile(r"(?<!\d)(19[3-9]\d|20[0-2]\d)(?!\d)")   # also "1997年版"
 LINE = re.compile(r"<LINE>(.*?)</LINE>", re.S)
 WORD = re.compile(r"<WORD[^>]*>([^<]*)</WORD>")
 
