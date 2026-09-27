@@ -384,7 +384,31 @@ def read_cdil(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
                           url=CDIL + sheets[0] if sheets else "", page=CDIL + href)
 
 
+# --- single data sheets on archive.org ------------------------------------------------------------------
+ARCHIVE = "https://archive.org"
+
+
+def read_manuallib(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
+    """archive.org holds some 36,000 single data sheets uploaded from a manuals site, each titled
+    "<MAKER> <PART> handbook" ("FAIRCHILD KSA1281 handbook"). The title names the part and the maker; the
+    item page is the link. Only names the index knows, standing as words of the title, are taken."""
+    from parts_index.datasheets.databooks import maker_of
+    q = quote(entry["query"])
+    # Asked without a page, the search returns every result at once (it refuses to page past 10,000).
+    docs = (get.json(f"{ARCHIVE}/advancedsearch.php?q={q}&fl%5B%5D=identifier&fl%5B%5D=title"
+                     f"&rows=100000&output=json") or {}).get("response", {}).get("docs", [])
+    for d in docs:
+        title = d.get("title") or ""
+        head_ = re.split(r"\bhandbook\b", title, flags=re.I)[0]
+        maker = maker_of(title)
+        for tok in re.findall(r"[A-Za-z0-9][A-Za-z0-9-]{2,24}", head_):
+            if re.search(r"\d", tok) and re.search(r"[A-Za-z]", tok):
+                yield row(tok.upper(), source, entry, maker=maker or entry.get("maker", ""), title=title,
+                          url=f"{ARCHIVE}/details/{d['identifier']}")
+
+
 READERS: dict[str, Callable[[str, dict, Fetcher], Iterator[dict]]] = {
+    "archive_manuallib": read_manuallib,
     "cdil_products": read_cdil,
     "kec_products": read_kec,
     "kexin_products": read_kexin,
@@ -399,7 +423,7 @@ READERS: dict[str, Callable[[str, dict, Fetcher], Iterator[dict]]] = {
 }
 
 
-def write(source: str, rows: dict[str, dict]) -> Path:
+def write(source: str, rows: dict) -> Path:
     p = datasheet_catalogue(source)
     p.parent.mkdir(parents=True, exist_ok=True)
     tmp = p.with_suffix(".tmp")
@@ -415,15 +439,17 @@ def write(source: str, rows: dict[str, dict]) -> Path:
 def run(source: str, entry: dict, refresh: bool = False) -> dict:
     parts = known()
     get = Fetcher(source, entry, refresh)
-    out: dict[str, dict] = {}
+    out: dict[tuple[str, str], dict] = {}
     listed = 0
     for r in READERS[source](source, entry, get):
         listed += 1
-        if r["part"] in parts and (r["part"] not in out or (r["url"] and not out[r["part"]]["url"])):
-            out[r["part"]] = r
+        if r["part"] in parts:
+            out.setdefault((r["part"], r["url"]), r)       # every sheet a part has here, once each
+    with_sheet = {p for p, u in out if u}
+    out = {k: r for k, r in out.items() if k[1] or k[0] not in with_sheet}   # a row without a sheet only alone
     write(source, out)
-    return {"asked": get.asked, "kept": get.kept, "listed": listed, "known": len(out),
-            "with a sheet": sum(1 for r in out.values() if r["url"])}
+    return {"asked": get.asked, "kept": get.kept, "listed": listed, "known": len({p for p, _ in out}),
+            "with a sheet": len(with_sheet), "rows": len(out)}
 
 
 def main(argv: list[str] | None = None) -> int:

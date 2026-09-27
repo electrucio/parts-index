@@ -520,3 +520,11 @@ data_tables:
   notes: 'Derivation and Tabulation Associates'' D.A.T.A. books (1962-1987) as bitsavers scanned them: every
     transistor, diode and linear IC of their day tabulated with its maker and main ratings. A line in a
     table, not a data sheet; kept only for parts this index holds, on the first two pages each appears.'
+archive_manuallib:
+  kind: catalogue
+  query: 'identifier:manuallib-id-* AND title:handbook'
+  status: active
+  delay: 5
+  notes: 'About 36,500 single data sheets on archive.org, uploaded from a manuals site into the makers''
+    manuals_* collections and titled "<MAKER> <PART> handbook". The title names the part and its maker;
+    the archive item is linked. Only names this project knows, standing as words of the title, are kept.'
