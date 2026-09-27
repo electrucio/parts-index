@@ -24,7 +24,7 @@ import re
 import sys
 from collections.abc import Callable, Iterator
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import quote, urlparse
 
 from parts_index.core import http
 from parts_index.core.config import datasheet_catalogue, datasheets_cache
@@ -301,7 +301,46 @@ def read_tt(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
             yield row(n, source, entry, category=r["productDisplay"], url=TT + r["fileVideoURL"])
 
 
+# --- Kexin -------------------------------------------------------------------------------------------
+KEXIN = "https://www.kexin.com.cn"
+FLIGHT = re.compile(r'self\.__next_f\.push\(\[1,"((?:[^"\\]|\\.)*)"\]\)')
+
+
+def trust_issuer(source: str, entry: dict) -> None:
+    """Kexin's server leaves out the intermediate certificate. It is fetched once from the address the
+    certificate names (`ca_issuer`), added to the usual roots, and the host is verified against that."""
+    import ssl
+
+    import certifi
+    bundle = datasheets_cache(source) / "ca-bundle.pem"
+    if not bundle.exists():
+        r = http.get(entry["ca_issuer"], ua=PROJECT_UA, max_bytes=1 << 20)
+        if not r.ok:
+            return
+        pem = r.body.decode() if r.body.startswith(b"-----BEGIN") else ssl.DER_cert_to_PEM_cert(r.body)
+        bundle.parent.mkdir(parents=True, exist_ok=True)
+        bundle.write_text(Path(certifi.where()).read_text() + "\n" + pem)
+    http.trust(urlparse(KEXIN).netloc, str(bundle))
+
+
+def read_kexin(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
+    """/en/products carries the whole catalogue in the page's own data (Next.js flight chunks): each row a
+    part, its family and category, and its data sheet."""
+    if entry.get("ca_issuer"):
+        trust_issuer(source, entry)
+    text = "".join(json.loads(f'"{c}"') for c in FLIGHT.findall(get.text(f"{KEXIN}/en/products")))
+    at = text.find('"rows":[')
+    if at < 0:
+        return
+    rows, _ = json.JSONDecoder().raw_decode(text[at + 7:])
+    for r in rows:
+        if isinstance(r, dict) and r.get("part"):
+            # Its family column misfiles parts (BAT54 under bridge rectifiers), so it is not taken.
+            yield row(str(r["part"]).upper(), source, entry, url=r.get("datasheet") or "")
+
+
 READERS: dict[str, Callable[[str, dict, Fetcher], Iterator[dict]]] = {
+    "kexin_products": read_kexin,
     "tt_datasheets": read_tt,
     "secos_products": read_secos,
     "tsc_products": read_tsc,

@@ -198,3 +198,12 @@ tt_datasheets:
   notes: 'TT Electronics (Semelab, Optek). No robots.txt. The data sheet search page asks
     /api/search/resource for type 8 and receives all 1,790 sheets in one page; a sheet''s name packs the
     parts it covers ("2N6766 IRF250", "BDX66 A,B,C").'
+kexin_products:
+  kind: catalogue
+  maker: kexin
+  ca_issuer: http://crt.sectigo.com/SectigoPublicServerAuthenticationCADVR36.crt
+  status: active
+  delay: 3
+  notes: 'Kexin. robots.txt disallows /admin/, /api/, member and inquiry pages. /en/products
+    carries the whole catalogue in its page data: 5,070 rows, each with its data sheet. The server omits
+    the intermediate certificate, which is fetched from the address its certificate names.'

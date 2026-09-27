@@ -42,6 +42,14 @@ MAGIC = {b"%PDF": "pdf", b"GIF8": "gif", b"\xff\xd8\xff": "jpeg", b"\x89PNG": "p
 
 _next_ok: dict[str, float] = {}             # host -> earliest time of the next request
 _robots: dict[tuple[str, str], robotparser.RobotFileParser] = {}
+_trusted: dict[str, str] = {}               # host -> CA bundle that also holds the intermediate it omits
+
+
+def trust(host: str, bundle: str) -> None:
+    """Verify `host` against `bundle`. For a server that sends its certificate without the intermediate
+    that signed it: the bundle is the usual roots plus that intermediate, fetched from the address the
+    certificate itself names — what a browser does. Verification is never turned off."""
+    _trusted[host] = bundle
 
 
 def user_agent(base: str | None = BROWSER_UA) -> str | None:
@@ -171,7 +179,8 @@ def _requests(url, ua, timeout, referer, follow, max_bytes, extra=None) -> Respo
     import requests
     headers = {k: v for k, v in (("User-Agent", ua), ("Referer", referer)) if v} | (extra or {})
     try:
-        with requests.get(url, headers=headers, timeout=(20, timeout), stream=True, allow_redirects=follow) as r:
+        with requests.get(url, headers=headers, timeout=(20, timeout), stream=True, allow_redirects=follow,
+                          verify=_trusted.get(urlparse(url).netloc, True)) as r:
             body = b""
             for chunk in r.iter_content(1 << 16):
                 body += chunk
