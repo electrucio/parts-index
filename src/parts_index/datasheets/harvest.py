@@ -171,7 +171,8 @@ def wayback(entry: dict) -> dict[str, dict]:
         for original, stamp, digest in got:
             url = re.sub(r"^https?://([^/:]+)(:\d+)?", lambda m: "https://" + m.group(1).lower(), original)
             url = url.split("?")[0].rstrip(".")
-            if url.lower().endswith(".pdf") and re.search(entry.get("keep", ""), url):
+            # Renesas' /document/dst/<part>-data-sheet addresses serve PDFs without saying so in the name.
+            if (url.lower().endswith(".pdf") or entry.get("pdf_suffix") is False) and re.search(entry.get("keep", ""), url):
                 groups.setdefault(digest, []).append((url, f"https://web.archive.org/web/{stamp}id_/{original}"))
     out: dict[str, dict] = {}
     for members in groups.values():

@@ -273,14 +273,19 @@ rohm_wayback:
   maker: rohm
   prefixes:
     - fscdn.rohm.com/en/products/databook/datasheet/
+    - fscdn.rohm.com/en/products/databook/datasheet-nrnd/
+    - rohmfs.rohm.com/en/products/databook/datasheet/
+    - www.rohm.com/products/databook/
     - www.rohm.co.jp/products/databook/
-  keep: '/databook/(?:datasheet/.*|[a-z]+/pdf/[^/]*?)(?<!-j)\.pdf$'
-  strip: '-[ej]$'
+  keep: '/databook/(?:datasheet(?:-nrnd)?/.*|[a-z_]+/pdf/[^/]*?)(?<!-j)\.pdf$'
+  strip: '(?:(?:hzg|fh)?(?:t1\d\d[a-z]?|t2l|t1l|tl)|fra)?(?:-[ej])?$'   # dan202kt146-e -> DAN202K
   status: active
   delay: 10
   notes: 'rohm.com refuses scripts (403). The Internet Archive holds its data sheet folders: fscdn.rohm.com
-    (the current one, 17,442 English sheets) and www.rohm.co.jp/products/databook (the old one, 5,028).
-    Japanese editions (-j) are left.'
+    (current, with a not-recommended-for-new-design folder holding the DTC/DTA digital transistors), the older
+    CDN rohmfs, and the old English and Japanese-site databooks. fscdn names carry taping codes (T146, TL,
+    FRA), which are stripped; Japanese editions (-j) are left.'
+
 toshiba_wayback:
   kind: wayback
   maker: toshiba
@@ -324,3 +329,156 @@ archive_databooks_more:
     Telefunken, Valvo, ITT, Mullard, RFT, Toshiba, NEC, Sony, Samsung, RCA RC-13 to RC-30, GE, Sylvania (455 books
     on 2026-09-27). Lending-only items (inlibrary, printdisabled) have no public text and are left, as are tabulations
     and substitution guides, which head no page. The maker is the one the title names.'
+
+hitachi_wayback:
+  kind: wayback
+  maker: hitachi
+  prefixes:
+  - www.hitachi.co.jp/Sicd/English/Products/
+  keep: (?i)/Sicd/English/Products/[a-z]+/[^/]+\.pdf$
+  strip: ^e(?=[0-9h])|_.*$
+  status: active
+  delay: 10
+  notes: 'Hitachi''s semiconductor site before Renesas (2003): English sheets named e<PART>.pdf in transis/, diode/,
+    linear/, logic/, opt/ (1,361 captured). e2SA1031_32.pdf is the 2SA1031 and its sibling.'
+renesas_docs_wayback:
+  kind: wayback
+  maker: renesas
+  prefixes:
+  - documentation.renesas.com/eng/products/
+  - documentation.renesas.com/doc/products/
+  - www.renesas.com/avs/resource/japan/eng/pdf/
+  keep: (?i)/(?:products|pdf)/(?:transistor|diode|linear|logic|assp|opt|opto|power)/(?!rjj|j\d|r\d\d[a-z]{2}\d{4}jj)[^/]+\.pdf$
+  strip: ^(?:r[a-z]{2}\d\d[a-z]\d{4}|r\d\d[a-z]{2}\d{4}(?:[ej]j(?:\d{4})?)?|[a-z]\d{6,8})_|(?:ds)?(?:_[^/]*)?$
+  status: active
+  delay: 10
+  notes: 'Renesas'' document server of 2003-2015 (Hitachi and Mitsubishi discretes and linear parts): <document
+    number>_<part>.pdf, 1,642 English files. Japanese editions left.'
+renesas_dst_wayback:
+  kind: wayback
+  maker: renesas
+  prefixes:
+  - www.renesas.com/en/document/dst/
+  - www.renesas.com/ja/document/dst/
+  - www.renesas.com/jp/ja/document/dst/
+  keep: /document/dst/[^/]+$
+  strip: -.*$
+  pdf_suffix: false
+  status: active
+  delay: 10
+  notes: 'renesas.com answers scripts with a Cloudflare challenge. Its data sheet addresses (/document/dst/<part>-data-sheet...)
+    carry no .pdf, but the archive serves them as PDFs: 12,264 English and 9,581 Japanese. The only place NEC''s
+    legacy uPC and 2SA/2SC sheets are named by part (NEC''s own sites name them by document number); several exist
+    only in Japanese.'
+njr_wayback:
+  kind: wayback
+  maker: new-japan-radio
+  prefixes:
+  - www.njr.com/semicon/PDF/
+  - www.njr.com/electronic_device/PDF/
+  - semicon.njr.co.jp/eng/PDF/
+  - www.njr.co.jp/electronic_device/PDF/
+  - www.njr.co.jp/products/semicon/PDF/
+  keep: (?i)/PDF/(?:old_pdf/)?[^/]+_E\.pdf$
+  strip: _.*$
+  status: active
+  delay: 10
+  notes: 'New Japan Radio before Nisshinbo: English sheets named <PART>_E.pdf, old_pdf/ holding discontinued parts
+    (NJM4556A, NJM4560, NJM2068). 889 files.'
+sanyo_wayback:
+  kind: wayback
+  maker: sanyo
+  prefixes:
+  - service.semic.sanyo.co.jp/semi/ds_pdf_e/
+  keep: /ds_pdf_e/[^/]+\.pdf$
+  strip: -.*$
+  status: active
+  delay: 10
+  notes: 'Sanyo Semiconductor before onsemi: <PART>.pdf, 213 English files; ds_e/ is named by document number.'
+panasonic_wayback:
+  kind: wayback
+  maker: panasonic
+  prefixes:
+  - www.semicon.panasonic.co.jp/ds4/
+  - industrial.panasonic.com/content/data/SC/ds/ds4/
+  keep: (?i)/ds4/[^/]+_(?:_?E|[A-Z]ED)(?:_discon)?\.pdf$
+  strip: _.*$
+  status: active
+  delay: 10
+  notes: 'Panasonic semiconductor sheets, ds4 folder on both hosts, discontinued ones (_discon) included: 1,526
+    English files.'
+national_wayback:
+  kind: wayback
+  maker: national
+  prefixes:
+  - national.com/ds/
+  - www.national.com/ds/
+  - cache.national.com/ds/
+  - www.national.com/ds.cgi/
+  keep: (?i)national\.com/ds(?:\.cgi)?/[a-z0-9]+/[^/]+\.pdf$
+  status: active
+  delay: 10
+  notes: 'National Semiconductor before TI (2011): ds/<2 letters>/<PART>.pdf, 1,506 files.'
+fairchild_wayback:
+  kind: wayback
+  maker: fairchild
+  prefixes:
+  - www.fairchildsemi.com/ds/
+  - fairchildsemi.com/ds/
+  - www.fairchildsemi.com/datasheets/
+  keep: (?i)fairchildsemi\.com/(?:ds|datasheets)/[a-z0-9]{2}/[^/]+\.pdf$
+  status: active
+  delay: 10
+  notes: 'Fairchild before onsemi (2016): ds/<2 letters>/<PART>.pdf, 6,746 files, many parts onsemi dropped (CD40xx,
+    1N47xx, BC23x, MC78xx, 2N3702).'
+harris_wayback:
+  kind: wayback
+  maker: harris
+  prefixes:
+  - www.semi.harris.com/datasheets/
+  keep: (?i)/datasheets/[^/]+/[^/]+/[^/]+\.pdf$
+  status: active
+  delay: 10
+  notes: 'Harris Semiconductor (RCA''s CA/CD line) before Intersil (1999): datasheets/<cat>/<part>/<part>.pdf, 1,357
+    files.'
+intersil_wayback:
+  kind: wayback
+  maker: intersil
+  prefixes:
+  - www.intersil.com/content/dam/intersil/documents/
+  keep: (?i)/documents/[a-z0-9-]{4}/[^/]+\.pdf$
+  strip: -.*$
+  status: active
+  delay: 10
+  notes: 'Intersil before Renesas: documents/<4 chars>/<part>.pdf, 1,667 files; the older fn folder is named by FN number.'
+motorola_wayback:
+  kind: wayback
+  maker: motorola
+  prefixes:
+  - mot-sps.com/books/
+  keep: (?i)/books/[a-z]+\d+/pdf/[^/]+\.pdf$
+  strip: rev\d*[a-z]?$
+  status: active
+  delay: 10
+  notes: 'Motorola SPS data books online (late 1990s): books/dlNNN/pdf/<part>rev<N>.pdf, 2,297 files.'
+zetex_wayback:
+  kind: wayback
+  maker: zetex
+  prefixes:
+  - www.zetex.com/3.0/pdf/
+  keep: (?i)/3\.0/pdf/[^/]+\.pdf$
+  status: active
+  delay: 10
+  notes: 'Zetex before Diodes Inc. (2008): 3.0/pdf/<part>.pdf, 989 files (ZTX, FMMT, ZVN/ZVP).'
+nxp_old_wayback:
+  kind: wayback
+  maker: nxp
+  prefixes:
+  - www.nxp.com/documents/data_sheet/
+  - www.nxp.com/acrobat_download/datasheets/
+  keep: (?i)/(?:acrobat_download/datasheets|documents/data_sheet)/[^/]+\.pdf$
+  strip: (?:_CNV)?_\d+$
+  status: active
+  delay: 10
+  notes: 'NXP''s folders before /docs/en/data-sheet/: 6,386 files, discontinued Philips parts among them. semiconductors.philips.com
+    is not in the archive''s index.'

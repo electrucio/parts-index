@@ -230,3 +230,17 @@ def test_a_numbered_sheet_gets_its_prefix_and_a_family_sheet_is_one():
     assert renamed("1050FB", {"numbered": ["LT", "LTC"]}, parts) == "LTC1050"
     assert renamed("7815F", {"numbered": ["LT"]}, parts) == "7815F"     # no LT7815: left as it is
     assert a_family("L78", parts) and not a_family("L7", parts)
+
+
+def test_a_source_may_take_addresses_that_do_not_end_in_pdf(monkeypatch):
+    import json as _json
+
+    from parts_index.datasheets import harvest
+    rows = [["original", "timestamp", "digest"],
+            ["https://www.renesas.com/en/document/dst/upc4570-data-sheet-g10528ej8v0ds00", "20210101000000", "D1"]]
+    monkeypatch.setattr(harvest, "fetch_text", lambda url, entry: _json.dumps(rows))
+    entry = {"prefixes": ["www.renesas.com/en/document/dst/"], "keep": "/document/dst/[^/]+$"}
+    assert harvest.wayback(entry) == {}
+    got = harvest.wayback(entry | {"pdf_suffix": False})
+    (url,) = got
+    assert harvest.head(url, "-.*$") == "UPC4570"
