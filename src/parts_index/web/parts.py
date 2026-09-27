@@ -33,6 +33,7 @@ source inside it on its own, which is what keeps a part with three thousand hits
 from __future__ import annotations
 
 import csv
+import re
 from collections import Counter, defaultdict
 
 import yaml
@@ -290,7 +291,7 @@ def harvested_sheets() -> dict[str, list[list[str]]]:
         for r in rows(f):
             doc = docs.get(r["url"], {})
             title = doc.get("title", "")
-            if title and doc.get("revision"):
+            if title and doc.get("revision") and not re.search(r"\bRev", title, re.I):
                 title += f", revision {doc['revision']}"
             seen = "named on its first page" if r["seen"] == "first page" else "in its tables"
             out[r["part"]].append([r["url"], doc.get("maker", ""), "", title, f.stem, seen])

@@ -21,6 +21,7 @@ from __future__ import annotations
 import argparse
 import csv
 import gzip
+import json
 import re
 import sys
 from collections import Counter
@@ -169,16 +170,16 @@ def read_pdf(data: bytes) -> tuple[list[str], dict]:
 
 
 def title_of(pages: list[str], meta: dict, sheet_head: str = "") -> str:
-    """The sheet's own title: its PDF title when that is one, else the first line of page one that names
-    the sheet's part — never the first line blindly, which is often a web address or a legal notice."""
+    """The sheet's own title, from the PDF's title field when that is one, and otherwise none: the first
+    lines of a page are a web address, a legal notice or the maker's own sentence as often as a title, and
+    the page shows the file name instead."""
     t = " ".join((meta.get("title") or "").split())
-    if len(t) >= 6 and not re.fullmatch(r"[\w\-. ]+\.(?:pdf|docx?|indd|fm)", t, re.I) and "www." not in t.lower():
-        return t[:160]
-    key = re.sub(r"[^A-Z0-9]", "", sheet_head)[:5]
-    for ln in (pages[0] if pages else "").splitlines():
-        ln = " ".join(ln.split())
-        if key and key in re.sub(r"[^A-Z0-9]", "", ln.upper()) and "www." not in ln.lower() and len(ln) < 160:
-            return ln
+    # A title names the part and says what it is in a few words. "The TDA8920B is a high efficiency
+    # class-D audio power amplifier with…" is the maker's sentence, not a title, and is not taken.
+    sentence = re.search(r"\b(is|are|was|provides|offers|features)\b", t, re.I) or len(t) > 110
+    if (len(t) >= 6 and not sentence and "www." not in t.lower()
+            and not re.fullmatch(r"[\w\-. ]+\.(?:pdf|docx?|indd|fm)", t, re.I)):
+        return t
     return ""
 
 
@@ -222,10 +223,10 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
             continue
         if led.done(url, "read", version=READ_VERSION) and not reread:
             continue
-        kept = text_dir / f"{head(url)}.txt.gz"
+        kept = text_dir / f"{head(url)}.json.gz"
         if led.done(url, "fetch") and kept.exists():
-            pages = gzip.decompress(kept.read_bytes()).decode("utf-8").split("\f")
-            meta, row = {"title": ""}, led.get(url) or {}
+            held = json.loads(gzip.decompress(kept.read_bytes()))
+            pages, meta, row = held["pages"], held.get("meta") or {}, led.get(url) or {}
             sha, size = row.get("sha256", ""), row.get("bytes", "")
         else:
             resp = http.get(url, ua=PROJECT_UA, delay=delay, max_bytes=40 << 20)
@@ -243,7 +244,7 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
                 led.skip(url, f"unreadable PDF: {type(e).__name__}"[:60], url=url, http=resp.status)
                 continue
             sha, size = resp.sha256, len(resp.body)
-            kept.write_bytes(gzip.compress("\f".join(pages).encode("utf-8")))
+            kept.write_bytes(gzip.compress(json.dumps({"meta": meta, "pages": pages}).encode("utf-8")))
             led.stamp(url, "fetch", url=url, http=resp.status, bytes=size, sha256=sha)
         sheet_head = re.sub(r"[^A-Z0-9]", "", head(url, entry.get("strip", "")).split("_")[0])
         found = covered(pages, parts, sheet_head)

@@ -69,3 +69,12 @@ def test_a_sheet_covers_its_series_and_not_what_it_mentions():
     assert {"BC546", "BC547", "BC547B", "BC548"} <= set(got)
     assert "BC556" not in got                        # the complement is named, not covered
     assert "S12" not in got and "LED1" not in got    # a parameter and a pin are not parts
+
+
+def test_a_makers_sentence_is_not_taken_for_a_sheets_title():
+    from parts_index.datasheets.harvest import title_of
+    page = "TDA8920B\n2 x 100 W class-D power amplifier\nThe TDA8920B is a high efficiency amplifier\n"
+    assert title_of([page], {"title": "The TDA8920B is a high efficiency class-D audio power amplifier"},
+                    "TDA8920B") == ""
+    assert title_of([page], {"title": "TDA8920B 2 x 100 W class-D power amplifier"}, "TDA8920B") \
+        == "TDA8920B 2 x 100 W class-D power amplifier"
