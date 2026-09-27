@@ -221,6 +221,7 @@ def test_a_databook_page_covers_the_part_its_heading_names():
     assert heads("122\nRCA Transistor Manual\n2N140 TRANSISTOR\nGe p-n-p alloy-junction type", parts) == {"2N140"}
     assert heads("146\nRCA Transistor Manual\np-n-p type, such as the 2N408. JEDEC", parts) == set()
     assert heads("474 RCA Transistor Manual\nIndex\n2N404A .\n2N795 .\n2N1358 .", parts) == set()
+    assert heads("145\nA13\nADDRESS INPUT", parts | {"A13"}) == set()
 
 
 def test_a_numbered_sheet_gets_its_prefix_and_a_family_sheet_is_one():

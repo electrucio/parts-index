@@ -28,14 +28,14 @@ from parts_index.core import http
 from parts_index.core.config import datasheet_pages, datasheets_state, datasheets_text
 from parts_index.core.ledger import Ledger, today
 from parts_index.core.parts import catalogue
-from parts_index.core.parts.extractor import canonical
+from parts_index.core.parts.extractor import canonical, family_of
 from parts_index.datasheets.harvest import PROJECT_UA, TOKEN, is_a_part, known, nearest, registry
 
 ARCHIVE = "https://archive.org"
 STAGES = ("fetch", "read")
 VERSIONED = ("read",)
 FIELDS = ("key", "url", "http", "bytes", "fetch_at", "read_at", "read_v", "skip_reason")
-READ_VERSION = "1"
+READ_VERSION = "2"  # 2: a letter and a number is a part only when its family is known
 PAGE_FIELDS = ("part", "book", "leaf", "printed", "maker", "title", "year", "checked")
 HEAD_LINES = 6          # a sheet names its type in its first lines
 MAX_HEADS = 4           # a page heading more parts than this is an index or a selector guide
@@ -91,7 +91,9 @@ def names(text: str, parts: set[str]) -> set[str]:
         tok = canonical(m.group(1)) or ""
         if tok and re.search(r"\d", tok) and re.search(r"[A-Z]", tok):
             n = tok if tok in parts else nearest(tok, parts)
-            if n and is_a_part(n):          # "Fig. 78a" is a figure, not a part
+            # "Fig. 78a" is a figure, and a letter and a number (A13, X1000) is a pin or an axis unless
+            # the extractor knows it as a family (J203 is a JFET)
+            if n and is_a_part(n) and (family_of(n) or not re.fullmatch(r"[A-Z]\d+[A-Z]?", n)):
                 out.add(n)
     return out
 
