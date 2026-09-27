@@ -21,11 +21,31 @@ def test_a_subcircuit_brings_what_it_references_first():
     assert F.spans(LIB)["qinner"] == (6, 7)
 
 
-def test_copies_that_differ_only_in_comment_lines_case_and_spacing_are_one_model():
-    a = "* from the vendor\n.model Q1 NPN(IS=1E-14  BF=300)\n"
+def h(text: str, name: str) -> str:
+    return F.code_hash(F.closure(F.blocks(text), name))
+
+
+def test_copies_that_differ_only_in_comments_case_and_spacing_are_one_model():
+    a = "* from the vendor\n.model Q1 NPN(IS=1E-14  BF=300) ; typical\n"
     b = ".MODEL q1 npn(is=1e-14 bf=300)\n"
-    assert F.code_hash(a) == F.code_hash(b)
-    assert F.code_hash(a) != F.code_hash(".model Q1 NPN(IS=1E-14 BF=301)\n")
+    assert h(a, "Q1") == h(b, "q1")
+    assert h(a, "Q1") != h(".model Q1 NPN(IS=1E-14 BF=301)\n", "Q1")
+
+
+def test_a_copy_that_only_renamed_the_model_is_the_same_model():
+    assert h(".model Q2N3904 NPN(IS=1E-14 BF=300)\n", "Q2N3904") == h(".model 2N3904 NPN(IS=1E-14 BF=300)\n", "2N3904")
+    sub = ".subckt {n} C B E\nQ1 C B E {m}\n.ends\n.model {m} NPN(BF=50)\n"
+    assert h(sub.format(n="TIP31", m="QT"), "TIP31") == h(sub.format(n="XTIP31", m="QINNER"), "XTIP31")
+
+
+def test_a_model_rewritten_with_its_parameters_sorted_and_defaults_dropped_is_the_same_model():
+    """Bordodynov's MJ15001M is Motorola's 1997 Qmj15001, sorted, on one line, without CJS=0 PTF=0 KF=0 AF=1."""
+    motorola = ".MODEL Qmj15001 npn\n+IS=1.23312e-13 BF=115.914 VAF=10\n+CJS=0 PTF=0 KF=0 AF=1\n"
+    bordodynov = ".MODEL MJ15001M NPN (BF=115.914 IS=1.23312E-13 VAF=10)\n"
+    assert h(motorola, "Qmj15001") == h(bordodynov, "MJ15001M")
+    assert h(".model D1 D(IS=1.2n)\n", "D1") == h(".model D1 D(IS=1.2E-9)\n", "D1")
+    assert h(motorola, "Qmj15001") != h(bordodynov.replace("VAF=10", "VAF=11"), "MJ15001M")
+    assert h(".model Q1 PNP(BF=100)\n", "Q1") != h(".model Q1 NPN(BF=100)\n", "Q1")
 
 
 def tree(tmp_path, files: dict[str, str], manifest: dict[str, dict] | None = None):

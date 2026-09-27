@@ -7,7 +7,9 @@ model copied from one collection into the next. This reads each one with everyth
 its own file, hashes the code — comments and whitespace removed, case folded — and groups identical
 code into one model, attributed to the most original source that holds it (`SOURCE_RANK`), with the
 others as its copies. For every model it records how to obtain it — the URL, the archive member, the
-file's checksum, the line range of each definition — from the source's manifest.
+file's checksum, the line range of each definition — from the source's manifest. Two copies are the
+same model when they differ only in the names of their own definitions, or, for a `.model`, only in
+how its parameters are written out (`code_hash`).
 
 Nothing is copied: this is the part of the old curation that decides *which* models a part has, without
 the part that extracts them into files, infers their pins and runs them on a bench.
@@ -37,6 +39,9 @@ SOURCE_RANK = [
     "diodes-inc", "central-semi", "linear-systems", "interfet", "stmicro", "exicon",
     "microchip", "renesas", "nisshinbo", "sanken", "onsemi-ic", "adi", "nichia",
     "ltspice-native",
+    # vendor libraries as another party distributed them: OrCAD's 1990s set on the Spice Model CD, and
+    # the libraries Micro-Cap and QSPICE install
+    "spice-model-cd", "microcap12", "qspice",
     "cordell", "reefman", "ayumi", "duncanamps", "koren", "suusi-tubes",
     "germaniumbjts", "hagtech", "andyc", "viva-analog", "cohen-helie", "dempwolf",
     "tedyapo-led-modeling", "z101-led-spice-model",
@@ -123,15 +128,71 @@ def closure(defs: dict, name: str) -> list:
     return [defs[k] for k in order]
 
 
-def code_hash(text: str) -> str:
-    lines = []
+SCALE = {"T": 1e12, "G": 1e9, "MEG": 1e6, "K": 1e3, "MIL": 25.4e-6, "M": 1e-3, "U": 1e-6, "N": 1e-9,
+         "P": 1e-12, "F": 1e-15}
+RX_NUMBER = re.compile(r"^([+-]?(?:\d+\.?\d*|\.\d+)(?:E[+-]?\d+)?)(MEG|MIL|[TGKMUNPF])?[A-Z]*$")
+RX_MODEL_HEAD = re.compile(r"^\.MODEL\s+\S+\s+(?:AKO:\s*\S+\s+)?([A-Z]+)\s*(.*)$", re.S)
+
+
+def value(s: str) -> str:
+    """A SPICE number in one spelling — 1.2N, 1.2E-9 and 0.0000000012 alike — or the text as it is."""
+    m = RX_NUMBER.match(s)
+    if not m:
+        return s
+    return repr(float(m.group(1)) * SCALE.get(m.group(2) or "", 1.0))
+
+
+def code_lines(text: str) -> list[str]:
+    """Code without comment lines, trailing comments, case, spacing or `+` line breaks."""
+    lines: list[str] = []
     for line in text.splitlines():
         s = line.strip()
         if not s or s.startswith("*"):
             continue
-        s = re.split(r";|\s\$\s", s)[0]
-        lines.append(re.sub(r"\s+", " ", s).upper())
-    return hashlib.sha1("\n".join(lines).encode()).hexdigest()
+        s = re.split(r";|\s\$\s", s)[0].strip()
+        s = re.sub(r"\s+", " ", s).upper()
+        if s.startswith("+") and lines:
+            lines[-1] += " " + s[1:].strip()
+        elif s:
+            lines.append(s)
+    return lines
+
+
+def model_params(code: str) -> str | None:
+    """A `.model` statement as its device type and parameters, in order, each value in one spelling.
+
+    A parameter at zero is left out, and so is AF=1, because a library that rewrites a model — sorting
+    its parameters, dropping the ones at their default — has not changed it: Bordodynov's MJ15001M is
+    Motorola's 1997 Qmj15001 with CJS=0 PTF=0 KF=0 AF=1 dropped and the rest in alphabetical order.
+    For almost every SPICE parameter zero is the default or means "infinite", which is its default.
+    """
+    m = RX_MODEL_HEAD.match(code)
+    if not m:
+        return None
+    body = m.group(2).replace("(", " ").replace(")", " ").replace(",", " ")
+    params = dict(re.findall(r"([A-Z_][A-Z0-9_]*)\s*=\s*(\S+)", body))
+    kept = {k: value(v) for k, v in params.items()}
+    kept = {k: v for k, v in kept.items() if v not in ("0.0", "-0.0") and not (k == "AF" and v == "1.0")}
+    return m.group(1) + " " + " ".join(f"{k}={kept[k]}" for k in sorted(kept))
+
+
+def code_hash(chain: list) -> str:
+    """One model's identity: its code with every definition in it renamed by position, so a copy that
+    only renamed the model (Q2N3904 for 2N3904, MJ15001M for Qmj15001) is still the same model, and each
+    `.model` compared by its parameters rather than by how they were written out."""
+    names = {nm.upper(): f"@{i}" for i, (_, nm, _) in enumerate(chain)}
+    rename = re.compile(r"(?<![A-Z0-9_.\-+$#])(" + "|".join(re.escape(n) for n in sorted(names, key=len, reverse=True))
+                        + r")(?![A-Z0-9_.\-+$#])") if names else None
+    out = []
+    for kind, _, body in chain:
+        lines = code_lines(body)
+        if rename:
+            lines = [rename.sub(lambda m: names[m.group(1)], s) for s in lines]
+        if kind == "model" and len(lines) == 1:
+            out.append(model_params(lines[0]) or lines[0])
+        else:
+            out.extend(lines)
+    return hashlib.sha1("\n".join(out).encode()).hexdigest()
 
 
 class Files:
@@ -226,7 +287,7 @@ def groups_for(entry: dict, files: Files) -> tuple[list[dict], int]:
             chain = closure(defs, c["name"])
             if not chain:
                 continue
-            h = code_hash("\n".join(b for _, _, b in chain))
+            h = code_hash(chain)
         except Exception:                      # unreadable file
             continue
         g = groups.setdefault(h, {"hash": h, "members": [], "best": None, "chain": None})
