@@ -285,7 +285,7 @@ def tt_names(label: str) -> list[str]:
         if re.fullmatch(r"[A-Z]{1,2}", tok) and out:
             base = re.sub(r"[A-Z]{1,2}$", "", out[-1]) if re.search(r"\d[A-Z]{1,2}$", out[-1]) else out[-1]
             out.append(base + tok)
-        elif re.search(r"\d", tok):
+        elif re.search(r"\d", tok) and re.search(r"[A-Za-z]", tok):   # "19" in a sheet's name is not a part
             out.append(tok.upper())
     return out
 

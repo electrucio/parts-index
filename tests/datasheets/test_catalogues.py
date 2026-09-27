@@ -59,4 +59,4 @@ def test_vishay_names_come_from_the_part_column_or_the_series_label():
 def test_a_tt_sheet_name_packs_its_parts_and_grades():
     assert cat.tt_names("2N6766 IRF250") == ["2N6766", "IRF250"]
     assert cat.tt_names("BDX66 A,B,C") == ["BDX66", "BDX66A", "BDX66B", "BDX66C"]
-    assert cat.tt_names("1N4148D") == ["1N4148D"]
+    assert cat.tt_names("1N4148D") == ["1N4148D"] and cat.tt_names("OPB 19 20") == []
