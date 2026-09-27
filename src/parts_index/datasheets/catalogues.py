@@ -24,11 +24,12 @@ import re
 import sys
 from collections.abc import Callable, Iterator
 from pathlib import Path
-from urllib.parse import quote, urlparse
+from urllib.parse import quote, unquote, urlparse
 
 from parts_index.core import http
 from parts_index.core.config import datasheet_catalogue, datasheets_cache
 from parts_index.core.ledger import today
+from parts_index.core.parts import catalogue
 from parts_index.datasheets.harvest import PROJECT_UA, known, registry
 
 FIELDS = ("part", "source", "maker", "category", "status", "name", "title", "revision", "url", "page", "checked")
@@ -407,7 +408,57 @@ def read_manuallib(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
                           url=f"{ARCHIVE}/details/{d['identifier']}")
 
 
+# --- datasheet.live, the last resort -------------------------------------------------------------------
+LIVE = "https://www.datasheet.live"
+LIVE_CARD = re.compile(r'<div class="col-lg-3 col-sm-6 py-2">(.*?)(?=<div class="col-lg-3 col-sm-6 py-2">|</section>)', re.S)
+NOT_A_MAKER = re.compile(r"fuji.?svea|various|cross.?reference|n_a", re.I)
+
+
+def unsheeted(min_docs: int) -> list[str]:
+    """The parts printed in at least `min_docs` documents that no data file here gives a sheet for yet."""
+    from parts_index.core.config import datasheets_table, schematics_parts
+    have: set[str] = set()
+    base = datasheets_table().parent
+    for f in [datasheets_table(), *base.glob("*/*.csv")]:
+        if f.parent.name == "state":
+            continue
+        with open(f, encoding="utf-8") as fh:
+            have |= {r.get("part") or "" for r in csv.DictReader(fh) if r.get("url") or r.get("book")}
+    with open(schematics_parts(), encoding="utf-8") as fh:
+        used = [(r["part"], int(r.get("documents") or 0)) for r in csv.DictReader(fh)]
+    from parts_index.web.parts import kin_names       # a part its type's sheets already document is not asked
+    return [p for p, n in sorted(used, key=lambda x: -x[1])
+            if n >= min_docs and p not in have and not any(k in have for _, k in kin_names(p))]
+
+
+def read_datasheet_live(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
+    """For a part nothing else gives a sheet for, datasheet.live's part page (robots.txt allows it, at two
+    seconds) lists up to twelve PDFs it holds, with the maker it files each under. They are the site's
+    copies, watermarked, not the maker's; only cards naming the part itself or one of its ordering codes
+    are kept, and cross-reference books and unnamed makers are left."""
+    from parts_index.datasheets.harvest import nearest
+    parts = known()
+    for part in unsheeted(int(entry.get("min_docs", 3)))[: int(entry.get("max_parts", 100000))]:
+        page = f"{LIVE}/{quote(part, safe='')}-datasheet.html"
+        text = get.text(page)
+        at = text.find("product_datasheet_search_results")
+        for card in LIVE_CARD.findall(text[at:]) if at > 0 else []:
+            v = re.search(r'pdfviewer\?url=([^"]+)"', card)
+            dd = re.findall(r'<span class="fas fa-link"></span> (.*?)</span>', card)
+            if not v or len(dd) < 2:
+                continue
+            pdf, name, maker_text = unquote(v.group(1)), html.unescape(dd[0]).strip().upper(), html.unescape(dd[1])
+            if NOT_A_MAKER.search(pdf.split("/")[-2] if pdf.count("/") > 3 else "") or NOT_A_MAKER.search(maker_text):
+                continue
+            if name != part and nearest(re.sub(r"[^A-Z0-9]", "", name), parts | {part}) != part:
+                continue
+            title = re.search(r'data-bs-content="(.*?)"', card)
+            yield row(part, source, entry, maker=catalogue.maker_of(maker_text)[0] or "",
+                      name=maker_text, title=html.unescape(title.group(1)) if title else "", url=pdf, page=page)
+
+
 READERS: dict[str, Callable[[str, dict, Fetcher], Iterator[dict]]] = {
+    "datasheet_live": read_datasheet_live,
     "archive_manuallib": read_manuallib,
     "cdil_products": read_cdil,
     "kec_products": read_kec,

@@ -284,6 +284,9 @@ const VIA: Record<string, string> = {
   archive_databooks_more: "a databook the Internet Archive holds",
   cq_tables: "CQ Publishing's device tables, in the Internet Archive",
   data_tables: "D.A.T.A. device tables, in the Internet Archive",
+  wrh_books: "a data book World Radio History holds",
+  archive_manuallib: "a single sheet the Internet Archive holds",
+  datasheet_live: "a copy held by datasheet.live (not the maker's file)",
 }
 
 function fileName(url: string): string {
