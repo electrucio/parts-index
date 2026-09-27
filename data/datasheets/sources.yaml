@@ -169,3 +169,23 @@ nisshinbo_products:
   notes: 'robots.txt disallows *.pdf and *.csv for every agent, and nothing else of use here. The English
     page sitemap names 1,317 product pages after their product; each page''s download block links the
     data sheet. The link is published; the PDF is never fetched.'
+secos_products:
+  kind: catalogue
+  maker: secos
+  categories: [ic/lvr, ic/avr, ic/ldo, ic/asr, ic/aa, ic/oa, ic/com, ic/pho, diode/sr, diode/sr/lvf, diode/sr/sic,
+               diode/gr, diode/fr, diode/sf, diode/sf/llsf, diode/he, diode/ss/sky, diode/ss/swt, diode/ss/pin,
+               diode/br, diode/br/ns, diode/zd, diode/tvs, diode/tvs/esd, transistor/dt, transistor/mos,
+               transistor/sst, transistor/mpt, thyristor/sil]
+  status: active
+  delay: 3
+  notes: 'SeCoS (Taiwan). robots.txt allows everything. The site''s own script asks /api/product/<category>
+    for a whole category at once — each part and its data sheet; the categories are the ones that
+    script names (read 2026-09-27).'
+tsc_products:
+  kind: catalogue
+  maker: taiwan-semiconductor
+  status: active
+  delay: 3
+  notes: 'www.taiwansemi.com has no robots.txt and services.taiwansemi.com allows everything. The product
+    filter''s skeleton gives the category tree, and products_v2 each leaf with status, family and data
+    sheet. Sheet names carry spaces and are published percent-encoded.'

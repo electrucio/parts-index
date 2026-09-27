@@ -24,6 +24,7 @@ import re
 import sys
 from collections.abc import Callable, Iterator
 from pathlib import Path
+from urllib.parse import quote
 
 from parts_index.core import http
 from parts_index.core.config import datasheet_catalogue, datasheets_cache
@@ -229,7 +230,52 @@ def read_nisshinbo(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
         yield row(name, source, entry, url=NISSHINBO + m.group(1) if m else "", page=page)
 
 
+# --- SeCoS -------------------------------------------------------------------------------------------
+SECOS = "https://www.secosgmbh.com"
+
+
+def read_secos(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
+    """/api/product/<category> gives a whole category, as the site's own script asks for it: each part
+    (`pn`) with its data sheet. The categories are the ones that script names, listed in the registry."""
+    for path in entry["categories"]:
+        for p in (get.json(f"{SECOS}/api/product/{path}") or {}).get("data") or []:
+            if not isinstance(p, dict) or not p.get("pn"):
+                continue
+            url = ((p.get("datasheet") or {}).get("url") or "").split("?")[0]
+            yield row(str(p["pn"]).upper(), source, entry, url=url)
+
+
+# --- Taiwan Semiconductor ----------------------------------------------------------------------------
+TSC = "https://services.taiwansemi.com/api"
+
+
+def read_tsc(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
+    """The product filter's skeleton gives the category tree; products_v2 gives each leaf category with
+    every part's status, family and data sheet (the site's own export asks for them all at once)."""
+    tree = (get.json(f"{TSC}/product-filter-skeleton?language=EN&is_with_filterable_properties=true") or {})
+    leaves: list[tuple[str, str]] = []
+
+    def walk(recs, trail):
+        for r in recs or []:
+            subs = (r.get("sub_categories") or {}).get("records") or []
+            here = [*trail, r.get("name", "")]
+            if subs:
+                walk(subs, here)
+            else:
+                leaves.append((r["slug"], " > ".join(here[-2:])))
+
+    walk(((tree.get("data") or {}).get("category_tree") or {}).get("records"), [])
+    for slug, where in leaves:
+        q = f"{TSC}/products_v2?is_with_datasheet=true&category={slug}&limit=100000&page=1&properties=%7B%7D"
+        for p in ((get.json(q) or {}).get("data") or {}).get("records") or []:
+            if p.get("name"):
+                yield row(p["name"].upper(), source, entry, category=where, status=p.get("status") or "",
+                          url=quote(p.get("datasheet") or "", safe=":/%?=&"))
+
+
 READERS: dict[str, Callable[[str, dict, Fetcher], Iterator[dict]]] = {
+    "secos_products": read_secos,
+    "tsc_products": read_tsc,
     "nisshinbo_products": read_nisshinbo,
     "vishay_gateways": read_vishay,
     "diotec_products": read_diotec,
