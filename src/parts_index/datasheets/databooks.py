@@ -25,7 +25,7 @@ import sys
 from urllib.parse import quote
 
 from parts_index.core import http
-from parts_index.core.config import datasheet_pages, datasheets_state, datasheets_text
+from parts_index.core.config import datasheet_pages, datasheets_state, datasheets_text, schematics_parts
 from parts_index.core.ledger import Ledger, today
 from parts_index.core.parts import catalogue
 from parts_index.core.parts.extractor import canonical, family_of
@@ -36,7 +36,8 @@ STAGES = ("fetch", "read")
 VERSIONED = ("read",)
 FIELDS = ("key", "url", "http", "bytes", "fetch_at", "read_at", "read_v", "skip_reason")
 READ_VERSION = "2"  # 2: a letter and a number is a part only when its family is known
-PAGE_FIELDS = ("part", "book", "leaf", "printed", "maker", "title", "year", "checked")
+PAGE_FIELDS = ("part", "book", "leaf", "printed", "maker", "title", "year", "checked", "kind")
+TABLE_PAGES = 2         # in a tabulation, the first pages a part is listed on are enough to find it
 HEAD_LINES = 6          # a sheet names its type in its first lines
 MAX_HEADS = 4           # a page heading more parts than this is an index or a selector guide
 MAX_ON_PAGE = 12        # nor is a page naming more than this anywhere on it a sheet
@@ -47,8 +48,10 @@ WORD = re.compile(r"<WORD[^>]*>([^<]*)</WORD>")
 
 
 def books(entry: dict) -> list[dict]:
-    """Every item the archive's search finds for the registry's query, kept when its title says it is a
-    semiconductor book and not one of the kinds the registry leaves out."""
+    """The items the registry names, or every item the archive's search finds for its query, kept when its
+    title says it is a semiconductor book and not one of the kinds the registry leaves out."""
+    if entry.get("items"):
+        return [{"identifier": i, "title": ""} for i in entry["items"]]
     q = (f"{ARCHIVE}/advancedsearch.php?q={quote(entry['query'])}&fl%5B%5D=identifier&fl%5B%5D=title"
          f"&rows=10000&output=json")
     r = http.get(q, ua=PROJECT_UA, delay=float(entry.get("delay", http.DELAY)), max_bytes=32 << 20)
@@ -136,6 +139,9 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
     if list_only:
         return {"books": len(items)}
     parts = known()
+    # A tabulation lists every device of its day; only the parts this index holds are kept from it.
+    with open(schematics_parts(), encoding="utf-8") as f:
+        indexed = {r["part"] for r in csv.DictReader(f)} & parts
     led = Ledger(datasheets_state(source), stages=STAGES, fields=FIELDS, versioned=VERSIONED)
     rows = load(source)
     text_dir = datasheets_text(source)
@@ -155,6 +161,7 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
         else:
             meta = http.get(f"{ARCHIVE}/metadata/{ident}", ua=PROJECT_UA, delay=delay, max_bytes=16 << 20)
             files = json.loads(meta.body or b"{}").get("files", []) if meta.ok else []
+            title = title or json.loads(meta.body or b"{}").get("metadata", {}).get("title", "") if meta.ok else title
             xml = next((f["name"] for f in files if f["name"].endswith("_djvu.xml")), None)
             if not xml:
                 led.skip(ident, "no text layer in the archive", url=f"{ARCHIVE}/details/{ident}")
@@ -177,14 +184,24 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
             held = {"title": title, "pages": pages, "printed": printed}
             kept.write_bytes(gzip.compress(json.dumps(held).encode("utf-8")))
             led.stamp(ident, "fetch", url=f"{ARCHIVE}/details/{ident}", http=resp.status, bytes=len(resp.body))
-        maker, year = maker_of(title), (YEAR.search(title) or [""])[0]
+        title = title or held.get("title", "")
+        table = entry.get("mode") == "table"
+        # A tabulation is nobody's data sheet: its publisher (CQ, D.A.T.A.) made no part, so no maker.
+        maker, year = ("" if table else maker_of(title)), (YEAR.search(title) or [""])[0]
         for k in [k for k in rows if k[1] == ident]:
             del rows[k]
+        listed: dict[str, int] = {}
         for leaf, page in enumerate(held["pages"], start=1):
-            for part in heads(page, parts):
+            found = (names(page, indexed) if table else heads(page, parts))
+            for part in found:
+                if table:
+                    listed[part] = listed.get(part, 0) + 1
+                    if listed[part] > TABLE_PAGES:
+                        continue
                 rows[(part, ident, str(leaf))] = {
                     "part": part, "book": ident, "leaf": leaf, "printed": held["printed"].get(str(leaf), ""),
-                    "maker": maker, "title": title.split("::")[-1].strip(), "year": year, "checked": today()}
+                    "maker": maker, "title": title.split("::")[-1].strip(), "year": year, "checked": today(),
+                    "kind": "table" if table else "sheet"}
                 n["pages"] += 1
         led.stamp(ident, "read", version=READ_VERSION)
         n["read"] += 1

@@ -281,6 +281,9 @@ const VIA: Record<string, string> = {
   st_wayback: "ST's addresses in the Internet Archive, read",
   adi_wayback: "Analog Devices' addresses in the Internet Archive, read",
   archive_databooks: "a databook the Internet Archive holds",
+  archive_databooks_more: "a databook the Internet Archive holds",
+  cq_tables: "CQ Publishing's device tables, in the Internet Archive",
+  data_tables: "D.A.T.A. device tables, in the Internet Archive",
 }
 
 function fileName(url: string): string {

@@ -314,8 +314,9 @@ def databook_pages() -> dict[str, list[list[str]]]:
             page = f", p. {r['printed']}" if r.get("printed") else f", leaf {r['leaf']}"
             title = " ".join(x for x in (r["title"], page.lstrip(", ")) if x)
             url = f"https://archive.org/details/{r['book']}/page/n{int(r['leaf']) - 1}"
+            what = "a line in a tabulation" if r.get("kind") == "table" else "a page of a databook"
             out[r["part"]].append([url, r.get("maker", ""), "", title, f.stem,
-                                   "a page of a databook" + (f" ({r['year']})" if r.get("year") else "")])
+                                   what + (f" ({r['year']})" if r.get("year") else "")])
     return out
 
 
