@@ -221,3 +221,12 @@ def test_a_databook_page_covers_the_part_its_heading_names():
     assert heads("122\nRCA Transistor Manual\n2N140 TRANSISTOR\nGe p-n-p alloy-junction type", parts) == {"2N140"}
     assert heads("146\nRCA Transistor Manual\np-n-p type, such as the 2N408. JEDEC", parts) == set()
     assert heads("474 RCA Transistor Manual\nIndex\n2N404A .\n2N795 .\n2N1358 .", parts) == set()
+
+
+def test_a_numbered_sheet_gets_its_prefix_and_a_family_sheet_is_one():
+    from parts_index.datasheets.harvest import a_family, renamed
+    parts = {"LT1028", "LTC1050", "L7805", "L7812"}
+    assert renamed("1028FD", {"numbered": ["LT", "LTC"]}, parts) == "LT1028"
+    assert renamed("1050FB", {"numbered": ["LT", "LTC"]}, parts) == "LTC1050"
+    assert renamed("7815F", {"numbered": ["LT"]}, parts) == "7815F"     # no LT7815: left as it is
+    assert a_family("L78", parts) and not a_family("L7", parts)

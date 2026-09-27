@@ -48,7 +48,7 @@ from parts_index.core.parts.extractor import KNOWN, base_part, canonical, family
 STAGES = ("fetch", "read")
 VERSIONED = ("read",)
 FIELDS = ("key", "url", "http", "bytes", "sha256", "fetch_at", "read_at", "read_v", "skip_reason")
-READ_VERSION = "10"  # 10: x-families may start with a digit (1N4x48)
+READ_VERSION = "11"  # 11: numbered LT sheets get their prefix; family-named ST sheets
 DOC_FIELDS = ("url", "maker", "title", "revision", "pages", "bytes", "sha256", "covers", "checked", "copy")
 COVER_FIELDS = ("part", "url", "seen", "times")
 
@@ -180,6 +180,23 @@ def wayback(entry: dict) -> dict[str, dict]:
         if url not in out:
             out[url] = {"copy": copy, "also": sorted({m[0] for m in members[1:]} - {url})}
     return out
+
+
+def renamed(h: str, entry: dict, parts: set[str]) -> str:
+    """A file name the maker wrote without its prefix, given it back: Linear Technology filed the LT1028
+    as 1028fd.pdf (the number, then the sheet's revision letters). `numbered: [LT, LTC, LTM]` names
+    the prefixes to try; the first that makes a known part wins."""
+    m = re.fullmatch(r"(\d{3,5})F[A-Z]{0,2}", h)
+    if m:
+        for p in entry.get("numbered", []):
+            if p + m.group(1) in parts:
+                return p + m.group(1)
+    return h
+
+
+def a_family(h: str, parts: set[str]) -> bool:
+    """A sheet named after a family (ST's l78.pdf, l79l.pdf): some known part starts with the name."""
+    return bool(re.search(r"\d", h)) and 3 <= len(h) <= 6 and any(p.startswith(h) for p in parts)
 
 
 def wanted(urls: dict[str, str] | list[str], entry: dict, parts: set[str]) -> list[str]:
@@ -354,11 +371,12 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
     urls = {u: "" for u in held_by} if held_by else listing(source, entry)
     if held_by:
         strip = entry.get("strip", "")
-        def named(u: str) -> set[str]:
-            # the name, or the known part it is an ordering code of (1ss356tw11 -> 1SS356)
-            hs = {re.sub(r"[^A-Z0-9]", "", head(x, strip)) for x in (u, *held_by[u]["also"])}
-            return hs | {nearest(h, parts) for h in hs}
-        todo = [u for u in urls if named(u) & parts]
+        def wanted_here(u: str) -> bool:
+            # the name, the known part it is an ordering code of (1ss356tw11 -> 1SS356), or a family
+            hs = {renamed(re.sub(r"[^A-Z0-9]", "", head(x, strip)), entry, parts) for x in (u, *held_by[u]["also"])}
+            return bool((hs | {nearest(h, parts) for h in hs}) & parts) or (
+                bool(entry.get("families")) and any(a_family(h, parts) for h in hs))
+        todo = [u for u in urls if wanted_here(u)]
     else:
         todo = wanted(urls, entry, parts)
     prefix = entry.get("prefix", "")
@@ -406,7 +424,7 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
         names = [urls.get(url)] if urls.get(url) else re.split(entry.get("split", "_"), head(url, entry.get("strip", "")))
         also = [head(a, entry.get("strip", "")) for a in (held_by.get(url) or {}).get("also", [])]
         names += also
-        names = [re.sub(r"[^A-Z0-9]", "", n.upper()) for n in names if re.search(r"\d", n)] or [""]
+        names = [renamed(re.sub(r"[^A-Z0-9]", "", n.upper()), entry, parts) for n in names if re.search(r"\d", n)] or [""]
         names = [n if not prefix or n.startswith(prefix) else prefix + n for n in names]
         sheet_head = names[0]
         found = covered(pages, parts, sheet_head, prefix, tuple(names[1:]), int(entry.get("series", 2)),

@@ -277,3 +277,8 @@ def test_japanese_packages_and_unbuffered_4000_names_find_their_type():
     assert kin_names("NE5534AN") == [("package", "NE5534A")]
     assert ("maker's name", "CD4011B") in kin_names("CD4011")
     assert kin_names("LM317L") == []            # L is a package only on the Japanese makers' names
+
+
+def test_a_jrc_name_is_sold_as_njm():
+    from parts_index.web.parts import kin_names
+    assert ("maker's name", "NJM4558") in kin_names("JRC4558D")

@@ -465,6 +465,17 @@ GENERIC = (
 BUFFERED = re.compile(r"(?:CD|HEF|MC1)4\d{3,4}")
 
 
+def kin_names_steps(part: str) -> list[tuple[str, str]]:
+    out, p = [], part
+    for _ in range(3):
+        step = next(((why, m.group("t")) for why, rx in KIN_STEPS if (m := rx.fullmatch(p))), None)
+        if not step:
+            break
+        out.append(step)
+        p = step[1]
+    return out
+
+
 def kin_names(part: str) -> list[tuple[str, str]]:
     """The names whose sheets also document this one, and why: the type it is a package, packing, grade
     or brand of (a step at a time, BC547BTA -> BC547B -> BC547), or a maker's name for a bare number."""
@@ -475,6 +486,9 @@ def kin_names(part: str) -> list[tuple[str, str]]:
             break
         out.append(step)
         p = step[1]
+    if re.fullmatch(r"JRC\d{4}[A-Z]{0,2}", part):          # JRC4558D is sold as NJM4558D
+        out.append(("maker's name", "NJM" + part[3:]))
+        out += [("maker's name", "NJM" + t[3:]) for _, t in kin_names_steps(part)]
     if BUFFERED.fullmatch(part):
         out += [("maker's name", part + x) for x in ("B", "BE", "BCP", "BP")]
     for rx, prefixes in GENERIC:

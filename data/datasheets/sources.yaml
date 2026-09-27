@@ -134,6 +134,7 @@ st_wayback:
   prefixes:
     - www.st.com/resource/en/datasheet/
   keep: '/resource/en/datasheet/[^/]+\.pdf$'
+  families: true                 # ST files some sheets under the family: l78.pdf, l79l.pdf
   status: active
   delay: 10                     # the archive refused connections at one request every 3 s (2026-09-27)
   notes: 'st.com closes the connection on anything but a browser, so its own address cannot be read. The
@@ -146,11 +147,12 @@ adi_wayback:
   prefixes:
     - www.analog.com/media/en/technical-documentation/data-sheets/
   keep: '/data-sheets/[^/]+\.pdf$'
+  numbered: [LT, LTC, LTM]       # Linear Technology filed LT1028 as 1028fd.pdf
   status: active
   delay: 10                     # the archive refused connections at one request every 3 s (2026-09-27)
   notes: 'analog.com closes the connection on anything but a browser. The Internet Archive holds 23,224
     captures under its data sheet folder (17,157 addresses), which covers Linear Technology, Maxim and
-    Hittite sheets too. Linear Technology''s numeric names (1028fd.pdf) name no part and are left.'
+    Hittite sheets too. Linear Technology''s numeric names (1028fd.pdf) are given back their prefix.'
 vishay_gateways:
   kind: catalogue
   maker: vishay
