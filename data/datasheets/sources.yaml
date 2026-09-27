@@ -1,0 +1,19 @@
+# Where a part's data sheet is catalogued by the manufacturer that publishes it, and what the catalogue
+# page says about the part in the manufacturer's own terms: the category it files the part under, its
+# production status, and the title and revision of the data sheet. `pidx datasheets register` reads
+# them into data/datasheets/datasheets.csv, facts and links only — the page's own prose stays on the page.
+#
+# Only parts this index already holds are asked for: the census says which parts a catalogue lists, the
+# index says which of those anybody printed, and asking for the other sixteen thousand would cost the
+# manufacturer's server without telling a reader anything.
+# status: proposed | active | paused | blocked
+ti_products:
+  maker: texas-instruments
+  census: ti_datasheets
+  page: 'https://www.ti.com/product/{part}'
+  status: active
+  delay: 1.5
+  notes: 'robots.txt allows /product/ with Crawl-delay 1; read on 2026-09-27 at one page every 1.5 s.
+    A product page carries its category, status and part number in meta tags and the data sheet as a
+    link whose text is its title and revision. A part TI no longer has a page for answers 404 and is
+    recorded as such.'

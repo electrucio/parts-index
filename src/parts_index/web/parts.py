@@ -40,6 +40,7 @@ import yaml
 from parts_index.core.config import (
     census_registry,
     dataset_table,
+    datasheets_table,
     known_parts,
     model_part,
     parts_census,
@@ -219,6 +220,7 @@ def index() -> dict:
            "wanted_kind": {r["part"]: r["kind"] for r in rows(wanted_parts()) if r.get("kind")},
            "dictionary": dictionary_kinds()}
     idx["listed_by"], idx["listings"] = census_listings()
+    idx["catalogued"] = catalogued()
     idx["first"] = first_seen(idx)
     return idx
 
@@ -245,6 +247,17 @@ def census_listings() -> tuple[dict[str, list[list]], dict[str, dict]]:
         for r in rows(parts_census(src)):
             out[r["part"]].append([src, r["url"]])
     return out, meta
+
+
+CATALOGUE_FIELDS = ("source", "maker", "category", "status", "title", "revision", "url", "page", "checked")
+
+
+def catalogued() -> dict[str, list[list[str]]]:
+    """What each manufacturer's catalogue says about a part, from the data-sheet register."""
+    out: dict[str, list[list[str]]] = defaultdict(list)
+    for r in rows(datasheets_table()):
+        out[r["part"]].append([r.get(k, "") for k in CATALOGUE_FIELDS])
+    return out
 
 
 def first_seen(idx: dict) -> dict[str, list]:
@@ -353,6 +366,9 @@ def about(part: str, idx: dict, recipe: dict | None) -> dict:
     rel = catalogue.related(part)
     if rel:
         out["related"] = rel
+    cat = idx.get("catalogued", {}).get(part)
+    if cat:
+        out["catalogue"] = cat
     listed = idx.get("listed_by", {}).get(part)
     if listed:
         out["listed"] = listed

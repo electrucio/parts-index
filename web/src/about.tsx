@@ -82,6 +82,9 @@ function MakerName({ id, cat }: { id: string; cat: Catalogue }) {
   )
 }
 
+/** A manufacturer's production status as a colour: still made, winding down, or gone. */
+const STATUS_PILL: Record<string, string> = { ACTIVE: 'pass', PREVIEW: 'acc', NRND: 'off', LIFEBUY: 'off', OBSOLETE: 'fail', DISCONTINUED: 'fail' }
+
 /** How a relation reads from the part on the page: from the part in its first column, or towards it. */
 const RELATION: Record<string, Record<'out' | 'in' | 'both', string>> = {
   next_generation_of: { out: 'The next generation of', in: 'Its next generation is', both: 'Same generation as' },
@@ -168,10 +171,32 @@ function Facts({ page, cat, sources }: { page: PartPage; cat: Catalogue; sources
       </>
     )])
   }
-  if (a.listed?.length) {
+  if (a.catalogue?.length) {
+    rows.push(["Maker's catalogue", (
+      <>
+        {a.catalogue.map(([, maker, category, status, title, rev, url, pageUrl, checked], i) => (
+          <div key={i}>
+            <MakerName id={maker} cat={cat} /> files it under <b>{category || 'no category'}</b>
+            {status && <> · <span class={`pill ${STATUS_PILL[status] ?? 'na'}`}>{status.toLowerCase()}</span></>}
+            {' · '}<a href={pageUrl} target="_blank" rel="noopener">their page</a>
+            {title && (
+              <div class="small">
+                Data sheet: {url ? <a href={url} target="_blank" rel="noopener">{title}</a> : title}
+                {rev && <span class="muted">, revision {rev}</span>}
+              </div>
+            )}
+            <div class="muted small">Read from the maker's page on {checked}; the maker's own words, not this project's.</div>
+          </div>
+        ))}
+      </>
+    )])
+  }
+  const shown = new Set((a.catalogue ?? []).map((c) => c[1]))
+  const listed = (a.listed ?? []).filter(([src]) => !shown.has(cat.listings[src]?.maker ?? ''))
+  if (listed.length) {
     rows.push(['Listed by', (
       <>
-        {a.listed.map(([src, url], i) => {
+        {listed.map(([src, url], i) => {
           const l = cat.listings[src]
           return (
             <div key={i}>

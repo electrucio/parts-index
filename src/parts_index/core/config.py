@@ -162,7 +162,18 @@ def model_links() -> Path:
 
 
 def datasheets_table() -> Path:
+    """What each manufacturer's catalogue says about a part: category, status, data sheet title and link."""
     return PUBLIC_DATA / "datasheets" / "datasheets.csv"
+
+
+def datasheets_registry() -> Path:
+    """The manufacturer catalogues the data-sheet register reads, and at what pace."""
+    return PUBLIC_DATA / "datasheets" / "sources.yaml"
+
+
+def datasheets_state(source: str) -> Path:
+    """One ledger row per part asked of that catalogue."""
+    return PUBLIC_DATA / "datasheets" / "state" / f"{source}.csv"
 
 
 def verification(kind: str, part: str) -> Path:
@@ -309,6 +320,12 @@ def summarise_preview() -> Path:
     """Every line the summarise pass has written so far, with the link the site would show beside it.
     A window into a run that takes days; the real export is `schematics_lines`, written when it ends."""
     return material_root() / "summarise_preview.csv"
+
+
+def datasheets_cache(source: str) -> Path:
+    """The head of each catalogue page the register read, compressed: third-party content, so it stays
+    here, and a parser fix costs a re-read rather than another visit."""
+    return material_root() / "datasheets_cache" / source
 
 
 def census_cache(source: str) -> Path:
@@ -476,6 +493,8 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("model_files", "public", ("germaniumbjts",)),
     ("model_links", "public", ()),
     ("datasheets_table", "public", ()),
+    ("datasheets_registry", "public", ()),
+    ("datasheets_state", "public", ("ti_products",)),
     ("verification", "public", ("bjt", "2N3904")),
     ("known_parts", "public", ()),
     ("wanted_parts", "public", ()),
@@ -506,6 +525,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("linkchecks", "private", ()),
     ("summarise_preview", "private", ()),
     ("census_cache", "private", ("frank_pocnet",)),
+    ("datasheets_cache", "private", ("ti_products",)),
     ("index_db", "private", ()),
     ("page_sizes", "private", ()),
     ("downloads", "private", ("esp",)),

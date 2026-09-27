@@ -148,6 +148,9 @@ export interface About {
   documented?: { note: string; refs: string[]; status: 'draft' | 'reviewed' }
   /** Who published the sheet the models were measured against, and the organisations it descends from. */
   maker?: [string, string[]]
+  /** What a manufacturer's catalogue says: source, maker id, category, status, data sheet title,
+   *  revision, data sheet link, catalogue page, date read. */
+  catalogue?: [string, string, string, string, string, string, string, string, string][]
   /** Catalogues that list the part today: census source, link. */
   listed?: [string, string][]
   /** The oldest dated document here that prints it: year, title, source position, link. */

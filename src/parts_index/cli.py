@@ -148,6 +148,13 @@ def main(argv: list[str] | None = None) -> int:
     pc.add_argument("--limit", type=int, default=0, help="at most this many pages fetched, per source")
     pc.add_argument("--delay", type=float, default=0.0, help="seconds between two requests to one host")
 
+    dsh = sub.add_parser("datasheets", help="what manufacturers' catalogues say about the parts").add_subparsers(
+        dest="dsh_cmd", required=True)
+    dsr = dsh.add_parser("register", help="read category, status and data sheet of each indexed part")
+    dsr.add_argument("--source", action="append", help="only these sources (repeatable)")
+    dsr.add_argument("--limit", type=int, default=0, help="at most this many pages asked for, per source")
+    dsr.add_argument("--reread", action="store_true", help="read the cached pages again with today's parser")
+
     ds = sub.add_parser("datasets", help="the distilled research datasets").add_subparsers(
         dest="ds_cmd", required=True)
     dr = ds.add_parser("repos", help="read how much attention each open-source project has")
@@ -338,6 +345,12 @@ def main(argv: list[str] | None = None) -> int:
         argv2 += ["--limit", str(args.limit)] if args.limit else []
         argv2 += ["--delay", str(args.delay)] if args.delay else []
         return census.main(argv2 + (["--read"] if args.read else []))
+
+    if args.cmd == "datasheets" and args.dsh_cmd == "register":
+        from parts_index.datasheets import register
+        argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
+        argv2 += ["--limit", str(args.limit)] if args.limit else []
+        return register.main(argv2 + (["--reread"] if args.reread else []))
 
     if args.cmd == "datasets" and args.ds_cmd == "repos":
         from parts_index.datasets import repos as ds_repos
