@@ -95,3 +95,16 @@ def test_definitions_that_cannot_match_anything_are_not_held(tmp_path):
     heads = M.names_wanted({"bjt": [{"part": "2N3904"}]})
     assert [r["name"] for r in M.load_definitions(p, heads)] == ["Q2N3904"]
     assert "params" not in M.load_definitions(p)[0]
+
+
+def test_a_prefix_before_a_letter_is_dropped_only_when_it_is_the_devices_own_letter():
+    """Motorola's library calls the MJ15001 `Qmj15001`; the old rule only knew prefixes before a digit."""
+    got = found({"bjt": [{"part": "MJ15001"}]}, [rec("Qmj15001"), rec("Dmj15001", type="D")])
+    assert got == {"MJ15001": [("Qmj15001", "exact")]}
+
+
+def test_a_part_number_that_starts_with_another_devices_letter_is_not_cut():
+    assert M.keys_of("MPSA18", "NPN") == {"MPSA18"}
+    assert M.keys_of("MTP3055E", "VDMOS") == {"MTP3055E", "TP3055E"}
+    assert M.keys_of("DAN217", "SUBCKT") == {"DAN217"}
+    assert M.keys_of("QPWR", None) == {"QPWR"}

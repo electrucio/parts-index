@@ -8,7 +8,8 @@ only decides which definitions are *for* a part, and says how each one was match
 the site can weigh a near miss differently from an exact name.
 
 Matching is by normalised name (upper case, alphanumerics only), after dropping the SPICE prefix
-vendors glue on (Q2N3904, D1N4148, J2N5457, X..., M...):
+vendors glue on (Q2N3904, D1N4148, J2N5457, X..., M...; before a letter only the definition's own
+device letter, so Motorola's Qmj15001 is MJ15001 and MPSA18 stays MPSA18):
 
   exact   same name                               2N3904 ~ Q2N3904
   suffix  name = part + short tag (≤4, not digit)  2N3904C (Cordell), 12AX7_JJ
@@ -62,11 +63,24 @@ def norm(s: str) -> str:
     return re.sub(r"[^A-Z0-9]", "", s.upper())
 
 
-def keys_of(name: str) -> set[str]:
-    """The names a definition answers to: itself, and itself without a SPICE prefix before a digit."""
+# The SPICE element letter a vendor puts before a part's name, by the device the definition is. Before
+# a digit any of PREFIXES is a prefix, as `2N3904` cannot start a name otherwise; before a letter only
+# the letter of the definition's own device counts, because MPSA18 (a transistor) and DAN217 (a diode
+# array) are part numbers that begin with M or D. A part that does start with its own device's letter,
+# like the MOSFET MTP3055, gains a second key and keeps its own, which costs nothing unless a wanted
+# part is called TP3055. Motorola's `Qmj15001` is the MJ15001.
+ELEMENT_OF_TYPE = {"NPN": "Q", "PNP": "Q", "D": "D", "NJF": "J", "PJF": "J",
+                   "NMOS": "M", "PMOS": "M", "VDMOS": "M", "SUBCKT": "X"}
+
+
+def keys_of(name: str, type: str | None = None) -> set[str]:
+    """The names a definition answers to: itself, and itself without the SPICE prefix a vendor glued
+    on — before a digit whatever the letter, before a letter only its own device's letter."""
     n = norm(name)
     ks = {n}
     if len(n) > 2 and n[0] in PREFIXES and n[1].isdigit():
+        ks.add(n[1:])
+    elif len(n) > 3 and n[1].isalpha() and n[0] == ELEMENT_OF_TYPE.get((type or "").upper()):
         ks.add(n[1:])
     return ks
 
@@ -179,7 +193,7 @@ def load_definitions(path: Path, heads: set[str] | None = None) -> list[dict]:
     with path.open(encoding="utf-8") as f:
         for line in f:
             r = json.loads(line)
-            if heads is not None and not any(k[:3] in heads for k in keys_of(r["name"])):
+            if heads is not None and not any(k[:3] in heads for k in keys_of(r["name"], r.get("type"))):
                 continue
             recs.append({k: r.get(k) for k in KEEP})
     return recs
@@ -190,7 +204,7 @@ def find(wanted: dict, recs: list[dict]) -> dict:
     by_key = defaultdict(list)
     prefixes = defaultdict(list)          # first 3 chars -> keys, for suffix/grade
     for i, r in enumerate(recs):
-        for k in keys_of(r["name"]):
+        for k in keys_of(r["name"], r["type"]):
             by_key[k].append(i)
     for k in by_key:
         prefixes[k[:3]].append(k)
