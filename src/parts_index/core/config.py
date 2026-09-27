@@ -458,6 +458,11 @@ def spice_matches() -> Path:
     return material_root() / "model_matches.json"
 
 
+def spice_found() -> Path:
+    """Those matches grouped into distinct models, each with every copy of it and where each can be had."""
+    return material_root() / "model_found.json"
+
+
 def datasheets(kind: str | None = None) -> Path:
     """Vendor PDFs, kept until the simulation and datasheet-reading work is done."""
     d = material_root() / "datasheets"
@@ -581,6 +586,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("spice_part_json", "private", ("bjt", "2N3904")),
     ("spice_definitions", "private", ()),
     ("spice_matches", "private", ()),
+    ("spice_found", "private", ()),
     ("datasheets", "private", ()),
     ("simulators", "private", ()),
     ("staging", "private", ()),
