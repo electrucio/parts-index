@@ -48,7 +48,7 @@ from parts_index.core.parts.extractor import KNOWN, base_part, canonical, family
 STAGES = ("fetch", "read")
 VERSIONED = ("read",)
 FIELDS = ("key", "url", "http", "bytes", "sha256", "fetch_at", "read_at", "read_v", "skip_reason")
-READ_VERSION = "5"  # 5: a JEDEC series is its number but the last digit; a sheet filed under a number covers it
+READ_VERSION = "6"  # 6: a known name counts as itself, not its base; "see X for" names another part
 DOC_FIELDS = ("url", "maker", "title", "revision", "pages", "bytes", "sha256", "covers", "checked", "copy")
 COVER_FIELDS = ("part", "url", "seen", "times")
 
@@ -56,7 +56,7 @@ LOC = re.compile(r"<loc>\s*([^<\s]+)\s*</loc>")
 TOKEN = re.compile(r"(?<![A-Za-z0-9])([A-Za-z0-9][A-Za-z0-9\-]{2,20})(?![A-Za-z0-9])")
 REVISION = re.compile(r"\bRev(?:ision)?\.?\s*:?\s*([A-Z]?\d{0,3}[A-Z]?)\b")
 # "Complementary PNP type: BC556", "replaces MC1458", "see also": what follows names another part.
-NOT_COVERED = re.compile(r"(complement\w*|replac\w*|see also|similar to|instead of|pin.compatible with|"
+NOT_COVERED = re.compile(r"(complement\w*|replac\w*|\bsee\b|related products?|similar to|instead of|pin.compatible with|"
                          r"second source|equivalent)\W{0,12}(?:\w+\W{0,3}){0,4}$", re.I)
 FIRST_PAGE = 2500       # characters of page one where a manufacturer names what the sheet covers
 # Who is asking, in plain words. onsemi and NXP answer this and refuse the browser string the client
@@ -208,6 +208,17 @@ def is_a_part(name: str) -> bool:
     return bool(family_of(name)) or norm(name) in KNOWN
 
 
+def nearest(tok: str, parts: set[str]) -> str:
+    """The longest known part an ordering code starts with, letters dropped one at a time from the end:
+    LM317LZ is an LM317L before it is an LM317, BC547BTA a BC547B."""
+    for k in range(1, 4):
+        if (len(tok) > k and tok[-k:].isalpha() and tok[:-k] in parts and tok[-k - 1].isalnum()
+                and re.search(r"[A-Z]", tok[:-k])):                  # 45A is 45 amperes, not a part "45"
+            return tok[:-k]
+    b = base_part(tok)
+    return b if b != tok and b in parts else ""
+
+
 def covered(pages: list[str], parts: set[str], sheet_head: str = "", prefix: str = "",
             heads: tuple[str, ...] = (), series: int = 2, own_only: bool = False) -> dict[str, tuple[str, int]]:
     """The known parts a sheet documents, and how that was seen: on its first page, or only in its text
@@ -232,10 +243,11 @@ def covered(pages: list[str], parts: set[str], sheet_head: str = "", prefix: str
             tok = canonical(m.group(1)) or ""
             if prefix and re.fullmatch(r"\d{3,5}[A-Z]{0,2}", tok):
                 tok = prefix + tok
-            if not tok or not re.search(r"\d", tok) or (not re.search(r"[A-Z]", tok) and tok not in heads_all):
+            if not tok or not re.search(r"\d", tok) or (not re.search(r"[A-Z]", tok) and not (own_only and tok in heads_all)):
                 continue                     # 103 is a capacitor code and a page number before it is a part,
                                              # unless the sheet is filed under it (JJ's 6550)
-            names = {n for n in (tok, base_part(tok)) if n in parts}
+            # The name itself when it is a part: LM317L is not an LM317, though search folds it there.
+            names = {tok} if tok in parts else {n for n in (nearest(tok, parts),) if n}
             if not names:
                 continue
             before = text[max(0, m.start() - 60):m.start()]
@@ -251,6 +263,12 @@ def covered(pages: list[str], parts: set[str], sheet_head: str = "", prefix: str
             continue
         if (own and (n in first or c >= 2)) or (n in first and c >= 2 and is_a_part(n)):
             found[n] = ("first page" if n in first else "text", c)
+    # A type whose grades the sheet covers, two or more of them, is the sheet's too: BF245 on the
+    # BF245A-B-C sheet, BC547 beside BC547A/B/C. One grade alone (TIP31C) says nothing about the others.
+    for base in {n[:-1] for n in found if re.fullmatch(r".*\d[A-C]", n)} & parts - set(found):
+        grades = [n for n in found if n[:-1] == base and n[-1] in "ABC"]
+        if len(grades) >= 2:
+            found[base] = (found[grades[0]][0], sum(found[g][1] for g in grades))
     return {n: v for n, v in found.items() if not stem(n, found)}
 
 
@@ -373,7 +391,7 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
             del covers[k]
         for part, (seen, times) in found.items():
             covers[(part, url)] = {"part": part, "url": url, "seen": seen, "times": times}
-        for part in {re.sub(r"[^A-Z0-9]", "", a) for a in also} & parts - set(found):
+        for part in {n for n in (re.sub(r"[^A-Z0-9]", "", a) for a in also) if re.search(r"[A-Z]", n)} & parts - set(found):
             # The maker serves this very file at an address named after the part (tl072a.pdf).
             covers[(part, url)] = {"part": part, "url": url, "seen": "its own address", "times": 0}
         led.stamp(url, "read", version=READ_VERSION)

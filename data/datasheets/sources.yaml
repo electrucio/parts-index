@@ -135,7 +135,7 @@ st_wayback:
     - www.st.com/resource/en/datasheet/
   keep: '/resource/en/datasheet/[^/]+\.pdf$'
   status: active
-  delay: 3
+  delay: 10                     # the archive refused connections at one request every 3 s (2026-09-27)
   notes: 'st.com closes the connection on anything but a browser, so its own address cannot be read. The
     Internet Archive has captured its data sheet addresses (11,525 on 2026-09-27, 7,344 distinct files);
     web.archive.org publishes no robots rules and its CDX API is made for this. Each sheet is read from the
@@ -147,7 +147,7 @@ adi_wayback:
     - www.analog.com/media/en/technical-documentation/data-sheets/
   keep: '/data-sheets/[^/]+\.pdf$'
   status: active
-  delay: 3
+  delay: 10                     # the archive refused connections at one request every 3 s (2026-09-27)
   notes: 'analog.com closes the connection on anything but a browser. The Internet Archive holds 23,224
     captures under its data sheet folder (17,157 addresses), which covers Linear Technology, Maxim and
     Hittite sheets too. Linear Technology''s numeric names (1028fd.pdf) name no part and are left.'

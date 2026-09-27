@@ -162,3 +162,21 @@ def test_wayback_groups_one_file_under_the_makers_addresses(monkeypatch):
     assert tl["copy"] == ("https://web.archive.org/web/20190101000000id_/"
                           "https://www.st.com/resource/en/datasheet/tl072.pdf?x=1")
     assert "https://www.st.com/resource/en/datasheet/tda7294.pdf" in got
+
+
+def test_a_related_product_and_a_variant_are_not_the_sheets_part():
+    from parts_index.datasheets.harvest import covered
+    parts = {"TL071", "TL072", "TL074", "LM317", "LM317L", "LM217L"}
+    got = covered(["TL074 quad\nRelated products\n• See TL071 for single version\n• See TL072 for dual version\n"
+                   "The TL074 TL074"], parts, "TL074")
+    assert set(got) == {"TL074"}
+    got = covered(["LM217L, LM317L\nThe LM217L/LM317L are regulators LM317LZ LM317LZ LM317LD13TR"], parts, "LM217L")
+    assert "LM317" not in got and "LM317L" in got
+
+
+def test_a_type_is_covered_when_two_of_its_grades_are():
+    from parts_index.datasheets.harvest import covered
+    parts = {"BF245", "BF245A", "BF245B", "BF245C", "TIP31", "TIP31C"}
+    assert "BF245" in covered(["BF245A; BF245B; BF245C\nN-channel FETs BF245A BF245B"], parts, "BF245A")
+    assert "TIP31" not in covered(["TIP31C TIP32C\nTIP31C power"], parts, "TIP31C")
+    assert "45" not in covered(["STW45NM60 600 V 45A 45A"], parts | {"45"}, "STW45NM60")
