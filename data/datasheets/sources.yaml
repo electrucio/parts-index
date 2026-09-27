@@ -57,7 +57,7 @@ nxp_docs:
     first part. robots.txt allows them and names no delay; read at the default three seconds.'
 that_datasheets:
   kind: document page
-  maker: that-corporation
+  maker: that
   pages:
     - https://thatcorp.com/ic-product-datasheets/
     - https://thatcorp.com/archived-datasheets/
@@ -86,7 +86,7 @@ jj_datasheets:
     a sheet names its type and, for EL34/E34L, both.'
 linearsystems_datasheets:
   kind: product pages
-  maker: linear-integrated-systems
+  maker: linear-systems
   sitemaps:
     - https://www.linearsystems.com/sitemap.xml
   sitemaps_keep: 'dynamic-(jfet|bipolar|mosfets|dmos|currentregulating|lowleakage|voltagecontrolled|bifet)'
@@ -128,3 +128,26 @@ infineon_tables:
   notes: 'robots.txt allows *.json and /assets/row/public/, and names no delay. The row sitemap names 930
     product tables; each family table''s JSON gives its parts, family, ordering-code status and data sheet.
     Tables built from a collection answer empty.'
+st_wayback:
+  kind: wayback
+  maker: stmicroelectronics
+  prefixes:
+    - www.st.com/resource/en/datasheet/
+  keep: '/resource/en/datasheet/[^/]+\.pdf$'
+  status: active
+  delay: 3
+  notes: 'st.com closes the connection on anything but a browser, so its own address cannot be read. The
+    Internet Archive has captured its data sheet addresses (11,525 on 2026-09-27, 7,344 distinct files);
+    web.archive.org publishes no robots rules and its CDX API is made for this. Each sheet is read from the
+    archived copy; ST''s own address is what is linked, with the copy beside it.'
+adi_wayback:
+  kind: wayback
+  maker: analog-devices
+  prefixes:
+    - www.analog.com/media/en/technical-documentation/data-sheets/
+  keep: '/data-sheets/[^/]+\.pdf$'
+  status: active
+  delay: 3
+  notes: 'analog.com closes the connection on anything but a browser. The Internet Archive holds 23,224
+    captures under its data sheet folder (17,157 addresses), which covers Linear Technology, Maxim and
+    Hittite sheets too. Linear Technology''s numeric names (1028fd.pdf) name no part and are left.'

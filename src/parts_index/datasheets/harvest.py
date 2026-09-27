@@ -49,7 +49,7 @@ STAGES = ("fetch", "read")
 VERSIONED = ("read",)
 FIELDS = ("key", "url", "http", "bytes", "sha256", "fetch_at", "read_at", "read_v", "skip_reason")
 READ_VERSION = "5"  # 5: a JEDEC series is its number but the last digit; a sheet filed under a number covers it
-DOC_FIELDS = ("url", "maker", "title", "revision", "pages", "bytes", "sha256", "covers", "checked")
+DOC_FIELDS = ("url", "maker", "title", "revision", "pages", "bytes", "sha256", "covers", "checked", "copy")
 COVER_FIELDS = ("part", "url", "seen", "times")
 
 LOC = re.compile(r"<loc>\s*([^<\s]+)\s*</loc>")
@@ -91,7 +91,8 @@ def head(url: str, strip: str = "") -> str:
     return name.upper()
 
 
-KINDS = ("document sitemap", "document page", "product pages")
+KINDS = ("document sitemap", "document page", "product pages", "wayback")
+CDX = "https://web.archive.org/cdx/search/cdx"
 HREF = re.compile(r'href="([^"]+)"')
 PAGE_TITLE = re.compile(r"<title>([^<]*)</title>", re.I)
 
@@ -146,6 +147,35 @@ def listing(source: str, entry: dict) -> dict[str, str]:
             if m and keep.search(m.group(1)):
                 out.setdefault(m.group(1), re.sub(strip, "", t.group(1)).strip() if t and strip else "")
     return dict(sorted(out.items()))
+
+
+def wayback(entry: dict) -> dict[str, dict]:
+    """The data sheets the Internet Archive holds under a maker's own addresses, for a maker whose site
+    refuses scripts (ST, Analog Devices): one CDX query per address prefix lists every PDF captured
+    there. Addresses whose captures are the same file (tl072.pdf, tl072a.pdf, tl072b.pdf) are one
+    sheet: the shortest name stands for it and the others are the maker's own statement that it serves
+    that sheet for those parts. The sheet is read from the archived copy; the maker's address is what
+    is published, with the copy beside it."""
+    groups: dict[str, list[tuple[str, str]]] = {}
+    for prefix in entry["prefixes"]:
+        q = (f"{CDX}?url={prefix}&matchType=prefix&filter=statuscode:200&filter=mimetype:application/pdf"
+             "&collapse=urlkey&fl=original,timestamp,digest&output=json")
+        try:
+            got = json.loads(fetch_text(q, entry) or "[]")[1:]
+        except ValueError:
+            got = []
+        for original, stamp, digest in got:
+            url = re.sub(r"^https?://([^/:]+)(:\d+)?", lambda m: "https://" + m.group(1).lower(), original)
+            url = url.split("?")[0].rstrip(".")
+            if url.lower().endswith(".pdf") and re.search(entry.get("keep", ""), url):
+                groups.setdefault(digest, []).append((url, f"https://web.archive.org/web/{stamp}id_/{original}"))
+    out: dict[str, dict] = {}
+    for members in groups.values():
+        members = sorted(set(members), key=lambda m: (len(head(m[0])), m[0]))
+        url, copy = members[0]
+        if url not in out:
+            out[url] = {"copy": copy, "also": sorted({m[0] for m in members[1:]} - {url})}
+    return out
 
 
 def wanted(urls: dict[str, str] | list[str], entry: dict, parts: set[str]) -> list[str]:
@@ -274,8 +304,14 @@ def save(path: Path, rows: dict, fields: tuple[str, ...]) -> None:
 
 def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, reread: bool = False) -> dict:
     parts = known()
-    urls = listing(source, entry)
-    todo = wanted(urls, entry, parts)
+    held_by = wayback(entry) if entry.get("kind") == "wayback" else {}
+    urls = {u: "" for u in held_by} if held_by else listing(source, entry)
+    if held_by:
+        strip = entry.get("strip", "")
+        named = lambda u: {re.sub(r"[^A-Z0-9]", "", head(x, strip)) for x in (u, *held_by[u]["also"])}  # noqa: E731
+        todo = [u for u in urls if named(u) & parts]
+    else:
+        todo = wanted(urls, entry, parts)
     prefix = entry.get("prefix", "")
     print(f"{source}: {len(urls)} data sheets listed, {len(todo)} named after a known part")
     if list_only:
@@ -301,7 +337,7 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
             pages, meta, row = held["pages"], held.get("meta") or {}, led.get(url) or {}
             sha, size = row.get("sha256", ""), row.get("bytes", "")
         else:
-            resp = http.get(url, ua=PROJECT_UA, delay=delay, max_bytes=40 << 20)
+            resp = http.get(held_by[url]["copy"] if held_by else url, ua=PROJECT_UA, delay=delay, max_bytes=40 << 20)
             n["fetched"] += 1
             if resp.status == 404:
                 led.skip(url, "gone (404)", url=url, http=404)
@@ -319,6 +355,8 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
             kept.write_bytes(gzip.compress(json.dumps({"meta": meta, "pages": pages}).encode("utf-8")))
             led.stamp(url, "fetch", url=url, http=resp.status, bytes=size, sha256=sha)
         names = [urls.get(url)] if urls.get(url) else re.split(entry.get("split", "_"), head(url, entry.get("strip", "")))
+        also = [head(a, entry.get("strip", "")) for a in (held_by.get(url) or {}).get("also", [])]
+        names += also
         names = [re.sub(r"[^A-Z0-9]", "", n.upper()) for n in names if re.search(r"\d", n)] or [""]
         names = [n if not prefix or n.startswith(prefix) else prefix + n for n in names]
         sheet_head = names[0]
@@ -329,11 +367,15 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
         title = title_of(pages, meta, sheet_head) if entry.get("titles", True) else ""
         docs[(url,)] = {"url": url, "maker": entry.get("maker", ""), "title": title,
                         "revision": rev.group(1) if rev else "", "pages": len(pages), "bytes": size,
-                        "sha256": sha, "covers": len(found), "checked": today()}
+                        "sha256": sha, "covers": len(found), "checked": today(),
+                        "copy": (held_by.get(url) or {}).get("copy", "")}
         for k in [k for k in covers if k[1] == url]:
             del covers[k]
         for part, (seen, times) in found.items():
             covers[(part, url)] = {"part": part, "url": url, "seen": seen, "times": times}
+        for part in {re.sub(r"[^A-Z0-9]", "", a) for a in also} & parts - set(found):
+            # The maker serves this very file at an address named after the part (tl072a.pdf).
+            covers[(part, url)] = {"part": part, "url": url, "seen": "its own address", "times": 0}
         led.stamp(url, "read", version=READ_VERSION)
         n["read"] += 1
         if n["read"] % 25 == 0:

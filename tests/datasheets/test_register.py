@@ -145,3 +145,20 @@ def test_a_jedec_series_counts_three_digits_and_a_number_filed_as_a_sheet_is_its
     assert same_series("BC548C", "BC546")
     got = covered(["6550\nbeam power tube 6550 103 103"], {"6550", "103"}, "6550", own_only=True)
     assert set(got) == {"6550"}
+
+
+def test_wayback_groups_one_file_under_the_makers_addresses(monkeypatch):
+    import json as _json
+
+    from parts_index.datasheets import harvest
+    rows = [["original", "timestamp", "digest"],
+            ["http://www.st.com:80/resource/en/datasheet/tl072a.pdf", "20180417023754", "D1"],
+            ["https://www.st.com/resource/en/datasheet/tl072.pdf?x=1", "20190101000000", "D1"],
+            ["https://www.st.com/resource/en/datasheet/tda7294.pdf", "20200101000000", "D2"]]
+    monkeypatch.setattr(harvest, "fetch_text", lambda url, entry: _json.dumps(rows))
+    got = harvest.wayback({"prefixes": ["www.st.com/resource/en/datasheet/"], "keep": "/datasheet/"})
+    tl = got["https://www.st.com/resource/en/datasheet/tl072.pdf"]
+    assert tl["also"] == ["https://www.st.com/resource/en/datasheet/tl072a.pdf"]
+    assert tl["copy"] == ("https://web.archive.org/web/20190101000000id_/"
+                          "https://www.st.com/resource/en/datasheet/tl072.pdf?x=1")
+    assert "https://www.st.com/resource/en/datasheet/tda7294.pdf" in got
