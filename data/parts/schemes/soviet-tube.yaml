@@ -1,0 +1,71 @@
+# The Soviet receiving-valve code of GOST 5461-59, later 13393-76 (S86), written in Latin letters.
+label: Soviet valves (GOST)
+summary: Soviet receiving-valve numbers — heater voltage, device letter, serial number, envelope.
+order: 50
+applies_to: [tube]
+forms:
+  - example: 6N2P-EV
+    pattern: '^(?P<heater>\d{1,2})(?P<device>ZH|SH|KH|TS|[ABCDEFGHIJKLNPRSUVX])(?P<serial>[1-9]\d{0,2})(?P<envelope>[PRABSNKD])(?:-?(?P<special>YEV|EV|VR|DR|YE|V|R|E|D|I|K))?$'
+    # The envelope letters are also American revision letters and the ends of other part numbers: 1X2A is
+    # the 1X2 revised, 27C64N an EPROM. Read as an envelope only when the number without it is not a part
+    # of its own.
+    unless_known_without: envelope
+fields:
+  heater:
+    label: heater
+    meaning: 'the filament or heater voltage, rounded to whole volts'
+  device:
+    label: device
+    values:
+      D: a diode (Д)
+      H: a double diode (Х)
+      KH: a double diode (Х)
+      X: a double diode (Х)
+      C: a low-power rectifier, a kenotron (Ц)
+      TS: a low-power rectifier, a kenotron (Ц)
+      S: a triode (С)
+      N: a double triode (Н)
+      E: 'a tetrode (Э) — or a tuning indicator (Е): the Latin spelling loses the difference'
+      P: an output pentode or beam tetrode (П)
+      J: a sharp-cutoff pentode (Ж)
+      ZH: a sharp-cutoff pentode (Ж)
+      SH: a sharp-cutoff pentode (Ж)
+      K: a variable-mu pentode (К)
+      R: a double pentode or double tetrode (Р)
+      G: a triode-diode (Г)
+      B: a diode-pentode (Б)
+      F: a triode-pentode (Ф)
+      I: a triode-hexode, -heptode or -octode (И)
+      A: a pentagrid converter (А)
+      V: a secondary-emission tube (В)
+      L: a nonode (Л)
+      U: a power triode (У)
+  serial:
+    label: serial number
+    meaning: tells apart devices of the same type
+  envelope:
+    label: envelope
+    values:
+      P: 'small glass envelope, 7- or 9-pin miniature (П)'
+      R: subminiature glass, up to 5 mm across (Р)
+      A: 'subminiature glass, 5 to 8 mm, flexible leads (А)'
+      B: 'subminiature glass, 8 to 10.2 mm, flexible leads (Б)'
+      S: 'glass, over 22.5 mm across, typically octal (С)'
+      N: nuvistor (Н)
+      K: metal-ceramic (К)
+      D: glass-metal with disc connections, for UHF (Д)
+  special:
+    label: quality
+    optional: true
+    tokens:
+      YE: extended service life (Е)
+      E: extended service life (Е)
+      V: increased reliability and ruggedness, low microphony (В)
+      R: better still than V (Р)
+      D: exceptionally long service life (Д)
+      I: made for pulsed (switching) operation (И)
+      K: vibration-resistant (К)
+caveats:
+  - Metal tubes have no envelope letter, and older types kept American numbers in Cyrillic (6Л6) before being renumbered (6П3С); those are not read here.
+  - A quality suffix may mean a different construction, or only a selection from regular production.
+refs: [S86]

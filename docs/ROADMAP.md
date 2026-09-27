@@ -124,14 +124,12 @@ and ISO7721 as an SO-77 are the reason it exists; a new filter that swallows a r
   once as silicon and once as germanium, with different candidates in each. Under the Pro-Electron
   convention the first letter settles it — A is germanium, B is silicon — so the germanium copy is the
   wrong one in all five. `pidx web build` prints them and keeps whichever has more candidates rather
-  than resolving it in silence; the curation still has to be merged. The dictionary has the same error
-  in seven entries, which is what puts BC109 in the "Germanium" filter on the site.
+  than resolving it in silence; the curation still has to be merged. The dictionary had the same error
+  in six entries and is corrected; `test_no_transistor_filed_as_germanium_is_named_silicon` keeps it so.
+  BX120, also filed as germanium, is not a semiconductor at all on the pages that print it (a transformer,
+  a fragment of a model number) and is left for the dictionary's next review.
 - Some vendors publish only encrypted models, readable by one simulator and no other. They are recorded as
   `encrypted_only`; the link is still worth publishing.
-- **Several parts filed as germanium are silicon.** Under the Pro-Electron naming convention the first
-  letter says which: A is germanium, B is silicon. So BC114, BC148, BC153 and BC169 are silicon, as are
-  MJ3001, MJ2501, MJ481 and BDY20 (the last being an equivalent of the 2N3055). This belongs in the part
-  dictionary rather than in a note, so that searching for germanium stops returning them.
 
 ## Sources deliberately not pursued
 

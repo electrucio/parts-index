@@ -1,0 +1,50 @@
+# The American receiving-valve code of the RMA and its successor RETMA (S84).
+label: RETMA (American valves)
+summary: American valve numbers — heater voltage, serial letters, count of elements, envelope.
+order: 70
+applies_to: [tube]
+forms:
+  - example: 6SN7GTB
+    pattern: '^(?P<heater>\d{1,2})(?P<letters>[A-Z]{1,2})(?<!P)(?P<elements>1[0-2]|[2-9])(?P<suffix>(?:GT|WGT|WA|WB|LM|LT|MG|ML|[ABCEGLMSWXY]){0,3})$'
+fields:
+  heater:
+    label: heater
+    values:
+      '0': no heater — a cold-cathode tube, such as a gas regulator
+    meaning: 'the heater or filament voltage in round volts: 6 is the 6.3 V heater, 12 the 12.6 V one, 5 is usual for rectifiers'
+  letters:
+    label: serial letters
+    meaning: 'given in order of assignment; where it could, the 12 V version of a 6 V tube kept the same letters'
+    first:
+      S: '— S first: a single-ended tube, every connection on the base and none on a top cap'
+      L: '— L first: often a Loktal (locking-base) tube'
+  elements:
+    label: elements
+    meaning: 'the number of useful elements, the heater counted when it is separate from the cathode — in a 12AX7 two anodes, two grids, two cathodes and the heater make 7'
+  suffix:
+    label: envelope and version
+    optional: true
+    tokens:
+      A: an improved version that can replace the original
+      B: an improved version that can replace A and the original
+      C: a further improved version
+      E: export version
+      G: glass envelope, shouldered (ST) bulb
+      GT: glass tubular (T-9) envelope
+      L: Loktal base
+      LM: Loktal base, metal
+      LT: locking base
+      M: metal envelope
+      MG: metal-glass
+      ML: metal Loktal
+      S: spray-shielded
+      W: ruggedised or military grade
+      WA: improved military or industrial version
+      WB: improved military or industrial version
+      WGT: ruggedised, glass tubular envelope
+      X: low-loss ceramic base, for radio frequency
+      Y: low-loss mica-filled phenolic base, for radio frequency
+caveats:
+  - The number does not say what the tube is for; the European code does.
+  - Counting elements has exceptions — tapped heaters and internal screens were not always counted the same way.
+refs: [S84]

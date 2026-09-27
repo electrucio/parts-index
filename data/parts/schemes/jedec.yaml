@@ -1,0 +1,26 @@
+# The American registration: a digit, N, and a number in order of registration (S87, citing JEDEC's
+# type-registration page).
+label: JEDEC (EIA-370)
+summary: American registered type numbers — 1N, 2N, 3N and a serial number.
+order: 30
+applies_to: [bjt, bjt-ge, jfet, mosfet, diode, diode-ge, zener, led]
+forms:
+  - example: 2N3904
+    pattern: '^(?P<leads>[123])N(?P<serial>[1-9]\d{1,3})(?P<suffix>[A-Z]{0,2})$'
+fields:
+  leads:
+    label: terminals
+    values:
+      '1': a two-terminal device, such as a diode
+      '2': 'a three-terminal device — a transistor, but the number does not say which kind: bipolar, JFET, MOSFET, unijunction (2N2646) and programmable unijunction (2N6027) all have 2N numbers'
+      '3': a four-terminal device, such as a dual-gate field-effect transistor
+  serial:
+    label: registration number
+    meaning: 'given in order of registration; it says nothing about the device, although low numbers tend to be early germanium parts'
+  suffix:
+    label: suffix
+    meaning: 'sometimes a newer variant (A), rarely a gain group'
+    optional: true
+caveats:
+  - The registration describes a type, not a maker; any company could make and sell a registered number.
+refs: [S87, S60, S61]

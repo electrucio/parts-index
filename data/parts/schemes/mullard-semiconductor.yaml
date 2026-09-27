@@ -1,0 +1,31 @@
+# Before Pro Electron, Mullard and Philips numbered their first semiconductors inside the valve code: O,
+# the letter for "no heater", then the valve code's letter for a diode, a triode or a rectifier (S85).
+label: Mullard–Philips early semiconductors
+summary: The O numbers Mullard and Philips gave their first diodes and transistors, before 1966.
+order: 20
+applies_to: [bjt, bjt-ge, diode, diode-ge]
+forms:
+  - example: OC71
+    pattern: '^(?P<heater>O)(?P<device>[ACY])(?P<serial>[1-9]\d{0,2})(?P<suffix>[A-Z]?)$'
+fields:
+  heater:
+    label: heater
+    values:
+      O: 'no heater — the valve code''s letter for cold-cathode tubes, given to semiconductors because they have none'
+  device:
+    label: device
+    values:
+      A: a low-power diode (as the valve code's A)
+      C: a transistor — the valve code's letter for a triode, whatever the frequency or power
+      Y: a power rectifier diode
+  serial:
+    label: serial number
+    meaning: the number of this design
+  suffix:
+    label: suffix
+    meaning: a variant letter
+    optional: true
+caveats:
+  - The letters do not say what the device is made of.
+  - From 1966 new types were numbered under Pro Electron, where A and B give the material instead.
+refs: [S85]

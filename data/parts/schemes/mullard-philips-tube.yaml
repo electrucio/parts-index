@@ -1,0 +1,87 @@
+# The European valve code of Philips and Mullard (from 1934), as printed in 1967 (S89) and as tabulated,
+# with its older base ranges, by the Mullard–Philips article (S85).
+label: Mullard–Philips (European valves)
+summary: European valve numbers — heater, one letter per electrode system, base and serial number.
+order: 60
+applies_to: [tube]
+forms:
+  - example: ECC83
+    pattern: '^(?P<heater>[DEGHLPUXZ])(?P<systems>[ABCDEFHKLMNPQSTWXYZ]{1,3})(?P<base>[1-9]\d{0,3})(?P<suffix>[A-Z]?)$'
+  - example: E88CC
+    pattern: '^(?P<heater>[DEGHLPUX])(?P<sq>[1-9]\d{1,3})(?P<systems>[ABCDEFHKLMNPQSTWXYZ]{1,3})$'
+fields:
+  heater:
+    label: heater
+    values:
+      D: 1.4 V or less — battery valves
+      E: '6.3 V, parallel or series supply'
+      G: 'formerly 5 V (mostly rectifiers), later miscellaneous'
+      H: 150 mA series heater chain
+      L: 450 mA series heater chain
+      P: 300 mA series heater chain (television sets)
+      U: 100 mA series heater chain (AC/DC radios)
+      X: 600 mA series heater chain
+      Z: cold cathode or gas-filled
+  systems:
+    label: electrode systems
+    each:
+      A: a diode
+      B: a double diode with common cathode
+      C: a small-signal triode
+      D: a power triode
+      E: a small-signal tetrode
+      F: a small-signal pentode
+      H: a hexode or heptode (hexode type)
+      K: an octode or heptode (octode type)
+      L: a power tetrode or power pentode
+      M: a tuning indicator
+      N: a gas-filled triode (thyratron)
+      P: a secondary-emission tube
+      Q: a nonode
+      S: a television sync oscillator
+      T: a beam tube, or miscellaneous
+      W: a gas-filled half-wave rectifier
+      X: a gas-filled full-wave rectifier
+      Y: a half-wave rectifier
+      Z: a full-wave rectifier
+    joiner: ' + '
+  base:
+    label: base and serial
+    ranges:
+      - [1, 9, 'pinch construction, pre-octal European bases']
+      - [10, 19, 'German 8-pin metal octal (G8A) base']
+      - [20, 29, 'Loctal (B8G) base, mostly']
+      - [30, 39, 'International Octal base']
+      - [40, 49, 'Rimlock (B8A) all-glass miniature']
+      - [50, 59, 'special construction, mostly locking bases']
+      - [60, 64, 'all-glass, 9-pin (B9G) base']
+      - [65, 69, 'subminiature all-glass']
+      - [70, 79, 'subminiature with wire leads']
+      - [80, 89, 'Noval (B9A) 9-pin miniature base']
+      - [90, 99, 'miniature 7-pin (B7G) base']
+      - [180, 189, 'Noval (B9A) base']
+      - [190, 199, 'miniature 7-pin (B7G) base']
+      - [200, 209, 'Decal (B10B) base']
+      - [280, 289, 'Noval (B9A) base']
+      - [300, 399, 'octal base']
+      - [400, 499, 'Rimlock (B8A) base']
+      - [500, 529, 'Magnoval (B9D) or Novar base']
+      - [800, 899, 'Noval (B9A) base']
+      - [900, 999, 'miniature 7-pin (B7G) base']
+      - [2000, 2999, 'Decal (B10B) base']
+      - [3000, 3999, 'octal base']
+      - [5000, 5999, 'Magnoval (B9D) base']
+      - [8000, 8999, 'Noval (B9A) base']
+    meaning: a serial number
+  sq:
+    label: special quality
+    meaning: 'the number placed between the heater letter and the systems: a special-quality version — long life, rugged or low noise — of the tube with the same letters and number (E88CC of ECC88, E83F of EF83)'
+  suffix:
+    label: suffix
+    meaning: a variant letter
+    optional: true
+caveats:
+  - For small-signal pentodes an even last digit usually meant a sharp-cutoff tube and an odd one a variable-mu tube.
+  - The code was shared by Philips, Mullard, Valvo, Telefunken, Tungsram and others; the letters do not say who made the tube.
+  - 'Not every European valve follows it: KT88 and KT66 are Marconi-Osram "kinkless tetrodes", not K-heater tubes.'
+refs: [S89, S85]
