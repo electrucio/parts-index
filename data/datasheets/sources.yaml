@@ -235,3 +235,22 @@ burrbrown_wayback:
   delay: 10
   notes: 'Burr-Brown''s own site before TI bought it in 2000: 187 data sheets captured in 1996, named
     after their parts.'
+kec_products:
+  kind: catalogue
+  maker: kec
+  categories: {3: Diodes, 4: Bipolar transistors, 6: MOSFETs, 7: Amplifiers, 8: Power management}
+  status: active
+  delay: 3
+  notes: 'KEC. robots.txt disallows /gsadmin/, /lib/, /se/ and /data/ (so the discontinued-products
+    PDF is not read). The product finder''s table answers a plain GET, 16 rows a page per category; each
+    row''s PDF button is image_product.asp, which serves the sheet from an allowed path.'
+cdil_products:
+  kind: catalogue
+  maker: cdil
+  categories: [transistors, metal-can-transistors, power-transistors, diodes, rectifiers, mosfets, triacs, regulators, tvs]
+  status: active
+  delay: 3
+  notes: 'CDIL (Continental Device India). robots.txt names ClaudeBot and anthropic-ai in the same group
+    as every agent: /api/, /search, ?format=json and the like are off limits, product pages are not. A
+    category page lists its products and the types each title names; only those naming a known part are
+    opened, and the page links its data sheet under /s/.'

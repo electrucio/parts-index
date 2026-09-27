@@ -339,7 +339,54 @@ def read_kexin(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
             yield row(str(r["part"]).upper(), source, entry, url=r.get("datasheet") or "")
 
 
+# --- KEC ---------------------------------------------------------------------------------------------
+KEC = "https://www.keccorp.com"
+KEC_ROW = re.compile(r'product_view\.asp\?idx=(\d+)">([^<]+)</a>')
+
+
+def read_kec(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
+    """The product finder's table, fetched by GET as the page itself does, 16 rows a page for each top
+    category in the registry. A row names the part and its idx; image_product.asp?idx= serves the sheet."""
+    for cat_id, label in entry["categories"].items():
+        seen: set[str] = set()
+        for page in range(1, 500):              # the pager shows ten pages at a time: read until a page is empty
+            html_ = get.text(f"{KEC}/en/include/finder.asp?part_idx={cat_id}&sunsu=&search_v=&page={page}")
+            found = KEC_ROW.findall(html_)
+            if not found or {i for i, _ in found} <= seen:
+                break
+            seen |= {i for i, _ in found}
+            for idx, name in found:
+                has_sheet = f"image_product.asp?idx={idx}&gu=1" in html_
+                yield row(name.strip().upper(), source, entry, category=label,
+                          url=f"{KEC}/kr/product/image_product.asp?idx={idx}&gu=1" if has_sheet else "",
+                          page=f"{KEC}/en/product/product_view.asp?idx={idx}")
+
+
+# --- CDIL --------------------------------------------------------------------------------------------
+CDIL = "https://www.cdil.com"
+CDIL_ITEM = re.compile(r'<a href="(/[a-z-]+/[^"]+)" class="product hentry.*?<div class="product-title">([^<]+)</div>', re.S)
+CDIL_SHEET = re.compile(r'href="(/s/[^"]+\.pdf)"', re.I)
+
+
+def read_cdil(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
+    """Each category page lists its products with the types each one's title names ("2N5088 2N5089");
+    only products naming a known part are opened, and their page links the sheet under /s/."""
+    parts = known()
+    for category in entry["categories"]:
+        for href, title in CDIL_ITEM.findall(get.text(f"{CDIL}/{category}")):
+            names = {n.upper() for n in re.split(r"[\s,/]+", html.unescape(title))
+                     if re.search(r"\d", n) and re.search(r"[A-Za-z]", n)} & parts
+            if not names:
+                continue
+            sheets = [u for u in CDIL_SHEET.findall(get.text(CDIL + href)) if "warranty" not in u.lower()]
+            for n in sorted(names):
+                yield row(n, source, entry, category=category.replace("-", " "),
+                          url=CDIL + sheets[0] if sheets else "", page=CDIL + href)
+
+
 READERS: dict[str, Callable[[str, dict, Fetcher], Iterator[dict]]] = {
+    "cdil_products": read_cdil,
+    "kec_products": read_kec,
     "kexin_products": read_kexin,
     "tt_datasheets": read_tt,
     "secos_products": read_secos,
