@@ -426,7 +426,7 @@ def unsheeted(min_docs: int) -> list[str]:
             have |= {r.get("part") or "" for r in csv.DictReader(fh) if r.get("url") or r.get("book")}
     with open(schematics_parts(), encoding="utf-8") as fh:
         used = [(r["part"], int(r.get("documents") or 0)) for r in csv.DictReader(fh)]
-    from parts_index.web.parts import kin_names       # a part its type's sheets already document is not asked
+    from parts_index.web.parts import kin_names  # a part its type's sheets already document is not asked
     return [p for p, n in sorted(used, key=lambda x: -x[1])
             if n >= min_docs and p not in have and not any(k in have for _, k in kin_names(p))]
 
