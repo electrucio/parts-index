@@ -293,3 +293,34 @@ toshiba_wayback:
   notes: 'Toshiba''s semiconductor site before 2017 (semicon.toshiba.co.jp) filed its English data sheets
     under /td/en/<category>/, named en_<date>_<PART>_datasheet.pdf: 17,921 captured. Discontinued parts
     (2SA1015, 2SC1815 and the like) are gone from Toshiba''s current site and only here.'
+
+archive_databooks_more:
+  kind: databooks
+  query: mediatype:texts AND NOT collection:(bitsavers OR inlibrary OR printdisabled OR manuals_electronics_japanese
+    OR dticarchive OR arxiv OR pubmed OR usfederalcourts OR journals OR government-documents) AND NOT identifier:(manuallib-id-*
+    OR manualzilla-id-* OR manualslib-id-* OR manualzz-id-* OR japanese-manual-* OR Panel_* OR DTIC_* OR gov.uscourts*)
+    AND title:(transistor OR transistors OR transistoren OR transistori OR semiconductor OR semiconductors OR halbleiter
+    OR semiconducteurs OR diode OR diodes OR dioden OR thyristor OR thyristors OR rectifier OR rectifiers OR databook
+    OR "data book" OR "data handbook" OR datenbuch OR "data manual" OR "tube manual" OR "receiving tube" OR "receiving
+    tubes" OR "electron tubes" OR röhren OR roehren OR "valve data" OR "valve manual" OR "linear integrated" OR
+    "linear circuits" OR "integrated circuits" OR "linear data" OR "short form" OR "condensed catalog" OR 規格表 OR
+    互換表 OR "tube substitution" OR "valve equivalents" OR vergleichstabelle OR vergleichsliste OR taschentabelle)
+  include: ^(?=.*(?:transist|semicond|halbleiter|diode|dioden|thyrist|rectifier|zener|röhren|rohren|electron tubes?|receiving
+    tubes?|radio tubes?|vacuum tube|tube manual|\bvalves?\b|linear|integrated circuits|\bICs?\b|data.?book|datenbuch|data
+    handbook))(?=.*(?:mullard|philips|valvo|siemens|telefunken|\baeg\b|\bitt\b|intermetall|toshiba|hitachi|\bnec\b|sanyo|matsushita|panasonic|mitsubishi|sony|samsung|gold
+    ?star|\bgs\b|\brca\b|general electric|\bge\b|sylvania|tung.sol|raytheon|western electric|motorola|fairchild|texas
+    instruments|signetics|national semi|\bsgs\b|\bates\b|thomson|\brft\b|\bveb\b|tesla|tungsram|amperex|brimar|mazda|marconi|\bstc\b|eimac|taylor|sprague|westinghouse|international
+    rectifier|siliconix|zetex|plessey|ferranti|consumer.semiconductor|vacuum tube manual))
+  exclude: memory|memories|microprocessor|microcomputer|microcontroller|\bdsp\b|logic|\bttl\b|\becl\b|cmos|eprom|\bram\b|interface|telecom|network|modem|scsi|gate
+    array|fpga|x-?ray|medical|optimus|theory|principles|design|seminar|circuits (manual|book)|applications?\b|tester|checker|service|repair|schemat|radioricevitore|projects|microwave|transmitting|phototube|neon|ballast|hall
+    effect|sensor|display|optocoupler|laser|price|preis|規格表|互換表|substitut|equivalen|vergleich|cross.?ref|replacement|interchang|tabelle|d\.a\.t\.a\.|discontinued|selection
+    guide|selector|short.?form|shortform|condensed|master index|avo valve|avo international|\.doc\b|metrology|warranty|lab
+    notes|\bssd\b|portfolio|seminar|course
+  exclude_ids: ^(manualsbase-id|manualsplus|TNM_|NationalSemiconductor-)
+  exclude_titles: ^IC Datasheet
+  status: active
+  delay: 5
+  notes: 'Makers'' data books and tube manuals on archive.org outside bitsavers: Philips Data Handbooks, Siemens,
+    Telefunken, Valvo, ITT, Mullard, RFT, Toshiba, NEC, Sony, Samsung, RCA RC-13 to RC-30, GE, Sylvania (455 books
+    on 2026-09-27). Lending-only items (inlibrary, printdisabled) have no public text and are left, as are tabulations
+    and substitution guides, which head no page. The maker is the one the title names.'

@@ -282,3 +282,8 @@ def test_japanese_packages_and_unbuffered_4000_names_find_their_type():
 def test_a_jrc_name_is_sold_as_njm():
     from parts_index.web.parts import kin_names
     assert ("maker's name", "NJM4558") in kin_names("JRC4558D")
+
+
+def test_a_bare_valve_is_filed_by_its_envelope():
+    from parts_index.web.parts import kin_names
+    assert ("envelope", "5Y3GT") in kin_names("5Y3") and ("envelope", "12B4A") in kin_names("12B4")

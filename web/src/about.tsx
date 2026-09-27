@@ -299,6 +299,7 @@ const KIN: Record<string, string> = {
   packing: 'the same part, packed differently',
   package: 'the same part in another package',
   brand: 'the type this is a brand of',
+  envelope: 'the same valve, filed by its envelope or revision',
   "maker's name": "a maker's name for this number",
 }
 

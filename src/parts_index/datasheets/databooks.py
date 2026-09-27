@@ -54,15 +54,26 @@ def books(entry: dict) -> list[dict]:
     r = http.get(q, ua=PROJECT_UA, delay=float(entry.get("delay", http.DELAY)), max_bytes=32 << 20)
     docs = json.loads(r.body or b"{}").get("response", {}).get("docs", []) if r.ok else []
     keep, drop = re.compile(entry["include"], re.I), re.compile(entry["exclude"], re.I)
-    return [d for d in docs if keep.search(d.get("title", "")) and not drop.search(d.get("title", ""))]
+    drop_id = re.compile(entry.get("exclude_ids") or "$^")
+    drop_title = re.compile(entry.get("exclude_titles") or "$^")
+    return [d for d in docs if keep.search(d.get("title", "")) and not drop.search(d.get("title", ""))
+            and not drop_id.search(d["identifier"]) and not drop_title.search(d.get("title", ""))]
 
 
 def maker_of(title: str) -> str:
-    """The maker a bitsavers title names: "components :: rca :: dataBooks :: …" is RCA's."""
+    """The maker a title names: "components :: rca :: dataBooks :: …" is RCA's; outside bitsavers, the
+    longest organisation name or alias the title contains as words ("Philips Data Handbook …")."""
     parts = [p.strip() for p in title.split("::")]
     vendor = parts[1] if parts and parts[0] == "components" and len(parts) > 1 else parts[0]
     vendor = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", vendor).lower()
-    return catalogue.maker_of(vendor)[0] or ""
+    found = catalogue.maker_of(vendor)[0] if "::" in title else ""
+    if found:
+        return found
+    low = f" {re.sub(r'[^a-z0-9]+', ' ', title.lower())} "
+    names = [(len(a), mid) for mid, m in catalogue.makers().items()
+             for a in [m.get("name", "").lower(), *(m.get("aliases") or [])] if a and len(a) >= 3
+             and f" {re.sub(r'[^a-z0-9]+', ' ', a)} " in low]
+    return max(names)[1] if names else ""
 
 
 def read_pages(xml: str) -> list[str]:

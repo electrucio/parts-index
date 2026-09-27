@@ -486,6 +486,10 @@ def kin_names(part: str) -> list[tuple[str, str]]:
             break
         out.append(step)
         p = step[1]
+    # A valve printed bare is filed by its envelope or revision: 5Y3 as 5Y3GT or 5Y3G, 12B4 as 12B4A. The
+    # same valve in a smaller or metal bulb; 6L6 against 6L6GC is kept apart, since that one is rerated.
+    if re.fullmatch(r"\d{1,2}[A-Z]{1,3}\d{1,2}", part):
+        out += [("envelope", part + x) for x in ("GT", "G", "GTA", "GTB", "GA", "GB", "A")]
     if re.fullmatch(r"JRC\d{4}[A-Z]{0,2}", part):          # JRC4558D is sold as NJM4558D
         out.append(("maker's name", "NJM" + part[3:]))
         out += [("maker's name", "NJM" + t[3:]) for _, t in kin_names_steps(part)]
