@@ -286,6 +286,18 @@ REG_WORDS = re.compile(r"\b(?:regulators?|stabili[sz]ers?|IC\d{1,2}|REG\d?)\b", 
 # A data sheet names a whole family by putting an x where the digits vary: ADS126x, REF60xx. It is how
 # the vendor writes "any of these", never a device you can buy.
 WILDCARD = re.compile(r"[A-Z]{2,4}\d+X{1,2}")
+# A label on a drawing, not a part: IN3 is input 3 (and a Soviet indicator lamp in the dictionary, which is
+# how it was published on 1,767 documents and vouched as a valve for 6K8), LED1 is a designator, CH16 a
+# channel. Measured on the export of 2026-09-27.
+LABEL = re.compile(r"(?:IN|OUT|LED|CH)\d{1,2}")
+# A value written the way a resistor is marked. 6K8 and 1R5 are valve types too, but printed bare on a
+# drawing they are 6.8 kilohm and 1.5 ohm - 6K8 came out on 1,121 documents, eleven of them eurorack
+# modules with no valve in sight. Only E24 values: 6K6 and 6K7 are not one, and 6K8GT keeps its suffix.
+E24 = {"10", "11", "12", "13", "15", "16", "18", "20", "22", "24", "27", "30", "33", "36", "39", "43", "47",
+       "51", "56", "62", "68", "75", "82", "91"}
+MARKED_VALUE = re.compile(r"(\d)[RKM](\d)")
+# A family written with its variable digit as X: 1N400X is any of 1N4001 to 1N4007, not a device.
+FAMILY_X = re.compile(r"\d[A-Z]\d+X+")
 # An evaluation module is a board named after the chip it carries. The chip is the part.
 EVM = re.compile(r"(.+?)-?(?:EVM|EVAL|BOOST)$")         # ADS850-EVM is the board for ADS850, not ADS850-
 
@@ -297,6 +309,10 @@ def _judge(tok, text, pos, isolated, raw=""):
     if re.fullmatch(r"[AD]C\d{2,3}V", tok):                      # mains / supply voltages, not germanium transistors
         return None
     if tok in NOT_PARTS or (re.fullmatch(r"\d{1,2}X\d{1,2}[A-Z]{0,3}", tok) and not REAL_X.match(tok)):
+        return None
+    if LABEL.fullmatch(tok) or FAMILY_X.fullmatch(tok):
+        return None
+    if (m := MARKED_VALUE.fullmatch(tok)) and m.group(1) + m.group(2) in E24:
         return None
     if WILDCARD.fullmatch(tok) and norm(tok) not in CENSUS and norm(tok) not in KNOWN:
         return None                                             # ADS126x is a family, not a device

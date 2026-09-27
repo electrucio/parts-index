@@ -309,3 +309,22 @@ def test_a_board_named_with_a_hyphen_is_the_part_without_it():
     found = {h.part for h in parts.extract("Use the ADS850-EVM and the ADS1241-EVM")}
     assert not any(p.endswith("-") for p in found)
     assert "ADS1241" in found
+
+
+def test_a_label_a_marked_value_and_a_family_are_not_parts():
+    """Measured on the export of 2026-09-27: IN3 on 1,767 documents (input 3, and a Soviet indicator lamp in
+    the dictionary), 6K8 on 1,121 (6.8 kilohm, and a valve type), 1N400X on 122 (any of seven diodes)."""
+    def got(text):
+        return {h.part for h in parts.extract(text, isolated=True)}
+    for word in ("IN3", "LED4", "CH16", "6K8", "1R5", "4K7", "1N400X", "1N4XXX"):
+        assert got(word) == set(), word
+    assert got("6K8GT") == {"6K8GT"}          # the valve, named as a valve
+    assert got("1N4007") == {"1N4007"}
+
+
+def test_a_page_of_labels_does_not_vouch_for_a_valve_it_does_not_have():
+    """IN3, read as a valve, was the company that published 6K8 on eurorack modules."""
+    def mkpage(words):
+        return {"blocks": [{"text": w, "conf": 1.0} for w in words]}
+    found = [h.part for h in parts.extract_page(mkpage("IN1 IN2 IN3 6K8 TL072 R1 R2 C1".split()))]
+    assert "6K8" not in found and "IN3" not in found and "TL072" in found
