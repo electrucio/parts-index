@@ -13,6 +13,7 @@ inside the site's own host, along the paths the registry allows:
         cdn: 'i\\d\\.wp\\.com'                    # where the site keeps its images, when not on its host
         max: 800                                # pages a run fetches before stopping; 0 is until done
         figures: true                           # take the images a page shows (the default)
+        figures: '(?i)schem'                    # or only those whose path says what they are
 
 Everything fetched goes through `download.Downloader`, so one piece of code decides what is stored,
 what is refused for good and what is left for the next run, and the ledger is the same. A page is
@@ -194,6 +195,12 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
     deny = re.compile(cfg["deny"]) if cfg.get("deny") else None
     cdn = re.compile(cfg["cdn"]) if cfg.get("cdn") else None
     figures = cfg.get("figures", True)
+    # A pattern instead of true: the images a site keeps beside its schematics are photographs of the
+    # panel, the board and the wiring, and Elby names the one worth reading schem_cgs01_subosc.gif.
+    wanted = re.compile(figures) if isinstance(figures, str) else None
+
+    def figure(path: str) -> bool:
+        return not JUNK_IMAGE.search(path) and (wanted is None or bool(wanted.search(path)))
     budget = cfg.get("max", 0) if budget is None else budget
 
     led = Ledger(schematics_state(source))
@@ -265,7 +272,7 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
                 if p.path.lower().endswith(".pdf"):
                     job.item(u, "linked")
                 elif IMAGE_EXT.search(p.path):
-                    if figures and not JUNK_IMAGE.search(p.path):
+                    if figures and figure(p.path):
                         job.item(u, "figure")             # the full-size image behind a thumbnail
                 elif allow.search(tail) and len(p.query) < 80:
                     enqueue(u)
@@ -278,7 +285,7 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
                 p = urlparse(u)
                 if not u or (p.netloc not in hosts and not (cdn and cdn.search(p.netloc))):
                     continue
-                if JUNK_IMAGE.search(p.path) or p.path.lower().endswith(".svg"):
+                if not figure(p.path) or p.path.lower().endswith(".svg"):
                     continue
                 width = str(attrs.get("width", ""))
                 if width.isdigit() and int(width) < MIN_WIDTH:

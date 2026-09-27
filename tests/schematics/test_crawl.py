@@ -324,3 +324,26 @@ def test_a_crawl_can_be_seeded_from_a_sitemap_when_the_archive_is_not_walkable(m
     assert seeded == ["https://h.example/articles/",
                       "https://h.example/articles/e-amp/",
                       "https://h.example/projects/sx-amp/"]      # not the shop, not the basket
+
+
+def test_a_figure_pattern_keeps_the_schematic_and_leaves_the_photographs(site, monkeypatch):
+    """Elby shows each CGS module with its panel, its board and its wiring as images beside the
+    schematic, and names the schematic schem_<module>.gif: with a pattern, only that one is taken."""
+    import yaml
+    reg = yaml.safe_load(REGISTRY)
+    reg["tubecad"]["crawl"]["figures"] = "(?i)schem"
+    (site / "schematics" / "sources.yaml").write_text(yaml.safe_dump(reg), encoding="utf-8")
+    page = b"""<html><body><img src="/img/schem_cgs01.gif" width="600"><img src="/img/panel_cgs01.gif" width="600">
+               <a href="/img/pcb_cgs01.gif">board</a><a href="/img/schem_cgs01_2.gif">page 2</a></body></html>"""
+    answers = dict(ANSWERS)
+    answers["https://tc.example/2024/aikido.html"] = Response(200, "https://tc.example/2024/aikido.html", "text/html", page)
+    for name in ("schem_cgs01", "panel_cgs01", "pcb_cgs01", "schem_cgs01_2"):
+        u = f"https://tc.example/img/{name}.gif"
+        answers[u] = Response(200, u, "image/gif", GIF)
+    serve(monkeypatch, answers)
+    C.crawl("tubecad", log=lambda *a: None)
+    led = Ledger(config.schematics_state("tubecad"))
+    assert led.get("https://tc.example/img/schem_cgs01.gif")["type"] == "gif"
+    assert led.get("https://tc.example/img/schem_cgs01_2.gif")["type"] == "gif"
+    assert led.get("https://tc.example/img/panel_cgs01.gif") is None
+    assert led.get("https://tc.example/img/pcb_cgs01.gif") is None
