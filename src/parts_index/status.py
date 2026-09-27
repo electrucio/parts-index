@@ -47,6 +47,24 @@ def schematics_rows() -> list[dict]:
     return rows
 
 
+def model_next(entry: dict, files: int, not_tried: int) -> str:
+    """The next step for one model source, from its registry entry and what its ledger holds.
+
+    A registry `note` is prose about the source and says nothing about what is left to do. It once
+    carried only "its manifest has not been written yet", and reading every note that way reported
+    finished sources as unfinished.
+    """
+    if entry["status"] in ("link_only", "pending_manual"):
+        return "manual: link only" if entry["status"] == "link_only" else "manual download"
+    if entry.get("fetch") == "installed":
+        return "ships with the simulator"
+    if not_tried:
+        return f"fetch {not_tried} parts"
+    if not files:
+        return "nothing downloaded"
+    return "up to date"
+
+
 def model_rows() -> list[dict]:
     from parts_index.core.ledger import MODEL_FIELDS, MODEL_STAGES, MODEL_VERSIONED
     rows = []
@@ -59,14 +77,7 @@ def model_rows() -> list[dict]:
         lookups = [r for r in rs if r["key"].startswith("part:")]
         not_tried = sum(1 for r in lookups if r["status"] == "not_tried")
         to_index = sum(1 for r in files if not r["index_at"])
-        if entry["status"] in ("link_only", "pending_manual"):
-            nxt = "manual: link only" if entry["status"] == "link_only" else "manual download"
-        elif entry.get("note"):
-            nxt = "write manifest"
-        elif not_tried:
-            nxt = f"fetch {not_tried} parts"
-        else:
-            nxt = "up to date"
+        nxt = model_next(entry, len(files), not_tried)
         rows.append(dict(source=reg.stem, status=entry["status"], fetch=entry.get("fetch", ""), files=len(files),
                          scanned=len(files) - to_index, defs=sum(int(r["n_defs"] or 0) for r in files),
                          with_defs=sum(1 for r in files if int(r["n_defs"] or 0)),
