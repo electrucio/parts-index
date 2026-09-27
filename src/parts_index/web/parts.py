@@ -45,6 +45,7 @@ from parts_index.core.config import (
     datasheet_covers,
     datasheet_documents,
     datasheet_links,
+    datasheet_pages,
     datasheets_table,
     known_parts,
     model_part,
@@ -228,6 +229,7 @@ def index() -> dict:
     idx["catalogued"] = catalogued()
     idx["sheets"] = archive_sheets()
     idx["harvested"] = harvested_sheets()
+    idx["databook"] = databook_pages()
     idx["first"] = first_seen(idx)
     return idx
 
@@ -303,6 +305,20 @@ def harvested_sheets() -> dict[str, list[list[str]]]:
     return out
 
 
+def databook_pages() -> dict[str, list[list[str]]]:
+    """The databook pages that head each part, as sheets: a link to the page itself."""
+    out: dict[str, list[list[str]]] = defaultdict(list)
+    d = datasheet_pages("x").parent
+    for f in sorted(d.glob("*.csv")) if d.is_dir() else ():
+        for r in rows(f):
+            page = f", p. {r['printed']}" if r.get("printed") else f", leaf {r['leaf']}"
+            title = " ".join(x for x in (r["title"], page.lstrip(", ")) if x)
+            url = f"https://archive.org/details/{r['book']}/page/n{int(r['leaf']) - 1}"
+            out[r["part"]].append([url, r.get("maker", ""), "", title, f.stem,
+                                   "a page of a databook" + (f" ({r['year']})" if r.get("year") else "")])
+    return out
+
+
 def datasheets(part: str, idx: dict, recipe: dict | None) -> list[list[str]]:
     """Every data sheet known for a part, one row per link: link, maker id, maker as written, title,
     where it came from, a note.
@@ -332,6 +348,8 @@ def datasheets(part: str, idx: dict, recipe: dict | None) -> list[list[str]]:
     for row in idx.get("harvested", {}).get(part, []):
         add(*row)
     for row in idx.get("sheets", {}).get(part, []):
+        add(*row)
+    for row in idx.get("databook", {}).get(part, []):
         add(*row)
     return out
 

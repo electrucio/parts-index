@@ -170,6 +170,12 @@ def main(argv: list[str] | None = None) -> int:
     dsc.add_argument("--source", action="append", help="only these sources (repeatable)")
     dsc.add_argument("--refresh", action="store_true", help="ask for every table again")
 
+    dsb = dsh.add_parser("databooks", help="the pages of old databooks that head a known part")
+    dsb.add_argument("--source", action="append", help="only these sources (repeatable)")
+    dsb.add_argument("--limit", type=int, default=0, help="at most this many books fetched")
+    dsb.add_argument("--list-only", action="store_true", help="say how many books the search keeps")
+    dsb.add_argument("--reread", action="store_true", help="read the kept text again with today's reader")
+
     ds = sub.add_parser("datasets", help="the distilled research datasets").add_subparsers(
         dest="ds_cmd", required=True)
     dr = ds.add_parser("repos", help="read how much attention each open-source project has")
@@ -390,6 +396,13 @@ def main(argv: list[str] | None = None) -> int:
         from parts_index.datasheets import catalogues
         argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
         return catalogues.main(argv2 + (["--refresh"] if args.refresh else []))
+
+    if args.cmd == "datasheets" and args.dsh_cmd == "databooks":
+        from parts_index.datasheets import databooks
+        argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
+        argv2 += ["--limit", str(args.limit)] if args.limit else []
+        argv2 += ["--list-only"] if args.list_only else []
+        return databooks.main(argv2 + (["--reread"] if args.reread else []))
 
     if args.cmd == "datasets" and args.ds_cmd == "repos":
         from parts_index.datasets import repos as ds_repos

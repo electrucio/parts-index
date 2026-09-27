@@ -213,3 +213,11 @@ def test_an_x_family_may_start_with_a_digit():
     parts = {"1N914", "1N916", "1N4148", "1N4448"}
     got = covered(["Small Signal Diode\n1N91x, 1N4x48, FDLL914\n1N914 1N4148 1N4148 1N4448 1N4448"], parts, "1N914")
     assert {"1N914", "1N4148", "1N4448"} <= set(got)
+
+
+def test_a_databook_page_covers_the_part_its_heading_names():
+    from parts_index.datasheets.databooks import heads
+    parts = {"2N140", "2N408", "2N404A", "2N795", "2N1358", "2N405"}
+    assert heads("122\nRCA Transistor Manual\n2N140 TRANSISTOR\nGe p-n-p alloy-junction type", parts) == {"2N140"}
+    assert heads("146\nRCA Transistor Manual\np-n-p type, such as the 2N408. JEDEC", parts) == set()
+    assert heads("474 RCA Transistor Manual\nIndex\n2N404A .\n2N795 .\n2N1358 .", parts) == set()

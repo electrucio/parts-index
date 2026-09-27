@@ -188,6 +188,11 @@ def datasheet_covers(source: str) -> Path:
     return PUBLIC_DATA / "datasheets" / "covers" / f"{source}.csv"
 
 
+def datasheet_pages(source: str) -> Path:
+    """The pages of old databooks that head a known part: book, page, printed page number."""
+    return PUBLIC_DATA / "datasheets" / "pages" / f"{source}.csv"
+
+
 def datasheet_catalogue(source: str) -> Path:
     """What a manufacturer's own product list says about each indexed part it makes: category, status,
     and the data sheet it gives for it."""
@@ -544,6 +549,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("datasheet_documents", "public", ("onsemi_docs",)),
     ("datasheet_covers", "public", ("onsemi_docs",)),
     ("datasheet_catalogue", "public", ("diotec_products",)),
+    ("datasheet_pages", "public", ("archive_databooks",)),
     ("datasheets_state", "public", ("ti_products",)),
     ("verification", "public", ("bjt", "2N3904")),
     ("known_parts", "public", ()),

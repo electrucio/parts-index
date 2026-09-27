@@ -280,6 +280,7 @@ const VIA: Record<string, string> = {
   infineon_tables: "Infineon's product tables",
   st_wayback: "ST's addresses in the Internet Archive, read",
   adi_wayback: "Analog Devices' addresses in the Internet Archive, read",
+  archive_databooks: "a databook the Internet Archive holds",
 }
 
 function fileName(url: string): string {

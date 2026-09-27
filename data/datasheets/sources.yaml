@@ -254,3 +254,15 @@ cdil_products:
     as every agent: /api/, /search, ?format=json and the like are off limits, product pages are not. A
     category page lists its products and the types each title names; only those naming a known part are
     opened, and the page links its data sheet under /s/.'
+archive_databooks:
+  kind: databooks
+  query: 'collection:bitsavers AND (title:databook OR title:"data book" OR title:"data manual" OR title:transistor OR title:semiconductor OR title:linear OR title:diode OR title:thyristor OR title:rectifier OR title:optoelectronic OR title:"small signal" OR title:"power device" OR title:audio OR title:interface)'
+  include: '(?:components|motorola|national|fairchild|signetics|sgs|harris|rca|ti|burrBrown|analogDevices|linearTechnology|siliconix|unitrode|plessey|ferranti|mullard|philips|valvo|siemens|telefunken|toshiba|hitachi|nec|sanyo|sony|matsushita|panasonic|rohm|mitsubishi|fujitsu|oki|samsung|gi|intersil|precisionMonolithics|raytheon|sprague|teledyne|ge|westinghouse|thomson|itt|exar|ssm|thatCorporation|crystalSemiconductor) ::'
+  exclude: '(?:appNotes|card reader|32000|modem|MOS LSI|Bipolar LSI|memory|microprocessor|microcomputer|graphics|scsi|datapro|ethernet|dram|sram|eprom|fpga|pld|pal |gate array|asic|DATA Book|Tabulation|8051|z80|68000|8086)'
+  status: active
+  delay: 5                      # gentle on the archive, which refused connections at 3 s on web.archive.org
+  notes: 'bitsavers'' scans of makers'' databooks as the Internet Archive holds them (archive.org''s
+    robots.txt answers 400, which RFC 9309 reads as no rules). The archive has read every scan: _djvu.xml
+    gives the text page by page and _page_numbers.json the printed numbers, so no PDF is fetched. A page
+    covers the parts named in its first lines; a page naming more than four is an index. D.A.T.A.
+    tabulations (one line per device, hundreds a page) are another kind of source and are left out here.'
