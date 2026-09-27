@@ -11,7 +11,7 @@ WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
 
 .DEFAULT_GOAL := help
-.PHONY: datasheets-register web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
+.PHONY: datasheets-register datasheets-links web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -97,6 +97,9 @@ parts-census:  ## (maintainer) read the lists that say which part numbers exist;
 
 datasheets-register:  ## (maintainer) what each maker's catalogue says about the indexed parts; [SOURCE=ti_products] [LIMIT=N] [REREAD=1]
 	uv run pidx datasheets register $(foreach s,$(SOURCE),--source $(s)) $(if $(LIMIT),--limit $(LIMIT)) $(if $(REREAD),--reread)
+
+datasheets-links:  ## (maintainer) every data sheet an archive lists for each part, from its cached index; [SOURCE=frank_pocnet]
+	uv run pidx datasheets links $(foreach s,$(SOURCE),--source $(s))
 
 toragi-report:  ## (maintainer) トランジスタ技術: coverage by year and by issue, from the lists and ledgers
 	$(RUN) pidx schematics toragi

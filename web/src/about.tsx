@@ -195,7 +195,9 @@ function Facts({ page, cat, sources }: { page: PartPage; cat: Catalogue; sources
     )])
   }
   const shown = new Set((a.catalogue ?? []).map((c) => c[1]))
-  const listed = (a.listed ?? []).filter(([src]) => !shown.has(cat.listings[src]?.maker ?? ''))
+  // An archive's listing is already a link under "Data sheets"; a catalogue already read is a row of its own.
+  const listed = (a.listed ?? []).filter(([src]) =>
+    cat.listings[src]?.kind !== 'datasheet archive' && !shown.has(cat.listings[src]?.maker ?? ''))
   if (listed.length) {
     rows.push(['Listed by', (
       <>
@@ -261,6 +263,64 @@ function Facts({ page, cat, sources }: { page: PartPage; cat: Catalogue; sources
   )
 }
 
+/** What each source of a data sheet is, in words. */
+const VIA: Record<string, string> = {
+  models: 'the model curation',
+  ti_products: "TI's product page",
+  renesas_products: "Renesas' product page",
+  ti_datasheets: "TI's data sheet index",
+  frank_pocnet: "Frank Philipse's tube archive",
+}
+
+function fileName(url: string): string {
+  try { return decodeURIComponent(new URL(url).pathname.split('/').pop() || url) } catch { return url }
+}
+
+/**
+ * Every data sheet known for the part, grouped by the company that printed it.
+ *
+ * All of them, not the best one: the same valve described by General Electric, Tung-Sol and Philips is
+ * three chances to catch a misprint, and the later work of measuring a model against its sheet wants
+ * exactly that redundancy. Each link says where it was found.
+ */
+function Datasheets({ page, cat }: { page: PartPage; cat: Catalogue }) {
+  const sheets = page.about?.sheets
+  if (!sheets?.length) return null
+  const groups = new Map<string, typeof sheets>()
+  for (const s of sheets) {
+    const key = s[1] || s[2] || 'unknown'
+    const g = groups.get(key)
+    if (g) g.push(s)
+    else groups.set(key, [s])
+  }
+  const ordered = [...groups.entries()].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]))
+  return (
+    <section class="stack-s">
+      <h3>Data sheets <span class="count">{sheets.length} from {ordered.length} {ordered.length === 1 ? 'maker' : 'makers'}</span></h3>
+      <ul class="uselist">
+        {ordered.map(([key, rows]) => (
+          <li key={key}>
+            <strong>{cat.makers[key] ? <MakerName id={key} cat={cat} /> : (rows[0]?.[2] || 'Maker not stated')}</strong>
+            <ul class="sheetlist">
+              {rows.map(([url, , , title, via, note], i) => (
+                <li key={i}>
+                  <a href={url} target="_blank" rel="noopener">{title || fileName(url)}</a>
+                  <span class="muted small"> · via {VIA[via] ?? via}{note && <> · {note}</>}</span>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
+      <p class="muted small">
+        Links only: each sheet stays where its publisher or archive keeps it.{' '}
+        <a href={`https://www.alldatasheet.com/view.jsp?Searchword=${encodeURIComponent(page.part)}`} target="_blank" rel="noopener">Search alldatasheet</a>
+        {' '}for more — a search, not a checked link.
+      </p>
+    </section>
+  )
+}
+
 /** The top of a part's page: its name read letter by letter, then what it is and who says so. */
 export function AboutPart({ page, sources }: { page: PartPage; sources: string[] }) {
   const cat = useCatalogue()
@@ -269,6 +329,7 @@ export function AboutPart({ page, sources }: { page: PartPage; sources: string[]
     <>
       <NameReading page={page} cat={cat} />
       <Facts page={page} cat={cat} sources={sources} />
+      <Datasheets page={page} cat={cat} />
     </>
   )
 }

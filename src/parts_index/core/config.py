@@ -166,6 +166,11 @@ def datasheets_table() -> Path:
     return PUBLIC_DATA / "datasheets" / "datasheets.csv"
 
 
+def datasheet_links(source: str) -> Path:
+    """Every data sheet one archive or catalogue links for each part: maker, link, size, language."""
+    return PUBLIC_DATA / "datasheets" / "links" / f"{source}.csv"
+
+
 def datasheets_registry() -> Path:
     """The manufacturer catalogues the data-sheet register reads, and at what pace."""
     return PUBLIC_DATA / "datasheets" / "sources.yaml"
@@ -494,6 +499,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("model_links", "public", ()),
     ("datasheets_table", "public", ()),
     ("datasheets_registry", "public", ()),
+    ("datasheet_links", "public", ("frank_pocnet",)),
     ("datasheets_state", "public", ("ti_products",)),
     ("verification", "public", ("bjt", "2N3904")),
     ("known_parts", "public", ()),

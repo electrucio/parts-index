@@ -152,6 +152,9 @@ export interface About {
    *  revision, data sheet link, catalogue page, date read, and the product's own title where the page
    *  gives one instead of the data sheet's. */
   catalogue?: [string, string, string, string, string, string, string, string, string, string][]
+  /** Every data sheet known: link, maker id, maker as the source writes it, title, where it came from
+   *  ("models", a register or census source, an archive), a note (language, how the archive filed it). */
+  sheets?: [string, string, string, string, string, string][]
   /** Catalogues that list the part today: census source, link. */
   listed?: [string, string][]
   /** The oldest dated document here that prints it: year, title, source position, link. */

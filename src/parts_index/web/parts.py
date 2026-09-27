@@ -40,6 +40,7 @@ import yaml
 from parts_index.core.config import (
     census_registry,
     dataset_table,
+    datasheet_links,
     datasheets_table,
     known_parts,
     model_part,
@@ -221,6 +222,7 @@ def index() -> dict:
            "dictionary": dictionary_kinds()}
     idx["listed_by"], idx["listings"] = census_listings()
     idx["catalogued"] = catalogued()
+    idx["sheets"] = archive_sheets()
     idx["first"] = first_seen(idx)
     return idx
 
@@ -257,6 +259,53 @@ def catalogued() -> dict[str, list[list[str]]]:
     out: dict[str, list[list[str]]] = defaultdict(list)
     for r in rows(datasheets_table()):
         out[r["part"]].append([r.get(k, "") for k in CATALOGUE_FIELDS])
+    return out
+
+
+def archive_sheets() -> dict[str, list[list[str]]]:
+    """Every data sheet an archive lists, by part: under the type it is filed as, and under the type the
+    archive says it equals ("12AX7 (= ECC83)" is an ECC83 sheet too)."""
+    out: dict[str, list[list[str]]] = defaultdict(list)
+    d = datasheet_links("x").parent
+    for f in sorted(d.glob("*.csv")) if d.is_dir() else ():
+        for r in rows(f):
+            note = r.get("lang", "") and f"in {r['lang']}"
+            out[r["part"]].append([r["url"], r["maker"], r["maker_text"], "", r["source"], note])
+            for other in (r.get("also") or "").split():
+                if other != r["part"]:
+                    out[other].append([r["url"], r["maker"], r["maker_text"], "", r["source"],
+                                       "; ".join(x for x in (note, f"filed as {r['filed_as']}") if x)])
+    return out
+
+
+def datasheets(part: str, idx: dict, recipe: dict | None) -> list[list[str]]:
+    """Every data sheet known for a part, one row per link: link, maker id, maker as written, title,
+    where it came from, a note.
+
+    Several sources, several makers, and all of them kept: a later reader that measures a model against
+    three factories' sheets of the same valve can tell a typo in one from a real difference. The same link
+    from two sources is one row, the first source kept.
+    """
+    out, seen = [], set()
+
+    def add(url, maker, text, title, via, note=""):
+        if url and url not in seen:
+            seen.add(url)
+            out.append([url, maker, text, title, via, note])
+
+    ds = (recipe or {}).get("datasheet") or {}
+    if ds.get("url"):
+        m, _ = catalogue.maker_of(ds.get("maker", ""))
+        add(ds["url"], m, ds.get("maker", ""), " · ".join(str(x) for x in (ds.get("doc"), ds.get("date")) if x),
+            "models", "the sheet the models were measured against")
+    for c in idx.get("catalogued", {}).get(part, []):
+        src, maker, _cat, _st, title, rev = c[:6]
+        add(c[6], maker, "", f"{title}, revision {rev}" if title and rev else title, src)
+    for src, url in idx.get("listed_by", {}).get(part, []):
+        if url.lower().split("?")[0].endswith(".pdf") or "/lit/gpn/" in url:
+            add(url, idx.get("listings", {}).get(src, {}).get("maker", ""), "", "", src)
+    for row in idx.get("sheets", {}).get(part, []):
+        add(*row)
     return out
 
 
@@ -375,6 +424,9 @@ def about(part: str, idx: dict, recipe: dict | None) -> dict:
     cat = idx.get("catalogued", {}).get(part)
     if cat:
         out["catalogue"] = cat
+    sheets = datasheets(part, idx, recipe)
+    if sheets:
+        out["sheets"] = sheets
     listed = idx.get("listed_by", {}).get(part)
     if listed:
         out["listed"] = listed
