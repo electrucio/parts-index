@@ -354,7 +354,10 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
     urls = {u: "" for u in held_by} if held_by else listing(source, entry)
     if held_by:
         strip = entry.get("strip", "")
-        named = lambda u: {re.sub(r"[^A-Z0-9]", "", head(x, strip)) for x in (u, *held_by[u]["also"])}  # noqa: E731
+        def named(u: str) -> set[str]:
+            # the name, or the known part it is an ordering code of (1ss356tw11 -> 1SS356)
+            hs = {re.sub(r"[^A-Z0-9]", "", head(x, strip)) for x in (u, *held_by[u]["also"])}
+            return hs | {nearest(h, parts) for h in hs}
         todo = [u for u in urls if named(u) & parts]
     else:
         todo = wanted(urls, entry, parts)

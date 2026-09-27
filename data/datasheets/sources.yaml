@@ -266,3 +266,28 @@ archive_databooks:
     gives the text page by page and _page_numbers.json the printed numbers, so no PDF is fetched. A page
     covers the parts named in its first lines; a page naming more than four is an index. D.A.T.A.
     tabulations (one line per device, hundreds a page) are another kind of source and are left out here.'
+rohm_wayback:
+  kind: wayback
+  maker: rohm
+  prefixes:
+    - fscdn.rohm.com/en/products/databook/datasheet/
+    - www.rohm.co.jp/products/databook/
+  keep: '/databook/(?:datasheet/.*|[a-z]+/pdf/[^/]*?)(?<!-j)\.pdf$'
+  strip: '-[ej]$'
+  status: active
+  delay: 10
+  notes: 'rohm.com refuses scripts (403). The Internet Archive holds its data sheet folders: fscdn.rohm.com
+    (the current one, 17,442 English sheets) and www.rohm.co.jp/products/databook (the old one, 5,028).
+    Japanese editions (-j) are left.'
+toshiba_wayback:
+  kind: wayback
+  maker: toshiba
+  prefixes:
+    - www.semicon.toshiba.co.jp/td/en/
+  keep: '(?i)/td/en/.+\.pdf$'
+  strip: '^en_\d{8}_|_datasheet$'
+  status: active
+  delay: 10
+  notes: 'Toshiba''s semiconductor site before 2017 (semicon.toshiba.co.jp) filed its English data sheets
+    under /td/en/<category>/, named en_<date>_<PART>_datasheet.pdf: 17,921 captured. Discontinued parts
+    (2SA1015, 2SC1815 and the like) are gone from Toshiba''s current site and only here.'
