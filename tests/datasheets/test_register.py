@@ -206,3 +206,10 @@ def test_the_head_includes_the_title_field_variants_and_x_families():
     assert "TIP120" in got
     assert "TSV912" in covered(["TSV91x, TSV91xA\n" + far + "TSV912 TSV912 TSV911"], parts, "TSV911")
     assert "TL431A" in covered(["TL431\nTL432\n" + far + "TL431A TL431A"], parts, "TL432")
+
+
+def test_an_x_family_may_start_with_a_digit():
+    from parts_index.datasheets.harvest import covered
+    parts = {"1N914", "1N916", "1N4148", "1N4448"}
+    got = covered(["Small Signal Diode\n1N91x, 1N4x48, FDLL914\n1N914 1N4148 1N4148 1N4448 1N4448"], parts, "1N914")
+    assert {"1N914", "1N4148", "1N4448"} <= set(got)

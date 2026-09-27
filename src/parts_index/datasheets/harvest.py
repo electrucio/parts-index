@@ -48,7 +48,7 @@ from parts_index.core.parts.extractor import KNOWN, base_part, canonical, family
 STAGES = ("fetch", "read")
 VERSIONED = ("read",)
 FIELDS = ("key", "url", "http", "bytes", "sha256", "fetch_at", "read_at", "read_v", "skip_reason")
-READ_VERSION = "9"  # 9: the head of a sheet is the top of page one and its title field, with variants and x-families
+READ_VERSION = "10"  # 10: x-families may start with a digit (1N4x48)
 DOC_FIELDS = ("url", "maker", "title", "revision", "pages", "bytes", "sha256", "covers", "checked", "copy")
 COVER_FIELDS = ("part", "url", "seen", "times")
 
@@ -223,8 +223,8 @@ def nearest(tok: str, parts: set[str]) -> str:
     return b if b != tok and b in parts else ""
 
 
-# A family written with a lower-case x where its digits vary: TSV91x, SMAJxxA, TL07xx.
-WILD = re.compile(r"(?<![A-Za-z0-9])([A-Z]{1,6}\d*)(x{1,3})([A-Z0-9]{0,3})(?![A-Za-z0-9])")
+# A family written with a lower-case x where its digits vary: TSV91x, SMAJxxA, TL07xx, 1N4x48.
+WILD = re.compile(r"(?<![A-Za-z0-9])(\d?[A-Z]{1,6}\d*)(x{1,3})([A-Z0-9]{0,3})(?![A-Za-z0-9])")   # also 1N4x48
 
 
 def listed(text: str, parts: set[str], prefix: str = "") -> tuple[set[str], list[re.Pattern]]:
