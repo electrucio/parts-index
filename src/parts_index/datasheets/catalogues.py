@@ -103,13 +103,17 @@ def toshiba_codes(get: Fetcher) -> dict[str, str]:
     m = TOSHIBA_MENU.search(get.text(f"{TOSHIBA}/parametric/product?code=param_304"))
     menu = json.loads(html.unescape(m.group(1))) if m else []
     by_id = {x["id"]: x for x in menu}
-    out = {}
+    places: dict[str, set[str]] = {}
     for x in menu:
         code = re.search(r"code=([\w-]+)", x.get("link") or "")
         if code:
             parent = by_id.get(x.get("parentID"), {}).get("category", "")
-            out[code.group(1)] = " > ".join(c for c in (parent, x["category"]) if c)
-    return out
+            label = " > ".join(c for c in (parent, x["category"]) if c)
+            places.setdefault(code.group(1), set()).add(html.unescape(label).replace("\xa0", " ").rstrip(" »")
+                                                     .replace(" > Not Recommended for New Design and EOL announced", ""))
+    # A discontinued list hangs from several branches of the menu; which one a part belongs to is then
+    # not known, and no category is better than a wrong one.
+    return {code: next(iter(p)) if len(p) == 1 else "" for code, p in places.items()}
 
 
 def cell(r: dict, key) -> dict:
