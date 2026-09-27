@@ -443,10 +443,14 @@ def kind_of(part: str, recipe: dict | None, idx: dict) -> str:
 # 6L6GC are other parts (less current, another die, a better grade, another rating), so L, A and G are
 # never folded, and a suffix not listed here keeps the part alone.
 KIN_STEPS = (
-    ("grade", re.compile(r"(?P<t>2S[ABCDJK]\d{2,4})-?(?:GR|BL|Y|O|R|P|E|F|K|V)")),        # 2SC1815GR
+    ("grade", re.compile(r"(?P<t>2S[ABCDJK]\d{2,4})-?(?:GR|BL|Y|O|R|P|E|F|K|V|G)")),      # 2SC1815GR
     ("grade", re.compile(r"(?P<t>(?:BC|BCY|BF|MPS|MPSA|PN)\d{2,4})[ABC]")),                 # BC547B
     ("packing", re.compile(r"(?P<t>.*\d[A-Z]{0,2})(?:TR|TA|TB|TAP|RL|RLG|ZL|ZLG|BU|BK|CT)")),  # 1N4002TR, BC547BTA
-    ("package", re.compile(r"(?P<t>[A-Z]{2,5}\d{3,5})(?:C?(?:D|N|P|M|DR|DD|DT|CN|CP|CD|ID|IN|IP|BE|BP|HA|HT|C))")),
+    ("package", re.compile(r"(?P<t>[A-Z]{2,5}\d{3,5}[AB]?)(?:C?(?:D|N|P|M|DR|DD|DT|CN|CP|CD|ID|IN|IP|BE|BP|HA|HT|C))")),
+    # Japanese makers letter their packages: L is a SIP, D a DIP, M an SOP, E an EMP (NJM4556AL, NJM2068MD).
+    # Here L is a package; on an LM317L it is another part, so the step is kept to these makers' prefixes.
+    ("package", re.compile(r"(?P<t>(?:NJM|NJU|UPC|BA|M5|AN|TA|HA|LA)\d{3,5}[A-Z]?)"
+                           r"(?:L|D|M|E|V|R|DV|MD|LD|SD|FP|F|G|H|S|DD|FD|FTI)")),
     ("brand", re.compile(r"(?P<t>\d{1,2}[A-Z]{1,2}\d{1,2})(?:EH|LPS|WA|WB|WC|WXT)")),       # 12AX7EH
 )
 # The makers' names for a bare number the drawings print: 7812 is ST's L7812, onsemi's MC7812, TI's
@@ -457,6 +461,8 @@ GENERIC = (
     (re.compile(r"74[A-Z]{0,4}\d{2,4}[A-Z]{0,2}"), ("SN", "MM", "CD", "M", "TC", "HD", "MC", "NLV")),
     (re.compile(r"4\d{3}[A-Z]{0,3}"), ("CD", "HEF", "MC1", "TC", "NJU")),
 )
+# A 4000-series name printed without its B: CD4011 is filed as CD4011B or CD4011BE.
+BUFFERED = re.compile(r"(?:CD|HEF|MC1)4\d{3,4}")
 
 
 def kin_names(part: str) -> list[tuple[str, str]]:
@@ -469,6 +475,8 @@ def kin_names(part: str) -> list[tuple[str, str]]:
             break
         out.append(step)
         p = step[1]
+    if BUFFERED.fullmatch(part):
+        out += [("maker's name", part + x) for x in ("B", "BE", "BCP", "BP")]
     for rx, prefixes in GENERIC:
         if rx.fullmatch(part):
             stems = [part] + [re.sub(r"[A-Z]{1,2}$", "", part)] * bool(re.search(r"\d[A-Z]{1,2}$", part))

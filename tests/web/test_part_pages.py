@@ -269,3 +269,11 @@ def test_a_variant_borrows_its_types_sheets_and_a_bare_number_its_makers_names()
     # another part, not a package of one: less current, a better grade, another rating, another voltage
     for other in ("LM317L", "LM358A", "6L6GC", "TIP31C"):
         assert kin_names(other) == []
+
+
+def test_japanese_packages_and_unbuffered_4000_names_find_their_type():
+    from parts_index.web.parts import kin_names
+    assert kin_names("NJM4556AL") == [("package", "NJM4556A")]
+    assert kin_names("NE5534AN") == [("package", "NE5534A")]
+    assert ("maker's name", "CD4011B") in kin_names("CD4011")
+    assert kin_names("LM317L") == []            # L is a package only on the Japanese makers' names
