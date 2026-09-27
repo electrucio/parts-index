@@ -245,3 +245,11 @@ def test_a_source_may_take_addresses_that_do_not_end_in_pdf(monkeypatch):
     got = harvest.wayback(entry | {"pdf_suffix": False})
     (url,) = got
     assert harvest.head(url, "-.*$") == "UPC4570"
+
+
+def test_a_jis_name_the_ocr_misread_is_read_as_jis():
+    from parts_index.datasheets.databooks import names, unmangle
+    assert unmangle("|2SC4614 |(QMWW) |BCB |25A1770 |  2S41770 8 9 25C1815") == \
+        "|2SC4614 |(QMWW) |BCB |2SA1770 |  2SA1770 8 9 2SC1815"
+    assert names("25A1770 2SC4614", {"2SA1770", "2SC4614"}) == {"2SA1770", "2SC4614"}
+    assert unmangle("25W 2x25 1250") == "25W 2x25 1250"       # watts and counts stay as they are

@@ -35,7 +35,7 @@ ARCHIVE = "https://archive.org"
 STAGES = ("fetch", "read")
 VERSIONED = ("read",)
 FIELDS = ("key", "url", "http", "bytes", "fetch_at", "read_at", "read_v", "skip_reason")
-READ_VERSION = "2"  # 2: a letter and a number is a part only when its family is known
+READ_VERSION = "3"  # 3: JIS names the OCR misread (25A1770, 2S41770) are read as JIS
 PAGE_FIELDS = ("part", "book", "leaf", "printed", "maker", "title", "year", "checked", "kind")
 TABLE_PAGES = 2         # in a tabulation, the first pages a part is listed on are enough to find it
 HEAD_LINES = 6          # a sheet names its type in its first lines
@@ -88,8 +88,18 @@ def read_pages(xml: str) -> list[str]:
     return out
 
 
+# How the archive's OCR misreads a JIS name: the S as a 5 and the A as a 4 ("25A1770", "2S41770" in CQ's
+# 1997 tables are the 2SA1770). A 2 followed by 5 or S and a class letter, or 4 for A, then digits, is one.
+JIS_OCR = re.compile(r"(?<![A-Za-z0-9])2[5S]([ABCDJK4])\s?(\d{2,4}[A-Z]{0,2})(?![A-Za-z0-9])")
+
+
+def unmangle(text: str) -> str:
+    return JIS_OCR.sub(lambda m: "2S" + ("A" if m.group(1) == "4" else m.group(1)) + m.group(2), text)
+
+
 def names(text: str, parts: set[str]) -> set[str]:
     out = set()
+    text = unmangle(text)
     for m in TOKEN.finditer(text):
         tok = canonical(m.group(1)) or ""
         if tok and re.search(r"\d", tok) and re.search(r"[A-Z]", tok):
