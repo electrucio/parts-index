@@ -272,6 +272,14 @@ const VIA: Record<string, string> = {
   frank_pocnet: "Frank Philipse's tube archive",
   onsemi_docs: "onsemi's data sheet list, read",
   nxp_docs: "NXP's data sheet list, read",
+  that_datasheets: "THAT's data sheet page, read",
+  jj_datasheets: "JJ's download page, read",
+  linearsystems_datasheets: "Linear Systems' product pages, read",
+  diotec_products: "Diotec's product tables",
+  toshiba_parametric: "Toshiba's parametric tables",
+  infineon_tables: "Infineon's product tables",
+  st_wayback: "ST's addresses in the Internet Archive, read",
+  adi_wayback: "Analog Devices' addresses in the Internet Archive, read",
 }
 
 function fileName(url: string): string {
@@ -304,10 +312,11 @@ function Datasheets({ page, cat }: { page: PartPage; cat: Catalogue }) {
           <li key={key}>
             <strong>{cat.makers[key] ? <MakerName id={key} cat={cat} /> : (rows[0]?.[2] || 'Maker not stated')}</strong>
             <ul class="sheetlist">
-              {rows.map(([url, , , title, via, note], i) => (
+              {rows.map(([url, , , title, via, note, copy], i) => (
                 <li key={i}>
                   <a href={url} target="_blank" rel="noopener">{title || fileName(url)}</a>
-                  <span class="muted small"> · via {VIA[via] ?? via}{note && <> · {note}</>}</span>
+                  <span class="muted small"> · via {VIA[via] ?? via}{note && <> · {note}</>}
+                    {copy && <> · <a href={copy} target="_blank" rel="noopener">archived copy</a></>}</span>
                 </li>
               ))}
             </ul>

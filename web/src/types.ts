@@ -156,7 +156,9 @@ export interface About {
   catalogue?: [string, string, string, string, string, string, string, string, string, string][]
   /** Every data sheet known: link, maker id, maker as the source writes it, title, where it came from
    *  ("models", a register or census source, an archive), a note (language, how the archive filed it). */
-  sheets?: [string, string, string, string, string, string][]
+  /** link, maker id, maker as written, title, where it came from, a note, and an archived copy when the
+   *  maker's own address refuses scripts. */
+  sheets?: [string, string, string, string, string, string, string?][]
   /** Catalogues that list the part today: census source, link. */
   listed?: [string, string][]
   /** The oldest dated document here that prints it: year, title, source position, link. */

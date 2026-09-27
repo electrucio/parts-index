@@ -296,8 +296,10 @@ def harvested_sheets() -> dict[str, list[list[str]]]:
             title = doc.get("title", "")
             if title and doc.get("revision") and not re.search(r"\bRev", title, re.I):
                 title += f", revision {doc['revision']}"
-            seen = "named on its first page" if r["seen"] == "first page" else "in its tables"
-            out[r["part"]].append([r["url"], doc.get("maker", ""), "", title, f.stem, seen])
+            seen = {"first page": "named on its first page", "its own address":
+                    "served at an address named after this part"}.get(r["seen"], "in its tables")
+            row = [r["url"], doc.get("maker", ""), "", title, f.stem, seen]
+            out[r["part"]].append(row + [doc["copy"]] if doc.get("copy") else row)
     return out
 
 
@@ -311,10 +313,10 @@ def datasheets(part: str, idx: dict, recipe: dict | None) -> list[list[str]]:
     """
     out, seen = [], set()
 
-    def add(url, maker, text, title, via, note=""):
+    def add(url, maker, text, title, via, note="", copy=""):
         if url and url not in seen:
             seen.add(url)
-            out.append([url, maker, text, title, via, note])
+            out.append([url, maker, text, title, via, note] + ([copy] if copy else []))
 
     ds = (recipe or {}).get("datasheet") or {}
     if ds.get("url"):
