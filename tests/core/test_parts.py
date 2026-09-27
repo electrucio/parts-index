@@ -302,3 +302,10 @@ def test_a_loose_shape_the_census_knows_is_raised_by_company_like_any_open_schem
     got = {h.part: h.conf for h in parts.extract_page(mkpage("U1 AD817 R1 R2 C1 C2 J1".split()))}
     assert got["AD817"] == "medium"                                   # the census alone: not published
     assert [h.part for h in parts.extract("U1 AD817ARZ-REEL7", isolated=True)] == []   # an order code is not a name
+
+
+def test_a_board_named_with_a_hyphen_is_the_part_without_it():
+    """ADS850-EVM, ATMEGA16U2-EVAL: taking EVM off left ADS850- published as a part of its own."""
+    found = {h.part for h in parts.extract("Use the ADS850-EVM and the ADS1241-EVM")}
+    assert not any(p.endswith("-") for p in found)
+    assert "ADS1241" in found

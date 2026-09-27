@@ -287,7 +287,7 @@ REG_WORDS = re.compile(r"\b(?:regulators?|stabili[sz]ers?|IC\d{1,2}|REG\d?)\b", 
 # the vendor writes "any of these", never a device you can buy.
 WILDCARD = re.compile(r"[A-Z]{2,4}\d+X{1,2}")
 # An evaluation module is a board named after the chip it carries. The chip is the part.
-EVM = re.compile(r"(.+?)(?:EVM|EVAL|BOOST)$")
+EVM = re.compile(r"(.+?)-?(?:EVM|EVAL|BOOST)$")         # ADS850-EVM is the board for ADS850, not ADS850-
 
 
 def _judge(tok, text, pos, isolated, raw=""):
