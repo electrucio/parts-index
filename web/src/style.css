@@ -71,6 +71,8 @@ td.num, th.num { text-align: right; }
 tr.clickable { cursor: pointer; }
 tr.clickable:hover td { background: var(--sunken); }
 tr.sel td { background: var(--accent-soft); }
+tr.copy td { padding-top: 3px; padding-bottom: 3px; font-size: 0.86rem; color: var(--muted); }
+tr.copy td:first-child { padding-left: 22px; }
 .pill { display: inline-block; font: 600 0.72rem var(--body); letter-spacing: 0.04em; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
 .pill.pass { color: var(--pass); background: var(--pass-bg); }
 .pill.off { color: var(--off); background: var(--off-bg); }

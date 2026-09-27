@@ -10,6 +10,7 @@
  * Opening a part is one request for a file the build already joined and grouped.
  */
 import type preact from 'preact'
+import { Fragment } from 'preact'
 import { useEffect, useMemo, useState } from 'preact/hooks'
 
 import { AboutPart } from './about'
@@ -120,6 +121,18 @@ function Score({ m }: { m: PartModel }) {
   )
 }
 
+/** Where one file is had: its download link, the member inside an archive, or the simulator it ships with. */
+function Get({ url, member, installed }: { url?: string; member?: string; installed?: string }) {
+  return (
+    <>
+      {url ? <a href={url}>download</a>
+        : installed ? <span class="muted small">ships with {installed}</span>
+          : <span class="muted small">origin not recorded</span>}
+      {member && <span class="muted small"> · {member}</span>}
+    </>
+  )
+}
+
 function Models({ page }: { page: PartPage }) {
   const m = page.models
   if (!m) return null
@@ -127,9 +140,10 @@ function Models({ page }: { page: PartPage }) {
     <section class="stack-s">
       <h3>Where the model comes from</h3>
       <p class="muted small">
-        Every model is linked to its source with a checksum and the lines that hold it. The file itself is
-        not hosted here: almost every vendor forbids that, and forbidding redistribution does not forbid
-        saying exactly where to look.
+        Every model is linked to its source with a checksum and the lines that hold it, and so is every
+        other place the same model can be had — the rows marked ↳. The file itself is not hosted here:
+        almost every vendor forbids that, and forbidding redistribution does not forbid saying exactly
+        where to look.
       </p>
       <div class="tablewrap">
         <table>
@@ -141,40 +155,34 @@ function Models({ page }: { page: PartPage }) {
           </thead>
           <tbody>
             {m.models.map((mo, i) => (
-              <tr key={i} class={mo.source === m.preferred ? 'sel' : undefined}>
-                <td>
-                  {mo.source}
-                  {mo.source === m.preferred && <> <span class="pill acc">preferred</span></>}
-                  {mo.copies && mo.copies.length > 0 && (
-                    <div class="muted small">
-                      same model in{' '}
-                      {mo.copies.map((c, j) => (
-                        <span key={j}>
-                          {j > 0 && ', '}
-                          {c.url
-                            ? <a href={c.url} title={[c.name, c.member].filter(Boolean).join(' · ')}>{c.source}</a>
-                            : <span title={c.installed_with ? `ships with ${c.installed_with}` : c.name}>{c.source}</span>}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </td>
-                <td><code>{mo.name}</code></td>
-                <td>{mo.type || mo.def}</td>
-                <td><Score m={mo} /></td>
-                <td>
-                  {mo.verbatim
-                    ? <span class="muted small">verbatim</span>
-                    : <span class="chip">{(mo.changes ?? []).join(' ') || 'changed'}</span>}
-                </td>
-                <td>
-                  {mo.get.url ? <a href={mo.get.url}>download</a>
-                    : mo.get.installed_with ? <span class="muted small">ships with {mo.get.installed_with}</span>
-                      : <span class="muted small">origin not recorded</span>}
-                  {mo.get.member && <span class="muted small"> · {mo.get.member}</span>}
-                  {mo.symbol && <> · <span class="chip">symbol</span></>}
-                </td>
-              </tr>
+              <Fragment key={i}>
+                <tr class={mo.source === m.preferred ? 'sel' : undefined}>
+                  <td>
+                    {mo.source}
+                    {mo.source === m.preferred && <> <span class="pill acc">preferred</span></>}
+                  </td>
+                  <td><code>{mo.name}</code></td>
+                  <td>{mo.type || mo.def}</td>
+                  <td><Score m={mo} /></td>
+                  <td>
+                    {mo.verbatim
+                      ? <span class="muted small">verbatim</span>
+                      : <span class="chip">{(mo.changes ?? []).join(' ') || 'changed'}</span>}
+                  </td>
+                  <td>
+                    <Get url={mo.get.url} member={mo.get.member} installed={mo.get.installed_with} />
+                    {mo.symbol && <> · <span class="chip">symbol</span></>}
+                  </td>
+                </tr>
+                {(mo.copies ?? []).map((c, j) => (
+                  <tr key={`${i}.${j}`} class="copy">
+                    <td><span class="muted">↳</span> {c.source}</td>
+                    <td><code>{c.name}</code></td>
+                    <td colSpan={3}><span class="muted small">the same model as {mo.source}'s</span></td>
+                    <td><Get url={c.url} member={c.member} installed={c.installed_with} /></td>
+                  </tr>
+                ))}
+              </Fragment>
             ))}
           </tbody>
         </table>
