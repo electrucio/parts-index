@@ -35,3 +35,15 @@ def test_a_manufacturers_sheet_outranks_the_kind():
 def test_lineage_runs_up_to_the_top():
     assert catalogue.lineage("bbd") == ["bbd", "processing", "ic"]
     assert catalogue.lineage("nothing") == []
+
+
+@pytest.mark.parametrize("text,maker,lineage", [
+    ("Texas Instruments (National Semiconductor)", "texas-instruments", ["national"]),
+    ("onsemi (ex-Fairchild)", "onsemi", ["fairchild"]),
+    ("fairchild (onsemi-hosted)", "fairchild", ["onsemi"]),
+    ("Renesas (ex Intersil / RCA)", "renesas", ["intersil"]),      # RCA is too short a name to look for in prose
+    ("Motorola (cross-reference only)", "motorola", []),
+    ("Soviet (bilingual receiving-tube handbook)", "", []),
+])
+def test_a_datasheet_maker_line_names_the_publisher_and_its_lineage(text, maker, lineage):
+    assert catalogue.maker_of(text) == (maker, lineage)

@@ -13,39 +13,83 @@ site defaults to exactly one family.
 from __future__ import annotations
 
 import csv
+import re
 from functools import cache
+from pathlib import Path
 
 import yaml
 
-from parts_index.core.config import documented_families, part_families, part_references
+from parts_index.core.config import documented_families, part_families, part_makers, part_references
 
 
-def _rows(path) -> list[dict]:
-    if not path.exists():
-        return []
-    with open(path, encoding="utf-8") as f:
-        return list(csv.DictReader(f))
+def stamp(path: Path) -> tuple[str, float]:
+    """What a cached table is keyed by: where it is and when it last changed, so a test's own data or an
+    edit made during a session is read afresh."""
+    return str(path), path.stat().st_mtime if path.exists() else 0.0
 
 
 @cache
+def _csv(key: tuple[str, float]) -> tuple[dict, ...]:
+    p = Path(key[0])
+    if not p.exists():
+        return ()
+    with open(p, encoding="utf-8") as f:
+        return tuple(csv.DictReader(f))
+
+
+@cache
+def _yaml(key: tuple[str, float]) -> dict:
+    p = Path(key[0])
+    return (yaml.safe_load(p.read_text(encoding="utf-8")) or {}) if p.exists() else {}
+
+
 def families() -> dict[str, dict]:
     """Every family by id, in file order, each carrying its own id."""
-    p = part_families()
-    if not p.exists():
-        return {}
-    doc = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
-    return {k: {"id": k, **(v or {})} for k, v in doc.items()}
+    return {k: {"id": k, **(v or {})} for k, v in _yaml(stamp(part_families())).items()}
 
 
-@cache
 def references() -> dict[str, dict]:
-    return {r["id"]: r for r in _rows(part_references())}
+    return {r["id"]: r for r in _csv(stamp(part_references()))}
 
 
-@cache
 def documented() -> dict[str, dict]:
     """Parts a manufacturer's sheet files under a family, by part."""
-    return {r["part"]: r for r in _rows(documented_families())}
+    return {r["part"]: r for r in _csv(stamp(documented_families()))}
+
+
+def makers() -> dict[str, dict]:
+    """Every organisation by id, each carrying its own id."""
+    return {k: {"id": k, **(v or {})} for k, v in _yaml(stamp(part_makers())).items()}
+
+
+def _aliases() -> dict[str, str]:
+    return {a.lower(): mid for mid, m in makers().items() for a in [m.get("name", ""), *(m.get("aliases") or ())]}
+
+
+def maker_of(text: str) -> tuple[str, list[str]]:
+    """The organisation a datasheet's maker line names, and the others it mentions in brackets.
+
+    The model curation writes the maker as it found it — "Texas Instruments (National Semiconductor)",
+    "onsemi (ex-Fairchild)", "fairchild (onsemi-hosted)". The part before the bracket is who published the
+    sheet; a known name inside the brackets is lineage, told apart so the page can say "a National
+    Semiconductor design, documented today by Texas Instruments".
+    """
+    al = _aliases()
+    head, _, rest = (text or "").partition("(")
+    main = al.get(head.strip().lower(), "")
+    if not main:
+        return "", []                             # lineage of nobody named is not lineage
+    others: list[tuple[int, str]] = []
+    low = rest.lower()
+    # Short names (TI, ST, GE, THAT) are ordinary words or letters inside other words; only a name of six
+    # letters or more is looked for inside the brackets.
+    for alias, mid in al.items():
+        if len(alias) < 6 or mid == main:
+            continue
+        m = re.search(rf"(?<![a-z]){re.escape(alias)}(?![a-z])", low)
+        if m and mid not in (o for _, o in others):
+            others.append((m.start(), mid))
+    return main, [mid for _, mid in sorted(others)]
 
 
 def lineage(fid: str) -> list[str]:
@@ -57,7 +101,6 @@ def lineage(fid: str) -> list[str]:
     return out
 
 
-@cache
 def _by_device() -> dict[str, str]:
     return {k: fid for fid, f in families().items() for k in f.get("kinds") or ()}
 
@@ -121,4 +164,29 @@ def check(devices: list[str] | None = None) -> list[str]:
     for rid, r in refs.items():
         if not r.get("url", "").startswith(("https://", "http://")):
             out.append(f"reference {rid}: no usable URL")
+    orgs = makers()
+    seen_alias: dict[str, str] = {}
+    for mid, m in orgs.items():
+        if not m.get("name"):
+            out.append(f"maker {mid}: needs a name")
+        for a in m.get("aliases") or ():
+            if a != a.lower():
+                out.append(f"maker {mid}: alias {a} must be lower case")
+            if a in seen_alias and seen_alias[a] != mid:
+                out.append(f"maker {mid}: alias {a} also belongs to {seen_alias[a]}")
+            seen_alias[a] = mid
+        src = m.get("source")
+        if (m.get("country") or m.get("founded")) and not src:
+            out.append(f"maker {mid}: a country or founding year needs a source")
+        for ev in m.get("events") or ():
+            if len(ev) != 4:
+                out.append(f"maker {mid}: event {ev} is not [year, what, with, source]")
+                continue
+            if ev[2] and ev[2] not in orgs:
+                out.append(f"maker {mid}: event names {ev[2]}, which is not in makers.yaml")
+            if not ev[3]:
+                out.append(f"maker {mid}: event {ev[:2]} has no source")
+        for s_ in [src] + [ev[3] for ev in m.get("events") or () if len(ev) == 4]:
+            if s_ and not str(s_).startswith("https://") and s_ not in refs:
+                out.append(f"maker {mid}: source {s_} is neither a URL nor in references.csv")
     return out

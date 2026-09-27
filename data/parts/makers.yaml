@@ -1,0 +1,496 @@
+# The organisations behind the parts: who designed, made or still documents them, where each is based,
+# and the dated events — acquisitions, mergers, spin-offs — that explain why a part designed by one
+# company is sold today under another's name.
+#
+# Fields
+#   name        the name the site shows
+#   aliases     other spellings, lower case, as the model curation writes a datasheet's maker
+#               ("fairchild", "nxp") — the part before any parenthesis is matched against these
+#   country     where the organisation is (or was) headquartered — never where a given part was made,
+#               which needs evidence about that part. `hq_as_of` is the date the source was read.
+#   founded     year
+#   events      [year, what happened, the other organisation (an id here when there is one), source]
+#   source      the page the country and founding year were read from: an S id of references.csv, or
+#               a URL. A fact without a source is left out rather than written from memory.
+#
+# Read on 2026-09-27. Wikipedia is a secondary source and is cited as such; the organisations' own pages
+# are cited where they were read. No prefix is attributed to a maker here yet (LM to National, NE to
+# Signetics): the sources read so far do not state them, and a prefix is a habit, not a registration.
+
+texas-instruments:
+  name: Texas Instruments
+  aliases: [texas instruments, ti]
+  country: United States
+  hq_as_of: 2026-09-27
+  founded: 1951
+  events:
+    - [1999, acquired, unitrode, 'https://en.wikipedia.org/wiki/Texas_Instruments']
+    - [2000, acquired, burr-brown, S42]
+    - [2011, acquired, national, 'https://en.wikipedia.org/wiki/National_Semiconductor']
+  source: https://en.wikipedia.org/wiki/Texas_Instruments
+
+national:
+  name: National Semiconductor
+  aliases: [national semiconductor, national]
+  country: United States
+  founded: 1959
+  events:
+    - [2011, acquired by, texas-instruments, 'https://en.wikipedia.org/wiki/National_Semiconductor']
+  source: https://en.wikipedia.org/wiki/National_Semiconductor
+
+burr-brown:
+  name: Burr-Brown
+  aliases: [burr-brown]
+  country: United States
+  events:
+    - [2000, acquired by, texas-instruments, S42]
+  source: https://en.wikipedia.org/wiki/Burr-Brown_Corporation
+
+unitrode:
+  name: Unitrode
+  aliases: [unitrode]
+  events:
+    - [1999, acquired by, texas-instruments, 'https://en.wikipedia.org/wiki/Texas_Instruments']
+
+onsemi:
+  name: onsemi
+  aliases: [onsemi, on semiconductor]
+  country: United States
+  hq_as_of: 2026-09-27
+  founded: 1999
+  events:
+    - [1999, spun off from, motorola, 'https://en.wikipedia.org/wiki/Onsemi']
+    - [2016, acquired, fairchild, 'https://en.wikipedia.org/wiki/Fairchild_Semiconductor']
+  source: https://en.wikipedia.org/wiki/Onsemi
+
+motorola:
+  name: Motorola
+  aliases: [motorola]
+  country: United States
+  founded: 1928
+  events:
+    - [1999, semiconductor components spun off as, onsemi, 'https://en.wikipedia.org/wiki/Motorola']
+  source: https://en.wikipedia.org/wiki/Motorola
+
+fairchild:
+  name: Fairchild Semiconductor
+  aliases: [fairchild, fairchild semiconductor]
+  country: United States
+  founded: 1957
+  events:
+    - [2016, acquired by, onsemi, 'https://en.wikipedia.org/wiki/Fairchild_Semiconductor']
+  source: https://en.wikipedia.org/wiki/Fairchild_Semiconductor
+
+signetics:
+  name: Signetics
+  aliases: [signetics]
+  country: United States
+  founded: 1961
+  events:
+    - [1975, acquired by, philips, 'https://en.wikipedia.org/wiki/Signetics']
+  source: https://en.wikipedia.org/wiki/Signetics
+
+philips:
+  name: Philips
+  aliases: [philips]
+  country: Netherlands
+  hq_as_of: 2026-09-27
+  founded: 1891
+  events:
+    - [1927, took full ownership of, mullard, 'https://en.wikipedia.org/wiki/Mullard']
+    - [1975, acquired, signetics, 'https://en.wikipedia.org/wiki/Signetics']
+    - [2006, semiconductors spun off as, nxp, 'https://en.wikipedia.org/wiki/NXP_Semiconductors']
+  source: https://en.wikipedia.org/wiki/Philips
+
+mullard:
+  name: Mullard
+  aliases: [mullard]
+  country: United Kingdom
+  founded: 1920
+  events:
+    - [1927, became a wholly owned subsidiary of, philips, 'https://en.wikipedia.org/wiki/Mullard']
+  source: https://en.wikipedia.org/wiki/Mullard
+
+nxp:
+  name: NXP Semiconductors
+  aliases: [nxp, nxp semiconductors]
+  country: Netherlands
+  hq_as_of: 2026-09-27
+  founded: 2006
+  events:
+    - [2006, spun off from, philips, 'https://en.wikipedia.org/wiki/NXP_Semiconductors']
+    - [2017, standard products divested as, nexperia, 'https://en.wikipedia.org/wiki/Nexperia']
+  source: https://en.wikipedia.org/wiki/NXP_Semiconductors
+
+nexperia:
+  name: Nexperia
+  aliases: [nexperia]
+  country: Netherlands
+  hq_as_of: 2026-09-27
+  founded: 2017
+  events:
+    - [2017, divested from, nxp, 'https://en.wikipedia.org/wiki/Nexperia']
+  source: S48
+
+vishay:
+  name: Vishay
+  aliases: [vishay, vishay semiconductors, vishay general semiconductor, vishay intertechnology]
+  country: United States
+  hq_as_of: 2026-09-27
+  founded: 1962
+  events:
+    - [2005, absorbed as a brand, siliconix, 'https://en.wikipedia.org/wiki/Siliconix']
+  source: https://en.wikipedia.org/wiki/Vishay_Intertechnology
+
+siliconix:
+  name: Siliconix
+  aliases: [vishay siliconix, siliconix]
+  country: United States
+  founded: 1962
+  events:
+    - [2005, ended as a company of its own and became a brand of, vishay, 'https://en.wikipedia.org/wiki/Siliconix']
+  source: https://en.wikipedia.org/wiki/Siliconix
+
+analog-devices:
+  name: Analog Devices
+  aliases: [analog devices, adi]
+  country: United States
+  hq_as_of: 2026-09-27
+  founded: 1965
+  events:
+    - [1990, acquired, pmi, 'https://en.wikipedia.org/wiki/Precision_Monolithics']
+    - [2017, acquired, linear-technology, S43]
+    - [2021, acquired, maxim, 'https://en.wikipedia.org/wiki/Maxim_Integrated']
+  source: https://en.wikipedia.org/wiki/Analog_Devices
+
+pmi:
+  name: Precision Monolithics (PMI)
+  aliases: [pmi, precision monolithics]
+  country: United States
+  founded: 1969
+  events:
+    - [1990, acquired by, analog-devices, 'https://en.wikipedia.org/wiki/Precision_Monolithics']
+  source: https://en.wikipedia.org/wiki/Precision_Monolithics
+
+linear-technology:
+  name: Linear Technology
+  aliases: [linear technology]
+  country: United States
+  founded: 1981
+  events:
+    - [2017, acquired by, analog-devices, S43]
+  source: https://en.wikipedia.org/wiki/Linear_Technology
+
+maxim:
+  name: Maxim Integrated
+  aliases: [maxim, maxim integrated]
+  country: United States
+  founded: 1983
+  events:
+    - [2021, acquired by, analog-devices, 'https://en.wikipedia.org/wiki/Maxim_Integrated']
+  source: https://en.wikipedia.org/wiki/Maxim_Integrated
+
+toshiba:
+  name: Toshiba
+  aliases: [toshiba]
+  country: Japan
+  hq_as_of: 2026-09-27
+  founded: 1939
+  source: https://en.wikipedia.org/wiki/Toshiba
+
+hitachi:
+  name: Hitachi
+  aliases: [hitachi]
+  country: Japan
+  hq_as_of: 2026-09-27
+  founded: 1910
+  events:
+    - [2003, non-DRAM semiconductors combined with Mitsubishi Electric's into, renesas, 'https://en.wikipedia.org/wiki/Renesas_Electronics']
+  source: https://en.wikipedia.org/wiki/Hitachi
+
+nec:
+  name: NEC
+  aliases: [nec]
+  country: Japan
+  hq_as_of: 2026-09-27
+  founded: 1899
+  events:
+    - [2002, 'spun off its semiconductors as NEC Electronics, which in 2010 merged into', renesas, 'https://en.wikipedia.org/wiki/Renesas_Electronics']
+  source: https://en.wikipedia.org/wiki/NEC
+
+renesas:
+  name: Renesas Electronics
+  aliases: [renesas, renesas electronics]
+  country: Japan
+  hq_as_of: 2026-09-27
+  events:
+    - [2003, formed as Renesas Technology from the non-DRAM semiconductors of Mitsubishi Electric and, hitachi, 'https://en.wikipedia.org/wiki/Renesas_Electronics']
+    - [2010, 'merged with NEC Electronics, the semiconductor business of', nec, S16]
+    - [2017, acquired, intersil, 'https://en.wikipedia.org/wiki/Intersil']
+  source: https://en.wikipedia.org/wiki/Renesas_Electronics
+
+intersil:
+  name: Intersil
+  aliases: [intersil]
+  country: United States
+  founded: 1967
+  events:
+    - [1988, bought by, harris, 'https://en.wikipedia.org/wiki/Intersil']
+    - [1999, re-formed from the semiconductor division of, harris, 'https://en.wikipedia.org/wiki/Intersil']
+    - [2017, acquired by, renesas, 'https://en.wikipedia.org/wiki/Intersil']
+  source: https://en.wikipedia.org/wiki/Intersil
+
+harris:
+  name: Harris
+  aliases: [harris]
+  country: United States
+  events:
+    - [1988, acquired the semiconductor business of, general-electric, 'https://en.wikipedia.org/wiki/Harris_Corporation']
+    - [1999, sold its semiconductor division to, intersil, 'https://en.wikipedia.org/wiki/Intersil']
+  source: https://en.wikipedia.org/wiki/Harris_Corporation
+
+rca:
+  name: RCA
+  aliases: [rca]
+  country: United States
+  founded: 1919
+  events:
+    - [1986, acquired by, general-electric, 'https://en.wikipedia.org/wiki/RCA_Corporation']
+    - [1988, semiconductor business bought by, harris, 'https://en.wikipedia.org/wiki/RCA_Corporation']
+  source: https://en.wikipedia.org/wiki/RCA_Corporation
+
+general-electric:
+  name: General Electric
+  aliases: [general electric, ge]
+  country: United States
+  founded: 1892
+  events:
+    - [1986, acquired, rca, 'https://en.wikipedia.org/wiki/RCA_Corporation']
+    - [1988, semiconductor business sold to, harris, 'https://en.wikipedia.org/wiki/Harris_Corporation']
+  source: https://en.wikipedia.org/wiki/General_Electric
+
+sylvania:
+  name: Sylvania
+  aliases: [sylvania]
+  country: United States
+  founded: 1917
+  source: https://en.wikipedia.org/wiki/Sylvania_Electric_Products
+
+tung-sol:
+  name: Tung-Sol
+  aliases: [tung-sol]
+  country: United States
+  founded: 1904
+  source: https://en.wikipedia.org/wiki/Tung-Sol
+
+m-o-valve:
+  name: Marconi-Osram Valve (M-OV)
+  aliases: [m-o valve co, m-ov, marconi-osram]
+  country: United Kingdom
+  founded: 1919
+  source: https://en.wikipedia.org/wiki/Marconi-Osram_Valve
+
+telefunken:
+  name: Telefunken
+  aliases: [telefunken]
+  country: Germany
+  founded: 1903
+  source: https://en.wikipedia.org/wiki/Telefunken
+
+tungsram:
+  name: Tungsram
+  aliases: [tungsram]
+  country: Hungary
+  founded: 1896
+  source: https://en.wikipedia.org/wiki/Tungsram
+
+jj-electronic:
+  name: JJ Electronic
+  aliases: [jj electronic, jj]
+  country: Slovakia
+  hq_as_of: 2026-09-27
+  source: S49
+
+ferranti:
+  name: Ferranti
+  aliases: [ferranti]
+  country: United Kingdom
+  events:
+    - [1993, went bankrupt and was broken up, '', 'https://en.wikipedia.org/wiki/Ferranti']
+  source: https://en.wikipedia.org/wiki/Ferranti
+
+zetex:
+  name: Zetex
+  aliases: [zetex]
+  country: United Kingdom
+  events:
+    - [1989, formed by a management buy-out of the semiconductor business that began at, ferranti, 'https://en.wikipedia.org/wiki/Zetex_Semiconductors']
+    - [2008, acquired by, diodes, 'https://en.wikipedia.org/wiki/Zetex_Semiconductors']
+  source: https://en.wikipedia.org/wiki/Zetex_Semiconductors
+
+diodes:
+  name: Diodes Incorporated
+  aliases: [diodes, diodes incorporated]
+  country: United States
+  hq_as_of: 2026-09-27
+  founded: 1959
+  events:
+    - [2008, acquired, zetex, 'https://en.wikipedia.org/wiki/Zetex_Semiconductors']
+  source: https://en.wikipedia.org/wiki/Diodes_Incorporated
+
+stmicroelectronics:
+  name: STMicroelectronics
+  aliases: [stmicroelectronics, st]
+  country: Switzerland
+  hq_as_of: 2026-09-27
+  founded: 1987
+  source: https://en.wikipedia.org/wiki/STMicroelectronics
+
+infineon:
+  name: Infineon Technologies
+  aliases: [infineon]
+  country: Germany
+  hq_as_of: 2026-09-27
+  founded: 1999
+  events:
+    - [2015, acquired, international-rectifier, 'https://en.wikipedia.org/wiki/International_Rectifier']
+  source: https://en.wikipedia.org/wiki/Infineon_Technologies
+
+international-rectifier:
+  name: International Rectifier
+  aliases: [international rectifier]
+  country: United States
+  founded: 1947
+  events:
+    - [2015, acquired by, infineon, 'https://en.wikipedia.org/wiki/International_Rectifier']
+  source: https://en.wikipedia.org/wiki/International_Rectifier
+
+sanyo:
+  name: Sanyo
+  aliases: [sanyo]
+  country: Japan
+  founded: 1947
+  events:
+    - [null, acquired by, panasonic, 'https://en.wikipedia.org/wiki/Sanyo']
+  source: https://en.wikipedia.org/wiki/Sanyo
+
+panasonic:
+  name: Panasonic (Matsushita)
+  aliases: [panasonic, matsushita]
+  country: Japan
+  hq_as_of: 2026-09-27
+  founded: 1918
+  source: https://en.wikipedia.org/wiki/Panasonic
+
+sharp:
+  name: Sharp
+  aliases: [sharp]
+  country: Japan
+  hq_as_of: 2026-09-27
+  founded: 1912
+  source: https://en.wikipedia.org/wiki/Sharp_Corporation
+
+rohm:
+  name: Rohm
+  aliases: [rohm]
+  country: Japan
+  hq_as_of: 2026-09-27
+  founded: 1958
+  source: https://en.wikipedia.org/wiki/Rohm
+
+nisshinbo:
+  name: Nisshinbo Micro Devices
+  aliases: [nisshinbo micro devices, nisshinbo]
+  country: Japan
+  hq_as_of: 2026-09-27
+  founded: 2022
+  events:
+    - [2022, formed from Ricoh Electronic Devices and, new-japan-radio, S44]
+  source: S45
+
+new-japan-radio:
+  name: New Japan Radio (JRC)
+  aliases: [new japan radio, jrc, njr]
+  country: Japan
+  events:
+    - [2022, merged into, nisshinbo, S44]
+  source: S44
+
+princeton:
+  name: Princeton Technology
+  aliases: [princeton technology]
+  country: Taiwan
+  hq_as_of: 2026-09-27
+  source: S46
+
+that:
+  name: THAT Corporation
+  aliases: [that corporation, that]
+  country: United States
+  hq_as_of: 2026-09-27
+  source: S47
+
+microchip:
+  name: Microchip Technology
+  aliases: [microchip]
+  country: United States
+  hq_as_of: 2026-09-27
+  founded: 1989
+  events:
+    - [2018, acquired, microsemi, 'https://en.wikipedia.org/wiki/Microsemi']
+  source: https://en.wikipedia.org/wiki/Microchip_Technology
+
+microsemi:
+  name: Microsemi
+  aliases: [microsemi]
+  country: United States
+  founded: 1959
+  events:
+    - [2018, acquired by, microchip, 'https://en.wikipedia.org/wiki/Microsemi']
+  source: https://en.wikipedia.org/wiki/Microsemi
+
+wolfspeed:
+  name: Wolfspeed (formerly Cree)
+  aliases: [wolfspeed, cree]
+  country: United States
+  hq_as_of: 2026-09-27
+  founded: 1987
+  source: https://en.wikipedia.org/wiki/Wolfspeed
+
+broadcom:
+  name: Broadcom
+  aliases: [broadcom, avago]
+  country: United States
+  hq_as_of: 2026-09-27
+  source: https://en.wikipedia.org/wiki/Broadcom
+
+linear-systems:
+  name: Linear Integrated Systems
+  aliases: [linear integrated systems, linear systems]
+  country: United States
+  founded: 1987
+  source: https://en.wikipedia.org/wiki/Linear_Integrated_Systems
+
+central:
+  name: Central Semiconductor
+  aliases: [central, central semiconductor]
+
+interfet:
+  name: InterFET
+  aliases: [interfet]
+
+sanken:
+  name: Sanken Electric
+  aliases: [sanken]
+
+exicon:
+  name: Exicon
+  aliases: [exicon]
+
+spin:
+  name: Spin Semiconductor
+  aliases: [spin semiconductor]
+
+unitra-cemi:
+  name: Unitra-CEMI
+  aliases: [unitra-cemi]

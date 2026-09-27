@@ -25,6 +25,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 from functools import cache
+from pathlib import Path
 
 import yaml
 
@@ -52,17 +53,22 @@ class Decoding:
                 "caveats": self.caveats, "refs": self.refs}
 
 
-@cache
 def schemes() -> dict[str, dict]:
     """Every scheme by id, in the order they are tried."""
     d = naming_schemes()
+    files = tuple((str(p), p.stat().st_mtime) for p in sorted(d.glob("*.yaml"))) if d.is_dir() else ()
+    return _load(files)
+
+
+@cache
+def _load(files: tuple[tuple[str, float], ...]) -> dict[str, dict]:
     out = {}
-    if d.is_dir():
-        for p in sorted(d.glob("*.yaml")):
-            doc = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
-            doc["id"] = p.stem
-            doc["_forms"] = [(re.compile(f["pattern"]), f) for f in doc.get("forms") or ()]
-            out[p.stem] = doc
+    for name, _ in files:
+        p = Path(name)
+        doc = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
+        doc["id"] = p.stem
+        doc["_forms"] = [(re.compile(f["pattern"]), f) for f in doc.get("forms") or ()]
+        out[p.stem] = doc
     return dict(sorted(out.items(), key=lambda kv: (kv[1].get("order", 99), kv[0])))
 
 
