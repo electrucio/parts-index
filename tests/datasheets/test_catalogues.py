@@ -47,4 +47,10 @@ def test_toshiba_rows_find_the_sheet_and_life_cycle_columns_by_their_labels():
     (r,) = cat.read_toshiba("toshiba_parametric", {"maker": "toshiba"}, get)
     assert r["part"] == "2SA1020" and r["status"] == "EOL announced"
     assert r["url"] == "https://toshiba.semicon-storage.com/info/docget.jsp?did=20277&prodName=2SA1020"
-    assert r["category"] == "Bipolar Transistors > Not Recommended for New Design and EOL announced"
+    assert r["category"] == "Bipolar Transistors"   # the discontinued list is a status, not a category
+
+
+def test_vishay_names_come_from_the_part_column_or_the_series_label():
+    assert cat.vishay_names({"P1001": "BAT54, BAT54A, BAT54C, BAT54S"}) == ["BAT54", "BAT54A", "BAT54C", "BAT54S"]
+    assert cat.vishay_names({"P1001": "BAS40-00 to BAS40-06"}) == ["BAS40-00", "BAS40-06"]
+    assert cat.vishay_names({"P1001": "1N4148", "P1009": "1N4148-TAP"}) == ["1N4148-TAP"]

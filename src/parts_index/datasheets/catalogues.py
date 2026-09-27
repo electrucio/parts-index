@@ -159,7 +159,59 @@ def read_infineon(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
                       url=ds.get("assetDmPath", ""), page=p.get("pageUrl", ""))
 
 
+# --- Vishay ------------------------------------------------------------------------------------------
+VISHAY = "https://www.vishay.com"
+NEXT_DATA = re.compile(r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', re.S)
+
+
+def next_data(page: str) -> dict:
+    m = NEXT_DATA.search(page)
+    try:
+        return json.loads(m.group(1))["props"]["pageProps"] if m else {}
+    except (ValueError, KeyError):
+        return {}
+
+
+def vishay_names(r: dict) -> list[str]:
+    """The part numbers a gateway row names: its part-number column when it has one, otherwise the
+    series label split on commas ("BAT54, BAT54A, BAT54C, BAT54S"); a range ("BAS40-00 to BAS40-06")
+    names only its ends."""
+    label = str(r.get("P1009") or r.get("P1001") or "")
+    return [n.strip().upper() for n in re.split(r",|/|\bto\b", label) if re.fullmatch(r"\s*[A-Za-z0-9-]{3,24}\s*", n)]
+
+
+def read_vishay(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
+    """The main gateways (/en/diodes/) link their sub-gateways, whose page data list one row per product:
+    its docid and its part numbers. Only products naming a known part are asked for further: the product
+    page (/en/product/<docid>/) gives the data sheet and the maker's category."""
+    parts = known()
+    wanted: dict[str, set[str]] = {}
+    for gw in entry["gateways"]:
+        main = next_data(get.text(f"{VISHAY}/en/{gw}/"))
+        subs = set()
+        for g in main.get("getGatewayPage") or []:
+            for sel in (g.get("node") or {}).get("selectors") or []:
+                for link in sel.get("links") or []:
+                    u = (link.get("selectorUrl") or "").strip("/")
+                    if u:
+                        subs.add(u if "/" in u else f"{gw}/{u}")
+        for sub in sorted(subs):
+            for r in next_data(get.text(f"{VISHAY}/en/{sub}/")).get("paramResults") or []:
+                names = set(vishay_names(r)) & parts
+                if names and r.get("P1000"):
+                    wanted.setdefault(str(r["P1000"]), set()).update(names)
+    for docid, names in sorted(wanted.items()):
+        page = f"{VISHAY}/en/product/{docid}/"
+        pp = next_data(get.text(page))
+        sheet = next((d for d in pp.get("pCorResults") or [] if d.get("type") == "datsht"), None)
+        cat_ = ((pp.get("getcatId") or [{}])[0].get("node") or {}).get("categoryName", "")
+        for n in sorted(names):
+            yield row(n, source, entry, category=cat_, url=(f"{VISHAY}/docs/{docid}/{sheet['file_name']}.{sheet['file_ext']}"
+                      if sheet and sheet.get("file_name") else ""), page=page)
+
+
 READERS: dict[str, Callable[[str, dict, Fetcher], Iterator[dict]]] = {
+    "vishay_gateways": read_vishay,
     "diotec_products": read_diotec,
     "toshiba_parametric": read_toshiba,
     "infineon_tables": read_infineon,
