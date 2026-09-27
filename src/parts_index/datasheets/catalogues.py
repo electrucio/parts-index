@@ -210,7 +210,27 @@ def read_vishay(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
                       if sheet and sheet.get("file_name") else ""), page=page)
 
 
+# --- Nisshinbo Micro Devices (New JRC) --------------------------------------------------------------
+NISSHINBO = "https://www.nisshinbo-microdevices.co.jp"
+NISSHINBO_SHEET = re.compile(r'<dl class="products-detail-download">.*?<a class="e-btn" href="([^"]+\.pdf)"', re.S)
+
+
+def read_nisshinbo(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
+    """The English page sitemap names each product page after the product (spec/?product=njm4558); the
+    page's download block links the data sheet. robots.txt keeps scripts off the PDFs themselves, so the
+    link is published and the sheet is never fetched."""
+    parts = known()
+    pages = [u for u in LOC.findall(get.text(f"{NISSHINBO}/sitemap_en_page.xml")) if "/spec/?product=" in u]
+    for page in sorted(pages):
+        name = page.rsplit("=", 1)[-1].upper()
+        if name not in parts:
+            continue
+        m = NISSHINBO_SHEET.search(get.text(page))
+        yield row(name, source, entry, url=NISSHINBO + m.group(1) if m else "", page=page)
+
+
 READERS: dict[str, Callable[[str, dict, Fetcher], Iterator[dict]]] = {
+    "nisshinbo_products": read_nisshinbo,
     "vishay_gateways": read_vishay,
     "diotec_products": read_diotec,
     "toshiba_parametric": read_toshiba,
