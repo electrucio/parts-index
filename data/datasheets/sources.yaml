@@ -207,3 +207,31 @@ kexin_products:
   notes: 'Kexin. robots.txt disallows /admin/, /api/, member and inquiry pages. /en/products
     carries the whole catalogue in its page data: 5,070 rows, each with its data sheet. The server omits
     the intermediate certificate, which is fetched from the address its certificate names.'
+central_wayback:
+  kind: wayback
+  maker: central
+  prefixes:
+    - my.centralsemi.com/datasheets/
+    - www.centralsemi.com/pdfs/products/
+    - centralsemi.com/pdfs/products/
+    - www.centralsemi.com/pdf/
+    - centralsemi.com/pdf/
+    - www.centralsemi.com/leadedpdf/
+    - centralsemi.com/leadedpdf/
+  keep: '(?i)centralsemi\.com/(datasheets|pdfs/products|pdf|leadedpdf)/[^/]+\.pdf$'
+  strip: '(?:[_&]|%20|-(?=\d)).*$'   # 2N5550_2N5551 -> 2N5550, 1n4728a-4764a -> 1N4728A, BD136%20Series -> BD136
+  status: active
+  delay: 10
+  notes: 'centralsemi.com refuses scripts (403). The Internet Archive holds its data sheet folders
+    from 1998 to 2026, named after their parts. get_document.php carries the name in its query and is
+    not listed.'
+burrbrown_wayback:
+  kind: wayback
+  maker: burr-brown
+  prefixes:
+    - www.burr-brown.com/products/catalog/datasheets/pdf/
+  keep: '/datasheets/pdf/[^/]+\.pdf$'
+  status: active
+  delay: 10
+  notes: 'Burr-Brown''s own site before TI bought it in 2000: 187 data sheets captured in 1996, named
+    after their parts.'
