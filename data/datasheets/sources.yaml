@@ -189,3 +189,12 @@ tsc_products:
   notes: 'www.taiwansemi.com has no robots.txt and services.taiwansemi.com allows everything. The product
     filter''s skeleton gives the category tree, and products_v2 each leaf with status, family and data
     sheet. Sheet names carry spaces and are published percent-encoded.'
+tt_datasheets:
+  kind: catalogue
+  maker: tt-electronics
+  products: [Semiconductors, RF Power MOSFETs, Optoelectronics]
+  status: active
+  delay: 3
+  notes: 'TT Electronics (Semelab, Optek). No robots.txt. The data sheet search page asks
+    /api/search/resource for type 8 and receives all 1,790 sheets in one page; a sheet''s name packs the
+    parts it covers ("2N6766 IRF250", "BDX66 A,B,C").'

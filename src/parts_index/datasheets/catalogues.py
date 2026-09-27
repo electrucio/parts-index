@@ -273,7 +273,36 @@ def read_tsc(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
                           url=quote(p.get("datasheet") or "", safe=":/%?=&"))
 
 
+# --- TT Electronics (Semelab) ------------------------------------------------------------------------
+TT = "https://www.ttelectronics.com"
+
+
+def tt_names(label: str) -> list[str]:
+    """The parts a sheet's name packs: "2N6766 IRF250" is two, "BDX66 A,B,C" is BDX66 and its A, B and
+    C grades."""
+    out: list[str] = []
+    for tok in re.split(r"[\s,]+", label.strip()):
+        if re.fullmatch(r"[A-Z]{1,2}", tok) and out:
+            base = re.sub(r"[A-Z]{1,2}$", "", out[-1]) if re.search(r"\d[A-Z]{1,2}$", out[-1]) else out[-1]
+            out.append(base + tok)
+        elif re.search(r"\d", tok):
+            out.append(tok.upper())
+    return out
+
+
+def read_tt(source: str, entry: dict, get: Fetcher) -> Iterator[dict]:
+    """The data sheet search asks /api/search/resource for type 8 (data sheets) and gets every one in a
+    page of 2,000: its name and file. Only the product lines in the registry are kept."""
+    q = f"{TT}/api/search/resource?typ=8&subtyp=&prod=&loc=&kywrd=&srt=&pgsz=2000&pgnum=0"
+    for r in (get.json(q) or {}).get("resultList") or []:
+        if r.get("productDisplay") not in entry["products"] or not r.get("fileVideoURL"):
+            continue
+        for n in tt_names(r.get("resourceName") or ""):
+            yield row(n, source, entry, category=r["productDisplay"], url=TT + r["fileVideoURL"])
+
+
 READERS: dict[str, Callable[[str, dict, Fetcher], Iterator[dict]]] = {
+    "tt_datasheets": read_tt,
     "secos_products": read_secos,
     "tsc_products": read_tsc,
     "nisshinbo_products": read_nisshinbo,

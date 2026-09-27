@@ -54,3 +54,9 @@ def test_vishay_names_come_from_the_part_column_or_the_series_label():
     assert cat.vishay_names({"P1001": "BAT54, BAT54A, BAT54C, BAT54S"}) == ["BAT54", "BAT54A", "BAT54C", "BAT54S"]
     assert cat.vishay_names({"P1001": "BAS40-00 to BAS40-06"}) == ["BAS40-00", "BAS40-06"]
     assert cat.vishay_names({"P1001": "1N4148", "P1009": "1N4148-TAP"}) == ["1N4148-TAP"]
+
+
+def test_a_tt_sheet_name_packs_its_parts_and_grades():
+    assert cat.tt_names("2N6766 IRF250") == ["2N6766", "IRF250"]
+    assert cat.tt_names("BDX66 A,B,C") == ["BDX66", "BDX66A", "BDX66B", "BDX66C"]
+    assert cat.tt_names("1N4148D") == ["1N4148D"]
