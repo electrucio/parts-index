@@ -175,3 +175,11 @@ def test_calls_are_spread_over_several_servers_and_a_retry_goes_elsewhere(monkey
     assert {"http://a/v1", "http://b/v1"} <= set(seen)
     after_c = [seen[i + 1] for i, u in enumerate(seen[:-1]) if u == "http://c/v1"]
     assert all(u != "http://c/v1" for u in after_c) or not after_c
+
+
+def test_half_a_line_left_by_a_stopped_run_is_asked_again_not_fatal(monkeypatch, tmp_path):
+    monkeypatch.setattr(llm, "llm_cache", lambda: tmp_path)
+    answers, _ = llm._paths("t")
+    answers.parent.mkdir(parents=True, exist_ok=True)
+    answers.write_text('{"model": "m", "key": "a", "answer": 1}\n{"model": "m", "key": "b", "ans', encoding="utf-8")
+    assert llm.cached("t", "m") == {"a": 1}

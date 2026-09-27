@@ -68,7 +68,10 @@ def cached(task: str, model: str) -> dict:
     if answers.exists():
         for line in answers.open(encoding="utf-8"):
             if line.strip():
-                d = json.loads(line)
+                try:
+                    d = json.loads(line)
+                except ValueError:
+                    continue            # a run stopped mid-write leaves half a line: that one is asked again
                 if d["model"] == model:
                     out[d["key"]] = d["answer"]
     return out
