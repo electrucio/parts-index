@@ -328,3 +328,21 @@ def test_a_page_of_labels_does_not_vouch_for_a_valve_it_does_not_have():
         return {"blocks": [{"text": w, "conf": 1.0} for w in words]}
     found = [h.part for h in parts.extract_page(mkpage("IN1 IN2 IN3 6K8 TL072 R1 R2 C1".split()))]
     assert "6K8" not in found and "IN3" not in found and "TL072" in found
+
+
+def test_a_valve_named_like_a_size_needs_another_valve_beside_it():
+    """1X2 is a TV's EHT rectifier and HEADER 1X2 on 388 pages of TI application notes."""
+    def mkpage(words):
+        return {"blocks": [{"text": w, "conf": 1.0} for w in words]}
+    assert "1X2" not in [h.part for h in parts.extract_page(mkpage("J1 1X2 TPS54160 R1 C1".split()))]
+    assert "1X2B" in [h.part for h in parts.extract_page(mkpage("V1 6BQ6GTB V2 1X2B 6CG7".split()))]
+
+
+def test_a_postcode_is_not_a_valve():
+    """Every Elby document ends "Bridport, TAS 7262, Australia", and 7262 is a valve type in the census."""
+    assert [h.part for h in parts.extract("Bridport, TAS 7262, Australia", pending=True)] == []
+
+
+def test_a_design_that_declares_a_designator_as_its_value_declares_no_part():
+    page = {"blocks": [{"text": "LED1", "conf": 1.0, "field": "value"}, {"text": "TL072", "conf": 1.0, "field": "value"}]}
+    assert [h.part for h in parts.extract_page(page)] == ["TL072"]

@@ -298,6 +298,8 @@ E24 = {"10", "11", "12", "13", "15", "16", "18", "20", "22", "24", "27", "30", "
 MARKED_VALUE = re.compile(r"(\d)[RKM](\d)")
 # A family written with its variable digit as X: 1N400X is any of 1N4001 to 1N4007, not a device.
 FAMILY_X = re.compile(r"\d[A-Z]\d+X+")
+# A number after an Australian state is a postcode: 7262 is a valve type and Elby's town.
+POSTCODE_BEFORE = re.compile(r"\b(?:TAS|NSW|VIC|QLD|SA|WA|NT|ACT)[\s,.]*$", re.I)
 # An evaluation module is a board named after the chip it carries. The chip is the part.
 EVM = re.compile(r"(.+?)-?(?:EVM|EVAL|BOOST)$")         # ADS850-EVM is the board for ADS850, not ADS850-
 
@@ -312,6 +314,8 @@ def _judge(tok, text, pos, isolated, raw=""):
         return None
     if LABEL.fullmatch(tok) or FAMILY_X.fullmatch(tok):
         return None
+    if tok.isdigit() and POSTCODE_BEFORE.search(text[max(0, pos - 12):pos]):
+        return None                                             # Bridport, TAS 7262: Elby's address, on every page
     if (m := MARKED_VALUE.fullmatch(tok)) and m.group(1) + m.group(2) in E24:
         return None
     if WILDCARD.fullmatch(tok) and norm(tok) not in CENSUS and norm(tok) not in KNOWN:
@@ -479,6 +483,11 @@ def drop_designator_misreads(hits, labels):
 
 def settle_valves(hits, page_text):
     """An unknown American-valve label stays (medium) only on a page that is about valves: two known valves on it, or valve words."""
+    # A valve named like a size - 1X2, 5X4, 6X4 - is taken only beside another valve. 1X2 is a TV's EHT
+    # rectifier and it is also HEADER 1X2: it came out on 388 pages of TI application notes.
+    others = {h.base for h in hits if h.kind == "tube" and not REAL_X.match(h.part) and h.conf in ("high", "medium")}
+    if not others:
+        hits = [h for h in hits if not (h.kind == "tube" and REAL_X.match(h.part))]
     pending = [h for h in hits if h.family == "valve, American" and h.conf == "low"]
     if not pending:
         return hits
@@ -564,7 +573,8 @@ def extract_page(page, min_conf=0.85):
             continue
         found = extract(t, isolated=_short(b), allow_bare=allow_bare, block=i, pending=True)
         if (not found and b.get("field") == "value" and DECLARED.match(t.upper())
-                and not WILDCARD.fullmatch(t.upper())):          # ADG44x and REF33xx are families, as ever
+                and not WILDCARD.fullmatch(t.upper())            # ADG44x and REF33xx are families, as ever
+                and not LABEL.fullmatch(t.upper())):             # a value field that says LED1 is a designator
             # Nothing here knows this name and a design says it is one. ADL5801, SI5351C and RFSA3714 are
             # in no family and no catalogue, and LibreVNA puts all three on its board.
             up = t.upper()
