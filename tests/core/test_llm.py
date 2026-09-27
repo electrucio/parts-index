@@ -147,3 +147,31 @@ def test_a_chain_carries_what_it_knows_not_what_it_guessed(monkeypatch, tmp_path
     llm.ask_local_chains("t", "sys", [[{"key": "p1"}, {"key": "p2"}]], model="local", say=lambda *a: None,
                          build=lambda item, earlier: f"{item['key']} after {len(earlier)}")
     assert seen == ["p1 after 0", "p2 after 0"]
+
+
+def test_calls_are_spread_over_several_servers_and_a_retry_goes_elsewhere(monkeypatch, tmp_path):
+    """Two cards on peret and one on machin serve the same model; each call goes to the least busy, and
+    a server that fails a call does not get the retry."""
+    import threading
+    import time as _time
+    monkeypatch.setattr(llm, "llm_cache", lambda: tmp_path)
+    monkeypatch.setattr(llm.time, "sleep", lambda s: None)
+    seen, lock = [], threading.Lock()
+
+    def post(url, body, timeout):
+        with lock:
+            seen.append(url)
+        if url == "http://c/v1":
+            raise OSError("down")
+        end = _time.perf_counter() + 0.01             # a call that takes a while, without sleep (patched out)
+        while _time.perf_counter() < end:
+            pass
+        return _reply('{"line": "x"}')
+    monkeypatch.setattr(llm, "_post", post)
+    items = [{"key": f"k{i}", "prompt": "p"} for i in range(30)]
+    got = llm.ask_local("t", "sys", items, model="m", workers=6, url="http://a/v1,http://b/v1,http://c/v1",
+                        say=lambda *a: None)
+    assert len(got) == 30                                     # c never answered; a and b took its share
+    assert {"http://a/v1", "http://b/v1"} <= set(seen)
+    after_c = [seen[i + 1] for i, u in enumerate(seen[:-1]) if u == "http://c/v1"]
+    assert all(u != "http://c/v1" for u in after_c) or not after_c

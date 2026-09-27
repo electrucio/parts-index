@@ -165,6 +165,34 @@ def ask_batch(task: str, system: str, items: list[dict], schema: dict, *, model:
 LOCAL_URL = os.environ.get("PIDX_LLM_URL", "http://127.0.0.1:8080/v1/chat/completions")
 
 
+class Endpoints:
+    """One server or several, given as URLs separated by commas, all serving the same model.
+
+    Each call goes to the server with the fewest calls in flight, so a faster card takes more of the
+    work without anyone saying how much faster it is, and a retry goes somewhere other than the server
+    that just failed it. One server is the degenerate case and behaves exactly as before.
+    """
+
+    def __init__(self, urls: str):
+        self.urls = [u.strip() for u in urls.split(",") if u.strip()]
+        self.busy = {u: 0 for u in self.urls}
+        self.lock = threading.Lock()
+
+    def take(self, avoid: str | None = None) -> str:
+        with self.lock:
+            url = min(self.urls, key=lambda u: (self.busy[u] + (len(self.urls) * 1000 if u == avoid else 0),
+                                                self.urls.index(u)))
+            self.busy[url] += 1
+            return url
+
+    def give(self, url: str) -> None:
+        with self.lock:
+            self.busy[url] -= 1
+
+    def __str__(self) -> str:
+        return ", ".join(u.split("/v1")[0] for u in self.urls)
+
+
 def _post(url: str, body: dict, timeout: float):
     import urllib.request
     req = urllib.request.Request(url, data=json.dumps(body).encode("utf-8"),
@@ -183,13 +211,18 @@ def _asker(url, system, model, temperature, max_tokens, timeout, parse, answers,
                 "messages": [{"role": "system", "content": system},
                              {"role": "user", "content": prompt if prompt is not None else item["prompt"]}]}
         t0 = time.time()
+        failed_at = None
         for attempt in range(3):
+            where = url.take(avoid=failed_at)
             try:
-                resp = _post(url, body, timeout)
+                resp = _post(where, body, timeout)
                 break
             except Exception as e:                                   # noqa: BLE001
-                say(f"  retry {attempt + 1}: {str(e)[:90]}")
+                failed_at = where
+                say(f"  retry {attempt + 1} ({where.split('/v1')[0]}): {str(e)[:90]}")
                 time.sleep(5 * (attempt + 1))
+            finally:
+                url.give(where)
         else:
             with lock:
                 state["failed"] += 1
@@ -238,13 +271,13 @@ def ask_local(task: str, system: str, items: list[dict], *, model: str, parse=No
     back so it can check the answer against what was asked. It may raise, and an item whose answer
     cannot be read is left unanswered, so the next run asks again rather than caching rubbish.
     """
-    url = url or LOCAL_URL
+    url = Endpoints(url or LOCAL_URL)
     parse = parse or (lambda text, item: json.loads(text))
     answers, ledger = _paths(task)
     have = cached(task, model)
     todo = [it for it in items if it["key"] not in have]
     say(f"{task}: {len(items)} items, {len(items) - len(todo)} already answered, {len(todo)} to ask, "
-        f"{model} at {url.split('/v1')[0]}")
+        f"{model} at {url}")
     if not todo:
         return have
 
@@ -275,14 +308,14 @@ def ask_local_chains(task: str, system: str, chains: list[list[dict]], build, *,
     read is left unanswered and does not join `earlier`: a chain carries what it knows, not what it
     guessed.
     """
-    url = url or LOCAL_URL
+    url = Endpoints(url or LOCAL_URL)
     parse = parse or (lambda text, item: json.loads(text))
     answers, ledger = _paths(task)
     have = cached(task, model)
     flat = [it for chain in chains for it in chain]
     todo = [it for it in flat if it["key"] not in have]
     say(f"{task}: {len(flat)} items in {len(chains)} chains, {len(flat) - len(todo)} already answered, "
-        f"{len(todo)} to ask, {model} at {url.split('/v1')[0]}")
+        f"{len(todo)} to ask, {model} at {url}")
     if not todo:
         return have
 
