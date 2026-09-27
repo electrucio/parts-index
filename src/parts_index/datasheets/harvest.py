@@ -48,7 +48,7 @@ from parts_index.core.parts.extractor import KNOWN, base_part, canonical, family
 STAGES = ("fetch", "read")
 VERSIONED = ("read",)
 FIELDS = ("key", "url", "http", "bytes", "sha256", "fetch_at", "read_at", "read_v", "skip_reason")
-READ_VERSION = "6"  # 6: a known name counts as itself, not its base; "see X for" names another part
+READ_VERSION = "9"  # 9: the head of a sheet is the top of page one and its title field, with variants and x-families
 DOC_FIELDS = ("url", "maker", "title", "revision", "pages", "bytes", "sha256", "covers", "checked", "copy")
 COVER_FIELDS = ("part", "url", "seen", "times")
 
@@ -59,6 +59,10 @@ REVISION = re.compile(r"\bRev(?:ision)?\.?\s*:?\s*([A-Z]?\d{0,3}[A-Z]?)\b")
 NOT_COVERED = re.compile(r"(complement\w*|replac\w*|\bsee\b|related products?|similar to|instead of|pin.compatible with|"
                          r"second source|equivalent)\W{0,12}(?:\w+\W{0,3}){0,4}$", re.I)
 FIRST_PAGE = 2500       # characters of page one where a manufacturer names what the sheet covers
+# The head of page one, where a sheet lists the types it documents ("MJE2955T / MJE3055T", "BD135 - BD136
+# BD139 - BD140"). A part of another series counts only there: further down a sheet names the parts it
+# is measured against ("Fits OP07, 5534A sockets", at 959 characters on the OP27 sheet).
+HEADER = 400
 # Who is asking, in plain words. onsemi and NXP answer this and refuse the browser string the client
 # otherwise sends (403 and 404 on 2026-09-27): a site that asks who is reading gets the true answer.
 PROJECT_UA = "parts-index (+https://electrucio.github.io/parts-index/)"
@@ -219,8 +223,22 @@ def nearest(tok: str, parts: set[str]) -> str:
     return b if b != tok and b in parts else ""
 
 
+# A family written with a lower-case x where its digits vary: TSV91x, SMAJxxA, TL07xx.
+WILD = re.compile(r"(?<![A-Za-z0-9])([A-Z]{1,6}\d*)(x{1,3})([A-Z0-9]{0,3})(?![A-Za-z0-9])")
+
+
+def listed(text: str, parts: set[str], prefix: str = "") -> tuple[set[str], list[re.Pattern]]:
+    """The parts a sheet's head lists, and the families it writes with an x."""
+    names = {canonical(m.group(1)) or "" for m in TOKEN.finditer(text)}
+    names |= {prefix + n for n in names if prefix and re.fullmatch(r"\d{3,5}[A-Z]{0,2}", n)}
+    wild = [re.compile(rf"{w.group(1)}[0-9A-Z]{{{len(w.group(2))},{len(w.group(2)) + 1}}}{w.group(3)}[A-Z]{{0,3}}$")
+            for w in WILD.finditer(text)]
+    return names & parts, wild
+
+
 def covered(pages: list[str], parts: set[str], sheet_head: str = "", prefix: str = "",
-            heads: tuple[str, ...] = (), series: int = 2, own_only: bool = False) -> dict[str, tuple[str, int]]:
+            heads: tuple[str, ...] = (), series: int = 2, own_only: bool = False,
+            title: str = "") -> dict[str, tuple[str, int]]:
     """The known parts a sheet documents, and how that was seen: on its first page, or only in its text
     (an ordering table). A name that follows "complementary to" or "replaces" is another part's.
 
@@ -238,6 +256,8 @@ def covered(pages: list[str], parts: set[str], sheet_head: str = "", prefix: str
     counts: Counter = Counter()
     heads_all = {h for h in (sheet_head, *heads) if h}
     first: set[str] = set()
+    header, wild = listed((pages[0][:HEADER] if pages else "") + "\n" + title, parts, prefix)
+    header |= {h for h in (sheet_head, *heads) if h}
     for i, text in enumerate(pages):
         for m in TOKEN.finditer(text):
             tok = canonical(m.group(1)) or ""
@@ -257,11 +277,19 @@ def covered(pages: list[str], parts: set[str], sheet_head: str = "", prefix: str
                 counts[n] += 1
                 if i == 0 and m.start() < FIRST_PAGE:
                     first.add(n)
+
     for n, c in counts.items():
         own = any(n == h or same_series(n, h, series) for h in (sheet_head, *heads) if h)
         if own_only and not own:
             continue
-        if (own and (n in first or c >= 2)) or (n in first and c >= 2 and is_a_part(n)):
+        # Within the series, a name the head does not list, nor a variant of one it lists (TL431A under
+        # "TL431"), nor one of a family it writes with an x (TSV912 under "TSV91x"), is held to the head
+        # too: the AD623 sheet measures itself against the AD620.
+        in_head = (n in header or any(len(h) >= 4 and n.startswith(h) for h in header)
+                   or any(w.match(n) for w in wild))
+        if own and not own_only and not in_head:
+            own = False
+        if (own and (n in first or c >= 2)) or (in_head and c >= 2 and is_a_part(n)):
             found[n] = ("first page" if n in first else "text", c)
     # A type whose grades the sheet covers, two or more of them, is the sheet's too: BF245 on the
     # BF245A-B-C sheet, BC547 beside BC547A/B/C. One grade alone (TIP31C) says nothing about the others.
@@ -379,7 +407,7 @@ def run(source: str, entry: dict, limit: int = 0, list_only: bool = False, rerea
         names = [n if not prefix or n.startswith(prefix) else prefix + n for n in names]
         sheet_head = names[0]
         found = covered(pages, parts, sheet_head, prefix, tuple(names[1:]), int(entry.get("series", 2)),
-                        bool(entry.get("own_only")))
+                        bool(entry.get("own_only")), " ".join((meta.get("title") or "").split()))
         text = "\n".join(pages[:1])
         rev = REVISION.search(text)
         title = title_of(pages, meta, sheet_head) if entry.get("titles", True) else ""

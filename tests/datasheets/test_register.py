@@ -180,3 +180,29 @@ def test_a_type_is_covered_when_two_of_its_grades_are():
     assert "BF245" in covered(["BF245A; BF245B; BF245C\nN-channel FETs BF245A BF245B"], parts, "BF245A")
     assert "TIP31" not in covered(["TIP31C TIP32C\nTIP31C power"], parts, "TIP31C")
     assert "45" not in covered(["STW45NM60 600 V 45A 45A"], parts | {"45"}, "STW45NM60")
+
+
+def test_another_series_counts_only_in_the_head_of_page_one():
+    from parts_index.datasheets.harvest import covered
+    parts = {"OP27", "OP07", "MJE2955T", "MJE3055T"}
+    body = "OP27 low noise op amp\n" + "x" * 900 + "\nFits OP07, 5534A sockets. Better than OP07. OP27 OP27"
+    assert set(covered([body], parts, "OP27")) == {"OP27"}
+    assert "MJE3055T" in covered(["MJE2955T\nMJE3055T\nsilicon power transistors\nMJE2955T MJE3055T"], parts, "MJE2955T")
+
+
+def test_a_sibling_in_the_series_is_held_to_the_head_too():
+    from parts_index.datasheets.harvest import covered
+    parts = {"AD623", "AD623AN", "AD620", "BC546", "BC547"}
+    body = "AD623 instrumentation amplifier\n" + "x" * 900 + "\nunlike the AD620, AD620 AD623AN AD623AN"
+    assert set(covered([body], parts, "AD623")) == {"AD623", "AD623AN"}
+    assert "BC547" in covered(["BC546, BC547\nAmplifier transistors BC546 BC547"], parts, "BC546")
+
+
+def test_the_head_includes_the_title_field_variants_and_x_families():
+    from parts_index.datasheets.harvest import covered
+    parts = {"TIP120", "TIP122", "TSV911", "TSV912", "TL431", "TL431A", "TL432"}
+    far = "x" * 600 + "\n"
+    got = covered([far + "TIP120 TIP120 TIP122"], parts, "TIP122", title="Datasheet - TIP120, TIP121, TIP122")
+    assert "TIP120" in got
+    assert "TSV912" in covered(["TSV91x, TSV91xA\n" + far + "TSV912 TSV912 TSV911"], parts, "TSV911")
+    assert "TL431A" in covered(["TL431\nTL432\n" + far + "TL431A TL431A"], parts, "TL432")
