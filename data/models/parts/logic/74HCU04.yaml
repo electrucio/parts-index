@@ -31,7 +31,82 @@ models:
       MHCNEN: [2827, 2844]
       MHCPEN: [2852, 2869]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: bordodynov
+    name: 74HCU04
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/74hc.lib
+      sha256: 35a7690ecbef99d2dbccc92da047f44c91c0510ef7d6ef8b2fcafc322a044cb2
+  - source: bordodynov
+    name: 74HCU04
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/74Hc_Don.lib
+      sha256: 9868be4eacbef7cd8c9b33f5c2fdd1bd3fec2d82b48681dbd57ad5b0fa310dce
+  - source: kicad-spice-library
+    name: 74HCU04
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/74HC_v.lib
+      sha256: a129e993276bdcb469b87eb3d0085fcf147262a41d6ffde7de774f95e4ad1e4a
+  - source: kicad-spice-library
+    name: 74HCU04
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/74hc.lib
+      sha256: b12ca0fabb56d881d7fbd7976a45e1dd153974be8a5b7ce40026fb292579e827
+  - source: kicad-spice-library
+    name: 74HCU04
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/74Hc_Don.lib
+      sha256: 9868be4eacbef7cd8c9b33f5c2fdd1bd3fec2d82b48681dbd57ad5b0fa310dce
+  - source: ltwiki
+    name: 74HCU04
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/74HC_v.lib
+      sha256: a129e993276bdcb469b87eb3d0085fcf147262a41d6ffde7de774f95e4ad1e4a
+  - source: ltwiki
+    name: 74HCU04
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/74hc.lib
+      sha256: 35a7690ecbef99d2dbccc92da047f44c91c0510ef7d6ef8b2fcafc322a044cb2
+  - source: ltwiki
+    name: 74HCU04
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/74Hc_Don.lib
+      sha256: 9868be4eacbef7cd8c9b33f5c2fdd1bd3fec2d82b48681dbd57ad5b0fa310dce
+  - source: ltwiki
+    name: 74HCU04
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Translator/74hc.lib
+      sha256: 36ec7f1d254688067ffb3161541e3f8570b7f773a636511765040818ddedc296
+  - source: ltwiki
+    name: 74HCU04
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/74HC_v.lib
+      sha256: 3c1e4224309c8d0c1c26e78843e978f2871d4c783304b35d42b2d0c157173c99
+  - source: ltwiki
+    name: 74HCU04
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/74hc.lib
+      sha256: be4f682a8b8935345abc70539e33e2ce2d07a95f948bd9d0f8e3b59329d3ac50
+  - source: ltwiki
+    name: 74HCU04
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/74Hc_Don.lib
+      sha256: 9868be4eacbef7cd8c9b33f5c2fdd1bd3fec2d82b48681dbd57ad5b0fa310dce
+  - source: ltwiki
+    name: 74HCU04
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/74HC/74hc.lib
+      sha256: 3be0aad2ad06f36982331a01d237a7b58d7da1c320b3bf800a3cf207276dd0d0
 - source: bordodynov
   name: 74HCU04
   def: subckt
@@ -121,103 +196,3 @@ models:
       74HCU04_my: [3484, 3504]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
-- source: bordodynov
-  name: 74HCU04
-  def: subckt
-  type: SUBCKT
-  deps:
-  - MHCNEN
-  - MHCPEN
-  - 74HC_INP0N
-  - 74HC_OUTPN
-  - 74HC04_INV0
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sub/74HC_v.lib
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: a129e993276bdcb469b87eb3d0085fcf147262a41d6ffde7de774f95e4ad1e4a
-    lines:
-      74HC04_INV0: [2788, 2800]
-      74HCU04: [2780, 2785]
-      74HC_INP0N: [2802, 2807]
-      74HC_OUTPN: [2809, 2820]
-      MHCNEN: [2827, 2844]
-      MHCPEN: [2852, 2869]
-    fetched: '2026-09-21'
-  copies:
-  - source: bordodynov
-    name: 74HCU04
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: sub/74hc.lib
-      sha256: 35a7690ecbef99d2dbccc92da047f44c91c0510ef7d6ef8b2fcafc322a044cb2
-  - source: bordodynov
-    name: 74HCU04
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: sub/74Hc_Don.lib
-      sha256: 9868be4eacbef7cd8c9b33f5c2fdd1bd3fec2d82b48681dbd57ad5b0fa310dce
-  - source: kicad-spice-library
-    name: 74HCU04
-    get:
-      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/74HC_v.lib
-      sha256: a129e993276bdcb469b87eb3d0085fcf147262a41d6ffde7de774f95e4ad1e4a
-  - source: kicad-spice-library
-    name: 74HCU04
-    get:
-      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/74hc.lib
-      sha256: b12ca0fabb56d881d7fbd7976a45e1dd153974be8a5b7ce40026fb292579e827
-  - source: kicad-spice-library
-    name: 74HCU04
-    get:
-      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/74Hc_Don.lib
-      sha256: 9868be4eacbef7cd8c9b33f5c2fdd1bd3fec2d82b48681dbd57ad5b0fa310dce
-  - source: ltwiki
-    name: 74HCU04
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/74HC_v.lib
-      sha256: a129e993276bdcb469b87eb3d0085fcf147262a41d6ffde7de774f95e4ad1e4a
-  - source: ltwiki
-    name: 74HCU04
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/74hc.lib
-      sha256: 35a7690ecbef99d2dbccc92da047f44c91c0510ef7d6ef8b2fcafc322a044cb2
-  - source: ltwiki
-    name: 74HCU04
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/74Hc_Don.lib
-      sha256: 9868be4eacbef7cd8c9b33f5c2fdd1bd3fec2d82b48681dbd57ad5b0fa310dce
-  - source: ltwiki
-    name: 74HCU04
-    get:
-      url: http://bordodynov.ltwiki.org/example.zip
-      member: examples/Bordodynov/Translator/74hc.lib
-      sha256: 36ec7f1d254688067ffb3161541e3f8570b7f773a636511765040818ddedc296
-  - source: ltwiki
-    name: 74HCU04
-    get:
-      url: http://ltwiki.org/files/LargeCollection.zip
-      member: LargeCollection/LTspiceIV/lib/sub/74HC_v.lib
-      sha256: 3c1e4224309c8d0c1c26e78843e978f2871d4c783304b35d42b2d0c157173c99
-  - source: ltwiki
-    name: 74HCU04
-    get:
-      url: http://ltwiki.org/files/LargeCollection.zip
-      member: LargeCollection/LTspiceIV/lib/sub/74hc.lib
-      sha256: be4f682a8b8935345abc70539e33e2ce2d07a95f948bd9d0f8e3b59329d3ac50
-  - source: ltwiki
-    name: 74HCU04
-    get:
-      url: http://ltwiki.org/files/LargeCollection.zip
-      member: LargeCollection/LTspiceIV/lib/sub/74Hc_Don.lib
-      sha256: 9868be4eacbef7cd8c9b33f5c2fdd1bd3fec2d82b48681dbd57ad5b0fa310dce
-  - source: ltwiki
-    name: 74HCU04
-    get:
-      url: http://ltwiki.org/files/LargeCollection.zip
-      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/74HC/74hc.lib
-      sha256: 3be0aad2ad06f36982331a01d237a7b58d7da1c320b3bf800a3cf207276dd0d0

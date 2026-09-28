@@ -120,7 +120,19 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 0
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: MPSA06/NS
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: ltwiki
+    name: MPSA06/NS
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.bjt
+      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
 - source: ltwiki
   name: MPSA06/NS
   def: model
@@ -276,37 +288,6 @@ models:
     lines:
       QMPSA06: [653, 655]
     fetched: '2026-09-14'
-- source: bordodynov
-  name: MPSA06/NS
-  def: model
-  type: NPN
-  deps:
-  - '2'
-  - MPSA06
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: cmp/standard.bjt
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
-    lines:
-      '2': [519, 519]
-      MPSA06: [850, 850]
-      MPSA06/NS: [856, 856]
-    fetched: '2026-09-21'
-  copies:
-  - source: ltwiki
-    name: MPSA06/NS
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/cmp/standard.bjt
-      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
-  - source: ltwiki
-    name: MPSA06/NS
-    get:
-      url: http://bordodynov.ltwiki.org/cmp.zip
-      member: cmp/standard.bjt
-      sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
 - source: diyaudio
   name: MPSA06
   def: model

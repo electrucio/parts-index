@@ -173,27 +173,6 @@ models:
     IN OUT ADJ: 3.57 V, 3.57 V, 22.8 V; IN ADJ OUT: -1.25 V, -1.25 V, 9.18 V; OUT IN ADJ: 1.73 V, 1.73
     V, 6.19 V; OUT ADJ IN: -2.84 V, -6.13 V, -2.58 V; ADJ IN OUT: 0.924 V, 0.922 V, 1.03 V; ADJ OUT IN:
     3.57 V, 3.57 V, 22.8 V)'
-- source: ti
-  name: LM337_N_TRANS
-  def: subckt
-  type: SUBCKT
-  deps:
-  - COMPHYS_BASIC_GEN
-  - LM337_N_H1
-  - LM337_N_F1
-  verbatim: true
-  get:
-    url: https://www.ti.com/lit/zip/SNVMAP4
-    member: LM337_N_TRANS.LIB
-    archive_sha256: b011e3cfeab581e1fd40d57a8681cee5eb26938b57133dba8834a5e550071ffc
-    sha256: dc9fd0b650ce944f69654e7c5ebe1bb68dae541b25d92633825973afe2c7d4ff
-    lines:
-      COMPHYS_BASIC_GEN: [94, 101]
-      LM337_N_F1: [84, 87]
-      LM337_N_H1: [89, 92]
-      LM337_N_TRANS: [46, 83]
-    fetched: '2026-09-14'
-  note: found under the alias LM337_N_TRANS
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/lm337.pdf
   maker: Texas Instruments

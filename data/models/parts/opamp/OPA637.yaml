@@ -229,40 +229,6 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: pins from comment words
-- source: ltwiki
-  name: OPA637E
-  def: subckt
-  type: SUBCKT
-  deps:
-  - NI
-  - PI
-  - MBC
-  - NIJ
-  - OPA77E
-  - PIJ
-  - MDB
-  - MDT
-  - OPA660X2
-  - OPA651M
-  verbatim: true
-  get:
-    url: http://ltwiki.org/files/LargeCollection.zip
-    member: LargeCollection/LTspiceIV/lib/sub/OpAmp_BB.lib
-    archive_sha256: a234147c655490f93241fa0b7eba8b9bb0b018a414ff7184136a244da19aa1d9
-    sha256: 10387ae905f6d32e3ce489dde7e491e00e03eaff919bcdf4807d63a202cfd516
-    lines:
-      MBC: [14224, 14262]
-      MDB: [14120, 14154]
-      MDT: [14162, 14216]
-      NI: [14270, 14270]
-      NIJ: [14278, 14296]
-      OPA637E: [13596, 13730]
-      OPA651M: [13774, 14020]
-      OPA660X2: [14086, 14112]
-      OPA77E: [14360, 14480]
-      PI: [14274, 14274]
-      PIJ: [14300, 14318]
-    fetched: '2026-09-21'
 - source: kicad-spice-library
   name: OPA637B
   def: subckt

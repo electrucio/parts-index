@@ -51,6 +51,13 @@ models:
     score: null
     error: 'KeyError: ''vca'''
   symbol: THAT4301_thatcorp.asy
+  copies:
+  - source: thatcorp
+    name: THAT4301
+    get:
+      url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
+      member: 4301_Macro_01.lib
+      sha256: 3fc8e958934e874a6dcc1edc2d54b5bd8bb2075cd0903d64dbfd26b4c4fe9b70
 - source: thatcorp
   name: THAT4305
   def: subckt
@@ -138,35 +145,6 @@ models:
       url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
       member: 4315_Macro_03.lib
       sha256: 27a87a3bd104634c7182211034646ce70497f69a97ba48b81fc18636310bdee6
-- source: thatcorp
-  name: THAT4301
-  def: subckt
-  type: SUBCKT
-  deps:
-  - 4301VCA
-  - 4301OA2
-  - 4301OA1
-  - 4301OA3
-  - 4301RMS
-  verbatim: true
-  get:
-    url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
-    sha256: 3fc8e958934e874a6dcc1edc2d54b5bd8bb2075cd0903d64dbfd26b4c4fe9b70
-    lines:
-      4301OA1: [108, 142]
-      4301OA2: [158, 192]
-      4301OA3: [209, 243]
-      4301RMS: [260, 299]
-      4301VCA: [53, 92]
-      THAT4301: [33, 39]
-    fetched: '2026-09-14'
-  copies:
-  - source: thatcorp
-    name: THAT4301
-    get:
-      url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
-      member: 4301_Macro_01.lib
-      sha256: 3fc8e958934e874a6dcc1edc2d54b5bd8bb2075cd0903d64dbfd26b4c4fe9b70
 datasheet:
   url: https://www.thatcorp.com/datashts/THAT_4301_Datasheet.pdf
   maker: THAT Corporation

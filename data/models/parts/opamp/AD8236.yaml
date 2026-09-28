@@ -29,6 +29,13 @@ models:
       AMPA: [2841, 2923]
       AMPB: [2934, 3016]
     fetched: '2026-09-14'
+  copies:
+  - source: bordodynov
+    name: AD8236
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/ADI1.lib
+      sha256: 56007b832dfb995c0072377bc98125b86a2ee7e9dd4d109d29d4c295aa6a265d
 - source: adi
   name: AD8236
   def: subckt
@@ -45,28 +52,3 @@ models:
       AMPA: [62, 278]
       AMPB: [280, 496]
     fetched: '2026-09-21'
-- source: bordodynov
-  name: AD8236
-  def: subckt
-  type: SUBCKT
-  deps:
-  - AMPA
-  - AMPB
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sub/ADI1.lib
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: 56007b832dfb995c0072377bc98125b86a2ee7e9dd4d109d29d4c295aa6a265d
-    lines:
-      AD8236: [3048, 3505]
-      AMPA: [2841, 2923]
-      AMPB: [2934, 3016]
-    fetched: '2026-09-21'
-  copies:
-  - source: ltwiki
-    name: AD8236
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/ADI1.lib
-      sha256: 56007b832dfb995c0072377bc98125b86a2ee7e9dd4d109d29d4c295aa6a265d

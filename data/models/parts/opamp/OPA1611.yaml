@@ -87,6 +87,13 @@ models:
     typical_rows: 3
   symbol: OPA1611_ti.asy
   note: found under the alias OPA161x; pins from names
+  copies:
+  - source: ti
+    name: OPA161x
+    get:
+      url: https://www.ti.com/lit/zip/SBOMBM7
+      member: OPA161x.LIB
+      sha256: 47cdc313d333f1104933fd6cca770ea79a76b5e53c70f1241edfc2840a0f3980
 - source: ti
   name: OPA161x
   def: subckt
@@ -234,7 +241,19 @@ models:
     not_measurable: 1
     typical_rows: 3
   symbol: OPA1611_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
+  note: pins from names
+  copies:
+  - source: kicad-spice-library
+    name: OPA1611
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OPA1611.txt
+      sha256: eac45d491b838ff5639f7f37a5c021b669bd82603605d2cbb77c852eaa17769e
+  - source: ltwiki
+    name: OPA1611
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OPA1611.txt
+      sha256: eac45d491b838ff5639f7f37a5c021b669bd82603605d2cbb77c852eaa17769e
 - source: bordodynov
   name: OPA1611
   def: subckt
@@ -281,211 +300,6 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: lib/sub/Sborka.lib
       sha256: 1dbc33e05d20d5c2f1029fa37e55a44fd157718bb0d6f42183b52cdbd8795dc5
-- source: ti
-  name: OPA161x
-  def: subckt
-  type: SUBCKT
-  deps:
-  - OL_SENSE_OPA161x
-  - ESD_BB_OPA161x
-  - ESD_IN_OPA161x
-  - ZO_SRC_OPA161x
-  - CLAMP_AMP_LO_OPA161x
-  - CLAMP_AMP_HI_OPA161x
-  - GR_SRC_OPA161x
-  - BLOCK_DC_S1_OPA161x
-  - BLOCK_DC_H3_OPA161x
-  - BLOCK_DC_S2_OPA161x
-  - CLAWP_OPA161x
-  - AOL_2_OPA161x
-  - IQ_SRC_OPA161x
-  - VCM_CLAMP_OPA161x
-  - VNSE_OPA161x
-  - SW_OL_OPA161x
-  - R_NOISELESS
-  - CLAWN_OPA161x
-  - AOL_1_OPA161x
-  - CLAW_SRC_OPA161x
-  - VOS_DRIFT_OPA161x
-  - CL_SRC_OPA161x
-  - BLOCK_DC_H2_OPA161x
-  - ESD_OUT_OPA161x
-  - FEMT_OPA161x
-  - BLOCK_DC_H1_OPA161x
-  verbatim: true
-  get:
-    url: https://www.ti.com/lit/zip/SBOMBM7
-    member: OPA161x.LIB
-    archive_sha256: d72689b546e7f022b2e91797d67206284b0c1aea5182066e9634f561636d0dbd
-    sha256: 47cdc313d333f1104933fd6cca770ea79a76b5e53c70f1241edfc2840a0f3980
-    lines:
-      AOL_1_OPA161x: [310, 312]
-      AOL_2_OPA161x: [314, 316]
-      BLOCK_DC_H1_OPA161x: [283, 286]
-      BLOCK_DC_H2_OPA161x: [288, 291]
-      BLOCK_DC_H3_OPA161x: [293, 296]
-      BLOCK_DC_S1_OPA161x: [298, 302]
-      BLOCK_DC_S2_OPA161x: [304, 308]
-      CLAMP_AMP_HI_OPA161x: [318, 321]
-      CLAMP_AMP_LO_OPA161x: [323, 326]
-      CLAWN_OPA161x: [328, 334]
-      CLAWP_OPA161x: [336, 342]
-      CLAW_SRC_OPA161x: [344, 346]
-      CL_SRC_OPA161x: [348, 350]
-      ESD_BB_OPA161x: [352, 356]
-      ESD_IN_OPA161x: [358, 364]
-      ESD_OUT_OPA161x: [366, 370]
-      FEMT_OPA161x: [372, 388]
-      GR_SRC_OPA161x: [390, 392]
-      IQ_SRC_OPA161x: [394, 396]
-      OL_SENSE_OPA161x: [398, 400]
-      OPA161x: [84, 281]
-      R_NOISELESS: [437, 437]
-      SW_OL_OPA161x: [402, 405]
-      VCM_CLAMP_OPA161x: [407, 409]
-      VNSE_OPA161x: [411, 427]
-      VOS_DRIFT_OPA161x: [429, 431]
-      ZO_SRC_OPA161x: [433, 435]
-    fetched: '2026-09-19'
-  note: found under the alias OPA161x
-  copies:
-  - source: ti
-    name: OPA161x
-    get:
-      url: https://www.ti.com/lit/zip/SBOM397
-      member: OPA161x.LIB
-      sha256: 47cdc313d333f1104933fd6cca770ea79a76b5e53c70f1241edfc2840a0f3980
-- source: ti
-  name: OPA161x
-  def: subckt
-  type: SUBCKT
-  deps:
-  - OL_SENSE_OPA161x
-  - ESD_BB_OPA161x
-  - ESD_IN_OPA161x
-  - ZO_SRC_OPA161x
-  - CLAMP_AMP_LO_OPA161x
-  - CLAMP_AMP_HI_OPA161x
-  - GR_SRC_OPA161x
-  - BLOCK_DC_S1_OPA161x
-  - BLOCK_DC_H3_OPA161x
-  - BLOCK_DC_S2_OPA161x
-  - CLAWP_OPA161x
-  - AOL_2_OPA161x
-  - IQ_SRC_OPA161x
-  - VCM_CLAMP_OPA161x
-  - VNSE_OPA161x
-  - SW_OL_OPA161x
-  - CLAWN_OPA161x
-  - AOL_1_OPA161x
-  - CLAW_SRC_OPA161x
-  - VOS_DRIFT_OPA161x
-  - CL_SRC_OPA161x
-  - BLOCK_DC_H2_OPA161x
-  - ESD_OUT_OPA161x
-  - FEMT_OPA161x
-  - BLOCK_DC_H1_OPA161x
-  verbatim: true
-  get:
-    url: https://www.ti.com/lit/zip/SBOM396
-    member: OPA161x.LIB
-    archive_sha256: 8b567b729dd8bdc459650d41a5af84a5f7082a7ea06ea77406ba8a9db1348440
-    sha256: c86df5d4b2d26ec196c0a6158a61004a6747aec5440fcc2031674ad62a448ef7
-    lines:
-      AOL_1_OPA161x: [315, 317]
-      AOL_2_OPA161x: [319, 321]
-      BLOCK_DC_H1_OPA161x: [288, 291]
-      BLOCK_DC_H2_OPA161x: [293, 296]
-      BLOCK_DC_H3_OPA161x: [298, 301]
-      BLOCK_DC_S1_OPA161x: [303, 307]
-      BLOCK_DC_S2_OPA161x: [309, 313]
-      CLAMP_AMP_HI_OPA161x: [323, 326]
-      CLAMP_AMP_LO_OPA161x: [328, 331]
-      CLAWN_OPA161x: [333, 339]
-      CLAWP_OPA161x: [341, 347]
-      CLAW_SRC_OPA161x: [349, 351]
-      CL_SRC_OPA161x: [353, 355]
-      ESD_BB_OPA161x: [357, 361]
-      ESD_IN_OPA161x: [363, 369]
-      ESD_OUT_OPA161x: [371, 375]
-      FEMT_OPA161x: [377, 393]
-      GR_SRC_OPA161x: [395, 397]
-      IQ_SRC_OPA161x: [399, 401]
-      OL_SENSE_OPA161x: [403, 405]
-      OPA161x: [88, 286]
-      SW_OL_OPA161x: [407, 410]
-      VCM_CLAMP_OPA161x: [412, 414]
-      VNSE_OPA161x: [416, 432]
-      VOS_DRIFT_OPA161x: [434, 436]
-      ZO_SRC_OPA161x: [438, 440]
-    fetched: '2026-09-14'
-  note: found under the alias OPA161x
-- source: bordodynov
-  name: OPA1611
-  def: subckt
-  type: SUBCKT
-  deps:
-  - VCCS_EXT_LIM_0
-  - VCCS_LIMIT_IQ_0
-  - OL_SENSE_0
-  - VCCS_LIM_CLAW+_0
-  - VCCS_LIM_2_0
-  - VCCS_LIM_1_0
-  - VCCS_LIM_ZO_0
-  - AOL_ZO_0
-  - VCCS_LIM_4_0
-  - VNSE_0
-  - PSRR_CMRR_0
-  - VCCS_LIM_CLAW-_0
-  - ESD_0
-  - VCCS_LIM_3_0
-  - CLAMP_AMP_HI_0
-  - VCCS_LIM_GR_0
-  - PSRR_CMRR_2
-  - PSRR_CMRR_1
-  - CLAMP_AMP_LO_0
-  - FEMT_0
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sub/OPA1611.txt
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: eac45d491b838ff5639f7f37a5c021b669bd82603605d2cbb77c852eaa17769e
-    lines:
-      AOL_ZO_0: [268, 313]
-      CLAMP_AMP_HI_0: [379, 383]
-      CLAMP_AMP_LO_0: [373, 377]
-      ESD_0: [209, 218]
-      FEMT_0: [322, 343]
-      OL_SENSE_0: [422, 424]
-      OPA1611: [69, 207]
-      PSRR_CMRR_0: [220, 234]
-      PSRR_CMRR_1: [236, 243]
-      PSRR_CMRR_2: [245, 252]
-      VCCS_EXT_LIM_0: [426, 429]
-      VCCS_LIMIT_IQ_0: [368, 371]
-      VCCS_LIM_1_0: [261, 266]
-      VCCS_LIM_2_0: [254, 259]
-      VCCS_LIM_3_0: [415, 420]
-      VCCS_LIM_4_0: [392, 397]
-      VCCS_LIM_CLAW+_0: [399, 405]
-      VCCS_LIM_CLAW-_0: [407, 413]
-      VCCS_LIM_GR_0: [385, 390]
-      VCCS_LIM_ZO_0: [315, 320]
-      VNSE_0: [345, 366]
-    fetched: '2026-09-21'
-  copies:
-  - source: kicad-spice-library
-    name: OPA1611
-    get:
-      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/OPA1611.txt
-      sha256: eac45d491b838ff5639f7f37a5c021b669bd82603605d2cbb77c852eaa17769e
-  - source: ltwiki
-    name: OPA1611
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/OPA1611.txt
-      sha256: eac45d491b838ff5639f7f37a5c021b669bd82603605d2cbb77c852eaa17769e
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/opa1611.pdf
   maker: Texas Instruments (Burr-Brown)

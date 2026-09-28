@@ -43,7 +43,31 @@ models:
     score: null
     error: 'KeyError: ''smps'''
   symbol: UC3845_bordodynov.asy
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: bordodynov
+    name: UC3845B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/uc384x.lib
+      sha256: 0fe8a81fe2482c450ee7df0d988df7140eee83a5db1314bbb8c173945db1f020
+  - source: ltwiki
+    name: UC3845B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/UC384xB.lib
+      sha256: 94006e2482dc5254c8121e572eecd40e9ed102888b6624b3ca8b73a8bc9b8df2
+  - source: ltwiki
+    name: UC3845B
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/uc384x.lib
+      sha256: 0fe8a81fe2482c450ee7df0d988df7140eee83a5db1314bbb8c173945db1f020
+  - source: ltwiki
+    name: UC3845B
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/UC3844A&B/uc384x.lib
+      sha256: 0fe8a81fe2482c450ee7df0d988df7140eee83a5db1314bbb8c173945db1f020
 - source: bordodynov
   name: uc3845a
   def: subckt
@@ -135,13 +159,13 @@ models:
   deps:
   - D2
   - DCLAMP
-  - nmos
-  - Q1
-  - INV
   - INV_05
   - NAND30_05
   - NAND31_05
   - FFLOP
+  - INV
+  - nmos
+  - Q1
   - pmos
   - Q2
   - S1
@@ -167,59 +191,6 @@ models:
       nmos: [161508, 161508]
       pmos: [161510, 161510]
     fetched: '2026-09-20'
-- source: bordodynov
-  name: UC3845B
-  def: subckt
-  type: SUBCKT
-  deps:
-  - SWhyste
-  - NAND3_1
-  - NAND3_0
-  - INV
-  - FFLOP
-  - 1845AMP
-  - 1845OUT
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sub/UC384xB.lib
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: 94006e2482dc5254c8121e572eecd40e9ed102888b6624b3ca8b73a8bc9b8df2
-    lines:
-      1845AMP: [273, 297]
-      1845OUT: [299, 316]
-      FFLOP: [318, 328]
-      INV: [342, 346]
-      NAND3_0: [330, 334]
-      NAND3_1: [336, 340]
-      SWhyste: [348, 358]
-      UC3845B: [230, 271]
-    fetched: '2026-09-21'
-  copies:
-  - source: bordodynov
-    name: UC3845B
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: sub/uc384x.lib
-      sha256: 0fe8a81fe2482c450ee7df0d988df7140eee83a5db1314bbb8c173945db1f020
-  - source: ltwiki
-    name: UC3845B
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/UC384xB.lib
-      sha256: 94006e2482dc5254c8121e572eecd40e9ed102888b6624b3ca8b73a8bc9b8df2
-  - source: ltwiki
-    name: UC3845B
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/uc384x.lib
-      sha256: 0fe8a81fe2482c450ee7df0d988df7140eee83a5db1314bbb8c173945db1f020
-  - source: ltwiki
-    name: UC3845B
-    get:
-      url: http://bordodynov.ltwiki.org/example.zip
-      member: examples/Bordodynov/UC3844A&B/uc384x.lib
-      sha256: 0fe8a81fe2482c450ee7df0d988df7140eee83a5db1314bbb8c173945db1f020
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/uc3842.pdf
   maker: Texas Instruments (Unitrode)

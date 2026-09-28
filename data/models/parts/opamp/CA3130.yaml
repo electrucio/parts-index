@@ -48,7 +48,25 @@ models:
     not_measurable: 0
     typical_rows: 7
   symbol: CA3130_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from DIP-8 pin numbers (single op-amp pin-out)'
+  note: pins from DIP-8 pin numbers (single op-amp pin-out)
+  copies:
+  - source: kicad-spice-library
+    name: ca3130
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/CA3130.Lib
+      sha256: 6987c331be55d2800574a18b4b98410eedb0d802635bd54c8dbb6cca63ee2428
+  - source: ltwiki
+    name: ca3130
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/CA3130.Lib
+      sha256: 6987c331be55d2800574a18b4b98410eedb0d802635bd54c8dbb6cca63ee2428
+  - source: ltwiki
+    name: ca3130
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/CA3130.Lib
+      sha256: 6987c331be55d2800574a18b4b98410eedb0d802635bd54c8dbb6cca63ee2428
 - source: ltwiki
   name: ca3130
   def: subckt
@@ -133,50 +151,6 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: lib/sub/ca3130.sub
       sha256: abc2504ee6ee4900660424e68744bfe0a31f1f7fd6ae3d1c0b3e3a05bc0ba902
-- source: bordodynov
-  name: ca3130
-  def: subckt
-  type: SUBCKT
-  deps:
-  - D
-  - NPN
-  - PMOS
-  - BZX84C8V2L
-  - NMOS
-  - 1N750
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sub/CA3130.Lib
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: 6987c331be55d2800574a18b4b98410eedb0d802635bd54c8dbb6cca63ee2428
-    lines:
-      1N750: [66, 69]
-      BZX84C8V2L: [70, 71]
-      D: [61, 61]
-      NMOS: [64, 64]
-      NPN: [62, 62]
-      PMOS: [65, 65]
-      ca3130: [2, 29]
-    fetched: '2026-09-21'
-  copies:
-  - source: kicad-spice-library
-    name: ca3130
-    get:
-      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/CA3130.Lib
-      sha256: 6987c331be55d2800574a18b4b98410eedb0d802635bd54c8dbb6cca63ee2428
-  - source: ltwiki
-    name: ca3130
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/CA3130.Lib
-      sha256: 6987c331be55d2800574a18b4b98410eedb0d802635bd54c8dbb6cca63ee2428
-  - source: ltwiki
-    name: ca3130
-    get:
-      url: http://ltwiki.org/files/LargeCollection.zip
-      member: LargeCollection/LTspiceIV/lib/sub/CA3130.Lib
-      sha256: 6987c331be55d2800574a18b4b98410eedb0d802635bd54c8dbb6cca63ee2428
 datasheet:
   url: https://www.renesas.com/us/en/document/dst/ca3130-ca3130a-datasheet
   maker: Intersil / Renesas

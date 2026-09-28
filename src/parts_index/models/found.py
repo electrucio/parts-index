@@ -124,7 +124,9 @@ def closure(defs: dict, name: str) -> list:
         # strip comments before looking for references
         code = "\n".join(line.split(";")[0] for line in body.splitlines()
                          if not line.lstrip().startswith("*"))
-        for tok in set(re.findall(r"[A-Za-z0-9_.\-+$#]+", code)):
+        # sorted, because a set of strings iterates in a different order in every run, and the order
+        # the dependencies are visited in is the order they are listed and hashed in
+        for tok in sorted(set(re.findall(r"[A-Za-z0-9_.\-+$#]+", code))):
             t = tok.lower()
             if t != key and t in defs:
                 visit(t)

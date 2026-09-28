@@ -479,55 +479,6 @@ models:
     lines:
       LM324: [29, 85]
     fetched: '2026-09-19'
-- source: ti
-  name: LMX24_LM2902
-  def: subckt
-  type: SUBCKT
-  deps:
-  - VCCS_EXT_LIM_0
-  - VCCS_LIMIT_IQ_0
-  - VCCS_LIM_4_0
-  - VCCS_LIM_1_0
-  - CRS_DIST_0
-  - VCCS_LIM_GR_0
-  - VCCS_LIM_ZO_0
-  - FEMT_0
-  - VNSE_0
-  - VCCS_LIM_CLAW-_0
-  - VCCS_LIM_3_0
-  - CLAMP_AMP_LO_0
-  - CLAMP_AMP_HI_0
-  - VCCS_LIM_2_EN_0
-  - OL_SENSE_0
-  - VCCS_LIM_CLAW+_0
-  - PHASEREV_0
-  verbatim: true
-  get:
-    url: https://www.ti.com/lit/zip/SGLM009
-    member: lmx24_lm2902.lib
-    archive_sha256: dfdae2b8f22ad13d2ca34bd4647e9c83a8f7b4da825a9c47d9053ae4a986f901
-    sha256: 816b9a73a5cdd5986c783000acfc276dcbf8f2e6427e3a26fcc148f026c337ec
-    lines:
-      CLAMP_AMP_HI_0: [338, 342]
-      CLAMP_AMP_LO_0: [330, 334]
-      CRS_DIST_0: [234, 242]
-      FEMT_0: [264, 285]
-      LMX24_LM2902: [33, 225]
-      OL_SENSE_0: [407, 409]
-      PHASEREV_0: [227, 230]
-      VCCS_EXT_LIM_0: [413, 416]
-      VCCS_LIMIT_IQ_0: [323, 326]
-      VCCS_LIM_1_0: [314, 319]
-      VCCS_LIM_2_EN_0: [255, 260]
-      VCCS_LIM_3_0: [398, 403]
-      VCCS_LIM_4_0: [355, 360]
-      VCCS_LIM_CLAW+_0: [364, 374]
-      VCCS_LIM_CLAW-_0: [378, 393]
-      VCCS_LIM_GR_0: [346, 351]
-      VCCS_LIM_ZO_0: [246, 251]
-      VNSE_0: [289, 310]
-    fetched: '2026-09-14'
-  note: found under the alias LMX24_LM2902
 - source: microcap12
   name: LM324_TI
   def: subckt
@@ -800,21 +751,21 @@ models:
   def: subckt
   type: SUBCKT
   deps:
+  - CLAMP_AMP_HI_0
+  - CLAMP_AMP_LO_0
+  - FEMT_0_0
+  - OL_SENSE_0
   - VCCS_EXT_LIM_0
   - VCCS_LIMIT_IQ_0
-  - VCCS_LIM_2_0
-  - VCCS_LIM_4_0
   - VCCS_LIM_1_0
+  - VCCS_LIM_2_0
+  - VCCS_LIM_3_0
+  - VCCS_LIM_4_0
+  - VCCS_LIM_CLAW+_0
+  - VCCS_LIM_CLAW-_0
   - VCCS_LIM_GR_0
   - VCCS_LIM_ZO_0
   - VNSE_0
-  - VCCS_LIM_CLAW-_0
-  - VCCS_LIM_3_0
-  - CLAMP_AMP_LO_0
-  - CLAMP_AMP_HI_0
-  - OL_SENSE_0
-  - VCCS_LIM_CLAW+_0
-  - FEMT_0_0
   verbatim: true
   get:
     url: http://bordodynov.ltwiki.org/lib.zip

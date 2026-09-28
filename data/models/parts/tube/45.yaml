@@ -97,7 +97,13 @@ models:
     not_measurable: 26
     typical_rows: 0
   symbol: 45_bordodynov-2.asy
-  note: 'same code also in: ltwiki'
+  copies:
+  - source: ltwiki
+    name: V45
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Rydel_tubes.lib
+      sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
 - source: ltwiki
   name: '45'
   def: subckt
@@ -162,31 +168,6 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: sub/Triode_Ayumi.lib
       sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
-- source: bordodynov
-  name: V45
-  def: subckt
-  type: SUBCKT
-  deps:
-  - Igrid
-  - TRIO1
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sub/Rydel_tubes.lib
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
-    lines:
-      Igrid: [859, 863]
-      TRIO1: [796, 798]
-      V45: [756, 765]
-    fetched: '2026-09-21'
-  copies:
-  - source: ltwiki
-    name: V45
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/Rydel_tubes.lib
-      sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
 datasheet:
   url: https://frank.pocnet.net/sheets/049/4/45.pdf
   maker: RCA

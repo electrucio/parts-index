@@ -80,54 +80,10 @@ models:
       Zout_Uz_S2: [151, 155]
     fetched: '2026-09-14'
   note: pins from names
-- source: bordodynov
-  name: LME49990
-  def: subckt
-  type: SUBCKT
-  deps:
-  - Zout_Uz_S2
-  - Rnoiseless
-  - VNSE
-  - EPOLY1
-  - HPA_PD_Sgnl
-  - VCVS_Limit
-  - Amp_Dyn_Iout_Siq2
-  - Amp_Dyn_Iout_Siq1
-  - Tran_Iout
-  - FEMT
-  - VCCS_Limit
-  - D_ideal
-  - Zout_Uz_S1
-  - Zout_Uz_H1
-  - HPA_PD_I
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sub/LME49990.lib
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: ebd104f74287ff637e3d56908f0f45dfdca123cc66a079a3da394a5970adcb2c
-    lines:
-      Amp_Dyn_Iout_Siq1: [259, 263]
-      Amp_Dyn_Iout_Siq2: [266, 270]
-      D_ideal: [169, 173]
-      EPOLY1: [306, 311]
-      FEMT: [212, 245]
-      HPA_PD_I: [285, 292]
-      HPA_PD_Sgnl: [294, 296]
-      LME49990: [41, 148]
-      Rnoiseless: [314, 316]
-      Tran_Iout: [248, 257]
-      VCCS_Limit: [273, 276]
-      VCVS_Limit: [279, 282]
-      VNSE: [176, 209]
-      Zout_Uz_H1: [163, 166]
-      Zout_Uz_S1: [157, 161]
-      Zout_Uz_S2: [151, 155]
-    fetched: '2026-09-21'
   copies:
-  - source: ltwiki
+  - source: bordodynov
     name: LME49990
     get:
       url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/LME49990.lib
+      member: sub/LME49990.lib
       sha256: ebd104f74287ff637e3d56908f0f45dfdca123cc66a079a3da394a5970adcb2c

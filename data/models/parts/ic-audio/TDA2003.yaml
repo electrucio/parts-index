@@ -75,26 +75,6 @@ models:
     not_measurable: 2
     typical_rows: 0
   symbol: TDA2003_kicad-spice-library.asy
-- source: kicad-spice-library
-  name: TDA2003
-  def: subckt
-  type: SUBCKT
-  deps:
-  - MOST_POS
-  - MOST_NEG
-  - SwingLimiter
-  - OpAmpConfigRails
-  verbatim: true
-  get:
-    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/TDA2003.lib
-    sha256: 275faa1abef302687063cf3e2989f4219b1d40a8d0917f0f7a15138720ad35d0
-    lines:
-      MOST_NEG: [65, 67]
-      MOST_POS: [61, 63]
-      OpAmpConfigRails: [40, 59]
-      SwingLimiter: [69, 74]
-      TDA2003: [10, 38]
-    fetched: '2026-09-14'
 datasheet:
   url: https://www.st.com/resource/en/datasheet/tda2003.pdf
   maker: STMicroelectronics

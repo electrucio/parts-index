@@ -54,64 +54,7 @@ models:
       VCCS_LIM_ZO_0: [233, 238]
       VNSE_0: [256, 277]
     fetched: '2026-09-14'
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from names'
-- source: onsemi
-  name: LM321
-  def: subckt
-  type: SUBCKT
-  verbatim: true
-  get:
-    url: https://www.onsemi.com/download/models/mod/lm321%20spice%20model.mod
-    sha256: 3c94c6bd1e24fd920559c26b6f9b14b6b2330f6fdcb54df54986237ee1fc12b2
-    lines:
-      LM321: [29, 85]
-    fetched: '2026-09-19'
-- source: bordodynov
-  name: LM321LV
-  def: subckt
-  type: SUBCKT
-  deps:
-  - VCCS_EXT_LIM_0
-  - VCCS_LIMIT_IQ_0
-  - VCCS_LIM_2_0
-  - VCCS_LIM_4_0
-  - VCCS_LIM_1_0
-  - VCCS_LIM_GR_0
-  - VCCS_LIM_ZO_0
-  - VNSE_0
-  - VCCS_LIM_CLAW-_0
-  - VCCS_LIM_3_0
-  - CLAMP_AMP_LO_0
-  - CLAMP_AMP_HI_0
-  - OL_SENSE_0
-  - VCCS_LIM_CLAW+_0
-  - FEMT_0_0
-  - LM324LV
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sub/LM324LV.cir
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: 495c0f46b9ab0fd8dce13dba69ad0deef3101e42b8667134217f178981fadd04
-    lines:
-      CLAMP_AMP_HI_0: [333, 337]
-      CLAMP_AMP_LO_0: [326, 330]
-      FEMT_0_0: [280, 301]
-      LM321LV: [390, 392]
-      LM324LV: [32, 231]
-      OL_SENSE_0: [379, 381]
-      VCCS_EXT_LIM_0: [384, 387]
-      VCCS_LIMIT_IQ_0: [320, 323]
-      VCCS_LIM_1_0: [312, 317]
-      VCCS_LIM_2_0: [304, 309]
-      VCCS_LIM_3_0: [371, 376]
-      VCCS_LIM_4_0: [348, 353]
-      VCCS_LIM_CLAW+_0: [356, 368]
-      VCCS_LIM_CLAW-_0: [241, 253]
-      VCCS_LIM_GR_0: [340, 345]
-      VCCS_LIM_ZO_0: [233, 238]
-      VNSE_0: [256, 277]
-    fetched: '2026-09-21'
+  note: pins from names
   copies:
   - source: kicad-spice-library
     name: LM321LV
@@ -124,3 +67,14 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: lib/sub/LM324LV.cir
       sha256: 495c0f46b9ab0fd8dce13dba69ad0deef3101e42b8667134217f178981fadd04
+- source: onsemi
+  name: LM321
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://www.onsemi.com/download/models/mod/lm321%20spice%20model.mod
+    sha256: 3c94c6bd1e24fd920559c26b6f9b14b6b2330f6fdcb54df54986237ee1fc12b2
+    lines:
+      LM321: [29, 85]
+    fetched: '2026-09-19'

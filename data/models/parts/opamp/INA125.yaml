@@ -38,34 +38,14 @@ models:
       INA125: [62, 122]
       REF_125E: [244, 289]
     fetched: '2026-09-19'
-- source: ti
-  name: INA125
-  def: subckt
-  type: SUBCKT
-  deps:
-  - REF_125E
-  - A1_125E
-  - A2_125E
-  verbatim: true
-  get:
-    url: https://www.ti.com/lit/zip/SBOM020
-    member: INA125.LIB
-    archive_sha256: 5550971044284790a9dc37541157d4b7f45b6d6db9b1b10c6a851765a1aaf7d9
-    sha256: 383c8cead37b9dd44c5497620b5b3e12253c1d035791ea350880f29c9fd37728
-    lines:
-      A1_125E: [134, 179]
-      A2_125E: [191, 236]
-      INA125: [62, 122]
-      REF_125E: [244, 289]
-    fetched: '2026-09-19'
 - source: microcap12
   name: INA125
   def: subckt
   type: SUBCKT
   deps:
-  - REF_125
-  - A2_125
   - A1_125
+  - A2_125
+  - REF_125
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
@@ -84,9 +64,9 @@ models:
   def: subckt
   type: SUBCKT
   deps:
-  - REF_125E
   - A1_125E
   - A2_125E
+  - REF_125E
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip

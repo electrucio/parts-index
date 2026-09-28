@@ -61,49 +61,7 @@ models:
     not_measurable: 1
     typical_rows: 5
   symbol: LM4562_bordodynov.asy
-  note: 'same code also in: kicad-spice-library, ltwiki; pins from default order (unverified)'
-- source: bordodynov
-  name: LM4562
-  def: subckt
-  type: SUBCKT
-  deps:
-  - VCLAMP
-  - RNOISE_LESS_WILIM
-  - VNSE
-  - PSRR
-  - GND_FLOAT
-  - IDEAL_DIODE
-  - CMRR
-  - TF
-  - AMETER
-  - FEMT
-  - VCLAMP_W_SENSE
-  - GBW_SLEW_SE
-  - INPUT
-  - AMP
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sub/LM4562.txt
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: ecc4e5fc6bac10d9c6c672e6d49067a13daf390d103737b5f68871787c0b659f
-    lines:
-      AMETER: [166, 170]
-      AMP: [50, 133]
-      CMRR: [350, 359]
-      FEMT: [388, 426]
-      GBW_SLEW_SE: [260, 272]
-      GND_FLOAT: [155, 157]
-      IDEAL_DIODE: [142, 146]
-      INPUT: [485, 491]
-      LM4562: [42, 48]
-      PSRR: [368, 378]
-      RNOISE_LESS_WILIM: [292, 294]
-      TF: [195, 251]
-      VCLAMP: [281, 283]
-      VCLAMP_W_SENSE: [180, 185]
-      VNSE: [437, 475]
-    fetched: '2026-09-21'
+  note: pins from default order (unverified)
   copies:
   - source: kicad-spice-library
     name: LM4562

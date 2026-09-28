@@ -39,6 +39,13 @@ models:
     score: null
     error: 'KeyError: ''logic'''
   symbol: CD4049UB_ti.asy
+  copies:
+  - source: ti
+    name: CD4049UB
+    get:
+      url: https://www.ti.com/lit/zip/SCHM019
+      member: CD4049UB.lib
+      sha256: 676487f1448574f0b6bb61acdcc61723046dd0ada65a70a71f592c588bfca386
 - source: bordodynov
   name: CD4049UB
   def: subckt
@@ -127,39 +134,6 @@ models:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
       member: cmos.lib
       sha256: 355bb3dfa2be483f7c2d5b8d729acb8221874a18fbf49607f03a0bfc0d753917
-- source: ti
-  name: CD4049UB
-  def: subckt
-  type: SUBCKT
-  deps:
-  - LOGIC_ICC_AHC_1i_NAND_PP_CMOS_CD4049UB
-  - TPD_AHC_1i_NAND_PP_CMOS_CD4049UB
-  - LOGIC_FUNCTION_2_AHC_1i_NAND_PP_CMOS_CD4049UB
-  - LOGIC_INPUT_AHC_1i_NAND_PP_CMOS_CD4049UB
-  - LOGIC_PP_OUTPUT_AHC_1i_NAND_PP_CMOS_CD4049UB
-  - LOGIC_GATE_2PIN_OD_AHC_1i_NAND_PP_CMOS_CD4049UB
-  verbatim: true
-  get:
-    url: https://www.ti.com/lit/zip/SCHM019
-    member: CD4049UB.cir
-    archive_sha256: 2c357995eb31ace4f3eae6c90a4a6fe9809735f888366243f5ae14f3618434c3
-    sha256: 676487f1448574f0b6bb61acdcc61723046dd0ada65a70a71f592c588bfca386
-    lines:
-      CD4049UB: [35, 37]
-      LOGIC_FUNCTION_2_AHC_1i_NAND_PP_CMOS_CD4049UB: [141, 156]
-      LOGIC_GATE_2PIN_OD_AHC_1i_NAND_PP_CMOS_CD4049UB: [43, 76]
-      LOGIC_ICC_AHC_1i_NAND_PP_CMOS_CD4049UB: [252, 260]
-      LOGIC_INPUT_AHC_1i_NAND_PP_CMOS_CD4049UB: [77, 140]
-      LOGIC_PP_OUTPUT_AHC_1i_NAND_PP_CMOS_CD4049UB: [171, 182]
-      TPD_AHC_1i_NAND_PP_CMOS_CD4049UB: [157, 170]
-    fetched: '2026-09-14'
-  copies:
-  - source: ti
-    name: CD4049UB
-    get:
-      url: https://www.ti.com/lit/zip/SCHM019
-      member: CD4049UB.lib
-      sha256: 676487f1448574f0b6bb61acdcc61723046dd0ada65a70a71f592c588bfca386
 - source: ltwiki
   name: CD4049UB
   def: subckt

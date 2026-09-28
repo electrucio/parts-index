@@ -56,6 +56,13 @@ models:
       lm3886: [39, 83]
     fetched: '2026-09-14'
   symbol: LM3886_ti.asy
+  copies:
+  - source: ti
+    name: lm3886
+    get:
+      url: https://www.ti.com/lit/zip/SNAM039
+      member: LM3886.lib
+      sha256: d723767946c01e09d6d32bf4a554ed9a250d31b3465f39b0a70a04c0934e2893
 - source: ltwiki
   name: LM3886
   def: subckt
@@ -109,6 +116,13 @@ models:
       Zout_Uz_S2: [126, 130]
     fetched: '2026-09-14'
   symbol: LM3886_ltwiki.asy
+  copies:
+  - source: bordodynov
+    name: LM3886
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/LM3886su.lib
+      sha256: e571f55dae4a9515e6e392c2168d63007717fde533b6af8155049d07c6e3c286
 - source: ltwiki
   name: LM3886
   def: subckt
@@ -186,6 +200,12 @@ models:
       un segundo modelo LM3886.lib mas pequeno (1391 bytes) de otro autor (Hiromasa Shigematsu, msg_73524,
       2014-02-01) guardado en LM3886/alt_hiromasa/ - no verificado cual de los dos es mas preciso. Ver
       README.txt.'
+  copies:
+  - source: groupsio-ltspice
+    name: LM3886
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/LM3886_test.zip
+      sha256: 19ac83ca8acb779f30d1cce4db1d50bb730efce9619c38aa872878973c97ef8f
 - source: groups-io
   name: LM3886
   def: subckt
@@ -218,155 +238,3 @@ models:
     get:
       url: https://groups.io/g/LTspice/files/z_yahoo/Lib/LM3886_test.zip
       sha256: 27e9536d01edb24caa08f48d70b8dd5a93d05c4fcedff622db521e153f26aad9
-- source: ti
-  name: lm3886
-  def: subckt
-  type: SUBCKT
-  deps:
-  - PSRR_0
-  - OUT_CURRENT_CLAMP_PD_0
-  - GBW_SLEW_SE_0
-  - VCLAMP_W_SENSE_0
-  - IQ_IOFF_0
-  - AMETER_0
-  - ILOAD_PD_0
-  - VNSE_0
-  - TF_0
-  - IDEAL_DIODE_0
-  - CMRR_0
-  - GND_FLOAT_0
-  - INPUT_0
-  - IV110_0
-  - FEMT_0
-  - VCLAMP_0
-  verbatim: true
-  get:
-    url: https://www.ti.com/lit/zip/SNAM041
-    member: LM3886.lib
-    archive_sha256: e06391890174883bcd722139ecf20f017f563e25f8bac41b4914251da7018239
-    sha256: 4ed60d05cca5b0ac9a3fe8593b7fe78c7cc444ce61182be9407e87644c9484b5
-    lines:
-      AMETER_0: [257, 261]
-      CMRR_0: [300, 309]
-      FEMT_0: [313, 351]
-      GBW_SLEW_SE_0: [100, 113]
-      GND_FLOAT_0: [245, 247]
-      IDEAL_DIODE_0: [232, 236]
-      ILOAD_PD_0: [86, 90]
-      INPUT_0: [405, 411]
-      IQ_IOFF_0: [219, 222]
-      IV110_0: [132, 141]
-      OUT_CURRENT_CLAMP_PD_0: [123, 127]
-      PSRR_0: [152, 162]
-      TF_0: [165, 208]
-      VCLAMP_0: [288, 290]
-      VCLAMP_W_SENSE_0: [271, 278]
-      VNSE_0: [356, 394]
-      lm3886: [39, 83]
-    fetched: '2026-09-14'
-  copies:
-  - source: ti
-    name: lm3886
-    get:
-      url: https://www.ti.com/lit/zip/SNAM039
-      member: LM3886.lib
-      sha256: d723767946c01e09d6d32bf4a554ed9a250d31b3465f39b0a70a04c0934e2893
-- source: bordodynov
-  name: LM3886
-  def: subckt
-  type: SUBCKT
-  deps:
-  - Zout_Uz_S2
-  - VCLAMP_W_SENSE_0
-  - RNOISE_LESS_WILIM_0
-  - D_ideal
-  - HPA_PD_Sgnl
-  - VCVS_Limit
-  - AMETER_0
-  - Amp_Dyn_Iout_Siq2
-  - Amp_Dyn_Iout_Siq1
-  - Tran_Iout
-  - VNSE
-  - VCCS_Limit
-  - Zout_Uz_S1
-  - Zout_Uz_H1
-  - HPA_PD_I
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sub/LM3886su.lib
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: e571f55dae4a9515e6e392c2168d63007717fde533b6af8155049d07c6e3c286
-    lines:
-      AMETER_0: [258, 265]
-      Amp_Dyn_Iout_Siq1: [232, 236]
-      Amp_Dyn_Iout_Siq2: [239, 243]
-      D_ideal: [155, 158]
-      HPA_PD_I: [207, 213]
-      HPA_PD_Sgnl: [216, 218]
-      LM3886: [47, 117]
-      RNOISE_LESS_WILIM_0: [253, 255]
-      Tran_Iout: [221, 230]
-      VCCS_Limit: [161, 163]
-      VCLAMP_W_SENSE_0: [246, 250]
-      VCVS_Limit: [166, 168]
-      VNSE: [171, 204]
-      Zout_Uz_H1: [132, 135]
-      Zout_Uz_S1: [120, 124]
-      Zout_Uz_S2: [126, 130]
-    fetched: '2026-09-21'
-  copies:
-  - source: ltwiki
-    name: LM3886
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/LM3886su.lib
-      sha256: e571f55dae4a9515e6e392c2168d63007717fde533b6af8155049d07c6e3c286
-- source: groups-io
-  name: LM3886
-  def: subckt
-  type: SUBCKT
-  deps:
-  - Zout_Uz_S2
-  - VCLAMP_W_SENSE_0
-  - RNOISE_LESS_WILIM_0
-  - D_ideal
-  - HPA_PD_Sgnl
-  - VCVS_Limit
-  - AMETER_0
-  - Amp_Dyn_Iout_Siq2
-  - Amp_Dyn_Iout_Siq1
-  - Tran_Iout
-  - VNSE
-  - VCCS_Limit
-  - Zout_Uz_S1
-  - Zout_Uz_H1
-  - HPA_PD_I
-  verbatim: true
-  get:
-    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/LM3886_test.zip
-    sha256: 19ac83ca8acb779f30d1cce4db1d50bb730efce9619c38aa872878973c97ef8f
-    lines:
-      AMETER_0: [269, 277]
-      Amp_Dyn_Iout_Siq1: [242, 246]
-      Amp_Dyn_Iout_Siq2: [249, 253]
-      D_ideal: [162, 165]
-      HPA_PD_I: [216, 223]
-      HPA_PD_Sgnl: [226, 228]
-      LM3886: [47, 125]
-      RNOISE_LESS_WILIM_0: [264, 266]
-      Tran_Iout: [231, 240]
-      VCCS_Limit: [168, 171]
-      VCLAMP_W_SENSE_0: [256, 261]
-      VCVS_Limit: [174, 177]
-      VNSE: [180, 213]
-      Zout_Uz_H1: [140, 143]
-      Zout_Uz_S1: [128, 132]
-      Zout_Uz_S2: [134, 138]
-    fetched: '2026-09-20'
-  copies:
-  - source: groupsio-ltspice
-    name: LM3886
-    get:
-      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/LM3886_test.zip
-      sha256: 19ac83ca8acb779f30d1cce4db1d50bb730efce9619c38aa872878973c97ef8f

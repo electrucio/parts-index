@@ -156,29 +156,3 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   note: found under the alias 74HC04
-- source: ti
-  name: SN74HC04
-  def: subckt
-  type: SUBCKT
-  deps:
-  - TPD_HC_1i_NAND_PP_CMOS_SN74HC04
-  - LOGIC_PP_OUTPUT_HC_1i_NAND_PP_CMOS_SN74HC04
-  - LOGIC_INPUT_HC_1i_NAND_PP_CMOS_SN74HC04
-  - LOGIC_FUNCTION_2_HC_1i_NAND_PP_CMOS_SN74HC04
-  - LOGIC_ICC_HC_1i_NAND_PP_CMOS_SN74HC04
-  - LOGIC_GATE_2PIN_OD_HC_1i_NAND_PP_CMOS_SN74HC04
-  verbatim: true
-  get:
-    url: https://www.ti.com/lit/zip/SCLM231
-    member: SN74HC04.cir
-    archive_sha256: c4da1fb5fae90ffcd6450c97a7cb4ca198923d882260b96ef711b172706e5b87
-    sha256: 74bd6f750e0e4f2a38a00317cf2ce0ef40a20a0e4d12417478a1ac061da940c2
-    lines:
-      LOGIC_FUNCTION_2_HC_1i_NAND_PP_CMOS_SN74HC04: [144, 159]
-      LOGIC_GATE_2PIN_OD_HC_1i_NAND_PP_CMOS_SN74HC04: [43, 79]
-      LOGIC_ICC_HC_1i_NAND_PP_CMOS_SN74HC04: [186, 194]
-      LOGIC_INPUT_HC_1i_NAND_PP_CMOS_SN74HC04: [80, 143]
-      LOGIC_PP_OUTPUT_HC_1i_NAND_PP_CMOS_SN74HC04: [174, 185]
-      SN74HC04: [35, 37]
-      TPD_HC_1i_NAND_PP_CMOS_SN74HC04: [160, 173]
-    fetched: '2026-09-19'

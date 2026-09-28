@@ -38,30 +38,6 @@ models:
       THAT1570: [20, 102]
     fetched: '2026-09-14'
     note: file not listed in the manifest; see SOURCE.md
-- source: thatcorp
-  name: THAT1570
-  def: subckt
-  type: SUBCKT
-  deps:
-  - Dgen
-  - RE
-  - RPTAT
-  - QNPNLI
-  - RB
-  - QPNPS
-  verbatim: true
-  get:
-    url: https://thatcorp.com/wp-content/uploads/2020/11/THATMacroModels-Rev05.zip
-    sha256: 1cdb2d7ab452c8542a9a91b8c7e83a2e8b3d9a56b5d936d03f3a935cd151c419
-    lines:
-      Dgen: [137, 138]
-      QNPNLI: [105, 119]
-      QPNPS: [121, 134]
-      RB: [142, 142]
-      RE: [144, 144]
-      RPTAT: [140, 140]
-      THAT1570: [20, 102]
-    fetched: '2026-09-14'
   copies:
   - source: thatcorp
     name: THAT1570

@@ -271,7 +271,48 @@ models:
     not_measurable: 24
     typical_rows: 0
   symbol: 6CG7_bordodynov-2.asy
-  note: 'same code also in: kicad-spice-library, ltwiki'
+  copies:
+  - source: bordodynov
+    name: 6CG7
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/Rydel_tubes.lib
+      sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+  - source: ltwiki
+    name: 6CG7
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Rydel_tubes.lib
+      sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+  - source: kicad-spice-library
+    name: 6CG7RY
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: ltwiki
+    name: 6CG7RY
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: ltwiki
+    name: 6CG7RY
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
+      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
+  - source: ltwiki
+    name: 6CG7RY
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sub/Valves.Lib
+      sha256: cf7b995102b452efb5b8e7b07168a3a7df1931ca1db84b3aa54433452ab11dfd
+  - source: ltwiki
+    name: 6CG7RY
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
+      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
 - source: bordodynov
   name: 6CG7
   def: subckt
@@ -357,66 +398,6 @@ models:
       6CG7: [219, 223]
       TRIODE: [1131, 1141]
     fetched: '2026-09-20'
-- source: bordodynov
-  name: 6CG7
-  def: subckt
-  type: SUBCKT
-  deps:
-  - Igrid
-  - TRIO1
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sub/Rydel_tubes.lib
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
-    lines:
-      6CG7: [262, 271]
-      Igrid: [859, 863]
-      TRIO1: [796, 798]
-    fetched: '2026-09-21'
-  copies:
-  - source: ltwiki
-    name: 6CG7
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/Rydel_tubes.lib
-      sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
-  - source: bordodynov
-    name: 6CG7RY
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: sub/Valves.Lib
-      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
-  - source: kicad-spice-library
-    name: 6CG7RY
-    get:
-      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/sub/Valves.Lib
-      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
-  - source: ltwiki
-    name: 6CG7RY
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/Valves.Lib
-      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
-  - source: ltwiki
-    name: 6CG7RY
-    get:
-      url: http://bordodynov.ltwiki.org/example.zip
-      member: examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
-      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
-  - source: ltwiki
-    name: 6CG7RY
-    get:
-      url: http://ltwiki.org/files/LargeCollection.zip
-      member: LargeCollection/LTspiceIV/lib/sub/Valves.Lib
-      sha256: cf7b995102b452efb5b8e7b07168a3a7df1931ca1db84b3aa54433452ab11dfd
-  - source: ltwiki
-    name: 6CG7RY
-    get:
-      url: http://ltwiki.org/files/LargeCollection.zip
-      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/AnalogDevices/Valves.Lib
-      sha256: b324c9dd4a2a9b9e7a7c06b7323ff45c0404965915df157e0fbdb3e141702734
 - source: bordodynov
   name: 6CG7
   def: subckt

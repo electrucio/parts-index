@@ -169,80 +169,14 @@ models:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
       member: ti.lib
       sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
-- source: ti
-  name: TLC555
-  def: subckt
-  type: SUBCKT
-  deps:
-  - TLC55X_PMOSD_LV
-  - TLC55X_PMOS_LV
-  - COMP2INPNORSD
-  - COMP3INPNORSD
-  - RR1SFF
-  - IIMIRRP
-  - TLC55X_PMOSD_HV
-  - TLC55X_PMOS_HV
-  - MDSWP
-  - MSWN
-  - TLC55X_PMOSD_MV
-  - TLC55X_PMOS_MV
-  - IIMIRRN
-  - TLC55X_RWELLD
-  - TLC55X_RWELL
-  - MDSWN
-  - TLC55X_NMOSD_HV_L1
-  - TLC55X_NMOS_HV_L1
-  - IMIRRP
-  - DZ_18V
-  - D_Z18V
-  - IBIAS
-  - TLC55X_NMOSD_MV
-  - TLC55X_NMOS_MV
-  - TLC55X_NMOSD_HV
-  - TLC55X_NMOS_HV
-  verbatim: true
-  get:
-    url: https://www.ti.com/lit/zip/SLFM005
-    member: TLC555_TINA_AIO/TLC555.LIB
-    archive_sha256: 52bcb930290ba61461b2183da7003eea14ebb88ab7fbff033128735c9996de22
-    sha256: dfb67d744ad3d70af6c263e7d0ddd80244621ccbf98b9d7959a1e5c36d68cc8e
-    lines:
-      COMP2INPNORSD: [346, 360]
-      COMP3INPNORSD: [362, 379]
-      DZ_18V: [321, 321]
-      D_Z18V: [315, 317]
-      IBIAS: [195, 217]
-      IIMIRRN: [259, 278]
-      IIMIRRP: [238, 257]
-      IMIRRP: [219, 236]
-      MDSWN: [290, 298]
-      MDSWP: [280, 288]
-      MSWN: [300, 310]
-      RR1SFF: [323, 344]
-      TLC555: [42, 108]
-      TLC55X_NMOSD_HV: [130, 131]
-      TLC55X_NMOSD_HV_L1: [133, 134]
-      TLC55X_NMOSD_MV: [136, 137]
-      TLC55X_NMOS_HV: [110, 113]
-      TLC55X_NMOS_HV_L1: [115, 118]
-      TLC55X_NMOS_MV: [120, 123]
-      TLC55X_PMOSD_HV: [159, 160]
-      TLC55X_PMOSD_LV: [167, 168]
-      TLC55X_PMOSD_MV: [162, 162]
-      TLC55X_PMOS_HV: [144, 147]
-      TLC55X_PMOS_LV: [154, 157]
-      TLC55X_PMOS_MV: [149, 152]
-      TLC55X_RWELL: [171, 173]
-      TLC55X_RWELLD: [175, 177]
-    fetched: '2026-09-14'
 - source: microcap12
   name: TLC555
   def: subckt
   type: SUBCKT
   deps:
-  - TLC555_RWELLD
-  - TLC555_COMP3INPNORSD
   - TLC555_COMP2INPNORSD
+  - TLC555_COMP3INPNORSD
+  - TLC555_RWELLD
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip

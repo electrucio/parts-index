@@ -127,21 +127,3 @@ models:
       SR: [33, 37]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
-- source: kicad-spice-library
-  name: LM555
-  def: subckt
-  type: SUBCKT
-  deps:
-  - NOR
-  - SR
-  - COMP
-  verbatim: true
-  get:
-    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/IC.LIB
-    sha256: 94c0e54c459b3d40fd5629ae9909b5414ee87a54b0d2c469703ff5bf601d20a4
-    lines:
-      COMP: [58, 75]
-      LM555: [11, 29]
-      NOR: [41, 54]
-      SR: [33, 37]
-    fetched: '2026-09-14'

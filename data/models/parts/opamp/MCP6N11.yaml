@@ -51,6 +51,19 @@ models:
       VC_CAPACITOR: [474, 481]
       VC_INDUCTOR: [483, 488]
     fetched: '2026-09-14'
+  copies:
+  - source: microchip
+    name: MCP6N11
+    get:
+      url: https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/BoardDesignFiles/MCP6N11_MM_D.zip
+      member: MCP6N11_RevD.txt
+      sha256: b5599f7062aecfbd7c7709e1a5f7b9e6134d0f0d547343290937e2725a08ec5c
+  - source: bordodynov
+    name: MCP6N11
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: sub/MCP6N11_001.sub
+      sha256: b5599f7062aecfbd7c7709e1a5f7b9e6134d0f0d547343290937e2725a08ec5c
 - source: ltwiki
   name: MCP6N11_S1
   def: subckt
@@ -100,76 +113,23 @@ models:
       url: https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/BoardDesignFiles/MCP6N11_MM_D.zip
       member: MCP6N11_RevD.txt
       sha256: b5599f7062aecfbd7c7709e1a5f7b9e6134d0f0d547343290937e2725a08ec5c
-- source: microchip
-  name: MCP6N11
-  def: subckt
-  type: SUBCKT
-  deps:
-  - VC_CAPACITOR
-  - OUTX
-  - COMPARATOR2
-  - COMP_HYS
-  - VC_INDUCTOR
-  - GMX
-  - INVERTER
-  - ANALOG_BUFFER
-  - MCP6N11_S1
-  - AND
-  - ANALOG_MULTI
-  - DC_1mV_1A_1V_1nA
-  - COMPARATOR
-  verbatim: true
-  get:
-    url: https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/BoardDesignFiles/MCP6N11_MM_D.zip
-    member: MCP6N11_RevD.txt
-    archive_sha256: 09bb0ca7e51003e2b446b2cc66e9cf8f5026a4fed3879dfeb01a089fe73d74db
-    sha256: b5599f7062aecfbd7c7709e1a5f7b9e6134d0f0d547343290937e2725a08ec5c
-    lines:
-      ANALOG_BUFFER: [207, 210]
-      ANALOG_MULTI: [230, 232]
-      AND: [234, 236]
-      COMPARATOR: [226, 228]
-      COMPARATOR2: [212, 215]
-      COMP_HYS: [217, 224]
-      DC_1mV_1A_1V_1nA: [203, 205]
-      GMX: [240, 349]
-      INVERTER: [199, 201]
-      MCP6N11: [60, 184]
-      MCP6N11_S1: [192, 196]
-      OUTX: [352, 472]
-      VC_CAPACITOR: [474, 481]
-      VC_INDUCTOR: [483, 488]
-    fetched: '2026-09-21'
-  copies:
-  - source: bordodynov
-    name: MCP6N11
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: sub/MCP6N11_001.sub
-      sha256: b5599f7062aecfbd7c7709e1a5f7b9e6134d0f0d547343290937e2725a08ec5c
-  - source: ltwiki
-    name: MCP6N11
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/MCP6N11_001.sub
-      sha256: b5599f7062aecfbd7c7709e1a5f7b9e6134d0f0d547343290937e2725a08ec5c
 - source: microcap12
   name: MCP6N11
   def: subckt
   type: SUBCKT
   deps:
-  - VC_CAPACITOR
-  - OUTX
+  - ANALOG_BUFFER
+  - ANALOG_MULTI
+  - AND
+  - COMPARATOR
   - COMPARATOR2
   - COMP_HYS
+  - DC_1mV_1A_1V_1nA
   - GMX
   - INVERTER
-  - ANALOG_BUFFER
   - MCP6N11_S1
-  - AND
-  - ANALOG_MULTI
-  - DC_1mV_1A_1V_1nA
-  - COMPARATOR
+  - VC_CAPACITOR
+  - OUTX
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip

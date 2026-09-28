@@ -59,46 +59,6 @@ models:
     not_measurable: 1
     typical_rows: 0
   symbol: LM3875_ti.asy
-- source: ti
-  name: LM3875
-  def: subckt
-  type: SUBCKT
-  deps:
-  - VCLAMP
-  - RNOISE_LESS_WILIM
-  - VNSE
-  - PSRR
-  - GND_FLOAT
-  - CMRR
-  - TF
-  - AMETER
-  - FEMT
-  - VCLAMP_W_SENSE
-  - GBW_SLEW_SE
-  - INPUT
-  - AMP
-  verbatim: true
-  get:
-    url: https://www.ti.com/lit/zip/SNAM084
-    member: LM3875.LIB
-    archive_sha256: 634ce3f2f155024862ba005fe80da8514ef58405c31719dbc91403076e1a185c
-    sha256: 4fee0f36724531623b8aea1f730dd28897aee79060e66794ccf88ae8772ec567
-    lines:
-      AMETER: [165, 169]
-      AMP: [49, 132]
-      CMRR: [336, 345]
-      FEMT: [374, 412]
-      GBW_SLEW_SE: [246, 258]
-      GND_FLOAT: [154, 156]
-      INPUT: [471, 477]
-      LM3875: [44, 46]
-      PSRR: [354, 364]
-      RNOISE_LESS_WILIM: [278, 280]
-      TF: [194, 237]
-      VCLAMP: [267, 269]
-      VCLAMP_W_SENSE: [179, 184]
-      VNSE: [423, 461]
-    fetched: '2026-09-14'
   copies:
   - source: ti
     name: LM3875

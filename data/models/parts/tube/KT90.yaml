@@ -136,25 +136,6 @@ models:
       KT90TR: [695, 704]
       TRIO1: [796, 798]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki'
-- source: bordodynov
-  name: KT90TR
-  def: subckt
-  type: SUBCKT
-  deps:
-  - Igrid
-  - TRIO1
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sub/Rydel_tubes.lib
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
-    lines:
-      Igrid: [859, 863]
-      KT90TR: [695, 704]
-      TRIO1: [796, 798]
-    fetched: '2026-09-21'
   copies:
   - source: ltwiki
     name: KT90TR

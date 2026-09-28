@@ -115,6 +115,25 @@ models:
       OPA695_F4: [135, 138]
       PNP8: [158, 168]
     fetched: '2026-09-14'
+  copies:
+  - source: ltwiki
+    name: OPA695
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/LtSpicePlus/OpAmps/By_Marks_Type/OpaXxx/opa695/opa695.txt
+      sha256: fb2449f3f76f82eb549a6fdda435e32ff4208b7341f5ff482197c31799a07fd9
+  - source: ltwiki
+    name: OPA695
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/Ti_Bb_Unitrode/OpaXxx/opa695/opa695.txt
+      sha256: fb2449f3f76f82eb549a6fdda435e32ff4208b7341f5ff482197c31799a07fd9
+  - source: ltwiki
+    name: OPA695
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/OpaXxx/opa695/opa695.txt
+      sha256: fb2449f3f76f82eb549a6fdda435e32ff4208b7341f5ff482197c31799a07fd9
 - source: ltwiki
   name: OPA695_F1
   def: subckt
@@ -238,48 +257,6 @@ models:
       url: http://ltwiki.org/files/LargeCollection.zip
       member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/OpaXxx/opa695/opa695.txt
       sha256: fb2449f3f76f82eb549a6fdda435e32ff4208b7341f5ff482197c31799a07fd9
-- source: ti
-  name: OPA695
-  def: subckt
-  type: SUBCKT
-  deps:
-  - AOL_2_OPA695
-  - 08_OP_AMP_COMPLETE_H3_OPA695
-  - VOS_VS_VCM_OPA695
-  - CLAMP_AMP_LO_OPA695
-  - CLAWN_OPA695
-  - IQ_SRC_OPA695
-  - FEMTB_OPA695
-  - VOS_DRIFT_OPA695
-  - VNSE_OPA695
-  - CLAWP_OPA695
-  - CLAW_SRC_OPA695
-  - FEMT_OPA695
-  - AOL_1_OPA695
-  - VCM_CLAMP_OPA695
-  verbatim: true
-  get:
-    url: https://www.ti.com/lit/zip/SBOC036
-    member: opa695_a.lib
-    archive_sha256: fd3bd41dd35e18d181145d6d8f3d0b6652613f7b9cf8c446adcb40a73ce826c2
-    sha256: a6f0098d03d96d460659e456ad1f5b007a56fb82a3fb40bb9eeb26c700c8345b
-    lines:
-      08_OP_AMP_COMPLETE_H3_OPA695: [133, 136]
-      AOL_1_OPA695: [138, 143]
-      AOL_2_OPA695: [145, 150]
-      CLAMP_AMP_LO_OPA695: [152, 156]
-      CLAWN_OPA695: [158, 165]
-      CLAWP_OPA695: [167, 174]
-      CLAW_SRC_OPA695: [176, 181]
-      FEMTB_OPA695: [206, 227]
-      FEMT_OPA695: [183, 204]
-      IQ_SRC_OPA695: [229, 232]
-      OPA695: [32, 131]
-      VCM_CLAMP_OPA695: [234, 237]
-      VNSE_OPA695: [239, 260]
-      VOS_DRIFT_OPA695: [262, 267]
-      VOS_VS_VCM_OPA695: [269, 279]
-    fetched: '2026-09-19'
 - source: microcap12
   name: OPA695
   def: subckt
@@ -359,57 +336,6 @@ models:
     lines:
       OPA695_F4: [53201, 53204]
     fetched: '2026-09-20'
-- source: ltwiki
-  name: OPA695
-  def: subckt
-  type: SUBCKT
-  deps:
-  - OPA695_F1
-  - PNP8
-  - OPA695_F2
-  - DN1
-  - DN3
-  - NPN8
-  - OPA695_F3
-  - Da
-  - OPA695_F4
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/example.zip
-    member: examples/LtSpicePlus/OpAmps/By_Marks_Type/Ti_Bb_Unitrode/OpaXxx/opa695/opa695.txt
-    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
-    sha256: fb2449f3f76f82eb549a6fdda435e32ff4208b7341f5ff482197c31799a07fd9
-    lines:
-      DN1: [143, 143]
-      DN3: [144, 144]
-      Da: [142, 142]
-      NPN8: [146, 156]
-      OPA695: [48, 118]
-      OPA695_F1: [120, 123]
-      OPA695_F2: [125, 128]
-      OPA695_F3: [130, 133]
-      OPA695_F4: [135, 138]
-      PNP8: [158, 168]
-    fetched: '2026-09-21'
-  copies:
-  - source: ltwiki
-    name: OPA695
-    get:
-      url: http://bordodynov.ltwiki.org/example.zip
-      member: examples/LtSpicePlus/OpAmps/By_Marks_Type/OpaXxx/opa695/opa695.txt
-      sha256: fb2449f3f76f82eb549a6fdda435e32ff4208b7341f5ff482197c31799a07fd9
-  - source: ltwiki
-    name: OPA695
-    get:
-      url: http://ltwiki.org/files/LargeCollection.zip
-      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/Ti_Bb_Unitrode/OpaXxx/opa695/opa695.txt
-      sha256: fb2449f3f76f82eb549a6fdda435e32ff4208b7341f5ff482197c31799a07fd9
-  - source: ltwiki
-    name: OPA695
-    get:
-      url: http://ltwiki.org/files/LargeCollection.zip
-      member: LargeCollection/LTspiceIV/examples/LtSpicePlus/OpAmps/By_Marks_Type/OpaXxx/opa695/opa695.txt
-      sha256: fb2449f3f76f82eb549a6fdda435e32ff4208b7341f5ff482197c31799a07fd9
 - source: ltwiki
   name: OPA695_F4
   def: subckt

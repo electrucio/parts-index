@@ -127,3 +127,16 @@ def test_a_model_record_names_its_lines_its_dependencies_and_its_copies(tmp_path
 def test_a_folder_with_its_own_manifest_is_published_under_its_source():
     assert F.registered("vishay/semis") == "vishay"
     assert F.rank("vishay/semis") == F.rank("vishay")
+
+
+def test_dependencies_come_in_the_same_order_in_every_run():
+    """A set iterates in PYTHONHASHSEED's order; the recipes changed on every run until this was sorted."""
+    import subprocess
+    import sys
+    code = ("from parts_index.models import found as F\n"
+            "t='.subckt X 1 2\\nQ2 1 2 0 QB\\nQ1 1 2 0 QA\\nR1 1 2 RC\\n.ends\\n.model QA NPN\\n.model QB NPN\\n"
+            ".subckt RC 1 2\\nR 1 2 1k\\n.ends\\n'\n"
+            "print([n for _, n, _ in F.closure(F.blocks(t), 'X')])")
+    runs = {subprocess.run([sys.executable, "-c", code], capture_output=True, text=True,
+                           env={"PYTHONHASHSEED": seed}).stdout for seed in ("1", "2", "3", "4")}
+    assert runs == {"['QA', 'QB', 'RC', 'X']\n"}

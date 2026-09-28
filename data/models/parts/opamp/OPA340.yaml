@@ -148,65 +148,7 @@ models:
       VNSE_0_0_OPA340: [369, 390]
       VOS_DRIFT_OPA340: [208, 213]
     fetched: '2026-09-14'
-  note: 'same code also in: ltwiki; pins from names'
-- source: bordodynov
-  name: OPA340
-  def: subckt
-  type: SUBCKT
-  deps:
-  - OL_SENSE_0_OPA340
-  - VOS_DRIFT_OPA340
-  - PSRR_CMRR_1_OPA340
-  - VCCS_LIM_GR_0_0_OPA340
-  - CLAMP_AMP_HI_0_OPA340
-  - VCCS_LIM_3_0_0_OPA340
-  - VCCS_LIM_CLAW+_0_0_OPA340
-  - CLAMP_AMP_LO_0_OPA340_0_OPA340
-  - VCCS_LIM_CLAW-_0_0_OPA340
-  - VCCS_LIM_4_0_0_OPA340
-  - VCCS_LIMIT_IQ_0_OPA340
-  - VNSE_0_0_OPA340
-  - ESD_0_OPA340
-  - CLAMP_AMP_LO_0_OPA340
-  - FEMT_0_0_OPA340
-  - VCCS_LIM_2_0_0_OPA340
-  - VCCS_LIM_1_0_OPA340
-  - VCCS_LIM_ZO_0_0_OPA340
-  - AOL_ZO_0_OPA340
-  - PSRR_CMRR_2_OPA340
-  - VCCS_EXT_LIM_0_OPA340
-  - PSRR_CMRR_0_OPA340
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sym/ValVol/TI/OPA340.LIB
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: 72f9a7e12886c24a46d78155d53b9a526dbfd9aa1a0764d8829650051c5efd1b
-    lines:
-      AOL_ZO_0_OPA340: [253, 309]
-      CLAMP_AMP_HI_0_OPA340: [403, 407]
-      CLAMP_AMP_LO_0_OPA340: [409, 413]
-      CLAMP_AMP_LO_0_OPA340_0_OPA340: [397, 401]
-      ESD_0_OPA340: [215, 221]
-      FEMT_0_0_OPA340: [311, 318]
-      OL_SENSE_0_OPA340: [415, 417]
-      OPA340: [67, 206]
-      PSRR_CMRR_0_OPA340: [223, 233]
-      PSRR_CMRR_1_OPA340: [235, 242]
-      PSRR_CMRR_2_OPA340: [244, 251]
-      VCCS_EXT_LIM_0_OPA340: [419, 422]
-      VCCS_LIMIT_IQ_0_OPA340: [392, 395]
-      VCCS_LIM_1_0_OPA340: [438, 443]
-      VCCS_LIM_2_0_0_OPA340: [431, 436]
-      VCCS_LIM_3_0_0_OPA340: [334, 339]
-      VCCS_LIM_4_0_0_OPA340: [327, 332]
-      VCCS_LIM_CLAW+_0_0_OPA340: [341, 353]
-      VCCS_LIM_CLAW-_0_0_OPA340: [355, 367]
-      VCCS_LIM_GR_0_0_OPA340: [320, 325]
-      VCCS_LIM_ZO_0_0_OPA340: [424, 429]
-      VNSE_0_0_OPA340: [369, 390]
-      VOS_DRIFT_OPA340: [208, 213]
-    fetched: '2026-09-21'
+  note: pins from names
   copies:
   - source: ltwiki
     name: OPA340

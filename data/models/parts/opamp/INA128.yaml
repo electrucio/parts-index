@@ -133,53 +133,13 @@ models:
       INA128E/BB: [5831, 5912]
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
-- source: ti
-  name: INA128
-  def: subckt
-  type: SUBCKT
-  deps:
-  - A1_128E
-  - A3_128E
-  - A2_128E
-  verbatim: true
-  get:
-    url: https://www.ti.com/lit/zip/SBOM763
-    member: INA128_TINA_AIO/INA128.LIB
-    archive_sha256: 4d6eda58634760702f8e8cf3035e1cdf49f74e768455544634809f2806edad0a
-    sha256: 207daadd2503c678c609173e42d68ecddaf2286cba61dc7587b44b4799464549
-    lines:
-      A1_128E: [122, 165]
-      A2_128E: [173, 216]
-      A3_128E: [224, 267]
-      INA128: [53, 114]
-    fetched: '2026-09-19'
-- source: microcap12
-  name: INA128E
-  def: subckt
-  type: SUBCKT
-  deps:
-  - A1_128E
-  - A3_128E
-  - A2_128E
-  verbatim: true
-  get:
-    url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: ti.lib
-    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
-    sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
-    lines:
-      A1_128E: [21826, 21924]
-      A2_128E: [21948, 22048]
-      A3_128E: [22072, 22172]
-      INA128E: [21614, 21802]
-    fetched: '2026-09-20'
   copies:
-  - source: kicad-spice-library
-    name: INA128E/BB
+  - source: microcap12
+    name: INA128E
     get:
-      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/burr-brn.lib
-      sha256: 24467fdf16f7135ce54f90c7424e35ce1e6d2131c277351a4ee7276cdd6e2664
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: ti.lib
+      sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
   - source: ltwiki
     name: INA128E/BB
     get:
