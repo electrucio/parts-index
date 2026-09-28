@@ -13,7 +13,7 @@ import { Fragment } from 'preact'
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks'
 
 import { AboutPart, Databooks, PartName } from './about'
-import { DATA, loadCatalogue, loadIndex, reloadIndex } from './data'
+import { DATA, loadIndex, reloadIndex } from './data'
 import { Fold } from './fold'
 import { forViewer } from './links'
 import type { DeviceKind, PageUse, PartIndex, PartPage, PartRow, UseKind } from './types'
@@ -33,12 +33,10 @@ export const NATURAL: Record<Sort, Dir> = { name: 'asc', documents: 'desc', mode
 const PAGE = 300
 
 /**
- * What kind of part a row is, in a few words: its family when one is known, else the devices its number
- * could be — a JEDEC number that could be a transistor or a JFET says both.
+ * What kind of part a row is: the entries of the device menu it answers to, the same ones the filter
+ * uses — every one it could be, so a D model nothing narrows says "Diodes / Germanium diodes".
  */
-export function typeOf(r: PartRow, families: string[] | undefined, labels: Record<string, string>, menu: DeviceKind[]): string {
-  const f = r[5] !== undefined && r[5] >= 0 ? families?.[r[5]] : undefined
-  if (f && labels[f]) return labels[f]
+export function typeOf(r: PartRow, menu: DeviceKind[]): string {
   return menu.filter((_, i) => (r[4] & (1 << i)) !== 0).map((d) => d.label).join(' / ')
 }
 
@@ -566,10 +564,8 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
   const [shown, setShown] = useState(PAGE)
   const [width, setWidth] = useState(savedWidth)
   const host = useRef<HTMLDivElement>(null)
-  const [labels, setLabels] = useState<Record<string, string>>({})
 
   useEffect(() => { loadIndex().then(setIndex) }, [])
-  useEffect(() => { loadCatalogue().then((c) => setLabels(Object.fromEntries(c.families.map((f) => [f.id, f.label])))) }, [])
 
   const searching = q.trim().length >= 2
   const list = useMemo(() => {
@@ -649,7 +645,7 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
                     </a>
                   </td>
                   {(() => {
-                    const t = index ? typeOf(r, index.families, labels, index.deviceKinds) : ''
+                    const t = index ? typeOf(r, index.deviceKinds) : ''
                     return <td class="type" title={t}>{t}</td>
                   })()}
                   <td class="num">{r[1] ? n(r[1]) : '—'}</td>

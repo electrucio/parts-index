@@ -132,6 +132,14 @@ KIND_MAP: dict[str, tuple[str, ...]] = {
     "switch": ("passive",), "thermistor": ("passive",), "module": ("passive",),
     "power_module": ("passive",),
 }
+# What a model library in the census says a part is: the SPICE device type of its definition. A fact, but
+# a broad one — a D model is any diode, an NPN or PNP model any bipolar transistor, germanium or not — so
+# it answers to every device it could be, and counts only when nothing narrower says. A subcircuit says
+# nothing about what is inside it.
+MODEL_LIBRARY_KINDS: dict[str, tuple[str, ...]] = {
+    "diode": ("diode", "diode-ge", "zener", "led"), "bjt": ("bjt", "bjt-ge"),
+    "jfet": ("jfet",), "mosfet": ("mosfet",),
+}
 MODEL_KEYS = ("source", "name", "def", "type", "pins", "verbatim", "changes", "symbol")
 
 
@@ -256,6 +264,7 @@ def index() -> dict:
            "wanted_kind": {r["part"]: r["kind"] for r in rows(wanted_parts()) if r.get("kind")},
            "dictionary": dictionary_kinds()}
     idx["listed_by"], idx["listings"] = census_listings()
+    idx["modelled"] = modelled_devices()
     idx["catalogued"] = catalogued()
     idx["sheets"] = archive_sheets()
     idx["harvested"] = harvested_sheets()
@@ -287,6 +296,23 @@ def census_listings() -> tuple[dict[str, list[list]], dict[str, dict]]:
         for r in rows(parts_census(src)):
             out[r["part"]].append([src, r["url"]])
     return out, meta
+
+
+def modelled_devices() -> dict[str, tuple[str, ...]]:
+    """The devices each part could be, by the SPICE device type a model library defines it as."""
+    reg = yaml.safe_load(census_registry().read_text(encoding="utf-8")) if census_registry().exists() else {}
+    out: dict[str, set[str]] = defaultdict(set)
+    for src, e in (reg or {}).items():
+        if (e or {}).get("kind") != "model library":
+            continue
+        for r in rows(parts_census(src)):
+            out[r["part"]].update(MODEL_LIBRARY_KINDS.get(r.get("kind", ""), ()))
+    return {p: tuple(d for d, _ in DEVICES if d in devs) for p, devs in out.items() if devs}
+
+
+def devices_of(part: str, kind: str, idx: dict) -> tuple[str, ...]:
+    """The devices a part answers to: from its kind, or failing that from what a model library says."""
+    return KIND_MAP.get(kind, ()) or idx.get("modelled", {}).get(part, ())
 
 
 CATALOGUE_FIELDS = ("source", "maker", "category", "status", "title", "revision", "url", "page", "checked", "name")
@@ -460,7 +486,7 @@ def known_kinds(idx: dict, recipes: dict, names) -> dict[str, tuple[str, ...]]:
             out.setdefault(r["part"], KIND_MAP.get(r.get("kind", ""), ()))
     dictionary = idx.get("dictionary", {})
     for p in names:
-        devs = KIND_MAP.get(part_kind(p, recipes, dictionary) or idx.get("wanted_kind", {}).get(p, ""), ())
+        devs = devices_of(p, part_kind(p, recipes, dictionary) or idx.get("wanted_kind", {}).get(p, ""), idx)
         if devs or p not in out:             # a kind the index cannot tell does not erase the catalogue's
             out[p] = devs
     return out
@@ -563,7 +589,7 @@ def about(part: str, idx: dict, recipe: dict | None) -> dict:
     source gives is simply absent, and the page shows nothing for it.
     """
     out: dict = {}
-    devices = KIND_MAP.get(kind_of(part, recipe, idx), ())
+    devices = devices_of(part, kind_of(part, recipe, idx), idx)
     d = schemes.decode(part, devices, idx.get("known"))
     if d:
         out["name"] = d.as_dict()
@@ -799,15 +825,34 @@ def part_payload(part: str, idx: dict, recipe: dict | None) -> dict:
     return out
 
 
-def device_bits(kind: str) -> int:
-    """Which of `DEVICES` this kind answers to, as a bit per device.
+def narrowed(devices: tuple[str, ...], family: str) -> tuple[str, ...]:
+    """The devices a part answers to, cut down to the ones its family can be.
+
+    A D model is any diode, but 1SS133's JIS name makes it a signal diode, which is not a zener or an LED;
+    2N5457 could be three things by its pattern, and its maker's sheet says which. The family's own
+    devices are the nearest ones up its lineage; when they share nothing with the part's, the part's stand.
+    """
+    fams = catalogue.families()
+    at, seen = family, set()
+    while at and at not in seen:
+        seen.add(at)
+        f = fams.get(at) or {}
+        if f.get("kinds"):
+            keep = tuple(d for d in devices if d in f["kinds"])
+            return keep or devices
+        at = f.get("broader")
+    return devices
+
+
+def device_bits(devices: tuple[str, ...]) -> int:
+    """Which of `DEVICES` these are, as a bit per device.
 
     One number instead of a list of words: twenty-two devices fit in an integer, and a part row is read
     fifteen thousand times.
     """
     at = {k: i for i, (k, _) in enumerate(DEVICES)}
     bits = 0
-    for d in KIND_MAP.get(kind, ()):
+    for d in devices:
         bits |= 1 << at[d]
     return bits
 
@@ -821,22 +866,23 @@ def search_index(idx: dict, recipes: dict) -> tuple[list[list], list[dict]]:
     counts = {part: (len({(si, u["doc"]) for si, u in us}), len(us)) for part, us in idx["uses"].items()}
     dictionary = dictionary_kinds()
     listed_kind = idx.get("wanted_kind", {})
-    cache: dict[str, int] = {}
+    cache: dict[tuple[str, ...], int] = {}
     fam_at = {fid: i for i, fid in enumerate(catalogue.families())}
     out = []
     tally = Counter()
     for part in sorted(set(counts) | set(recipes) | set(listed_kind)):
         docs, uses = counts.get(part, (0, 0))
         kind = part_kind(part, recipes, dictionary) or listed_kind.get(part, "")
-        if kind not in cache:
-            cache[kind] = device_bits(kind)
-        bits = cache[kind]
+        devs = devices_of(part, kind, idx)
+        named = schemes.decode(part, devs, idx.get("known"))
+        fid, _ = catalogue.family_of(part, devs, named.families if named else None)
+        devs = narrowed(devs, fid)
+        if devs not in cache:
+            cache[devs] = device_bits(devs)
+        bits = cache[devs]
         for i, (key, _) in enumerate(DEVICES):
             if bits & (1 << i):
                 tally[key] += 1
-        devs = KIND_MAP.get(kind, ())
-        named = schemes.decode(part, devs, idx.get("known"))
-        fid, _ = catalogue.family_of(part, devs, named.families if named else None)
         out.append([part, docs, uses, len(recipes.get(part, {}).get("models") or []), bits,
                     fam_at.get(fid, -1)])
     # Every device ships, even the ones nothing answers to, because the bit a part carries is its

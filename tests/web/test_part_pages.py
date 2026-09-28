@@ -168,7 +168,7 @@ def test_a_part_answers_to_every_device_it_could_be(data):
     """A JEDEC number cannot be told apart by its pattern: 2N3904 is a transistor, 2N5457 a JFET.
     Guessing one would hide the other, and the menu is a way of finding things."""
     at = {k: i for i, (k, _) in enumerate(P.DEVICES)}
-    bits = P.device_bits("bjt/jfet/mosfet")
+    bits = P.device_bits(P.KIND_MAP["bjt/jfet/mosfet"])
     for d in ("bjt", "jfet", "mosfet"):
         assert bits & (1 << at[d]), d
     assert not bits & (1 << at["tube"])
@@ -349,3 +349,20 @@ def test_an_issue_is_dated_to_the_month_when_its_row_says_so():
     assert P.issue_date({"year": "1985", "month": "8"}) == "1985-08"
     assert P.issue_date({"year": "1985", "month": ""}) == "1985"
     assert P.issue_date({"year": "", "month": "08"}) == ""
+
+
+def test_a_model_librarys_device_type_files_a_part_nothing_else_does(data):
+    """1SS133 is in no recipe or dictionary, but a model library defines it as a D model: it is a diode
+    of some sort, which is enough to read its JIS name as a signal diode."""
+    idx = P.index()
+    idx["modelled"] = {"1SS133": P.MODEL_LIBRARY_KINDS["diode"]}
+    assert P.devices_of("1SS133", "", idx) == ("diode", "diode-ge", "zener", "led")
+    assert P.devices_of("1SS133", "bjt", idx) == ("bjt",)             # a narrower kind wins
+    assert P.devices_of("2SC1815", "", idx) == ()
+
+
+def test_a_family_narrows_the_devices_a_part_could_be():
+    assert P.narrowed(("diode", "diode-ge", "zener", "led"), "signal-diode") == ("diode", "diode-ge")
+    assert P.narrowed(("bjt", "jfet", "mosfet"), "jfet") == ("jfet",)
+    assert P.narrowed(("bjt",), "jfet") == ("bjt",)           # nothing shared: the part's own kind stands
+    assert P.narrowed(("bjt",), "") == ("bjt",)

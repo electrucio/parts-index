@@ -183,12 +183,13 @@ describe('a GitHub address', () => {
 })
 
 describe('the kind of part in the list', () => {
-  it('is its family when one is known', () => {
-    expect(typeOf(['BC108', 1, 1, 0, BJT, 0], ['bjt'], { bjt: 'Bipolar transistors' }, MENU)).toBe('Bipolar transistors')
+  it('is the device menu entry it answers to', () => {
+    expect(typeOf(['BC108', 1, 1, 0, BJT, 0], MENU)).toBe('Silicon BJT')
   })
 
-  it('is every device its number could be when no family is', () => {
-    expect(typeOf(['2N3055', 1, 1, 0, BJT | JFET, -1], ['bjt'], {}, MENU)).toBe('Silicon BJT / JFET')
+  it('is every entry it could be when nothing narrows it', () => {
+    expect(typeOf(['2N3055', 1, 1, 0, BJT | JFET, -1], MENU)).toBe('Silicon BJT / JFET')
+    expect(typeOf(['X1', 1, 1, 0, 0, -1], MENU)).toBe('')
   })
 })
 
