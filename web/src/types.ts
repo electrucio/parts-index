@@ -92,6 +92,8 @@ export interface PartPage {
   listed?: { source: string; category?: string; note?: string }[]
   /** `owner/repo`, sheets that place the part, then stars, forks and watchers. */
   repos?: [string, number, number, number, number][]
+  /** Stars, forks and watchers of the repositories whose sheets are among `docs`, by `owner/name`. */
+  stars?: Record<string, [number, number, number]>
   n: { documents: number; shown: number; copies: number; repos?: number }
   models?: {
     kind: string

@@ -21,7 +21,6 @@ export const n = (v: number) => v.toLocaleString('en-GB')
 
 export type Sort = 'documents' | 'models' | 'sheets' | 'name'
 export type Dir = 'asc' | 'desc'
-type Filter = '' | 'models' | 'verified' | 'nomodel'
 
 /** The list's columns, each a way of ordering it. A count starts from the most; a name from A. */
 const COLUMNS: { key: Sort; label: string; title: string; num: boolean }[] = [
@@ -31,11 +30,6 @@ const COLUMNS: { key: Sort; label: string; title: string; num: boolean }[] = [
   { key: 'sheets', label: 'Sheets', title: 'Data sheets and databook pages linked for it', num: true },
 ]
 export const NATURAL: Record<Sort, Dir> = { name: 'asc', documents: 'desc', models: 'desc', sheets: 'desc' }
-const FILTERS: { key: Filter; label: string }[] = [
-  { key: '', label: 'all' },
-  { key: 'models', label: 'with a model' },
-  { key: 'nomodel', label: 'without one' },
-]
 const PAGE = 300
 
 const COUNT: Record<Exclude<Sort, 'name'>, (r: PartRow) => number> = {
@@ -92,12 +86,6 @@ export function search(rows: PartRow[], q: string, by: Sort = 'documents', dir: 
 /** All the parts, in the order asked for. Sorting 15,558 rows is cheap; rendering them is not. */
 export function order(rows: PartRow[], by: Sort, dir: Dir = NATURAL[by]): PartRow[] {
   return [...rows].sort(compare(by, dir))
-}
-
-export function keep(rows: PartRow[], f: Filter): PartRow[] {
-  if (f === 'models') return rows.filter((r) => r[3] > 0)
-  if (f === 'nomodel') return rows.filter((r) => r[3] === 0)
-  return rows
 }
 
 /**
@@ -298,76 +286,74 @@ export function repoOf(url: string): string | null {
 }
 
 /**
- * Boards somebody is making: every GitHub repository that places the part, whichever source found it.
+ * Boards somebody is making: every GitHub repository that places the part, in one list, once each, the
+ * most starred first.
  *
- * Two lists meet here. The sheets the index read page by page — found by the open-hardware crawls, by a
- * journal, by a site that links its boards — fold under their repository, each sheet with its page links.
- * The projects the research datasets say place the part, with how much attention each has, follow as
- * plain links; one that is in both lends its stars to the fold.
+ * They are found two ways — sheets the index read page by page (the open-hardware crawls, a journal, a
+ * site that links its boards) and projects the research datasets say place the part — and a reader has
+ * no use for that distinction, so it is not shown. A repository whose sheets were read opens onto them,
+ * each with its page links; the others link to the repository.
  */
 function OpenSource({ page, docs }: { page: PartPage; docs: PartPage['docs'] }) {
-  const listed = page.repos ?? []
-  if (!docs.length && !listed.length) return null
-  const stats = new Map(listed.map((r) => [r[0].toLowerCase(), r]))
-  const byRepo = new Map<string, PartPage['docs']>()
-  for (const d of docs) {
-    const k = repoOf(d.u) ?? '?'
-    const g = byRepo.get(k)
-    if (g) g.push(d)
-    else byRepo.set(k, [d])
+  type Repo = { name: string; stars: number; forks: number; watchers: number; sheets: number; docs: PartPage['docs'] }
+  const all = new Map<string, Repo>()
+  const entry = (name: string) => {
+    const k = name.toLowerCase()
+    let r = all.get(k)
+    if (!r) all.set(k, (r = { name, stars: 0, forks: 0, watchers: 0, sheets: 0, docs: [] }))
+    return r
   }
-  const stars = (repo: string) => stats.get(repo.toLowerCase())?.[2] ?? 0
-  const read = [...byRepo.entries()].sort((a, b) =>
-    stars(b[0]) - stars(a[0]) || b[1].length - a[1].length || a[0].localeCompare(b[0]))
-  const seen = new Set([...byRepo.keys()].map((k) => k.toLowerCase()))
-  const rest = listed.filter((r) => !seen.has(r[0].toLowerCase()))
-  const more = Math.max(0, (page.n.repos ?? listed.length) - listed.length)
-  const total = read.length + rest.length + more
+  for (const [name, sheets, stars, forks, watchers] of page.repos ?? []) {
+    Object.assign(entry(name), { stars, forks, watchers, sheets })
+  }
+  for (const d of docs) {
+    const name = repoOf(d.u)
+    if (name) entry(name).docs.push(d)
+  }
+  for (const [name, [stars, forks, watchers]] of Object.entries(page.stars ?? {})) {
+    const r = all.get(name.toLowerCase())
+    if (r && !r.stars) Object.assign(r, { stars, forks, watchers })
+  }
+  if (!all.size) return null
+  const list = [...all.values()].sort((a, b) =>
+    b.stars - a.stars || Math.max(b.docs.length, b.sheets) - Math.max(a.docs.length, a.sheets) || a.name.localeCompare(b.name))
+  const more = Math.max(0, (page.n.repos ?? 0) - (page.repos?.length ?? 0))
   const summary = (
     <>
       <strong>Open-source projects</strong>
-      <span class="count">{n(total)}</span>
-      <span class="small muted">boards on GitHub that place this part</span>
+      <span class="count">{n(list.length + more)}</span>
+      <span class="small muted">boards on GitHub that place this part, the most starred first</span>
     </>
   )
+  const Stars = ({ r }: { r: Repo }) => (r.stars > 0
+    ? <span class="muted small" title={`${n(r.stars)} stars, ${n(r.forks)} forks, ${n(r.watchers)} watching`}>★{n(r.stars)}</span>
+    : null)
+  const Out = ({ r }: { r: Repo }) => (
+    <a class="out" href={`${REPO_HOST}${r.name}`} target="_blank" rel="noopener" title="Open the repository on GitHub"
+      onClick={(e) => e.stopPropagation()}>↗ GitHub</a>
+  )
   return (
-    <Fold summary={summary} level={1} open={total > 0 && page.docs.length === docs.length}>
+    <Fold summary={summary} level={1} open={page.docs.length === docs.length}>
       {() => (
-        <>
-          {read.map(([repo, ds]) => (
-            <Fold
-              key={repo} level={2} cls="repo"
-              summary={
-                <>
-                  <strong>{repo}</strong>
-                  {stars(repo) > 0 && <span class="muted small">★{n(stars(repo))}</span>}
-                  <span class="count">{n(ds.length)} {ds.length === 1 ? 'sheet' : 'sheets'}</span>
-                </>
-              }
-            >
-              {() => ds.map((d, i) => <Document key={i} d={{ ...d, t: d.t.replace(`${repo}: `, '') }} />)}
-            </Fold>
-          ))}
-          {rest.length > 0 && (
-            <>
-              {read.length > 0 && <p class="muted small">Also placing it, from the sheets of each project as a whole:</p>}
-              <ul class="uselist cols">
-                {rest.map(([repo, sheets, st, forks, watchers], i) => (
-                  <li key={i}>
-                    <a href={`${REPO_HOST}${repo}`} target="_blank" rel="noopener">{repo}</a>
-                    {st > 0 && (
-                      <span class="muted small" title={`${n(st)} stars, ${n(forks)} forks, ${n(watchers)} watching`}>
-                        {' '}★{n(st)}
-                      </span>
-                    )}
-                    {sheets > 1 && <span class="muted small"> · {sheets} sheets</span>}
-                  </li>
-                ))}
-                {more > 0 && <li class="muted small">and {n(more)} more on GitHub</li>}
-              </ul>
-            </>
-          )}
-        </>
+        <div class="repolist">
+          {list.map((r) => {
+            const sheets = Math.max(r.docs.length, r.sheets)
+            const count = sheets > 1 && <span class="count">{n(sheets)} sheets</span>
+            return r.docs.length ? (
+              <Fold
+                key={r.name} level={2} cls="repo"
+                summary={<><strong>{r.name}</strong><Out r={r} /><Stars r={r} />{count}</>}
+              >
+                {() => r.docs.map((d, i) => <Document key={i} d={{ ...d, t: d.t.replace(`${r.name}: `, '') }} />)}
+              </Fold>
+            ) : (
+              <div class="plain" key={r.name}>
+                <strong>{r.name}</strong><Out r={r} /><Stars r={r} />{count}
+              </div>
+            )
+          })}
+          {more > 0 && <p class="muted small">and {n(more)} more on GitHub, with fewer stars</p>}
+        </div>
       )}
     </Fold>
   )
@@ -551,7 +537,6 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
   const [q, setQ] = useState('')
   const [by, setBy] = useState<Sort>('documents')
   const [dir, setDir] = useState<Dir>(NATURAL.documents)
-  const [filter, setFilter] = useState<Filter>('')
   const [device, setDevice] = useState('')
   const [shown, setShown] = useState(PAGE)
   const [width, setWidth] = useState(savedWidth)
@@ -562,10 +547,10 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
   const searching = q.trim().length >= 2
   const list = useMemo(() => {
     if (!index) return []
-    const kept = keep(ofDevice(index.parts, device, index.deviceKinds), filter)
+    const kept = ofDevice(index.parts, device, index.deviceKinds)
     return searching ? search(kept, q, by, dir) : order(kept, by, dir)
-  }, [index, q, by, dir, filter, device, searching])
-  useEffect(() => setShown(PAGE), [q, by, dir, filter, device])
+  }, [index, q, by, dir, device, searching])
+  useEffect(() => setShown(PAGE), [q, by, dir, device])
 
   /** A column's header: the first click orders by it, the next turns the order round. */
   const sortBy = (key: Sort) => {
@@ -597,18 +582,6 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
             d.n > 0 ? <option key={d.key} value={d.key}>{d.label} ({n(d.n)})</option> : null
           ))}
         </select>
-        <div class="filters">
-          {FILTERS.map((f) => (
-            <button
-              key={f.key}
-              type="button"
-              aria-pressed={filter === f.key}
-              onClick={() => setFilter(f.key)}
-            >
-              {f.label}
-            </button>
-          ))}
-        </div>
         <p class="count">
           {!index ? 'loading…'
             : searching ? `${n(list.length)} match ${q} · closest first`

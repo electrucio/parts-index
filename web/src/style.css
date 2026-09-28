@@ -72,9 +72,6 @@ dl.kv dd { margin: 0; overflow-wrap: anywhere; }
 .browser > .evidence { padding-left: 6px; }
 .side { position: sticky; top: 70px; display: flex; flex-direction: column; gap: 10px; max-height: calc(100vh - 90px); }
 .side input, .side select { width: 100%; font: inherit; font-size: 0.95rem; padding: 7px 10px; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); color: var(--ink); }
-.filters { display: flex; gap: 6px; flex-wrap: wrap; }
-.filters button { font: 600 0.78rem var(--body); padding: 3px 9px; border-radius: 999px; border: 1px solid var(--rule); background: var(--surface); color: var(--muted); cursor: pointer; }
-.filters button[aria-pressed="true"] { background: var(--ink); color: var(--ground); border-color: var(--ink); }
 .plist { overflow: auto; border-top: 1px solid var(--rule); flex: 1; min-height: 200px; }
 .plist table { font-size: 0.86rem; }
 .plist thead th { position: sticky; top: 0; z-index: 1; background: var(--sunken); padding: 0; }
@@ -172,6 +169,16 @@ details.uses[open] > summary { margin-bottom: 6px; }
 details.uses .uses { border-top: 1px solid var(--rule); }
 details.uses .uses .uses { border-top: 0; }
 details.uses summary strong { font-weight: 600; }
+/* A repository with nothing to open is a row like the ones that open, its marker's room left empty. */
+.repolist > .plain { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-left: 4px;
+  padding: 2px 0 2px 16px; border-left: 2px solid var(--rule); border-top: 1px solid var(--rule); }
+/* One list, two kinds of row: the ones that open say so with a triangle, the others keep its room. */
+.repolist > details > summary::before, .repolist > .plain::before { content: ""; display: inline-block; width: 0.8em; margin-right: -4px; color: var(--faint); font-size: 0.75rem; }
+.repolist > details > summary::before { content: "▸"; }
+.repolist > details[open] > summary::before { content: "▾"; }
+.repolist > .plain strong { font: 600 0.86rem var(--mono); color: var(--ink); }
+.repolist a.out { font-size: 0.8rem; text-decoration: none; color: var(--faint); }
+.repolist a.out:hover { color: var(--link); }
 details.uses.lv2.repo > summary strong { font: 600 0.86rem var(--mono); text-transform: none; letter-spacing: 0; color: var(--ink); }
 
 /* What a part's name says, and the catalogue pages */

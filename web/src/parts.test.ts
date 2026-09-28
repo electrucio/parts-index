@@ -1,7 +1,7 @@
 /** Filtering and ordering the parts list, which is the only logic the browser still does for itself. */
 import { describe, expect, it } from 'vitest'
 
-import { keep, ofDevice, order, pageHref, partPath, repoOf, sameSources, search } from './parts'
+import { ofDevice, order, pageHref, partPath, repoOf, sameSources, search } from './parts'
 import type { DeviceKind, PartRow } from './types'
 
 /** The menu, in menu order; a part row carries one bit per entry, the way the built index does. */
@@ -88,21 +88,6 @@ describe('the order of the list', () => {
     const before = rows.map((r) => r[0])
     order(rows, 'name')
     expect(rows.map((r) => r[0])).toEqual(before)
-  })
-})
-
-describe('the filter chips', () => {
-  it('keeps everything by default', () => {
-    expect(keep(rows, '')).toHaveLength(rows.length)
-  })
-
-  it('can show only the parts a model exists for, or only the ones still without', () => {
-    expect(keep(rows, 'models').map((r) => r[0])).toEqual(['12AX7', 'ECC83', 'BC108B', '2N3055'])
-    expect(keep(rows, 'nomodel').map((r) => r[0])).toEqual(['12AX7A', 'BC108'])
-  })
-
-  it('and the two halves add up to the whole', () => {
-    expect(keep(rows, 'models').length + keep(rows, 'nomodel').length).toBe(rows.length)
   })
 })
 

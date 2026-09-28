@@ -334,3 +334,12 @@ def test_databook_pages_are_listed_apart_from_the_makers_sheets(data):
     about = P.part_payload("TL072", idx, None)["about"]
     assert [r[0] for r in about["sheets"]] == ["https://ti.example/tl072.pdf"]
     assert [r[4] for r in about["books"]] == ["archive_databooks"]
+
+
+def test_a_repository_among_the_documents_carries_its_stars(data):
+    """The page lists every repository in one list by stars, whichever way it was found."""
+    idx = P.index()
+    idx["repo_stats"] = {"a/board": {"stars": "7", "forks": "1", "watchers": "2", "status": "live"}}
+    idx["uses"]["TL072"] = [(idx["sources"].index("esp"), {"doc": "9", "page": "1", "times": "1", "near": ""})]
+    idx["documents"]["esp"]["9"] = {"title": "a/board: b.kicad_sch", "url": "https://github.com/a/board/blob/HEAD/b.kicad_sch"}
+    assert P.part_payload("TL072", idx, None)["stars"] == {"a/board": [7, 1, 2]}

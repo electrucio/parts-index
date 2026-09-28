@@ -186,7 +186,21 @@ def kinds() -> dict[str, str]:
     return {k: (v or {}).get("kind", "") for k, v in entries.items()}
 
 
-def repos() -> dict[str, list[list]]:
+def repo_stats() -> dict[str, dict]:
+    """How much attention each GitHub repository has, by `owner/name` in lower case."""
+    return {r["url"].replace(REPO_HOST, "").lower(): r for r in rows(dataset_table("repo_stats"))}
+
+
+def repo_of(url: str) -> str:
+    """`owner/name` of a GitHub address, or "" for anything else."""
+    if not url.startswith(REPO_HOST):
+        return ""
+    owner, _, rest = url[len(REPO_HOST):].partition("/")
+    name = rest.split("/", 1)[0]
+    return f"{owner}/{name}" if owner and name else ""
+
+
+def repos(stats: dict[str, dict] | None = None) -> dict[str, list[list]]:
     """Open-source projects that place each part, from the dataset distilled in `data/datasets/`.
 
     The third answer to "where is it used", and the only one that points at a board somebody is working
@@ -194,8 +208,8 @@ def repos() -> dict[str, list[list]]:
     what a reader wants is the five of them anybody has looked at. A project that has been deleted is
     dropped; one that has been renamed travels under the name it answers to now.
     """
-    host = "https://github.com/"
-    stats = {r["url"].replace(host, "").lower(): r for r in rows(dataset_table("repo_stats"))}
+    host = REPO_HOST
+    stats = repo_stats() if stats is None else stats
     out: dict[str, list[list]] = defaultdict(list)
     for r in rows(dataset_table("part_repos")):
         repo = r["url"].replace(host, "").strip("/")
@@ -226,16 +240,19 @@ def index() -> dict:
     lines: dict[str, dict] = {}
     uses: dict[str, list] = defaultdict(list)
     kind = kinds()
+    stats = repo_stats()
     for i, s in enumerate(sources()):
         docs[s] = {r["id"]: r for r in rows(schematics_documents(s))}
         pages[s] = {(r["doc"], r["page"]): r for r in rows(schematics_pages(s))}
         lines[s] = {(r["doc"], r["page"], r["part"]): (r["kind"], r["line"])
                     for r in rows(schematics_lines(s))}
         for u in rows(schematics_uses(s)):
-            if shown(kind.get(s, ""), (docs[s].get(u["doc"]) or {}).get("url", "")):
+            url = (docs[s].get(u["doc"]) or {}).get("url", "")
+            gone = (stats.get(repo_of(url).lower()) or {}).get("status") == "gone"
+            if shown(kind.get(s, ""), url) and not gone:
                 uses[u["part"]].append((i, u))
     idx = {"sources": sources(), "kinds": kind, "documents": docs, "pages": pages, "lines": lines,
-           "uses": uses, "repos": repos(), "wanted": wanted(),
+           "uses": uses, "repos": repos(stats), "repo_stats": stats, "wanted": wanted(),
            "wanted_kind": {r["part"]: r["kind"] for r in rows(wanted_parts()) if r.get("kind")},
            "dictionary": dictionary_kinds()}
     idx["listed_by"], idx["listings"] = census_listings()
@@ -755,6 +772,16 @@ def part_payload(part: str, idx: dict, recipe: dict | None) -> dict:
     if gh:
         out["repos"] = gh[:REPO_CAP]
         out["n"]["repos"] = len(gh)
+    # The attention of each repository whose sheets are among the documents, so the page can put them in
+    # one list with the projects above, ordered by stars. [stars, forks, watchers]
+    stars = {}
+    for d in shown:
+        r = repo_of(d["u"])
+        st = idx.get("repo_stats", {}).get(r.lower()) if r else None
+        if st:
+            stars[r] = [int(st.get("stars") or 0), int(st.get("forks") or 0), int(st.get("watchers") or 0)]
+    if stars:
+        out["stars"] = stars
     if listed:
         out["listed"] = out_listed
     if recipe:
