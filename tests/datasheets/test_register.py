@@ -262,3 +262,10 @@ def test_a_family_named_sheet_covers_its_members():
     text = "L78\nPositive voltage regulator ICs\n" + "x" * 900 + "\nL7805CV L7805 L7812CV L7812 L78L05"
     got = covered([text], parts, "L78")
     assert {"L7805", "L7812"} <= set(got) and "L78L05" not in got     # 78L05 is another family
+
+
+def test_a_type_is_covered_by_two_letter_grades_too():
+    from parts_index.datasheets.harvest import covered
+    parts = {"L7805", "L7805C", "L7805AB", "L7805AC"}
+    text = "L78\n" + "x" * 900 + "\nL7805C L7805C L7805AB L7805AB L7805AC L7805AC"
+    assert "L7805" in covered([text], parts, "L78")

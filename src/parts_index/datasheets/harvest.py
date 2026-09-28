@@ -48,7 +48,7 @@ from parts_index.core.parts.extractor import KNOWN, base_part, canonical, family
 STAGES = ("fetch", "read")
 VERSIONED = ("read",)
 FIELDS = ("key", "url", "http", "bytes", "sha256", "fetch_at", "read_at", "read_v", "skip_reason")
-READ_VERSION = "12"  # 12: a family-named sheet covers its members (l78.pdf: L7805)
+READ_VERSION = "13"  # 13: grades may be two letters (L7805AB, L7805AC); family-named sheets
 DOC_FIELDS = ("url", "maker", "title", "revision", "pages", "bytes", "sha256", "covers", "checked", "copy")
 COVER_FIELDS = ("part", "url", "seen", "times")
 
@@ -314,8 +314,9 @@ def covered(pages: list[str], parts: set[str], sheet_head: str = "", prefix: str
             found[n] = ("first page" if n in first else "text", c)
     # A type whose grades the sheet covers, two or more of them, is the sheet's too: BF245 on the
     # BF245A-B-C sheet, BC547 beside BC547A/B/C. One grade alone (TIP31C) says nothing about the others.
-    for base in {n[:-1] for n in found if re.fullmatch(r".*\d[A-C]", n)} & parts - set(found):
-        grades = [n for n in found if n[:-1] == base and n[-1] in "ABC"]
+    # Grades are one or two of A-C after the number: BC547B, and L7805C / L7805AB / L7805AC on ST's l78.pdf.
+    for base in {re.sub(r"[A-C]{1,2}$", "", n) for n in found if re.fullmatch(r".*\d[A-C]{1,2}", n)} & parts - set(found):
+        grades = [n for n in found if n.startswith(base) and re.fullmatch(r"[A-C]{1,2}", n[len(base):])]
         if len(grades) >= 2:
             found[base] = (found[grades[0]][0], sum(found[g][1] for g in grades))
     return {n: v for n, v in found.items() if not stem(n, found)}
