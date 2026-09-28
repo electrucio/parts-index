@@ -28,6 +28,23 @@ models:
       member: LIBRARY/on_bjt.lib
       sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77
   - source: microcap12
+    name: Qtip30a
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: LIBRARY/On_Semi.lib
+      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
+  - source: microcap12
+    name: tip30a
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: LIBRARY/on_bjt.lib
+      sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77
+  - source: onsemi
+    name: Qtip30a
+    get:
+      url: https://www.onsemi.com/download/models/lib/tip30a.lib
+      sha256: e261c98ce393cc3ef93d31317d6dab37eccfd395802d6d02dc79e6fe26df4c6e
+  - source: microcap12
     name: Qtip30b
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
@@ -61,23 +78,6 @@ models:
     get:
       url: https://www.onsemi.com/download/models/lib/tip30c.lib
       sha256: 60920eaf37e14df045ce301c9bd033f047323a4c36b9abf279357661585ab143
-  - source: microcap12
-    name: Qtip30a
-    get:
-      url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: LIBRARY/On_Semi.lib
-      sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
-  - source: microcap12
-    name: tip30a
-    get:
-      url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: LIBRARY/on_bjt.lib
-      sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77
-  - source: onsemi
-    name: Qtip30a
-    get:
-      url: https://www.onsemi.com/download/models/lib/tip30a.lib
-      sha256: e261c98ce393cc3ef93d31317d6dab37eccfd395802d6d02dc79e6fe26df4c6e
 - source: bordodynov
   name: TIP30
   def: model
@@ -92,6 +92,18 @@ models:
       TIP30: [1467, 1467]
     fetched: '2026-09-21'
   copies:
+  - source: groupsio-ltspice
+    name: TIP30
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: TIP30
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
   - source: kicad-spice-library
     name: TIP30
     get:
@@ -114,18 +126,36 @@ models:
       url: http://bordodynov.ltwiki.org/cmp.zip
       member: cmp/standard.bjt
       sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: groupsio-ltspice
+    name: TIP30A
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: ltwiki
+    name: TIP30A
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrbjt.lib
+      sha256: 30a0b2113b846773bf8dc3f872c0edaed5312f72b3907f053aaba5badf6b8034
+  - source: groupsio-ltspice
+    name: TIP30B
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
   - source: ltwiki
     name: TIP30B
     get:
       url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrbjt.lib
       sha256: 30a0b2113b846773bf8dc3f872c0edaed5312f72b3907f053aaba5badf6b8034
-  - source: ltwiki
+  - source: groupsio-ltspice
     name: TIP30C
     get:
-      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrbjt.lib
-      sha256: 30a0b2113b846773bf8dc3f872c0edaed5312f72b3907f053aaba5badf6b8034
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
   - source: ltwiki
-    name: TIP30A
+    name: TIP30C
     get:
       url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/pwrbjt.lib
       sha256: 30a0b2113b846773bf8dc3f872c0edaed5312f72b3907f053aaba5badf6b8034
@@ -139,6 +169,17 @@ models:
     sha256: a64b2703fc28c849c7760139346aa1e0c31b83f7701a15e8e7a8d12b01c7befc
     lines:
       TIP30: [2993, 3002]
+    fetched: '2026-09-14'
+- source: kicad-spice-library
+  name: TIP30A
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWBJT.LIB
+    sha256: a64b2703fc28c849c7760139346aa1e0c31b83f7701a15e8e7a8d12b01c7befc
+    lines:
+      TIP30A: [3007, 3016]
     fetched: '2026-09-14'
 - source: kicad-spice-library
   name: TIP30B
@@ -161,17 +202,6 @@ models:
     sha256: a64b2703fc28c849c7760139346aa1e0c31b83f7701a15e8e7a8d12b01c7befc
     lines:
       TIP30C: [2574, 2583]
-    fetched: '2026-09-14'
-- source: kicad-spice-library
-  name: TIP30A
-  def: subckt
-  type: SUBCKT
-  verbatim: true
-  get:
-    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/POWBJT.LIB
-    sha256: a64b2703fc28c849c7760139346aa1e0c31b83f7701a15e8e7a8d12b01c7befc
-    lines:
-      TIP30A: [3007, 3016]
     fetched: '2026-09-14'
 - source: kicad-spice-library
   name: TIP30D

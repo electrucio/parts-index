@@ -33,6 +33,12 @@ models:
       BAS516: [865, 865]
     fetched: '2026-09-14'
   copies:
+  - source: groupsio-ltspice
+    name: BAS516
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.dio
+      sha256: f9cddb038dea806c10b7452ffa2b2f90a32266b7acd5913afe5191acd48edd29
   - source: kicad-spice-library
     name: BAS516
     get:
@@ -93,9 +99,10 @@ models:
   type: SUBCKT
   verbatim: true
   get:
-    member: PSpice_20260827/Toshiba-lib-PSpice_20260827/Switching Diodes/BAS516_PSpice_20250213/BAS516_PSpice_rev1.lib
-    how: unknown
+    url: https://toshiba.semicon-storage.com/info/docgetzip.jsp?did=100&displang=en
+    member: Toshiba-lib-PSpice_20260827/Switching Diodes/BAS516_PSpice_20250213/BAS516_PSpice_rev1.lib
+    archive_sha256: f167eaf431c0d3c8d292ae0cb4abd1ed4d53ef4f97eb000f7468d1696bd6c51c
     sha256: f1c2586a6eb534b76f87a5bb34f4a2e30f37ba305c4ee0bb27f25447b74e9d1b
     lines:
       BAS516: [29, 53]
-    fetched: '2026-09-14'
+    fetched: '2026-09-20'

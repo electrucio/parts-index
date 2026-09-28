@@ -122,3 +122,32 @@ models:
     lines:
       QBC184BP: [158, 160]
     fetched: '2026-09-14'
+- source: groupsio-ltspice
+  name: BC184BP
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+    lines:
+      BC184BP: [5195, 5195]
+    fetched: '2026-09-21'
+- source: groupsio-ltspice
+  name: BC184
+  def: model
+  type: NPN
+  deps:
+  - BC107BP
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+    lines:
+      BC107BP: [5175, 5175]
+      BC184: [1803, 1803]
+    fetched: '2026-09-21'

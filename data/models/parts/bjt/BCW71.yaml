@@ -4,6 +4,19 @@ priority: 3
 group: listed
 models:
 - source: microcap12
+  name: BCW71
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: LIBRARY/nxp.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
+    lines:
+      BCW71: [41664, 41702]
+    fetched: '2026-09-21'
+- source: microcap12
   name: BCW71L
   def: model
   type: NPN
@@ -16,16 +29,16 @@ models:
     lines:
       BCW71L: [2395, 2398]
     fetched: '2026-09-21'
-- source: microcap12
+- source: groupsio-ltspice
   name: BCW71
   def: model
   type: NPN
   verbatim: true
   get:
-    url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: LIBRARY/nxp.lib
-    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
     lines:
-      BCW71: [41664, 41702]
+      BCW71: [2092, 2092]
     fetched: '2026-09-21'

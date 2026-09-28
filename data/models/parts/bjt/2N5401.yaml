@@ -274,12 +274,24 @@ models:
     get:
       how: unknown
       sha256: eee2b330ada2b89057d41e4dc2107ba39d4eaf9aa2335e7bb94cd5e1e0b8f48c
+  - source: groupsio-ltspice
+    name: 2N5401c
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: ltwiki
     name: 2N5401c
     get:
       url: http://bordodynov.ltwiki.org/example.zip
       member: examples/Bordodynov/distortion_OUTPUT_vs_bias/standard_BJT modified.txt
       sha256: b11d82ef9412f3285ead0b742f082d8c60ba31108d4eb85c48c7268e54aeb9a4
+  - source: groupsio-ltspice
+    name: 2N5401_CA
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
 - source: duncanamps
   name: Q2N5401
   def: model
@@ -335,8 +347,21 @@ models:
   - source: groupsio-ltspice
     name: 2N5401
     get:
-      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/LM3886_test.zip
-      sha256: 5b15ed01aa401bdb7c7be2ec67986eda5d531ef41af3b2c6fee10495bab9be34
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: 2N5401
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: 2N5401
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: 2N5401
     get:
@@ -541,6 +566,12 @@ models:
       2N5401_C: [1151, 1151]
     fetched: '2026-09-21'
   copies:
+  - source: groupsio-ltspice
+    name: 2N5401_C
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: 2N5401_C
     get:
@@ -573,17 +604,6 @@ models:
     sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
     lines:
       2N5401c: [1338, 1338]
-    fetched: '2026-09-21'
-- source: groupsio-ltspice
-  name: 2N5401
-  def: model
-  type: PNP
-  verbatim: true
-  get:
-    how: unknown
-    sha256: c2efeb5146d6eec5855876ea76bbcab2e20b845867d62bf17ead9f0a9bb77c0c
-    lines:
-      2N5401: [1861, 1869]
     fetched: '2026-09-21'
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/2n5401-d.pdf

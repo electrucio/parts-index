@@ -34,6 +34,12 @@ models:
       BC848A: [617, 617]
     fetched: '2026-09-14'
   copies:
+  - source: groupsio-ltspice
+    name: BC848A
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: BC848A
     get:
@@ -88,6 +94,12 @@ models:
       BC848C: [619, 619]
     fetched: '2026-09-14'
   copies:
+  - source: groupsio-ltspice
+    name: BC848C
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: BC848C
     get:
@@ -216,6 +228,12 @@ models:
       BC848B: [575, 575]
     fetched: '2026-09-14'
   copies:
+  - source: groupsio-ltspice
+    name: BC848B
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: BC848B
     get:
@@ -256,6 +274,11 @@ models:
     get:
       url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BC848BW.lib
       sha256: cf52e686d21062021804b6ccf6814483d7c97441f44e1b2e328b749bc80746b0
+  - source: spice-model-cd
+    name: QBC848
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BC848.lib
+      sha256: 2edcd536ae396df75d038ea37323163e68cbe736fbe1e540a1321d0a38ea2d34
   - source: kicad-spice-library
     name: BC848W
     get:
@@ -308,11 +331,6 @@ models:
     get:
       url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/phil_bjt.lib
       sha256: b623268d86bce75fdf51394d854e686cdc6a6cd2ace376954bc24bf15056d79f
-  - source: spice-model-cd
-    name: QBC848
-    get:
-      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BC848.lib
-      sha256: 2edcd536ae396df75d038ea37323163e68cbe736fbe1e540a1321d0a38ea2d34
   - source: spice-model-cd
     name: QBC848BT
     get:
@@ -437,15 +455,15 @@ models:
       url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/zmodels.lib
       sha256: df79c20130b55541a1047df22b4cca3bfdb260045dfee6f538354adc6cfb78d6
 - source: spice-model-cd
-  name: BC848/SIE
+  name: BC848
   def: model
   type: NPN
   verbatim: true
   get:
-    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Siemens/S_afbjt.lib
-    sha256: e2c2bcb8a13097f87967907662a781eff72b0569fa8a31346a7b18186436f691
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Infineon/AF-Transistors/S_afbjt.lib
+    sha256: 172cb499cdefac9555fbb25786181826448d2c25d8abfb5d7d853b139e99231a
     lines:
-      BC848/SIE: [736, 746]
+      BC848: [741, 751]
     fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
@@ -456,13 +474,13 @@ models:
   - source: spice-model-cd
     name: BC848
     get:
-      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Infineon/AF-Transistors/S_afbjt.lib
-      sha256: 172cb499cdefac9555fbb25786181826448d2c25d8abfb5d7d853b139e99231a
-  - source: spice-model-cd
-    name: BC848
-    get:
       url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Infineon/Other/BJT/S_afbjt.lib
       sha256: 55d3abf17fd13cdfeff5c57e966f88d85d90157d6caaf1ce3f72977d57494470
+  - source: spice-model-cd
+    name: BC848/SIE
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Siemens/S_afbjt.lib
+      sha256: e2c2bcb8a13097f87967907662a781eff72b0569fa8a31346a7b18186436f691
 - source: spice-model-cd
   name: BC848C
   def: subckt
@@ -680,6 +698,54 @@ models:
       QBC848B: [250, 252]
     fetched: '2026-09-14'
 - source: ltwiki
+  name: BC848A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/ebipolar.lib
+    sha256: 76bb4b024f91527c84cb28203cc0af1797ab5ba1a0382d82a59198a26a2ba783
+    lines:
+      BC848A: [450, 454]
+    fetched: '2026-09-21'
+  copies:
+  - source: groupsio-ltspice
+    name: BC848A
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: BC848A
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+- source: ltwiki
+  name: BC848C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/ebipolar.lib
+    sha256: 76bb4b024f91527c84cb28203cc0af1797ab5ba1a0382d82a59198a26a2ba783
+    lines:
+      BC848C: [465, 469]
+    fetched: '2026-09-21'
+  copies:
+  - source: groupsio-ltspice
+    name: BC848C
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: BC848C
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+- source: ltwiki
   name: BC848C/SIE
   def: model
   type: NPN
@@ -697,17 +763,6 @@ models:
       url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/siemens.lib
       sha256: c1318342f700741e0d97896cf4f77fe203b8923e12b1106c6c14f848c74bdd5b
 - source: ltwiki
-  name: BC848A
-  def: model
-  type: NPN
-  verbatim: true
-  get:
-    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/ebipolar.lib
-    sha256: 76bb4b024f91527c84cb28203cc0af1797ab5ba1a0382d82a59198a26a2ba783
-    lines:
-      BC848A: [450, 454]
-    fetched: '2026-09-21'
-- source: ltwiki
   name: BC848B
   def: model
   type: NPN
@@ -718,17 +773,30 @@ models:
     lines:
       BC848B: [458, 461]
     fetched: '2026-09-21'
-- source: ltwiki
-  name: BC848C
+- source: kicad-spice-library
+  name: BC848
   def: model
   type: NPN
   verbatim: true
   get:
-    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/ebipolar.lib
-    sha256: 76bb4b024f91527c84cb28203cc0af1797ab5ba1a0382d82a59198a26a2ba783
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTN.LIB
+    sha256: 2c85b6bbf3a7dcb9403d646a1c120714fdc7bce5c8287c8e537012a1cf3ef6c2
     lines:
-      BC848C: [465, 469]
-    fetched: '2026-09-21'
+      BC848: [409, 411]
+    fetched: '2026-09-14'
+  copies:
+  - source: groupsio-ltspice
+    name: BC848
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: BC848
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
 - source: kicad-spice-library
   name: bc848c
   def: model
@@ -751,14 +819,29 @@ models:
     lines:
       BC848s: [58, 68]
     fetched: '2026-09-14'
-- source: kicad-spice-library
-  name: BC848
+- source: groupsio-ltspice
+  name: BC848B
   def: model
   type: NPN
   verbatim: true
   get:
-    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJTN.LIB
-    sha256: 2c85b6bbf3a7dcb9403d646a1c120714fdc7bce5c8287c8e537012a1cf3ef6c2
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
     lines:
-      BC848: [409, 411]
-    fetched: '2026-09-14'
+      BC848B: [5255, 5255]
+    fetched: '2026-09-21'
+  copies:
+  - source: groupsio-ltspice
+    name: BC848B
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: BC848B
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87

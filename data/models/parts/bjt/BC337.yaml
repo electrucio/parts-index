@@ -28,6 +28,12 @@ models:
     not_measurable: 0
     typical_rows: 1
   copies:
+  - source: groupsio-ltspice
+    name: BC337S
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: BC337S
     get:
@@ -89,6 +95,12 @@ models:
     not_measurable: 0
     typical_rows: 1
   copies:
+  - source: groupsio-ltspice
+    name: BC337
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: BC337
     get:
@@ -223,6 +235,12 @@ models:
     get:
       url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/zmodels.lib
       sha256: df79c20130b55541a1047df22b4cca3bfdb260045dfee6f538354adc6cfb78d6
+  - source: groupsio-ltspice
+    name: BC337A
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
 - source: spice-model-cd
   name: BC337
   def: model
@@ -428,15 +446,50 @@ models:
       QBC337AP: [182, 185]
     fetched: '2026-09-14'
 - source: groupsio-ltspice
+  name: BC337
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+    lines:
+      BC337: [4822, 4822]
+    fetched: '2026-09-21'
+  copies:
+  - source: groupsio-ltspice
+    name: BC337
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+- source: groupsio-ltspice
   name: BC337S
   def: model
   type: NPN
   verbatim: true
   get:
-    how: unknown
-    sha256: c2efeb5146d6eec5855876ea76bbcab2e20b845867d62bf17ead9f0a9bb77c0c
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
     lines:
-      BC337S: [472, 480]
+      BC337S: [1834, 1834]
+    fetched: '2026-09-21'
+- source: groupsio-ltspice
+  name: BC337AP
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+    lines:
+      BC337AP: [5211, 5211]
     fetched: '2026-09-21'
 datasheet:
   url: https://www.nxp.com/documents/data_sheet/BC817_BC817W_BC337.pdf

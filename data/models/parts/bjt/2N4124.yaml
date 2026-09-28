@@ -63,8 +63,21 @@ models:
   - source: groupsio-ltspice
     name: 2N4124
     get:
-      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/LM3886_test.zip
-      sha256: 5b15ed01aa401bdb7c7be2ec67986eda5d531ef41af3b2c6fee10495bab9be34
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: 2N4124
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: 2N4124
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: 2N4124
     get:
@@ -233,17 +246,6 @@ models:
     sha256: 03fbaf82587d859e52f6b3e36166b65d7d6b6f241e460308f37d3b568e5fa96e
     lines:
       2N4124: [737, 740]
-    fetched: '2026-09-21'
-- source: groupsio-ltspice
-  name: 2N4124
-  def: model
-  type: NPN
-  verbatim: true
-  get:
-    how: unknown
-    sha256: c2efeb5146d6eec5855876ea76bbcab2e20b845867d62bf17ead9f0a9bb77c0c
-    lines:
-      2N4124: [204, 212]
     fetched: '2026-09-21'
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/2n4123-d.pdf

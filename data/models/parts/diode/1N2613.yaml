@@ -96,6 +96,18 @@ models:
   note: 'STAND-IN: model of 1N4004, not of 1N2613; equivalence declared in catalog/wanted.yaml (see its
     note)'
   copies:
+  - source: groupsio-ltspice
+    name: D1N4004
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.dio
+      sha256: f9cddb038dea806c10b7452ffa2b2f90a32266b7acd5913afe5191acd48edd29
+  - source: groupsio-ltspice
+    name: 1N4004
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.dio
+      sha256: f9cddb038dea806c10b7452ffa2b2f90a32266b7acd5913afe5191acd48edd29
   - source: kicad-spice-library
     name: D1N4004
     get:

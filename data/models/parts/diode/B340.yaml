@@ -143,3 +143,19 @@ models:
     lines:
       b340a: [2785, 2794]
     fetched: '2026-09-21'
+- source: groupsio-ltspice
+  name: B340A
+  def: model
+  type: D
+  deps:
+  - DI_B340A
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+    member: standard.dio
+    archive_sha256: 07f1f7a6ca2baff83c890ea5f4773dab91734b0a38a521bb012461b20cd9e5a9
+    sha256: f9cddb038dea806c10b7452ffa2b2f90a32266b7acd5913afe5191acd48edd29
+    lines:
+      B340A: [1348, 1348]
+      DI_B340A: [1347, 1347]
+    fetched: '2026-09-21'

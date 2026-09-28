@@ -22,12 +22,24 @@ models:
     get:
       how: unknown
       sha256: eee2b330ada2b89057d41e4dc2107ba39d4eaf9aa2335e7bb94cd5e1e0b8f48c
+  - source: groupsio-ltspice
+    name: MJL4281c
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: ltwiki
     name: MJL4281c
     get:
       url: http://bordodynov.ltwiki.org/example.zip
       member: examples/Bordodynov/distortion_OUTPUT_vs_bias/standard_BJT modified.txt
       sha256: b11d82ef9412f3285ead0b742f082d8c60ba31108d4eb85c48c7268e54aeb9a4
+  - source: groupsio-ltspice
+    name: MJL4281_CA
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
 - source: bordodynov
   name: mjL4281a
   def: model
@@ -42,6 +54,12 @@ models:
       mjL4281a: [1020, 1020]
     fetched: '2026-09-14'
   copies:
+  - source: groupsio-ltspice
+    name: mjL4281a
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: mjL4281a
     get:
@@ -96,6 +114,12 @@ models:
       MJL4281_C: [1167, 1167]
     fetched: '2026-09-14'
   copies:
+  - source: groupsio-ltspice
+    name: MJL4281_C
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: MJL4281_C
     get:
@@ -188,6 +212,12 @@ models:
       Qmjl4281a: [14, 24]
     fetched: '2026-09-19'
   copies:
+  - source: groupsio-ltspice
+    name: MJL4281A
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
   - source: microcap12
     name: Qmjl4281a
     get:

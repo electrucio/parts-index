@@ -80,6 +80,12 @@ models:
     get:
       how: unknown
       sha256: eee2b330ada2b89057d41e4dc2107ba39d4eaf9aa2335e7bb94cd5e1e0b8f48c
+  - source: groupsio-ltspice
+    name: 2N5089c
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: ltwiki
     name: 2N5089c
     get:
@@ -122,8 +128,21 @@ models:
   - source: groupsio-ltspice
     name: 2N5089
     get:
-      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/LM3886_test.zip
-      sha256: 5b15ed01aa401bdb7c7be2ec67986eda5d531ef41af3b2c6fee10495bab9be34
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: 2N5089
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: 2N5089
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: 2N5089
     get:
@@ -352,6 +371,13 @@ models:
     lines:
       2N5089_C: [1194, 1194]
     fetched: '2026-09-21'
+  copies:
+  - source: groupsio-ltspice
+    name: 2N5089_C
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
 - source: kicad-spice-library
   name: 2N5089c
   def: model
@@ -364,15 +390,17 @@ models:
       2N5089c: [1336, 1336]
     fetched: '2026-09-21'
 - source: groupsio-ltspice
-  name: 2N5089
+  name: 2N5089_CA
   def: model
   type: NPN
   verbatim: true
   get:
-    how: unknown
-    sha256: c2efeb5146d6eec5855876ea76bbcab2e20b845867d62bf17ead9f0a9bb77c0c
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
     lines:
-      2N5089: [284, 292]
+      2N5089_CA: [409, 409]
     fetched: '2026-09-21'
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/2n5088-d.pdf

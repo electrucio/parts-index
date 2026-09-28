@@ -17,6 +17,18 @@ models:
       2SC2712: [1333, 1333]
     fetched: '2026-09-14'
   copies:
+  - source: groupsio-ltspice
+    name: 2SC2712
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: 2SC2712
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: 2SC2712
     get:
@@ -53,6 +65,12 @@ models:
       2SC2712_: [1334, 1334]
     fetched: '2026-09-14'
   copies:
+  - source: groupsio-ltspice
+    name: 2SC2712_
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: 2SC2712_
     get:
@@ -99,6 +117,6 @@ models:
   - source: toshiba
     name: 2SC2712
     get:
-      member: PSpice_20260827/Toshiba-lib-PSpice_20260827/Bipolar Transistors/2SC2712_PSpice_20161207/2SC2712.lib
-      how: unknown
+      url: https://toshiba.semicon-storage.com/info/docgetzip.jsp?did=100&displang=en
+      member: Toshiba-lib-PSpice_20260827/Bipolar Transistors/2SC2712_PSpice_20161207/2SC2712.lib
       sha256: befe72c288c7d7d85faa62bd1c21d61e6b3dd0ee3301f1bc2ba04e87c2cbe804

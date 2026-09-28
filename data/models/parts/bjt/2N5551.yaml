@@ -255,6 +255,12 @@ models:
     get:
       how: unknown
       sha256: eee2b330ada2b89057d41e4dc2107ba39d4eaf9aa2335e7bb94cd5e1e0b8f48c
+  - source: groupsio-ltspice
+    name: 2N5551c
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: ltwiki
     name: 2N5551c
     get:
@@ -425,6 +431,12 @@ models:
       2N5551: [353, 353]
     fetched: '2026-09-21'
   copies:
+  - source: groupsio-ltspice
+    name: 2N5551
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: 2N5551
     get:
@@ -461,17 +473,6 @@ models:
       2N5551_C: [1152, 1152]
     fetched: '2026-09-21'
 - source: kicad-spice-library
-  name: Q2N5551
-  def: model
-  type: NPN
-  verbatim: true
-  get:
-    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/BJT_NPN/TOSHIBA.LIB
-    sha256: 48d4fd1df68108bb9d61af444d53f63e19fc48d39cebc6bc9ff3a11eb947f336
-    lines:
-      Q2N5551: [480, 497]
-    fetched: '2026-09-14'
-- source: kicad-spice-library
   name: 2N5551_C
   def: model
   type: NPN
@@ -482,6 +483,13 @@ models:
     lines:
       2N5551_C: [1189, 1189]
     fetched: '2026-09-21'
+  copies:
+  - source: groupsio-ltspice
+    name: 2N5551_C
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
 - source: kicad-spice-library
   name: 2N5551c
   def: model
@@ -493,17 +501,44 @@ models:
     lines:
       2N5551c: [1339, 1339]
     fetched: '2026-09-21'
+  copies:
+  - source: groupsio-ltspice
+    name: 2N5551_CA
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+- source: kicad-spice-library
+  name: Q2N5551
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/other_models/BJT_NPN/TOSHIBA.LIB
+    sha256: 48d4fd1df68108bb9d61af444d53f63e19fc48d39cebc6bc9ff3a11eb947f336
+    lines:
+      Q2N5551: [480, 497]
+    fetched: '2026-09-14'
 - source: groupsio-ltspice
   name: 2N5551
   def: model
   type: NPN
   verbatim: true
   get:
-    how: unknown
-    sha256: c2efeb5146d6eec5855876ea76bbcab2e20b845867d62bf17ead9f0a9bb77c0c
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
     lines:
-      2N5551: [344, 352]
+      2N5551: [485, 485]
     fetched: '2026-09-21'
+  copies:
+  - source: groupsio-ltspice
+    name: 2N5551
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
 datasheet:
   url: https://www.nxp.com/documents/data_sheet/2N5550_5551.pdf
   maker: philips (nxp)

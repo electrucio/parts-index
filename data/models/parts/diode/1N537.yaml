@@ -150,6 +150,12 @@ models:
       url: https://ltwiki.org/files/Standard.zip
       member: Standard/standard.dio
       sha256: 280ae7054bb689df4bc233122d3ada1c585f77b4e44a3df1ebf059805c199683
+  - source: groupsio-ltspice
+    name: 1N4002
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.dio
+      sha256: f9cddb038dea806c10b7452ffa2b2f90a32266b7acd5913afe5191acd48edd29
   - source: kicad-spice-library
     name: 1N4002
     get:
@@ -275,6 +281,13 @@ models:
       D1N4002: [123, 123]
     fetched: '2026-09-21'
   note: 'STAND-IN: model of 1N4002, not of 1N537; the equivalence is declared in data/models/wanted.yaml'
+  copies:
+  - source: groupsio-ltspice
+    name: D1N4002
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.dio
+      sha256: f9cddb038dea806c10b7452ffa2b2f90a32266b7acd5913afe5191acd48edd29
 - source: kicad-spice-library
   name: D1N4002
   def: model

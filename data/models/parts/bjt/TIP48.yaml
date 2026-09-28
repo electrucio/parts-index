@@ -38,3 +38,21 @@ models:
     lines:
       TIP48: [2882, 2891]
     fetched: '2026-09-14'
+- source: groupsio-ltspice
+  name: TIP48
+  def: model
+  type: NPN
+  deps:
+  - 2SC2073
+  - TIP47
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+    lines:
+      2SC2073: [1128, 1128]
+      TIP47: [4575, 4575]
+      TIP48: [4576, 4576]
+    fetched: '2026-09-21'

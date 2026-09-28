@@ -28,6 +28,12 @@ models:
     not_measurable: 0
     typical_rows: 2
   copies:
+  - source: groupsio-ltspice
+    name: 2SC2922
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: 2SC2922
     get:
@@ -93,6 +99,13 @@ models:
     lines:
       Q2sc2922: [1926, 1929]
     fetched: '2026-09-21'
+  copies:
+  - source: groupsio-ltspice
+    name: 2SC2922
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
 datasheet:
   url: https://www.semicon.sanken-ele.co.jp/sk_content/2sc2922_ds_en.pdf
   maker: sanken

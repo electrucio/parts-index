@@ -51,7 +51,11 @@ SOURCE_RANK = [
 RANK = {s: i for i, s in enumerate(SOURCE_RANK)}
 # Path globs, relative to the model tree, whose definitions never become candidates: other simulators'
 # syntax and superseded editions. Ayumi ships each model three times; win/ is the LTspice one.
-EXCLUDE = ["sources/ayumi/extracted/simetrix/**", "sources/ayumi/extracted/linux/**"]
+EXCLUDE = ["sources/ayumi/extracted/simetrix/**", "sources/ayumi/extracted/linux/**",
+           # edited during a delivery (a collection with AC127 added, another enlarged): published
+           # nowhere, so no link can lead to them
+           "sources/groupsio-ltspice/raw/standard_collections_RAW_no_curado/standard.with_AC127.bjt",
+           "sources/groupsio-ltspice/raw/standard_collections_RAW_no_curado/standard_PB_enlarged.bjt"]
 ARCHIVE_EXT = (".zip", ".7z", ".tgz", ".gz", ".rar", ".msi", ".tar")
 
 
@@ -243,6 +247,8 @@ def provenance(root: Path, file: str, source: str, sha256: str) -> dict:
         if hit:
             # `page` is where a person reads it when there is no direct file URL (forum post, product page)
             prov.update(url=hit.get("url") or hit.get("page") or None, note=hit.get("note") or None)
+            if hit.get("page_only"):        # the listing page that offers the file, not the file
+                prov["url_is_source_page"] = True
             if hit.get("fetched"):          # files added by a later fetch carry their own date
                 prov["fetched"] = hit["fetched"]
             return prov
@@ -288,7 +294,8 @@ def declared_origin(files: list[dict], relf: str) -> dict | None:
     way, so the honest answer is the product and the file's place in it, not the installer's URL.
     """
     for f in files:
-        folder = (f.get("unpacked_to") or (f.get("installed") or {}).get("into") or "").strip("/")
+        folder = (f.get("unpacked_to") or f.get("extracted_to")
+                  or (f.get("installed") or {}).get("into") or "").strip("/")
         if not folder or not relf.startswith(folder + "/"):
             continue
         member = relf[len(folder) + 1:]

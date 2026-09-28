@@ -17,6 +17,12 @@ models:
       ZTX458: [1258, 1258]
     fetched: '2026-09-14'
   copies:
+  - source: groupsio-ltspice
+    name: ZTX458
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: ZTX458
     get:
@@ -166,3 +172,23 @@ models:
     lines:
       QZTX458: [870, 873]
     fetched: '2026-09-14'
+- source: groupsio-ltspice
+  name: ZTX458
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+    lines:
+      ZTX458: [5439, 5439]
+    fetched: '2026-09-21'
+  copies:
+  - source: groupsio-ltspice
+    name: ZTX458
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87

@@ -59,6 +59,12 @@ models:
     not_measurable: 0
     typical_rows: 3
   copies:
+  - source: groupsio-ltspice
+    name: BC560A
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: BC560A
     get:
@@ -120,6 +126,18 @@ models:
     not_measurable: 0
     typical_rows: 3
   copies:
+  - source: groupsio-ltspice
+    name: BC560B
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: BC560B
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: BC560B
     get:
@@ -181,6 +199,18 @@ models:
     not_measurable: 0
     typical_rows: 3
   copies:
+  - source: groupsio-ltspice
+    name: BC560C
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: BC560C
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: BC560C
     get:
@@ -325,6 +355,12 @@ models:
     get:
       url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Zetex/zmodels.lib
       sha256: df79c20130b55541a1047df22b4cca3bfdb260045dfee6f538354adc6cfb78d6
+  - source: groupsio-ltspice
+    name: BC560
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
 - source: microcap12
   name: BC560AP_ZX
   def: subckt
@@ -477,6 +513,13 @@ models:
     lines:
       BC560C_C: [1191, 1191]
     fetched: '2026-09-21'
+  copies:
+  - source: groupsio-ltspice
+    name: BC560C_C
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
 - source: kicad-spice-library
   name: BC560C_Ck
   def: model
@@ -488,16 +531,38 @@ models:
     lines:
       BC560C_Ck: [1193, 1193]
     fetched: '2026-09-21'
+  copies:
+  - source: groupsio-ltspice
+    name: BC560C_Ck
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
 - source: groupsio-ltspice
   name: BC560A
   def: model
   type: PNP
   verbatim: true
   get:
-    how: unknown
-    sha256: c2efeb5146d6eec5855876ea76bbcab2e20b845867d62bf17ead9f0a9bb77c0c
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
     lines:
-      BC560A: [2010, 2018]
+      BC560A: [1905, 1905]
+    fetched: '2026-09-21'
+- source: groupsio-ltspice
+  name: BC560_CA
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+    lines:
+      BC560_CA: [1904, 1904]
     fetched: '2026-09-21'
 datasheet:
   url: http://www.fairchildsemi.com/ds/BC/BC560.pdf

@@ -59,6 +59,18 @@ models:
     not_measurable: 0
     typical_rows: 4
   copies:
+  - source: groupsio-ltspice
+    name: BC550C
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: BC550C
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: BC550C
     get:
@@ -259,6 +271,13 @@ models:
     lines:
       BC550C_C: [1190, 1190]
     fetched: '2026-09-21'
+  copies:
+  - source: groupsio-ltspice
+    name: BC550C_C
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
 - source: kicad-spice-library
   name: BC550C_Ck
   def: model
@@ -269,6 +288,26 @@ models:
     sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
     lines:
       BC550C_Ck: [1192, 1192]
+    fetched: '2026-09-21'
+  copies:
+  - source: groupsio-ltspice
+    name: BC550C_Ck
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
+- source: groupsio-ltspice
+  name: BC550_CA
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+    lines:
+      BC550_CA: [1880, 1880]
     fetched: '2026-09-21'
 datasheet:
   url: https://www.nxp.com/documents/data_sheet/BC549_550.pdf

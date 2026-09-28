@@ -28,6 +28,12 @@ models:
       url: http://bordodynov.ltwiki.org/example.zip
       member: examples/Bordodynov/distortion_OUTPUT_vs_bias/standard_BJT modified.txt
       sha256: b11d82ef9412f3285ead0b742f082d8c60ba31108d4eb85c48c7268e54aeb9a4
+  - source: groupsio-ltspice
+    name: MJL4302_CA
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
 - source: bordodynov
   name: mjL4302a
   def: model
@@ -42,6 +48,12 @@ models:
       mjL4302a: [1021, 1021]
     fetched: '2026-09-14'
   copies:
+  - source: groupsio-ltspice
+    name: mjL4302a
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: mjL4302a
     get:
@@ -125,6 +137,12 @@ models:
       MJL4302_C: [1111, 1111]
     fetched: '2026-09-14'
   copies:
+  - source: groupsio-ltspice
+    name: MJL4302_C
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: MJL4302_C
     get:
@@ -168,6 +186,12 @@ models:
       mjl4302a: [14, 24]
     fetched: '2026-09-21'
   copies:
+  - source: groupsio-ltspice
+    name: MJL4302A
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
   - source: microcap12
     name: Qmjl4302a
     get:

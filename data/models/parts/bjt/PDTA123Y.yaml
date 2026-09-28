@@ -48,7 +48,7 @@ models:
   note: pins from default order (unverified)
   copies:
   - source: microcap12
-    name: PDTA123YT
+    name: PDTA123YE
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
       member: LIBRARY/ph_bjt.lib
@@ -59,24 +59,6 @@ models:
       url: http://ltwiki.org/files/LargeCollection.zip
       member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/PDTA123YE.PRM
       sha256: b3d0012e6482b8c9a6b2e362e72af943d8365884382d83ce81f7a6676b1f18c4
-  - source: microcap12
-    name: PDTA123YE
-    get:
-      url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: LIBRARY/ph_bjt.lib
-      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
-  - source: ltwiki
-    name: PDTA123YU
-    get:
-      url: http://ltwiki.org/files/LargeCollection.zip
-      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/PDTA123YU.PRM
-      sha256: cbc2075ce4201f7a41fd03a07acccd9522604140dbf606fb453e4a16f1d0d770
-  - source: microcap12
-    name: PDTA123YU
-    get:
-      url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: LIBRARY/ph_bjt.lib
-      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
   - source: ltwiki
     name: PDTA123YK
     get:
@@ -97,6 +79,24 @@ models:
       sha256: 0c9a67f6c03a098aa95990683b66e3c01d2c25181d78d5bf905e74b365e8a328
   - source: microcap12
     name: PDTA123YM
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: LIBRARY/ph_bjt.lib
+      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
+  - source: microcap12
+    name: PDTA123YT
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: LIBRARY/ph_bjt.lib
+      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
+  - source: ltwiki
+    name: PDTA123YU
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/PDTA123YU.PRM
+      sha256: cbc2075ce4201f7a41fd03a07acccd9522604140dbf606fb453e4a16f1d0d770
+  - source: microcap12
+    name: PDTA123YU
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
       member: LIBRARY/ph_bjt.lib
@@ -173,3 +173,41 @@ models:
       PDTA123YM: [2, 66]
     fetched: '2026-09-14'
   note: pins from default order (unverified)
+- source: groupsio-ltspice
+  name: PDTA123YE
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+    lines:
+      PDTA123YE: [4021, 4021]
+    fetched: '2026-09-21'
+  copies:
+  - source: groupsio-ltspice
+    name: PDTA123YK
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: PDTA123YM
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: PDTA123YT
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: PDTA123YU
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87

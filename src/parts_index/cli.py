@@ -44,6 +44,9 @@ def main(argv: list[str] | None = None) -> int:
     mv.add_argument("--limit", type=int, default=0, help="at most this many repairs per source")
     mod.add_parser("match", help="find, for every wanted part, each definition that could be its model")
     mod.add_parser("found", help="group those matches into distinct models, with where each copy can be had")
+    mrc = mod.add_parser("reconcile", help="join every definition file to the download it came from")
+    mrc.add_argument("--source", action="append", help="only these sources (repeatable)")
+    mrc.add_argument("--write", action="store_true", help="record the ledger rows and folders found")
     mp = mod.add_parser("promote", help="write the public recipe for every curated part")
     mp.add_argument("--kind", help="only one kind (bjt, jfet, ...)")
     mp.add_argument("--dry", action="store_true", help="say what would be written and write nothing")
@@ -242,6 +245,11 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "models" and args.mod_cmd == "match":
         from parts_index.models import match as model_match
         return model_match.main([])
+
+    if args.cmd == "models" and args.mod_cmd == "reconcile":
+        from parts_index.models import reconcile as model_reconcile
+        argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
+        return model_reconcile.main(argv2 + (["--write"] if args.write else []))
 
     if args.cmd == "models" and args.mod_cmd == "found":
         from parts_index.models import found as model_found

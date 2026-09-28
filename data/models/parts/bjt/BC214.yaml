@@ -23,3 +23,16 @@ models:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
       member: lbr_txt/msbjt_lbr.lib
       sha256: 03fbaf82587d859e52f6b3e36166b65d7d6b6f241e460308f37d3b568e5fa96e
+- source: groupsio-ltspice
+  name: BC214
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+    lines:
+      BC214: [1809, 1809]
+    fetched: '2026-09-21'

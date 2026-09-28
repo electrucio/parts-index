@@ -11,7 +11,7 @@ WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
 
 .DEFAULT_GOAL := help
-.PHONY: datasheets-register datasheets-links datasheets-harvest datasheets-catalogue datasheets-databooks web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-match models-found models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
+.PHONY: datasheets-register datasheets-links datasheets-harvest datasheets-catalogue datasheets-databooks web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-reconcile models-match models-found models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -65,6 +65,9 @@ models-recover:  ## (maintainer) fetch those files again, checking each against 
 
 models-verify:  ## (maintainer) check the tree still holds every model file, byte for byte
 	$(RUN) pidx models verify
+
+models-reconcile:  ## (maintainer) which downloads the definitions came from; WRITE=1 records it [SOURCE='a b']
+	$(RUN) pidx models reconcile $(foreach s,$(SOURCE),--source $(s)) $(if $(WRITE),--write,)
 
 models-match:  ## (maintainer) find, for every wanted part, each definition that could be its model
 	$(RUN) pidx models match

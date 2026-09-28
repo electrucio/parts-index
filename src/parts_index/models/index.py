@@ -185,43 +185,48 @@ def scan(sources_dir: Path, only: list[str] | None = None) -> tuple[list[dict], 
     return out, n_files
 
 
-def manifest_key(rel: str) -> tuple[str, str]:
-    """(source, the manifest path this file counts towards).
+def manifests(source: str) -> list[tuple[str, dict]]:
+    """(folder, manifest) for this source's manifest and each one a sub-folder keeps of its own.
 
-    An archive is unpacked into `extracted/<stem>/`, so everything under it is credited to the archive it
-    came from; `defs_by_path` then matches that against the manifest.
+    Vishay's catalogues were fetched into `semis/`, `passives/` and `ic-and-power/`, each with a
+    manifest whose paths are relative to that folder. The folder is returned so paths can be put back
+    relative to the source, which is how the catalogue names files.
     """
-    parts = rel.split("/")                                    # sources/<id>/<where>/...
-    source = parts[1]
-    where = parts[2] if len(parts) > 2 else ""
-    if where == "extracted" and len(parts) > 3:
-        return source, "stem:" + parts[3].lower()
-    return source, "/".join(parts[2:])
+    top = spice_source_manifest(source)
+    found = [top] + sorted(top.parent.glob("*/manifest.json")) if top.parent.exists() else []
+    out = []
+    for mf in found:
+        if mf.exists():
+            folder = "" if mf == top else mf.parent.name
+            out.append((folder, json.loads(mf.read_text(encoding="utf-8"))))
+    return out
 
 
-def defs_by_path(records: list[dict]) -> dict[tuple[str, str], int]:
-    n: Counter = Counter()
-    for r in records:
-        if r["file"].startswith("sources/"):
-            n[manifest_key(r["file"])] += 1
-    return n
+def under(folder: str, rel: str) -> str:
+    return f"{folder}/{rel}" if folder else rel
+
+
+def entry_paths(source: str) -> list[tuple[str, str]]:
+    """(ledger key, path inside the source) for every file the manifests list.
+
+    The ledger is public and holds only URLs; which local file each URL became is in the source's own
+    manifests, which are private. This is the one place the two are joined. One URL may stand for
+    several files — a forum thread's attachments, a data sheet and the model transcribed from it.
+    """
+    out = []
+    for folder, man in manifests(source):
+        for x in man.get("files", []):
+            path, url = x.get("path") or "", x.get("url") or ""
+            if path:
+                out.append((url or f"manual:{under(folder, path)}", under(folder, path)))
+    return out
 
 
 def ledger_paths(source: str) -> dict[str, str]:
-    """Ledger key -> the path inside the source that key stands for.
-
-    The ledger is public and holds only URLs; which local file each URL became is in the source's own
-    manifest, which is private. This is the one place the two are joined.
-    """
-    mf = spice_source_manifest(source)
-    if not mf.exists():
-        return {}
+    """Ledger key -> the first path inside the source that key stands for."""
     out: dict[str, str] = {}
-    for x in json.loads(mf.read_text(encoding="utf-8")).get("files", []):
-        path, url = x.get("path") or "", x.get("url") or ""
-        if not path:
-            continue
-        out.setdefault(url or f"manual:{path}", path)
+    for key, path in entry_paths(source):
+        out.setdefault(key, path)
     return out
 
 
@@ -229,55 +234,85 @@ def yielded_into(entry: dict) -> str:
     """The folder a manifest entry's contents live in, when it says so.
 
     An archive is normally unpacked into `extracted/<its stem>/`, which is how its definitions find
-    their way back to it. Some were not: Micro-Cap's installer zip was unpacked at `extracted/` itself,
-    and QSPICE's encrypted payload can only be installed, its library copied out of the install. The
-    manifest entry then names that folder — `unpacked_to` for an archive, `installed.into` for an
-    installer — and everything under it is credited to that entry's URL.
+    their way back to it. Many were not: Micro-Cap's installer zip was unpacked at `extracted/` itself,
+    Toshiba's bulk zips into `extracted/<category>/`, and QSPICE's encrypted payload can only be
+    installed, its library copied out of the install. The manifest entry then names that folder —
+    `unpacked_to` (or the older `extracted_to`) for an archive, `installed.into` for an installer — and
+    everything under it is credited to that entry's URL.
     """
-    folder = entry.get("unpacked_to") or (entry.get("installed") or {}).get("into") or ""
+    folder = (entry.get("unpacked_to") or entry.get("extracted_to")
+              or (entry.get("installed") or {}).get("into") or "")
     return folder.strip("/")
 
 
 def yields(source: str) -> list[tuple[str, str]]:
-    """(ledger key, folder) for each entry of this source's manifest that names where it went."""
-    mf = spice_source_manifest(source)
-    if not mf.exists():
-        return []
+    """(ledger key, folder relative to the source) for each manifest entry that names where it went."""
     out = []
-    for x in json.loads(mf.read_text(encoding="utf-8")).get("files", []):
-        folder = yielded_into(x)
-        if folder and x.get("url"):
-            out.append((x["url"], folder))
+    for folder, man in manifests(source):
+        for x in man.get("files", []):
+            into = yielded_into(x)
+            if into and x.get("url"):
+                out.append((x["url"], under(folder, into)))
     return out
 
 
-def defs_under(records: list[dict], source: str, folder: str) -> int:
-    prefix = f"sources/{source}/{folder}/"
-    return sum(1 for r in records if r["file"].startswith(prefix))
+def credit(source: str, rels, keys: set[str]) -> dict[str, str]:
+    """For each definition file of a source (its path inside the source), the ledger key it counts for.
+
+    In order: a folder a manifest entry says it went into (the deepest one wins), the file itself as
+    downloaded, or `extracted/<stem>/` for an archive whose stem it is. A file none of these reach is
+    not credited — `pidx models reconcile` lists those.
+    """
+    pairs = [(k, rel) for k, rel in entry_paths(source) if k in keys]
+    by_rel: dict[str, str] = {}
+    by_stem: dict[str, str] = {}
+    for k, rel in pairs:
+        by_rel.setdefault(rel, k)
+        by_stem.setdefault(Path(rel).stem.lower(), k)
+    declared = sorted(((k, f) for k, f in yields(source) if k in keys), key=lambda x: -len(x[1]))
+    out: dict[str, str] = {}
+    for rel in rels:
+        hit = next((k for k, f in declared if rel.startswith(f + "/")), None)
+        if hit is None:
+            parts = rel.split("/")
+            hit = by_rel.get(rel) or (by_stem.get(parts[1].lower())
+                                      if parts[0] == "extracted" and len(parts) > 1 else None)
+        if hit:
+            out[rel] = hit
+    return out
+
+
+def files_by_source(records: list[dict]) -> dict[str, Counter]:
+    """{source: {path inside the source: definitions}}, the source as the registry names it."""
+    out: dict[str, Counter] = defaultdict(Counter)
+    for r in records:
+        parts = r["file"].split("/", 2)
+        if parts[0] == "sources" and len(parts) == 3:
+            out[parts[1]][parts[2]] += 1
+    return out
+
+
+def downloaded(led: Ledger) -> set[str]:
+    return {k for k, r in led.rows.items() if not k.startswith("part:") and r["status"] == "downloaded"}
 
 
 def stamp_ledgers(records: list[dict], at: str | None = None) -> dict[str, int]:
     """Record against each downloaded file how many definitions it turned out to hold."""
-    counts = defs_by_path(records)
+    files = files_by_source(records)
     touched: dict[str, int] = {}
     for reg in sorted(model_sources().glob("*.yaml")):
         source = reg.stem
         path = model_state(source)
         if not path.exists():
             continue
-        paths = ledger_paths(source)
-        declared = dict(yields(source))
         led = Ledger(path, stages=MODEL_STAGES, fields=MODEL_FIELDS, versioned=MODEL_VERSIONED)
+        keys = downloaded(led)
+        counts: Counter = Counter()
+        for rel, key in credit(source, files.get(source, {}), keys).items():
+            counts[key] += files[source][rel]
         n = 0
-        for key, row in led.rows.items():
-            if key.startswith("part:") or row["status"] != "downloaded":
-                continue
-            if key in declared:
-                defs = defs_under(records, source, declared[key])
-            else:
-                rel = paths.get(key, "")
-                stem = "stem:" + Path(rel).stem.lower() if rel else ""
-                defs = counts.get((source, rel), 0) + (counts.get((source, stem), 0) if stem else 0)
+        for key in sorted(keys):
+            row, defs = led.rows[key], counts.get(key, 0)
             if row.get("index_v") == VERSION and row.get("index_at") and row.get("n_defs", "") == str(defs or ""):
                 continue                    # nothing learnt: a stamp would only move the date
             led.stamp(key, "index", version=VERSION, when=at, n_defs=str(defs or ""))

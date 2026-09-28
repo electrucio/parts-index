@@ -404,6 +404,12 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: cmp/standard.bjt
       sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+  - source: groupsio-ltspice
+    name: BC847BLP_DI
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: BC847BLP_DI
     get:
@@ -776,11 +782,6 @@ models:
       BC847B: [228, 228]
     fetched: '2026-09-21'
   copies:
-  - source: groupsio-ltspice
-    name: BC847B
-    get:
-      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/LM3886_test.zip
-      sha256: 5b15ed01aa401bdb7c7be2ec67986eda5d531ef41af3b2c6fee10495bab9be34
   - source: kicad-spice-library
     name: BC847B
     get:
@@ -984,4 +985,37 @@ models:
     sha256: 7f6539271fc97ea3a6914b38ac93f9b26a0679f276ff485a87bc18afda0cf054
     lines:
       BC847BM: [2, 46]
+    fetched: '2026-09-21'
+- source: groupsio-ltspice
+  name: BC847B
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+    lines:
+      BC847B: [5251, 5251]
+    fetched: '2026-09-21'
+  copies:
+  - source: groupsio-ltspice
+    name: BC847B
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+- source: groupsio-ltspice
+  name: BC847B
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+    member: standard.bjt
+    archive_sha256: 07f1f7a6ca2baff83c890ea5f4773dab91734b0a38a521bb012461b20cd9e5a9
+    sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
+    lines:
+      BC847B: [586, 586]
     fetched: '2026-09-21'

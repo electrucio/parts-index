@@ -15,6 +15,18 @@ models:
       MPSL51: [1, 4]
     fetched: '2026-09-21'
   copies:
+  - source: groupsio-ltspice
+    name: MPSL51
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: MPSL51
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
   - source: kicad-spice-library
     name: MPSL51
     get:
@@ -74,6 +86,12 @@ models:
       MPSL51: [517, 517]
     fetched: '2026-09-21'
   copies:
+  - source: groupsio-ltspice
+    name: MPSL51
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: MPSL51
     get:
@@ -96,14 +114,3 @@ models:
       url: http://ltwiki.org/files/LargeCollection.zip
       member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
       sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
-- source: groupsio-ltspice
-  name: MPSL51
-  def: model
-  type: PNP
-  verbatim: true
-  get:
-    how: unknown
-    sha256: c2efeb5146d6eec5855876ea76bbcab2e20b845867d62bf17ead9f0a9bb77c0c
-    lines:
-      MPSL51: [2538, 2546]
-    fetched: '2026-09-21'

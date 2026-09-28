@@ -129,6 +129,13 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 1
+  copies:
+  - source: groupsio-ltspice
+    name: D1N4003
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.dio
+      sha256: f9cddb038dea806c10b7452ffa2b2f90a32266b7acd5913afe5191acd48edd29
 - source: kicad-spice-library
   name: D1N4003
   def: model

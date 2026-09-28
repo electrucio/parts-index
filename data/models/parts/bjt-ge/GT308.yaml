@@ -30,13 +30,19 @@ models:
   - source: diyaudio-germanio
     name: GT308B
     get:
-      url: https://www.diyaudio.com/community/threads/ac128-pnp-germanium-transistor-spice-model-rare.117257/
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
       sha256: c70f06dcba47593e9990296146e5a46b4fd10e89febbb5f8a0213945953de6a6
   - source: groups-io
     name: GT308B
     get:
       url: https://groups.io/g/LTspice/files/z_yahoo/Lib/Germanium/Germanium.lib
       sha256: ecf123dfc87c5454687a9b0c68c5b6aa633fb7e47d1ede1b1100afbd5916ab63
+  - source: groupsio-ltspice
+    name: GT308B
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: GT308B
     get:
@@ -77,3 +83,16 @@ models:
       url: http://ltwiki.org/files/LargeCollection.zip
       member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
       sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
+- source: groupsio-ltspice
+  name: GT308B
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+    lines:
+      GT308B: [3056, 3056]
+    fetched: '2026-09-21'

@@ -142,6 +142,13 @@ models:
       FDV301N_AB: [4, 4]
     fetched: '2026-09-14'
     note: Bordodynov VDMOS collection for LTspice IV
+  copies:
+  - source: groupsio-ltspice
+    name: FDV301N_AB
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.mos
+      sha256: 74bafab0de0c713d3b056d39cadbdaf9dfeeef235ab607dc88cb683c6ed30dae
 - source: kicad-spice-library
   name: FDV301N_FC
   def: subckt

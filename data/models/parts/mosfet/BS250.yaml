@@ -234,6 +234,12 @@ models:
     typical_rows: 2
   symbol: BS250_ltwiki.asy
   copies:
+  - source: groupsio-ltspice
+    name: BS250P
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.mos
+      sha256: 74bafab0de0c713d3b056d39cadbdaf9dfeeef235ab607dc88cb683c6ed30dae
   - source: kicad-spice-library
     name: BS250P
     get:

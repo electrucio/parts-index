@@ -65,6 +65,12 @@ models:
     not_measurable: 0
     typical_rows: 0
   copies:
+  - source: groupsio-ltspice
+    name: 2N3441
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
   - source: kicad-spice-library
     name: 2N3441
     get:
@@ -82,6 +88,19 @@ models:
     sha256: 809a83e6faeda5c9408c63742c5b83c822ce0dfb08886e6178b44281a94ac21b
     lines:
       2N3441: [32, 36]
+    fetched: '2026-09-21'
+- source: groupsio-ltspice
+  name: 2N3441
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+    member: standard.bjt
+    archive_sha256: 5f90f4747ab15955dc7d6889861bbad328afe007d891206085e4dcf3ba7cbc3f
+    sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+    lines:
+      2N3441: [150, 150]
     fetched: '2026-09-21'
 datasheet:
   url: https://archive.org/download/bitsavers_motoroladaPowerDeviceData_75404386/1978_Motorola_Power_Device_Data.pdf

@@ -18,7 +18,8 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
 - `src/parts_index/schematics/` pillar 1: `download` (the sources whose URLs are already listed),
   `summarise` (one line per published use, saying what that part does on that page), `export` (the
   index into `data/`) and `titles`. **(todo)** crawl → ocr → index → linkcheck.
-- `src/parts_index/models/` pillar 2: fetch, ingest, index, recover, match (which definitions are
+- `src/parts_index/models/` pillar 2: fetch, ingest, index, recover, reconcile (every definition file
+  joined to the download it came from, so the ledgers count what the catalogue holds), match (which definitions are
   candidates for each wanted part, from `data/models/wanted.yaml` and the other lists), found (those
   grouped into distinct models, each with every copy of it) and promote (the public recipe per part:
   the curated judgement plus every model found). **(todo)** curate — pins, symbols, fixups, bench — and

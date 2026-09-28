@@ -291,6 +291,20 @@ models:
       BZX793V3: [857, 858]
     fetched: '2026-09-14'
   note: 'STAND-IN: model of BZX793V3, not of BZX79C3V3; the equivalence is declared in data/models/wanted.yaml'
+- source: groupsio-ltspice
+  name: BZX84C3V3
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+    member: standard.dio
+    archive_sha256: 07f1f7a6ca2baff83c890ea5f4773dab91734b0a38a521bb012461b20cd9e5a9
+    sha256: f9cddb038dea806c10b7452ffa2b2f90a32266b7acd5913afe5191acd48edd29
+    lines:
+      BZX84C3V3: [180, 180]
+    fetched: '2026-09-21'
+  note: 'STAND-IN: model of BZX84-C3V3, not of BZX79C3V3; the equivalence is declared in data/models/wanted.yaml'
 datasheet:
   url: https://assets.nexperia.com/documents/data-sheet/BZX79.pdf
   maker: Nexperia

@@ -87,9 +87,23 @@ def test_scanning_a_tree_names_each_source(tmp_path):
     assert {r["file"] for r in recs} == {"sources/acme/raw/a.lib", "sources/other/raw/b.301"}
 
 
-def test_an_unpacked_archive_counts_towards_the_archive(tmp_path):
-    assert ix.manifest_key("sources/ti/extracted/sloj070/TL082.lib") == ("ti", "stem:sloj070")
-    assert ix.manifest_key("sources/ti/raw/sloj070.zip") == ("ti", "raw/sloj070.zip")
+def credited(monkeypatch, paths, yields, rels):
+    monkeypatch.setattr(ix, "entry_paths", lambda s: list(paths.items()))
+    monkeypatch.setattr(ix, "yields", lambda s: yields)
+    return ix.credit("acme", rels, set(paths))
+
+
+def test_an_unpacked_archive_counts_towards_the_archive(monkeypatch):
+    got = credited(monkeypatch, {"https://a/sloj070.zip": "raw/sloj070.zip"}, [],
+                   ["extracted/sloj070/TL082.lib", "raw/sloj070.zip", "extracted/other/x.lib"])
+    assert got == {"extracted/sloj070/TL082.lib": "https://a/sloj070.zip", "raw/sloj070.zip": "https://a/sloj070.zip"}
+
+
+def test_a_declared_folder_wins_and_the_deepest_declaration_wins(monkeypatch):
+    paths = {"https://a/all.zip": "raw/all.zip", "https://a/win.zip": "raw/tubemodel_win.zip"}
+    got = credited(monkeypatch, paths, [("https://a/all.zip", "extracted"), ("https://a/win.zip", "extracted/win")],
+                   ["extracted/win/12AX7.inc", "extracted/LIBRARY/npn.lib"])
+    assert got == {"extracted/win/12AX7.inc": "https://a/win.zip", "extracted/LIBRARY/npn.lib": "https://a/all.zip"}
 
 
 def test_missing_lists_what_a_previous_catalogue_had(tmp_path):
@@ -105,8 +119,14 @@ def test_missing_lists_what_a_previous_catalogue_had(tmp_path):
 
 def test_an_entry_that_names_its_folder_is_credited_with_everything_in_it():
     assert ix.yielded_into({"unpacked_to": "extracted/"}) == "extracted"
+    assert ix.yielded_into({"extracted_to": "extracted/spicebjt1ma/"}) == "extracted/spicebjt1ma"
     assert ix.yielded_into({"installed": {"into": "extracted", "product": "QSPICE"}}) == "extracted"
     assert ix.yielded_into({"path": "raw/a.zip"}) == ""
-    recs = [{"file": f} for f in ("sources/qspice/extracted/NJF.txt", "sources/qspice/extracted/NPN.txt",
-                                  "sources/qspice/raw/x.lib", "sources/qspicex/extracted/a.txt")]
-    assert ix.defs_under(recs, "qspice", "extracted") == 2
+
+
+def test_every_file_a_url_stands_for_is_credited_to_it(monkeypatch):
+    monkeypatch.setattr(ix, "entry_paths", lambda s: [("https://forum/thread", "raw/a.lib"),
+                                                      ("https://forum/thread", "raw/b.lib")])
+    monkeypatch.setattr(ix, "yields", lambda s: [])
+    assert ix.credit("acme", ["raw/a.lib", "raw/b.lib"], {"https://forum/thread"}) == {
+        "raw/a.lib": "https://forum/thread", "raw/b.lib": "https://forum/thread"}

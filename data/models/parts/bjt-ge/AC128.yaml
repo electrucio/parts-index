@@ -182,6 +182,13 @@ models:
     fail: 0
     not_measurable: 3
     typical_rows: 1
+  copies:
+  - source: groupsio-ltspice
+    name: AC128
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
+      member: standard.bjt
+      sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
 - source: diystompboxes
   name: AC128
   def: model
@@ -209,11 +216,30 @@ models:
     get:
       url: https://www.diyaudio.com/community/threads/ac128-pnp-germanium-transistor-spice-model-rare.117257/
       sha256: 7544a031848aee5a54a79846072979d00315366ecac5de9beb9fd76dca26d6fb
+- source: groups-io
+  name: AC128
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://groups.io/g/LTspice/files/z_yahoo/Examples/Apps/Electric%20Guitar%20Fuzz%20Effect/Distortion%20Preamp/ac128.mod
+    sha256: 1abe629385da8411958c1cd71b537ae57522a726081b50d28278e4222bd5fecd
+    lines:
+      AC128: [3, 6]
+    fetched: '2026-09-20'
+  copies:
   - source: groupsio-ltspice
-    name: AC128_X
+    name: AC128
     get:
-      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/LM3886_test.zip
-      sha256: 5b15ed01aa401bdb7c7be2ec67986eda5d531ef41af3b2c6fee10495bab9be34
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
+  - source: groupsio-ltspice
+    name: AC128
+    get:
+      url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
+      member: standard.bjt
+      sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
 - source: diyaudio
   name: AC128
   def: model
@@ -258,17 +284,6 @@ models:
     sha256: adfe930a1b749513833791af4df2b5ab8ec72624fc9ba936383bb5550ee23f3e
     lines:
       AC128: [85, 95]
-    fetched: '2026-09-20'
-- source: groups-io
-  name: AC128
-  def: model
-  type: PNP
-  verbatim: true
-  get:
-    url: https://groups.io/g/LTspice/files/z_yahoo/Examples/Apps/Electric%20Guitar%20Fuzz%20Effect/Distortion%20Preamp/ac128.mod
-    sha256: 1abe629385da8411958c1cd71b537ae57522a726081b50d28278e4222bd5fecd
-    lines:
-      AC128: [3, 6]
     fetched: '2026-09-20'
 datasheet:
   url: https://www.worldradiohistory.com/Archive-Catalogs/Suppliers/MNO/Mullard-Technical-Handbook-Book1-Part1-1974-695-pages.pdf
