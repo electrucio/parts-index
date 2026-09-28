@@ -287,3 +287,16 @@ def test_a_jrc_name_is_sold_as_njm():
 def test_a_bare_valve_is_filed_by_its_envelope():
     from parts_index.web.parts import kin_names
     assert ("envelope", "5Y3GT") in kin_names("5Y3") and ("envelope", "12B4A") in kin_names("12B4")
+
+
+def test_a_sheet_running_over_pages_is_linked_at_its_first(tmp_path, monkeypatch):
+    from parts_index.web import parts as wp
+    d = tmp_path / "pages"
+    d.mkdir()
+    (d / "books.csv").write_text(
+        "part,book,leaf,printed,maker,title,year,checked,kind,link\n"
+        "LT1028,bk,10,8,,Linear Databook,1990,,sheet,\nLT1028,bk,11,9,,Linear Databook,1990,,sheet,\n"
+        "LT1028,bk,12,10,,Linear Databook,1990,,sheet,\nLT1028,bk,40,38,,Linear Databook,1990,,sheet,\n")
+    monkeypatch.setattr(wp, "datasheet_pages", lambda source: d / f"{source}.csv")
+    got = wp.databook_pages()["LT1028"]
+    assert [r[0].rsplit("/", 1)[-1] for r in got] == ["n9", "n39"]

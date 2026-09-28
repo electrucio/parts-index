@@ -310,7 +310,14 @@ def databook_pages() -> dict[str, list[list[str]]]:
     out: dict[str, list[list[str]]] = defaultdict(list)
     d = datasheet_pages("x").parent
     for f in sorted(d.glob("*.csv")) if d.is_dir() else ():
-        for r in rows(f):
+        # A sheet runs over several pages and names its part in each running head: the first page of each
+        # run of consecutive pages is the one linked.
+        seen: set[tuple[str, str, int]] = set()
+        for r in sorted(rows(f), key=lambda r: (r["part"], r["book"], int(r["leaf"]))):
+            key = (r["part"], r["book"], int(r["leaf"]))
+            seen.add(key)
+            if (key[0], key[1], key[2] - 1) in seen:
+                continue
             page = f", p. {r['printed']}" if r.get("printed") else f", leaf {r['leaf']}"
             title = " ".join(x for x in (r["title"], page.lstrip(", ")) if x)
             url = (f"{r['link']}#page={r['leaf']}" if r.get("link")
