@@ -48,7 +48,7 @@ from parts_index.core.parts.extractor import KNOWN, base_part, canonical, family
 STAGES = ("fetch", "read")
 VERSIONED = ("read",)
 FIELDS = ("key", "url", "http", "bytes", "sha256", "fetch_at", "read_at", "read_v", "skip_reason")
-READ_VERSION = "11"  # 11: numbered LT sheets get their prefix; family-named ST sheets
+READ_VERSION = "12"  # 12: a family-named sheet covers its members (l78.pdf: L7805)
 DOC_FIELDS = ("url", "maker", "title", "revision", "pages", "bytes", "sha256", "covers", "checked", "copy")
 COVER_FIELDS = ("part", "url", "seen", "times")
 
@@ -303,8 +303,11 @@ def covered(pages: list[str], parts: set[str], sheet_head: str = "", prefix: str
         # Within the series, a name the head does not list, nor a variant of one it lists (TL431A under
         # "TL431"), nor one of a family it writes with an x (TSV912 under "TSV91x"), is held to the head
         # too: the AD623 sheet measures itself against the AD620.
+        # ... or a member of the family the sheet is named after (ST's l78.pdf heads "L78": L7805, L7812)
         in_head = (n in header or any(len(h) >= 4 and n.startswith(h) for h in header)
-                   or any(w.match(n) for w in wild))
+                   or any(w.match(n) for w in wild)
+                   or any(len(h) >= 3 and re.search(r"\d", h) and n.startswith(h) and re.fullmatch(r"\d{2}[A-Z]{0,4}", n[len(h):])
+                          for h in heads_all))
         if own and not own_only and not in_head:
             own = False
         if (own and (n in first or c >= 2)) or (in_head and c >= 2 and is_a_part(n)):
