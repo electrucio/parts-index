@@ -203,8 +203,9 @@ pasted (2N2222A and 2SK170), compared with the manufacturers' sheets (onsemi, ST
 - each entry reduces the part to a fixed handful of numbers **without test conditions** (an hFE of 100 at
   no IC is meaningless: onsemi gives 50 at 0.1 mA, 75 at 1 mA, 100 at 10 mA, 100–300 at 150 mA, 30 at
   500 mA);
-- it **mixes minimum, typical and maximum**, and manufacturers — VCEO 40 V is Philips' and Central's
-  figure, 50 V onsemi's and ST's — **without saying which sheet a number came from**;
+- it **mixes minimum, typical and maximum**, and manufacturers — its VCEO of 40 V is Philips' and
+  Central's figure, where onsemi's metal-can sheet and ST's say 50 V — **without saying which sheet a
+  number came from**;
 - on the 2N2222A, 5 of 9 values match every sheet and the other 4 depend on the maker or lack conditions;
   on the 2SK170, 1 of 6 is right: PD 0.2 W against Toshiba's 400 mW, a "drain current" of 0.02 A that is
   the V grade's maximum IDSS, VGS(off) from 0.1 V against 0.2 V, an RDS(on) the sheet does not have —
@@ -265,6 +266,36 @@ Measured on a reference set of 20 sheets (249 rows, 323 values; results in
 come back slightly different even at temperature 0. One request at a time (`-np 1`) should be, at half the
 throughput; not yet tried.
 
+### Several sheets of one part (an idea, not yet tried)
+
+Many parts have more than one data sheet: of the 7,790 parts the data-sheet sources name on a first page
+or in a file name, 604 are named by two or more makers' sources and 86 by three or more (most often
+Fairchild and onsemi: 265 parts; onsemi and ST: 122); 1,835 have two or more documents of any kind,
+revisions and copies included. Of the reference set's 20 parts, 12 have sheets from other makers.
+
+That redundancy can **find** reading errors; it cannot **correct** them by vote, because different makers'
+sheets legitimately differ — the 2N2222A's VCEO is 40 V in Philips', Central's and onsemi's plastic
+(P2N2222A) sheets, and 50 V in onsemi's metal-can sheet and ST's.
+Each maker's sheet stays the source for its own figures. It helps at three strengths:
+
+- **Copies of one document** — Fairchild's sheets reissued by onsemi, earlier revisions, archived copies:
+  the tables should be identical, so any difference is a misreading or a real revision, and either way
+  worth a look.
+- **Registered parts** — JEDEC's 2N and 1N numbers, Pro Electron's BC and BD: every maker prints the
+  registration's rows at the registration's conditions, mostly with its limits. Rows aligned by symbol
+  and conditions expose what the text-layer check cannot: a subscript (VDG read as VDS where three other
+  sheets say VDG), a lost µ (a test at 100 A where the others say 100 µA), a flipped sign, a row one
+  reading left out.
+- **One maker's part** (2SK170: Toshiba only) — no redundancy.
+
+A reading that disagrees with the other sheets goes back to the model with a 300-dpi crop of that row and
+a narrow question; if it still disagrees, the sheet really does, and it is kept as that maker's figure, or
+sent to a person. Never copy a value from one sheet into another. The same alignment gives two more
+things: the envelope of a part across makers, to judge a model whose maker is unknown, and each maker's
+own sheet, to judge that maker's model. The experiment is cheap — read the other makers' sheets of the
+12 reference parts and count what the cross-sheet check catches; the 2N3904's lost µ is one error it
+should catch (Fairchild's and ROHM's sheets are in the store).
+
 ### From a sheet to a verdict
 
 The point of the exercise: the rows the model read, with no hand-read reference involved, gave the same
@@ -311,7 +342,8 @@ In rough order of value:
 2. The curve pipeline above: locate, crop, read, map to a bench, draw; start with the 20 reference sheets.
 3. Benches for diodes and MOSFETs in `spec.py` (VF, IR, CT, trr; VGS(th), RDS(on), Ciss/Coss/Crss, Qg) —
    the exploration has the circuits — then JFETs near cut-off, noise and temperature on many models.
-4. The subscript check and the plausibility checks of the recipe, as code.
+4. The subscript check and the plausibility checks of the recipe, as code; and the cross-sheet check
+   (above) measured on the reference parts' other sheets.
 5. Grow the reference set to 50–100 sheets, older and scanned ones included; try other readers on it
    (a smaller Qwen for speed, Docling or MinerU for layout) and `-np 1` for repeatable runs.
 6. Publish per model which simulators run it and whether they agree; try the encrypted models.
