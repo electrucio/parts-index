@@ -9,24 +9,28 @@
  * `parts.json` is 61 KB gzipped and holds all of them, so filtering and sorting never ask the server.
  * Opening a part is one request for a file the build already joined and grouped.
  */
-import type preact from 'preact'
 import { Fragment } from 'preact'
-import { useEffect, useMemo, useState } from 'preact/hooks'
+import { useEffect, useMemo, useRef, useState } from 'preact/hooks'
 
-import { AboutPart } from './about'
+import { AboutPart, Databooks, PartName } from './about'
 import { DATA, loadIndex, reloadIndex } from './data'
+import { Fold } from './fold'
 import { forViewer } from './links'
-import type { DeviceKind, PageUse, PartIndex, PartModel, PartPage, PartRow, UseKind } from './types'
+import type { DeviceKind, PageUse, PartIndex, PartPage, PartRow, UseKind } from './types'
 export const n = (v: number) => v.toLocaleString('en-GB')
 
-type Sort = 'documents' | 'models' | 'name'
+export type Sort = 'documents' | 'models' | 'sheets' | 'name'
+export type Dir = 'asc' | 'desc'
 type Filter = '' | 'models' | 'verified' | 'nomodel'
 
-const SORTS: { key: Sort; label: string }[] = [
-  { key: 'documents', label: 'Most used first' },
-  { key: 'models', label: 'Most SPICE models first' },
-  { key: 'name', label: 'By part number' },
+/** The list's columns, each a way of ordering it. A count starts from the most; a name from A. */
+const COLUMNS: { key: Sort; label: string; title: string; num: boolean }[] = [
+  { key: 'name', label: 'Part', title: 'Part number', num: false },
+  { key: 'documents', label: 'Mentions', title: 'Documents that print it', num: true },
+  { key: 'models', label: 'SPICE', title: 'SPICE models found for it', num: true },
+  { key: 'sheets', label: 'Sheets', title: 'Data sheets and databook pages linked for it', num: true },
 ]
+export const NATURAL: Record<Sort, Dir> = { name: 'asc', documents: 'desc', models: 'desc', sheets: 'desc' }
 const FILTERS: { key: Filter; label: string }[] = [
   { key: '', label: 'all' },
   { key: 'models', label: 'with a model' },
@@ -34,10 +38,17 @@ const FILTERS: { key: Filter; label: string }[] = [
 ]
 const PAGE = 300
 
-const COMPARE: Record<Sort, (a: PartRow, b: PartRow) => number> = {
-  documents: (a, b) => b[1] - a[1] || b[3] - a[3] || a[0].localeCompare(b[0]),
-  models: (a, b) => b[3] - a[3] || b[1] - a[1] || a[0].localeCompare(b[0]),
-  name: (a, b) => a[0].localeCompare(b[0]),
+const COUNT: Record<Exclude<Sort, 'name'>, (r: PartRow) => number> = {
+  documents: (r) => r[1],
+  models: (r) => r[3],
+  sheets: (r) => r[6] ?? 0,
+}
+
+/** The order asked for, and inside a tie the most used first, then the most models, then by name. */
+export function compare(by: Sort, dir: Dir = NATURAL[by]): (a: PartRow, b: PartRow) => number {
+  const sign = dir === 'asc' ? 1 : -1
+  return (a, b) => (by === 'name' ? sign * a[0].localeCompare(b[0]) : sign * (COUNT[by](a) - COUNT[by](b)))
+    || b[1] - a[1] || b[3] - a[3] || a[0].localeCompare(b[0])
 }
 
 /**
@@ -59,7 +70,7 @@ export function partPath(part: string): string {
   return part.split('/').map(encodeURIComponent).join('/')
 }
 
-export function search(rows: PartRow[], q: string, by: Sort = 'documents'): PartRow[] {
+export function search(rows: PartRow[], q: string, by: Sort = 'documents', dir: Dir = NATURAL[by]): PartRow[] {
   const needle = q.trim().toUpperCase().replace(/[^A-Z0-9]/g, '')
   if (needle.length < 2) return []
   const exact: PartRow[] = []
@@ -73,14 +84,14 @@ export function search(rows: PartRow[], q: string, by: Sort = 'documents'): Part
     else if (key.includes(needle)) has.push(r)
     else if (key.length >= 4 && needle.startsWith(key)) heads.push(r)
   }
-  for (const g of [exact, starts, has, heads]) g.sort(COMPARE[by])
+  for (const g of [exact, starts, has, heads]) g.sort(compare(by, dir))
   heads.sort((a, b) => b[0].length - a[0].length)     // the longest head is the nearest: BC108B before BC108 for BC108BZ
   return [...exact, ...starts, ...has, ...heads]
 }
 
 /** All the parts, in the order asked for. Sorting 15,558 rows is cheap; rendering them is not. */
-export function order(rows: PartRow[], by: Sort): PartRow[] {
-  return [...rows].sort(COMPARE[by])
+export function order(rows: PartRow[], by: Sort, dir: Dir = NATURAL[by]): PartRow[] {
+  return [...rows].sort(compare(by, dir))
 }
 
 export function keep(rows: PartRow[], f: Filter): PartRow[] {
@@ -101,24 +112,6 @@ export function ofDevice(rows: PartRow[], device: string, menu: DeviceKind[]): P
   if (at < 0) return rows
   const bit = 1 << at
   return rows.filter((r) => (r[4] & bit) !== 0)
-}
-
-/** A model's agreement with its datasheet, as the bar the previous site used. */
-function Score({ m }: { m: PartModel }) {
-  if (m.score === undefined || !m.rows) return <span class="pill na">not measured</span>
-  const [pass, off, fail] = m.rows
-  const total = pass + off + fail || 1
-  const pct = (v: number) => `${(v / total) * 100}%`
-  return (
-    <span class="legend">
-      <span class="bar" title={`${pass} pass, ${off} marginal, ${fail} fail`}>
-        <i class="p" style={{ width: pct(pass) }} />
-        <i class="o" style={{ width: pct(off) }} />
-        <i class="f" style={{ width: pct(fail) }} />
-      </span>
-      <span class="count">{Math.round(m.score * 100)}%</span>
-    </span>
-  )
 }
 
 /** Where one file is had: its download link, the member inside an archive, or the simulator it ships with. */
@@ -149,8 +142,7 @@ function Models({ page }: { page: PartPage }) {
         <table>
           <thead>
             <tr>
-              <th>Source</th><th>Name</th><th>Kind</th>
-              <th>Datasheet agreement</th><th>Changed</th><th>Get it</th>
+              <th>Source</th><th>Name</th><th>Kind</th><th>Changed</th><th>Get it</th>
             </tr>
           </thead>
           <tbody>
@@ -163,7 +155,6 @@ function Models({ page }: { page: PartPage }) {
                   </td>
                   <td><code>{mo.name}</code></td>
                   <td>{mo.type || mo.def}</td>
-                  <td><Score m={mo} /></td>
                   <td>
                     {mo.verbatim
                       ? <span class="muted small">verbatim</span>
@@ -178,7 +169,7 @@ function Models({ page }: { page: PartPage }) {
                   <tr key={`${i}.${j}`} class="copy">
                     <td><span class="muted">↳</span> {c.source}</td>
                     <td><code>{c.name}</code></td>
-                    <td colSpan={3}><span class="muted small">the same model as {mo.source}'s</span></td>
+                    <td colSpan={2}><span class="muted small">the same model as {mo.source}'s</span></td>
                     <td><Get url={c.url} member={c.member} installed={c.installed_with} /></td>
                   </tr>
                 ))}
@@ -188,13 +179,6 @@ function Models({ page }: { page: PartPage }) {
         </table>
       </div>
       {m.why && <p class="why"><b>{m.preferred}</b> — {m.why}</p>}
-      {m.datasheet && (
-        <p class="muted small">
-          Measured against <a href={m.datasheet.url}>{m.datasheet.doc || 'the datasheet'}</a>
-          {m.datasheet.maker && <> · {m.datasheet.maker}</>}
-          {m.datasheet.date && <> · {m.datasheet.date}</>}
-        </p>
-      )}
     </section>
   )
 }
@@ -239,35 +223,6 @@ function PageLink({ p, docUrl }: { p: PageUse; docUrl: string }) {
         ? <span class="line"> {line}</span>
         : p[2] && <span class="muted small"> beside {p[2]}</span>}
     </li>
-  )
-}
-
-/**
- * A `<details>` whose contents are built the first time it is opened.
- *
- * Nothing is cut from a part's page, so the 1N4148's holds 3,574 documents and 9,344 page links.
- * Building all of that as DOM up front costs far more than downloading it. The previous site did the
- * same thing for the same reason.
- */
-function Fold({
-  summary, level, open = false, children,
-}: {
-  summary: preact.ComponentChildren
-  /** 1 the kind of source, 2 the source, 3 the document. Each reads differently or the nesting is invisible. */
-  level: 1 | 2 | 3
-  open?: boolean
-  children: () => preact.ComponentChildren
-}) {
-  const [shown, setShown] = useState(open)
-  return (
-    <details
-      class={`uses lv${level}`}
-      open={open}
-      onToggle={(e) => setShown((e.target as HTMLDetailsElement).open)}
-    >
-      <summary>{summary}</summary>
-      {shown ? children() : null}
-    </details>
   )
 }
 
@@ -333,36 +288,86 @@ function Group({
   )
 }
 
-function Repos({ page }: { page: PartPage }) {
-  const repos = page.repos
-  if (!repos?.length) return null
-  const total = page.n.repos ?? repos.length
+const REPO_HOST = 'https://github.com/'
+
+/** `owner/repo` of a GitHub address, or null for anything else. */
+export function repoOf(url: string): string | null {
+  if (!url.startsWith(REPO_HOST)) return null
+  const [owner, repo] = url.slice(REPO_HOST.length).split('/')
+  return owner && repo ? `${owner}/${repo}` : null
+}
+
+/**
+ * Boards somebody is making: every GitHub repository that places the part, whichever source found it.
+ *
+ * Two lists meet here. The sheets the index read page by page — found by the open-hardware crawls, by a
+ * journal, by a site that links its boards — fold under their repository, each sheet with its page links.
+ * The projects the research datasets say place the part, with how much attention each has, follow as
+ * plain links; one that is in both lends its stars to the fold.
+ */
+function OpenSource({ page, docs }: { page: PartPage; docs: PartPage['docs'] }) {
+  const listed = page.repos ?? []
+  if (!docs.length && !listed.length) return null
+  const stats = new Map(listed.map((r) => [r[0].toLowerCase(), r]))
+  const byRepo = new Map<string, PartPage['docs']>()
+  for (const d of docs) {
+    const k = repoOf(d.u) ?? '?'
+    const g = byRepo.get(k)
+    if (g) g.push(d)
+    else byRepo.set(k, [d])
+  }
+  const stars = (repo: string) => stats.get(repo.toLowerCase())?.[2] ?? 0
+  const read = [...byRepo.entries()].sort((a, b) =>
+    stars(b[0]) - stars(a[0]) || b[1].length - a[1].length || a[0].localeCompare(b[0]))
+  const seen = new Set([...byRepo.keys()].map((k) => k.toLowerCase()))
+  const rest = listed.filter((r) => !seen.has(r[0].toLowerCase()))
+  const more = Math.max(0, (page.n.repos ?? listed.length) - listed.length)
+  const total = read.length + rest.length + more
   const summary = (
     <>
       <strong>Open-source projects</strong>
       <span class="count">{n(total)}</span>
-      <span class="small muted">KiCad and Eagle sheets that place this part</span>
+      <span class="small muted">boards on GitHub that place this part</span>
     </>
   )
   return (
-    <Fold summary={summary} level={1}>
+    <Fold summary={summary} level={1} open={total > 0 && page.docs.length === docs.length}>
       {() => (
-      <ul class="uselist cols">
-        {repos.map(([repo, sheets, stars, forks, watchers], i) => (
-          <li key={i}>
-            <a href={`https://github.com/${repo}`} target="_blank" rel="noopener">{repo}</a>
-            {stars > 0 && (
-              <span class="muted small" title={`${n(stars)} stars, ${n(forks)} forks, ${n(watchers)} watching`}>
-                {' '}★{n(stars)}
-              </span>
-            )}
-            {sheets > 1 && <span class="muted small"> · {sheets} sheets</span>}
-          </li>
-        ))}
-        {total > repos.length && (
-          <li class="muted small">and {n(total - repos.length)} more on GitHub</li>
-        )}
-      </ul>
+        <>
+          {read.map(([repo, ds]) => (
+            <Fold
+              key={repo} level={2} cls="repo"
+              summary={
+                <>
+                  <strong>{repo}</strong>
+                  {stars(repo) > 0 && <span class="muted small">★{n(stars(repo))}</span>}
+                  <span class="count">{n(ds.length)} {ds.length === 1 ? 'sheet' : 'sheets'}</span>
+                </>
+              }
+            >
+              {() => ds.map((d, i) => <Document key={i} d={{ ...d, t: d.t.replace(`${repo}: `, '') }} />)}
+            </Fold>
+          ))}
+          {rest.length > 0 && (
+            <>
+              {read.length > 0 && <p class="muted small">Also placing it, from the sheets of each project as a whole:</p>}
+              <ul class="uselist cols">
+                {rest.map(([repo, sheets, st, forks, watchers], i) => (
+                  <li key={i}>
+                    <a href={`${REPO_HOST}${repo}`} target="_blank" rel="noopener">{repo}</a>
+                    {st > 0 && (
+                      <span class="muted small" title={`${n(st)} stars, ${n(forks)} forks, ${n(watchers)} watching`}>
+                        {' '}★{n(st)}
+                      </span>
+                    )}
+                    {sheets > 1 && <span class="muted small"> · {sheets} sheets</span>}
+                  </li>
+                ))}
+                {more > 0 && <li class="muted small">and {n(more)} more on GitHub</li>}
+              </ul>
+            </>
+          )}
+        </>
       )}
     </Fold>
   )
@@ -371,12 +376,17 @@ function Repos({ page }: { page: PartPage }) {
 const SITE_KINDS = new Set(['site', 'factory', 'reference'])
 const PAPER_KINDS = new Set(['magazine', 'book'])
 
+/**
+ * Where the part is used, in three groups: what somebody built, what a magazine or a book printed, and
+ * the boards on GitHub. A source of any other kind is not shown; the build already leaves those out.
+ */
 function Uses({ page, sources, kinds }: { page: PartPage; sources: string[]; kinds: string[] }) {
   const kindOf = (d: PartPage['docs'][0]) => kinds[d.s] ?? ''
-  const built = page.docs.filter((d) => SITE_KINDS.has(kindOf(d)))
-  const paper = page.docs.filter((d) => PAPER_KINDS.has(kindOf(d)))
-  const rest = page.docs.filter((d) => !SITE_KINDS.has(kindOf(d)) && !PAPER_KINDS.has(kindOf(d)))
-  if (page.docs.length === 0 && !page.repos?.length) return null
+  const repos = page.docs.filter((d) => repoOf(d.u))
+  const others = page.docs.filter((d) => !repoOf(d.u))
+  const built = others.filter((d) => SITE_KINDS.has(kindOf(d)))
+  const paper = others.filter((d) => PAPER_KINDS.has(kindOf(d)))
+  if (built.length + paper.length + repos.length === 0 && !page.repos?.length) return null
   const { documents, shown, copies } = page.n
   return (
     <section class="stack-s">
@@ -399,11 +409,7 @@ function Uses({ page, sources, kinds }: { page: PartPage; sources: string[]; kin
         note="the exact page of the PDF; pages with a schematic first"
         docs={paper} sources={sources}
       />
-      <Group
-        title="Other sources" open={false} note=""
-        docs={rest} sources={sources}
-      />
-      <Repos page={page} />
+      <OpenSource page={page} docs={repos} />
     </section>
   )
 }
@@ -462,7 +468,7 @@ export function Detail({ part, sources, kinds, stamp, onStale }: {
   return (
     <section class="evidence stack">
       <div class="ptitle">
-        <h1>{part}</h1>
+        <PartName part={part} page={page} />
         {page?.models?.kind && <span class="chip">{page.models.kind}</span>}
       </div>
       {error && <p class="muted">Nothing is published for {part} yet.</p>}
@@ -473,6 +479,7 @@ export function Detail({ part, sources, kinds, stamp, onStale }: {
           <Listed page={page} />
           <Models page={page} />
           {fresh ? <Uses page={page} sources={sources} kinds={kinds} /> : <p class="muted">Loading…</p>}
+          <Databooks page={page} />
           {page.docs.length === 0 && !page.models && (
             <p class="muted">
               No SPICE model published and no schematic indexed yet
@@ -485,13 +492,70 @@ export function Detail({ part, sources, kinds, stamp, onStale }: {
   )
 }
 
+const SIDE = { min: 260, fallback: 400, key: 'pidx.side' }
+
+/** The list's width, as the reader last left it. Kept in this browser only, and only as a convenience. */
+function savedWidth(): number {
+  try { return Number(localStorage.getItem(SIDE.key)) || SIDE.fallback } catch { return SIDE.fallback }
+}
+
+/**
+ * The bar between the list and the part: drag it, or focus it and use the arrow keys.
+ *
+ * The width is a CSS variable on the browser, so the grid does the layout and nothing re-renders the
+ * fifty thousand rows while it moves.
+ */
+function Splitter({ host, width, setWidth }: {
+  host: { current: HTMLDivElement | null }; width: number; setWidth: (w: number) => void
+}) {
+  const clamp = (w: number) => Math.round(Math.min(Math.max(w, SIDE.min), innerWidth * 0.7))
+  const commit = (w: number) => {
+    setWidth(w)
+    try { localStorage.setItem(SIDE.key, String(w)) } catch { /* private window: forget it */ }
+  }
+  const onDown = (e: PointerEvent) => {
+    const bar = e.currentTarget as HTMLElement
+    const left = host.current?.getBoundingClientRect().left ?? 0
+    bar.setPointerCapture(e.pointerId)
+    let w = width
+    const move = (ev: PointerEvent) => {
+      w = clamp(ev.clientX - left)
+      host.current?.style.setProperty('--side', `${w}px`)
+    }
+    const up = () => {
+      bar.removeEventListener('pointermove', move)
+      bar.removeEventListener('pointerup', up)
+      commit(w)
+    }
+    bar.addEventListener('pointermove', move)
+    bar.addEventListener('pointerup', up)
+    e.preventDefault()
+  }
+  const onKey = (e: KeyboardEvent) => {
+    const step = e.shiftKey ? 80 : 20
+    if (e.key === 'ArrowLeft') commit(clamp(width - step))
+    else if (e.key === 'ArrowRight') commit(clamp(width + step))
+    else return
+    e.preventDefault()
+  }
+  return (
+    <div
+      class="splitter" role="separator" aria-orientation="vertical" aria-label="Resize the list"
+      aria-valuenow={width} tabIndex={0} onPointerDown={onDown} onKeyDown={onKey}
+    />
+  )
+}
+
 export function Browser({ part, onPick }: { part: string | null; onPick: (p: string | null) => void }) {
   const [index, setIndex] = useState<PartIndex | null>(null)
   const [q, setQ] = useState('')
   const [by, setBy] = useState<Sort>('documents')
+  const [dir, setDir] = useState<Dir>(NATURAL.documents)
   const [filter, setFilter] = useState<Filter>('')
   const [device, setDevice] = useState('')
   const [shown, setShown] = useState(PAGE)
+  const [width, setWidth] = useState(savedWidth)
+  const host = useRef<HTMLDivElement>(null)
 
   useEffect(() => { loadIndex().then(setIndex) }, [])
 
@@ -499,12 +563,22 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
   const list = useMemo(() => {
     if (!index) return []
     const kept = keep(ofDevice(index.parts, device, index.deviceKinds), filter)
-    return searching ? search(kept, q, by) : order(kept, by)
-  }, [index, q, by, filter, device, searching])
-  useEffect(() => setShown(PAGE), [q, by, filter, device])
+    return searching ? search(kept, q, by, dir) : order(kept, by, dir)
+  }, [index, q, by, dir, filter, device, searching])
+  useEffect(() => setShown(PAGE), [q, by, dir, filter, device])
+
+  /** A column's header: the first click orders by it, the next turns the order round. */
+  const sortBy = (key: Sort) => {
+    if (key === by) setDir(dir === 'asc' ? 'desc' : 'asc')
+    else { setBy(key); setDir(NATURAL[key]) }
+  }
 
   return (
-    <div class={`browser${part ? ' has-part' : ''}`}>
+    <div
+      ref={host}
+      class={`browser${part ? ' has-part' : ''}`}
+      style={{ '--side': `${width}px` } as Record<string, string>}
+    >
       <aside class="side">
         <input
           type="search"
@@ -535,32 +609,53 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
             </button>
           ))}
         </div>
-        <select
-          aria-label="Order of the list"
-          value={by}
-          disabled={searching}
-          onChange={(e) => setBy((e.target as HTMLSelectElement).value as Sort)}
-        >
-          {SORTS.map((s) => <option key={s.key} value={s.key}>{s.label}</option>)}
-        </select>
         <p class="count">
           {!index ? 'loading…'
-            : searching ? `${n(list.length)} match ${q}`
-              : `${n(list.length)} parts · most used first is how many documents show it`}
+            : searching ? `${n(list.length)} match ${q} · closest first`
+              : `${n(list.length)} parts · click a heading to sort`}
         </p>
         <div class="plist">
-          {list.slice(0, shown).map((r) => (
-            <a
-              key={r[0]}
-              href={`?part=${encodeURIComponent(r[0])}`}
-              aria-current={r[0] === part ? 'true' : undefined}
-              onClick={(e) => { e.preventDefault(); onPick(r[0]) }}
-            >
-              <span class={`dot ${r[3] > 0 ? 'v' : 'n'}`} />
-              <span class="pn">{r[0]}</span>
-              <span class="meta">{r[1] ? n(r[1]) : '—'}{r[3] > 0 ? ` · ${r[3]}m` : ''}</span>
-            </a>
-          ))}
+          <table>
+            <thead>
+              <tr>
+                {COLUMNS.map((c) => (
+                  <th
+                    key={c.key}
+                    class={c.num ? 'num' : undefined}
+                    aria-sort={by === c.key ? (dir === 'asc' ? 'ascending' : 'descending') : undefined}
+                  >
+                    <button type="button" title={c.title} onClick={() => sortBy(c.key)}>
+                      {c.label}
+                      <span class="arrow" aria-hidden="true">{by === c.key ? (dir === 'asc' ? '▲' : '▼') : ''}</span>
+                    </button>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {list.slice(0, shown).map((r) => (
+                <tr
+                  key={r[0]}
+                  class={r[0] === part ? 'clickable sel' : 'clickable'}
+                  onClick={() => onPick(r[0])}
+                >
+                  <td>
+                    <a
+                      class="pn"
+                      href={`?part=${encodeURIComponent(r[0])}`}
+                      aria-current={r[0] === part ? 'true' : undefined}
+                      onClick={(e) => { e.preventDefault(); e.stopPropagation(); onPick(r[0]) }}
+                    >
+                      {r[0]}
+                    </a>
+                  </td>
+                  <td class="num">{r[1] ? n(r[1]) : '—'}</td>
+                  <td class="num">{r[3] ? n(r[3]) : '—'}</td>
+                  <td class="num">{r[6] ? n(r[6]) : '—'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           {list.length > shown && (
             <button class="more" onClick={() => setShown((v) => v + PAGE * 2)}>
               {n(list.length - shown)} more
@@ -568,6 +663,8 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
           )}
         </div>
       </aside>
+
+      <Splitter host={host} width={width} setWidth={setWidth} />
 
       {part ? (
         <Detail
@@ -580,12 +677,8 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
           <h2>Pick a part from the list</h2>
           <p class="muted">
             Each one shows where it is used in real schematics — with a link that opens the sheet at the
-            place the part is, not at the front — and which SPICE models exist for it, where each comes
-            from and how far each agrees with the datasheet.
-          </p>
-          <p class="legend">
-            <span><span class="dot v" /> has a model</span>
-            <span><span class="dot n" /> indexed, no model yet</span>
+            place the part is, not at the front — which SPICE models exist for it and where each comes
+            from, and the data sheets that describe it.
           </p>
         </section>
       )}

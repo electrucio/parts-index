@@ -1,40 +1,6 @@
 // The shape of what `pidx web build` writes into public/data. Kept by hand for now; once the
 // exporters land these are generated from the Python models so the two can never drift.
 
-export interface SchematicSource {
-  source: string
-  kind: 'site' | 'factory' | 'magazine' | 'book' | 'reference' | 'forum'
-  status: 'active' | 'proposed' | 'paused' | 'blocked' | 'excluded'
-  items: number
-  download: number
-  ocr: number
-  index: number
-  linkcheck: number
-  skipped: number
-  last: string
-  next: string
-}
-
-export interface ModelSource {
-  source: string
-  status: string
-  fetch: string
-  files: number
-  scanned: number
-  with_defs: number
-  defs: number
-  unavailable: number
-  not_tried: number
-  licence: string
-  last: string
-  next: string
-}
-
-export interface Sources {
-  schematics: SchematicSource[]
-  models: ModelSource[]
-}
-
 export interface Manifest {
   schema: number
   built: string
@@ -61,10 +27,10 @@ export interface DeviceKind {
   n: number
 }
 
-/** One row of the search index: part, documents, uses, model candidates, devices, family.
+/** One row of the search index: part, documents, uses, model candidates, devices, family, data sheets.
  *  Devices is a bit per entry of `PartIndex.deviceKinds`, because a part can answer to several; family
  *  is a position in `PartIndex.families`, or -1 when nothing says which. */
-export type PartRow = [string, number, number, number, number] | [string, number, number, number, number, number]
+export type PartRow = [string, number, number, number, number, number?, number?]
 
 export interface PartIndex {
   schema: number
@@ -163,6 +129,8 @@ export interface About {
   /** link, maker id, maker as written, title, where it came from, a note, and an archived copy when the
    *  maker's own address refuses scripts. */
   sheets?: [string, string, string, string, string, string, string?][]
+  /** Pages of databooks and device tables that print the part, in the same shape as `sheets`. */
+  books?: [string, string, string, string, string, string, string?][]
   /** Catalogues that list the part today: census source, link. */
   listed?: [string, string][]
   /** The oldest dated document here that prints it: year, title, source position, link. */

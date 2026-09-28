@@ -11,6 +11,7 @@ import { Fragment } from 'preact'
 import { useEffect, useMemo, useState } from 'preact/hooks'
 
 import { follow, loadCatalogue, loadIndex } from './data'
+import { Fold } from './fold'
 import type { Catalogue, Family, PartIndex, PartPage, PartRow } from './types'
 
 const nf = (v: number) => v.toLocaleString('en-GB')
@@ -106,25 +107,44 @@ function lineage(id: string, cat: Catalogue): string[] {
   return out
 }
 
-function NameReading({ page, cat }: { page: PartPage; cat: Catalogue }) {
-  const r = page.about?.name
-  if (!r) return null
+/**
+ * The part number as the page's title, each piece of it explaining itself on hover.
+ *
+ * The reading used to be a row of boxes under the title, repeating the name a letter at a time; on the
+ * name itself it takes no room, and the piece a reader points at is the piece that answers. A piece is
+ * also focusable, so a keyboard or a tap reaches the same text. Where the pieces cannot be found in the
+ * name in order, the title is the plain name, never a misplaced reading.
+ */
+export function PartName({ part, page }: { part: string; page: PartPage | null }) {
+  const cat = useCatalogue()
+  const r = page?.about?.name
+  const pieces: preact.ComponentChildren[] = []
+  let at = 0
+  for (const [text, field, meaning] of r?.segments ?? []) {
+    if (!text) continue
+    const i = part.indexOf(text, at)
+    if (i < 0) { pieces.length = 0; at = 0; break }
+    if (i > at) pieces.push(part.slice(at, i))
+    pieces.push(
+      <span class="nseg" tabIndex={0} key={i}>
+        {text}
+        <span class="tip" role="tooltip"><b>{field}</b>{meaning}</span>
+      </span>,
+    )
+    at = i + text.length
+  }
+  if (!pieces.length) return <h1>{part}</h1>
+  if (at < part.length) pieces.push(part.slice(at))
   return (
-    <section class="stack-s">
-      <h3>What the name says</h3>
-      <div class="segs">
-        {r.segments.map(([text, field, meaning], i) => (
-          <div class="seg" key={i}>
-            <code>{text}</code>
-            <span class="f">{field}</span>
-            <span class="m">{meaning}</span>
-          </div>
-        ))}
-      </div>
-      <p class="muted small">
-        Read under <A href={`?scheme=${r.scheme}`}>{r.label}</A>. {r.caveats[0]} <Refs ids={r.refs} cat={cat} />
-      </p>
-    </section>
+    <div class="stack-s">
+      <h1 class="pname">{pieces}</h1>
+      {r && cat && (
+        <p class="muted small">
+          Point at each piece of the name for what it says, read under <A href={`?scheme=${r.scheme}`}>{r.label}</A>.
+          {' '}{r.caveats[0]} <Refs ids={r.refs} cat={cat} />
+        </p>
+      )}
+    </div>
   )
 }
 
@@ -378,13 +398,62 @@ function Datasheets({ page, cat }: { page: PartPage; cat: Catalogue }) {
   )
 }
 
-/** The top of a part's page: its name read letter by letter, then what it is and who says so. */
+/**
+ * The pages of old databooks and device tables that print the part, folded shut at the foot of the page.
+ *
+ * They are sheets too, but a TL072 is on forty of them, bound together decades ago, and listed among the
+ * makers' own sheets they buried the one a reader wants first. Folded by the archive that holds them.
+ */
+export function Databooks({ page }: { page: PartPage }) {
+  const books = page.about?.books
+  if (!books?.length) return null
+  const byVia = new Map<string, typeof books>()
+  for (const b of books) {
+    const k = VIA[b[4]] ?? b[4]
+    const g = byVia.get(k)
+    if (g) g.push(b)
+    else byVia.set(k, [b])
+  }
+  const groups = [...byVia.entries()].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]))
+  const summary = (
+    <>
+      <strong>Databooks</strong>
+      <span class="count">{nf(books.length)} {books.length === 1 ? 'page' : 'pages'}</span>
+      <span class="small muted">pages of old databooks and device tables that print it</span>
+    </>
+  )
+  return (
+    <section class="stack-s">
+      <Fold summary={summary} level={1}>
+        {() => groups.map(([via, rows]) => (
+          <Fold
+            key={via} level={2} open={groups.length === 1}
+            summary={<><strong>{via}</strong> <span class="count">{nf(rows.length)}</span></>}
+          >
+            {() => (
+              <ul class="uselist">
+                {rows.map(([url, , maker, title, , note, copy], i) => (
+                  <li key={i}>
+                    <a href={url} target="_blank" rel="noopener">{title || fileName(url)}</a>
+                    <span class="muted small">{maker && <> · {maker}</>}{note && <> · {note}</>}
+                      {copy && <> · <a href={copy} target="_blank" rel="noopener">archived copy</a></>}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Fold>
+        ))}
+      </Fold>
+    </section>
+  )
+}
+
+/** The top of a part's page, under its name: what it is and who says so, then its data sheets. */
 export function AboutPart({ page, sources }: { page: PartPage; sources: string[] }) {
   const cat = useCatalogue()
   if (!cat || !page.about) return null
   return (
     <>
-      <NameReading page={page} cat={cat} />
       <Facts page={page} cat={cat} sources={sources} />
       <Datasheets page={page} cat={cat} />
       <KinSheets page={page} />
@@ -468,14 +537,14 @@ export function FamilyPage({ id }: { id: string }) {
   const list = useMemo(() => (cat && idx ? members(id, cat, idx) : []), [cat, idx, id])
   if (!cat) return <p class="muted">Loading…</p>
   const f: Family | undefined = fams(cat)[id]
-  if (!f) return <p class="muted">No family called {id}. <A href="?view=families">All families</A>.</p>
+  if (!f) return <p class="muted">No family called {id}.</p>
   const chain = lineage(id, cat)
   const kids = children(id, cat)
   return (
     <div class="stack prose-wide">
       <div class="stack-s">
         <p class="eyebrow">
-          <A href="?view=families">Families</A>
+          Family
           {chain.slice(0, -1).map((c) => <span key={c}> › <A href={`?family=${c}`}>{label(c, cat)}</A></span>)}
         </p>
         <h2>{f.label}</h2>
@@ -509,48 +578,6 @@ export function FamilyPage({ id }: { id: string }) {
         {idx && <PartList rows={list} />}
       </section>
       <RefList ids={f.refs} cat={cat} />
-    </div>
-  )
-}
-
-export function FamiliesPage() {
-  const cat = useCatalogue()
-  const idx = useIndex()
-  const counts = useMemo(() => {
-    const c = new Map<string, number>()
-    if (!idx?.families) return c
-    for (const r of idx.parts) {
-      const f = r.length > 5 ? idx.families[r[5] as number] : undefined
-      if (f) c.set(f, (c.get(f) ?? 0) + 1)
-    }
-    return c
-  }, [idx])
-  if (!cat) return <p class="muted">Loading…</p>
-  const total = (id: string) => [...below(id, cat)].reduce((t, k) => t + (counts.get(k) ?? 0), 0)
-  const Tree = ({ ids }: { ids: string[] }) => (
-    <ul class="tree">
-      {ids.map((k) => (
-        <li key={k}>
-          <A href={`?family=${k}`}>{label(k, cat)}</A>
-          <span class="count"> {idx ? nf(total(k)) : ''}</span>
-          <span class="muted small"> — {fams(cat)[k]?.definition}</span>
-          {children(k, cat).length > 0 && <Tree ids={children(k, cat)} />}
-        </li>
-      ))}
-    </ul>
-  )
-  const top = cat.families.map((f) => f.id).filter((k) => !fams(cat)[k]?.broader)
-  return (
-    <div class="stack prose-wide">
-      <div class="stack-s">
-        <p class="eyebrow">Families</p>
-        <h2>What kinds of part there are</h2>
-        <p class="lede">
-          Each family says what its parts are, what choosing one comes down to, and which datasheet figures
-          are worth comparing. The count is the parts of this index filed under it.
-        </p>
-      </div>
-      <Tree ids={top} />
     </div>
   )
 }

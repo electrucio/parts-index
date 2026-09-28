@@ -1,7 +1,7 @@
 /** Filtering and ordering the parts list, which is the only logic the browser still does for itself. */
 import { describe, expect, it } from 'vitest'
 
-import { keep, ofDevice, order, pageHref, partPath, sameSources, search } from './parts'
+import { keep, ofDevice, order, pageHref, partPath, repoOf, sameSources, search } from './parts'
 import type { DeviceKind, PartRow } from './types'
 
 /** The menu, in menu order; a part row carries one bit per entry, the way the built index does. */
@@ -70,6 +70,18 @@ describe('the order of the list', () => {
     expect(order(rows, 'name').map((r) => r[0])).toEqual(
       [...rows].map((r) => r[0]).sort((a, b) => a.localeCompare(b)),
     )
+  })
+
+  it('turns round when a heading is clicked again, and a tie still reads most used first', () => {
+    expect(order(rows, 'documents', 'asc').map((r) => r[0])[0]).toBe('BC108B')     // 12 documents
+    expect(order(rows, 'name', 'desc').map((r) => r[0])[0]).toBe('ECC83')
+    const tied: PartRow[] = [['B', 10, 0, 1, BJT], ['A', 90, 0, 1, BJT]]
+    expect(order(tied, 'models', 'asc').map((r) => r[0])).toEqual(['A', 'B'])
+  })
+
+  it('orders by data sheets, a part without the count having none', () => {
+    const sheets: PartRow[] = [['A', 1, 1, 0, BJT, -1, 3], ['B', 1, 1, 0, BJT], ['C', 1, 1, 0, BJT, -1, 40]]
+    expect(order(sheets, 'sheets').map((r) => r[0])).toEqual(['C', 'A', 'B'])
   })
 
   it('leaves the rows it was given alone', () => {
@@ -171,5 +183,16 @@ describe('sameSources', () => {
     expect(sameSources({ ss: 'b2' }, 'a1')).toBe(false)       // a cached parts.json from the last deploy
     expect(sameSources({}, 'a1')).toBe(true)                   // a page from before there were stamps
     expect(sameSources({ ss: 'b2' }, undefined)).toBe(true)    // an index from before there were stamps
+  })
+})
+
+describe('a GitHub address', () => {
+  it('is filed under its repository', () => {
+    expect(repoOf('https://github.com/sparkfun/Thing/blob/HEAD/a.brd')).toBe('sparkfun/Thing')
+  })
+
+  it('is told apart from anything else', () => {
+    expect(repoOf('https://gitlab.com/a/b')).toBeNull()
+    expect(repoOf('https://github.com/sparkfun')).toBeNull()
   })
 })
