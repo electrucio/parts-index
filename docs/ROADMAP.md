@@ -153,6 +153,14 @@ follows is what they do not cover yet, roughly in order of what a reader would n
 - Some vendors publish only encrypted models, readable by one simulator and no other. They are recorded as
   `encrypted_only`; the link is still worth publishing.
 
+## Simulation and data sheets
+
+Pillar 3 has a working prototype outside `src/`: pinned simulator images, a bipolar bench, and data-sheet
+tables read by a vision model and used to judge every model of a part. What it decided and measured, and
+what comes next — a person's check of the reference set, graphs cropped with a recipe to simulate them,
+benches for diodes and MOSFETs, the port into `src/parts_index/bench/` and `datasheets/` — is in
+[simulation-and-datasheets.md](simulation-and-datasheets.md#next).
+
 ## Sources deliberately not pursued
 
 Kept here so the decision is not revisited by accident:
@@ -167,5 +175,9 @@ Kept here so the decision is not revisited by accident:
   for exactly this reason: its catalogue is indexed by others, but every file needs a CAPTCHA.
 - **Very large service-manual archives** that would need tens of gigabytes downloaded before anything can
   be linked. Worth revisiting once the link-only path is proven.
+- **Transistor cross-reference sites** (alltransistors.com and the like) as a source of data-sheet values:
+  no test conditions, minimum, typical and maximum mixed, no source per value, and wrong values in the two
+  entries checked (see [simulation-and-datasheets.md](simulation-and-datasheets.md#data-sheets-which-sources-to-trust)).
+  The manufacturer's sheet is the reference.
 - Magazines outside the audio and general-electronics selection: hi-fi review, music industry, broadcast,
   DX listening, television trade and computing titles.

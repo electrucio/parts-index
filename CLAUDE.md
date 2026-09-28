@@ -43,7 +43,8 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
   drawn for them, what was distilled from the research datasets, and the catalogue of what a part is
   (`data/parts/`: families, naming schemes, organisations, relations and the references they cite). **(todo)** the licence notes.
 - `web/` the site (Vite + TypeScript + Preact): the parts browser and the coverage record. Its look
-  is the previous project's site, carried over. `docs/` the roadmap. **(todo)** the maintainer runbook.
+  is the previous project's site, carried over. `docs/` the roadmap, and `simulation-and-datasheets.md`:
+  how models are simulated and data sheets read — decisions, findings, method. **(todo)** the maintainer runbook.
 - `src/parts_index/datasets/` what is kept from the research datasets: `repos` reads how much
   attention each open-source project has, through the `gh` command's own login.
 - `src/parts_index/migrate/` one-off steps carrying the old pipeline's state across; deleted when the
