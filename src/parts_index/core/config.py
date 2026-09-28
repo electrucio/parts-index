@@ -481,9 +481,16 @@ def datasheets(kind: str | None = None) -> Path:
 
 
 def simulators() -> Path:
-    """Installers and tools for the simulation stage, each with its URL and checksum recorded.
-    Never published and never inside a docker image: the Dockerfile downloads them where it builds."""
+    """The simulation stage's private side: the vendor store below, and the runs (docker/sim/README.md)."""
     return material_root() / "simulators"
+
+
+def simulator_vendor() -> Path:
+    """What the simulator images are built from, each checked against docker/sim/sha256/: ngspice's
+    tarball, LTspice's MSI and the captured QSPICE program folder. Never published, and the images built
+    from them are never pushed. The last two cannot be fetched again — their makers serve only the
+    current release — so this is backed up with the essentials."""
+    return simulators() / "vendor"
 
 
 # --- private: the rest, all of it temporary ---------------------------------------------------------
@@ -602,6 +609,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("spice_found", "private", ()),
     ("datasheets", "private", ()),
     ("simulators", "private", ()),
+    ("simulator_vendor", "private", ()),
     ("staging", "private", ()),
     ("legacy", "private", ()),
     ("llm_cache", "private", ()),

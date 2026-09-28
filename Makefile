@@ -11,7 +11,7 @@ WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
 
 .DEFAULT_GOAL := help
-.PHONY: datasheets-register datasheets-links datasheets-harvest datasheets-catalogue datasheets-databooks web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-reconcile models-match models-found models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
+.PHONY: sim-vendor sim-qspice-capture sim-images sim-bjt sim-sample sim-batch datasheets-register datasheets-links datasheets-harvest datasheets-catalogue datasheets-databooks web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-reconcile models-match models-found models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -78,6 +78,43 @@ models-found:  ## (maintainer) group those matches into distinct models, with wh
 models-promote:  ## (maintainer) write the public recipe for every curated part into data/models/parts/
 	$(RUN) pidx models promote
 
+# --- simulators -------------------------------------------------------------------------------
+# QSPICE (the default engine), ngspice (the open cross-check) and LTspice (the compatibility check), in
+# images whose every input is pinned; see docker/sim/README.md.
+# The vendor store holds the installers, which may not be redistributed: it is private, like the images.
+SIM_VENDOR ?= private_material/simulators/vendor
+SIM_RUNS ?= private_material/simulators/runs
+SIM_MODELS ?= private_web_spice_models
+SIM_BUILD = docker build --build-context vendor=$(SIM_VENDOR) --build-arg UID=$$(id -u) --build-arg GID=$$(id -g)
+ENGINES ?= qspice ngspice ltspice
+
+sim-vendor:  ## (maintainer) fetch the simulators' installers into the private store and check their sha256
+	sh docker/sim/vendor.sh $(SIM_VENDOR)
+
+sim-qspice-capture:  ## (maintainer, one-off) install QSPICE under Wine and pack it — this accepts Qorvo's licence
+	$(SIM_BUILD) --target qspice-installer -t parts-index-qspice-installer docker/sim
+	sh docker/sim/qspice_capture.sh $(SIM_VENDOR)
+
+sim-images:  ## (maintainer) build the simulator images from the pinned inputs; [ENGINES='ngspice ltspice']
+	for e in $(ENGINES); do $(SIM_BUILD) --target $$e -t parts-index-$$e docker/sim || exit 1; done
+
+sim-bjt:  ## (maintainer) measure one bipolar model in each simulator; FILE=model.lib NAME=card [POL=pnp] [REPEAT=3]
+	@test -n "$(FILE)" -a -n "$(NAME)" || { echo "give FILE=path/to/model.lib NAME=its .model name"; exit 1; }
+	@mkdir -p $(SIM_RUNS)/$(NAME)/in && cp "$(FILE)" $(SIM_RUNS)/$(NAME)/in/model.lib
+	for e in $(ENGINES); do docker run --rm -v "$(PWD)/$(SIM_RUNS)/$(NAME)":/w parts-index-$$e \
+	  python3 /sim/bench/bjt.py --model-file /w/in/model.lib --model "$(NAME)" --polarity $(or $(POL),npn) \
+	  --out /w/$$e --repeat $(or $(REPEAT),1) || exit 1; done
+	python3 docker/sim/bench/compare.py $(SIM_RUNS)/$(NAME)
+
+sim-sample:  ## (maintainer) list the distinct bipolar models in the index, N at random (0 = all); N=400
+	python3 docker/sim/bench/sample_bjt.py private_material/index.jsonl $(SIM_RUNS)/bjt_$(or $(N),400).jsonl --n $(or $(N),400)
+
+sim-batch:  ## (maintainer) measure a list of models; LIST=file [ENGINE=qspice] [WORKERS=40] [SIM_CPUS=1] [PACK=10] [OUT=dir]
+	@test -n "$(LIST)" || { echo "give LIST=models.jsonl (make sim-sample writes one)"; exit 1; }
+	SIM_CPUS=$(or $(SIM_CPUS),1) sh docker/sim/batch.sh $(or $(ENGINE),qspice) $(or $(WORKERS),$$(nproc)) $(or $(PACK),10) $(LIST) \
+	  $(or $(OUT),$(SIM_RUNS)/batch-$(or $(ENGINE),qspice)-$$(date +%Y%m%d-%H%M%S)) $(SIM_MODELS)
+
+# --- research datasets -------------------------------------------------------------------------
 datasets-repos:  ## (maintainer) read stars, forks and watchers for every open-source project (needs `gh`)
 	$(RUN) pidx datasets repos
 

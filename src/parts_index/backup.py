@@ -41,6 +41,7 @@ from parts_index.core.config import (
     material_root,
     ocr_root,
     page_sizes,
+    simulator_vendor,
     simulators,
     source_list,
     spice_curated,
@@ -66,6 +67,8 @@ def contents(level: str) -> list[tuple[Path, str]]:
         (download_manifest("x").parent, "what each schematic source downloaded"),
         (spice_curated(), "the curation: human judgement, and the symbols and patches with it"),
         (guard_extra_patterns(), "the local patterns the guard checks against"),
+        (simulator_vendor(), "the simulator installers the images are pinned to; LTspice's and QSPICE's "
+                             "makers serve only their latest release"),
     ]
     # Each source's own record of itself: 4.4 MB that reconstructs 1.3 GB of downloads.
     out += [(p, "the recipe for one source's downloads")
@@ -77,7 +80,7 @@ def contents(level: str) -> list[tuple[Path, str]]:
             (datasheets(), "manufacturer datasheets, still needed by the simulation phase"),
             (census_cache("x").parent, "the index pages the part census was read from: small, and "
                                        "re-reading them costs a volunteer's site half an hour of crawling"),
-            (simulators(), "simulator installers and tools"),
+            (simulators(), "the simulation runs: every model measured, and what each run cost"),
         ]
     if level == "all":
         out += [

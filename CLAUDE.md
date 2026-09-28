@@ -28,7 +28,9 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
   part — category, production status, data sheet title and revision — facts and links only.
 - `src/parts_index/web/` builds the site's data from `data/` alone: `build` and `parts` (one file
   per part, already joined and grouped, because a static site has nobody to ask). **(todo)** `src/parts_index/bench/`
-  pillar 3: simulate models (ngspice is the reference engine) and score them against datasheet rows.
+  pillar 3: simulate models and score them against datasheet rows. QSPICE is the default engine, ngspice
+  the open cross-check anyone can repeat, LTspice the compatibility check; the pinned images and a working
+  prototype of the bench are in `docker/sim/` (see its README).
 - `components/`, `circuits/` pillar 4: original LTspice components with `.asy` symbols, and reference
   circuits. The `.net` files reference model files that only exist in the private data root, so they do
   not run from a clean clone yet.

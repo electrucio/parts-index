@@ -1,0 +1,5 @@
+#!/bin/sh
+# simrun NETLIST...  — simulate each netlist with this image's simulator ($SIM_ENGINE), in the netlist's own
+# folder, and print one JSON line per run: the files written and what the run cost.
+# simrun            — print the simulator and its version.
+exec python3 /sim/bench/engines.py "$@"
