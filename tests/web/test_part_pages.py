@@ -300,3 +300,37 @@ def test_a_sheet_running_over_pages_is_linked_at_its_first(tmp_path, monkeypatch
     monkeypatch.setattr(wp, "datasheet_pages", lambda source: d / f"{source}.csv")
     got = wp.databook_pages()["LT1028"]
     assert [r[0].rsplit("/", 1)[-1] for r in got] == ["n9", "n39"]
+
+
+def test_a_forum_is_indexed_but_not_shown_and_a_repository_is_whatever_found_it(data):
+    """diyAudio's attachments and Toragi's zips stay out of the site until it is decided they belong;
+    a GitHub sheet is shown even when a journal found it, because the page lists it as a project."""
+    reg = data / "schematics" / "sources.yaml"
+    reg.write_text(reg.read_text(encoding="utf-8")
+                   + "diyaudio: {kind: forum, title: diyAudio, home_url: 'https://d.example/', status: active}\n"
+                   + "hardwarex: {kind: journal, title: HardwareX, home_url: 'https://h.example/', status: active}\n",
+                   encoding="utf-8")
+    for src, url in (("diyaudio", "https://d.example/att/1.pdf"),
+                     ("hardwarex", "https://github.com/a/board/blob/HEAD/b.kicad_sch")):
+        with open(config.schematics_documents(src), "w", encoding="utf-8") as f:
+            f.write(f"id,key,title,url,parent,role,year,month,pages,sha\n0,k,T,{url},,schematic,2001,,1,{src}\n")
+        with open(config.schematics_pages(src), "w", encoding="utf-8") as f:
+            f.write(f"doc,page,url,schematic,parts\n0,1,{url},1,1\n")
+        with open(config.schematics_uses(src), "w", encoding="utf-8") as f:
+            f.write("part,doc,page,times,near\nTL072,0,1,1,U1\n")
+    idx = P.index()
+    page = P.part_payload("TL072", idx, None)
+    assert sorted(idx["sources"][d["s"]] for d in page["docs"]) == ["esp", "hardwarex"]
+    rows, _ = P.search_index(idx, {})
+    assert dict((r[0], r[1]) for r in rows)["TL072"] == 2       # the forum's document is not counted
+
+
+def test_databook_pages_are_listed_apart_from_the_makers_sheets(data):
+    idx = P.index()
+    idx["databook"] = {"TL072": [["https://archive.org/details/bk/page/n9", "", "", "Linear Databook p. 8",
+                                  "archive_databooks", "a page of a databook (1990)"]]}
+    idx["books"] = {"archive_databooks"}
+    idx["sheets"] = {"TL072": [["https://ti.example/tl072.pdf", "ti", "", "", "ti_datasheets", ""]]}
+    about = P.part_payload("TL072", idx, None)["about"]
+    assert [r[0] for r in about["sheets"]] == ["https://ti.example/tl072.pdf"]
+    assert [r[4] for r in about["books"]] == ["archive_databooks"]

@@ -53,7 +53,6 @@ from parts_index.core.config import (
     schematics_documents,
     schematics_lines,
     schematics_pages,
-    schematics_parts,
     schematics_registry,
     schematics_uses,
     wanted_parts,
@@ -67,6 +66,18 @@ REPO_CAP = 200        # GitHub projects listed for one part
 # looking for a circuit wants to start, so a document whose every summarised page is one of those
 # sorts after the rest. A page not summarised yet says nothing either way.
 NOT_A_USE = frozenset(("mention", "advert", "none"))
+
+# The kinds of source whose documents the site shows. A forum's attachments and the bundles a publisher
+# hands out whole (diyAudio, Toragi's zips) are indexed and stay indexed, but whether they belong on the
+# site is still undecided, so the build leaves them out of every page and count. A GitHub repository is
+# shown whatever source found it: it is a board somebody is making, and the page lists it as one.
+SHOWN_KINDS = frozenset(("site", "factory", "reference", "magazine", "book"))
+REPO_HOST = "https://github.com/"
+
+
+def shown(kind: str, url: str) -> bool:
+    """Whether a document of this kind of source, at this address, is published on the site."""
+    return kind in SHOWN_KINDS or url.startswith(REPO_HOST)
 
 # The vocabulary the curation uses, which is the one the previous site offered, with its labels in
 # English. Order is the order of the menu: the devices an analog-audio circuit is made of, then the
@@ -214,14 +225,16 @@ def index() -> dict:
     pages: dict[str, dict] = {}
     lines: dict[str, dict] = {}
     uses: dict[str, list] = defaultdict(list)
+    kind = kinds()
     for i, s in enumerate(sources()):
         docs[s] = {r["id"]: r for r in rows(schematics_documents(s))}
         pages[s] = {(r["doc"], r["page"]): r for r in rows(schematics_pages(s))}
         lines[s] = {(r["doc"], r["page"], r["part"]): (r["kind"], r["line"])
                     for r in rows(schematics_lines(s))}
         for u in rows(schematics_uses(s)):
-            uses[u["part"]].append((i, u))
-    idx = {"sources": sources(), "kinds": kinds(), "documents": docs, "pages": pages, "lines": lines,
+            if shown(kind.get(s, ""), (docs[s].get(u["doc"]) or {}).get("url", "")):
+                uses[u["part"]].append((i, u))
+    idx = {"sources": sources(), "kinds": kind, "documents": docs, "pages": pages, "lines": lines,
            "uses": uses, "repos": repos(), "wanted": wanted(),
            "wanted_kind": {r["part"]: r["kind"] for r in rows(wanted_parts()) if r.get("kind")},
            "dictionary": dictionary_kinds()}
@@ -230,6 +243,7 @@ def index() -> dict:
     idx["sheets"] = archive_sheets()
     idx["harvested"] = harvested_sheets()
     idx["databook"] = databook_pages()
+    idx["books"] = {r[4] for rs in idx["databook"].values() for r in rs}
     idx["first"] = first_seen(idx)
     return idx
 
@@ -413,8 +427,7 @@ def variant_groups(names, keep: set[str] | None = None) -> dict[str, list[str]]:
 
 def all_names(idx: dict, recipes: dict) -> list[str]:
     """Every part the search index will hold: printed, curated or vouched for."""
-    counts = {r["part"] for r in rows(schematics_parts())}
-    return sorted(counts | set(recipes) | set(idx.get("wanted_kind", {})))
+    return sorted(set(idx["uses"]) | set(recipes) | set(idx.get("wanted_kind", {})))
 
 
 def known_kinds(idx: dict, recipes: dict, names) -> dict[str, tuple[str, ...]]:
@@ -554,10 +567,22 @@ def about(part: str, idx: dict, recipe: dict | None) -> dict:
     cat = idx.get("catalogued", {}).get(part)
     if cat:
         out["catalogue"] = cat
+    # A databook page is a sheet too, but one of hundreds bound together decades ago: the page lists
+    # them apart, after everything else, so a maker's current sheet is not buried under forty of them.
     sheets = datasheets(part, idx, recipe)
-    if sheets:
-        out["sheets"] = sheets
-    kinship = kin(part, idx, sheets)
+    books = idx.get("books", set())
+    own = [r for r in sheets if r[4] not in books]
+    bound = [r for r in sheets if r[4] in books]
+    kinship = []
+    for name, why, rs in kin(part, idx, sheets):
+        bound += [r[:5] + [f"as {name}" + (f" · {r[5]}" if r[5] else "")] + r[6:] for r in rs if r[4] in books]
+        rs = [r for r in rs if r[4] not in books]
+        if rs:
+            kinship.append([name, why, rs])
+    if own:
+        out["sheets"] = own
+    if bound:
+        out["books"] = bound
     if kinship:
         out["kin"] = kinship
     listed = idx.get("listed_by", {}).get(part)
@@ -758,8 +783,8 @@ def search_index(idx: dict, recipes: dict) -> tuple[list[list], list[dict]]:
 
     Tuples rather than objects, because the key names would be most of the file.
     """
-    counts = {r["part"]: (int(r["documents"]), int(r["uses"]))
-              for r in rows(schematics_parts())}
+    # Counted from the uses the site shows, not read from the export's table, which counts every source.
+    counts = {part: (len({(si, u["doc"]) for si, u in us}), len(us)) for part, us in idx["uses"].items()}
     dictionary = dictionary_kinds()
     listed_kind = idx.get("wanted_kind", {})
     cache: dict[str, int] = {}

@@ -98,6 +98,15 @@ def build(out: Path | None = None) -> dict:
     kinds_list = [idx["kinds"].get(s, "") for s in idx["sources"]]
     stamp = hashlib.sha1("\n".join(idx["sources"] + ["--"] + kinds_list).encode("utf-8")).hexdigest()[:10]
     if search:
+        # The part pages first: each one counts its data sheets, and the index carries that count so the
+        # list can be sorted by it without opening fifty thousand files.
+        total = 0
+        for row in search:
+            page = part_pages.part_payload(row[0], idx, recipes.get(row[0]))
+            about = page.get("about") or {}
+            row.append(len(about.get("sheets") or []) + len(about.get("books") or []))
+            total += write_json(out / "part", f"{row[0]}.json", {**page, "ss": stamp})
+        sizes["part/"] = total
         sizes["parts.json"] = write_json(out, "parts.json", {
             "schema": SCHEMA, "sources": idx["sources"], "sourcesStamp": stamp,
             # what each source is, so a part page can group its uses by the kind of thing they are
@@ -108,11 +117,6 @@ def build(out: Path | None = None) -> dict:
             "families": list(part_pages.catalogue.families()),
             "parts": search})
         sizes["catalogue.json"] = write_json(out, "catalogue.json", part_pages.catalogue_payload(idx))
-        total = 0
-        for name, *_ in search:
-            total += write_json(out / "part", f"{name}.json",
-                                {**part_pages.part_payload(name, idx, recipes.get(name)), "ss": stamp})
-        sizes["part/"] = total
 
     # Each of these lands with its exporter; the site renders what is present and says what is not.
     manifest = {
