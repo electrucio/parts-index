@@ -1,7 +1,7 @@
 /** Filtering and ordering the parts list, which is the only logic the browser still does for itself. */
 import { describe, expect, it } from 'vitest'
 
-import { ofDevice, order, pageHref, partPath, repoOf, sameSources, search } from './parts'
+import { byDate, ofDevice, order, pageHref, partPath, repoOf, sameSources, search, typeOf } from './parts'
 import type { DeviceKind, PartRow } from './types'
 
 /** The menu, in menu order; a part row carries one bit per entry, the way the built index does. */
@@ -179,5 +179,24 @@ describe('a GitHub address', () => {
   it('is told apart from anything else', () => {
     expect(repoOf('https://gitlab.com/a/b')).toBeNull()
     expect(repoOf('https://github.com/sparkfun')).toBeNull()
+  })
+})
+
+describe('the kind of part in the list', () => {
+  it('is its family when one is known', () => {
+    expect(typeOf(['BC108', 1, 1, 0, BJT, 0], ['bjt'], { bjt: 'Bipolar transistors' }, MENU)).toBe('Bipolar transistors')
+  })
+
+  it('is every device its number could be when no family is', () => {
+    expect(typeOf(['2N3055', 1, 1, 0, BJT | JFET, -1], ['bjt'], {}, MENU)).toBe('Silicon BJT / JFET')
+  })
+})
+
+describe("a magazine's issues", () => {
+  const doc = (y: string, t: string) => ({ s: 0, t, u: '', y, schematic: 0, p: [] })
+
+  it('are in date order, a month-dated issue inside its year, an undated one last', () => {
+    const got = byDate([doc('', 'none'), doc('1985-08', 'aug'), doc('1979', 'y79'), doc('1985-02', 'feb')])
+    expect(got.map((d) => d.t)).toEqual(['y79', 'feb', 'aug', 'none'])
   })
 })

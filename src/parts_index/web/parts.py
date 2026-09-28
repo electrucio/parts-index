@@ -717,6 +717,13 @@ def page_entry(page: dict | None, u: dict, doc_url: str, line: tuple[str, str] |
     return out
 
 
+def issue_date(doc: dict) -> str:
+    """The date a document was published, as precise as its row says: `1985-08`, `1985` or nothing.
+    A magazine's issues are listed in this order on the page, so the month travels when there is one."""
+    year, month = doc.get("year", ""), doc.get("month", "")
+    return f"{year}-{int(month):02d}" if year and month.isdigit() else year
+
+
 def only_named(doc: dict) -> bool:
     """True when every summarised page of this document only mentions or sells the part."""
     kinds = [p[5] for p in doc["p"] if len(p) > 5]
@@ -733,7 +740,7 @@ def part_payload(part: str, idx: dict, recipe: dict | None) -> dict:
         if d is None:
             doc = idx["documents"][source].get(u["doc"], {})
             d = by_doc[key] = {"s": si, "t": doc.get("title", ""), "u": doc.get("url", ""),
-                               "y": doc.get("year", ""), "sha": doc.get("sha", ""),
+                               "y": issue_date(doc), "sha": doc.get("sha", ""),
                                "schematic": 0, "p": []}
         page = idx["pages"][source].get((u["doc"], u["page"]))
         d["schematic"] = max(d["schematic"], int((page or {}).get("schematic") or 0))

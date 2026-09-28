@@ -13,7 +13,7 @@ import { Fragment } from 'preact'
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks'
 
 import { AboutPart, Databooks, PartName } from './about'
-import { DATA, loadIndex, reloadIndex } from './data'
+import { DATA, loadCatalogue, loadIndex, reloadIndex } from './data'
 import { Fold } from './fold'
 import { forViewer } from './links'
 import type { DeviceKind, PageUse, PartIndex, PartPage, PartRow, UseKind } from './types'
@@ -31,6 +31,16 @@ const COLUMNS: { key: Sort; label: string; title: string; num: boolean }[] = [
 ]
 export const NATURAL: Record<Sort, Dir> = { name: 'asc', documents: 'desc', models: 'desc', sheets: 'desc' }
 const PAGE = 300
+
+/**
+ * What kind of part a row is, in a few words: its family when one is known, else the devices its number
+ * could be — a JEDEC number that could be a transistor or a JFET says both.
+ */
+export function typeOf(r: PartRow, families: string[] | undefined, labels: Record<string, string>, menu: DeviceKind[]): string {
+  const f = r[5] !== undefined && r[5] >= 0 ? families?.[r[5]] : undefined
+  if (f && labels[f]) return labels[f]
+  return menu.filter((_, i) => (r[4] & (1 << i)) !== 0).map((d) => d.label).join(' / ')
+}
 
 const COUNT: Record<Exclude<Sort, 'name'>, (r: PartRow) => number> = {
   documents: (r) => r[1],
@@ -166,7 +176,9 @@ function Models({ page }: { page: PartPage }) {
           </tbody>
         </table>
       </div>
-      {m.why && <p class="why"><b>{m.preferred}</b> — {m.why}</p>}
+      {/* A preference argued from datasheet agreement is not shown until that agreement is measured
+          properly; a stand-in, which says the model is of another part, always is. */}
+      {m.why && !/^best datasheet agreement/i.test(m.why) && <p class="why"><b>{m.preferred}</b> — {m.why}</p>}
     </section>
   )
 }
@@ -238,10 +250,23 @@ function Document({ d }: { d: PartPage['docs'][0] }) {
 }
 
 /** A group of documents, folded by source: a part with three thousand hits has to stay readable. */
+/**
+ * A source's documents by date, oldest first: how a magazine's issues are read. The date is as precise
+ * as the index has it — `1985-08` or `1985` — so it sorts as text; a document with none goes last, in
+ * the order the build gave.
+ */
+export function byDate(docs: PartPage['docs']): PartPage['docs'] {
+  return docs.map((d, i) => [d, i] as const)
+    .sort(([a, i], [b, j]) => (a.y ? (b.y ? a.y.localeCompare(b.y) : -1) : (b.y ? 1 : 0)) || i - j)
+    .map(([d]) => d)
+}
+
 function Group({
-  title, note, docs, sources, open,
+  title, note, docs, sources, open, dated = false,
 }: {
   title: string; note: string; docs: PartPage['docs']; sources: string[]; open: boolean
+  /** Each source's documents in date order, instead of the most useful first. */
+  dated?: boolean
 }) {
   if (docs.length === 0) return null
   const bySource = new Map<string, PartPage['docs']>()
@@ -269,7 +294,7 @@ function Group({
           open={groups.length === 1}
           summary={<><strong>{source}</strong> <span class="count">{n(ds.length)}</span></>}
         >
-          {() => ds.map((d, i) => <Document key={i} d={d} />)}
+          {() => (dated ? byDate(ds) : ds).map((d, i) => <Document key={i} d={d} />)}
         </Fold>
       ))}
     </Fold>
@@ -391,8 +416,8 @@ function Uses({ page, sources, kinds }: { page: PartPage; sources: string[]; kin
         docs={built} sources={sources}
       />
       <Group
-        title="Magazines and books" open={built.length === 0}
-        note="the exact page of the PDF; pages with a schematic first"
+        title="Magazines and books" open={built.length === 0} dated
+        note="the exact page of the PDF; each magazine's issues in date order"
         docs={paper} sources={sources}
       />
       <OpenSource page={page} docs={repos} />
@@ -478,7 +503,7 @@ export function Detail({ part, sources, kinds, stamp, onStale }: {
   )
 }
 
-const SIDE = { min: 260, fallback: 400, key: 'pidx.side' }
+const SIDE = { min: 260, fallback: 480, key: 'pidx.side' }
 
 /** The list's width, as the reader last left it. Kept in this browser only, and only as a convenience. */
 function savedWidth(): number {
@@ -541,8 +566,10 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
   const [shown, setShown] = useState(PAGE)
   const [width, setWidth] = useState(savedWidth)
   const host = useRef<HTMLDivElement>(null)
+  const [labels, setLabels] = useState<Record<string, string>>({})
 
   useEffect(() => { loadIndex().then(setIndex) }, [])
+  useEffect(() => { loadCatalogue().then((c) => setLabels(Object.fromEntries(c.families.map((f) => [f.id, f.label])))) }, [])
 
   const searching = q.trim().length >= 2
   const list = useMemo(() => {
@@ -591,7 +618,7 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
           <table>
             <thead>
               <tr>
-                {COLUMNS.map((c) => (
+                {COLUMNS.map((c) => [c.key === 'documents' && <th key="type" class="type">Type</th>,
                   <th
                     key={c.key}
                     class={c.num ? 'num' : undefined}
@@ -601,8 +628,7 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
                       {c.label}
                       <span class="arrow" aria-hidden="true">{by === c.key ? (dir === 'asc' ? '▲' : '▼') : ''}</span>
                     </button>
-                  </th>
-                ))}
+                  </th>])}
               </tr>
             </thead>
             <tbody>
@@ -622,6 +648,10 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
                       {r[0]}
                     </a>
                   </td>
+                  {(() => {
+                    const t = index ? typeOf(r, index.families, labels, index.deviceKinds) : ''
+                    return <td class="type" title={t}>{t}</td>
+                  })()}
                   <td class="num">{r[1] ? n(r[1]) : '—'}</td>
                   <td class="num">{r[3] ? n(r[3]) : '—'}</td>
                   <td class="num">{r[6] ? n(r[6]) : '—'}</td>

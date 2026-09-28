@@ -343,3 +343,9 @@ def test_a_repository_among_the_documents_carries_its_stars(data):
     idx["uses"]["TL072"] = [(idx["sources"].index("esp"), {"doc": "9", "page": "1", "times": "1", "near": ""})]
     idx["documents"]["esp"]["9"] = {"title": "a/board: b.kicad_sch", "url": "https://github.com/a/board/blob/HEAD/b.kicad_sch"}
     assert P.part_payload("TL072", idx, None)["stars"] == {"a/board": [7, 1, 2]}
+
+
+def test_an_issue_is_dated_to_the_month_when_its_row_says_so():
+    assert P.issue_date({"year": "1985", "month": "8"}) == "1985-08"
+    assert P.issue_date({"year": "1985", "month": ""}) == "1985"
+    assert P.issue_date({"year": "", "month": "08"}) == ""
