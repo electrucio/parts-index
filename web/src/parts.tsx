@@ -144,11 +144,8 @@ function Models({ page }: { page: PartPage }) {
           <tbody>
             {m.models.map((mo, i) => (
               <Fragment key={i}>
-                <tr class={mo.source === m.preferred ? 'sel' : undefined}>
-                  <td>
-                    {mo.source}
-                    {mo.source === m.preferred && <> <span class="pill acc">preferred</span></>}
-                  </td>
+                <tr>
+                  <td>{mo.source}</td>
                   <td><code>{mo.name}</code></td>
                   <td>{mo.type || mo.def}</td>
                   <td>
@@ -174,9 +171,6 @@ function Models({ page }: { page: PartPage }) {
           </tbody>
         </table>
       </div>
-      {/* A preference argued from datasheet agreement is not shown until that agreement is measured
-          properly; a stand-in, which says the model is of another part, always is. */}
-      {m.why && !/^best datasheet agreement/i.test(m.why) && <p class="why"><b>{m.preferred}</b> — {m.why}</p>}
     </section>
   )
 }
