@@ -35,7 +35,7 @@ ARCHIVE = "https://archive.org"
 STAGES = ("fetch", "read")
 VERSIONED = ("read",)
 FIELDS = ("key", "url", "http", "bytes", "fetch_at", "read_at", "read_v", "skip_reason")
-READ_VERSION = "3"  # 3: JIS names the OCR misread (25A1770, 2S41770) are read as JIS
+READ_VERSION = "4"  # 4: a name without a known family needs three digits (PP3, PH2 are not parts)
 PAGE_FIELDS = ("part", "book", "leaf", "printed", "maker", "title", "year", "checked", "kind", "link")
 TABLE_PAGES = 2         # in a tabulation, the first pages a part is listed on are enough to find it
 HEAD_LINES = 6          # a sheet names its type in its first lines
@@ -117,7 +117,8 @@ def names(text: str, parts: set[str]) -> set[str]:
             n = tok if tok in parts else nearest(tok, parts)
             # "Fig. 78a" is a figure, and a letter and a number (A13, X1000) is a pin or an axis unless
             # the extractor knows it as a family (J203 is a JFET)
-            if n and is_a_part(n) and (family_of(n) or not re.fullmatch(r"[A-Z]\d+[A-Z]?", n)):
+            # and a name the extractor has no family for needs three digits: PP3 is a battery, PH2 a plug
+            if n and is_a_part(n) and (family_of(n) or (re.search(r"\d{3}", n) and not re.fullmatch(r"[A-Z]\d+[A-Z]?", n))):
                 out.add(n)
     return out
 

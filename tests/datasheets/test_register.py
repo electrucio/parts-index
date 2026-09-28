@@ -222,6 +222,7 @@ def test_a_databook_page_covers_the_part_its_heading_names():
     assert heads("146\nRCA Transistor Manual\np-n-p type, such as the 2N408. JEDEC", parts) == set()
     assert heads("474 RCA Transistor Manual\nIndex\n2N404A .\n2N795 .\n2N1358 .", parts) == set()
     assert heads("145\nA13\nADDRESS INPUT", parts | {"A13"}) == set()
+    assert heads("12\nPP3 BATTERY\nPH2", parts | {"PP3", "PH2"}) == set()
 
 
 def test_a_numbered_sheet_gets_its_prefix_and_a_family_sheet_is_one():
@@ -253,3 +254,11 @@ def test_a_jis_name_the_ocr_misread_is_read_as_jis():
         "|2SC4614 |(QMWW) |BCB |2SA1770 |  2SA1770 8 9 2SC1815"
     assert names("25A1770 2SC4614", {"2SA1770", "2SC4614"}) == {"2SA1770", "2SC4614"}
     assert unmangle("25W 2x25 1250") == "25W 2x25 1250"       # watts and counts stay as they are
+
+
+def test_a_family_named_sheet_covers_its_members():
+    from parts_index.datasheets.harvest import covered
+    parts = {"L7805", "L7812", "L78L05"}
+    text = "L78\nPositive voltage regulator ICs\n" + "x" * 900 + "\nL7805CV L7805 L7812CV L7812 L78L05"
+    got = covered([text], parts, "L78")
+    assert {"L7805", "L7812"} <= set(got) and "L78L05" not in got     # 78L05 is another family
