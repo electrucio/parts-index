@@ -69,7 +69,27 @@ Fairchild, Vishay, Infineon, InterFET, Linear Systems; 2000 to 2026; tables with
 parts per table (2N3903/2N3904, 2N5457/2N5458, BC546…550, 1N91x/1N4x48, 2N7000/2N7002); grades (LSK170
 A–D); PNP sheets printing negative values; typos in the sheets themselves (BC550's "f = 30~15000 MHz",
 2SK170's two NF rows both at 1 kHz). 22 pages, **249 rows, 323 values**, read off the page images by Claude
-on 2026-09-28 and **not yet checked by the maintainer**: the first thing to do with it is to spot-check it.
+on 2026-09-28.
+
+**How the reference was checked** (the same day, without a person — a reader re-checking itself proves
+little, so the check is against readers that fail differently):
+
+1. *The text layer as a mechanical witness:* all 323 values and all 604 numbers in the conditions are on
+   their page. Nothing was mistyped or invented; what remains possible is a right number in the wrong
+   row, column or sign.
+2. *Qwen's four readings as a second, independent reader:* 213 of the 249 rows agree exactly with all
+   four. Of the other 36, most are Qwen's omissions or a single dissenting run (usually text-only, which
+   loses the µ of symbol fonts) with the other three agreeing with the reference; two rows had two runs
+   agreeing on another reading (BC550's VBE(on) at 10 mA and its band noise figure), and the page image
+   shows the reference is right (the runs had merged the 2 mA row's values, and the two NF rows).
+3. *Signs:* 604 value pairs compared with sign — no disagreement.
+4. *Condition names:* where two or more runs named a condition differently (2SK170 Crss, LSK170 IG —
+   VDG against VDS; 1N4148's pulse condition), a 300-dpi crop of the row settled it: the reference was
+   right each time.
+
+No correction to the reference came out of it; two gaps in the evaluator did (a symbol printed with
+another kind of bar, and Vishay's "VDS" for a breakdown voltage), and are fixed. What this cannot rule
+out is a misreading every reader shares; a person's spot check is still worth having.
 
 ## Results: extraction
 
@@ -77,10 +97,10 @@ Qwen3.8-27B (Q4_K_M) on lola's GPU 1, two requests at a time, temperature 0, no 
 
 | | image | text | image + text | **image + second look** |
 |---|---|---|---|---|
-| reference rows found | 97.2 % | 94.0 % | 97.6 % | **99.6 %** |
-| ... with all their conditions | 95.2 % | 90.0 % | 94.4 % | **97.6 %** |
-| ... exactly right (every column) | 96.4 % | 88.8 % | 97.6 % | **98.8 %** |
-| reference values right | 96.9 % | 89.2 % | 98.1 % | **99.1 %** |
+| reference rows found | 97.6 % | 94.8 % | 98.0 % | **100 %** |
+| ... with all their conditions | 95.6 % | 90.8 % | 94.8 % | **98.0 %** |
+| ... exactly right (every column) | 96.8 % | 89.6 % | 98.0 % | **99.2 %** |
+| reference values right | 97.2 % | 89.8 % | 98.5 % | **99.4 %** |
 | reference values wrong | 0.6 % | 5.0 % | 0.0 % | 0.6 % |
 | values put in an empty column | 2 | 6 | 0 | 2 |
 | numbers not on the page at all | **0** | **0** | **0** | **0** |
@@ -97,7 +117,7 @@ What the numbers say, and what they hide:
   are of placement, omission and reading, not fabrication.
 - **Omissions are silent.** On 2N5551's page the image run returned 8 rows and stopped; the six it left
   out (VBEsat, Cc, Ce, fT…) came back when asked a second time ("which rows are missing from your
-  answer?"). The second look costs one short turn and lifted recall from 97.2 % to 99.6 %.
+  answer?"). The second look costs one short turn and lifted recall from 97.6 % to 100 %.
 - **Subscripts are the weak point.** "VDG = 10 V" read as "VDS = 10 V" (2SK170's Crss, LSK170's IG) — the
   number is right, the quantity it applies to is not, and no check against the page catches it, because
   "10" is there. The reference catches it; nothing else does yet.
@@ -148,7 +168,7 @@ conditions it dropped.
 ## What we learned
 
 - A 27B vision-language model on one consumer GPU transcribes characteristics tables well enough to drive
-  model checks: 99 % of values right with a second look, and no invented numbers. The failure modes are
+  model checks: 99.4 % of values right with a second look, and no invented numbers. The failure modes are
   specific and checkable: omissions (ask again), subscripts (VDG/VDS — needs a check of its own), lost
   glyphs in the text layer (do not feed it the text layer).
 - The check a SPICE model most needs is not "does it simulate" but "is it the part": a third of the cards
@@ -158,7 +178,7 @@ conditions it dropped.
 
 ## Next
 
-1. The maintainer spot-checks `golden.yaml` (it was read by Claude, not by a person).
+1. A person spot-checks `golden.yaml` — it has been triangulated (above), not looked at by a human.
 2. Grow the reference to 50–100 sheets, older and scanned ones included (Toshiba's, the archive.org
    databooks), where there is no text layer to check numbers against.
 3. A subscript check: the condition quantities a row can have are few per symbol (Crss: VDS or VDG;

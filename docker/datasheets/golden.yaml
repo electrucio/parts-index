@@ -1,10 +1,13 @@
 # Reference values for the datasheet-extraction experiments: what the electrical-characteristics tables of
 # 20 manufacturer data sheets say, read row by row off the rendered page images (150 dpi) and typed in by
-# Claude on 2026-09-28 — not yet checked by the maintainer. Values are as printed (signs, units, even the
+# Claude on 2026-09-28, then checked against the pages' text layer and four independent readings by
+# Qwen3.8-27B, disagreements settled on 300-dpi crops (README, "How the reference was checked") — not yet
+# looked at by a person. Values are as printed (signs, units, even the
 # sheets' own mistakes, marked "sic"); only the rows a SPICE bench can use were taken, plus the ones that
 # test the hard parts of extraction (several parts or grades in one table).
 #
-# row: [symbol, conditions, min, typ, max, unit, (variant)]   — null where the sheet prints a dash.
+# row: [symbol, conditions, min, typ, max, unit, (variant), (parameter)] — null where the sheet prints a dash;
+# the parameter's name only where the symbol alone does not say what the row is (Vishay's "VDS" breakdown).
 # pdf: path under the private data-sheet store (private_material/datasheets/vendor/); url from its manifest.
 
 docs:
@@ -351,7 +354,7 @@ docs:
   part: IRF540
   pages: [2]
   rows:
-  - [VDS, "VGS=0V, ID=250uA", 100, null, null, V]
+  - [VDS, "VGS=0V, ID=250uA", 100, null, null, V, null, "Drain-source breakdown voltage"]
   - [VGS(th), "VDS=VGS, ID=250uA", 2.0, null, 4.0, V]
   - [RDS(on), "VGS=10V, ID=17A", null, null, 0.077, ohm]
   - [gfs, "VDS=50V, ID=17A", 8.7, null, null, S]

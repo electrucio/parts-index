@@ -98,7 +98,7 @@ def canon(symbol, parameter=""):
     s = clean(symbol or "")
     s = re.sub(r"[¹²³⁴⁵⁶⁷⁸⁹⁰*†]+", "", s)  # footnote marks printed as superscripts
     s = re.sub(r"\(note\)|\(\d\)|note\s*\d", "", s, flags=re.I)
-    s = re.sub(r"[\s|()\[\]_]", "", s)
+    s = re.sub(r"[\s|()\[\]_⎪∣]", "", s)  # |Yfs| is printed with several kinds of bar
     p = (parameter or "").lower()
     if re.fullmatch(r"h[FfEe]{2}\d*", s):
         return "hFE" if s[1] == "F" else "hfe"
@@ -178,13 +178,14 @@ def evaluate(golden, pdfs, run):
         for g in d["rows"]:
             sym, cond, gmin, gtyp, gmax, unit = g[:6]
             variant = g[6] if len(g) > 6 else None
+            param = g[7] if len(g) > 7 else ""  # the parameter's name, where the symbol alone is ambiguous
             gv = {c: (None if v is None else abs(v) * (unit_factor(unit) or 1.0))
                   for c, v in zip(("min", "typ", "max"), (gmin, gtyp, gmax))}
             gc = conditions(cond)
             res["ref_rows"] += 1
             res["ref_values"] += sum(v is not None for v in gv.values())
             best, best_score = None, -1.0
-            for r in cand.get(canon(sym), []):
+            for r in cand.get(canon(sym, param), []):
                 if variant and variant.startswith(("NF(", "NF (")) is False and variant:
                     rv = str(r.get("variant") or "") + " " + str(r.get("symbol") or "")
                     if variant[-1] not in rv and variant not in rv:
