@@ -30,7 +30,9 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
   per part, already joined and grouped, because a static site has nobody to ask). **(todo)** `src/parts_index/bench/`
   pillar 3: simulate models and score them against datasheet rows. QSPICE is the default engine, ngspice
   the open cross-check anyone can repeat, LTspice the compatibility check; the pinned images and a working
-  prototype of the bench are in `docker/sim/` (see its README).
+  prototype of the bench are in `docker/sim/` (see its README). `docker/vlm/` serves a vision-language model
+  on one GPU, and `docker/datasheets/` is the experiment that reads data-sheet tables with it and holds
+  every model of a part against its sheet (reference set, results and procedure in its README).
 - `components/`, `circuits/` pillar 4: original LTspice components with `.asy` symbols, and reference
   circuits. The `.net` files reference model files that only exist in the private data root, so they do
   not run from a clean clone yet.

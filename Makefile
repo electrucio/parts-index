@@ -11,7 +11,7 @@ WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
 
 .DEFAULT_GOAL := help
-.PHONY: sim-vendor sim-qspice-capture sim-images sim-bjt sim-sample sim-batch datasheets-register datasheets-links datasheets-harvest datasheets-catalogue datasheets-databooks web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-reconcile models-match models-found models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
+.PHONY: vlm-image vlm-models vlm-serve vlm-stop sheets-pages sheets-extract sheets-evaluate sheets-crosscheck sim-vendor sim-qspice-capture sim-images sim-bjt sim-sample sim-batch datasheets-register datasheets-links datasheets-harvest datasheets-catalogue datasheets-databooks web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-reconcile models-match models-found models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -113,6 +113,49 @@ sim-batch:  ## (maintainer) measure a list of models; LIST=file [ENGINE=qspice] 
 	@test -n "$(LIST)" || { echo "give LIST=models.jsonl (make sim-sample writes one)"; exit 1; }
 	SIM_CPUS=$(or $(SIM_CPUS),1) sh docker/sim/batch.sh $(or $(ENGINE),qspice) $(or $(WORKERS),$$(nproc)) $(or $(PACK),10) $(LIST) \
 	  $(or $(OUT),$(SIM_RUNS)/batch-$(or $(ENGINE),qspice)-$$(date +%Y%m%d-%H%M%S)) $(SIM_MODELS)
+
+# --- data sheets (experiments) -------------------------------------------------------------------
+# A vision-language model on one GPU reads the characteristics tables of manufacturer data sheets; the
+# rows are scored against a hand-read reference and used to hold SPICE models against the sheet. See
+# docker/datasheets/README.md. VLM_MODELS: the folder with the weights (outside the repository).
+DATASHEET_PDFS ?= private_material/datasheets/vendor
+DATASHEET_LAB ?= private_material/datasheet_lab
+GOLDEN ?= docker/datasheets/golden.yaml
+VLM_PORT ?= 8090
+VLM_GPU ?= 1
+
+vlm-image:  ## (maintainer) build llama.cpp's server for CUDA 12.2 (lola's driver) — docker/vlm/README.md
+	docker build -t parts-index-vlm docker/vlm
+
+vlm-models:  ## (maintainer) fetch Qwen3.8-27B + its vision projector, sha256-checked; VLM_MODELS=dir
+	@test -n "$(VLM_MODELS)" || { echo "give VLM_MODELS=/path/to/models"; exit 1; }
+	sh docker/vlm/fetch_qwen38_vl.sh $(VLM_MODELS)
+
+vlm-serve:  ## (maintainer) serve the model on VLM_GPU=1 at 127.0.0.1:$(VLM_PORT); VLM_MODELS=dir
+	@test -n "$(VLM_MODELS)" || { echo "give VLM_MODELS=/path/to/models"; exit 1; }
+	docker rm -f vlm-qwen >/dev/null 2>&1 || true
+	docker run -d --name vlm-qwen --gpus '"device=$(VLM_GPU)"' -p 127.0.0.1:$(VLM_PORT):8090 \
+	  -v $(VLM_MODELS):/models:ro parts-index-vlm -m /models/Qwen3.8-27B-UD-Q4_K_M.gguf \
+	  --mmproj /models/mmproj-F16.gguf -ngl 99 -fa on -c 32768 -np 2 --jinja --host 0.0.0.0 --port 8090
+
+vlm-stop:  ## (maintainer) stop the model server and free its GPU
+	docker rm -f vlm-qwen
+
+sheets-pages:  ## (maintainer) render the reference pages to PNG (150 dpi)
+	$(RUN) python docker/datasheets/render.py --golden $(GOLDEN) --pdfs $(DATASHEET_PDFS) --out $(DATASHEET_LAB)/pages
+
+sheets-extract:  ## (maintainer) have the model read the reference pages; METHOD=image|text|image+text [NAME=run]
+	$(RUN) python docker/datasheets/extract.py --method $(or $(METHOD),image) --server http://127.0.0.1:$(VLM_PORT) \
+	  --golden $(GOLDEN) --pdfs $(DATASHEET_PDFS) --pages $(DATASHEET_LAB)/pages \
+	  --out $(DATASHEET_LAB)/runs/$(or $(NAME),$(or $(METHOD),image))
+
+sheets-evaluate:  ## (maintainer) score extraction runs against the reference; RUNS='dir dir'
+	$(RUN) python docker/datasheets/evaluate.py --golden $(GOLDEN) --pdfs $(DATASHEET_PDFS) --per-doc $(RUNS)
+
+sheets-crosscheck:  ## (maintainer) every model of each reference part against its sheet; [ENGINE=qspice] [ROWS=run]
+	$(RUN) python docker/datasheets/crosscheck.py --golden $(GOLDEN) --index private_material/index.jsonl \
+	  --models $(SIM_MODELS) --out $(DATASHEET_LAB)/crosscheck-$(or $(ENGINE),qspice) --engine $(or $(ENGINE),qspice) \
+	  $(if $(ROWS),--rows $(ROWS))
 
 # --- research datasets -------------------------------------------------------------------------
 datasets-repos:  ## (maintainer) read stars, forks and watchers for every open-source project (needs `gh`)

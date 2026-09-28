@@ -1,0 +1,387 @@
+# Reference values for the datasheet-extraction experiments: what the electrical-characteristics tables of
+# 20 manufacturer data sheets say, read row by row off the rendered page images (150 dpi) and typed in by
+# Claude on 2026-09-28 — not yet checked by the maintainer. Values are as printed (signs, units, even the
+# sheets' own mistakes, marked "sic"); only the rows a SPICE bench can use were taken, plus the ones that
+# test the hard parts of extraction (several parts or grades in one table).
+#
+# row: [symbol, conditions, min, typ, max, unit, (variant)]   — null where the sheet prints a dash.
+# pdf: path under the private data-sheet store (private_material/datasheets/vendor/); url from its manifest.
+
+docs:
+- doc: 2N3904_onsemi
+  pdf: bjt/2N3904_onsemi.pdf
+  part: 2N3904
+  also_in_doc: [2N3903]
+  pages: [2]
+  rows:
+  - [V(BR)CEO, "IC=1.0mA, IB=0", 40, null, null, V]
+  - [V(BR)CBO, "IC=10uA, IE=0", 60, null, null, V]
+  - [V(BR)EBO, "IE=10uA, IC=0", 6.0, null, null, V]
+  - [hFE, "IC=0.1mA, VCE=1.0V", 40, null, null, ""]
+  - [hFE, "IC=1.0mA, VCE=1.0V", 70, null, null, ""]
+  - [hFE, "IC=10mA, VCE=1.0V", 100, null, 300, ""]
+  - [hFE, "IC=50mA, VCE=1.0V", 60, null, null, ""]
+  - [hFE, "IC=100mA, VCE=1.0V", 30, null, null, ""]
+  - [VCE(sat), "IC=10mA, IB=1.0mA", null, null, 0.2, V]
+  - [VCE(sat), "IC=50mA, IB=5.0mA", null, null, 0.3, V]
+  - [VBE(sat), "IC=10mA, IB=1.0mA", 0.65, null, 0.85, V]
+  - [VBE(sat), "IC=50mA, IB=5.0mA", null, null, 0.95, V]
+  - [fT, "IC=10mA, VCE=20V, f=100MHz", 300, null, null, MHz]
+  - [Cobo, "VCB=5.0V, IE=0, f=1.0MHz", null, null, 4.0, pF]
+  - [Cibo, "VEB=0.5V, IC=0, f=1.0MHz", null, null, 8.0, pF]
+  - [hfe, "IC=1.0mA, VCE=10V, f=1.0kHz", 100, null, 400, ""]
+  - [NF, "IC=100uA, VCE=5.0V, RS=1.0kohm, f=1.0kHz", null, null, 5.0, dB]
+  - [ts, "VCC=3.0V, IC=10mA, IB1=IB2=1.0mA", null, null, 200, ns]
+  - [tf, "VCC=3.0V, IC=10mA, IB1=IB2=1.0mA", null, null, 50, ns]
+
+- doc: 2N3906_onsemi
+  pdf: bjt/2N3906_onsemi.pdf
+  part: 2N3906
+  pages: [2]
+  rows:
+  - [V(BR)CEO, "IC=1.0mA, IB=0", 40, null, null, V]
+  - [V(BR)CBO, "IC=10uA, IE=0", 40, null, null, V]
+  - [V(BR)EBO, "IE=10uA, IC=0", 5.0, null, null, V]
+  - [hFE, "IC=0.1mA, VCE=1.0V", 60, null, null, ""]
+  - [hFE, "IC=1.0mA, VCE=1.0V", 80, null, null, ""]
+  - [hFE, "IC=10mA, VCE=1.0V", 100, null, 300, ""]
+  - [hFE, "IC=50mA, VCE=1.0V", 60, null, null, ""]
+  - [hFE, "IC=100mA, VCE=1.0V", 30, null, null, ""]
+  - [VCE(sat), "IC=10mA, IB=1.0mA", null, null, 0.25, V]
+  - [VCE(sat), "IC=50mA, IB=5.0mA", null, null, 0.4, V]
+  - [VBE(sat), "IC=10mA, IB=1.0mA", 0.65, null, 0.85, V]
+  - [VBE(sat), "IC=50mA, IB=5.0mA", null, null, 0.95, V]
+  - [fT, "IC=10mA, VCE=20V, f=100MHz", 250, null, null, MHz]
+  - [Cobo, "VCB=5.0V, IE=0, f=1.0MHz", null, null, 4.5, pF]
+  - [Cibo, "VEB=0.5V, IC=0, f=1.0MHz", null, null, 10, pF]
+  - [hfe, "IC=1.0mA, VCE=10V, f=1.0kHz", 100, null, 400, ""]
+  - [NF, "IC=100uA, VCE=5.0V, RS=1.0kohm, f=1.0kHz", null, null, 4.0, dB]
+  - [ts, "VCC=3.0V, IC=10mA, IB1=IB2=1.0mA", null, null, 225, ns]
+  - [tf, "VCC=3.0V, IC=10mA, IB1=IB2=1.0mA", null, null, 75, ns]
+
+- doc: 2N2222A_onsemi
+  pdf: bjt/2N2222A_onsemi.pdf
+  part: P2N2222A
+  pages: [2, 3]
+  rows:
+  - [V(BR)CEO, "IC=10mA, IB=0", 40, null, null, V]
+  - [V(BR)CBO, "IC=10uA, IE=0", 75, null, null, V]
+  - [V(BR)EBO, "IE=10uA, IC=0", 6.0, null, null, V]
+  - [hFE, "IC=0.1mA, VCE=10V", 35, null, null, ""]
+  - [hFE, "IC=1.0mA, VCE=10V", 50, null, null, ""]
+  - [hFE, "IC=10mA, VCE=10V", 75, null, null, ""]
+  - [hFE, "IC=10mA, VCE=10V, TA=-55C", 35, null, null, ""]
+  - [hFE, "IC=150mA, VCE=10V", 100, null, 300, ""]
+  - [hFE, "IC=150mA, VCE=1.0V", 50, null, null, ""]
+  - [hFE, "IC=500mA, VCE=10V", 40, null, null, ""]
+  - [VCE(sat), "IC=150mA, IB=15mA", null, null, 0.3, V]
+  - [VCE(sat), "IC=500mA, IB=50mA", null, null, 1.0, V]
+  - [VBE(sat), "IC=150mA, IB=15mA", 0.6, null, 1.2, V]
+  - [VBE(sat), "IC=500mA, IB=50mA", null, null, 2.0, V]
+  - [fT, "IC=20mA, VCE=20V, f=100MHz", 300, null, null, MHz]
+  - [Cobo, "VCB=10V, IE=0, f=1.0MHz", null, null, 8.0, pF]
+  - [Cibo, "VEB=0.5V, IC=0, f=1.0MHz", null, null, 25, pF]
+  - [hfe, "IC=1.0mA, VCE=10V, f=1.0kHz", 50, null, 300, ""]
+  - [hfe, "IC=10mA, VCE=10V, f=1.0kHz", 75, null, 375, ""]
+  - [NF, "IC=100uA, VCE=10V, RS=1.0kohm, f=1.0kHz", null, null, 4.0, dB]
+  - [td, "VCC=30V, VBE(off)=-2.0V, IC=150mA, IB1=15mA", null, null, 10, ns]
+  - [tr, "VCC=30V, VBE(off)=-2.0V, IC=150mA, IB1=15mA", null, null, 25, ns]
+  - [ts, "VCC=30V, IC=150mA, IB1=IB2=15mA", null, null, 225, ns]
+  - [tf, "VCC=30V, IC=150mA, IB1=IB2=15mA", null, null, 60, ns]
+
+- doc: BC550_fairchild
+  pdf: bjt/BC550_fairchild.pdf
+  part: BC550
+  also_in_doc: [BC546, BC547, BC548, BC549]
+  pages: [1]
+  rows:
+  - [ICBO, "VCB=30V, IE=0", null, null, 15, nA]
+  - [hFE, "VCE=5V, IC=2mA", 110, null, 800, ""]
+  - [VCE(sat), "IC=10mA, IB=0.5mA", null, 90, 250, mV]
+  - [VCE(sat), "IC=100mA, IB=5mA", null, 200, 600, mV]
+  - [VBE(sat), "IC=10mA, IB=0.5mA", null, 700, null, mV]
+  - [VBE(sat), "IC=100mA, IB=5mA", null, 900, null, mV]
+  - [VBE(on), "VCE=5V, IC=2mA", 580, 660, 700, mV]
+  - [VBE(on), "VCE=5V, IC=10mA", null, null, 720, mV]
+  - [fT, "VCE=5V, IC=10mA, f=100MHz", null, 300, null, MHz]
+  - [Cob, "VCB=10V, IE=0, f=1MHz", null, 3.5, 6, pF]
+  - [Cib, "VEB=0.5V, IC=0, f=1MHz", null, 9, null, pF]
+  - [NF, "VCE=5V, IC=200uA, f=1kHz, RG=2kohm", null, 1.2, 4, dB]
+  - [NF, "VCE=5V, IC=200uA, RG=2kohm, f=30~15000MHz (sic: Hz)", null, 1.4, 3, dB]
+
+- doc: BC549C_nxp
+  pdf: bjt/BC549C_nxp.pdf
+  part: BC549C
+  also_in_doc: [BC550C]
+  pages: [3]
+  rows:
+  - [ICBO, "VCB=30V, IE=0A", null, null, 15, nA]
+  - [IEBO, "VEB=5V, IC=0A", null, null, 100, nA]
+  - [hFE, "VCE=5V, IC=10uA", null, 270, null, ""]
+  - [hFE, "VCE=5V, IC=2mA", 420, 520, 800, ""]
+  - [VCEsat, "IC=10mA, IB=0.5mA", null, 90, 250, mV]
+  - [VCEsat, "IC=100mA, IB=5mA", null, 200, 600, mV]
+  - [VBEsat, "IC=10mA, IB=0.5mA", null, 700, null, mV]
+  - [VBEsat, "IC=100mA, IB=5mA", null, 900, null, mV]
+  - [VBE, "VCE=5V, IC=2mA", 580, 660, 700, mV]
+  - [VBE, "VCE=5V, IC=10mA", null, null, 770, mV]
+  - [Cc, "VCB=10V, IE=ie=0A, f=1MHz", null, 1.5, null, pF]
+  - [Ce, "VEB=0.5V, IC=ic=0A, f=1MHz", null, 11, null, pF]
+  - [fT, "VCE=5V, IC=10mA, f=100MHz", 100, null, null, MHz]
+  - [F, "VCE=5V, IC=200uA, RS=2kohm, f=10Hz to 15.7kHz", null, null, 4, dB]
+  - [F, "VCE=5V, IC=200uA, RS=2kohm, f=1kHz, B=200Hz", null, null, 4, dB]
+
+- doc: 2SC2240_toshiba
+  pdf: bjt/2SC2240_toshiba.pdf
+  part: 2SC2240
+  pages: [2]
+  rows:
+  - [ICBO, "VCB=120V, IE=0", null, null, 0.1, uA]
+  - [IEBO, "VEB=5V, IC=0", null, null, 0.1, uA]
+  - [V(BR)CEO, "IC=1mA, IB=0", 120, null, null, V]
+  - [hFE, "VCE=6V, IC=2mA", 200, null, 700, ""]
+  - [VCE(sat), "IC=10mA, IB=1mA", null, null, 0.3, V]
+  - [VBE, "VCE=6V, IC=2mA", null, 0.65, null, V]
+  - [fT, "VCE=6V, IC=1mA", null, 100, null, MHz]
+  - [Cob, "VCB=10V, IE=0, f=1MHz", null, 3.0, null, pF]
+  - [NF, "VCE=6V, IC=0.1mA, f=10Hz, RG=10kohm", null, null, 6, dB]
+  - [NF, "VCE=6V, IC=0.1mA, f=1kHz, RG=10kohm", null, null, 2, dB]
+  - [NF, "VCE=6V, IC=0.1mA, f=1kHz, RG=100ohm", null, 4, null, dB]
+
+- doc: 2SA970_toshiba
+  pdf: bjt/2SA970_toshiba.pdf
+  part: 2SA970
+  pages: [1]
+  rows:
+  - [ICBO, "VCB=-120V, IE=0", null, null, -0.1, uA]
+  - [IEBO, "VEB=-5V, IC=0", null, null, -0.1, uA]
+  - [V(BR)CEO, "IC=-1mA, IB=0", -120, null, null, V]
+  - [hFE, "VCE=-6V, IC=-2mA", 200, null, 700, ""]
+  - [VCE(sat), "IC=-10mA, IB=-1mA", null, null, -0.3, V]
+  - [VBE, "VCE=-6V, IC=-2mA", null, -0.65, null, V]
+  - [fT, "VCE=-6V, IC=-1mA", null, 100, null, MHz]
+  - [Cob, "VCB=-10V, IE=0, f=1MHz", null, 4.0, null, pF]
+  - [NF, "VCE=-6V, IC=-0.1mA, f=10Hz, RG=10kohm", null, null, 6, dB]
+  - [NF, "VCE=-6V, IC=-0.1mA, f=1kHz, RG=10kohm", null, null, 2, dB]
+  - [NF, "VCE=-6V, IC=-0.1mA, f=1kHz, RG=100ohm", null, 3, null, dB]
+
+- doc: 2N5551_nxp
+  pdf: bjt/2N5551_nxp.pdf
+  part: 2N5551
+  also_in_doc: [2N5550]
+  pages: [3]
+  rows:
+  - [ICBO, "VCB=120V, IE=0A", null, null, 50, nA]
+  - [ICBO, "VCB=120V, IE=0A, Tj=100C", null, null, 50, uA]
+  - [IEBO, "VEB=4V, IC=0A", null, null, 50, nA]
+  - [hFE, "VCE=5V, IC=1mA", 80, null, null, ""]
+  - [hFE, "VCE=5V, IC=10mA", 80, null, 250, ""]
+  - [hFE, "VCE=5V, IC=50mA", 30, null, null, ""]
+  - [VCEsat, "IC=10mA, IB=1mA", null, null, 150, mV]
+  - [VCEsat, "IC=50mA, IB=5mA", null, null, 200, mV]
+  - [VBEsat, "IC=10mA, IB=1mA", null, null, 1, V]
+  - [VBEsat, "IC=50mA, IB=5mA", null, null, 1, V]
+  - [Cc, "VCB=10V, IE=ie=0A, f=1MHz", null, null, 6, pF]
+  - [Ce, "VEB=0.5V, IC=ic=0A, f=1MHz", null, null, 30, pF]
+  - [fT, "VCE=10V, IC=10mA, f=100MHz", 100, null, 300, MHz]
+  - [F, "VCE=5V, IC=200uA, RS=2kohm, f=10Hz to 15.7kHz", null, null, 8, dB]
+
+- doc: MJE340_onsemi
+  pdf: bjt/MJE340_onsemi.pdf
+  part: MJE340
+  pages: [1]
+  rows:
+  - [VCEO(sus), "IC=1.0mA, IB=0", 300, null, null, V]
+  - [ICBO, "VCB=300V, IE=0", null, null, 100, uA]
+  - [IEBO, "VEB=3.0V, IC=0", null, null, 100, uA]
+  - [hFE, "IC=50mA, VCE=10V", 30, null, 240, ""]
+
+- doc: BD139_onsemi
+  pdf: bjt/BD139_onsemi.pdf
+  part: BD139
+  also_in_doc: [BD135, BD137]
+  pages: [3]
+  rows:
+  - [VCEO(sus), "IC=30mA, IB=0", 80, null, null, V]
+  - [ICBO, "VCB=30V, IE=0", null, null, 0.1, uA]
+  - [IEBO, "VEB=5V, IC=0", null, null, 10, uA]
+  - [hFE, "VCE=2V, IC=5mA", 25, null, null, ""]
+  - [hFE, "VCE=2V, IC=0.5A", 25, null, null, ""]
+  - [hFE, "VCE=2V, IC=150mA", 40, null, 250, ""]
+  - [VCE(sat), "IC=500mA, IB=50mA", null, null, 0.5, V]
+  - [VBE(on), "VCE=2V, IC=0.5A", null, null, 1, V]
+
+- doc: 2SK170_toshiba
+  pdf: jfet/2SK170_toshiba.pdf
+  part: 2SK170
+  pages: [1]
+  rows:
+  - [IGSS, "VGS=-30V, VDS=0", null, null, -1.0, nA]
+  - [V(BR)GDS, "VDS=0, IG=-100uA", -40, null, null, V]
+  - [IDSS, "VDS=10V, VGS=0", 2.6, null, 20, mA]
+  - [VGS(OFF), "VDS=10V, ID=0.1uA", -0.2, null, -1.5, V]
+  - ["|Yfs|", "VDS=10V, VGS=0, f=1kHz", null, 22, null, mS]
+  - [Ciss, "VDS=10V, VGS=0, f=1MHz", null, 30, null, pF]
+  - [Crss, "VDG=10V, ID=0, f=1MHz", null, 6, null, pF]
+  - [NF, "VDS=10V, ID=1.0mA, RG=1kohm, f=1kHz (sic: both NF rows print 1 kHz)", null, 1.0, 10, dB, "NF(1)"]
+  - [NF, "VDS=10V, ID=1.0mA, RG=1kohm, f=1kHz", null, 0.5, 2, dB, "NF(2)"]
+
+- doc: 2N5457_onsemi
+  pdf: jfet/2N5457_onsemi.pdf
+  part: 2N5457
+  also_in_doc: [2N5458]
+  pages: [3]
+  rows:
+  - [V(BR)GSS, "IG=-10uA, VDS=0", -25, null, null, V]
+  - [IGSS, "VGS=-15V, VDS=0", null, null, -1.0, nA]
+  - [IGSS, "VGS=-15V, VDS=0, TA=100C", null, null, -200, nA]
+  - [VGS(off), "VDS=15V, ID=10nA", -0.5, null, -6.0, V]
+  - [VGS, "VDS=15V, ID=100uA", null, -2.5, null, V]
+  - [IDSS, "VDS=15V, VGS=0", 1.0, 3.0, 5.0, mA]
+  - ["|Yfs|", "VDS=15V, VGS=0, f=1kHz", 1000, 3000, 5000, umhos]
+  - ["|Yos|", "VDS=15V, VGS=0, f=1kHz", null, 10, 50, umhos]
+  - [Ciss, "VDS=15V, VGS=0, f=1kHz", null, 4.5, 7.0, pF]
+  - [Crss, "VDS=15V, VGS=0, f=1kHz", null, 1.5, 3.0, pF]
+
+- doc: J201_interfet
+  pdf: jfet/J201_interfet.pdf
+  part: J201
+  also_in_doc: [J202]
+  pages: [2]
+  rows:
+  - [V(BR)GSS, "VDS=0V, IG=-1uA", -40, null, null, V]
+  - [IGSS, "VGS=-20V, VDS=0V", null, null, -100, pA]
+  - [VGS(OFF), "VDS=20V, ID=10nA", -0.3, null, -1.5, V]
+  - [IDSS, "VGS=0V, VDS=20V", 0.2, null, 1, mA]
+  - [IG, "VDG=20V, ID=IDSS(min)", null, -10, null, pA]
+  - [GFS, "VDS=20V, VGS=0V, f=1kHz", 500, null, null, uS]
+  - [GOS, "VDS=20V, VGS=0V, f=1kHz", null, 1, null, uS]
+  - [Ciss, "VDS=20V, VGS=0V, f=1MHz", null, 4, null, pF]
+  - [Crss, "VDS=20V, VGS=0V, f=1MHz", null, 1, null, pF]
+  - [en, "VDS=10V, VGS=0V, f=1kHz", null, 5, null, nV/rtHz]
+
+- doc: BF862_nxp
+  pdf: jfet/BF862_nxp.pdf
+  part: BF862
+  pages: [4]
+  rows:
+  - [V(BR)GSS, "IGS=-1uA, VDS=0", -20, null, null, V]
+  - [VGS, "VDS=0, IG=1mA", null, null, 1, V]
+  - [VGSoff, "VDS=8V, ID=1uA", -0.3, -0.8, -1.2, V]
+  - [IGSS, "VGS=-15V, VDS=0", null, null, -1, nA]
+  - [IDSS, "VGS=0, VDS=8V", 10, null, 25, mA]
+  - ["|yfs|", "VGS=0, VDS=8V, Tj=25C", 35, 45, null, mS]
+  - [gos, "VGS=0, VDS=8V, Tj=25C", null, 180, 400, uS]
+  - [Ciss, "VGS=0, VDS=8V, f=1MHz", null, 10, null, pF]
+  - [Crss, "VGS=0, VDS=8V, f=1MHz", null, 1.9, null, pF]
+  - [en, "VGS=0, VDS=8V, f=100kHz", null, 0.8, null, nV/rtHz]
+  - [fT, "VGS=0, VDS=8V", null, 715, null, MHz]
+
+- doc: LSK170_linearsystems
+  pdf: jfet/LSK170_linearsystems.pdf
+  part: LSK170
+  pages: [2]
+  rows:
+  - [BVGSS, "VDS=0V, ID=-100uA", -40.0, null, null, V]
+  - [VGS(OFF), "VDS=10V, ID=1nA", -0.2, null, -2.0, V]
+  - [VGS, "VDS=10V, ID=1mA", null, 0.5, null, V]
+  - [IDSS, "VDS=10V, VGS=0", 2.6, null, 6.5, mA, LSK170A]
+  - [IDSS, "VDS=10V, VGS=0", 6.0, null, 12.0, mA, LSK170B]
+  - [IDSS, "VDS=10V, VGS=0", 10.0, null, 20.0, mA, LSK170C]
+  - [IDSS, "VDS=10V, VGS=0", 18.0, null, 30.0, mA, LSK170D]
+  - [IG, "VDG=10V, ID=1mA", null, null, -0.5, nA]
+  - [IGSS, "VGS=-10V, VDS=0V", null, null, -1.0, nA]
+  - [Gfs, "VDS=10V, VGS=0, f=1kHz", 14.0, 22.0, null, mS]
+  - [Gfs, "VDS=15V, ID=1mA", 6.0, 10.0, null, mS]
+  - [en, "VDS=10V, ID=2mA, f=1kHz, NBW=1Hz", null, 0.9, 1.9, nV/rtHz]
+  - [en, "VDS=10V, ID=2mA, f=10Hz, NBW=1Hz", null, 1.4, 4.0, nV/rtHz]
+  - [Ciss, "VDS=15V, ID=100uA, f=1MHz", null, 20.0, null, pF]
+  - [Crss, "VDS=15V, ID=100uA, f=1MHz", null, 5.0, null, pF]
+
+- doc: 1N4148_vishay
+  pdf: diode/1N4148_vishay.pdf
+  part: 1N4148
+  pages: [2]
+  rows:
+  - [VF, "IF=10mA", null, null, 1, V]
+  - [IR, "VR=20V", null, null, 25, nA]
+  - [IR, "VR=20V, Tj=150C", null, null, 50, uA]
+  - [IR, "VR=75V", null, null, 5, uA]
+  - [V(BR), "IR=100uA, tp/T=0.01, tp=0.3ms", 100, null, null, V]
+  - [CD, "VR=0V, f=1MHz, VHF=50mV", null, null, 4, pF]
+  - [trr, "IF=IR=10mA, iR=1mA", null, null, 8, ns]
+  - [trr, "IF=10mA, VR=6V, iR=0.1xIR, RL=100ohm", null, null, 4, ns]
+
+- doc: 1N914_onsemi
+  pdf: diode/1N914_onsemi.pdf
+  part: 1N914
+  also_in_doc: [1N914A, 1N914B, 1N916, 1N916A, 1N916B, 1N4148, 1N4448]
+  pages: [2]
+  rows:
+  - [V(BR), "IR=100uA", 100, null, null, V]
+  - [V(BR), "IR=5.0uA", 75, null, null, V]
+  - [VF, "IF=10mA", null, null, 1.0, V]
+  - [IR, "VR=20V", null, null, 0.025, uA]
+  - [IR, "VR=20V, TA=150C", null, null, 50, uA]
+  - [IR, "VR=75V", null, null, 5.0, uA]
+  - [CT, "VR=0, f=1.0MHz", null, null, 4.0, pF]
+  - [trr, "IF=10mA, VR=6.0V, Irr=1.0mA, RL=100ohm", null, null, 4.0, ns]
+
+- doc: irf540n
+  pdf: mosfet/irf540n.pdf
+  part: IRF540N
+  pages: [2]
+  rows:
+  - [V(BR)DSS, "VGS=0V, ID=250uA", 100, null, null, V]
+  - [RDS(on), "VGS=10V, ID=16A", null, null, 44, mohm]
+  - [VGS(th), "VDS=VGS, ID=250uA", 2.0, null, 4.0, V]
+  - [gfs, "VDS=50V, ID=16A", 21, null, null, S]
+  - [IDSS, "VDS=100V, VGS=0V", null, null, 25, uA]
+  - [Qg, "ID=16A, VDS=80V, VGS=10V", null, null, 71, nC]
+  - [Qgs, "ID=16A, VDS=80V, VGS=10V", null, null, 14, nC]
+  - [Qgd, "ID=16A, VDS=80V, VGS=10V", null, null, 21, nC]
+  - [Ciss, "VGS=0V, VDS=25V, f=1.0MHz", null, 1960, null, pF]
+  - [Coss, "VGS=0V, VDS=25V, f=1.0MHz", null, 250, null, pF]
+  - [Crss, "VGS=0V, VDS=25V, f=1.0MHz", null, 40, null, pF]
+  - [VSD, "TJ=25C, IS=16A, VGS=0V", null, null, 1.2, V]
+  - [trr, "TJ=25C, IF=16A, di/dt=100A/us", null, 115, 170, ns]
+
+- doc: IRF540_vishay
+  pdf: mosfet/IRF540_vishay.pdf
+  part: IRF540
+  pages: [2]
+  rows:
+  - [VDS, "VGS=0V, ID=250uA", 100, null, null, V]
+  - [VGS(th), "VDS=VGS, ID=250uA", 2.0, null, 4.0, V]
+  - [RDS(on), "VGS=10V, ID=17A", null, null, 0.077, ohm]
+  - [gfs, "VDS=50V, ID=17A", 8.7, null, null, S]
+  - [Ciss, "VGS=0V, VDS=25V, f=1.0MHz", null, 1700, null, pF]
+  - [Coss, "VGS=0V, VDS=25V, f=1.0MHz", null, 560, null, pF]
+  - [Crss, "VGS=0V, VDS=25V, f=1.0MHz", null, 120, null, pF]
+  - [Qg, "VGS=10V, ID=17A, VDS=80V", null, null, 72, nC]
+  - [Qgs, "VGS=10V, ID=17A, VDS=80V", null, null, 11, nC]
+  - [Qgd, "VGS=10V, ID=17A, VDS=80V", null, null, 32, nC]
+  - [Rg, "f=1MHz, open drain", 0.5, null, 3.6, ohm]
+  - [VSD, "TJ=25C, IS=28A, VGS=0V", null, null, 2.5, V]
+  - [trr, "TJ=25C, IF=17A, dI/dt=100A/us", null, 180, 360, ns]
+
+- doc: 2N7000_fairchild
+  pdf: mosfet/2N7000_fairchild.pdf
+  part: 2N7000
+  also_in_doc: [2N7002, NDS7002A]
+  pages: [2, 3]
+  rows:
+  - [BVDSS, "VGS=0V, ID=10uA", 60, null, null, V]
+  - [IDSS, "VDS=48V, VGS=0V", null, null, 1, uA]
+  - [IGSSF, "VGS=15V, VDS=0V", null, null, 10, nA]
+  - [IGSSR, "VGS=-15V, VDS=0V", null, null, -10, nA]
+  - [VGS(th), "VDS=VGS, ID=1mA", 0.8, 2.1, 3, V]
+  - [RDS(ON), "VGS=10V, ID=500mA", null, 1.2, 5, ohm]
+  - [RDS(ON), "VGS=4.5V, ID=75mA", null, 1.8, 5.3, ohm]
+  - [VDS(ON), "VGS=10V, ID=500mA", null, 0.6, 2.5, V]
+  - [VDS(ON), "VGS=4.5V, ID=75mA", null, 0.14, 0.4, V]
+  - [ID(ON), "VGS=4.5V, VDS=10V", 75, 600, null, mA]
+  - [gFS, "VDS=10V, ID=200mA", 100, 320, null, mS]
+  - [Ciss, "VDS=25V, VGS=0V, f=1.0MHz", null, 20, 50, pF]
+  - [Coss, "VDS=25V, VGS=0V, f=1.0MHz", null, 11, 25, pF]
+  - [Crss, "VDS=25V, VGS=0V, f=1.0MHz", null, 4, 5, pF]

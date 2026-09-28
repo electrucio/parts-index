@@ -171,6 +171,19 @@ model), `runs-<i>.jsonl` (one per simulator run, with its cost), `worker-<i>.jso
 whole run (wall time, models per second, CPU seconds per model, the busiest worker's memory, how busy the
 host's CPUs were). `bench/agree.py` then compares the simulators model by model.
 
+## Measuring a model at its data sheet's conditions
+
+`bench/bjt.py` measures every bipolar model at one fixed set of conditions (the 2N2222A's). `bench/spec.py`
+measures a model at **the conditions of a given data sheet's rows** — hFE at (IC, VCE), VCE(sat) at
+(IC, IB), fT at (IC, VCE, f), Cob at VCB, NF at (IC, VCE, RG, f); for JFETs IDSS, VGS(off), gfs, IGSS,
+Ciss, Crss, en and NF — and says whether each value is inside the row's limits. It is what
+`docker/datasheets/crosscheck.py` runs, with rows read from data sheets; see
+[docker/datasheets/README.md](../datasheets/README.md) for the procedure and the first results
+(64 of 94 models inside every limit of their part's sheet). A value no transistor has (hFE above 10,000,
+VBE outside 0.2–1.6 V) is reported as *suspect*: QSPICE, driven by the bench's behavioural base source,
+settles on a wrong operating point for a card whose RB is ~0 (Bordodynov's 2SC2240, `RB=1E-06`), though
+a plain current source gives the right answer in all three simulators.
+
 ## What it costs
 
 Measured on the maintainer's server — 2 × Xeon Silver 4410T, 20 cores / 40 threads at up to 2.7 GHz,
