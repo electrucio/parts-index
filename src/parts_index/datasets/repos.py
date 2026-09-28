@@ -33,7 +33,7 @@ import subprocess
 import sys
 from datetime import date, datetime, timedelta
 
-from parts_index.core.config import dataset_table
+from parts_index.core.config import dataset_table, schematics_documents
 
 # The repository is written as its URL, not as `owner/name`, for the same reason `part_repos.csv` is:
 # an owner's name is third-party text that can coincide with anything, and the guard blanks a public URL
@@ -99,16 +99,26 @@ def known() -> dict[str, dict]:
 
 
 def wanted() -> list[str]:
-    """Every repository named by the part index, in the order it is first mentioned."""
-    path = dataset_table("part_repos")
+    """Every repository the site names, in the order it is first mentioned: the projects the datasets
+    say place a part, then the ones whose sheets the schematic index read page by page — the site lists
+    both in one list ordered by stars, so both need them."""
     seen: dict[str, None] = {}
-    if not path.exists():
-        return []
-    with open(path, encoding="utf-8") as f:
-        for r in csv.DictReader(f):
-            repo = r["url"].replace(HOST, "").strip("/")
-            if repo.count("/") == 1:
-                seen.setdefault(repo, None)
+    path = dataset_table("part_repos")
+    if path.exists():
+        with open(path, encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                repo = r["url"].replace(HOST, "").strip("/")
+                if repo.count("/") == 1:
+                    seen.setdefault(repo, None)
+    d = schematics_documents("x").parent
+    for doc in sorted(d.glob("*.csv")) if d.is_dir() else ():
+        with open(doc, encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                if r.get("url", "").startswith(HOST):
+                    owner, _, rest = r["url"][len(HOST):].partition("/")
+                    name = rest.split("/", 1)[0]
+                    if owner and name:
+                        seen.setdefault(f"{owner}/{name}", None)
     return list(seen)
 
 
