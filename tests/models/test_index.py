@@ -101,3 +101,12 @@ def test_missing_lists_what_a_previous_catalogue_had(tmp_path):
     gone = ix.missing(ref, tmp_path / "sources")
     assert [(g["file"], g["definitions"]) for g in gone] == [
         ("sources/acme/extracted/x/gone.mos", 1), ("sources/acme/raw/gone.dio", 2)]
+
+
+def test_an_entry_that_names_its_folder_is_credited_with_everything_in_it():
+    assert ix.yielded_into({"unpacked_to": "extracted/"}) == "extracted"
+    assert ix.yielded_into({"installed": {"into": "extracted", "product": "QSPICE"}}) == "extracted"
+    assert ix.yielded_into({"path": "raw/a.zip"}) == ""
+    recs = [{"file": f} for f in ("sources/qspice/extracted/NJF.txt", "sources/qspice/extracted/NPN.txt",
+                                  "sources/qspice/raw/x.lib", "sources/qspicex/extracted/a.txt")]
+    assert ix.defs_under(recs, "qspice", "extracted") == 2

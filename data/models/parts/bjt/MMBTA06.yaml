@@ -134,7 +134,7 @@ models:
     name: Qmmbta06lt1
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: microcap12
   name: mmbta06lt1
@@ -143,25 +143,24 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: on_bjt.lib
+    member: LIBRARY/on_bjt.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77
     lines:
       mmbta06lt1: [703, 713]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: microcap12
     name: Qmmbta06wt1
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: microcap12
     name: mmbta06wt1
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: on_bjt.lib
+      member: LIBRARY/on_bjt.lib
       sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77
 - source: microcap12
   name: MMBTA06
@@ -170,24 +169,23 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: DiodesInc_BJT.lib
+    member: LIBRARY/DiodesInc_BJT.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
     lines:
       MMBTA06: [1693, 1697]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: qspice
   name: MMBTA06
   def: model
   type: NPN
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: NPN.txt
     sha256: 02e7f34086291154c4ad5a23bd7be80641cec3ccd61609bfc623a1231183224b
     lines:
       MMBTA06: [778, 782]
-    fetched: '2026-09-20'
 - source: duncanamps
   name: QMMBTA06
   def: model

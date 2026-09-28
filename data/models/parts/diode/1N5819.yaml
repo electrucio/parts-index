@@ -30,7 +30,7 @@ models:
     name: D1n5819
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: kicad-spice-library
     name: 1n5819_ON
@@ -41,7 +41,7 @@ models:
     name: 1n5819_ON
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: onsemi.lib
+      member: LIBRARY/onsemi.lib
       sha256: 9db393d63d35620960bb85f1f09b73f52ed86bf361fa71ecb8c69cb7bae90764
 - source: central-semi
   name: 1N5819
@@ -240,13 +240,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: A_BOOST_VM.cir
+    member: DATA/A_BOOST_VM.cir
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: bcd5a50478dfaee3142daa1e651844f712954288ab27c3168fb6e80ffce07e85
     lines:
       1N5819: [787, 788]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: 1N5819
   def: model
@@ -254,13 +253,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: diode.lib
+    member: LIBRARY/diode.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 4f07396942f9fa67d623899d6904636fa4a5be596d413ed863bc6e2b63a2e01d
     lines:
       1N5819: [353, 354]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: 1N5819HW
   def: model
@@ -268,24 +266,23 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: DiodesInc.lib
+    member: LIBRARY/DiodesInc.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
     lines:
       1N5819HW: [9540, 9541]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: qspice
   name: 1N5819
   def: model
   type: D
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: Schottky.txt
     sha256: 77d471af2ae9494b08252dd53e648f3cafcfb17d1844579217cf4886f41604b2
     lines:
       1N5819: [21, 21]
-    fetched: '2026-09-20'
 - source: bordodynov
   name: 1N5819
   def: model

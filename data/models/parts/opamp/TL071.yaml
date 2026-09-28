@@ -117,7 +117,7 @@ models:
     name: TL071_TI
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: ti.lib
+      member: LIBRARY/ti.lib
       sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
 - source: stmicro
   name: TL071
@@ -326,13 +326,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: m_opamp.lib
+    member: LIBRARY/m_opamp.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 6b96d357d32e315e8e5c5d9fc2835ffffa23b6371aa0fe1a5475ebb6b2c776a0
     lines:
       TL071_MC: [2468, 2502]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: TL071_MC

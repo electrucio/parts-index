@@ -128,7 +128,7 @@ models:
     name: BC548C
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: spice-model-cd
     name: BC548C
@@ -164,13 +164,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: msbjt_lbr.lib
+    member: lbr_txt/msbjt_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 03fbaf82587d859e52f6b3e36166b65d7d6b6f241e460308f37d3b568e5fa96e
     lines:
       BC548C: [1795, 1798]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: ltwiki
   name: BC548C
   def: model

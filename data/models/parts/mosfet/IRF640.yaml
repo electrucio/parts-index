@@ -181,7 +181,7 @@ models:
     name: irf640ns
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: irf.lib
+      member: LIBRARY/irf.lib
       sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
 - source: bordodynov
   name: IRF640_
@@ -284,7 +284,7 @@ models:
     name: irf640s
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: irf.lib
+      member: LIBRARY/irf.lib
       sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
   - source: bordodynov
     name: irf640s
@@ -397,13 +397,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: irf.lib
+    member: LIBRARY/irf.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
     lines:
       irf640_IR: [601, 660]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: irf640_IR
@@ -417,13 +416,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: irpmos_lbr.lib
+    member: lbr_txt/irpmos_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 105bbe2b177521de15323aae290e05947c3bb26d62a8ee42fe5da0e351b46ddf
     lines:
       IRF640: [495, 499]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: IRF640
   def: model
@@ -431,13 +429,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: mpmos_lbr.lib
+    member: lbr_txt/mpmos_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: f3a8113e6ad33c866f8d396d65b1d1e98d8b1d17ebaf3390dd611a3181d4fd37
     lines:
       IRF640: [502, 506]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: irf640ns_AM
   def: subckt
@@ -445,24 +442,23 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: apex.lib
+    member: LIBRARY/apex.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 32f28a857c59ee06357aefa4dd0d238a912620a115f0f2130bd11c66ffbb1144
     lines:
       irf640ns_AM: [5274, 5329]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: qspice
   name: IRF640
   def: model
   type: VDMOS
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: NMOS.txt
     sha256: 7e57e30fa48c9cf43578457aa48aaa511c0c6a6a998a334fae970c469e3be74c
     lines:
       IRF640: [46, 46]
-    fetched: '2026-09-20'
 - source: duncanamps
   name: XIRF640
   def: subckt

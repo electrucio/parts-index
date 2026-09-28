@@ -180,7 +180,7 @@ models:
     name: D1n4007
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: onsemi
   name: D1N4007
@@ -233,19 +233,18 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: DiodesInc.lib
+    member: LIBRARY/DiodesInc.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
     lines:
       1N4007G: [10526, 10527]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: microcap12
     name: 1N4007GL
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: DiodesInc.lib
+      member: LIBRARY/DiodesInc.lib
       sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
 - source: microcap12
   name: 1N4007
@@ -254,13 +253,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: diode.lib
+    member: LIBRARY/diode.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 4f07396942f9fa67d623899d6904636fa4a5be596d413ed863bc6e2b63a2e01d
     lines:
       1N4007: [257, 258]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: 1N4007GP
   def: model
@@ -268,24 +266,23 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: microsem_lbr.lib
+    member: lbr_txt/microsem_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 4de9c79b8f465e5a0873f78fe3a8c13a59e9f0cec851134a2e3e7b434b761d74
     lines:
       1N4007GP: [37, 38]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: qspice
   name: 1N4007
   def: model
   type: D
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: Diode.txt
     sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
     lines:
       1N4007: [8, 8]
-    fetched: '2026-09-20'
 - source: bordodynov
   name: D1N4007
   def: model

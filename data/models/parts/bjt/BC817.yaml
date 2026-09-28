@@ -20,7 +20,7 @@ models:
     name: BC817
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: bordodynov
   name: BC817
@@ -157,7 +157,7 @@ models:
     name: BC817W
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: ph_bjt.lib
+      member: LIBRARY/ph_bjt.lib
       sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
   - source: spice-model-cd
     name: QBC817W
@@ -238,13 +238,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: infineon.lib
+    member: LIBRARY/infineon.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: cdae8e9767d8fccbc81f94acb925cc440425a03e902d86cd8c5591d87131e175
     lines:
       BC817C_IN: [2560, 2581]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: BC817C_IN
@@ -258,13 +257,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: europe_lbr.lib
+    member: lbr_txt/europe_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 42216566abb79c5af5cc97e223623ed0f689b725fcb876c2b4e00d8298ba8e02
     lines:
       BC817: [227, 230]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: BC817DPN
   def: subckt
@@ -272,13 +270,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: nxp.lib
+    member: LIBRARY/nxp.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
     lines:
       BC817DPN: [4, 88]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: BC817DS
   def: subckt
@@ -286,10 +283,9 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: nxp.lib
+    member: LIBRARY/nxp.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
     lines:
       BC817DS: [91, 135]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'

@@ -216,20 +216,19 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: on_fet.lib
+    member: LIBRARY/on_fet.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 9b68f867d49f3f5c7f8313d34e42073e408ccb5020d4cdec8e0168d84275f49d
     lines:
       mmbf5457lt1: [172, 175]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   note: found under the alias MMBF5457
   copies:
   - source: microcap12
     name: Jmmbf5457lt1
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: microcap12
   name: 2N5457
@@ -238,24 +237,23 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: jfet.lib
+    member: LIBRARY/jfet.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: da01b606f4ee2c390ba6c0cac218a9ffa5bf9c45d404fcc5deda34e1ec837a62
     lines:
       2N5457: [351, 353]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: qspice
   name: 2N5457
   def: model
   type: NJF
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: NJF.txt
     sha256: 1eecb317d294dfd7730c4f9070b7f3da9fc4938412714089b87d1948f46fc741
     lines:
       2N5457: [90, 90]
-    fetched: '2026-09-20'
 - source: spiceypedals
   name: J2N5457
   def: model

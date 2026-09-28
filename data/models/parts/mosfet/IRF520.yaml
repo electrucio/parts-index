@@ -26,7 +26,7 @@ models:
     name: irf520_IR
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: irf.lib
+      member: LIBRARY/irf.lib
       sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
   - source: bordodynov
     name: irf520
@@ -288,7 +288,7 @@ models:
     name: irf520n_IR
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: irf.lib
+      member: LIBRARY/irf.lib
       sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
   - source: kicad-spice-library
     name: IRF520N
@@ -314,7 +314,7 @@ models:
     name: irf520ns_IR
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: irf.lib
+      member: LIBRARY/irf.lib
       sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
 - source: kicad-spice-library
   name: irf520ns
@@ -351,19 +351,18 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: Switched Models/Power VCO w DT.cir
+    member: DATA/Switched Models/Power VCO w DT.cir
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 873436159f6f1c35e8ce694a1e3763018fea12de4a3fed6e63632c80840c6e69
     lines:
       IRF520: [1530, 1532]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: microcap12
     name: IRF520
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: Switched Models/HB w Deadtime.cir
+      member: DATA/Switched Models/HB w Deadtime.cir
       sha256: 80e9bac9d69d7fa01d158d73ee4bd947dc6ace00df8d1df866144e637018d27a
 - source: microcap12
   name: IRF520
@@ -372,13 +371,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: mpmos_lbr.lib
+    member: lbr_txt/mpmos_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: f3a8113e6ad33c866f8d396d65b1d1e98d8b1d17ebaf3390dd611a3181d4fd37
     lines:
       IRF520: [376, 380]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: duncanamps
   name: XIRF520
   def: subckt

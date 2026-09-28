@@ -30,13 +30,13 @@ models:
     name: D1n5822rl
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: microcap12
     name: 1n5822rl
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: on_diode.lib
+      member: LIBRARY/on_diode.lib
       sha256: b22e1d5ee75d5fe192f4e75a25f3addd1671eb17659c3b2a8cb964cfc96d10bc
 - source: central-semi
   name: 1N5822
@@ -198,7 +198,7 @@ models:
     name: 1N5822
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: onsemi
     name: 1N5822
@@ -241,7 +241,7 @@ models:
     name: D1N5822
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: onsemi
     name: D1N5822
@@ -291,37 +291,36 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: Power Conversion/Buck-Boost.cir
+    member: DATA/Power Conversion/Buck-Boost.cir
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 7927af0f600dffeb9441b7b529e50c83322bf4b0df2cfb7e4b995ea2bb581cb8
     lines:
       1N5822: [636, 637]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: microcap12
     name: 1N5822
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: Power Conversion/Boost Converter.cir
+      member: DATA/Power Conversion/Boost Converter.cir
       sha256: e08c38085d9c573dc54f613a04cc2aa804b066c36f045b052b18de91952158e5
   - source: microcap12
     name: 1N5822
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: Power Conversion/Boost EMI.cir
+      member: DATA/Power Conversion/Boost EMI.cir
       sha256: c2d85b6a8c8a07df27e9d5619205b42a6ad662824e1dd96e69583ae627a1c87c
   - source: microcap12
     name: 1N5822
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: Power Conversion/Buck Converter.cir
+      member: DATA/Power Conversion/Buck Converter.cir
       sha256: a61176a660690a501d3e69f047a792bb91a5a6968941c9c7be109bd6b6a956c3
   - source: microcap12
     name: 1N5822
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: Small Signal SMPS/Basic CCM-DCM Buck.cir
+      member: DATA/Small Signal SMPS/Basic CCM-DCM Buck.cir
       sha256: 4b064d5813e221246c808bd8fb4a52d7b4b3caf232aa02a0b580e1e68efee220
 - source: microcap12
   name: 1N5822
@@ -330,13 +329,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: S_BUCK_SYN.cir
+    member: DATA/S_BUCK_SYN.cir
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 46e9b195e9cef3c8edc1587ee6d641feacfb502c43bd5c2b42cfd6189ded56db
     lines:
       1N5822: [998, 999]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: 1N5822
   def: model
@@ -344,13 +342,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: S_BUCK_SYN2.cir
+    member: DATA/S_BUCK_SYN2.cir
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 66a720aa53165bf665f89cb52d09b3fda92766a22a1f3c0090f591f241d2b17a
     lines:
       1N5822: [1081, 1082]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: 1N5822
   def: model
@@ -358,24 +355,23 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: diode.lib
+    member: LIBRARY/diode.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 4f07396942f9fa67d623899d6904636fa4a5be596d413ed863bc6e2b63a2e01d
     lines:
       1N5822: [365, 366]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: qspice
   name: 1N5822
   def: model
   type: D
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: Schottky.txt
     sha256: 77d471af2ae9494b08252dd53e648f3cafcfb17d1844579217cf4886f41604b2
     lines:
       1N5822: [24, 24]
-    fetched: '2026-09-20'
 - source: kicad-spice-library
   name: 1N5822
   def: subckt

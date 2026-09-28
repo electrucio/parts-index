@@ -36,7 +36,7 @@ models:
     name: BC857AT
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: ph_bjt.lib
+      member: LIBRARY/ph_bjt.lib
       sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
   - source: spice-model-cd
     name: QBC857AT
@@ -58,7 +58,7 @@ models:
     name: BC857AW
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: ph_bjt.lib
+      member: LIBRARY/ph_bjt.lib
       sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
   - source: spice-model-cd
     name: QBC857AW
@@ -89,7 +89,7 @@ models:
     name: BC857AM
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: nxp.lib
+      member: LIBRARY/nxp.lib
       sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
 - source: spice-model-cd
   name: BC857A
@@ -135,13 +135,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: zetex.lib
+    member: LIBRARY/zetex.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
     lines:
       BC857A_ZX: [2389, 2396]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: BC857A_ZX
@@ -155,13 +154,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: europe_lbr.lib
+    member: lbr_txt/europe_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 42216566abb79c5af5cc97e223623ed0f689b725fcb876c2b4e00d8298ba8e02
     lines:
       BC857A: [361, 365]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: BC857AL
   def: model
@@ -169,13 +167,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: msbjt_lbr.lib
+    member: lbr_txt/msbjt_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 03fbaf82587d859e52f6b3e36166b65d7d6b6f241e460308f37d3b568e5fa96e
     lines:
       BC857AL: [2191, 2194]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: qspice
   name: BC857A
   def: model
@@ -184,17 +181,18 @@ models:
   - PNP
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: PNP.txt
     sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
     lines:
       BC857A: [125, 129]
       PNP: [2, 2]
-    fetched: '2026-09-20'
   copies:
   - source: qspice
     name: BC857AW
     get:
-      url: https://getqspice.com/InstallQSPICE.exe
+      installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+      file: PNP.txt
       sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
 - source: qspice
   name: BC857AT
@@ -204,12 +202,12 @@ models:
   - PNP
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: PNP.txt
     sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
     lines:
       BC857AT: [131, 135]
       PNP: [2, 2]
-    fetched: '2026-09-20'
 - source: duncanamps
   name: QBC857A
   def: model

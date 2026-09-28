@@ -32,7 +32,7 @@ models:
     name: 2N7002
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: cs.lib
+      member: LIBRARY/cs.lib
       sha256: 4daf7b77d9c13771dc3a2e074d972af2c69c71839a7469d1915bdd9c39e69f3d
 - source: ltspice-native
   name: 2N7002
@@ -248,7 +248,7 @@ models:
     name: 2n7002l
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: on_fet.lib
+      member: LIBRARY/on_fet.lib
       sha256: 9b68f867d49f3f5c7f8313d34e42073e408ccb5020d4cdec8e0168d84275f49d
 - source: onsemi
   name: X2n7002k
@@ -392,7 +392,7 @@ models:
     name: 2N7002K
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: vishaymosfet.lib
+      member: LIBRARY/vishaymosfet.lib
       sha256: 23bc5e3e06c64162cbb4b96205c8a4b30b08d7cfd780d41fd3043fede09671f7
   - source: vishay
     name: 2N7002K
@@ -428,7 +428,7 @@ models:
     name: 2N7002E
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: vishaymosfet.lib
+      member: LIBRARY/vishaymosfet.lib
       sha256: 23bc5e3e06c64162cbb4b96205c8a4b30b08d7cfd780d41fd3043fede09671f7
 - source: vishay
   name: 2N7002K
@@ -865,7 +865,7 @@ models:
     name: 2N7002_ZX
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: zetex.lib
+      member: LIBRARY/zetex.lib
       sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
 - source: spice-model-cd
   name: 2N7002
@@ -902,13 +902,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: supertex.lib
+    member: LIBRARY/supertex.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 3fdc8cc325649bfeb8e3dfb022e1ad75934ac87ff5f8b5bf3e4d611de9da113c
     lines:
       2N7002: [36, 41]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: 2N7002
@@ -934,13 +933,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: DiodesInc_FET.lib
+    member: LIBRARY/DiodesInc_FET.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 956632bc5a1ed7ee02659e697171e34e8db51019468b28123788f7f5a8669cb0
     lines:
       2N7002A: [2237, 2240]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: 2N7002T
   def: model
@@ -948,13 +946,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: DiodesInc_FET.lib
+    member: LIBRARY/DiodesInc_FET.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 956632bc5a1ed7ee02659e697171e34e8db51019468b28123788f7f5a8669cb0
     lines:
       2N7002T: [2251, 2254]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: 2N7002DW
   def: model
@@ -962,13 +959,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: DiodesInc_FET.lib
+    member: LIBRARY/DiodesInc_FET.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 956632bc5a1ed7ee02659e697171e34e8db51019468b28123788f7f5a8669cb0
     lines:
       2N7002DW: [2244, 2247]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: 2N7002W
   def: model
@@ -976,24 +972,23 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: DiodesInc_FET.lib
+    member: LIBRARY/DiodesInc_FET.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 956632bc5a1ed7ee02659e697171e34e8db51019468b28123788f7f5a8669cb0
     lines:
       2N7002W: [2258, 2261]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: qspice
   name: 2N7002
   def: model
   type: VDMOS
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: NMOS.txt
     sha256: 7e57e30fa48c9cf43578457aa48aaa511c0c6a6a998a334fae970c469e3be74c
     lines:
       2N7002: [2, 2]
-    fetched: '2026-09-20'
 - source: bordodynov
   name: 2N7002
   def: model

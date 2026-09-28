@@ -95,7 +95,7 @@ models:
     name: BUZ11GE_IN
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: infineon.lib
+      member: LIBRARY/infineon.lib
       sha256: cdae8e9767d8fccbc81f94acb925cc440425a03e902d86cd8c5591d87131e175
 - source: kicad-spice-library
   name: BUZ11/SIE
@@ -138,17 +138,16 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: mpmos_lbr.lib
+    member: lbr_txt/mpmos_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: f3a8113e6ad33c866f8d396d65b1d1e98d8b1d17ebaf3390dd611a3181d4fd37
     lines:
       BUZ11: [103, 107]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: microcap12
     name: BUZ11A
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: mpmos_lbr.lib
+      member: lbr_txt/mpmos_lbr.lib
       sha256: f3a8113e6ad33c866f8d396d65b1d1e98d8b1d17ebaf3390dd611a3181d4fd37

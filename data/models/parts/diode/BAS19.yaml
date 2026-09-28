@@ -64,7 +64,7 @@ models:
     name: BAS19_ZX
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: zetex.lib
+      member: LIBRARY/zetex.lib
       sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
 - source: spice-model-cd
   name: bas19
@@ -84,13 +84,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: ediode_lbr.lib
+    member: lbr_txt/ediode_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 2e50d524139f4241c5345aa22e759f4b47df02a98f9343c9c753c201ba13d8c9
     lines:
       BAS19: [61, 62]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: BAS19W
   def: model
@@ -98,13 +97,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: DiodesInc.lib
+    member: LIBRARY/DiodesInc.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
     lines:
       BAS19W: [9285, 9286]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: duncanamps
   name: DBAS19
   def: model

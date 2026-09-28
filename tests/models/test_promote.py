@@ -167,3 +167,10 @@ def test_a_model_found_under_another_name_says_whose_model_it_is():
     assert P.uncurated("BC183", m)["note"].startswith("STAND-IN: model of BC547, not of BC183")
     m["match"] = "alias:ECC83/exact"
     assert P.uncurated("12AX7", m)["note"] == "found under the alias ECC83"
+
+
+def test_a_model_from_an_installed_product_is_published_as_shipping_with_it():
+    prov = {"source": "qspice", "file": "sources/qspice/extracted/NJF.txt", "url": None,
+            "origin": "QSPICE (Qorvo)", "installed_file": "$QSPICE/NJF.txt", "file_sha256": "ab" * 32}
+    get = P.get_block(prov)
+    assert get["installed_with"] == "QSPICE (Qorvo)" and get["file"] == "NJF.txt" and "url" not in get

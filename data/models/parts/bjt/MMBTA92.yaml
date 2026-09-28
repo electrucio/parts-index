@@ -20,7 +20,7 @@ models:
     name: MMBTA92
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: ltwiki
   name: MMBTA92
@@ -45,7 +45,7 @@ models:
     name: MMBTA92_PH
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: ph_bjt.lib
+      member: LIBRARY/ph_bjt.lib
       sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
   - source: kicad-spice-library
     name: MMBTA92_PH
@@ -85,13 +85,13 @@ models:
     name: Qmmbta92lt1
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: microcap12
     name: mmbta92lt1
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: on_bjt.lib
+      member: LIBRARY/on_bjt.lib
       sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77
 - source: qspice
   name: MMBTA92
@@ -101,12 +101,12 @@ models:
   - PNP
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: PNP.txt
     sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
     lines:
       MMBTA92: [1123, 1127]
       PNP: [2, 2]
-    fetched: '2026-09-20'
 - source: duncanamps
   name: QMMBTA92
   def: model

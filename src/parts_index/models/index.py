@@ -225,6 +225,37 @@ def ledger_paths(source: str) -> dict[str, str]:
     return out
 
 
+def yielded_into(entry: dict) -> str:
+    """The folder a manifest entry's contents live in, when it says so.
+
+    An archive is normally unpacked into `extracted/<its stem>/`, which is how its definitions find
+    their way back to it. Some were not: Micro-Cap's installer zip was unpacked at `extracted/` itself,
+    and QSPICE's encrypted payload can only be installed, its library copied out of the install. The
+    manifest entry then names that folder — `unpacked_to` for an archive, `installed.into` for an
+    installer — and everything under it is credited to that entry's URL.
+    """
+    folder = entry.get("unpacked_to") or (entry.get("installed") or {}).get("into") or ""
+    return folder.strip("/")
+
+
+def yields(source: str) -> list[tuple[str, str]]:
+    """(ledger key, folder) for each entry of this source's manifest that names where it went."""
+    mf = spice_source_manifest(source)
+    if not mf.exists():
+        return []
+    out = []
+    for x in json.loads(mf.read_text(encoding="utf-8")).get("files", []):
+        folder = yielded_into(x)
+        if folder and x.get("url"):
+            out.append((x["url"], folder))
+    return out
+
+
+def defs_under(records: list[dict], source: str, folder: str) -> int:
+    prefix = f"sources/{source}/{folder}/"
+    return sum(1 for r in records if r["file"].startswith(prefix))
+
+
 def stamp_ledgers(records: list[dict], at: str | None = None) -> dict[str, int]:
     """Record against each downloaded file how many definitions it turned out to hold."""
     counts = defs_by_path(records)
@@ -235,14 +266,20 @@ def stamp_ledgers(records: list[dict], at: str | None = None) -> dict[str, int]:
         if not path.exists():
             continue
         paths = ledger_paths(source)
+        declared = dict(yields(source))
         led = Ledger(path, stages=MODEL_STAGES, fields=MODEL_FIELDS, versioned=MODEL_VERSIONED)
         n = 0
         for key, row in led.rows.items():
             if key.startswith("part:") or row["status"] != "downloaded":
                 continue
-            rel = paths.get(key, "")
-            stem = "stem:" + Path(rel).stem.lower() if rel else ""
-            defs = counts.get((source, rel), 0) + (counts.get((source, stem), 0) if stem else 0)
+            if key in declared:
+                defs = defs_under(records, source, declared[key])
+            else:
+                rel = paths.get(key, "")
+                stem = "stem:" + Path(rel).stem.lower() if rel else ""
+                defs = counts.get((source, rel), 0) + (counts.get((source, stem), 0) if stem else 0)
+            if row.get("index_v") == VERSION and row.get("index_at") and row.get("n_defs", "") == str(defs or ""):
+                continue                    # nothing learnt: a stamp would only move the date
             led.stamp(key, "index", version=VERSION, when=at, n_defs=str(defs or ""))
             n += 1
         if n:

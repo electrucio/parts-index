@@ -24,7 +24,7 @@ models:
     name: baw56tt1
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: bordodynov
   name: BAW56HM
@@ -159,7 +159,7 @@ models:
     name: BAW56W
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: ph_diode.lib
+      member: LIBRARY/ph_diode.lib
       sha256: f9df24ec0c294f52c0b42dcb8aa86242c24d1c52b5df04656c47544b89fac977
   - source: ltwiki
     name: BAW56T
@@ -171,7 +171,7 @@ models:
     name: BAW56T
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: ph_diode.lib
+      member: LIBRARY/ph_diode.lib
       sha256: f9df24ec0c294f52c0b42dcb8aa86242c24d1c52b5df04656c47544b89fac977
 - source: onsemi
   name: Dbaw56lt1
@@ -189,13 +189,13 @@ models:
     name: Dbaw56lt1
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: microcap12
     name: baw56lt1
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: on_diode.lib
+      member: LIBRARY/on_diode.lib
       sha256: b22e1d5ee75d5fe192f4e75a25f3addd1671eb17659c3b2a8cb964cfc96d10bc
 - source: onsemi
   name: Dbaw56wt1g
@@ -213,7 +213,7 @@ models:
     name: Dbaw56wt1g
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: spice-model-cd
   name: BAW56
@@ -313,13 +313,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: zetex.lib
+    member: LIBRARY/zetex.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
     lines:
       BAW56_ZX: [1936, 1946]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: BAW56_ZX
@@ -333,13 +332,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: infineon.lib
+    member: LIBRARY/infineon.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: cdae8e9767d8fccbc81f94acb925cc440425a03e902d86cd8c5591d87131e175
     lines:
       BAW56C_IN: [3860, 3873]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: BAW56C_IN
@@ -353,13 +351,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: ediode_lbr.lib
+    member: lbr_txt/ediode_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 2e50d524139f4241c5345aa22e759f4b47df02a98f9343c9c753c201ba13d8c9
     lines:
       BAW56: [253, 254]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: BAW56S
   def: subckt
@@ -367,13 +364,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: ph_diode.lib
+    member: LIBRARY/ph_diode.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: f9df24ec0c294f52c0b42dcb8aa86242c24d1c52b5df04656c47544b89fac977
     lines:
       BAW56S: [718, 748]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: BAW56M
   def: subckt
@@ -381,13 +377,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: nxp.lib
+    member: LIBRARY/nxp.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
     lines:
       BAW56M: [3018, 3041]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: BAW56DW
   def: model
@@ -395,24 +390,23 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: DiodesInc.lib
+    member: LIBRARY/DiodesInc.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
     lines:
       BAW56DW: [9422, 9423]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: qspice
   name: BAW56HY
   def: model
   type: D
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: Diode.txt
     sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
     lines:
       BAW56HY: [173, 173]
-    fetched: '2026-09-20'
 - source: duncanamps
   name: XBAW56
   def: subckt

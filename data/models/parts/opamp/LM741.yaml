@@ -165,7 +165,7 @@ models:
     name: LM741_NS
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: nation.lib
+      member: LIBRARY/nation.lib
       sha256: 3fc09b6f184ee48ba06340ee116b44f0650e61c361bb5c44744d6c7a98b2f7ce
   - source: spice-model-cd
     name: LM741/NS
@@ -256,7 +256,7 @@ models:
     name: UA741_TI
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: ti.lib
+      member: LIBRARY/ti.lib
       sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
 - source: stmicro
   name: UA741
@@ -460,13 +460,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: UA741.MOD
+    member: LIBRARY/UA741.MOD
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 6dc348827d64a03d02932c7194394a7c49ce7a81abdfdd71f77035af36f0bdaf
     lines:
       UA741: [8, 45]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   note: found under the alias uA741
 - source: bordodynov
   name: LM741_NSC

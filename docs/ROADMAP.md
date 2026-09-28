@@ -128,6 +128,10 @@ follows is what they do not cover yet, roughly in order of what a reader would n
   their own: members unpacked from an archive, and models transcribed out of a datasheet. It shows up as
   sources that appear to hold almost nothing — toshiba reports 5 and holds 9,878. `stamp_ledgers` should
   credit an unpacked member to the archive's row, the same join `recovery_targets` already makes.
+  Since 2026-09-28 a manifest entry may say where its contents went — `unpacked_to` for an archive,
+  `installed.into` for an installer — and is credited with everything below it; Micro-Cap 12 (151,393)
+  and QSPICE (1,265) are done that way. Still to declare: vishay/semis, murata, toshiba's bulk folders,
+  ayumi, robrobinette and diodes-inc's collections, about 70,000 definitions between them.
 - **Nothing routinely checks that the downloaded tree still holds what was downloaded.** `models index
   --missing` compares the tree against `index.jsonl`, which is rebuilt from that same tree, so a file lost
   between two runs disappears from both and the check reports nothing. The durable record is elsewhere and

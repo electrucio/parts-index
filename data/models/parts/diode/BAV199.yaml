@@ -168,7 +168,7 @@ models:
     name: BAV199
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: nxp.lib
+      member: LIBRARY/nxp.lib
       sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
 - source: microcap12
   name: BAV199
@@ -177,13 +177,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: ediode_lbr.lib
+    member: lbr_txt/ediode_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 2e50d524139f4241c5345aa22e759f4b47df02a98f9343c9c753c201ba13d8c9
     lines:
       BAV199: [249, 250]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: BAV199DW
   def: model
@@ -191,13 +190,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: DiodesInc.lib
+    member: LIBRARY/DiodesInc.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
     lines:
       BAV199DW: [9329, 9330]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: BAV199T
   def: model
@@ -205,13 +203,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: DiodesInc.lib
+    member: LIBRARY/DiodesInc.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
     lines:
       BAV199T: [9333, 9334]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: BAV199W
   def: model
@@ -219,29 +216,29 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: DiodesInc.lib
+    member: LIBRARY/DiodesInc.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
     lines:
       BAV199W: [9337, 9338]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: qspice
   name: BAV199HY
   def: model
   type: D
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: Diode.txt
     sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
     lines:
       BAV199HY: [168, 168]
-    fetched: '2026-09-20'
   copies:
   - source: qspice
     name: BAV199UM
     get:
-      url: https://getqspice.com/InstallQSPICE.exe
+      installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+      file: Diode.txt
       sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
 - source: duncanamps
   name: XBAV199

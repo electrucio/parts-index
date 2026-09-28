@@ -140,3 +140,22 @@ def test_dependencies_come_in_the_same_order_in_every_run():
     runs = {subprocess.run([sys.executable, "-c", code], capture_output=True, text=True,
                            env={"PYTHONHASHSEED": seed}).stdout for seed in ("1", "2", "3", "4")}
     assert runs == {"['QA', 'QB', 'RC', 'X']\n"}
+
+
+def test_a_file_copied_out_of_an_installed_product_says_so_instead_of_linking_the_installer(tmp_path):
+    root = tree(tmp_path, {"sources/qspice/extracted/NJF.txt": ".model J111 NJF\n"},
+                {"qspice": {"fetched": "2026-09-20", "files": [
+                    {"url": "https://getqspice.com/InstallQSPICE.exe", "path": None},
+                    {"url": "https://getqspice.com/bytes", "path": None,
+                     "installed": {"product": "QSPICE (Qorvo)", "into": "extracted", "var": "QSPICE"}}]}})
+    prov = F.provenance(root, "sources/qspice/extracted/NJF.txt", "qspice", "ab" * 32)
+    assert (prov["url"], prov["origin"], prov["installed_file"]) == (None, "QSPICE (Qorvo)", "$QSPICE/NJF.txt")
+    assert prov["fetched"] == "2026-09-20" and prov["file"] == "sources/qspice/extracted/NJF.txt"
+
+
+def test_an_archive_unpacked_at_its_root_gives_the_member_its_full_path(tmp_path):
+    url = "http://www.spectrum-soft.com/download/mc12cd.zip"
+    root = tree(tmp_path, {"sources/microcap12/extracted/LIBRARY/mpbjt.lib": ".model MJ15001 NPN\n"},
+                {"microcap12": {"files": [{"url": url, "path": None, "sha256": "cd" * 32, "unpacked_to": "extracted"}]}})
+    prov = F.provenance(root, "sources/microcap12/extracted/LIBRARY/mpbjt.lib", "microcap12", "ef" * 32)
+    assert (prov["url"], prov["member"], prov["archive"]["sha256"]) == (url, "LIBRARY/mpbjt.lib", "cd" * 32)

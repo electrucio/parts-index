@@ -108,7 +108,7 @@ models:
     name: irf740lc_IR
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: irf.lib
+      member: LIBRARY/irf.lib
       sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
   - source: bordodynov
     name: irf740lc
@@ -223,13 +223,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: irpmos_lbr.lib
+    member: lbr_txt/irpmos_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 105bbe2b177521de15323aae290e05947c3bb26d62a8ee42fe5da0e351b46ddf
     lines:
       IRF740: [621, 625]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: IRF740
   def: model
@@ -237,13 +236,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: mpmos_lbr.lib
+    member: lbr_txt/mpmos_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: f3a8113e6ad33c866f8d396d65b1d1e98d8b1d17ebaf3390dd611a3181d4fd37
     lines:
       IRF740: [579, 583]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: duncanamps
   name: XIRF740
   def: subckt

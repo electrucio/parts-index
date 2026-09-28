@@ -217,7 +217,7 @@ models:
     name: CD4000
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: cmos.lib
+      member: LIBRARY/cmos.lib
       sha256: 355bb3dfa2be483f7c2d5b8d729acb8221874a18fbf49607f03a0bfc0d753917
 - source: microcap12
   name: CD4000UB
@@ -226,13 +226,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: cmos.lib
+    member: LIBRARY/cmos.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 355bb3dfa2be483f7c2d5b8d729acb8221874a18fbf49607f03a0bfc0d753917
     lines:
       CD4000UB: [51, 66]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: CD4000UB
@@ -246,13 +245,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: Digio.lib
+    member: LIBRARY/Digio.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 018780a8ac24c8f759551a3ba30c69cc7cb700279d5f97d9ad9cbd2cd11cd7b2
     lines:
       CD4000_PWR: [73, 81]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: CD4000_PWR

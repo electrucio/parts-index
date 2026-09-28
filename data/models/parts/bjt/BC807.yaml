@@ -243,7 +243,7 @@ models:
     name: BC807W
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: ph_bjt.lib
+      member: LIBRARY/ph_bjt.lib
       sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
   - source: spice-model-cd
     name: QBC807W
@@ -274,7 +274,7 @@ models:
     name: BC807DS
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: nxp.lib
+      member: LIBRARY/nxp.lib
       sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
 - source: spice-model-cd
   name: BC807C
@@ -330,13 +330,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: infineon.lib
+    member: LIBRARY/infineon.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: cdae8e9767d8fccbc81f94acb925cc440425a03e902d86cd8c5591d87131e175
     lines:
       BC807C_IN: [2456, 2477]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: BC807C_IN
@@ -350,13 +349,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: europe_lbr.lib
+    member: lbr_txt/europe_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 42216566abb79c5af5cc97e223623ed0f689b725fcb876c2b4e00d8298ba8e02
     lines:
       BC807: [173, 176]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: groupsio-ltspice
   name: BC807P
   def: model

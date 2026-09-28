@@ -107,7 +107,7 @@ models:
     name: irf540n_IR
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: irf.lib
+      member: LIBRARY/irf.lib
       sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
   - source: kicad-spice-library
     name: irf540ns_IR
@@ -118,7 +118,7 @@ models:
     name: irf540ns_IR
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: irf.lib
+      member: LIBRARY/irf.lib
       sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
 - source: bordodynov
   name: irf540ns
@@ -347,13 +347,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: apex.lib
+    member: LIBRARY/apex.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 32f28a857c59ee06357aefa4dd0d238a912620a115f0f2130bd11c66ffbb1144
     lines:
       irf540ns_AM: [5024, 5083]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 datasheet:
   url: https://www.infineon.com/assets/row/public/documents/24/49/infineon-irf540n-datasheet-en.pdf
   maker: Infineon (International Rectifier)

@@ -254,7 +254,7 @@ models:
     name: LM833
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: onsemi
     name: LM833
@@ -321,7 +321,7 @@ models:
     name: LM833_MC
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: m_opamp.lib
+      member: LIBRARY/m_opamp.lib
       sha256: 6b96d357d32e315e8e5c5d9fc2835ffffa23b6371aa0fe1a5475ebb6b2c776a0
 - source: bordodynov
   name: LM833
@@ -404,13 +404,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: stmicro.lib
+    member: LIBRARY/stmicro.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 8b10b5822cbfd368b6a77b5f8ab8c41c191aef0d5459ab81e192ea85054beec6
     lines:
       LM833_ST: [181, 249]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: LM833_ST

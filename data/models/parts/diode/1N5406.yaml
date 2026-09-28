@@ -20,13 +20,13 @@ models:
     name: D1n5406rl
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: microcap12
     name: 1n5406rl
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: on_rect.lib
+      member: LIBRARY/on_rect.lib
       sha256: 5d37da736c3d863a34a000b998e990752bd81320e62c69cd2ec73b64a46876bb
 - source: duncanamps
   name: D1N5406
@@ -88,7 +88,7 @@ models:
     name: D1N5406
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: onsemi
     name: D1N5406
@@ -114,49 +114,48 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: Off-Line Converters/Fullwave Rectifier Passive PFC.cir
+    member: DATA/Off-Line Converters/Fullwave Rectifier Passive PFC.cir
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: dc8f118307d67b447cae09e765cf3697d4d470a3d61f965574f65677843d0a54
     lines:
       1N5406: [619, 620]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: microcap12
     name: 1N5406
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: Off-Line Converters/Fullwave Rectifier.cir
+      member: DATA/Off-Line Converters/Fullwave Rectifier.cir
       sha256: 2c32da9bb05240345fc68ed5628fcabe3efe8ca1c46a8ad346ef106f50e07a13
   - source: microcap12
     name: 1N5406
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: Off-Line Converters/Doubler.cir
+      member: DATA/Off-Line Converters/Doubler.cir
       sha256: ff4ee4d4dffa14db1fabaae4b92f6409120eb9ef648599c1d704d3f52d9c388a
   - source: microcap12
     name: 1N5406
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: Off-Line Converters/Hold-up Time.cir
+      member: DATA/Off-Line Converters/Hold-up Time.cir
       sha256: 4ccb439588d4ef82464f83112e54c2756ef8bef9a18de2a43b214cd34b1028be
   - source: microcap12
     name: 1N5406
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: Off-Line Converters/Valley-Fill PFC.cir
+      member: DATA/Off-Line Converters/Valley-Fill PFC.cir
       sha256: 8a9a71a75f5115293988641f57808553441fcbc4b592104d6fcdb20519e9e697
   - source: microcap12
     name: 1N5406
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: Off-Line Converters/Fullwave In-rush.cir
+      member: DATA/Off-Line Converters/Fullwave In-rush.cir
       sha256: 826255feb011d1f6cab0d0c46feb32143ea86da1f8dcaa6b1cd2dcb6ffdabf30
   - source: microcap12
     name: 1N5406
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: Off-Line Converters/Fullwave Mains Impedance.cir
+      member: DATA/Off-Line Converters/Fullwave Mains Impedance.cir
       sha256: f9df6d5c3ef34da6c1c47ae97779447c8bd14af8aa5037d7536a52b451d21d50
 - source: microcap12
   name: 1N5406
@@ -165,13 +164,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: diode.lib
+    member: LIBRARY/diode.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 4f07396942f9fa67d623899d6904636fa4a5be596d413ed863bc6e2b63a2e01d
     lines:
       1N5406: [333, 334]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: 1N5406GP
   def: model
@@ -179,21 +177,20 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: microsem_lbr.lib
+    member: lbr_txt/microsem_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 4de9c79b8f465e5a0873f78fe3a8c13a59e9f0cec851134a2e3e7b434b761d74
     lines:
       1N5406GP: [185, 186]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: qspice
   name: 1N5406
   def: model
   type: D
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: Diode.txt
     sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
     lines:
       1N5406: [20, 20]
-    fetched: '2026-09-20'

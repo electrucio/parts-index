@@ -81,13 +81,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: zetex.lib
+    member: LIBRARY/zetex.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 4111a5cc3f7b0614712e515ee542ea874960d03e54d2c5544edf5a1c556646e2
     lines:
       ZTX951_ZX: [4566, 4574]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: ZTX951_ZX
@@ -102,12 +101,12 @@ models:
   - PNP
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: PNP.txt
     sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
     lines:
       PNP: [2, 2]
       ZTX951: [788, 791]
-    fetched: '2026-09-20'
 - source: duncanamps
   name: QZTX951
   def: model

@@ -123,7 +123,7 @@ models:
     name: irfp250_IR
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: irf.lib
+      member: LIBRARY/irf.lib
       sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
   - source: kicad-spice-library
     name: IRFP250M
@@ -183,7 +183,7 @@ models:
     name: irfp250n
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: irf.lib
+      member: LIBRARY/irf.lib
       sha256: 82f4bef18dd48a7c5ca3da5377969368e74e0dca0d739892a6235d6f44975c99
 - source: bordodynov
   name: IRFP250N
@@ -373,13 +373,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: irpmos_lbr.lib
+    member: lbr_txt/irpmos_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 105bbe2b177521de15323aae290e05947c3bb26d62a8ee42fe5da0e351b46ddf
     lines:
       IRFP250: [1545, 1549]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: ltwiki
   name: IRFP250
   def: model

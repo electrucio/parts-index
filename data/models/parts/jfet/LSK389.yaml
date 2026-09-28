@@ -134,13 +134,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: linearsystems.lib
+    member: LIBRARY/linearsystems.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 0887103f402ae0f49c04b9a00d60ff280779e3a5ea1d0a65ee243d51b7a9828c
     lines:
       LSK389A: [1404, 1410]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: LSK389B
   def: model
@@ -148,13 +147,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: linearsystems.lib
+    member: LIBRARY/linearsystems.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 0887103f402ae0f49c04b9a00d60ff280779e3a5ea1d0a65ee243d51b7a9828c
     lines:
       LSK389B: [1412, 1418]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: LSK389C
   def: model
@@ -162,46 +160,45 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: linearsystems.lib
+    member: LIBRARY/linearsystems.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 0887103f402ae0f49c04b9a00d60ff280779e3a5ea1d0a65ee243d51b7a9828c
     lines:
       LSK389C: [1420, 1425]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: qspice
   name: LSK389A
   def: model
   type: NJF
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: NJF.txt
     sha256: 1eecb317d294dfd7730c4f9070b7f3da9fc4938412714089b87d1948f46fc741
     lines:
       LSK389A: [161, 161]
-    fetched: '2026-09-20'
 - source: qspice
   name: LSK389B
   def: model
   type: NJF
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: NJF.txt
     sha256: 1eecb317d294dfd7730c4f9070b7f3da9fc4938412714089b87d1948f46fc741
     lines:
       LSK389B: [162, 162]
-    fetched: '2026-09-20'
 - source: qspice
   name: LSK389C
   def: model
   type: NJF
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: NJF.txt
     sha256: 1eecb317d294dfd7730c4f9070b7f3da9fc4938412714089b87d1948f46fc741
     lines:
       LSK389C: [160, 160]
-    fetched: '2026-09-20'
 - source: cordell
   name: LSK389C
   def: model

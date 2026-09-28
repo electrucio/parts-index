@@ -65,19 +65,18 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: microsem_lbr.lib
+    member: lbr_txt/microsem_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 4de9c79b8f465e5a0873f78fe3a8c13a59e9f0cec851134a2e3e7b434b761d74
     lines:
       FR107: [753, 754]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: microcap12
     name: FR107GP
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: microsem_lbr.lib
+      member: lbr_txt/microsem_lbr.lib
       sha256: 4de9c79b8f465e5a0873f78fe3a8c13a59e9f0cec851134a2e3e7b434b761d74
 - source: qspice
   name: FR107
@@ -85,11 +84,11 @@ models:
   type: D
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: Diode.txt
     sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
     lines:
       FR107: [25, 25]
-    fetched: '2026-09-20'
 datasheet:
   url: https://services.taiwansemi.com/storage/resources/datasheet/FR101G%20SERIES_H2104.pdf
   maker: Taiwan Semiconductor

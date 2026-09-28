@@ -235,6 +235,10 @@ def provenance(root: Path, file: str, source: str, sha256: str) -> dict:
         prov["fetched"] = man.get("fetched")
         relf = str((root / file).relative_to(mdir))
         files = man.get("files", [])
+        declared = declared_origin(files, relf)
+        if declared:
+            prov.update(declared)
+            return prov
         hit = next((f for f in files if f.get("path") == relf), None)
         if hit:
             # `page` is where a person reads it when there is no direct file URL (forum post, product page)
@@ -268,10 +272,34 @@ def provenance(root: Path, file: str, source: str, sha256: str) -> dict:
         # link, so a reader is always told where the model comes from
         site = next((f.get("url") or f.get("page") for f in files if f.get("url") or f.get("page")), None)
         prov["url"] = site
+        prov["url_is_source_page"] = bool(site)
         prov["note"] = ("file not listed in the manifest; the URL above is the source, not this file -- "
                         "see SOURCE.md" if site else "file not listed in the manifest; see SOURCE.md")
         return prov
     return prov
+
+
+def declared_origin(files: list[dict], relf: str) -> dict | None:
+    """Where a file came from when its manifest entry says which folder it went into.
+
+    `unpacked_to`: the archive's root was unpacked into that folder, so the file's path below it is its
+    member name — Micro-Cap's `LIBRARY/mpbjt.lib`, not the `mpbjt.lib` a guess from the folder name
+    gives. `installed`: the file was copied out of an installed product that cannot be had any other
+    way, so the honest answer is the product and the file's place in it, not the installer's URL.
+    """
+    for f in files:
+        folder = (f.get("unpacked_to") or (f.get("installed") or {}).get("into") or "").strip("/")
+        if not folder or not relf.startswith(folder + "/"):
+            continue
+        member = relf[len(folder) + 1:]
+        inst = f.get("installed")
+        out = {"fetched": f["fetched"]} if f.get("fetched") else {}
+        if inst:
+            return {**out, "url": None, "origin": inst.get("product", ""),
+                    "installed_file": f"${inst.get('var', 'INSTALL_DIR')}/{member}"}
+        return {**out, "url": f.get("url"), "member": member,
+                "archive": {"path": f.get("path"), "url": f.get("url"), "sha256": f.get("sha256")}}
+    return None
 
 
 def model_type(kind: str, body: str) -> str:

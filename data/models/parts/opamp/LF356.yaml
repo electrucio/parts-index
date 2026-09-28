@@ -77,7 +77,7 @@ models:
     name: LF356_NS
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: nation.lib
+      member: LIBRARY/nation.lib
       sha256: 3fc09b6f184ee48ba06340ee116b44f0650e61c361bb5c44744d6c7a98b2f7ce
   - source: spice-model-cd
     name: LF356/NS
@@ -254,7 +254,7 @@ models:
     name: LF356_LT
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: linear.lib
+      member: LIBRARY/linear.lib
       sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
 - source: bordodynov
   name: LF356A
@@ -364,7 +364,7 @@ models:
     name: LF356A_LT
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: linear.lib
+      member: LIBRARY/linear.lib
       sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
 - source: bordodynov
   name: LF356_NSC
@@ -463,13 +463,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: m_opamp.lib
+    member: LIBRARY/m_opamp.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 6b96d357d32e315e8e5c5d9fc2835ffffa23b6371aa0fe1a5475ebb6b2c776a0
     lines:
       LF356_MC: [171, 203]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: LF356_MC

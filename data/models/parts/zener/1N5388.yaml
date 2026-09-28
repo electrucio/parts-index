@@ -23,7 +23,7 @@ models:
     name: 1n5388b
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: on_diode.lib
+      member: LIBRARY/on_diode.lib
       sha256: b22e1d5ee75d5fe192f4e75a25f3addd1671eb17659c3b2a8cb964cfc96d10bc
 - source: duncanamps
   name: D1N5388B
@@ -105,19 +105,19 @@ models:
     name: 1N5388A
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: S_FLYBACK_CM.cir
+      member: DATA/S_FLYBACK_CM.cir
       sha256: 3eade7b819dd682851d0473565f1a20bb85b1e73ea9835fc62475e7b1c30108a
   - source: microcap12
     name: 1N5388A
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: S_FLYBACK_VM.cir
+      member: DATA/S_FLYBACK_VM.cir
       sha256: c43a2f0c8df833a96a91a64f1a96ac8e1676cef82746528f6a2cf0cbc611b46b
   - source: microcap12
     name: 1N5388A
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: onsemi
     name: 1N5388A
@@ -152,11 +152,10 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: On_Semi.lib
+    member: LIBRARY/On_Semi.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
     lines:
       D2: [212863, 212863]
       d1n5388b: [2042, 2071]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'

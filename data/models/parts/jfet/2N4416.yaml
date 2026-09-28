@@ -254,19 +254,18 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: jfet.lib
+    member: LIBRARY/jfet.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: da01b606f4ee2c390ba6c0cac218a9ffa5bf9c45d404fcc5deda34e1ec837a62
     lines:
       2N4416: [216, 217]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: microcap12
     name: 2N4416A
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: jfet.lib
+      member: LIBRARY/jfet.lib
       sha256: da01b606f4ee2c390ba6c0cac218a9ffa5bf9c45d404fcc5deda34e1ec837a62
 - source: microcap12
   name: 2N4416A
@@ -275,19 +274,18 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: cs.lib
+    member: LIBRARY/cs.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 4daf7b77d9c13771dc3a2e074d972af2c69c71839a7469d1915bdd9c39e69f3d
     lines:
       2N4416A: [2707, 2721]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: microcap12
     name: 2N4416AUB
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: cs.lib
+      member: LIBRARY/cs.lib
       sha256: 4daf7b77d9c13771dc3a2e074d972af2c69c71839a7469d1915bdd9c39e69f3d
 - source: qspice
   name: 2N4416
@@ -295,11 +293,11 @@ models:
   type: NJF
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: NJF.txt
     sha256: 1eecb317d294dfd7730c4f9070b7f3da9fc4938412714089b87d1948f46fc741
     lines:
       2N4416: [74, 74]
-    fetched: '2026-09-20'
 - source: bordodynov
   name: 2N4416
   def: model

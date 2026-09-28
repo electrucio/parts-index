@@ -109,19 +109,19 @@ models:
     name: Qmmbt5401lt1
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: microcap12
     name: mmbt5401lt1
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: on_bjt.lib
+      member: LIBRARY/on_bjt.lib
       sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77
   - source: microcap12
     name: Qmmbt5401wt1
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: onsemi
     name: Qmmbt5401wt1
@@ -149,7 +149,7 @@ models:
     name: MMBT5401
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: DiodesInc_BJT.lib
+      member: LIBRARY/DiodesInc_BJT.lib
       sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
 - source: qspice
   name: MMBT5401
@@ -159,12 +159,12 @@ models:
   - PNP
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: PNP.txt
     sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
     lines:
       MMBT5401: [1117, 1121]
       PNP: [2, 2]
-    fetched: '2026-09-20'
 - source: duncanamps
   name: QMMBT5401
   def: model

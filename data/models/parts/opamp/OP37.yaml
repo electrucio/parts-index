@@ -141,7 +141,7 @@ models:
     name: OP37A_LT
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: linear.lib
+      member: LIBRARY/linear.lib
       sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
 - source: bordodynov
   name: OP37C
@@ -251,7 +251,7 @@ models:
     name: OP37C_LT
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: linear.lib
+      member: LIBRARY/linear.lib
       sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
 - source: bordodynov
   name: OP37E
@@ -764,7 +764,7 @@ models:
     name: OP37E_LT
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: linear.lib
+      member: LIBRARY/linear.lib
       sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
 - source: spice-model-cd
   name: OP37G
@@ -805,7 +805,7 @@ models:
     name: OP37G_LT
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: linear.lib
+      member: LIBRARY/linear.lib
       sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
 - source: spice-model-cd
   name: OP37A
@@ -906,13 +906,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: ti.lib
+    member: LIBRARY/ti.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
     lines:
       OP-37A_TI: [4657, 4691]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: bordodynov
     name: OP37A
@@ -945,14 +944,13 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: analog.lib
+    member: LIBRARY/analog.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
     lines:
       OP37A_AD: [38466, 38616]
       dx: [77076, 77076]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: OP37A_AD
@@ -968,7 +966,7 @@ models:
     name: OP37E_AD
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: analog.lib
+      member: LIBRARY/analog.lib
       sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
 - source: microcap12
   name: OP37B_AD
@@ -979,14 +977,13 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: analog.lib
+    member: LIBRARY/analog.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
     lines:
       OP37B_AD: [38636, 38786]
       dx: [77076, 77076]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: OP37B_AD
@@ -1002,7 +999,7 @@ models:
     name: OP37F_AD
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: analog.lib
+      member: LIBRARY/analog.lib
       sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
 - source: microcap12
   name: OP37C_AD
@@ -1013,14 +1010,13 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: analog.lib
+    member: LIBRARY/analog.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
     lines:
       OP37C_AD: [38806, 38956]
       dx: [77076, 77076]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: OP37C_AD
@@ -1036,7 +1032,7 @@ models:
     name: OP37G_AD
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: analog.lib
+      member: LIBRARY/analog.lib
       sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
 - source: microcap12
   name: OP37_AD
@@ -1047,14 +1043,13 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: analog.lib
+    member: LIBRARY/analog.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
     lines:
       OP37_AD: [38295, 38445]
       dx: [77076, 77076]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: OP37_AD

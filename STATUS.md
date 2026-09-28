@@ -8,7 +8,7 @@ A stage is never repeated for an item unless its input or the stage version chan
 
 ## Schematic and reference sources
 
-113 sources · 218,547 items · 196,669 downloaded · 161,942 OCR'd · 148,176 indexed · 1,583 link-checked · 21,147 skipped
+113 sources · 218,597 items · 196,717 downloaded · 161,942 OCR'd · 148,176 indexed · 1,583 link-checked · 21,149 skipped
 
 | Source | Kind | Era | Status | Items | Downloaded | OCR'd | Indexed | Link-checked | Skipped | Last activity | Next |
 |---|---|---|---|--:|--:|--:|--:|--:|--:|---|---|
@@ -23,7 +23,7 @@ A stage is never repeated for an item unless its input or the stage version chan
 | fendersupport | factory |  | active | 281 | 281 | 97 | 281 | 0 | 0 | 2026-09-26 | OCR 184 |
 | kallhovde | factory |  | active | 1,258 | 1,256 | 1,255 | 1,255 | 0 | 2 | 2026-09-28 | OCR 1 |
 | olimex | factory | modern | active | 662 | 338 | 338 | 338 | 0 | 324 | 2026-09-26 | link-check 338 |
-| renesas_appnotes | factory | modern | active | 7,706 | 7,664 | 0 | 0 | 0 | 42 | 2026-09-28 | OCR 7660 |
+| renesas_appnotes | factory | modern | active | 7,756 | 7,712 | 0 | 0 | 0 | 44 | 2026-09-28 | OCR 7708 |
 | schematicheaven | factory | vintage | active | 1,728 | 1,722 | 1,722 | 1,722 | 0 | 6 | 2026-09-20 | link-check 1722 |
 | synfo | factory | vintage | active | 679 | 622 | 622 | 622 | 0 | 57 | 2026-09-20 | link-check 622 |
 | thetubestore | factory | vintage | active | 151 | 151 | 95 | 151 | 0 | 0 | 2026-09-20 | link-check 151 |
@@ -128,11 +128,11 @@ A stage is never repeated for an item unless its input or the stage version chan
 
 OCR'd counts only items that need OCR (scans and images); HTML pages and born-digital PDFs skip that stage.
 
-`era` marks a source as **modern** where its circuits use parts still in production. 22 of 113 sources are marked so, holding 61,466 of 218,547 items. It is the axis a reader will want to filter on, and the one this corpus was thinnest along: of the 18,542 part numbers published on 2026-09-24, 291 belonged to a family newer than 1995.
+`era` marks a source as **modern** where its circuits use parts still in production. 22 of 113 sources are marked so, holding 61,516 of 218,597 items. It is the axis a reader will want to filter on, and the one this corpus was thinnest along: of the 18,542 part numbers published on 2026-09-24, 291 belonged to a family newer than 1995.
 
 ## SPICE model sources
 
-81 sources · 17,748 files downloaded · 17,748 scanned by the indexer, of which 15,923 hold definitions (749,153 in all) · part look-ups: 1,107 not available, 584 not tried yet
+81 sources · 17,748 files downloaded · 17,748 scanned by the indexer, of which 15,925 hold definitions (901,811 in all) · part look-ups: 1,107 not available, 584 not tried yet
 
 Registry: `data/models/sources/<id>.yaml`. Ledgers: `data/models/state/<id>.csv`, one row per downloaded file
 (URL + sha256) and one per part looked up at that vendor. **Scanned** is how many the indexer has read;
@@ -195,7 +195,7 @@ is marked `redistributable: true`.
 | exicon | active | manual | 2 | 2 | 2 | 8 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | gist-chanmix51 | active | manual | 2 | 2 | 2 | 144 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | hagtech | active | manual | 2 | 2 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
-| qspice | active | manual | 2 | 2 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
+| qspice | active | manual | 2 | 2 | 1 | 1,265 | 0 | 0 | unreviewed | 2026-09-28 | up to date |
 | suusi-tubes | active | manual | 2 | 2 | 2 | 800 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | andyc | active | manual | 1 | 1 | 1 | 2 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | bordodynov | active | manual | 1 | 1 | 1 | 91,053 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
@@ -204,7 +204,7 @@ is marked `redistributable: true`.
 | distorque-audio | active | manual | 1 | 1 | 1 | 1 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | electrosmash | active | manual | 1 | 1 | 1 | 2 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | freestompboxes | active | manual | 1 | 1 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
-| microcap12 | active | manual | 1 | 1 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
+| microcap12 | active | manual | 1 | 1 | 1 | 151,393 | 0 | 0 | unreviewed | 2026-09-28 | up to date |
 | onsemi-ic | active | adapter | 1 | 1 | 0 | 0 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | preamp-org | active | manual | 1 | 1 | 1 | 1 | 0 | 0 | unreviewed | 2026-09-21 | up to date |
 | tamivox | active | manual | 1 | 1 | 1 | 1 | 0 | 0 | unreviewed | 2026-09-21 | up to date |

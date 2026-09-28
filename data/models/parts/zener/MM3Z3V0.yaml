@@ -49,22 +49,21 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: On_Semi.lib
+    member: LIBRARY/On_Semi.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
     lines:
       D2: [212863, 212863]
       mm3z3v0t1g: [138755, 138784]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: qspice
   name: MM3Z3V0T1G
   def: model
   type: D
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: Zener.txt
     sha256: 0485ed2002f4a4c8ab0049bd7856b1d45c5c1e987d91693b703a248ec1fd0389
     lines:
       MM3Z3V0T1G: [3, 3]
-    fetched: '2026-09-20'

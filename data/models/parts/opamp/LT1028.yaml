@@ -102,7 +102,7 @@ models:
     name: LT1028_LT
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: linear.lib
+      member: LIBRARY/linear.lib
       sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
 - source: bordodynov
   name: LT1028A
@@ -204,7 +204,7 @@ models:
     name: LT1028A_LT
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: linear.lib
+      member: LIBRARY/linear.lib
       sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
 - source: bordodynov
   name: LT1028CS
@@ -310,7 +310,7 @@ models:
     name: LT1028N_LT
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: linear.lib
+      member: LIBRARY/linear.lib
       sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
 - source: ltwiki
   name: LT1028
@@ -412,7 +412,7 @@ models:
     name: LT1028CS_LT
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: linear.lib
+      member: LIBRARY/linear.lib
       sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
 - source: spice-model-cd
   name: LT1028
@@ -489,13 +489,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: ti.lib
+    member: LIBRARY/ti.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
     lines:
       LT1028_TI: [4217, 4251]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: LT1028_TI

@@ -81,13 +81,13 @@ models:
     name: murs320t3
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: m_rect.lib
+      member: LIBRARY/m_rect.lib
       sha256: 307f442b92fbc7c5f238c9f560a6fe2c9882ed67e4ac1baf8487fd962fc59558
   - source: microcap12
     name: murs320t3
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: onsemi
   name: MURS320T3G
@@ -107,7 +107,7 @@ models:
     name: MURS320T3G
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: onsemi
     name: MURS320T3G
@@ -131,7 +131,7 @@ models:
     name: Dmurs320t3
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: microcap12
   name: MURS320
@@ -140,24 +140,23 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: DiodesInc.lib
+    member: LIBRARY/DiodesInc.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
     lines:
       MURS320: [10791, 10792]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: qspice
   name: MURS320
   def: model
   type: D
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: Diode.txt
     sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
     lines:
       MURS320: [72, 72]
-    fetched: '2026-09-20'
 - source: bordodynov
   name: MURS320
   def: model

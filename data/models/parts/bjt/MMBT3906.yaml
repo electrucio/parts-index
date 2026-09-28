@@ -20,7 +20,7 @@ models:
     name: MMBT3906
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: bordodynov
   name: MMBT3906
@@ -93,7 +93,7 @@ models:
     name: MMBT3906
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: ph_bjt.lib
+      member: LIBRARY/ph_bjt.lib
       sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
   - source: ltwiki
     name: QMMBT3906
@@ -117,7 +117,7 @@ models:
     name: Qmmbt3906lt1
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: onsemi
     name: mmbt3906lt1
@@ -145,7 +145,7 @@ models:
     name: MMBT3906SL
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: onsemi
   name: Qmmbt3906tt1
@@ -163,7 +163,7 @@ models:
     name: Qmmbt3906tt1
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: diodes-inc
   name: MMBT3906FA
@@ -199,13 +199,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: DiodesInc_BJT.lib
+    member: LIBRARY/DiodesInc_BJT.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
     lines:
       MMBT3906T: [910, 914]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: qspice
   name: MMBT3906FA
   def: model
@@ -214,17 +213,18 @@ models:
   - PNP
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: PNP.txt
     sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
     lines:
       MMBT3906FA: [524, 527]
       PNP: [2, 2]
-    fetched: '2026-09-20'
   copies:
   - source: qspice
     name: MMBT3906LP
     get:
-      url: https://getqspice.com/InstallQSPICE.exe
+      installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+      file: PNP.txt
       sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
 - source: qspice
   name: MMBT3906
@@ -234,12 +234,12 @@ models:
   - PNP
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: PNP.txt
     sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
     lines:
       MMBT3906: [348, 352]
       PNP: [2, 2]
-    fetched: '2026-09-20'
 - source: qspice
   name: MMBT3906T
   def: model
@@ -248,12 +248,12 @@ models:
   - PNP
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: PNP.txt
     sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
     lines:
       MMBT3906T: [359, 363]
       PNP: [2, 2]
-    fetched: '2026-09-20'
 - source: duncanamps
   name: QMMBT3906
   def: model

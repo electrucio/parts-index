@@ -78,7 +78,8 @@ def installed_from(prov: dict) -> tuple[str, str] | None:
     """
     if prov.get("url"):
         return None
-    origin, file = (prov.get("origin") or "").split(";")[0].strip(), prov.get("file") or ""
+    origin = (prov.get("origin") or "").split(";")[0].strip()
+    file = prov.get("installed_file") or prov.get("file") or ""
     m = re.match(r"\$[A-Z_]+/(.*)", file)
     return (origin, m.group(1)) if origin and m else None
 
@@ -324,6 +325,10 @@ def uncurated(part: str, m: dict) -> dict:
         out["deps"] = list(m["deps"])
     out["verbatim"] = True
     out["get"] = get_block(m.get("provenance") or {})
+    if (m.get("provenance") or {}).get("url_is_source_page"):
+        # The manifest does not list this file, so the link is the source's own and a reader must be
+        # told it will not land on the file. Manifest notes themselves are working notes and stay private.
+        out["get"]["note"] = "the URL is where the source publishes its files, not this file"
     note = match_note(part, m.get("match", ""))
     if note:
         out["note"] = note

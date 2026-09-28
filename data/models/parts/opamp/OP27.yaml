@@ -269,7 +269,7 @@ models:
     name: OP27A_LT
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: linear.lib
+      member: LIBRARY/linear.lib
       sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
 - source: bordodynov
   name: OP27C
@@ -379,7 +379,7 @@ models:
     name: OP27C_LT
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: linear.lib
+      member: LIBRARY/linear.lib
       sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
 - source: bordodynov
   name: OP27C
@@ -604,7 +604,7 @@ models:
     name: OP27
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: Op27.lib
+      member: LIBRARY/Op27.lib
       sha256: eb9fd33553f3c76930ce24725f93eb07b2304b2798e9425852d789625c4c6872
   - source: kicad-spice-library
     name: OP-27/AD
@@ -745,7 +745,7 @@ models:
     name: OP27E_LT
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: linear.lib
+      member: LIBRARY/linear.lib
       sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
 - source: spice-model-cd
   name: OP27G
@@ -786,7 +786,7 @@ models:
     name: OP27G_LT
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: linear.lib
+      member: LIBRARY/linear.lib
       sha256: 5d5712376842d66fb67ffd85965e2bb0c4127fd76527fe92e1252ddd530526f4
 - source: spice-model-cd
   name: OP27A
@@ -887,13 +887,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: ti.lib
+    member: LIBRARY/ti.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
     lines:
       OP-27G_TI: [3202, 3236]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: bordodynov
     name: OP-27C
@@ -943,7 +942,7 @@ models:
     name: OP-27C_TI
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: ti.lib
+      member: LIBRARY/ti.lib
       sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
 - source: microcap12
   name: OP-27E_TI
@@ -952,13 +951,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: ti.lib
+    member: LIBRARY/ti.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
     lines:
       OP-27E_TI: [4613, 4647]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: bordodynov
     name: OP-27E
@@ -991,14 +989,13 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: analog.lib
+    member: LIBRARY/analog.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
     lines:
       OP27A_AD: [34952, 35088]
       dx: [77076, 77076]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: OP27A_AD
@@ -1014,7 +1011,7 @@ models:
     name: OP27E_AD
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: analog.lib
+      member: LIBRARY/analog.lib
       sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
 - source: microcap12
   name: OP27C_AD
@@ -1025,14 +1022,13 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: analog.lib
+    member: LIBRARY/analog.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
     lines:
       OP27C_AD: [35282, 35418]
       dx: [77076, 77076]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: OP27C_AD
@@ -1048,7 +1044,7 @@ models:
     name: OP27G_AD
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: analog.lib
+      member: LIBRARY/analog.lib
       sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
 - source: microcap12
   name: OP27_AD
@@ -1059,14 +1055,13 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: analog.lib
+    member: LIBRARY/analog.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
     lines:
       OP27_AD: [34508, 34635]
       dx: [77076, 77076]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: OP27_AD
@@ -1082,14 +1077,13 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: analog.lib
+    member: LIBRARY/analog.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
     lines:
       OP27B_AD: [35117, 35253]
       dx: [77076, 77076]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: OP27B_AD
@@ -1105,14 +1099,13 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: analog.lib
+    member: LIBRARY/analog.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 5976ea0121285cf028d550faba36917cd1b7a83e90e97e8c34e7e8530c6795e6
     lines:
       OP27F_AD: [35611, 35747]
       dx: [77076, 77076]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: OP27F_AD

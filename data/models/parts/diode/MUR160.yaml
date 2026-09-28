@@ -99,7 +99,7 @@ models:
     name: MUR160
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: onsemi
     name: MUR160
@@ -266,25 +266,25 @@ models:
     name: MUR160
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: S_FORWARD_VM.cir
+      member: DATA/S_FORWARD_VM.cir
       sha256: 6c4d249d4798bc9e45c6f9b8eea574120e0ef77c7bcc28e51f9cf6c4a96e97fd
   - source: microcap12
     name: MUR160
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: S_FORWARD_CM.cir
+      member: DATA/S_FORWARD_CM.cir
       sha256: c3f241b12ba4a644307464c8d4f166fa09f670a134ac1cf25e58a98812eedcef
   - source: microcap12
     name: MUR160
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: m_ic.lib
+      member: LIBRARY/m_ic.lib
       sha256: 6a45216c3c97aa5ae80cb0693c68a80de011f41be3560d02873e41ad6d5ce102
   - source: microcap12
     name: MUR160
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: m_ic.lib
+      member: LIBRARY/m_ic.lib
       sha256: 6a45216c3c97aa5ae80cb0693c68a80de011f41be3560d02873e41ad6d5ce102
   - source: onsemi
     name: MUR160
@@ -332,13 +332,13 @@ models:
     name: Dmur160rl
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
   - source: microcap12
     name: mur160rl
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: on_rect.lib
+      member: LIBRARY/on_rect.lib
       sha256: 5d37da736c3d863a34a000b998e990752bd81320e62c69cd2ec73b64a46876bb
 - source: spice-model-cd
   name: mur160
@@ -358,31 +358,30 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: S_FLYBACK_CM.cir
+    member: DATA/S_FLYBACK_CM.cir
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 3eade7b819dd682851d0473565f1a20bb85b1e73ea9835fc62475e7b1c30108a
     lines:
       MUR160: [1152, 1153]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: microcap12
     name: MUR160
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: S_2FLY_CM.cir
+      member: DATA/S_2FLY_CM.cir
       sha256: 88ab490aa1c352b497b00b9bc892c34e9db00e4f66089c4ab1f1da06c9468b49
   - source: microcap12
     name: MUR160
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: S_2FOR_CM.cir
+      member: DATA/S_2FOR_CM.cir
       sha256: 6ff61cecb45ac8cfcdbe1539aeae78713480fdcc0a06e5cfa40198f70bcdd0f4
   - source: microcap12
     name: MUR160
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: S_FLYBACK_VM.cir
+      member: DATA/S_FLYBACK_VM.cir
       sha256: c43a2f0c8df833a96a91a64f1a96ac8e1676cef82746528f6a2cf0cbc611b46b
 - source: microcap12
   name: MUR160
@@ -391,13 +390,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: Switched Models/Forward VM Tran.cir
+    member: DATA/Switched Models/Forward VM Tran.cir
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: b18844291063d7d702b9bab976cd86e2cbcd4edd304e2722d294e58ff0a4b47e
     lines:
       MUR160: [1183, 1184]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: MUR160
   def: model
@@ -405,13 +403,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: diode.lib
+    member: LIBRARY/diode.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 4f07396942f9fa67d623899d6904636fa4a5be596d413ed863bc6e2b63a2e01d
     lines:
       MUR160: [1041, 1042]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 datasheet:
   url: https://web.archive.org/web/2024id_/https://www.onsemi.com/pdf/datasheet/mur120-d.pdf
   maker: onsemi

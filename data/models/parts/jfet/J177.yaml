@@ -204,13 +204,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: jfet.lib
+    member: LIBRARY/jfet.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: da01b606f4ee2c390ba6c0cac218a9ffa5bf9c45d404fcc5deda34e1ec837a62
     lines:
       J177: [1249, 1251]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: qspice
   name: J177
   def: model
@@ -219,12 +218,12 @@ models:
   - PJF
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: PJF.txt
     sha256: dcb2d634189d5574f6c625d595e203081701e93dcf10b6f3e94377e928d058c9
     lines:
       J177: [16, 16]
       PJF: [1, 1]
-    fetched: '2026-09-20'
 - source: bordodynov
   name: J177
   def: model

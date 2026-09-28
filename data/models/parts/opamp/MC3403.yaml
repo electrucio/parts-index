@@ -134,7 +134,7 @@ models:
     name: MC3403_TI_30
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: ti.lib
+      member: LIBRARY/ti.lib
       sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
   - source: bordodynov
     name: MC3403
@@ -220,7 +220,7 @@ models:
     name: MC3403_TI_5
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: ti.lib
+      member: LIBRARY/ti.lib
       sha256: 454cd75d22669d329ec726e0081496a5e18790f5d916a542d2c9127da895f5f9
 - source: onsemi
   name: MC3403
@@ -257,7 +257,7 @@ models:
     name: MC3403_MC
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: m_opamp.lib
+      member: LIBRARY/m_opamp.lib
       sha256: 6b96d357d32e315e8e5c5d9fc2835ffffa23b6371aa0fe1a5475ebb6b2c776a0
 - source: spice-model-cd
   name: MC3403
@@ -282,9 +282,8 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: On_Semi.lib
+    member: LIBRARY/On_Semi.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
     lines:
       MC3403: [210820, 210855]
@@ -292,4 +291,4 @@ models:
       Q2: [78417, 78442]
       nmos: [161508, 161508]
       pmos: [161510, 161510]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'

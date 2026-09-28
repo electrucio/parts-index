@@ -140,7 +140,7 @@ models:
     name: BAS40H
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: ph_shot.lib
+      member: LIBRARY/ph_shot.lib
       sha256: c6367af2c60015e9fb5ecc3771d731c998ee74c0f74ef57bce37e58e08532f5d
 - source: ltwiki
   name: BAS40L
@@ -175,7 +175,7 @@ models:
     name: BAS40SL
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: vishay
   name: BAS40
@@ -222,25 +222,24 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: DiodesInc.lib
+    member: LIBRARY/DiodesInc.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
     lines:
       BAS40BRW: [30, 31]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: microcap12
     name: BAS40TW
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: DiodesInc.lib
+      member: LIBRARY/DiodesInc.lib
       sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
   - source: microcap12
     name: BAS40T
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: DiodesInc.lib
+      member: LIBRARY/DiodesInc.lib
       sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
 - source: microcap12
   name: BAS40W_PH
@@ -249,13 +248,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: ph_shot.lib
+    member: LIBRARY/ph_shot.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: c6367af2c60015e9fb5ecc3771d731c998ee74c0f74ef57bce37e58e08532f5d
     lines:
       BAS40W_PH: [666, 688]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: kicad-spice-library
     name: BAS40W_PH
@@ -269,13 +267,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: ediode_lbr.lib
+    member: lbr_txt/ediode_lbr.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 2e50d524139f4241c5345aa22e759f4b47df02a98f9343c9c753c201ba13d8c9
     lines:
       BAS40: [85, 86]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: BAS40L
   def: subckt
@@ -283,13 +280,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: ph_shot.lib
+    member: LIBRARY/ph_shot.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: c6367af2c60015e9fb5ecc3771d731c998ee74c0f74ef57bce37e58e08532f5d
     lines:
       BAS40L: [1938, 1960]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: BAS40XY
   def: subckt
@@ -297,13 +293,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: nxp.lib
+    member: LIBRARY/nxp.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: c6620454e846c70419b487c8481e8110865784f67d3779886960efccca1f8bde
     lines:
       BAS40XY: [5969, 5998]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: BAS40LP
   def: model
@@ -311,13 +306,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: DiodesInc.lib
+    member: LIBRARY/DiodesInc.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
     lines:
       BAS40LP: [46, 47]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: ltwiki
   name: BAS40
   def: model

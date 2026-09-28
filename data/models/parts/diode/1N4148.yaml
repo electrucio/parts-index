@@ -106,7 +106,7 @@ models:
     name: 1N4148WS
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: DiodesInc.lib
+      member: LIBRARY/DiodesInc.lib
       sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
   - source: spice-model-cd
     name: 1N4148WS
@@ -132,7 +132,7 @@ models:
     name: 1N4148W
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: DiodesInc.lib
+      member: LIBRARY/DiodesInc.lib
       sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
   - source: spice-model-cd
     name: 1N4148W
@@ -163,7 +163,7 @@ models:
     name: 1N4148
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: cs.lib
+      member: LIBRARY/cs.lib
       sha256: 4daf7b77d9c13771dc3a2e074d972af2c69c71839a7469d1915bdd9c39e69f3d
 - source: ltspice-native
   name: 1N4148
@@ -504,7 +504,7 @@ models:
     name: D1N4148
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: onsemi
   name: 1N4148
@@ -524,7 +524,7 @@ models:
     name: 1N4148
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: On_Semi.lib
+      member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: ti
   name: D1N4148
@@ -568,37 +568,36 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: Switched Models/Power VCO w DT.cir
+    member: DATA/Switched Models/Power VCO w DT.cir
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 873436159f6f1c35e8ce694a1e3763018fea12de4a3fed6e63632c80840c6e69
     lines:
       1N4148: [1526, 1527]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: microcap12
     name: 1N4148
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: Switched Models/HB w Deadtime.cir
+      member: DATA/Switched Models/HB w Deadtime.cir
       sha256: 80e9bac9d69d7fa01d158d73ee4bd947dc6ace00df8d1df866144e637018d27a
   - source: microcap12
     name: 1N4148
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: Small Signal SMPS/Test Buck Cycle-by-Cycle CM.cir
+      member: DATA/Small Signal SMPS/Test Buck Cycle-by-Cycle CM.cir
       sha256: a1f1729b9d64f6167fd8ce641eb9d693b1b20db3706eb2b4f2066e667a33de64
   - source: microcap12
     name: 1N4148
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: Small Signal SMPS/Test Buck Cycle-by-Cycle VM.cir
+      member: DATA/Small Signal SMPS/Test Buck Cycle-by-Cycle VM.cir
       sha256: e95e3215bdcfd06033ede5b30aa1fb1bc3ff27c7a1b5c49b9efdb6d5e2c960da
   - source: microcap12
     name: 1N4148
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: Small Signal SMPS/Non-linear Diode.cir
+      member: DATA/Small Signal SMPS/Non-linear Diode.cir
       sha256: 270565afa2219bcf6df783857c2815304faca1a11c3021d331c9805e7e29a8ce
 - source: microcap12
   name: 1N4148
@@ -607,25 +606,24 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: S_FLYBACK_CM.cir
+    member: DATA/S_FLYBACK_CM.cir
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 3eade7b819dd682851d0473565f1a20bb85b1e73ea9835fc62475e7b1c30108a
     lines:
       1N4148: [1160, 1161]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
   copies:
   - source: microcap12
     name: 1N4148
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: S_2FLY_CM.cir
+      member: DATA/S_2FLY_CM.cir
       sha256: 88ab490aa1c352b497b00b9bc892c34e9db00e4f66089c4ab1f1da06c9468b49
   - source: microcap12
     name: 1N4148
     get:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: S_FLYBACK_VM.cir
+      member: DATA/S_FLYBACK_VM.cir
       sha256: c43a2f0c8df833a96a91a64f1a96ac8e1676cef82746528f6a2cf0cbc611b46b
 - source: microcap12
   name: 1N4148
@@ -634,13 +632,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: diode.lib
+    member: LIBRARY/diode.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 4f07396942f9fa67d623899d6904636fa4a5be596d413ed863bc6e2b63a2e01d
     lines:
       1N4148: [261, 262]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: 1N4148
   def: model
@@ -648,13 +645,12 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: PWM_T.MAC
+    member: LIBRARY/PWM_T.MAC
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: d5d632eedbe40446b3ed235924c676a5d353e6eb344e6af07cff49c3f4544c75
     lines:
       1N4148: [1694, 1695]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: D1N4148/TEMP
   def: model
@@ -664,14 +660,13 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: On_Semi.lib
+    member: LIBRARY/On_Semi.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
     lines:
       D1N4148: [489, 490]
       D1N4148/TEMP: [33016, 33031]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: microcap12
   name: 1N4148WT
   def: model
@@ -679,29 +674,29 @@ models:
   verbatim: true
   get:
     url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: DiodesInc.lib
+    member: LIBRARY/DiodesInc.lib
     archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    archive_inferred: true
     sha256: a9b6075fc7d4ca8f95f70ab7701bcbd1a2cedd67c3df48dddedf3f9092b12a15
     lines:
       1N4148WT: [9241, 9242]
-    fetched: '2026-09-20'
+    fetched: '2026-09-21'
 - source: qspice
   name: 1N4148
   def: model
   type: D
   verbatim: true
   get:
-    url: https://getqspice.com/InstallQSPICE.exe
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: Diode.txt
     sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
     lines:
       1N4148: [4, 4]
-    fetched: '2026-09-20'
   copies:
   - source: qspice
     name: 1N4148A
     get:
-      url: https://getqspice.com/InstallQSPICE.exe
+      installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+      file: Diode.txt
       sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
 - source: bordodynov
   name: 1N4148
