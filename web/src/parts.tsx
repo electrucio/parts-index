@@ -14,7 +14,7 @@ import { Fragment } from 'preact'
 import { useEffect, useMemo, useState } from 'preact/hooks'
 
 import { AboutPart } from './about'
-import { DATA, loadIndex } from './data'
+import { DATA, loadIndex, reloadIndex } from './data'
 import { forViewer } from './links'
 import type { DeviceKind, PageUse, PartIndex, PartModel, PartPage, PartRow, UseKind } from './types'
 export const n = (v: number) => v.toLocaleString('en-GB')
@@ -434,7 +434,15 @@ function Listed({ page }: { page: PartPage }) {
   )
 }
 
-export function Detail({ part, sources, kinds }: { part: string; sources: string[]; kinds: string[] }) {
+/** Whether a part page and the index it is read with were built from the same list of sources. A page
+ *  without a stamp is from before there were stamps, and is read as it always was. */
+export function sameSources(page: { ss?: string } | null, stamp: string | undefined): boolean {
+  return !page?.ss || !stamp || page.ss === stamp
+}
+
+export function Detail({ part, sources, kinds, stamp, onStale }: {
+  part: string; sources: string[]; kinds: string[]; stamp?: string; onStale?: (stamp: string) => void
+}) {
   const [page, setPage] = useState<PartPage | null>(null)
   const [error, setError] = useState(false)
 
@@ -446,6 +454,10 @@ export function Detail({ part, sources, kinds }: { part: string; sources: string
       .then(setPage)
       .catch(() => setError(true))
   }, [part])
+  const fresh = sameSources(page, stamp)
+  useEffect(() => {
+    if (page?.ss && !fresh) onStale?.(page.ss)
+  }, [page, fresh])
 
   return (
     <section class="evidence stack">
@@ -457,10 +469,10 @@ export function Detail({ part, sources, kinds }: { part: string; sources: string
       {!error && !page && <p class="muted">Loading…</p>}
       {page && (
         <>
-          <AboutPart page={page} sources={sources} />
+          <AboutPart page={page} sources={fresh ? sources : []} />
           <Listed page={page} />
           <Models page={page} />
-          <Uses page={page} sources={sources} kinds={kinds} />
+          {fresh ? <Uses page={page} sources={sources} kinds={kinds} /> : <p class="muted">Loading…</p>}
           {page.docs.length === 0 && !page.models && (
             <p class="muted">
               No SPICE model published and no schematic indexed yet
@@ -558,7 +570,10 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
       </aside>
 
       {part ? (
-        <Detail part={part} sources={index?.sources ?? []} kinds={index?.kinds ?? []} />
+        <Detail
+          part={part} sources={index?.sources ?? []} kinds={index?.kinds ?? []} stamp={index?.sourcesStamp}
+          onStale={(s) => { reloadIndex(s).then(setIndex) }}
+        />
       ) : (
         <section class="evidence stack-s prose">
           <p class="eyebrow">All parts</p>

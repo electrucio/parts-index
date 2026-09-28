@@ -1,7 +1,7 @@
 /** Filtering and ordering the parts list, which is the only logic the browser still does for itself. */
 import { describe, expect, it } from 'vitest'
 
-import { keep, ofDevice, order, pageHref, partPath, search } from './parts'
+import { keep, ofDevice, order, pageHref, partPath, sameSources, search } from './parts'
 import type { DeviceKind, PartRow } from './types'
 
 /** The menu, in menu order; a part row carries one bit per entry, the way the built index does. */
@@ -162,5 +162,14 @@ describe('partPath', () => {
     expect(partPath('APT1608LSECK/J3-PRV')).toBe('APT1608LSECK/J3-PRV')
     expect(partPath('TL072')).toBe('TL072')
     expect(partPath('A B#C')).toBe('A%20B%23C')
+  })
+})
+
+describe('sameSources', () => {
+  it('reads a part page only with the index it was built against', () => {
+    expect(sameSources({ ss: 'a1' }, 'a1')).toBe(true)
+    expect(sameSources({ ss: 'b2' }, 'a1')).toBe(false)       // a cached parts.json from the last deploy
+    expect(sameSources({}, 'a1')).toBe(true)                   // a page from before there were stamps
+    expect(sameSources({ ss: 'b2' }, undefined)).toBe(true)    // an index from before there were stamps
   })
 })

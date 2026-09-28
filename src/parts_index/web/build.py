@@ -15,6 +15,7 @@ joining, grouping and capping that a browser would otherwise have to be sent the
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import tempfile
@@ -90,11 +91,17 @@ def build(out: Path | None = None) -> dict:
     search, kind_names = part_pages.search_index(idx, recipes)
     names = [r[0] for r in search]
     idx["variants"] = part_pages.variant_groups(names, part_pages.vouched(idx, recipes, search))
+    # A part page names its sources by position in parts.json, and the two are cached apart (Pages sends
+    # max-age=600 for each). A browser holding the last build's parts.json read the new part pages
+    # through the old list and put audiocircuit's manuals under AMB. Both carry this stamp of the list;
+    # a page whose stamp differs from the index it was given asks for the index again.
+    kinds_list = [idx["kinds"].get(s, "") for s in idx["sources"]]
+    stamp = hashlib.sha1("\n".join(idx["sources"] + ["--"] + kinds_list).encode("utf-8")).hexdigest()[:10]
     if search:
         sizes["parts.json"] = write_json(out, "parts.json", {
-            "schema": SCHEMA, "sources": idx["sources"],
+            "schema": SCHEMA, "sources": idx["sources"], "sourcesStamp": stamp,
             # what each source is, so a part page can group its uses by the kind of thing they are
-            "kinds": [idx["kinds"].get(s, "") for s in idx["sources"]],
+            "kinds": kinds_list,
             # the vocabulary of device kinds; a part row names one by position
             "deviceKinds": kind_names,
             # the families, in the order a part row names one by position
@@ -104,7 +111,7 @@ def build(out: Path | None = None) -> dict:
         total = 0
         for name, *_ in search:
             total += write_json(out / "part", f"{name}.json",
-                                part_pages.part_payload(name, idx, recipes.get(name)))
+                                {**part_pages.part_payload(name, idx, recipes.get(name)), "ss": stamp})
         sizes["part/"] = total
 
     # Each of these lands with its exporter; the site renders what is present and says what is not.

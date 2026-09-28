@@ -17,6 +17,15 @@ export function loadIndex(): Promise<PartIndex> {
   return index
 }
 
+/** The index again, past every cache, because a part page says it was built against a newer one. The
+ *  stamp in the query makes it a different URL for the browser and for the CDN in front of Pages. */
+export function reloadIndex(stamp: string): Promise<PartIndex> {
+  index = fetch(`${DATA}/parts.json?ss=${encodeURIComponent(stamp)}`, { cache: 'reload' })
+    .then((r) => (r.ok ? (r.json() as Promise<PartIndex>) : Promise.reject(r.status)))
+    .catch(() => ({ schema: 0, sources: [], kinds: [], deviceKinds: [], parts: [] }))
+  return index
+}
+
 export function loadCatalogue(): Promise<Catalogue> {
   catalogue ??= fetch(`${DATA}/catalogue.json`)
     .then((r) => (r.ok ? (r.json() as Promise<Catalogue>) : Promise.reject(r.status)))

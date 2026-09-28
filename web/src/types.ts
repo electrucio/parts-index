@@ -70,6 +70,8 @@ export interface PartIndex {
   schema: number
   /** The source names, once. A document names its source by position in this list. */
   sources: string[]
+  /** A stamp of `sources` and `kinds`; a part page built against another list carries another stamp. */
+  sourcesStamp?: string
   /** What each of those sources is — site, factory, magazine, book — by the same position. */
   kinds: string[]
   /** The device filter's menu, in menu order. A part row carries one bit per entry. */
@@ -105,6 +107,8 @@ export type PageUse = [number, string, string, number] | [number, string, string
 
 export interface PartPage {
   part: string
+  /** The `PartIndex.sourcesStamp` this page's source positions refer to. */
+  ss?: string
   docs: {
     /** Index into `PartIndex.sources`. */
     s: number
