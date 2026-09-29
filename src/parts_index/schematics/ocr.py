@@ -38,7 +38,7 @@ OCR_VERSION = "ocr_boxes-1"          # what 45,443 documents already carry; bump
 LONG = 4000                          # the long side in pixels a page is rendered at, within 150..300 dpi
 MAX_PAGES = 600                      # 80 cut thirty service manuals short: their schematics are at the end
 TEXT_WORDS = 50                      # a page with this many words in its text layer is read, not rendered
-IMAGE_TYPES = {"gif", "png", "jpeg", "tiff"}
+IMAGE_TYPES = {"gif", "png", "jpeg", "tiff", "bmp"}
 OCR_MODELS = "PP-OCRv5"              # see _reader(): v6 needs a newer paddle than the one that is here
 
 

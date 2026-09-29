@@ -300,3 +300,17 @@ def test_a_listed_file_marked_skip_is_recorded_and_never_asked_for(site, monkeyp
     row = ledger("audiocircuit").get(zip_url)
     assert (row["role"], row["skip_reason"]) == ("archive", "archive, not opened")
     assert counts["listed, not fetched"] == 1 and counts["pdf"] == 1
+
+
+def test_a_drawing_kept_as_a_bmp_is_stored_and_a_text_that_starts_bm_is_not(site, monkeypatch):
+    """hifisonix drew the e-Amp in BMPs. "BM" alone is two letters of any text: the header length decides."""
+    bmp_url, text_url = "https://ac.example/e-Amp-Circuit-Diagram.bmp", "https://ac.example/BMW.bin"
+    write_list("audiocircuit", [{"url": bmp_url, "kind": "figure"}, {"url": text_url, "kind": "figure"}])
+    bmp = b"BM" + (9054).to_bytes(4, "little") + b"\0" * 8 + (40).to_bytes(4, "little") + b"x" * 9000
+    serve(monkeypatch, {bmp_url: Response(200, bmp_url, "image/bmp", bmp),
+                        text_url: Response(200, text_url, "application/octet-stream", b"BMW 2002 wiring" + b"x" * 4000)})
+
+    D.run("audiocircuit", log=lambda *a: None)
+    led = ledger("audiocircuit")
+    assert led.get(bmp_url)["type"] == "bmp" and not led.get(bmp_url)["skip_reason"]
+    assert led.get(text_url)["skip_reason"] == "unknown file type"

@@ -39,6 +39,9 @@ MAX_BYTES = 120 << 20
 RETRY_STATUS = (0, 429, 500, 502, 503, 504)
 MAGIC = {b"%PDF": "pdf", b"GIF8": "gif", b"\xff\xd8\xff": "jpeg", b"\x89PNG": "png", b"II*\x00": "tiff", b"MM\x00*": "tiff",
          b"PK\x03\x04": "zip"}
+# A BMP opens with only "BM" and then its sizes, too little to trust alone; the header that follows says
+# how long it is, and there are only these few lengths. hifisonix drew the e-Amp of 2011 in BMPs.
+BMP_HEADERS = (12, 40, 52, 56, 64, 108, 124)
 
 _next_ok: dict[str, float] = {}             # host -> earliest time of the next request
 _robots: dict[tuple[str, str], robotparser.RobotFileParser] = {}
@@ -83,10 +86,12 @@ class Response:
 
     @property
     def kind(self) -> str:
-        """pdf, gif, jpeg, png, tiff, zip by magic bytes; html and CAD by sniffing; else ''."""
+        """pdf, gif, jpeg, png, tiff, zip by magic bytes; bmp, html and CAD by sniffing; else ''."""
         for magic, kind in MAGIC.items():
             if self.body.startswith(magic):
                 return kind
+        if self.body[:2] == b"BM" and int.from_bytes(self.body[14:18], "little") in BMP_HEADERS:
+            return "bmp"
         head = self.body[:600].lstrip()
         low = head.lower()
         if low.startswith((b"<!doctype html", b"<html")) or b"<html" in low:

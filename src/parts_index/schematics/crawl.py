@@ -49,7 +49,7 @@ NEVER = re.compile(r"(?i)/(tag|tags|category|categories|author|feed|comments?|wp
                    r"checkout|account|login|search|forum|forums|phpbb|viewtopic|share|print)(/|$|\?)|"
                    r"[?&](replytocom|share|print|lang|sort|filter|add-to-cart)=|"
                    r"\.(zip|exe|rar|7z|mp3|mp4|avi|mov|wav|iso|hex|bin|tar|gz)$")
-IMAGE_EXT = re.compile(r"\.(gif|png|jpe?g|tiff?|webp)(\?|$)", re.I)
+IMAGE_EXT = re.compile(r"\.(gif|png|jpe?g|tiff?|bmp|webp)(\?|$)", re.I)
 # Stricter than the download stage's: a crawler meets every ornament a site owns, not just a blog post's.
 JUNK_IMAGE = re.compile(r"(?i)(logo|icon|sprite|banner|button|avatar|spacer|pixel|badge|emoji|gravatar|paypal|"
                         r"donate|facebook|twitter|rss|arrow|bullet|bg[_-]|background|header|footer|thumb)")
