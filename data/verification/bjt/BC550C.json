@@ -1,4 +1,2122 @@
 {
+ "bench": {
+  "changes": {
+   "catalogue-fields": "LTspice's catalogue fields (mfg=, Vceo=, …) removed: ngspice refuses them, the others ignore them",
+   "renamed": "the .model renamed DUT, the name the bench's netlists use"
+  },
+  "engines": {
+   "ngspice": {
+    "bench": {
+     "clean": true,
+     "commit": "b99a31a961810037336defb2325d6a05e0ae78b3"
+    },
+    "command": "docker run --rm --tmpfs /tmp/spec -v docker/sim/bench:/sim/bench:ro -v <jobs>:/io parts-index-ngspice python3 /sim/bench/spec.py /io/jobs.json /io/results.json",
+    "image": "sha256:78f0c2ecea5f63807ffd42bc66ad30a5d07a37b1d4febd8a8fbb31d664dbf35c",
+    "on": "2026-09-29",
+    "version": "ngspice-47 : Circuit level simulation program"
+   },
+   "qspice": {
+    "bench": {
+     "clean": true,
+     "commit": "b99a31a961810037336defb2325d6a05e0ae78b3"
+    },
+    "command": "docker run --rm --tmpfs /tmp/spec -v docker/sim/bench:/sim/bench:ro -v <jobs>:/io parts-index-qspice python3 /sim/bench/spec.py /io/jobs.json /io/results.json",
+    "image": "sha256:b4766ddc1e7f7cc55c294c32d235615a4ba93f9114e66ecf180dd68524cf1039",
+    "on": "2026-09-29",
+    "version": {
+     "exe": "QSPICE64.exe",
+     "sha256": "8aed7987993d51b3d01b81a90a876324ac109dc127e3834dc2f3fe3cbd622522"
+    }
+   }
+  },
+  "models": {
+   "28bb42a13b100ca0646f530f2e16b413b3aecab1": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.90462644e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 3.94102175e-07\nVIN in 0 DC 0.622010963 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.90462658e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 3.94102181e-07\nVIN in 0 DC 0.622011157 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "10": [
+       2.109e-12,
+       "typical"
+      ],
+      "11": [
+       7.271e-12,
+       "typical"
+      ],
+      "12": [
+       293300000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.2098,
+       "inside"
+      ],
+      "2": [
+       378.0,
+       "typical"
+      ],
+      "3": [
+       542.5,
+       "inside"
+      ],
+      "4": [
+       0.08063,
+       "inside"
+      ],
+      "5": [
+       0.2008,
+       "inside"
+      ],
+      "6": [
+       0.733,
+       "typical"
+      ],
+      "7": [
+       0.8108,
+       "typical"
+      ],
+      "8": [
+       0.6815,
+       "inside"
+      ],
+      "9": [
+       0.7244,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "10": [
+       2.109e-12,
+       "typical"
+      ],
+      "11": [
+       7.271e-12,
+       "typical"
+      ],
+      "12": [
+       293300000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.2098,
+       "inside"
+      ],
+      "2": [
+       378.0,
+       "typical"
+      ],
+      "3": [
+       542.5,
+       "inside"
+      ],
+      "4": [
+       0.08063,
+       "inside"
+      ],
+      "5": [
+       0.2008,
+       "inside"
+      ],
+      "6": [
+       0.733,
+       "typical"
+      ],
+      "7": [
+       0.8108,
+       "typical"
+      ],
+      "8": [
+       0.6815,
+       "inside"
+      ],
+      "9": [
+       0.7244,
+       "inside"
+      ]
+     }
+    }
+   },
+   "4a259cc3b7076d9d541eec36c19253fd4a9c440b": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194797e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.82774246e-07\nVIN in 0 DC 0.576831848 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194811e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.8277419e-07\nVIN in 0 DC 0.576832015 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "10": [
+       2.745e-12,
+       "typical"
+      ],
+      "11": [
+       1.561e-11,
+       "typical"
+      ],
+      "12": [
+       237700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8438,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "10": [
+       2.745e-12,
+       "typical"
+      ],
+      "11": [
+       1.561e-11,
+       "typical"
+      ],
+      "12": [
+       237700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8437,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     }
+    }
+   },
+   "6fff9b247f4395b2fa1768ab94d35b92f15f7ccf": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194797e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.82774246e-07\nVIN in 0 DC 0.576831848 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194811e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.8277419e-07\nVIN in 0 DC 0.576832015 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "10": [
+       2.745e-12,
+       "typical"
+      ],
+      "11": [
+       1.561e-11,
+       "typical"
+      ],
+      "12": [
+       237700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8438,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "10": [
+       2.745e-12,
+       "typical"
+      ],
+      "11": [
+       1.561e-11,
+       "typical"
+      ],
+      "12": [
+       237700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8437,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     }
+    }
+   },
+   "860cfcf06edf52c2eb1d8babe6b9b9e310e3546b": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194797e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.82774246e-07\nVIN in 0 DC 0.576831848 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194811e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.8277419e-07\nVIN in 0 DC 0.576832015 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "10": [
+       1.549e-12,
+       "typical"
+      ],
+      "11": [
+       5.178e-12,
+       "typical"
+      ],
+      "12": [
+       158700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8438,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "10": [
+       1.549e-12,
+       "typical"
+      ],
+      "11": [
+       5.178e-12,
+       "typical"
+      ],
+      "12": [
+       158700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8437,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     }
+    }
+   },
+   "96f425bd80ad950b0d96b9d0ced2e05f6c5e955a": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194797e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.82774246e-07\nVIN in 0 DC 0.576831848 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194811e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.8277419e-07\nVIN in 0 DC 0.576832015 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "10": [
+       1.549e-12,
+       "typical"
+      ],
+      "11": [
+       5.178e-12,
+       "typical"
+      ],
+      "12": [
+       158700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8438,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "10": [
+       1.549e-12,
+       "typical"
+      ],
+      "11": [
+       5.178e-12,
+       "typical"
+      ],
+      "12": [
+       158700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8437,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     }
+    }
+   },
+   "9fcf818a78727c17bad856e4e7091a92a10e17e0": {
+    "changes": {
+     "ngspice": [
+      "renamed"
+     ],
+     "qspice": [
+      "renamed"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.72650454e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.14256186e-07\nVIN in 0 DC 0.626074066 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.72650447e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.14256165e-07\nVIN in 0 DC 0.626074259 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "10": [
+       1.762e-12,
+       "typical"
+      ],
+      "11": [
+       5.822e-12,
+       "typical"
+      ],
+      "12": [
+       248600000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.2389,
+       "inside"
+      ],
+      "2": [
+       270.5,
+       "typical"
+      ],
+      "3": [
+       498.8,
+       "inside"
+      ],
+      "4": [
+       0.09361,
+       "inside"
+      ],
+      "5": [
+       0.3419,
+       "inside"
+      ],
+      "6": [
+       0.7574,
+       "typical"
+      ],
+      "7": [
+       1.018,
+       "typical"
+      ],
+      "8": [
+       0.6898,
+       "inside"
+      ],
+      "9": [
+       0.7481,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "10": [
+       1.762e-12,
+       "typical"
+      ],
+      "11": [
+       5.822e-12,
+       "typical"
+      ],
+      "12": [
+       248600000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.239,
+       "inside"
+      ],
+      "2": [
+       270.5,
+       "typical"
+      ],
+      "3": [
+       498.8,
+       "inside"
+      ],
+      "4": [
+       0.09361,
+       "inside"
+      ],
+      "5": [
+       0.3419,
+       "inside"
+      ],
+      "6": [
+       0.7574,
+       "typical"
+      ],
+      "7": [
+       1.018,
+       "typical"
+      ],
+      "8": [
+       0.6898,
+       "inside"
+      ],
+      "9": [
+       0.7481,
+       "inside"
+      ]
+     }
+    }
+   },
+   "a18b7a37ccbee6e49dfff5114e6d0a41ddc57b61": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194797e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.82774246e-07\nVIN in 0 DC 0.576831848 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194811e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.8277419e-07\nVIN in 0 DC 0.576832015 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "10": [
+       1.549e-12,
+       "typical"
+      ],
+      "11": [
+       5.178e-12,
+       "typical"
+      ],
+      "12": [
+       158700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8438,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "10": [
+       1.549e-12,
+       "typical"
+      ],
+      "11": [
+       5.178e-12,
+       "typical"
+      ],
+      "12": [
+       158700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8437,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     }
+    }
+   },
+   "a4ef79be34b1966438271342bb426f8de03594ff": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194797e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.82774246e-07\nVIN in 0 DC 0.576831848 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194811e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.8277419e-07\nVIN in 0 DC 0.576832015 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "10": [
+       2.745e-12,
+       "typical"
+      ],
+      "11": [
+       1.561e-11,
+       "typical"
+      ],
+      "12": [
+       237700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8438,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "10": [
+       2.745e-12,
+       "typical"
+      ],
+      "11": [
+       1.561e-11,
+       "typical"
+      ],
+      "12": [
+       237700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8437,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     }
+    }
+   },
+   "a5622a452f469c4f5460986f2b66bc0a9294b40b": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194797e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.82774246e-07\nVIN in 0 DC 0.576831848 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194811e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.8277419e-07\nVIN in 0 DC 0.576832015 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "10": [
+       2.745e-12,
+       "typical"
+      ],
+      "11": [
+       1.561e-11,
+       "typical"
+      ],
+      "12": [
+       237700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8438,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "10": [
+       2.745e-12,
+       "typical"
+      ],
+      "11": [
+       1.561e-11,
+       "typical"
+      ],
+      "12": [
+       237700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8437,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     }
+    }
+   },
+   "c0ddae1b851cb3123dc5ae7121593d5fa7f5e47b": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194797e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.82774246e-07\nVIN in 0 DC 0.576831848 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194811e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.8277419e-07\nVIN in 0 DC 0.576832015 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "10": [
+       2.745e-12,
+       "typical"
+      ],
+      "11": [
+       1.561e-11,
+       "typical"
+      ],
+      "12": [
+       237700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8438,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "10": [
+       2.745e-12,
+       "typical"
+      ],
+      "11": [
+       1.561e-11,
+       "typical"
+      ],
+      "12": [
+       237700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8437,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     }
+    }
+   },
+   "cc537e50fda71925cd4ecb93693826279141b1d4": {
+    "changes": {
+     "ngspice": [
+      "renamed"
+     ],
+     "qspice": [
+      "renamed"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.90462644e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 3.94102175e-07\nVIN in 0 DC 0.622010963 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.90462658e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 3.94102181e-07\nVIN in 0 DC 0.622011157 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "10": [
+       2.109e-12,
+       "typical"
+      ],
+      "11": [
+       7.271e-12,
+       "typical"
+      ],
+      "12": [
+       293300000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.2098,
+       "inside"
+      ],
+      "2": [
+       378.0,
+       "typical"
+      ],
+      "3": [
+       542.5,
+       "inside"
+      ],
+      "4": [
+       0.08063,
+       "inside"
+      ],
+      "5": [
+       0.2008,
+       "inside"
+      ],
+      "6": [
+       0.733,
+       "typical"
+      ],
+      "7": [
+       0.8108,
+       "typical"
+      ],
+      "8": [
+       0.6815,
+       "inside"
+      ],
+      "9": [
+       0.7244,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "10": [
+       2.109e-12,
+       "typical"
+      ],
+      "11": [
+       7.271e-12,
+       "typical"
+      ],
+      "12": [
+       293300000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.2098,
+       "inside"
+      ],
+      "2": [
+       378.0,
+       "typical"
+      ],
+      "3": [
+       542.5,
+       "inside"
+      ],
+      "4": [
+       0.08063,
+       "inside"
+      ],
+      "5": [
+       0.2008,
+       "inside"
+      ],
+      "6": [
+       0.733,
+       "typical"
+      ],
+      "7": [
+       0.8108,
+       "typical"
+      ],
+      "8": [
+       0.6815,
+       "inside"
+      ],
+      "9": [
+       0.7244,
+       "inside"
+      ]
+     }
+    }
+   },
+   "daa033af700125864bb76bb07ca0e2a9b94502c7": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194797e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.82774246e-07\nVIN in 0 DC 0.576831848 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194811e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.8277419e-07\nVIN in 0 DC 0.576832015 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "10": [
+       2.745e-12,
+       "typical"
+      ],
+      "11": [
+       1.561e-11,
+       "typical"
+      ],
+      "12": [
+       237700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8438,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "10": [
+       2.745e-12,
+       "typical"
+      ],
+      "11": [
+       1.561e-11,
+       "typical"
+      ],
+      "12": [
+       237700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8437,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     }
+    }
+   },
+   "dbbdc2e1fa834031a34124abaee0f13a0e881f2a": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.90462644e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 3.94102175e-07\nVIN in 0 DC 0.622010963 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.90462658e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 3.94102181e-07\nVIN in 0 DC 0.622011157 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "10": [
+       2.109e-12,
+       "typical"
+      ],
+      "11": [
+       7.271e-12,
+       "typical"
+      ],
+      "12": [
+       293300000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.2098,
+       "inside"
+      ],
+      "2": [
+       378.0,
+       "typical"
+      ],
+      "3": [
+       542.5,
+       "inside"
+      ],
+      "4": [
+       0.08063,
+       "inside"
+      ],
+      "5": [
+       0.2008,
+       "inside"
+      ],
+      "6": [
+       0.733,
+       "typical"
+      ],
+      "7": [
+       0.8108,
+       "typical"
+      ],
+      "8": [
+       0.6815,
+       "inside"
+      ],
+      "9": [
+       0.7244,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "10": [
+       2.109e-12,
+       "typical"
+      ],
+      "11": [
+       7.271e-12,
+       "typical"
+      ],
+      "12": [
+       293300000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.2098,
+       "inside"
+      ],
+      "2": [
+       378.0,
+       "typical"
+      ],
+      "3": [
+       542.5,
+       "inside"
+      ],
+      "4": [
+       0.08063,
+       "inside"
+      ],
+      "5": [
+       0.2008,
+       "inside"
+      ],
+      "6": [
+       0.733,
+       "typical"
+      ],
+      "7": [
+       0.8108,
+       "typical"
+      ],
+      "8": [
+       0.6815,
+       "inside"
+      ],
+      "9": [
+       0.7244,
+       "inside"
+      ]
+     }
+    }
+   },
+   "dfb1201cedb2ed2fc99646f324af890e8e1c3c0e": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194797e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.82774246e-07\nVIN in 0 DC 0.576831848 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194811e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.8277419e-07\nVIN in 0 DC 0.576832015 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "10": [
+       2.745e-12,
+       "typical"
+      ],
+      "11": [
+       1.561e-11,
+       "typical"
+      ],
+      "12": [
+       237700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8438,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "10": [
+       2.745e-12,
+       "typical"
+      ],
+      "11": [
+       1.561e-11,
+       "typical"
+      ],
+      "12": [
+       237700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8437,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     }
+    }
+   },
+   "f9c48570cb3151c82a1bdb9fa7649ce3b1f9740f": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194797e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.82774246e-07\nVIN in 0 DC 0.576831848 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 5\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=20*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n",
+      "* spec 2\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 10 AC 1\nVB b 0 0\nRE e 0 1e12\nQ1 a b e DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 3\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nV1 a 0 DC 0.5 AC 1\nVB b 0 0\nRC cc 0 1e12\nQ1 cc b a DUT\n.save I(V1)\n.ac dec 20 1e3 1e8\n.end\n",
+      "* spec 4\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVCT ct 0 5\nIBT 0 bt DC 1.81194811e-05 AC 1\nQT ct bt 0 DUT\n.save I(VCT)\n.ac dec 40 100 1e10\n.end\n",
+      "* spec 5\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVSENSE c cc 0\nVC cc 0 5\nIB 0 b DC 5.8277419e-07\nVIN in 0 DC 0.576832015 AC 1\nRG in b 2000\nQ1 c b 0 DUT\nH1 out 0 VSENSE 1000\nRLOAD out 0 1meg\n.noise V(out) VIN dec 20 1 1e6\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "10": [
+       1.549e-12,
+       "typical"
+      ],
+      "11": [
+       5.178e-12,
+       "typical"
+      ],
+      "12": [
+       158700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8438,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "10": [
+       1.549e-12,
+       "typical"
+      ],
+      "11": [
+       5.178e-12,
+       "typical"
+      ],
+      "12": [
+       158700000.0,
+       "inside"
+      ],
+      "13": [
+       null,
+       "not measured"
+      ],
+      "14": [
+       0.5802,
+       "inside"
+      ],
+      "2": [
+       124.1,
+       "typical"
+      ],
+      "3": [
+       516.2,
+       "inside"
+      ],
+      "4": [
+       0.05516,
+       "inside"
+      ],
+      "5": [
+       0.1655,
+       "inside"
+      ],
+      "6": [
+       0.7081,
+       "typical"
+      ],
+      "7": [
+       0.8437,
+       "typical"
+      ],
+      "8": [
+       0.6369,
+       "inside"
+      ],
+      "9": [
+       0.6821,
+       "inside"
+      ]
+     }
+    }
+   }
+  },
+  "primary": "qspice",
+  "rows": {
+   "0": "no-bench",
+   "1": "no-bench",
+   "10": "measured",
+   "11": "measured",
+   "12": "measured",
+   "13": "measured",
+   "14": "measured",
+   "2": "measured",
+   "3": "measured",
+   "4": "measured",
+   "5": "measured",
+   "6": "measured",
+   "7": "measured",
+   "8": "measured",
+   "9": "measured"
+  },
+  "sheet": "BC549C_nxp"
+ },
  "cards": {
   "28bb42a13b100ca0646f530f2e16b413b3aecab1": {
    "absent": [

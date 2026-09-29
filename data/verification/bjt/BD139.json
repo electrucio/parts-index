@@ -1,4 +1,1098 @@
 {
+ "bench": {
+  "changes": {
+   "catalogue-fields": "LTspice's catalogue fields (mfg=, Vceo=, …) removed: ngspice refuses them, the others ignore them",
+   "renamed": "the .model renamed DUT, the name the bench's netlists use",
+   "unit-a": "for ngspice, the A after a number removed (IKF=10A): ngspice reads it as atto"
+  },
+  "engines": {
+   "ngspice": {
+    "bench": {
+     "clean": true,
+     "commit": "b99a31a961810037336defb2325d6a05e0ae78b3"
+    },
+    "command": "docker run --rm --tmpfs /tmp/spec -v docker/sim/bench:/sim/bench:ro -v <jobs>:/io parts-index-ngspice python3 /sim/bench/spec.py /io/jobs.json /io/results.json",
+    "image": "sha256:78f0c2ecea5f63807ffd42bc66ad30a5d07a37b1d4febd8a8fbb31d664dbf35c",
+    "on": "2026-09-29",
+    "version": "ngspice-47 : Circuit level simulation program"
+   },
+   "qspice": {
+    "bench": {
+     "clean": true,
+     "commit": "b99a31a961810037336defb2325d6a05e0ae78b3"
+    },
+    "command": "docker run --rm --tmpfs /tmp/spec -v docker/sim/bench:/sim/bench:ro -v <jobs>:/io parts-index-qspice python3 /sim/bench/spec.py /io/jobs.json /io/results.json",
+    "image": "sha256:b4766ddc1e7f7cc55c294c32d235615a4ba93f9114e66ecf180dd68524cf1039",
+    "on": "2026-09-29",
+    "version": {
+     "exe": "QSPICE64.exe",
+     "sha256": "8aed7987993d51b3d01b81a90a876324ac109dc127e3834dc2f3fe3cbd622522"
+    }
+   }
+  },
+  "models": {
+   "0ca21363b80ddbd89d081f24517ade3a13d4028c": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields",
+      "unit-a"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "3": [
+       76.73,
+       "inside"
+      ],
+      "4": [
+       84.04,
+       "inside"
+      ],
+      "5": [
+       95.84,
+       "inside"
+      ],
+      "6": [
+       0.07803,
+       "inside"
+      ],
+      "7": [
+       0.8245,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "3": [
+       76.73,
+       "inside"
+      ],
+      "4": [
+       84.04,
+       "inside"
+      ],
+      "5": [
+       95.84,
+       "inside"
+      ],
+      "6": [
+       0.07803,
+       "inside"
+      ],
+      "7": [
+       0.8245,
+       "inside"
+      ]
+     }
+    }
+   },
+   "189a86769f185a8e6b607ced5f333911d362eac1": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "3": [
+       76.73,
+       "inside"
+      ],
+      "4": [
+       84.04,
+       "inside"
+      ],
+      "5": [
+       95.84,
+       "inside"
+      ],
+      "6": [
+       0.07803,
+       "inside"
+      ],
+      "7": [
+       0.8245,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "3": [
+       76.73,
+       "inside"
+      ],
+      "4": [
+       84.04,
+       "inside"
+      ],
+      "5": [
+       95.84,
+       "inside"
+      ],
+      "6": [
+       0.07803,
+       "inside"
+      ],
+      "7": [
+       0.8245,
+       "inside"
+      ]
+     }
+    }
+   },
+   "1bf7a799605fb7949b64f8317d4d9818e38f79d8": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "3": [
+       79.78,
+       "inside"
+      ],
+      "4": [
+       50.0,
+       "inside"
+      ],
+      "5": [
+       91.22,
+       "inside"
+      ],
+      "6": [
+       0.38,
+       "inside"
+      ],
+      "7": [
+       0.7,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "3": [
+       79.78,
+       "inside"
+      ],
+      "4": [
+       50.0,
+       "inside"
+      ],
+      "5": [
+       91.22,
+       "inside"
+      ],
+      "6": [
+       0.38,
+       "inside"
+      ],
+      "7": [
+       0.7,
+       "inside"
+      ]
+     }
+    }
+   },
+   "29c8fc3d8a3fb61397e55c95d4662427868b808d": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "3": [
+       76.73,
+       "inside"
+      ],
+      "4": [
+       84.04,
+       "inside"
+      ],
+      "5": [
+       95.84,
+       "inside"
+      ],
+      "6": [
+       0.07803,
+       "inside"
+      ],
+      "7": [
+       0.8245,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "3": [
+       76.73,
+       "inside"
+      ],
+      "4": [
+       84.04,
+       "inside"
+      ],
+      "5": [
+       95.84,
+       "inside"
+      ],
+      "6": [
+       0.07803,
+       "inside"
+      ],
+      "7": [
+       0.8245,
+       "inside"
+      ]
+     }
+    }
+   },
+   "59b3cf0680133da3a5be9f227e9bbed5ff088a71": {
+    "changes": {
+     "ngspice": [
+      "renamed"
+     ],
+     "qspice": [
+      "renamed"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "3": [
+       145.6,
+       "inside"
+      ],
+      "4": [
+       155.0,
+       "inside"
+      ],
+      "5": [
+       154.1,
+       "inside"
+      ],
+      "6": [
+       0.07109,
+       "inside"
+      ],
+      "7": [
+       0.805,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "3": [
+       145.6,
+       "inside"
+      ],
+      "4": [
+       155.0,
+       "inside"
+      ],
+      "5": [
+       154.1,
+       "inside"
+      ],
+      "6": [
+       0.07109,
+       "inside"
+      ],
+      "7": [
+       0.805,
+       "inside"
+      ]
+     }
+    }
+   },
+   "5c42eca3b3c20ee3b4f4cd79d04b65fe1c990c7d": {
+    "changes": {
+     "ngspice": [
+      "renamed"
+     ],
+     "qspice": [
+      "renamed"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "3": [
+       79.78,
+       "inside"
+      ],
+      "4": [
+       50.0,
+       "inside"
+      ],
+      "5": [
+       91.22,
+       "inside"
+      ],
+      "6": [
+       0.38,
+       "inside"
+      ],
+      "7": [
+       0.7,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "3": [
+       79.78,
+       "inside"
+      ],
+      "4": [
+       50.0,
+       "inside"
+      ],
+      "5": [
+       91.22,
+       "inside"
+      ],
+      "6": [
+       0.38,
+       "inside"
+      ],
+      "7": [
+       0.7,
+       "inside"
+      ]
+     }
+    }
+   },
+   "673b8dc18872ea09406fd1124b1ca802b6d620c6": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "3": [
+       187.5,
+       "inside"
+      ],
+      "4": [
+       139.4,
+       "inside"
+      ],
+      "5": [
+       176.3,
+       "inside"
+      ],
+      "6": [
+       0.0715,
+       "inside"
+      ],
+      "7": [
+       0.7978,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "3": [
+       187.5,
+       "inside"
+      ],
+      "4": [
+       139.4,
+       "inside"
+      ],
+      "5": [
+       176.3,
+       "inside"
+      ],
+      "6": [
+       0.0715,
+       "inside"
+      ],
+      "7": [
+       0.7977,
+       "inside"
+      ]
+     }
+    }
+   },
+   "7040b0cbd65027f77e0dd5b7e9352e38bfdda302": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "3": [
+       187.5,
+       "inside"
+      ],
+      "4": [
+       139.4,
+       "inside"
+      ],
+      "5": [
+       176.3,
+       "inside"
+      ],
+      "6": [
+       0.0715,
+       "inside"
+      ],
+      "7": [
+       0.7978,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "3": [
+       187.5,
+       "inside"
+      ],
+      "4": [
+       139.4,
+       "inside"
+      ],
+      "5": [
+       176.3,
+       "inside"
+      ],
+      "6": [
+       0.0715,
+       "inside"
+      ],
+      "7": [
+       0.7977,
+       "inside"
+      ]
+     }
+    }
+   },
+   "9c1fef0fba2dc7d9d1518bbcb6a920a2103edd25": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "3": [
+       76.73,
+       "inside"
+      ],
+      "4": [
+       84.04,
+       "inside"
+      ],
+      "5": [
+       95.84,
+       "inside"
+      ],
+      "6": [
+       0.07803,
+       "inside"
+      ],
+      "7": [
+       0.8245,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "3": [
+       76.73,
+       "inside"
+      ],
+      "4": [
+       84.04,
+       "inside"
+      ],
+      "5": [
+       95.84,
+       "inside"
+      ],
+      "6": [
+       0.07803,
+       "inside"
+      ],
+      "7": [
+       0.8245,
+       "inside"
+      ]
+     }
+    }
+   },
+   "b490a2695c77540aec494cfdd9123e6e47b07e0a": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "3": [
+       79.78,
+       "inside"
+      ],
+      "4": [
+       50.0,
+       "inside"
+      ],
+      "5": [
+       91.22,
+       "inside"
+      ],
+      "6": [
+       0.38,
+       "inside"
+      ],
+      "7": [
+       0.7,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "3": [
+       79.78,
+       "inside"
+      ],
+      "4": [
+       50.0,
+       "inside"
+      ],
+      "5": [
+       91.22,
+       "inside"
+      ],
+      "6": [
+       0.38,
+       "inside"
+      ],
+      "7": [
+       0.7,
+       "inside"
+      ]
+     }
+    }
+   },
+   "cf9cb542dbcf970c7309734c5e3cec00dfe67f69": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields",
+      "unit-a"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "3": [
+       79.78,
+       "inside"
+      ],
+      "4": [
+       50.0,
+       "inside"
+      ],
+      "5": [
+       91.22,
+       "inside"
+      ],
+      "6": [
+       0.38,
+       "inside"
+      ],
+      "7": [
+       0.7,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "3": [
+       79.78,
+       "inside"
+      ],
+      "4": [
+       50.0,
+       "inside"
+      ],
+      "5": [
+       91.22,
+       "inside"
+      ],
+      "6": [
+       0.38,
+       "inside"
+      ],
+      "7": [
+       0.7,
+       "inside"
+      ]
+     }
+    }
+   },
+   "dba307dbb0fb8cda307c8c8246049dd289c51558": {
+    "changes": {
+     "ngspice": [
+      "renamed"
+     ],
+     "qspice": [
+      "renamed"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "3": [
+       168.1,
+       "inside"
+      ],
+      "4": [
+       170.0,
+       "inside"
+      ],
+      "5": [
+       171.4,
+       "inside"
+      ],
+      "6": [
+       0.06081,
+       "inside"
+      ],
+      "7": [
+       0.7958,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "3": [
+       168.1,
+       "inside"
+      ],
+      "4": [
+       170.0,
+       "inside"
+      ],
+      "5": [
+       171.4,
+       "inside"
+      ],
+      "6": [
+       0.06081,
+       "inside"
+      ],
+      "7": [
+       0.7958,
+       "inside"
+      ]
+     }
+    }
+   },
+   "dbb078dbc5ae920dda0a59c43df67b4b53198065": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "3": [
+       76.73,
+       "inside"
+      ],
+      "4": [
+       84.04,
+       "inside"
+      ],
+      "5": [
+       95.84,
+       "inside"
+      ],
+      "6": [
+       0.07803,
+       "inside"
+      ],
+      "7": [
+       0.8245,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "3": [
+       76.73,
+       "inside"
+      ],
+      "4": [
+       84.04,
+       "inside"
+      ],
+      "5": [
+       95.84,
+       "inside"
+      ],
+      "6": [
+       0.07803,
+       "inside"
+      ],
+      "7": [
+       0.8245,
+       "inside"
+      ]
+     }
+    }
+   },
+   "e582865b15eedf05dee1a3aa79a78834eec9c62a": {
+    "changes": {
+     "ngspice": [
+      "renamed"
+     ],
+     "qspice": [
+      "renamed"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "3": [
+       90.12,
+       "inside"
+      ],
+      "4": [
+       90.04,
+       "inside"
+      ],
+      "5": [
+       119.8,
+       "inside"
+      ],
+      "6": [
+       0.4991,
+       "inside"
+      ],
+      "7": [
+       1.021,
+       "above"
+      ]
+     },
+     "qspice": {
+      "3": [
+       90.12,
+       "inside"
+      ],
+      "4": [
+       90.04,
+       "inside"
+      ],
+      "5": [
+       119.8,
+       "inside"
+      ],
+      "6": [
+       0.4991,
+       "inside"
+      ],
+      "7": [
+       1.021,
+       "above"
+      ]
+     }
+    }
+   },
+   "f0e8532056e2bd3d92e6e748a256ab47187f40ed": {
+    "changes": {
+     "ngspice": [
+      "renamed"
+     ],
+     "qspice": [
+      "renamed"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "3": [
+       79.78,
+       "inside"
+      ],
+      "4": [
+       50.0,
+       "inside"
+      ],
+      "5": [
+       91.22,
+       "inside"
+      ],
+      "6": [
+       0.38,
+       "inside"
+      ],
+      "7": [
+       0.7,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "3": [
+       79.78,
+       "inside"
+      ],
+      "4": [
+       50.0,
+       "inside"
+      ],
+      "5": [
+       91.22,
+       "inside"
+      ],
+      "6": [
+       0.38,
+       "inside"
+      ],
+      "7": [
+       0.7,
+       "inside"
+      ]
+     }
+    }
+   },
+   "f911f6ba0d5a37311fdb7116ff34dbe96bd920cb": {
+    "changes": {
+     "ngspice": [
+      "renamed",
+      "catalogue-fields"
+     ],
+     "qspice": [
+      "renamed",
+      "catalogue-fields"
+     ]
+    },
+    "netlists": {
+     "ngspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ],
+     "qspice": [
+      "* spec 1\n.include \"model.lib\"\n\n.options reltol=1e-4\n.temp 25\nVC0 c0 0 2\nBB0 0 b0 I=exp(2.302585092994046*V(x))\nQ0 c0 b0 0 DUT\nBSB0 0 bs0 I=exp(2.302585092994046*V(x))\nBSC0 0 cs0 I=10*exp(2.302585092994046*V(x))\nDCL0 cs0 cl0 DCLMP\nVCL0 cl0 0 30\nQS0 cs0 bs0 0 DUT\nVX x 0 0\nRX x 0 1\n.model DCLMP D(Is=1e-14)\n.dc VX -9 -0.5 0.02\n.end\n"
+     ]
+    },
+    "values": {
+     "ngspice": {
+      "3": [
+       76.73,
+       "inside"
+      ],
+      "4": [
+       84.04,
+       "inside"
+      ],
+      "5": [
+       95.84,
+       "inside"
+      ],
+      "6": [
+       0.07803,
+       "inside"
+      ],
+      "7": [
+       0.8245,
+       "inside"
+      ]
+     },
+     "qspice": {
+      "3": [
+       76.73,
+       "inside"
+      ],
+      "4": [
+       84.04,
+       "inside"
+      ],
+      "5": [
+       95.84,
+       "inside"
+      ],
+      "6": [
+       0.07803,
+       "inside"
+      ],
+      "7": [
+       0.8245,
+       "inside"
+      ]
+     }
+    }
+   }
+  },
+  "primary": "qspice",
+  "rows": {
+   "0": "no-bench",
+   "1": "no-bench",
+   "2": "no-bench",
+   "3": "measured",
+   "4": "measured",
+   "5": "measured",
+   "6": "measured",
+   "7": "measured"
+  },
+  "sheet": "BD139_onsemi"
+ },
  "cards": {
   "0ca21363b80ddbd89d081f24517ade3a13d4028c": {
    "absent": [
