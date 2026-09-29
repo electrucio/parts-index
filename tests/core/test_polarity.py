@@ -40,3 +40,24 @@ def test_sources_that_disagree_settle_nothing():
 ])
 def test_a_catalogue_names_one_polarity_or_none(text, said):
     assert polarity.in_words(text) == said
+
+
+SHEET = ("Philips Semiconductors Product specification NPN general purpose transistors BC107; BC108; BC109 "
+         "FEATURES Low current (max. 100 mA) APPLICATIONS General purpose switching and amplification. "
+         "DESCRIPTION NPN transistor in a TO-18 metal package. PNP complements: BC177, BC178 and BC179.")
+
+
+def test_a_page_says_it_near_the_part_and_a_complement_is_not_it():
+    words = polarity.read_sheet(SHEET, "BC109", "NPN")
+    assert "NPN" in words and len(words) < 140
+    assert polarity.read_sheet(SHEET, "BC109", "PNP") == ""       # the complement's PNP is not the BC109's
+    assert polarity.read_sheet(SHEET, "BC179", "PNP") == ""       # named only as a complement
+
+
+def test_a_page_that_says_both_or_does_not_name_the_part_says_nothing():
+    pair = "BD139 NPN and BD140 PNP medium power transistors in SOT-32"
+    assert polarity.read_sheet(pair, "BD139", "NPN") == ""
+    assert polarity.read_sheet(SHEET, "BC547", "NPN") == ""
+    assert polarity.read_sheet("BC1090 NPN transistor", "BC109", "NPN") == ""     # a longer number
+    assert polarity.read_sheet("KTC 3198 EPITAXIAL PLANAR NPN TRANSISTOR", "KTC3198", "NPN")
+    assert polarity.read_sheet("2N5460 P-Channel JFET general purpose amplifier", "2N5460", "P-channel")

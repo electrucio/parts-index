@@ -62,3 +62,60 @@ def settled(claims: list[list[str]]) -> dict[str, str]:
     for value, *_ in claims:
         said.setdefault(CLASS[value], set()).add(value)
     return {c: vs.pop() for c, vs in said.items() if len(vs) == 1}
+
+
+# --- a page somebody found for the part -------------------------------------------------------------
+# How far either side of the part's number a page may say which way round it is. A data sheet's first
+# line names the part and says "NPN silicon planar" within a sentence or two; further off, the words are
+# as likely to be about the next part in a table.
+NEAR = 300
+# "PNP complement: BC557", "complementary to BD140 (PNP)": the polarity of another part, blanked out
+# before the page is read.
+COMPLEMENT = re.compile(r"(?:\b(?:NPN|PNP|[NP][- ]?channel)\W{0,3})?\bcomplement\w*[^.;]{0,60}", re.I)
+
+
+def name_in(part: str) -> re.Pattern:
+    """The part's number as a page prints it: BC109 also as "BC 109" or "BC-109", with a grade letter
+    after it (BC109C), and never inside a longer number (BC1090, ABC109)."""
+    pieces = re.findall(r"[A-Z]+|\d+", part.upper())
+    return re.compile(r"(?<![A-Z0-9])" + r"[\s-]?".join(map(re.escape, pieces)) + r"(?!\d)")
+
+
+def read_sheet(text: str, part: str, claimed: str, near: int = NEAR) -> str:
+    """The words on a page that say `claimed` of `part`, or "" when it does not — or says the other too.
+
+    Every place the part's number is printed is read, up to ten, with what is printed around it. The
+    page says it when those places name this polarity and never the other one of its question; what is
+    returned is a few words either side of the mention nearest the number, for a reader to check.
+    """
+    if claimed not in CLASS:
+        return ""
+    flat = " ".join(text.split())
+    upper = flat.upper()
+    seen: set[str] = set()
+    best: tuple[int, int, int] | None = None                    # (distance, start, end) of the nearest mention
+    for i, m in enumerate(name_in(part).finditer(upper)):
+        if i == 10:
+            break
+        lo = max(0, m.start() - near)
+        window = COMPLEMENT.sub(lambda c: " " * len(c.group(0)), flat[lo:m.end() + near])
+        for value, rx in WORDS:
+            if CLASS[value] != CLASS[claimed]:
+                continue
+            for w in rx.finditer(window):
+                seen.add(value)
+                if value == claimed:
+                    s, e = lo + w.start(), lo + w.end()
+                    d = max(m.start() - e, s - m.end(), 0)
+                    if best is None or d < best[0]:
+                        best = (d, s, e)
+    if seen != {claimed} or best is None:
+        return ""
+    _, s, e = best
+    s, e = max(0, s - 60), min(len(flat), e + 60)
+    words = flat[s:e]
+    if s > 0:
+        words = words.split(" ", 1)[-1]
+    if e < len(flat):
+        words = words.rsplit(" ", 1)[0]
+    return words

@@ -199,6 +199,9 @@ parts-census:  ## (maintainer) read the lists that say which part numbers exist;
 datasheets-register:  ## (maintainer) what each maker's catalogue says about the indexed parts; [SOURCE=ti_products] [LIMIT=N] [REREAD=1]
 	uv run pidx datasheets register $(foreach s,$(SOURCE),--source $(s)) $(if $(LIMIT),--limit $(LIMIT)) $(if $(REREAD),--reread)
 
+datasheets-polarity:  ## (maintainer) check the pages a search found for NPN/PNP, N/P-channel; FILES='found_*.jsonl'
+	uv run --extra ocr pidx datasheets polarity $(FILES)
+
 datasheets-links:  ## (maintainer) every data sheet an archive lists for each part, from its cached index; [SOURCE=frank_pocnet]
 	uv run pidx datasheets links $(foreach s,$(SOURCE),--source $(s))
 

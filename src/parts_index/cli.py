@@ -178,6 +178,9 @@ def main(argv: list[str] | None = None) -> int:
     dsr.add_argument("--limit", type=int, default=0, help="at most this many pages asked for, per source")
     dsr.add_argument("--reread", action="store_true", help="read the cached pages again with today's parser")
 
+    dpo = dsh.add_parser("polarity", help="check the pages a search found for which way round each transistor is")
+    dpo.add_argument("files", nargs="+", help="JSON lines: part, polarity, url")
+
     dsl = dsh.add_parser("links", help="every data sheet an archive lists for each part, from its cached index")
     dsl.add_argument("--source", action="append", help="only these sources (repeatable)")
 
@@ -424,6 +427,10 @@ def main(argv: list[str] | None = None) -> int:
         argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
         argv2 += ["--limit", str(args.limit)] if args.limit else []
         return register.main(argv2 + (["--reread"] if args.reread else []))
+
+    if args.cmd == "datasheets" and args.dsh_cmd == "polarity":
+        from parts_index.datasheets import polarity
+        return polarity.main(args.files)
 
     if args.cmd == "datasheets" and args.dsh_cmd == "links":
         from parts_index.datasheets import links

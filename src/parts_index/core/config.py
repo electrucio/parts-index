@@ -199,6 +199,12 @@ def datasheet_catalogue(source: str) -> Path:
     return PUBLIC_DATA / "datasheets" / "catalogue" / f"{source}.csv"
 
 
+def datasheet_polarity() -> Path:
+    """Which way round each transistor is, read off a page found for it: the words that say so, and the
+    page's link and checksum."""
+    return PUBLIC_DATA / "datasheets" / "polarity.csv"
+
+
 def datasheets_registry() -> Path:
     """The manufacturer catalogues the data-sheet register reads, and at what pace."""
     return PUBLIC_DATA / "datasheets" / "sources.yaml"
@@ -625,6 +631,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("datasheet_catalogue", "public", ("diotec_products",)),
     ("datasheet_pages", "public", ("archive_databooks",)),
     ("datasheets_state", "public", ("ti_products",)),
+    ("datasheet_polarity", "public", ()),
     ("datasheet_values_index", "public", ()),
     ("datasheet_values", "public", ("2N3904_onsemi",)),
     ("datasheet_reference", "public", ()),
