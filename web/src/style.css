@@ -190,3 +190,29 @@ details.uses.lv2.repo > summary strong { font: 600 0.86rem var(--mono); text-tra
 ul.tree { list-style: none; margin: 0; padding-left: 0; display: grid; gap: 4px; }
 ul.tree ul.tree { padding-left: 20px; border-left: 2px solid var(--rule); margin: 4px 0 6px 4px; }
 ul.sheetlist { list-style: none; margin: 2px 0 6px; padding-left: 16px; display: grid; gap: 2px; font-size: 0.92rem; }
+
+/* A part's models against its data sheet (models.tsx): compact, the first column held while the models
+   scroll sideways, a value coloured only by the sheet's own limits. */
+table.chk { font-size: 0.8rem; width: auto; }
+table.chk th, table.chk td { padding: 3px 7px; }
+table.chk th.mcol { text-transform: none; letter-spacing: 0; font: 0.72rem var(--mono); color: var(--ink); text-align: right; max-width: 9rem; overflow: hidden; text-overflow: ellipsis; }
+table.chk .stick { position: sticky; left: 0; z-index: 1; background: var(--ground); min-width: 16rem; max-width: 24rem; }
+table.chk tr.clickable { cursor: pointer; }
+table.chk td.cc { white-space: nowrap; font-family: var(--mono); font-size: 0.76rem; }
+.c-in { color: var(--pass); background: var(--pass-bg); }
+.c-out { color: var(--fail); background: var(--fail-bg); }
+.c-typ, .c-grade { color: var(--ink); }
+.c-card, .c-author { color: var(--off); }
+.c-none { color: var(--faint); }
+.c-err { color: var(--fail); }
+.legend span { padding: 0 4px; border-radius: 3px; }
+table.chk tr.crop td { background: var(--sunken); }
+table.chk tr.crop .cropbox { position: sticky; left: 0; width: fit-content; max-width: min(760px, calc(100vw - 48px)); }
+table.chk tr.crop img { display: block; max-width: 100%; background: #fff; margin-bottom: 4px; }
+table.chk tr.fact td { border-bottom-color: transparent; color: var(--muted); font-size: 0.74rem; }
+.faint { color: var(--faint); }
+.how { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 14px; }
+.how h4 { margin: 0; font-family: var(--display); font-size: 1.05rem; }
+pre.netlist { background: var(--sunken); padding: 8px 10px; overflow-x: auto; font-size: 0.74rem; margin: 4px 0; }
+@media (max-width: 700px) { table.chk .stick { min-width: 9rem; max-width: 11rem; } }
+

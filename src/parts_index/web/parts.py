@@ -59,6 +59,7 @@ from parts_index.core.config import (
 )
 from parts_index.core.parts import catalogue, schemes
 from parts_index.core.parts.extractor import base_part, canonical, family_of
+from parts_index.web import checks
 
 REPO_CAP = 200        # GitHub projects listed for one part
 # The kinds of use `summarise` tells apart, and which of them is a use at all. A page that only names the
@@ -828,6 +829,9 @@ def part_payload(part: str, idx: dict, recipe: dict | None) -> dict:
         out["listed"] = out_listed
     if recipe:
         out["models"] = trim_models(recipe)
+        check = checks.page_block(recipe, out["models"])
+        if check:
+            out["models"]["check"] = check
     info = about(part, idx, recipe)
     if info:
         out["about"] = info

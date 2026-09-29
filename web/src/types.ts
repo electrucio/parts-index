@@ -64,6 +64,51 @@ export interface PartModel {
   standin?: string
   /** The name the model was found under, when it is not the part's own. */
   alias?: string
+  /** What is known of the model against the part's data sheet (`src/parts_index/web/checks.py`). */
+  chk?: ModelCheck
+}
+
+/** One cell of a model's column: see src/parts_index/web/checks.py for the codes. */
+export type Cell =
+  | ['in', number] | ['out', number, 'below' | 'above'] | ['typ', number, number | null]
+  | ['grade', number, string] | ['card', string[]] | ['author', string[]] | ['none'] | ['err', string | number]
+
+export interface ModelCheck {
+  cells?: Record<string, Cell>
+  runs?: Record<string, 'ok' | 'failed'>
+  /** Rows where ngspice's verdict differs from QSPICE's. */
+  differs?: number[]
+  changes?: string[]
+  family?: string
+  absent?: string[]
+  dialect?: string[]
+  claims?: { yes?: string[]; no?: string[]; limits?: string[]; simulator?: string; lines?: [number, number][]; scope?: string }
+}
+
+export interface EngineRun {
+  version: string | { exe: string; sha256: string }
+  image: string
+  bench: { commit: string; clean: boolean }
+  on: string
+}
+
+/** [row, page, symbol, conditions, min, typ, max, unit, variant, why not measured, has a crop] */
+export type SheetRow = [number, number, string, string, string, string, string, string, string, string, boolean]
+
+export interface ChecksBlock {
+  sheet?: { doc: string; maker: string; title: string; url: string; sha256: string; read_by: string;
+            read_on: string; checked_by: string; rows: SheetRow[] }
+  engines?: Record<string, EngineRun>
+  primary?: string
+  dialects: Record<string, string>
+  changes: Record<string, string>
+}
+
+/** data/bench/<PART>.json: what a reader needs to run the bench again for each model. */
+export interface BenchFile {
+  engines: Record<string, EngineRun & { command: string }>
+  changes: Record<string, string>
+  models: Record<string, { netlists: Record<string, string[]>; changes: Record<string, string[]> }>
 }
 
 /** What one page's use of the part was read as: a circuit, a technique, a table, an advert, a part
@@ -99,6 +144,7 @@ export interface PartPage {
   models?: {
     kind: string
     models: PartModel[]
+    check?: ChecksBlock
     datasheet?: { url: string; maker?: string; doc?: string; date?: string }
   }
   /** What the part is, each piece present only when something says so. */

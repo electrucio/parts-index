@@ -106,6 +106,9 @@ def build(out: Path | None = None) -> dict:
             about = page.get("about") or {}
             row.append(len(about.get("sheets") or []) + len(about.get("books") or []))
             total += write_json(out / "part", f"{row[0]}.json", {**page, "ss": stamp})
+            nl = part_pages.checks.netlists(recipes[row[0]]) if row[0] in recipes else None
+            if nl:
+                sizes["bench/"] = sizes.get("bench/", 0) + write_json(out / "bench", f"{row[0]}.json", nl)
         sizes["part/"] = total
         sizes["parts.json"] = write_json(out, "parts.json", {
             "schema": SCHEMA, "sources": idx["sources"], "sourcesStamp": stamp,

@@ -16,6 +16,7 @@ import { AboutPart, Databooks, PartName } from './about'
 import { DATA, loadIndex, reloadIndex } from './data'
 import { Fold } from './fold'
 import { forViewer } from './links'
+import { ModelChecks } from './models'
 import type { DeviceKind, PageUse, PartIndex, PartPage, PartRow, UseKind } from './types'
 export const n = (v: number) => v.toLocaleString('en-GB')
 
@@ -485,6 +486,7 @@ export function Detail({ part, sources, kinds, stamp, onStale }: {
           <AboutPart page={page} sources={fresh ? sources : []} />
           <Listed page={page} />
           <Models page={page} />
+          <ModelChecks page={page} />
           {fresh ? <Uses page={page} sources={sources} kinds={kinds} /> : <p class="muted">Loading…</p>}
           <Databooks page={page} />
           {page.docs.length === 0 && !page.models && (
