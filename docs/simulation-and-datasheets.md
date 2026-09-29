@@ -18,6 +18,7 @@ Contents:
 - [Simulating](#simulating)
 - [What differs between simulators, and what does not](#what-differs-between-simulators-and-what-does-not)
 - [The model matters more than the simulator](#the-model-matters-more-than-the-simulator)
+- [Fidelity: which simulator, for which kind of part](#fidelity-which-simulator-for-which-kind-of-part)
 - [Cost, scale and GPUs](#cost-scale-and-gpus)
 - [Data sheets: which sources to trust](#data-sheets-which-sources-to-trust)
 - [Reading data sheets reliably](#reading-data-sheets-reliably)
@@ -36,6 +37,10 @@ Contents:
 - **Choosing another model of the same part changes results by whole factors**; choosing another
   simulator changes them by less than 1 %. A third of the cards filed under a part's name miss at least
   one limit of that part's data sheet; a few are plainly broken.
+- **Fidelity is a property of a validated model, per behaviour.** Rate each model separately on DC,
+  frequency, noise, distortion, temperature and overload. Simulate an op-amp macromodel in the
+  environment its maker wrote it for (Analog Devices' in LTspice). ngspice with OSDI would be the platform
+  for developing models.
 - **All 7,295 distinct stand-alone bipolar cards run in 99 s with QSPICE** on the 40-thread server
   (63 s ngspice, 872 s LTspice). Simulators cannot use GPUs; the GPUs are for reading data sheets.
 - **Data sheets are read by a vision model, and never trusted on its word:** image plus a second look,
@@ -168,6 +173,79 @@ models tend to be more optimistic than the typical device.
 
 Two cautions when reading such comparisons: a *typical* value is one device, not a limit; and a bench's
 fixture is sometimes simpler than the sheet's (the switching times here are).
+
+## Fidelity: which simulator, for which kind of part
+
+The ideas in this section come from a discussion the maintainer had outside this repository
+(2026-09-29). Where a claim was checked here, against our own images, the QSPICE build's help or the
+index, the check is given. The rest is as reported there and still to be checked.
+
+**Realism belongs to a validated model, not to a simulator.** Nothing shows that any of the three gives
+more realistic results by default. Having HICUM available is not having a good HICUM model of a BC550: an
+advanced model needs its parameters extracted from measurements of the device (DC, AC, thermal, noise),
+and the equations do not supply them. A simple model fitted and validated over the range a circuit uses
+can predict that circuit better. If a model's author fitted it to measurements of a given transistor —
+some of Bordodynov's QSPICE models, where that is documented — that model may be the best one for the
+part. The advantage then belongs to that model, not to the simulator.
+
+What each simulator offers for physical fidelity:
+
+| simulator | what it adds | checked here |
+|---|---|---|
+| **ngspice + OpenVAF/OSDI** | Compact models compiled from Verilog-A (HICUM, MEXTRAM, VBIC, BSIM, PSP; JUNCAP2 and DIODE_CMC for diodes), and variants of our own: the platform to develop and fit models on, if the project ever does. Diode transit time `TT`, soft recovery `VP`, and self-heating with feedback on current and capacitance. | Our ngspice 47 image loads OSDI libraries (`pre_osdi`); it has no OpenVAF compiler yet. It has native HICUM2 and VBIC devices. Its diode takes `tt`, `vp` ("soft reverse recovery"), `ikf`, `isr` and `rth0`/`cth0` ("self-heating"). |
+| **QSPICE** | Native extensions for discrete analog parts: four bipolar models, quasi-saturation of the JFET, and model generators. | Its help lists extended Gummel-Poon (level 1), VBIC (level 4), HICUM (level 8) and MEXTRAM (level 504), the last two with thermal `RTH`/`CTH`, and JFET quasi-saturation through `RONX2`–`RONX4`. Its JFET Model Generator fits a model to digitised output characteristics, forward I–V and capacitance curves. |
+| **LTspice** | VBIC, BSIM and VDMOS; Analog Devices' official library and demonstration circuits reviewed by the maker. `TT` and `Vp` for diode recovery. | — |
+
+None of them can reproduce an effect the model leaves out or parametrises badly. Level numbers are
+dialect too (QSPICE's VBIC is level 4), so a card's level must be read in the dialect it was written for.
+Our library hardly uses any of these models (see [above](#what-differs-between-simulators-and-what-does-not):
+2 VBIC cards among 36,360 bipolar ones, 1 Parker–Skellern JFET, no thermal parameters). Data sheets are
+enough to check a Gummel-Poon-level model, not to fit HICUM.
+
+**By kind of part:**
+
+| part or use | what decides realism | where to simulate it |
+|---|---|---|
+| signal, rectifier and clipping diodes in audio | I–V, leakage, capacitance and temperature over the range used | any of the three, with a well-characterised model |
+| fast-switching diodes, or diodes that heat | stored charge, recovery, capacitances, thermal feedback | compare the models available; ngspice has specific capabilities (above), and none of them is QSPICE's alone |
+| op-amps from Analog Devices / Linear Technology | coverage and validation of that macromodel | **LTspice first**, where the maker publishes the model for it |
+| other makers' op-amps | the official model, what it includes, its dialect | the environment the model was written for (for TI's OPA1612: PSpice and TINA-TI), then check any adaptation to the other simulators |
+| comparators, regulators, references | whether the model includes the behaviour to be studied | the maker's environment, validated function by function |
+
+**Macromodels are not transistor models.** An op-amp model is usually a simplified circuit of controlled
+sources and equivalent blocks that reproduces chosen characteristics, not the chip's transistors. A
+better transistor model does nothing for it. The AD8022 is a case in point for audio. Its revision 2.1
+macromodel is reported to model gain and phase, slew rate, current limits and noise, and to exclude
+distortion, PSRR and overload recovery. That revision is not in the index. The index holds Rev. B
+(2000), whose header lists what it models: open-loop gain and phase, output clamping, input
+common-mode range, slew rate, supply currents. The same header says "distortion is not characterized".
+A model like that can be good for noise and useless for THD: an FFT of its output is not a prediction of
+the chip's distortion.
+
+**Many models say what they model.** About 850 model files in the index, across 12 sources (LTwiki,
+TI, Bordodynov, ADI, onsemi, Nexperia…), state in their header what is modelled or not modelled; 252
+lines say distortion is not. That is a sourced, cheap first layer of what each model claims.
+
+**What to check for realism:**
+- **Currents and gain across bias**, near cut-off and saturation included.
+- **Distortion.** The curvature of the characteristics has to be right, not just the operating point.
+- **Charges and capacitances**, with their voltage dependence and their effect on the dynamics.
+- **Noise and temperature**, and self-heating where it matters.
+
+HICUM's authors validate DC, AC and electrothermal behaviour, and point out that noise must be checked
+against measured devices.
+
+**Consequence for the index: rate each model by validated behaviour**, not with one score: DC,
+frequency, noise, distortion, temperature, overload. A model can be excellent for one and not represent
+another at all. There are three sources for each behaviour:
+1. What the model's author declares (the header).
+2. What the bench measures against the sheet's rows (DC, AC and noise today).
+3. What a person sees comparing curves ([below](#curves)). hFE against IC and the output
+   characteristics show the curvature behind distortion, and an op-amp's THD+N graph is where its
+   macromodel's distortion would be judged.
+
+This does not change the bench's engine. QSPICE runs the checks. A model is also run in the simulator it
+was written for, and ngspice with OSDI is where models would be developed.
 
 ## Cost, scale and GPUs
 
@@ -346,8 +424,13 @@ In rough order of value:
    (above) measured on the reference parts' other sheets.
 5. Grow the reference set to 50–100 sheets, older and scanned ones included; try other readers on it
    (a smaller Qwen for speed, Docling or MinerU for layout) and `-np 1` for repeatable runs.
-6. Publish per model which simulators run it and whether they agree; try the encrypted models.
-7. Port to `src/parts_index/datasheets/` (extraction) and `src/parts_index/bench/` (checks) once the recipe
+6. Publish per model which simulators run it and whether they agree, and the simulator it was written
+   for; try the encrypted models.
+7. Rate models per behaviour (DC, frequency, noise, distortion, temperature, overload). Start with what
+   their headers declare (≈ 850 files), then what the bench and the curves validate.
+8. Pin an OpenVAF build in the ngspice image, so that Verilog-A models (HICUM, MEXTRAM, JUNCAP2,
+   DIODE_CMC) run there. This is only needed if the project starts fitting models of its own.
+9. Port to `src/parts_index/datasheets/` (extraction) and `src/parts_index/bench/` (checks) once the recipe
    settles, with ledgers, so no page is read and no model simulated twice.
 
 **Where things are.** Public: `docker/sim/`, `docker/vlm/`, `docker/datasheets/`, and the `sim-*`,
