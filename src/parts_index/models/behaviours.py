@@ -61,7 +61,8 @@ SYMBOLS: dict[str, dict[str, str]] = {
 # these come from op-amp macromodel headers ("The following parameters are accurately modeled: open loop
 # gain and phase … slew rate … Distortion is not characterized").
 CLAIMS = {
-    "offset": "dc", "bias-current": "dc", "open-loop-gain": "dc", "cmrr": "dc", "input-range": "dc",
+    "offset": "dc", "bias-current": "dc", "open-loop-gain": "dc", "gain-asymmetry": "dc", "cmrr": "dc",
+    "input-range": "dc",
     "input-impedance": "capacitance",
     "gain-phase": "frequency", "bandwidth": "frequency", "settling": "frequency",
     "step-response": "frequency",
@@ -78,7 +79,7 @@ CLAIMS = {
 # a model "valid at 25 °C only".
 LIMITS = {
     "vos-static": "dc", "ib-static": "dc", "25c-only": "temperature", "typical-only": "dc",
-    "supply-fixed": "supply",
+    "worst-case": "dc", "single-channel": "supply",
 }
 
 

@@ -75,3 +75,8 @@ def test_a_step_rewrites_its_own_section_of_the_record_and_keeps_the_others(tmp_
     assert not record.write_section("bjt", "QX", "cards", {"h1": {"family": "gummel-poon"}})   # no change
     doc = json.loads(config.verification("bjt", "QX").read_text())
     assert doc["claims"] and doc["cards"] and doc["schema"] == 1
+    # a part nothing is known about has no record at all
+    record.write_section("bjt", "QX", "claims", {})
+    record.write_section("bjt", "QX", "cards", {})
+    assert not config.verification("bjt", "QX").exists()
+    assert not record.write_section("bjt", "QY", "claims", {})

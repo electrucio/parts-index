@@ -18,6 +18,7 @@ from parts_index.core.config import verification, verification_state
 from parts_index.core.ledger import VERIFY_FIELDS, VERIFY_STAGES, VERIFY_VERSIONED, Ledger
 
 SCHEMA = 1
+HEAD = {"schema", "part", "kind"}
 
 
 def load(kind: str, part: str) -> dict:
@@ -35,6 +36,11 @@ def write_section(kind: str, part: str, section: str, data: dict) -> bool:
     else:
         doc.pop(section, None)
     p = verification(kind, part)
+    if not set(doc) - HEAD:                     # nothing is known about this part's models: no record
+        if p.exists():
+            p.unlink()
+            return True
+        return False
     text = json.dumps(doc, indent=1, sort_keys=True, ensure_ascii=False) + "\n"
     if p.exists() and p.read_text(encoding="utf-8") == text:
         return False

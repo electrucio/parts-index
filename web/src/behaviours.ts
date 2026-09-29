@@ -6,6 +6,7 @@ export const CLAIM_LABEL: Record<string, string> = {
   'offset': 'offset',
   'bias-current': 'bias current',
   'open-loop-gain': 'open-loop gain',
+  'gain-asymmetry': 'gain asymmetry',
   'cmrr': 'CMRR',
   'input-range': 'input range',
   'input-impedance': 'input impedance',
@@ -34,6 +35,7 @@ export const LIMIT_LABEL: Record<string, string> = {
   'vos-static': 'offset fixed',
   'ib-static': 'bias current fixed',
   '25c-only': '25 °C only',
-  'typical-only': 'typical values only',
-  'supply-fixed': 'one supply voltage',
+  'typical-only': 'typical values',
+  'worst-case': 'worst-case values',
+  'single-channel': 'one channel of a multiple part',
 }
