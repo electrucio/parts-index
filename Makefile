@@ -11,7 +11,7 @@ WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
 
 .DEFAULT_GOAL := help
-.PHONY: vlm-image vlm-models vlm-serve vlm-stop sheets-pages sheets-extract sheets-evaluate sheets-crosscheck sim-vendor sim-qspice-capture sim-images sim-bjt sim-sample sim-batch datasheets-register datasheets-links datasheets-harvest datasheets-catalogue datasheets-databooks web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-reconcile models-match models-found models-promote datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
+.PHONY: vlm-image vlm-models vlm-serve vlm-stop sheets-pages sheets-extract sheets-evaluate sheets-crosscheck sim-vendor sim-qspice-capture sim-images sim-bjt sim-sample sim-batch datasheets-register datasheets-links datasheets-harvest datasheets-catalogue datasheets-databooks web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-reconcile models-match models-found models-promote models-cards datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -77,6 +77,9 @@ models-found:  ## (maintainer) group those matches into distinct models, with wh
 
 models-promote:  ## (maintainer) write the public recipe for every curated part into data/models/parts/
 	$(RUN) pidx models promote
+
+models-cards:  ## (maintainer) what each recipe model's card lacks, into data/verification/ (after promote)
+	$(RUN) pidx models cards
 
 # --- simulators -------------------------------------------------------------------------------
 # QSPICE (the default engine), ngspice (the open cross-check) and LTspice (the compatibility check), in

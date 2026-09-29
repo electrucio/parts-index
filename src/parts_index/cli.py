@@ -44,6 +44,9 @@ def main(argv: list[str] | None = None) -> int:
     mv.add_argument("--limit", type=int, default=0, help="at most this many repairs per source")
     mod.add_parser("match", help="find, for every wanted part, each definition that could be its model")
     mod.add_parser("found", help="group those matches into distinct models, with where each copy can be had")
+    mcd = mod.add_parser("cards", help="what each recipe model's card cannot represent: the parameters it lacks")
+    mcd.add_argument("--kind", help="only one kind (bjt, jfet, diode, …)")
+    mcd.add_argument("--part", help="only one part")
     mrc = mod.add_parser("reconcile", help="join every definition file to the download it came from")
     mrc.add_argument("--source", action="append", help="only these sources (repeatable)")
     mrc.add_argument("--write", action="store_true", help="record the ledger rows and folders found")
@@ -254,6 +257,11 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "models" and args.mod_cmd == "found":
         from parts_index.models import found as model_found
         return model_found.main([])
+
+    if args.cmd == "models" and args.mod_cmd == "cards":
+        from parts_index.models import cards as model_cards
+        argv2 = (["--kind", args.kind] if args.kind else []) + (["--part", args.part] if args.part else [])
+        return model_cards.main(argv2)
 
     if args.cmd == "models" and args.mod_cmd == "promote":
         from parts_index.models import promote as model_promote
