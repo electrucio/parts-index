@@ -196,9 +196,10 @@ export interface About {
   /** The family, and what says so: a maker's sheet, the letters of the name, or the part's kind. */
   family?: [string, 'documented' | 'name' | 'kind']
   /** Which way round a transistor is, one row per source that says: polarity (NPN, PNP, N-channel,
-   *  P-channel), what says it (the letters of its name, a model library, a maker's catalogue), who — a
-   *  scheme id, a census source, a maker id — and a link to it. */
-  polarity?: [string, 'name' | 'model' | 'catalogue', string, string][]
+   *  P-channel), what says it (the letters of its name, a model library, a maker's catalogue, a page found
+   *  for it, the type it is a grade of), who — a scheme id, a census source, a maker id, the page's own
+   *  words, the type — and a link to it. */
+  polarity?: [string, 'name' | 'model' | 'catalogue' | 'sheet' | 'type', string, string][]
   documented?: { note: string; refs: string[]; status: 'draft' | 'reviewed' }
   /** Who published the sheet the models were measured against, and the organisations it descends from. */
   maker?: [string, string[]]

@@ -413,3 +413,20 @@ def test_a_transistor_is_filed_by_polarity_only_when_every_source_agrees(data):
     assert {d["key"]: d.get("parent") for d in menu}["bjt-npn"] == "bjt"
     claims = P.about("2SA1295", idx, None)["polarity"]
     assert sorted(c[:3] for c in claims) == [["NPN", "catalogue", "sanken"], ["PNP", "name", "jis-c7012"]]
+
+
+def test_a_grade_of_a_type_is_what_its_type_is_and_a_pair_is_not(data):
+    """BC547B is a grade of BC547, which the libraries define as NPN. BC847BPN folds back to BC847 too,
+    but it is an NPN and a PNP in one package. 2SC1815G's G is no rank JIS knows, and its C still says NPN."""
+    import shutil
+    shutil.copytree(REPO / "data" / "parts" / "schemes", config.naming_schemes())
+    idx = P.index()
+    idx["modelled_polarity"] = {"BC547": [["NPN", "spice_definitions", "https://x.example/lib"]],
+                                "BC847": [["NPN", "spice_definitions", "https://x.example/lib"]]}
+    idx["sheet_polarity"] = {"AC127": [["NPN", "AC127 NPN germanium transistor", "https://y.example/ac127"]]}
+    bjt = P.KIND_MAP["bjt"]
+    assert P.polarity_claims("BC547B", bjt, None, idx) == [["NPN", "type", "BC547", ""]]
+    assert P.polarity_claims("BC847BPN", bjt, None, idx) == []
+    assert P.polarity_claims("2SC1815G", bjt, None, idx) == [["NPN", "name", "jis-c7012", ""]]
+    assert P.polarity_claims("AC127", P.KIND_MAP["bjt-ge"], None, idx) == [
+        ["NPN", "sheet", "AC127 NPN germanium transistor", "https://y.example/ac127"]]

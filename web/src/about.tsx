@@ -177,6 +177,10 @@ function Polarity({ claims, cat }: { claims: NonNullable<About['polarity']>; cat
             <>from the letters of its name, under <A href={`?scheme=${who}`}>{cat.schemes[who]?.label ?? who}</A></>
           ) : basis === 'model' ? (
             <>from the device type the SPICE model libraries define it as{url && <> · <a href={url} target="_blank" rel="noopener">one source</a></>}</>
+          ) : basis === 'type' ? (
+            <>from its type, <A href={partHref(who)}>{who}</A>, of which this is a grade or package</>
+          ) : basis === 'sheet' ? (
+            <>from <a href={url} target="_blank" rel="noopener">a page found for it</a>: “{who}”</>
           ) : (
             <>from {who ? <><MakerName id={who} cat={cat} />'s</> : 'a'} catalogue{url && <> · <a href={url} target="_blank" rel="noopener">the entry</a></>}</>
           )}

@@ -74,6 +74,7 @@ def _load(files: tuple[tuple[str, float], ...]) -> dict[str, dict]:
         doc = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
         doc["id"] = p.stem
         doc["_forms"] = [(re.compile(f["pattern"]), f) for f in doc.get("forms") or ()]
+        doc["_polarity_from"] = re.compile(doc["polarity_from"]) if doc.get("polarity_from") else None
         out[p.stem] = doc
     return dict(sorted(out.items(), key=lambda kv: (kv[1].get("order", 99), kv[0])))
 
@@ -195,6 +196,22 @@ def decode(part: str, devices: tuple[str, ...] | list[str], known: Known | None 
         if d:
             return d
     return None
+
+
+def polarity_from_prefix(part: str, devices: tuple[str, ...] | list[str]) -> tuple[str, str]:
+    """(scheme, polarity) read off the front of a name whose tail no form decodes: 2SC1815G is NPN by its
+    C, whatever the G is. ("", "") when no scheme for these devices says."""
+    for sid, s in schemes().items():
+        rx = s.get("_polarity_from")
+        if rx is None or not set(devices) & set(s.get("applies_to") or ()):
+            continue
+        m = rx.match(part)
+        if m:
+            for name, value in m.groupdict().items():
+                pol = ((s.get("fields") or {}).get(name, {}).get("polarity") or {}).get(value)
+                if pol:
+                    return sid, pol
+    return "", ""
 
 
 def check(references: set[str], families: set[str] | None = None) -> list[str]:

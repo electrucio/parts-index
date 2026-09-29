@@ -46,6 +46,7 @@ from parts_index.core.config import (
     datasheet_documents,
     datasheet_links,
     datasheet_pages,
+    datasheet_polarity,
     datasheets_table,
     known_parts,
     model_part,
@@ -294,6 +295,7 @@ def index() -> dict:
     idx["listed_by"], idx["listings"] = census_listings()
     idx["modelled"] = modelled_devices()
     idx["modelled_polarity"] = modelled_polarity()
+    idx["sheet_polarity"] = sheet_polarity()
     idx["catalogued"] = catalogued()
     idx["sheets"] = archive_sheets()
     idx["harvested"] = harvested_sheets()
@@ -358,26 +360,50 @@ def modelled_polarity() -> dict[str, list[list[str]]]:
     return out
 
 
-def polarity_claims(part: str, devices: tuple[str, ...], named, idx: dict) -> list[list[str]]:
+# A suffix that names a pair, not a grade: BC847BPN is an NPN and a PNP in one package, and base_part
+# would fold it back to BC847.
+PAIR_SUFFIX = re.compile(r"PN|NP")
+
+
+def sheet_polarity() -> dict[str, list[list[str]]]:
+    """Which way round each transistor is by a page found for it: [polarity, the words, link]."""
+    out: dict[str, list[list[str]]] = defaultdict(list)
+    for r in rows(datasheet_polarity()):
+        out[r["part"]].append([r["polarity"], r["words"], r["url"]])
+    return out
+
+
+def polarity_claims(part: str, devices: tuple[str, ...], named, idx: dict, inherit: bool = True) -> list[list[str]]:
     """Everything that says which way round this part is: [polarity, basis, who, link].
 
     The letters of its name under the scheme that read them; the device type the model libraries settle
-    on; the words of a manufacturer's catalogue, its category or its data sheet's title. Only the
+    on; the words of a manufacturer's catalogue, its category or its data sheet's title; the words of a
+    page found for it, checked by `datasheets.polarity` to name the part and say that. Only the
     questions the part's devices ask are answered: a TI title that says "N-channel MOSFET gate driver"
-    says nothing about the driver.
+    says nothing about the driver. A grade or package of a type — KSA733CY, TIP31CG — is what its type
+    is, when nothing about the number itself answers.
     """
     asked = {DEVICE_CLASS[d] for d in devices if d in DEVICE_CLASS}
     out: list[list[str]] = []
-    if named and named.polarity:
-        out.append([named.polarity, "name", named.scheme, ""])
+    scheme, said = (named.scheme, named.polarity) if named and named.polarity else schemes.polarity_from_prefix(part, devices)
+    if said:
+        out.append([said, "name", scheme, ""])
     for value, src, url in idx.get("modelled_polarity", {}).get(part, ()):
         out.append([value, "model", src, url])
+    for value, words, url in idx.get("sheet_polarity", {}).get(part, ()):
+        out.append([value, "sheet", words, url])
     for r in idx.get("catalogued", {}).get(part, ()):
         c = dict(zip(CATALOGUE_FIELDS, r))
         value = polarity.in_words(" ".join((c["category"], c["title"], c["name"])))
         if value:
             out.append([value, "catalogue", c["maker"], c["page"] or c["url"]])
-    return [c for c in out if polarity.CLASS[c[0]] in asked]
+    out = [c for c in out if polarity.CLASS[c[0]] in asked]
+    base = base_part(part)
+    if inherit and base != part and not PAIR_SUFFIX.search(part[len(base):]):
+        answered = {polarity.CLASS[c[0]] for c in out}
+        of_type = polarity_claims(base, devices, schemes.decode(base, devices, idx.get("known")), idx, inherit=False)
+        out += [[v, "type", base, ""] for q, v in polarity.settled(of_type).items() if q not in answered]
+    return out
 
 
 def polar(devices: tuple[str, ...], claims: list[list[str]]) -> tuple[str, ...]:

@@ -7,6 +7,10 @@ applies_to: [bjt, bjt-ge, jfet, mosfet, diode, diode-ge, zener, led]
 forms:
   - example: 2SC1815GR
     pattern: '^(?P<junctions>[123])S(?P<type>[A-HJKMQRSTVZ]?)(?P<serial>[1-9]\d{1,3})(?P<revision>[A-D]?)(?P<rank>GR|BL|[OYR])?$'
+# A maker's suffix after the number is often one the standard does not know — 2SC1815G, 2SA933S,
+# 2SD1858X — and it does not change the letter after S. Which way round the transistor is can be read off
+# the front of the name alone, with the letter's polarity below.
+polarity_from: '^[123]S(?P<type>[A-HJKMQRSTVZ])[1-9]\d'
 fields:
   junctions:
     label: junctions

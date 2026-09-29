@@ -131,3 +131,11 @@ def test_a_name_never_moves_a_part_out_of_the_family_its_kind_gives():
 ])
 def test_a_japanese_name_says_which_way_round_the_transistor_is(part, kind, said):
     assert schemes.decode(part, KIND_MAP[kind], KNOWN).polarity == said
+
+
+def test_a_makers_suffix_does_not_hide_the_letter_after_s():
+    assert schemes.decode("2SC1815G", KIND_MAP["bjt"], KNOWN) is None           # G is no JIS rank
+    assert schemes.polarity_from_prefix("2SC1815G", KIND_MAP["bjt"]) == ("jis-c7012", "NPN")
+    assert schemes.polarity_from_prefix("2SK246G", KIND_MAP["jfet/mosfet"]) == ("jis-c7012", "N-channel")
+    assert schemes.polarity_from_prefix("1S1588X", KIND_MAP["diode"]) == ("", "")
+    assert schemes.polarity_from_prefix("2SC1815G", KIND_MAP["tube"]) == ("", "")
