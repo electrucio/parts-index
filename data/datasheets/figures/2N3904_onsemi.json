@@ -1,0 +1,856 @@
+{
+ "doc": "2N3904_onsemi",
+ "read_by": "reference",
+ "read_on": "2026-09-29",
+ "figures": [
+  {
+   "n": 1,
+   "caption": "Delay and Rise Time Equivalent Test Circuit",
+   "page": 3,
+   "kind": "circuit",
+   "rows": [
+    "td",
+    "tr"
+   ],
+   "box": [
+    188.8,
+    391.4,
+    424.9,
+    531.0
+   ]
+  },
+  {
+   "n": 2,
+   "caption": "Storage and Fall Time Equivalent Test Circuit",
+   "page": 3,
+   "kind": "circuit",
+   "rows": [
+    "ts",
+    "tf"
+   ],
+   "box": [
+    173.7,
+    566.8,
+    441.9,
+    714.1
+   ]
+  },
+  {
+   "n": 3,
+   "caption": "Capacitance",
+   "page": 4,
+   "kind": "graph",
+   "x": [
+    "reverse bias voltage",
+    "V",
+    "log",
+    0.1,
+    40
+   ],
+   "y": [
+    "capacitance",
+    "pF",
+    "log",
+    1.0,
+    10
+   ],
+   "fixed": {
+    "f": "1.0e6",
+    "TJ": 25
+   },
+   "series": [
+    {
+     "label": "Cibo",
+     "style": "solid",
+     "cond": {
+      "junction": "EB",
+      "VR": [
+       0.1,
+       6.0
+      ]
+     }
+    },
+    {
+     "label": "Cobo",
+     "style": "solid",
+     "cond": {
+      "junction": "CB",
+      "VR": [
+       0.1,
+       40
+      ]
+     }
+    }
+   ],
+   "bench": "bjt-capacitance",
+   "box": [
+    57.8,
+    78.1,
+    297.0,
+    297.1
+   ]
+  },
+  {
+   "n": 4,
+   "caption": "Charge Data",
+   "page": 4,
+   "kind": "graph",
+   "x": [
+    "collector current",
+    "mA",
+    "log",
+    1.0,
+    200
+   ],
+   "y": [
+    "charge Q",
+    "pC",
+    "log",
+    50,
+    5000
+   ],
+   "fixed": {
+    "VCC": 40,
+    "IC/IB": 10
+   },
+   "series": [
+    {
+     "label": "QT, TJ = 25 °C",
+     "style": "solid"
+    },
+    {
+     "label": "QT, TJ = 125 °C",
+     "style": "dashed"
+    },
+    {
+     "label": "QA",
+     "style": "solid"
+    }
+   ],
+   "bench": "none — the sheet does not give the circuit its charges are measured in",
+   "box": [
+    307.4,
+    100.8,
+    552.6,
+    297.1
+   ]
+  },
+  {
+   "n": 5,
+   "caption": "Turn-On Time",
+   "page": 4,
+   "kind": "graph",
+   "x": [
+    "collector current",
+    "mA",
+    "log",
+    1.0,
+    200
+   ],
+   "y": [
+    "time",
+    "ns",
+    "log",
+    5,
+    500
+   ],
+   "fixed": {
+    "IC/IB": 10
+   },
+   "series": [
+    {
+     "label": "tr @ VCC = 3.0 V",
+     "style": "solid"
+    },
+    {
+     "label": "tr @ 15 V",
+     "style": "solid"
+    },
+    {
+     "label": "tr @ 40 V",
+     "style": "solid"
+    },
+    {
+     "label": "td @ VOB = 0 V",
+     "style": "solid"
+    },
+    {
+     "label": "td @ 2.0 V",
+     "style": "solid"
+    }
+   ],
+   "bench": "none yet — a switching fixture per collector current, which the sheet does not draw",
+   "box": [
+    57.6,
+    306.5,
+    301.8,
+    498.6
+   ]
+  },
+  {
+   "n": 6,
+   "caption": "Rise Time",
+   "page": 4,
+   "kind": "graph",
+   "x": [
+    "collector current",
+    "mA",
+    "log",
+    1.0,
+    200
+   ],
+   "y": [
+    "rise time tr",
+    "ns",
+    "log",
+    5,
+    500
+   ],
+   "fixed": {
+    "VCC": 40,
+    "IC/IB": 10
+   },
+   "series": [
+    {
+     "label": "TJ = 25 °C",
+     "style": "solid"
+    },
+    {
+     "label": "TJ = 125 °C",
+     "style": "dashed"
+    }
+   ],
+   "bench": "none yet — a switching fixture per collector current, which the sheet does not draw",
+   "box": [
+    309.2,
+    306.5,
+    553.2,
+    498.6
+   ]
+  },
+  {
+   "n": 7,
+   "caption": "Storage Time",
+   "page": 4,
+   "kind": "graph",
+   "x": [
+    "collector current",
+    "mA",
+    "log",
+    1.0,
+    200
+   ],
+   "y": [
+    "storage time t's = ts - tf/8",
+    "ns",
+    "log",
+    5,
+    500
+   ],
+   "fixed": {
+    "IB1": "IB2"
+   },
+   "series": [
+    {
+     "label": "IC/IB = 10, TJ = 25 °C",
+     "style": "solid"
+    },
+    {
+     "label": "IC/IB = 10, TJ = 125 °C",
+     "style": "dashed"
+    },
+    {
+     "label": "IC/IB = 20, TJ = 25 °C",
+     "style": "solid"
+    },
+    {
+     "label": "IC/IB = 20, TJ = 125 °C",
+     "style": "dashed"
+    }
+   ],
+   "bench": "none yet — a switching fixture per collector current, which the sheet does not draw",
+   "box": [
+    57.6,
+    511.1,
+    301.7,
+    707.6
+   ]
+  },
+  {
+   "n": 8,
+   "caption": "Fall Time",
+   "page": 4,
+   "kind": "graph",
+   "x": [
+    "collector current",
+    "mA",
+    "log",
+    1.0,
+    200
+   ],
+   "y": [
+    "fall time tf",
+    "ns",
+    "log",
+    5,
+    500
+   ],
+   "fixed": {
+    "VCC": 40,
+    "IB1": "IB2"
+   },
+   "series": [
+    {
+     "label": "IC/IB = 10, TJ = 25 °C",
+     "style": "solid"
+    },
+    {
+     "label": "IC/IB = 10, TJ = 125 °C",
+     "style": "dashed"
+    },
+    {
+     "label": "IC/IB = 20, TJ = 25 °C",
+     "style": "solid"
+    },
+    {
+     "label": "IC/IB = 20, TJ = 125 °C",
+     "style": "dashed"
+    }
+   ],
+   "bench": "none yet — a switching fixture per collector current, which the sheet does not draw",
+   "box": [
+    309.2,
+    511.1,
+    553.2,
+    707.6
+   ]
+  },
+  {
+   "n": 9,
+   "caption": "Noise Figure Variations: frequency",
+   "page": 5,
+   "kind": "graph",
+   "x": [
+    "frequency",
+    "kHz",
+    "log",
+    0.1,
+    100
+   ],
+   "y": [
+    "noise figure NF",
+    "dB",
+    "lin",
+    0,
+    12
+   ],
+   "fixed": {
+    "VCE": 5.0,
+    "TA": 25,
+    "bandwidth": "1.0 Hz"
+   },
+   "series": [
+    {
+     "label": "RS = 200 Ω, IC = 1.0 mA",
+     "style": "solid",
+     "cond": {
+      "RS": 200,
+      "IC": 0.001
+     }
+    },
+    {
+     "label": "RS = 200 Ω, IC = 0.5 mA",
+     "style": "solid",
+     "cond": {
+      "RS": 200,
+      "IC": 0.0005
+     }
+    },
+    {
+     "label": "RS = 1.0 k, IC = 50 µA",
+     "style": "solid",
+     "cond": {
+      "RS": 1000,
+      "IC": 5e-05
+     }
+    },
+    {
+     "label": "RS = 500 Ω, IC = 100 µA",
+     "style": "solid",
+     "cond": {
+      "RS": 500,
+      "IC": 0.0001
+     }
+    }
+   ],
+   "bench": "bjt-nf-frequency",
+   "box": [
+    57.6,
+    90.5,
+    297.4,
+    287.1
+   ]
+  },
+  {
+   "n": 10,
+   "caption": "Noise Figure Variations: source resistance",
+   "page": 5,
+   "kind": "graph",
+   "x": [
+    "source resistance RS",
+    "kΩ",
+    "log",
+    0.1,
+    100
+   ],
+   "y": [
+    "noise figure NF",
+    "dB",
+    "lin",
+    0,
+    14
+   ],
+   "fixed": {
+    "VCE": 5.0,
+    "TA": 25,
+    "f": 1000,
+    "bandwidth": "1.0 Hz"
+   },
+   "series": [
+    {
+     "label": "IC = 1.0 mA",
+     "style": "solid",
+     "cond": {
+      "IC": 0.001
+     }
+    },
+    {
+     "label": "IC = 0.5 mA",
+     "style": "solid",
+     "cond": {
+      "IC": 0.0005
+     }
+    },
+    {
+     "label": "IC = 50 µA",
+     "style": "solid",
+     "cond": {
+      "IC": 5e-05
+     }
+    },
+    {
+     "label": "IC = 100 µA",
+     "style": "solid",
+     "cond": {
+      "IC": 0.0001
+     }
+    }
+   ],
+   "bench": "bjt-nf-source",
+   "box": [
+    313.1,
+    90.5,
+    554.3,
+    287.1
+   ]
+  },
+  {
+   "n": 11,
+   "caption": "Current Gain",
+   "page": 5,
+   "kind": "graph",
+   "x": [
+    "collector current",
+    "mA",
+    "log",
+    0.1,
+    10
+   ],
+   "y": [
+    "small-signal current gain hfe",
+    "",
+    "log",
+    30,
+    300
+   ],
+   "fixed": {
+    "VCE": 10,
+    "f": 1000,
+    "TA": 25
+   },
+   "series": [
+    {
+     "label": "hfe",
+     "style": "solid"
+    }
+   ],
+   "bench": "bjt-hparams",
+   "box": [
+    57.6,
+    322.0,
+    300.3,
+    514.1
+   ]
+  },
+  {
+   "n": 12,
+   "caption": "Output Admittance",
+   "page": 5,
+   "kind": "graph",
+   "x": [
+    "collector current",
+    "mA",
+    "log",
+    0.1,
+    10
+   ],
+   "y": [
+    "output admittance hoe",
+    "µmhos",
+    "log",
+    1,
+    100
+   ],
+   "fixed": {
+    "VCE": 10,
+    "f": 1000,
+    "TA": 25
+   },
+   "series": [
+    {
+     "label": "hoe",
+     "style": "solid"
+    }
+   ],
+   "bench": "bjt-hparams",
+   "box": [
+    312.1,
+    322.0,
+    553.9,
+    514.1
+   ]
+  },
+  {
+   "n": 13,
+   "caption": "Input Impedance",
+   "page": 5,
+   "kind": "graph",
+   "x": [
+    "collector current",
+    "mA",
+    "log",
+    0.1,
+    10
+   ],
+   "y": [
+    "input impedance hie",
+    "kΩ",
+    "log",
+    0.2,
+    20
+   ],
+   "fixed": {
+    "VCE": 10,
+    "f": 1000,
+    "TA": 25
+   },
+   "series": [
+    {
+     "label": "hie",
+     "style": "solid"
+    }
+   ],
+   "bench": "bjt-hparams",
+   "box": [
+    57.6,
+    527.7,
+    300.0,
+    723.6
+   ]
+  },
+  {
+   "n": 14,
+   "caption": "Voltage Feedback Ratio",
+   "page": 5,
+   "kind": "graph",
+   "x": [
+    "collector current",
+    "mA",
+    "log",
+    0.1,
+    10
+   ],
+   "y": [
+    "voltage feedback ratio hre",
+    "X 10-4",
+    "log",
+    0.5,
+    10
+   ],
+   "fixed": {
+    "VCE": 10,
+    "f": 1000,
+    "TA": 25
+   },
+   "series": [
+    {
+     "label": "hre",
+     "style": "solid"
+    }
+   ],
+   "bench": "bjt-hparams",
+   "box": [
+    312.1,
+    527.7,
+    553.9,
+    723.6
+   ]
+  },
+  {
+   "n": 15,
+   "caption": "DC Current Gain",
+   "page": 6,
+   "kind": "graph",
+   "x": [
+    "collector current",
+    "mA",
+    "log",
+    0.1,
+    200
+   ],
+   "y": [
+    "DC current gain hFE (normalised)",
+    "",
+    "log",
+    0.1,
+    2.0
+   ],
+   "fixed": {
+    "VCE": 1.0
+   },
+   "normalised": "to hFE at IC = 10 mA, TJ = 25 °C (where the sheet's 25 °C curve reads 1.0)",
+   "series": [
+    {
+     "label": "TJ = +125 °C",
+     "style": "solid",
+     "cond": {
+      "TJ": 125
+     }
+    },
+    {
+     "label": "+25 °C",
+     "style": "solid",
+     "cond": {
+      "TJ": 25
+     }
+    },
+    {
+     "label": "-55 °C",
+     "style": "solid",
+     "cond": {
+      "TJ": -55
+     }
+    }
+   ],
+   "bench": "bjt-hfe",
+   "box": [
+    57.6,
+    48.7,
+    543.9,
+    270.3
+   ]
+  },
+  {
+   "n": 16,
+   "caption": "Collector Saturation Region",
+   "page": 6,
+   "kind": "graph",
+   "x": [
+    "base current IB",
+    "mA",
+    "log",
+    0.01,
+    10
+   ],
+   "y": [
+    "collector-emitter voltage VCE",
+    "V",
+    "lin",
+    0,
+    1.0
+   ],
+   "fixed": {
+    "TJ": 25
+   },
+   "series": [
+    {
+     "label": "IC = 1.0 mA",
+     "style": "solid",
+     "cond": {
+      "IC": 0.001
+     }
+    },
+    {
+     "label": "10 mA",
+     "style": "solid",
+     "cond": {
+      "IC": 0.01
+     }
+    },
+    {
+     "label": "30 mA",
+     "style": "solid",
+     "cond": {
+      "IC": 0.03
+     }
+    },
+    {
+     "label": "100 mA",
+     "style": "solid",
+     "cond": {
+      "IC": 0.1
+     }
+    }
+   ],
+   "bench": "bjt-saturation",
+   "box": [
+    57.6,
+    285.3,
+    543.4,
+    481.3
+   ]
+  },
+  {
+   "n": 17,
+   "caption": "“ON” Voltages",
+   "page": 6,
+   "kind": "graph",
+   "x": [
+    "collector current",
+    "mA",
+    "log",
+    1.0,
+    200
+   ],
+   "y": [
+    "voltage",
+    "V",
+    "lin",
+    0,
+    1.2
+   ],
+   "fixed": {
+    "TJ": 25
+   },
+   "series": [
+    {
+     "label": "VBE(sat) @ IC/IB = 10",
+     "style": "solid",
+     "cond": {
+      "quantity": "vbesat",
+      "ratio": 10
+     }
+    },
+    {
+     "label": "VBE @ VCE = 1.0 V",
+     "style": "solid",
+     "cond": {
+      "quantity": "vbe",
+      "VCE": 1.0
+     }
+    },
+    {
+     "label": "VCE(sat) @ IC/IB = 10",
+     "style": "solid",
+     "cond": {
+      "quantity": "vcesat",
+      "ratio": 10
+     }
+    }
+   ],
+   "bench": "bjt-on-voltages",
+   "box": [
+    57.6,
+    495.6,
+    298.6,
+    688.4
+   ]
+  },
+  {
+   "n": 18,
+   "caption": "Temperature Coefficients",
+   "page": 6,
+   "kind": "graph",
+   "x": [
+    "collector current",
+    "mA",
+    "lin",
+    0,
+    200
+   ],
+   "y": [
+    "coefficient",
+    "mV/°C",
+    "lin",
+    -2.0,
+    1.0
+   ],
+   "fixed": {
+    "ratio": 10
+   },
+   "series": [
+    {
+     "label": "θVC for VCE(sat), +25 °C to +125 °C",
+     "style": "solid",
+     "cond": {
+      "quantity": "vcesat",
+      "T": [
+       25,
+       125
+      ]
+     }
+    },
+    {
+     "label": "θVC for VCE(sat), -55 °C to +25 °C",
+     "style": "solid",
+     "cond": {
+      "quantity": "vcesat",
+      "T": [
+       -55,
+       25
+      ]
+     }
+    },
+    {
+     "label": "θVB for VBE(sat), -55 °C to +25 °C",
+     "style": "solid",
+     "cond": {
+      "quantity": "vbesat",
+      "T": [
+       -55,
+       25
+      ]
+     }
+    },
+    {
+     "label": "θVB for VBE(sat), +25 °C to +125 °C",
+     "style": "solid",
+     "cond": {
+      "quantity": "vbesat",
+      "T": [
+       25,
+       125
+      ]
+     }
+    }
+   ],
+   "bench": "bjt-tempco",
+   "box": [
+    306.2,
+    495.5,
+    553.5,
+    688.4
+   ]
+  }
+ ]
+}
