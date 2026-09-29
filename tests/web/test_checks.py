@@ -36,3 +36,14 @@ def test_a_typical_is_a_ratio_another_grades_row_is_not_judged_and_a_negative_sh
 def test_a_failed_simulation_is_said_and_an_unmeasured_row_is_a_dash():
     assert K.cell("bjt", ROW, GP, None, [None, "error"]) == ["err", "error"]
     assert K.cell("bjt", ROW, GP, None, None) == ["none"]
+
+
+def test_a_sheet_read_for_one_part_is_not_used_for_another_part_it_also_covers(monkeypatch):
+    """onsemi's sheet covers 2N3903 and 2N3904; its rows were read for 2N3904, with 2N3904's limits."""
+    monkeypatch.setattr(K, "sheets", lambda: {"https://x/2n3903-d.pdf": {"part": "2N3904", "also": "2N3903", "doc": "d"},
+                                              "https://x/p2n2222a-d.pdf": {"part": "P2N2222A", "also": "", "doc": "p"}})
+    ds = {"url": "https://x/2n3903-d.pdf"}
+    assert K.sheet_for({"part": "2N3904", "datasheet": ds})["doc"] == "d"
+    assert K.sheet_for({"part": "2N3903", "datasheet": ds}) is None
+    # a sheet printing one part under its version's name stays the recipe's
+    assert K.sheet_for({"part": "2N2222A", "datasheet": {"url": "https://x/p2n2222a-d.pdf"}})["doc"] == "p"

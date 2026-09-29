@@ -109,6 +109,9 @@ def build(out: Path | None = None) -> dict:
             nl = part_pages.checks.netlists(recipes[row[0]]) if row[0] in recipes else None
             if nl:
                 sizes["bench/"] = sizes.get("bench/", 0) + write_json(out / "bench", f"{row[0]}.json", nl)
+            cv = part_pages.checks.curves(recipes[row[0]]) if row[0] in recipes else None
+            if cv:
+                sizes["curves/"] = sizes.get("curves/", 0) + write_json(out / "curves", f"{row[0]}.json", cv)
         sizes["part/"] = total
         sizes["parts.json"] = write_json(out, "parts.json", {
             "schema": SCHEMA, "sources": idx["sources"], "sourcesStamp": stamp,

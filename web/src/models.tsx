@@ -11,6 +11,7 @@ import { useState } from 'preact/hooks'
 
 import { CLAIM_LABEL, LIMIT_LABEL } from './behaviours'
 import { DATA } from './data'
+import { Figures } from './figures'
 import { Fold } from './fold'
 import type { BenchFile, Cell, ChecksBlock, EngineRun, PartModel, PartPage, SheetRow } from './types'
 
@@ -157,6 +158,7 @@ function Checks({ block, cols, part }: { block: ChecksBlock; cols: (readonly [Pa
         Values in the sheet's units; hover a cell for its reading.
       </p>}
       {how !== null && <How part={part} index={how} model={cols.find(([, i]) => i === how)?.[0]} block={block} />}
+      <Figures block={block} cols={cols} part={part} />
     </div>
   )
 }

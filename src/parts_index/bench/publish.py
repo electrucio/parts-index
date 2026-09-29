@@ -21,12 +21,19 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 import sys
 from collections import Counter
 
 from parts_index.bench import record
-from parts_index.bench.run import CHANGES
-from parts_index.core.config import bench_runs, datasheet_values, spice_recipe_locations
+from parts_index.bench.run import CHANGES, axis_factor
+from parts_index.core.config import (
+    bench_runs,
+    datasheet_figures,
+    datasheet_values,
+    spice_recipe_locations,
+    verification,
+)
 from parts_index.core.ledger import today
 
 VERSION = "bench-1"
@@ -46,6 +53,37 @@ def value(row: dict) -> list:
     if verdict.startswith("x") and verdict.endswith(" of typ"):
         verdict = "typical"                    # the ratio is recomputed where it is shown
     return [sig(v), verdict]
+
+
+MAX_POINTS = 60
+
+
+def figure_specs(doc: str) -> dict[str, dict]:
+    p = datasheet_figures(doc)
+    return {str(f["n"]): f for f in json.loads(p.read_text(encoding="utf-8"))["figures"]} if p.exists() else {}
+
+
+def in_figure_units(curves: dict, figs: dict[str, dict]) -> dict:
+    """The bench's curves (SI) in each figure's own units, normalised where the figure is, thinned to
+    MAX_POINTS per curve and kept to four significant figures."""
+    out = {}
+    for n, series in curves.items():
+        f = figs.get(n)
+        if not f or "error" in series:
+            continue
+        fx, fy = axis_factor(f["x"][1]), axis_factor(f["y"][1])
+        norm = 1.0
+        if f.get("normalise"):
+            ref = series.get(f["normalise"]["series"]) or []
+            at = [p for p in ref if p[0] > 0]
+            xs = [p[0] for p in at]
+            k = min(range(len(xs)), key=lambda i: abs(math.log(xs[i] / f["normalise"]["x"]))) if xs else None
+            norm = at[k][1] if k is not None and at[k][1] else 1.0
+        out[n] = {}
+        for label, pts in series.items():
+            step = max(1, len(pts) // MAX_POINTS)
+            out[n][label] = [[sig(float(x) / fx), sig(float(y) / fy / norm)] for x, y in pts[::step]]
+    return out
 
 
 def grades(doc: str, part: str) -> dict[int, str]:
@@ -75,6 +113,7 @@ def publish() -> Counter:
     for key, meta in sorted(runs[PRIMARY]["meta"].items()):
         kind, part = key.split("/", 1)
         by_grade = grades(meta["doc"], part)
+        figs = figure_specs(meta["doc"])
         models: dict[str, dict] = {}
         for e, run in runs.items():
             for r in run["results"]:
@@ -92,6 +131,8 @@ def publish() -> Counter:
                 m["values"][e] = vals
                 m["changes"][e] = r.get("changes", [])
                 m["netlists"][e] = r.get("netlists", [])
+                if r.get("curves"):
+                    m.setdefault("curves", {})[e] = in_figure_units(r["curves"], figs)
         engines = {e: {**{k: run["run"][k] for k in ("on", "image", "bench", "command")},
                        "version": next((r.get("version") for r in run["results"] if r.get("version")), None)}
                    for e, run in runs.items()}
@@ -104,6 +145,12 @@ def publish() -> Counter:
         c["written" if record.write_section(kind, part, "bench", section) else "unchanged"] += 1
         c["models"] += len(models)
         led.stamp(key, "bench", version=VERSION, when=today(), bench_in=dig)
+    # a part the bench no longer measures (its sheet was found to be another part's) keeps no results
+    for p in verification("*", "*").parent.parent.glob("*/*.json"):
+        key = f"{p.parent.name}/{p.stem}"
+        if key not in runs[PRIMARY]["meta"] and "bench" in json.loads(p.read_text(encoding="utf-8")):
+            record.write_section(p.parent.name, p.stem, "bench", {})
+            c["withdrawn"] += 1
     led.save()
     return c
 
@@ -112,7 +159,8 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.parse_args(argv)
     c = publish()
-    print(f"{c['written']} parts written, {c['unchanged']} unchanged: {c['models']} models measured")
+    print(f"{c['written']} parts written, {c['unchanged']} unchanged: {c['models']} models measured"
+          + (f"; results withdrawn from {c['withdrawn']} parts no longer measured" if c["withdrawn"] else ""))
     return 0
 
 

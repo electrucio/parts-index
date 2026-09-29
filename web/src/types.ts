@@ -95,6 +95,34 @@ export interface EngineRun {
 /** [row, page, symbol, conditions, min, typ, max, unit, variant, why not measured, has a crop] */
 export type SheetRow = [number, number, string, string, string, string, string, string, string, string, boolean]
 
+/** An axis as the sheet prints it: [quantity, unit, lin|log, min, max]. */
+export type Axis = [string, string, 'lin' | 'log', number, number]
+
+/** A figure of the sheet: a test circuit, or a graph with its axes, its series and whether a bench drew it. */
+export interface SheetFigure {
+  n: number
+  caption: string
+  page: number
+  kind: 'graph' | 'circuit'
+  x?: Axis
+  y?: Axis
+  /** [label as printed, line style] */
+  series?: [string, string][]
+  normalised?: string
+  rows?: string[]
+  /** The bench's name, or why there is none yet. */
+  bench?: string
+  fixed?: Record<string, number | string>
+  crop: boolean
+  simulated?: boolean
+}
+
+/** data/curves/<PART>.json: each model's curves, by its place in the page's list, figure and series label. */
+export interface CurvesFile {
+  engine: string
+  models: Record<string, Record<string, Record<string, [number, number][]>>>
+}
+
 export interface ChecksBlock {
   sheet?: { doc: string; maker: string; title: string; url: string; sha256: string; read_by: string;
             read_on: string; checked_by: string; rows: SheetRow[] }
@@ -102,6 +130,7 @@ export interface ChecksBlock {
   primary?: string
   dialects: Record<string, string>
   changes: Record<string, string>
+  figures?: SheetFigure[]
 }
 
 /** data/bench/<PART>.json: what a reader needs to run the bench again for each model. */

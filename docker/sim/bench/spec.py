@@ -42,11 +42,12 @@ class Runner:
         self.k = 0
         self.netlists = []
 
-    def run(self, body):
+    def run(self, body, temp=25):
         self.k += 1
         net = self.dir / f"r{self.k}.cir"
         head = engines.header(ENGINE)
-        text = f"* spec {self.k}\n.include \"model.lib\"\n{head}\n.options reltol=1e-4\n.temp 25\n{body}\n.end\n"
+        text = (f"* spec {self.k}\n.include \"model.lib\"\n{head}\n.options reltol=1e-4\n.temp {_n(temp)}\n"
+                f"{body}\n.end\n")
         net.write_text(text)
         self.netlists.append(text)
         cost = engines.run(net, ENGINE, timeout=120)
@@ -105,8 +106,8 @@ def bjt(job, r):
     m = job["model"]
     rows = job["rows"]
     out = {}
-    vces = sorted({row["cond"].get("VCE") for row in rows if row["sym"] in ("hFE", "vbe", "ft", "hfe", "nf")
-                   and row["cond"].get("VCE")})
+    vces = sorted({row["cond"].get("VCE") for row in rows
+                   if row["sym"] in ("hFE", "vbe", "ft", "hfe", "nf", "hie", "hre", "hoe") and row["cond"].get("VCE")})
     ratios = sorted({round(row["cond"]["IC"] / row["cond"]["IB"], 6) for row in rows
                      if row["sym"] in ("vcesat", "vbesat") and row["cond"].get("IC") and row["cond"].get("IB")})
     body = []
@@ -141,10 +142,33 @@ def bjt(job, r):
         vbe = log_interp(xs, [p[2] for p in pts], ic_t)
         return (math.exp(lib) if lib is not None else None), vbe
 
+    hparams, switched = {}, {}
     for row in rows:
         c, sym = row["cond"], row["sym"]
         try:
-            if sym in ("hFE", "vbe") and c.get("IC") and c.get("VCE"):
+            if sym in ("hie", "hre", "hoe") and c.get("IC") and c.get("VCE"):
+                # the small-signal h parameters at the row's bias: one copy driven by an AC current into the
+                # base with the collector held (hie, and hfe), one with the base current held and an AC
+                # voltage on the collector (hre, hoe)
+                key = (c["IC"], c["VCE"], c.get("F") or 1e3)
+                if key not in hparams:
+                    ibx, _ = ib_at(c["VCE"], c["IC"])
+                    hparams[key] = h_parameters(r, m, s, c["VCE"], ibx, key[2]) if ibx else None
+                h = hparams[key]
+                out[row["id"]] = h[sym] if h else None
+            elif sym in ("icex", "ibl") and c.get("VCE") and c.get("VEB"):
+                # cutoff: the emitter junction reverse-biased by VEB, the collector at VCE
+                body = (f"VCX cx 0 DC {_n(s * c['VCE'])}\nVBX bx 0 DC {_n(-s * c['VEB'])}\nQX cx bx 0 {m}\n"
+                        f".save I(VCX) I(VBX)\n.dc VCX {_n(s * c['VCE'] * 0.99)} {_n(s * c['VCE'])} {_n(s * c['VCE'] * 0.01)}")
+                d, _ = r.data(r.run(body), "dc")
+                out[row["id"]] = abs(v(d, "i(vcx)" if sym == "icex" else "i(vbx)")[-1])
+            elif sym in ("td", "tr", "ts", "tf") and (job.get("fixtures") or {}).get(sym):
+                fx = job["fixtures"][sym]
+                key = json.dumps(fx, sort_keys=True)
+                if key not in switched:
+                    switched[key] = switching(r, m, s, fx)
+                out[row["id"]] = switched[key].get(sym)
+            elif sym in ("hFE", "vbe") and c.get("IC") and c.get("VCE"):
                 ibx, vbe = ib_at(c["VCE"], c["IC"])
                 val = (c["IC"] / ibx if ibx else None) if sym == "hFE" else vbe
                 # The sweep drives the base from a behavioural source. QSPICE, with a card whose RB is ~0
@@ -200,6 +224,70 @@ def bjt(job, r):
                 out[row["id"]] = 10 * math.log10(at_f(fr, inn, f) ** 2 / (4 * K_B * T_K * rg))
         except Exception as exc:  # noqa: BLE001
             out[row["id"]] = {"error": f"{type(exc).__name__}: {exc}"[:200]}
+    return out
+
+
+def h_parameters(r, m, s, vce, ib, f):
+    """hie, hre, hoe (and hfe) of a bipolar at base current ib, VCE, frequency f: SI units."""
+    body = (f"VCA ca 0 DC {_n(s * vce)}\nIBA 0 ba DC {_n(s * ib)} AC 1\nQA ca ba 0 {m}\n"
+            f"VCB cb 0 DC {_n(s * vce)} AC 1\nIBB 0 bb DC {_n(s * ib)}\nQB cb bb 0 {m}\n"
+            f".save V(ba) V(bb) I(VCA) I(VCB)\n.ac dec 20 10 1e6")
+    d, _ = r.data(r.run(body), "ac")
+    fr = [abs(z) for z in v(d, "frequency")]
+    pick = lambda name: at_f(fr, [abs(z) for z in v(d, name)], f)  # noqa: E731
+    return {"hie": pick("v(ba)"), "hfe": pick("i(vca)"), "hre": pick("v(bb)"), "hoe": pick("i(vcb)")}
+
+
+def crossing(t, y, level, after, rising):
+    """The first time after `after` at which y crosses level in the given direction, interpolated."""
+    for k in range(1, len(t)):
+        if t[k] <= after:
+            continue
+        a, b = y[k - 1], y[k]
+        if (rising and a < level <= b) or (not rising and a > level >= b):
+            return t[k - 1] + (level - a) / (b - a) * (t[k] - t[k - 1]) if b != a else t[k]
+    return None
+
+
+def switching(r, m, s, fx):
+    """A data sheet's switching test circuit, as drawn (fixture), and the times it defines, the usual way:
+    td from the input's rise through 10 % of its swing to IC through 10 %; tr IC 10 → 90 %; ts from the
+    input's fall through 90 % of its swing to IC back through 90 %; tf IC 90 → 10 %."""
+    lo, hi, after = fx["levels"]
+    d0, e, hold = 20e-9, fx["edge"], fx["hold"]
+    t_fall = d0 + e + hold
+    pwl = (f"0 {_n(s * lo)} {_n(d0)} {_n(s * lo)} {_n(d0 + e)} {_n(s * hi)} {_n(t_fall)} {_n(s * hi)} "
+           f"{_n(t_fall + e)} {_n(s * after)}")
+    clamp = ""
+    if fx.get("clamp") == "base":           # a fast diode holding the base once the stored charge is gone
+        clamp = (f"DCL 0 b DCLAMP\n" if s > 0 else f"DCL b 0 DCLAMP\n") + ".model DCLAMP D(Is=1e-9 N=1.8 Rs=2 Cjo=2p Tt=4n)\n"
+    end = t_fall + e + max(1e-6, 4 * hold if hold < 1e-6 else 1e-6)
+    body = (f"VCC vcc 0 DC {_n(s * fx['VCC'])}\nRC vcc cs {_n(fx['RC'])}\nVS cs c 0\nCS c 0 {_n(fx['CS'])}\n"
+            f"VIN in 0 PWL({pwl})\nRB in b {_n(fx['RB'])}\n{clamp}Q1 c b 0 {m}\n"
+            f".save V(in) I(VS)\n.tran 0 {_n(end)} 0 {_n(min(e, 0.5e-9))}")
+    d, _ = r.data(r.run(body), "tran")
+    t = v(d, "time")
+    ic = [s * x for x in v(d, "i(vs)")]            # VS carries the collector current, cs to c
+    vin = [s * x for x in v(d, "v(in)")]
+    k_on = max(k for k in range(len(t)) if t[k] <= t_fall)
+    on = ic[k_on]
+    if on <= 0:
+        return {}
+    out = {}
+    t_in_rise = crossing(t, vin, lo + 0.1 * (hi - lo), 0, True)
+    t10 = crossing(t, ic, 0.1 * on, 0, True)
+    t90 = crossing(t, ic, 0.9 * on, 0, True)
+    if t_in_rise is not None and t10 is not None:
+        out["td"] = t10 - t_in_rise
+    if t10 is not None and t90 is not None:
+        out["tr"] = t90 - t10
+    t_in_fall = crossing(t, vin, hi - 0.1 * (hi - after), t_fall - e, False)
+    f90 = crossing(t, ic, 0.9 * on, t_fall, False)
+    f10 = crossing(t, ic, 0.1 * on, t_fall, False)
+    if t_in_fall is not None and f90 is not None:
+        out["ts"] = f90 - t_in_fall
+    if f90 is not None and f10 is not None:
+        out["tf"] = f10 - f90
     return out
 
 
@@ -303,8 +391,12 @@ def main():
         for row in job["rows"]:
             val = vals.get(row["id"])
             rows.append({"id": row["id"], "sym": row["sym"], "value": val, "verdict": verdict(row, val)})
+        curves = {}
+        if job.get("figures") and job["kind"] == "bjt":
+            from bench.curves import run_figures
+            curves = run_figures(job, r)
         results.append({"part": job["part"], "model_id": job["model_id"], "engine": ENGINE, "version": version,
-                        "rows": rows, "netlists": r.netlists})
+                        "rows": rows, "curves": curves, "netlists": r.netlists})
     Path(sys.argv[2]).write_text(json.dumps(results, indent=1, default=str))
 
 

@@ -15,15 +15,30 @@
 docs:
 - doc: 2N3904_onsemi
   figures:
-  - {n: 1, caption: "Delay and Rise Time Equivalent Test Circuit", page: 3, kind: circuit, rows: [td, tr]}
-  - {n: 2, caption: "Storage and Fall Time Equivalent Test Circuit", page: 3, kind: circuit, rows: [ts, tf]}
+  # The test circuits, as drawn: the bench builds them from `fixture`. `levels` are the input pulse's
+  # [before, during, after] volts; `hold` how long it stays high; `edge` its rise and fall; CS the jig's
+  # shunt capacitance at the collector ("< 4 pF", taken at 4 pF). Figure 2's diode (1N916) holds the base
+  # at about −0.7 V once the stored charge is gone, so −9.1 V never reaches the emitter junction.
+  - n: 1
+    caption: "Delay and Rise Time Equivalent Test Circuit"
+    page: 3
+    kind: circuit
+    rows: [td, tr]
+    fixture: {VCC: 3.0, RC: 275, RB: 10000, CS: 4.0e-12, levels: [-0.5, 10.9, -0.5], hold: 300.0e-9, edge: 1.0e-9}
+  - n: 2
+    caption: "Storage and Fall Time Equivalent Test Circuit"
+    page: 3
+    kind: circuit
+    rows: [ts, tf]
+    fixture: {VCC: 3.0, RC: 275, RB: 10000, CS: 4.0e-12, levels: [0, 10.9, -9.1], hold: 10.0e-6, edge: 1.0e-9,
+              clamp: base}
   - n: 3
     caption: "Capacitance"
     page: 4
     kind: graph
     x: [reverse bias voltage, V, log, 0.1, 40]
     y: [capacitance, pF, log, 1.0, 10]
-    fixed: {f: 1.0e6, TJ: 25}
+    fixed: {f: 1.0e+6, TJ: 25}
     series:
     - {label: Cibo, style: solid, cond: {junction: EB, VR: [0.1, 6.0]}}
     - {label: Cobo, style: solid, cond: {junction: CB, VR: [0.1, 40]}}
@@ -161,6 +176,7 @@ docs:
     y: [DC current gain hFE (normalised), "", log, 0.1, 2.0]
     fixed: {VCE: 1.0}
     normalised: "to hFE at IC = 10 mA, TJ = 25 °C (where the sheet's 25 °C curve reads 1.0)"
+    normalise: {series: "+25 °C", x: 10.0e-3}
     series:
     - {label: "TJ = +125 °C", style: solid, cond: {TJ: 125}}
     - {label: "+25 °C", style: solid, cond: {TJ: 25}}

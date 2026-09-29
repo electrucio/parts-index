@@ -32,6 +32,7 @@ from parts_index.bench import record
 from parts_index.core.config import (
     REPO_ROOT,
     bench_runs,
+    datasheet_figures,
     datasheet_values,
     datasheet_values_index,
     model_part,
@@ -44,9 +45,11 @@ from parts_index.datasheets.rows import TEMPERATURES, unit_factor
 from parts_index.models import behaviours
 from parts_index.models import cards as C
 from parts_index.models import found as F
+from parts_index.web.checks import read_for_another
 
 # The rows docker/sim/bench/spec.py measures, by the kind of part.
-BENCH_SYMS = {"bjt": {"hFE", "hfe", "vbe", "vcesat", "vbesat", "ft", "cob", "cib", "nf"},
+BENCH_SYMS = {"bjt": {"hFE", "hfe", "vbe", "vcesat", "vbesat", "ft", "cob", "cib", "nf", "hie", "hre", "hoe",
+                      "icex", "ibl", "td", "tr", "ts", "tf"},
               "jfet": {"idss", "vgsoff", "vgs", "gfs", "igss", "ciss", "crss", "en", "nf"}}
 FAMILIES = {"bjt": "gummel-poon", "jfet": "jfet"}
 POLARITY = {"NPN": "npn", "PNP": "pnp", "NJF": "n", "PJF": "p"}
@@ -83,6 +86,47 @@ def sheet_rows(doc: str, kind: str) -> tuple[list[dict], dict[int, str]]:
     return jobs, why
 
 
+# The benches docker/sim/bench/curves.py has, by kind of part.
+CURVE_BENCHES = {"bjt": {"bjt-hfe", "bjt-on-voltages", "bjt-tempco", "bjt-saturation", "bjt-capacitance",
+                         "bjt-hparams", "bjt-nf-frequency", "bjt-nf-source"}}
+
+
+def axis_factor(unit: str) -> float:
+    """SI factor of a figure axis's unit: "mA" 1e-3, "kΩ" 1e3, "X 10-4" 1e-4, "mV/°C" 1e-3."""
+    if unit.replace("°", "").strip() == "mV/C":
+        return 1e-3
+    return unit_factor(unit) or 1.0
+
+
+def sheet_figures(doc: str, kind: str) -> list[dict]:
+    """The sheet's graphs a bench can draw for this kind of part, their axis ranges in SI units."""
+    p = datasheet_figures(doc)
+    if not p.exists():
+        return []
+    out = []
+    for f in json.loads(p.read_text(encoding="utf-8"))["figures"]:
+        if f.get("kind") != "graph" or f.get("bench") not in CURVE_BENCHES.get(kind, ()):
+            continue
+        q, unit, scale, lo, hi = f["x"]
+        fx = axis_factor(unit)
+        out.append({"n": f["n"], "bench": f["bench"], "x": [lo * fx, hi * fx, scale], "fixed": f.get("fixed") or {},
+                    "series": [{"label": se["label"], "cond": se.get("cond") or {}} for se in f["series"]],
+                    "quantity": f["series"][0]["label"]})
+    return out
+
+
+def sheet_fixtures(doc: str) -> dict[str, dict]:
+    """The test circuits the sheet draws, by the rows they are the fixture of (td, tr: Figure 1)."""
+    p = datasheet_figures(doc)
+    if not p.exists():
+        return {}
+    out = {}
+    for f in json.loads(p.read_text(encoding="utf-8"))["figures"]:
+        for sym in f.get("rows") or [] if f.get("fixture") else []:
+            out[sym] = f["fixture"]
+    return out
+
+
 def card_for(files: F.Files, file: str, name: str, engine: str) -> tuple[str, list[str]] | None:
     """The card as the bench is given it, and the changes made to it."""
     chain = F.closure(files.get(file)[0], name)
@@ -112,9 +156,11 @@ def build_jobs(engine: str, only: str | None = None) -> tuple[list[dict], dict]:
             continue
         recipe = yaml.safe_load(model_part(kind, part).read_text(encoding="utf-8"))
         sheet = sheets.get(((recipe.get("datasheet") or {}).get("url") or "").lower())
-        if not sheet:
+        if not sheet or read_for_another(sheet, part):
             continue
         rows, why = sheet_rows(sheet["doc"], grp)
+        fixtures = sheet_fixtures(sheet["doc"])
+        figures = sheet_figures(sheet["doc"], grp)
         cards = record.load(kind, part).get("cards", {})
         meta[key] = {"doc": sheet["doc"], "not_measured": why, "rows": [r["id"] for r in rows]}
         for m in models:
@@ -126,7 +172,8 @@ def build_jobs(engine: str, only: str | None = None) -> tuple[list[dict], dict]:
                 continue
             card, changes = got
             jobs.append({"part": key, "model_id": m["hash"], "kind": grp, "polarity": POLARITY[card_info["type"]],
-                         "card": card, "model": "DUT", "changes": changes, "rows": rows})
+                         "card": card, "model": "DUT", "changes": changes, "rows": rows, "fixtures": fixtures,
+                         "figures": figures})
     return jobs, meta
 
 

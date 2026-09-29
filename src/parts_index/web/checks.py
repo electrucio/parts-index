@@ -20,7 +20,7 @@ import csv
 import json
 from functools import cache
 
-from parts_index.core.config import datasheet_values, datasheet_values_index, verification
+from parts_index.core.config import datasheet_figures, datasheet_values, datasheet_values_index, verification
 from parts_index.datasheets.rows import unit_factor
 from parts_index.models import behaviours
 from parts_index.models import cards as C
@@ -35,6 +35,21 @@ def sheets() -> dict[str, dict]:
         return {}
     with open(p, encoding="utf-8") as f:
         return {r["url"].lower(): r for r in csv.DictReader(f) if r["url"]}
+
+
+def sheet_for(recipe: dict) -> dict | None:
+    """The published sheet whose rows are this part's: the one its recipe names, unless its rows were read
+    for another part it covers. A sheet for 2N3903 and 2N3904 holds the limits of the part it was read
+    for, and the other must not be judged against them."""
+    sheet = sheets().get(((recipe.get("datasheet") or {}).get("url") or "").lower())
+    return sheet if sheet and not read_for_another(sheet, recipe.get("part") or "") else None
+
+
+def read_for_another(sheet: dict, part: str) -> bool:
+    """Whether the sheet prints this part beside the one its rows were read for (a part the recipe gave
+    this sheet but whose own rows nobody transcribed). A sheet printing one part, named for its version
+    (onsemi's P2N2222A for the 2N2222A), stays the recipe's sheet."""
+    return part.upper() != sheet["part"].upper() and part.upper() in (sheet.get("also") or "").upper().split()
 
 
 @cache
@@ -111,7 +126,7 @@ def page_block(recipe: dict, trimmed: dict) -> dict | None:
     """The block the page folds under the models table, and each model's cells and facts."""
     kind, part = recipe.get("kind", ""), recipe.get("part", "")
     rec = record_of(kind, part)
-    sheet = sheets().get(((recipe.get("datasheet") or {}).get("url") or "").lower())
+    sheet = sheet_for(recipe)
     if not rec and not sheet:
         return None
     cards, claims, bench = rec.get("cards", {}), rec.get("claims", {}), rec.get("bench", {})
@@ -143,7 +158,43 @@ def page_block(recipe: dict, trimmed: dict) -> dict | None:
         out["engines"] = {e: {"version": x["version"], "image": x["image"], "bench": x["bench"], "on": x["on"]}
                           for e, x in bench["engines"].items()}
         out["primary"] = bench.get("primary", "qspice")
+    figs = figures(sheet["doc"]) if sheet else []
+    if figs:
+        simulated = {n for m in (bench.get("models") or {}).values()
+                     for n in ((m.get("curves") or {}).get(bench.get("primary", "qspice")) or {})}
+        out["figures"] = [{**f, "simulated": str(f["n"]) in simulated} for f in figs]
     return out
+
+
+def figures(doc: str) -> list[dict]:
+    """A sheet's figures as the page lists them: what each plots, and whether it was cropped."""
+    p = datasheet_figures(doc)
+    if not p.exists():
+        return []
+    keep = ("n", "caption", "page", "kind", "x", "y", "normalised", "rows", "bench")
+    out = []
+    for f in json.loads(p.read_text(encoding="utf-8"))["figures"]:
+        e = {k: f[k] for k in keep if k in f}
+        e["crop"] = bool(f.get("box"))
+        if f.get("series"):
+            e["series"] = [[se["label"], se.get("style", "solid")] for se in f["series"]]
+        if f.get("fixed"):
+            e["fixed"] = {k: v for k, v in f["fixed"].items() if not isinstance(v, (dict, list))}
+        out.append(e)
+    return out
+
+
+def curves(recipe: dict) -> dict | None:
+    """The curves each model drew for the sheet's figures (the primary simulator's), by the model's place
+    in the page's list: the file the figures panel fetches."""
+    bench = record_of(recipe.get("kind", ""), recipe.get("part", "")).get("bench", {})
+    primary = bench.get("primary", "qspice")
+    models = {}
+    for i, m in enumerate(recipe.get("models") or []):
+        c = ((bench.get("models") or {}).get(m.get("hash") or "") or {}).get("curves", {}).get(primary)
+        if c:
+            models[i] = c
+    return {"engine": primary, "models": models} if models else None
 
 
 def netlists(recipe: dict) -> dict | None:
