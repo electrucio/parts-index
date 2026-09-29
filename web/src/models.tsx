@@ -15,6 +15,10 @@ import { Fold } from './fold'
 import type { BenchFile, Cell, ChecksBlock, EngineRun, PartModel, PartPage, SheetRow } from './types'
 
 const REPO = 'https://github.com/electrucio/parts-index'
+// One netlist in the image it came from: `simrun` runs it as the bench does (docker/sim/README.md) and
+// writes the waveform beside it. Tried on a published netlist with its card, in both images.
+const RUN_ONE: Record<string, string> = Object.fromEntries(['ngspice', 'qspice', 'ltspice'].map((e) =>
+  [e, `docker run --rm -v "$PWD":/w parts-index-${e} simrun /w/r1.cir`]))
 const DIALECT_SHORT: Record<string, string> = {
   'unit-a': 'A unit', 'catalogue-fields': 'mfg=…', 'nk-above-1': 'NK>1', 'jfet-extensions': 'isr, nr…',
   'ltspice-diode': 'Ron, Roff…',
@@ -199,11 +203,13 @@ function How({ part, index, model, block }: { part: string; index: number; model
           {g.member && <> — member <code>{g.member}</code></>}; save its <code>.model</code> as <code>model.lib</code>.</li>
         <li>Change it as the bench did: {Object.values(mine.changes).flat().filter((v, i, a) => a.indexOf(v) === i)
           .map((c) => block.changes[c] ?? c).join('; ')}.</li>
-        <li>Run each netlist below beside it, in the image the value came from:
+        <li>Run each netlist below beside it (as <code>r1.cir</code>, <code>r2.cir</code>…), with the simulator the value came from:
           <ul>{Object.entries(file.engines).map(([e, x]) => (
-            <li key={e}><b>{e}</b>: {engineText(x)}, image <code>{x.image.slice(7, 19)}</code>, bench <code>{x.bench.commit.slice(0, 7)}</code>{x.bench.clean ? '' : ' (with uncommitted changes)'}, {x.on}.<br /><code>{x.command}</code></li>))}
+            <li key={e}><b>{e}</b>: {engineText(x)}, image <code>{x.image.slice(7, 19)}</code>, bench <code>{x.bench.commit.slice(0, 7)}</code>{x.bench.clean ? '' : ' (with uncommitted changes)'}, {x.on}.
+              <br /><code>{RUN_ONE[e] ?? x.command}</code></li>))}
           </ul>
-          The images are built from pinned inputs: <a href={`${REPO}/tree/main/docker/sim`}>docker/sim</a>.</li>
+          The images are built from pinned inputs (<a href={`${REPO}/tree/main/docker/sim`}>docker/sim</a>); anyone can build the ngspice one,
+          the QSPICE one needs Qorvo's licence accepted. The values are read from the waveforms by <a href={`${REPO}/blob/${Object.values(file.engines)[0]?.bench.commit}/docker/sim/bench/spec.py`}>spec.py</a> at that revision.</li>
       </ol>
       {Object.entries(mine.netlists).map(([e, nets]) => (
         <Fold key={e} level={2} summary={<>{e}: {nets.length} netlists</>}>
