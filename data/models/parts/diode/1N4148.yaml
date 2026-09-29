@@ -211,6 +211,12 @@ models:
     get:
       url: https://www.cordellaudio.com/book/Cordell-Models.txt
       sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
+  - source: bordodynov-qspice
+    name: 1N4148C
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Cordell-Models.txt
+      sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
   - source: cordell
     name: 1N4148C
     get:
@@ -692,6 +698,18 @@ models:
     lines:
       1N4148: [4, 4]
   copies:
+  - source: bordodynov-qspice
+    name: 1N4148
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Diode.txt
+      sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
+  - source: bordodynov-qspice
+    name: 1N4148A
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Diode.txt
+      sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
   - source: qspice
     name: 1N4148A
     get:
@@ -730,6 +748,12 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: cmp/Original/standard.dio
       sha256: d642ab3308ad8af4b0a1cb884dade229d936190ce5706a8c6233c3d57984a067
+  - source: bordodynov-qspice
+    name: 1N4148
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: groupsio-ltspice
     name: 1N4148
     get:

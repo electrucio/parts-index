@@ -56,6 +56,12 @@ models:
     not_measurable: 0
     typical_rows: 0
   copies:
+  - source: bordodynov-qspice
+    name: MPSA42/INF
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/npnmy.txt
+      sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
   - source: groupsio-ltspice
     name: MPSA42/INF
     get:
@@ -126,6 +132,12 @@ models:
     not_measurable: 0
     typical_rows: 0
   copies:
+  - source: bordodynov-qspice
+    name: MPSA42/NS
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/npnmy.txt
+      sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
   - source: ltwiki
     name: MPSA42/NS
     get:
@@ -288,6 +300,25 @@ models:
     lines:
       MPSA42: [3166, 3170]
     fetched: '2026-09-21'
+- source: bordodynov-qspice
+  name: MPSA42
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Cabirio-BJTmodels.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: a8397ba50980c5bd73b844e361c9e1071abfaa7024baef57e0c6e3cb631aa876
+    lines:
+      MPSA42: [254, 262]
+    fetched: '2026-09-29'
+  copies:
+  - source: diyaudio
+    name: MPSA42
+    get:
+      url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
+      sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
 - source: kicad-spice-library
   name: MPSA42
   def: model
@@ -319,17 +350,6 @@ models:
       url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
       member: standard.bjt
       sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
-- source: diyaudio
-  name: MPSA42
-  def: model
-  type: NPN
-  verbatim: true
-  get:
-    url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
-    sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
-    lines:
-      MPSA42: [267, 275]
-    fetched: '2026-09-20'
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/mpsa42-d.pdf
   maker: onsemi

@@ -170,6 +170,18 @@ models:
     not_measurable: 0
     typical_rows: 0
   copies:
+  - source: bordodynov-qspice
+    name: KSA992
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Cabirio-BJTmodels.txt
+      sha256: a8397ba50980c5bd73b844e361c9e1071abfaa7024baef57e0c6e3cb631aa876
+  - source: bordodynov-qspice
+    name: KSA992
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
   - source: diyaudio
     name: KSA992
     get:
@@ -227,6 +239,29 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 0
+  copies:
+  - source: bordodynov-qspice
+    name: KSA992
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/KT-Cordell models.txt
+      sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
+- source: bordodynov-qspice
+  name: KSA992/Fair
+  def: model
+  type: PNP
+  deps:
+  - KSA992
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      KSA992: [743, 743]
+      KSA992/Fair: [345, 345]
+    fetched: '2026-09-29'
 - source: groupsio-ltspice
   name: KSA992
   def: model

@@ -250,6 +250,12 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: lib/sub/Rydel_tubes.lib
       sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+  - source: bordodynov-qspice
+    name: KT66TR_RY
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Valves.txt
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
   - source: kicad-spice-library
     name: KT66TR_RY
     get:
@@ -323,6 +329,12 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: lib/sub/Rydel_tubes.lib
       sha256: f12d3107e71c314bae928dafb5ccaa3c213b606f95f2ad6d3bf2ba502475decc
+  - source: bordodynov-qspice
+    name: KT66RY
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Valves.txt
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
   - source: kicad-spice-library
     name: KT66RY
     get:
@@ -414,6 +426,12 @@ models:
   symbol: KT66_bordodynov-5.asy
   note: pins from names
   copies:
+  - source: bordodynov-qspice
+    name: KT66
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/new_triodes.txt
+      sha256: 4c621c85eb3b9d3dd97622ff9d25c1c1dcf93bc76e9dc887a946205326f08da2
   - source: ltwiki
     name: KT66
     get:
@@ -487,12 +505,44 @@ models:
       KT66T: [3507, 3520]
     fetched: '2026-09-21'
   copies:
+  - source: bordodynov-qspice
+    name: KT66T
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Triode_Ayumi.txt
+      sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
   - source: ltwiki
     name: KT66T
     get:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: lib/sub/Triode_Ayumi.lib
       sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+- source: bordodynov
+  name: KT66
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Pentode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
+    lines:
+      KT66: [2170, 2190]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov-qspice
+    name: KT66
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Pentode_Ayumi.txt
+      sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
+  - source: ltwiki
+    name: KT66
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Pentode_Ayumi.lib
+      sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
 - source: bordodynov
   name: KT66
   def: subckt
@@ -516,26 +566,6 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: lib/sub/new_tetrodes.txt
       sha256: 7d30fcbe19ab6ecdcce055525f4bb4c1d60f885a3f876f1549e245ed6f47b6e6
-- source: bordodynov
-  name: KT66
-  def: subckt
-  type: SUBCKT
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sub/Pentode_Ayumi.lib
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
-    lines:
-      KT66: [2170, 2190]
-    fetched: '2026-09-21'
-  copies:
-  - source: ltwiki
-    name: KT66
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/Pentode_Ayumi.lib
-      sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
 - source: bordodynov
   name: KT66_JJ
   def: subckt

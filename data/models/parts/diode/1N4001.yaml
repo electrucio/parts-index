@@ -123,6 +123,12 @@ models:
     not_measurable: 0
     typical_rows: 4
   copies:
+  - source: bordodynov-qspice
+    name: D1N4001
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: groupsio-ltspice
     name: D1N4001
     get:
@@ -167,6 +173,12 @@ models:
     not_measurable: 0
     typical_rows: 4
   copies:
+  - source: bordodynov-qspice
+    name: 1N4001
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: ltwiki
     name: 1N4001
     get:
@@ -350,6 +362,13 @@ models:
     sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
     lines:
       1N4001: [14, 14]
+  copies:
+  - source: bordodynov-qspice
+    name: 1N4001
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Diode.txt
+      sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
 - source: kicad-spice-library
   name: D1N4001
   def: model

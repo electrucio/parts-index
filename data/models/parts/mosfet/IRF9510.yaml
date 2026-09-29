@@ -101,6 +101,12 @@ models:
     not_measurable: 2
     typical_rows: 3
   copies:
+  - source: bordodynov-qspice
+    name: IRF9510
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: groupsio-ltspice
     name: IRF9510
     get:
@@ -206,6 +212,25 @@ models:
     lines:
       XIRF9510: [15, 36]
     fetched: '2026-09-14'
+- source: bordodynov-qspice
+  name: IRF9510
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/MOS/IRF9510.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 0382648808f2cf8173832a437c9ff3c9fdcd1675036f8187b4f3db64d0eb5e93
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: IRF9510
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/MOS/IRF9510.qsym
+      sha256: 0382648808f2cf8173832a437c9ff3c9fdcd1675036f8187b4f3db64d0eb5e93
 - source: ltwiki
   name: IRF9510
   def: model

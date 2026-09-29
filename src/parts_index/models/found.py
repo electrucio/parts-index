@@ -29,7 +29,7 @@ from collections import Counter
 from pathlib import Path
 
 from parts_index.core.config import require, spice_found, spice_matches, spice_models_root
-from parts_index.models.index import decode
+from parts_index.models.index import embedded, model_text
 
 # Most original first. Vendors > LTspice's own lib (mostly vendor models, curated by ADI) > authors
 # who fitted models themselves > aggregations of other people's files. A source missing from the list
@@ -45,7 +45,7 @@ SOURCE_RANK = [
     "cordell", "reefman", "ayumi", "duncanamps", "koren", "suusi-tubes",
     "germaniumbjts", "hagtech", "andyc", "viva-analog", "cohen-helie", "dempwolf",
     "tedyapo-led-modeling", "z101-led-spice-model",
-    "germanium-apm", "bordodynov", "ltwiki", "kicad-spice-library", "spiceypedals",
+    "germanium-apm", "bordodynov", "bordodynov-qspice", "ltwiki", "kicad-spice-library", "spiceypedals",
     "gist-chanmix51", "electrucio",
 ]
 RANK = {s: i for i, s in enumerate(SOURCE_RANK)}
@@ -218,7 +218,7 @@ class Files:
         """(definitions, spans, sha256) of one file, named as the catalogue names it."""
         if file not in self.cache:
             raw = (self.root / file).read_bytes()
-            text = decode(raw)
+            text = model_text(raw, file)
             self.cache[file] = (blocks(text), spans(text), hashlib.sha256(raw).hexdigest())
         return self.cache[file]
 
@@ -345,7 +345,11 @@ def located(root: Path, files: Files, c: dict) -> dict:
     """Where one copy came from, with the line range of each definition it is made of."""
     defs, sp, sha = files.get(c["file"])
     prov = provenance(root, c["file"], c["source"], sha)
-    prov["lines"] = {nm: list(sp[nm.lower()]) for _, nm, _ in closure(defs, c["name"]) if nm.lower() in sp}
+    if embedded(c["file"]):
+        # inside a QSPICE symbol's «library file» field: the checksum names the file, no line range does
+        prov["embedded_in_symbol"] = True
+    else:
+        prov["lines"] = {nm: list(sp[nm.lower()]) for _, nm, _ in closure(defs, c["name"]) if nm.lower() in sp}
     return prov
 
 

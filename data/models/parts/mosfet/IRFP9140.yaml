@@ -95,6 +95,12 @@ models:
     not_measurable: 2
     typical_rows: 3
   copies:
+  - source: bordodynov-qspice
+    name: irfp9140C
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: kicad-spice-library
     name: irfp9140C
     get:
@@ -143,6 +149,18 @@ models:
     not_measurable: 2
     typical_rows: 3
   copies:
+  - source: bordodynov-qspice
+    name: IRFP9140__
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
+  - source: bordodynov-qspice
+    name: IRFP9140
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: kicad-spice-library
     name: IRFP9140__
     get:
@@ -229,6 +247,12 @@ models:
     not_measurable: 2
     typical_rows: 3
   copies:
+  - source: bordodynov-qspice
+    name: IRFP9140h
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: kicad-spice-library
     name: IRFP9140h
     get:
@@ -270,6 +294,25 @@ models:
     fail: 0
     not_measurable: 2
     typical_rows: 3
+- source: bordodynov-qspice
+  name: IRFP9140h
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/MOS/IRFP9140h.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: ce26fbd222edf47ae00a0413c2417b00b11fd32d40a5b550dfa614b5b8828577
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: IRFP9140h
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/MOS/IRFP9140h.qsym
+      sha256: ce26fbd222edf47ae00a0413c2417b00b11fd32d40a5b550dfa614b5b8828577
 - source: ltwiki
   name: IRFP9140
   def: model

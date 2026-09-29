@@ -207,6 +207,25 @@ models:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
       member: LIBRARY/dig000.lib
       sha256: e16fc85bebf1d2fc6da7b1994359ed7612a26b6f553d24748826327924413fa2
+- source: bordodynov-qspice
+  name: 74HC14
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/74HC14.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 9f57d33ad3203dfc7576bd25bbf939e04b6177f2965e1050d44446b58724e62e
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: 74HC14
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/74HC14.qsym
+      sha256: 9f57d33ad3203dfc7576bd25bbf939e04b6177f2965e1050d44446b58724e62e
 - source: ltwiki
   name: 74HC14
   def: subckt

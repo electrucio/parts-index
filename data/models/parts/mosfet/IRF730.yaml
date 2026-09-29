@@ -17,6 +17,24 @@ models:
       IRF730__: [1455, 1455]
     fetched: '2026-09-14'
   copies:
+  - source: bordodynov-qspice
+    name: IRF730_
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
+  - source: bordodynov-qspice
+    name: IRF730__
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
+  - source: bordodynov-qspice
+    name: IRF730
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: groupsio-ltspice
     name: IRF730
     get:
@@ -254,6 +272,12 @@ models:
       IRF730h: [1529, 1529]
     fetched: '2026-09-14'
   copies:
+  - source: bordodynov-qspice
+    name: IRF730h
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: kicad-spice-library
     name: IRF730h
     get:
@@ -324,6 +348,25 @@ models:
     lines:
       XIRF730: [420, 441]
     fetched: '2026-09-14'
+- source: bordodynov-qspice
+  name: IRF730h
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/MOS/IRF730h.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 5bad40f91534a9dbd0d6ed92f4c0698e84e61f725d5156408a41287be87edf7c
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: IRF730h
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/MOS/IRF730h.qsym
+      sha256: 5bad40f91534a9dbd0d6ed92f4c0698e84e61f725d5156408a41287be87edf7c
 - source: ltwiki
   name: IRF730_
   def: model

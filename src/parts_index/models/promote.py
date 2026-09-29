@@ -325,6 +325,8 @@ def uncurated(part: str, m: dict) -> dict:
         out["deps"] = list(m["deps"])
     out["verbatim"] = True
     out["get"] = get_block(m.get("provenance") or {})
+    if (m.get("provenance") or {}).get("embedded_in_symbol"):
+        out["get"]["note"] = "the model is inside the QSPICE symbol, in its «library file» field"
     if (m.get("provenance") or {}).get("url_is_source_page"):
         # The manifest does not list this file, so the link is the source's own and a reader must be
         # told it will not land on the file. Manifest notes themselves are working notes and stay private.

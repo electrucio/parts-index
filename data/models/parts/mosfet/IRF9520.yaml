@@ -17,6 +17,12 @@ models:
       IRF9520S: [1103, 1103]
     fetched: '2026-09-14'
   copies:
+  - source: bordodynov-qspice
+    name: IRF9520S
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: groupsio-ltspice
     name: IRF9520S
     get:
@@ -112,6 +118,12 @@ models:
       IRF9520: [1505, 1505]
     fetched: '2026-09-14'
   copies:
+  - source: bordodynov-qspice
+    name: IRF9520
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: kicad-spice-library
     name: IRF9520
     get:
@@ -134,6 +146,12 @@ models:
       url: http://bordodynov.ltwiki.org/cmp.zip
       member: cmp/standard.mos
       sha256: bf72cd277c70963d7f2f27bca87bd83ed67bb8993bee3c5655a12eabc82615a3
+  - source: bordodynov-qspice
+    name: IRF9520h
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: kicad-spice-library
     name: IRF9520h
     get:
@@ -240,6 +258,25 @@ models:
     lines:
       XIRF9520: [40, 61]
     fetched: '2026-09-14'
+- source: bordodynov-qspice
+  name: IRF9520h
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/MOS/IRF9520h.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: abf5da9b9b92cacc06ceca712b7cf8c4fe5ca142e525eac9f925680a587fe8ed
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: IRF9520h
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/MOS/IRF9520h.qsym
+      sha256: abf5da9b9b92cacc06ceca712b7cf8c4fe5ca142e525eac9f925680a587fe8ed
 - source: ltwiki
   name: IRF9520
   def: model

@@ -30,6 +30,12 @@ models:
     not_measurable: 0
     typical_rows: 0
   copies:
+  - source: bordodynov-qspice
+    name: BD140C
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Cordell-Models.txt
+      sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
   - source: cordell
     name: BD140C
     get:
@@ -257,6 +263,82 @@ models:
     lines:
       BD140: [2885, 2889]
     fetched: '2026-09-21'
+- source: bordodynov-qspice
+  name: BD140
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Cabirio-BJTmodels.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: a8397ba50980c5bd73b844e361c9e1071abfaa7024baef57e0c6e3cb631aa876
+    lines:
+      BD140: [397, 404]
+    fetched: '2026-09-29'
+  copies:
+  - source: bordodynov-qspice
+    name: BD140
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+  - source: diyaudio
+    name: BD140
+    get:
+      url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
+      sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
+- source: bordodynov-qspice
+  name: BD140S
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Cabirio-BJTmodels.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: a8397ba50980c5bd73b844e361c9e1071abfaa7024baef57e0c6e3cb631aa876
+    lines:
+      BD140S: [406, 413]
+    fetched: '2026-09-29'
+  copies:
+  - source: bordodynov-qspice
+    name: BD140S
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+  - source: diyaudio
+    name: BD140S
+    get:
+      url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
+      sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
+- source: bordodynov-qspice
+  name: BD140_C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      BD140_C: [456, 456]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: BD140_C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/KT-Cordell models.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
+    lines:
+      BD140_C: [93, 93]
+    fetched: '2026-09-29'
 - source: kicad-spice-library
   name: BD140
   def: subckt
@@ -294,28 +376,6 @@ models:
       url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
       member: standard.bjt
       sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
-- source: diyaudio
-  name: BD140
-  def: model
-  type: PNP
-  verbatim: true
-  get:
-    url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
-    sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
-    lines:
-      BD140: [410, 417]
-    fetched: '2026-09-20'
-- source: diyaudio
-  name: BD140S
-  def: model
-  type: PNP
-  verbatim: true
-  get:
-    url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
-    sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
-    lines:
-      BD140S: [419, 426]
-    fetched: '2026-09-20'
 - source: groupsio-ltspice
   name: BD140_CA
   def: model

@@ -84,6 +84,12 @@ models:
     get:
       url: https://www.cordellaudio.com/book/Cordell-Models.txt
       sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
+  - source: bordodynov-qspice
+    name: 1N4004C
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Cordell-Models.txt
+      sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
   - source: cordell
     name: 1N4004C
     get:
@@ -322,6 +328,12 @@ models:
     not_measurable: 0
     typical_rows: 4
   copies:
+  - source: bordodynov-qspice
+    name: 1N4004
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: groupsio-ltspice
     name: D1N4004
     get:
@@ -463,6 +475,13 @@ models:
     sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
     lines:
       1N4004: [11, 11]
+  copies:
+  - source: bordodynov-qspice
+    name: 1N4004
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Diode.txt
+      sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
 - source: bordodynov
   name: D1N4004
   def: model
@@ -477,6 +496,12 @@ models:
       D1N4004: [156, 156]
     fetched: '2026-09-21'
   copies:
+  - source: bordodynov-qspice
+    name: D1N4004
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: ltwiki
     name: D1N4004
     get:

@@ -75,6 +75,12 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: cmp/Original/standard.bjt.bak
       sha256: 02dfc96080b266ed8e131add4e00c0ab131be1a0f7e7757439dc95130a80e641
+  - source: bordodynov-qspice
+    name: BC846B
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/KT-Cordell models.txt
+      sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
   - source: groupsio-ltspice
     name: BC846B
     get:
@@ -406,6 +412,28 @@ models:
       url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BC846.lib
       sha256: 1ff59ab722e04459fb8d05df739b24412f9794e45dde40d4a15f4ae3c510e8bd
   - source: kicad-spice-library
+    name: BC846BW
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
+      sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
+  - source: ltwiki
+    name: QBC846BW
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/BC846BW.PRM
+      sha256: f13701152911960f78c978257398489a4dc1a8fe4cff5b4ff2153a6db455f62e
+  - source: microcap12
+    name: BC846BW
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: LIBRARY/ph_bjt.lib
+      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
+  - source: spice-model-cd
+    name: QBC846BW
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BC846BW.lib
+      sha256: f13701152911960f78c978257398489a4dc1a8fe4cff5b4ff2153a6db455f62e
+  - source: kicad-spice-library
     name: BC846S
     get:
       url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
@@ -438,28 +466,6 @@ models:
     get:
       url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BC846BT.lib
       sha256: 3b9216d4f5e050b8655f5001a1e3911348bc096c3a5a40af29a25b71147bbd8f
-  - source: kicad-spice-library
-    name: BC846BW
-    get:
-      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
-      sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
-  - source: ltwiki
-    name: QBC846BW
-    get:
-      url: http://ltwiki.org/files/LargeCollection.zip
-      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/BC846BW.PRM
-      sha256: f13701152911960f78c978257398489a4dc1a8fe4cff5b4ff2153a6db455f62e
-  - source: microcap12
-    name: BC846BW
-    get:
-      url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: LIBRARY/ph_bjt.lib
-      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
-  - source: spice-model-cd
-    name: QBC846BW
-    get:
-      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BC846BW.lib
-      sha256: f13701152911960f78c978257398489a4dc1a8fe4cff5b4ff2153a6db455f62e
   - source: kicad-spice-library
     name: BC846W
     get:
@@ -537,28 +543,6 @@ models:
       member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/BC846A.PRM
       sha256: a011707f5e8999bc904356dd7e3d91e3373148e4231707b3277fe33fe51ac531
   - source: kicad-spice-library
-    name: BC846AT
-    get:
-      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
-      sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
-  - source: ltwiki
-    name: QBC846AT
-    get:
-      url: http://ltwiki.org/files/LargeCollection.zip
-      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/BC846AT.PRM
-      sha256: b4f48536da696417b922af04132dfb39372376a6dd84d57b64cb7a4ebdbfb074
-  - source: microcap12
-    name: BC846AT
-    get:
-      url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: LIBRARY/ph_bjt.lib
-      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
-  - source: spice-model-cd
-    name: QBC846AT
-    get:
-      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BC846AT.lib
-      sha256: b4f48536da696417b922af04132dfb39372376a6dd84d57b64cb7a4ebdbfb074
-  - source: kicad-spice-library
     name: BC846AW
     get:
       url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
@@ -580,6 +564,28 @@ models:
     get:
       url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BC846AW.lib
       sha256: 87e59474d6892af1a643c6f731ff0e745a4e402701b6a04c5afb616506d13eeb
+  - source: kicad-spice-library
+    name: BC846AT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
+      sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
+  - source: ltwiki
+    name: QBC846AT
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/BC846AT.PRM
+      sha256: b4f48536da696417b922af04132dfb39372376a6dd84d57b64cb7a4ebdbfb074
+  - source: microcap12
+    name: BC846AT
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: LIBRARY/ph_bjt.lib
+      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
+  - source: spice-model-cd
+    name: QBC846AT
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BC846AT.lib
+      sha256: b4f48536da696417b922af04132dfb39372376a6dd84d57b64cb7a4ebdbfb074
   - source: kicad-spice-library
     name: QBC846A/PLP
     get:
@@ -786,6 +792,19 @@ models:
       BC846B: [281, 284]
     fetched: '2026-09-21'
 - source: microcap12
+  name: BC846AS
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: LIBRARY/DiodesInc_BJT.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
+    lines:
+      BC846AS: [1367, 1371]
+    fetched: '2026-09-21'
+- source: microcap12
   name: BC846AL
   def: model
   type: NPN
@@ -811,19 +830,6 @@ models:
     lines:
       BC846BL: [2113, 2116]
     fetched: '2026-09-21'
-- source: microcap12
-  name: BC846AS
-  def: model
-  type: PNP
-  verbatim: true
-  get:
-    url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: LIBRARY/DiodesInc_BJT.lib
-    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
-    lines:
-      BC846AS: [1367, 1371]
-    fetched: '2026-09-21'
 - source: qspice
   name: BC846A
   def: model
@@ -836,6 +842,18 @@ models:
     lines:
       BC846A: [611, 615]
   copies:
+  - source: bordodynov-qspice
+    name: BC846A
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/NPN.txt
+      sha256: 02e7f34086291154c4ad5a23bd7be80641cec3ccd61609bfc623a1231183224b
+  - source: bordodynov-qspice
+    name: BC846AW
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/NPN.txt
+      sha256: 02e7f34086291154c4ad5a23bd7be80641cec3ccd61609bfc623a1231183224b
   - source: qspice
     name: BC846AW
     get:
@@ -854,6 +872,18 @@ models:
     lines:
       BC846B: [617, 621]
   copies:
+  - source: bordodynov-qspice
+    name: BC846B
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/NPN.txt
+      sha256: 02e7f34086291154c4ad5a23bd7be80641cec3ccd61609bfc623a1231183224b
+  - source: bordodynov-qspice
+    name: BC846BW
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/NPN.txt
+      sha256: 02e7f34086291154c4ad5a23bd7be80641cec3ccd61609bfc623a1231183224b
   - source: qspice
     name: BC846BW
     get:
@@ -874,6 +904,13 @@ models:
     lines:
       BC846AS: [552, 556]
       PNP: [2, 2]
+  copies:
+  - source: bordodynov-qspice
+    name: BC846AS
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
 - source: duncanamps
   name: QBC846B
   def: model
@@ -885,6 +922,71 @@ models:
     lines:
       QBC846B: [238, 240]
     fetched: '2026-09-14'
+- source: bordodynov-qspice
+  name: BC846A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/npnmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
+    lines:
+      BC846A: [362, 362]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: BC846A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/KT-Cordell models.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
+    lines:
+      BC846A: [204, 204]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: BC846B
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/npnmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
+    lines:
+      BC846B: [363, 363]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: BC846
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/npnmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
+    lines:
+      BC846: [727, 727]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: BC846
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/KT-Cordell models.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
+    lines:
+      BC846: [203, 203]
+    fetched: '2026-09-29'
 - source: ltwiki
   name: BC846A
   def: model

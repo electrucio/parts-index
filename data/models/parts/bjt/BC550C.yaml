@@ -27,6 +27,12 @@ models:
     not_measurable: 0
     typical_rows: 4
   copies:
+  - source: bordodynov-qspice
+    name: BC550C
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Cordell-Models.txt
+      sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
   - source: cordell
     name: BC550C
     get:
@@ -236,6 +242,84 @@ models:
     lines:
       BC550C: [1843, 1846]
     fetched: '2026-09-21'
+- source: bordodynov-qspice
+  name: BC550C_Ck
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/KT-Cordell models.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
+    lines:
+      BC550C_Ck: [189, 189]
+    fetched: '2026-09-29'
+  copies:
+  - source: ltwiki
+    name: BC550C_Ck
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Mixer/standard.bjt
+      sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+- source: bordodynov-qspice
+  name: BC550C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/npnmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
+    lines:
+      BC550C: [355, 355]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: BC550C_C
+  def: model
+  type: NPN
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/npnmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
+    lines:
+      '2': [332, 332]
+      BC550C_C: [718, 718]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: BC550C_C
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/KT-Cordell models.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
+    lines:
+      BC550C_C: [187, 187]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: BC550C_Ck
+  def: model
+  type: NPN
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/npnmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
+    lines:
+      '2': [332, 332]
+      BC550C_Ck: [719, 719]
+    fetched: '2026-09-29'
 - source: ltwiki
   name: BC550C
   def: model
@@ -246,19 +330,6 @@ models:
     sha256: 76bb4b024f91527c84cb28203cc0af1797ab5ba1a0382d82a59198a26a2ba783
     lines:
       BC550C: [209, 213]
-    fetched: '2026-09-21'
-- source: ltwiki
-  name: BC550C_Ck
-  def: model
-  type: NPN
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/example.zip
-    member: examples/Bordodynov/Mixer/standard.bjt
-    archive_sha256: 5c1b664d91d3fda58c3febe17a38c4be7d4bd77094ba847653519063ca49b68b
-    sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
-    lines:
-      BC550C_Ck: [1155, 1155]
     fetched: '2026-09-21'
 - source: kicad-spice-library
   name: BC550C_C

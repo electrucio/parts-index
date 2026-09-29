@@ -55,6 +55,12 @@ models:
     not_measurable: 0
     typical_rows: 0
   copies:
+  - source: bordodynov-qspice
+    name: MPSA06
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/npnmy.txt
+      sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
   - source: groupsio-ltspice
     name: MPSA06
     get:
@@ -127,6 +133,12 @@ models:
     not_measurable: 0
     typical_rows: 0
   copies:
+  - source: bordodynov-qspice
+    name: MPSA06/NS
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/npnmy.txt
+      sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
   - source: ltwiki
     name: MPSA06/NS
     get:
@@ -253,6 +265,24 @@ models:
   type: NPN
   verbatim: true
   get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/BIPOLAR.LB
+    sha256: bc06e66b73b3f9efd1d6681dcf3667599ed3205c8775c71f528f6c3cb22af447
+    lines:
+      MPSA06: [227, 230]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov-qspice
+    name: MPSA06
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/bipolar.txt
+      sha256: 39488a5d05bc9e8639ef14d46055456cb298d497e88eaa170113e153ab076333
+- source: spice-model-cd
+  name: MPSA06
+  def: model
+  type: NPN
+  verbatim: true
+  get:
     url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Fairchild/MP/MPSA06.t
     sha256: dac9c267324c88e6bcc42ad1d061a1de21fced9af144cc4b100131582cc5a717
     lines:
@@ -264,17 +294,6 @@ models:
     get:
       url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/bipolar.lib
       sha256: c5e0e8839925adb5e550a6654a8d5d1c0634a0fd0f58e03c9701e24d9aa08b5b
-- source: spice-model-cd
-  name: MPSA06
-  def: model
-  type: NPN
-  verbatim: true
-  get:
-    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/SiMetrix/BIPOLAR.LB
-    sha256: bc06e66b73b3f9efd1d6681dcf3667599ed3205c8775c71f528f6c3cb22af447
-    lines:
-      MPSA06: [227, 230]
-    fetched: '2026-09-21'
 - source: microcap12
   name: MPSA06
   def: model
@@ -299,6 +318,25 @@ models:
     lines:
       QMPSA06: [653, 655]
     fetched: '2026-09-14'
+- source: bordodynov-qspice
+  name: MPSA06
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Cabirio-BJTmodels.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: a8397ba50980c5bd73b844e361c9e1071abfaa7024baef57e0c6e3cb631aa876
+    lines:
+      MPSA06: [226, 233]
+    fetched: '2026-09-29'
+  copies:
+  - source: diyaudio
+    name: MPSA06
+    get:
+      url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
+      sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
 - source: groupsio-ltspice
   name: MPSA06
   def: model
@@ -319,17 +357,6 @@ models:
       url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/standard.bjt%202.zip
       member: standard.bjt
       sha256: 3e289bd4a0d14ca4b49f0e44be650a368fdc188989dec9c2aad63389a6458d87
-- source: diyaudio
-  name: MPSA06
-  def: model
-  type: NPN
-  verbatim: true
-  get:
-    url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
-    sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
-    lines:
-      MPSA06: [239, 246]
-    fetched: '2026-09-20'
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/mpsa05-d.pdf
   maker: onsemi

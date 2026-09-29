@@ -380,6 +380,11 @@ models:
       QBC858A: [2, 40]
     fetched: '2026-09-21'
   copies:
+  - source: spice-model-cd
+    name: QBC858AW
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BC858AW.lib
+      sha256: 0a54202a5c271a620544e66bda5874600184c69ff9b44fd5a79d2632daf4e1ee
   - source: kicad-spice-library
     name: QBC858A/PLP
     get:
@@ -390,11 +395,6 @@ models:
     get:
       url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Spice-Models-collection/phil_bjt.lib
       sha256: b623268d86bce75fdf51394d854e686cdc6a6cd2ace376954bc24bf15056d79f
-  - source: spice-model-cd
-    name: QBC858AW
-    get:
-      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BC858AW.lib
-      sha256: 0a54202a5c271a620544e66bda5874600184c69ff9b44fd5a79d2632daf4e1ee
   - source: spice-model-cd
     name: QBC858AT
     get:
@@ -567,6 +567,19 @@ models:
       BC858BW: [6616, 6640]
     fetched: '2026-09-21'
 - source: microcap12
+  name: BC858AW
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: LIBRARY/DiodesInc_BJT.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
+    lines:
+      BC858AW: [634, 638]
+    fetched: '2026-09-21'
+- source: microcap12
   name: BC858AL
   def: model
   type: PNP
@@ -605,19 +618,6 @@ models:
     lines:
       BC858CL: [2221, 2224]
     fetched: '2026-09-21'
-- source: microcap12
-  name: BC858AW
-  def: model
-  type: PNP
-  verbatim: true
-  get:
-    url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: LIBRARY/DiodesInc_BJT.lib
-    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
-    lines:
-      BC858AW: [634, 638]
-    fetched: '2026-09-21'
 - source: qspice
   name: BC858A
   def: model
@@ -633,6 +633,18 @@ models:
       BC858A: [185, 189]
       PNP: [2, 2]
   copies:
+  - source: bordodynov-qspice
+    name: BC858A
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
+  - source: bordodynov-qspice
+    name: BC858AW
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
   - source: qspice
     name: BC858AW
     get:
@@ -653,6 +665,13 @@ models:
     lines:
       BC858B: [197, 201]
       PNP: [2, 2]
+  copies:
+  - source: bordodynov-qspice
+    name: BC858B
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
 - source: qspice
   name: BC858C
   def: model
@@ -667,6 +686,13 @@ models:
     lines:
       BC858C: [209, 213]
       PNP: [2, 2]
+  copies:
+  - source: bordodynov-qspice
+    name: BC858C
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
 - source: qspice
   name: BC858BW
   def: model
@@ -681,6 +707,13 @@ models:
     lines:
       BC858BW: [203, 207]
       PNP: [2, 2]
+  copies:
+  - source: bordodynov-qspice
+    name: BC858BW
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
 - source: duncanamps
   name: QBC858A
   def: model
@@ -692,6 +725,65 @@ models:
     lines:
       QBC858A: [233, 236]
     fetched: '2026-09-14'
+- source: bordodynov-qspice
+  name: BC858B
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      BC858B: [252, 252]
+    fetched: '2026-09-29'
+  copies:
+  - source: bordodynov-qspice
+    name: BC858BW
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+- source: bordodynov-qspice
+  name: BC858A
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      BC858A: [251, 251]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: BC858B
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/KT-Cordell models.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
+    lines:
+      BC858B: [218, 218]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: BC858C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      BC858C: [253, 253]
+    fetched: '2026-09-29'
 - source: ltwiki
   name: BC858A
   def: model

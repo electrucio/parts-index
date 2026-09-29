@@ -66,6 +66,27 @@ def decode(blob: bytes) -> str:
         return blob.decode("latin-1")
 
 
+# A QSPICE symbol (.qsym) carries its model inside it: a «library file: |…» field whose text is the
+# netlist, with each line break written as `\n`. A field without the `|` names a file instead.
+RX_QSYM_MODEL = re.compile(r"«library file: \|(.*?)»", re.S)
+
+
+def model_text(blob: bytes, name: str) -> str:
+    """The SPICE text a file holds: the file itself, or for a QSPICE symbol the netlists embedded in it.
+
+    A symbol's netlists are joined one after another, so the line numbers counted in the result are
+    not lines of the file; `embedded()` says which files that is true of.
+    """
+    if not embedded(name):
+        return decode(blob)
+    text = blob.decode("latin-1")
+    return "\n".join(m.group(1).replace("\\n", "\n") for m in RX_QSYM_MODEL.finditer(text))
+
+
+def embedded(name: str) -> bool:
+    return name.lower().endswith(".qsym")
+
+
 def looks_binary(blob: bytes) -> bool:
     head = blob[:4096]
     if head.startswith((b"PK\x03\x04", b"%PDF", b"\x89PNG", b"GIF8", b"\xd0\xcf\x11\xe0")):
@@ -108,9 +129,9 @@ def scan_file(path: Path, rel: str, source: str) -> list[dict]:
         blob = path.read_bytes()
     except OSError:
         return []
-    if len(blob) > MAX_BYTES or looks_binary(blob):
+    if len(blob) > MAX_BYTES or (looks_binary(blob) and not embedded(path.name)):
         return []
-    text = decode(blob)
+    text = model_text(blob, path.name)
     low = text.lower()
     if ".model" not in low and ".subckt" not in low:
         # A wholly LTspice-encrypted file: LTspice can use it, nobody can read it. The file name is the

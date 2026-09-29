@@ -135,6 +135,19 @@ models:
     lines:
       MPSA05: [3135, 3138]
     fetched: '2026-09-21'
+- source: bordodynov-qspice
+  name: MPSA05
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/npnmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
+    lines:
+      MPSA05: [321, 321]
+    fetched: '2026-09-29'
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/mpsa05-d.pdf
   maker: onsemi

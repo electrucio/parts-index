@@ -144,6 +144,13 @@ models:
     lines:
       BC557C: [52, 55]
     fetched: '2026-09-21'
+  copies:
+  - source: bordodynov-qspice
+    name: BC557C
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/bipolar.txt
+      sha256: 39488a5d05bc9e8639ef14d46055456cb298d497e88eaa170113e153ab076333
 - source: microcap12
   name: BC557C
   def: model
@@ -240,6 +247,19 @@ models:
       url: http://bordodynov.ltwiki.org/cmp.zip
       member: cmp/standard.bjt
       sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+- source: bordodynov-qspice
+  name: BC557C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      BC557C: [133, 133]
+    fetched: '2026-09-29'
 - source: ltwiki
   name: BC557C
   def: model

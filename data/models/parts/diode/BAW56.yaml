@@ -46,6 +46,12 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: cmp/Standard/standard.dio
       sha256: f2458802fa6c40912b3a09421d9e56386828f30ecee452b9c5688d586fc79571
+  - source: bordodynov-qspice
+    name: BAW56HM
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: kicad-spice-library
     name: BAW56HM
     get:
@@ -88,6 +94,12 @@ models:
       BAW56HY: [2252, 2252]
     fetched: '2026-09-14'
   copies:
+  - source: bordodynov-qspice
+    name: BAW56HY
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: ltwiki
     name: BAW56HY
     get:
@@ -407,6 +419,13 @@ models:
     sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
     lines:
       BAW56HY: [173, 173]
+  copies:
+  - source: bordodynov-qspice
+    name: BAW56HY
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Diode.txt
+      sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
 - source: duncanamps
   name: XBAW56
   def: subckt

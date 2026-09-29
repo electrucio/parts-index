@@ -225,6 +225,12 @@ models:
     not_measurable: 0
     typical_rows: 0
   copies:
+  - source: bordodynov-qspice
+    name: MJE15033C
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Cordell-Models.txt
+      sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
   - source: cordell
     name: MJE15033C
     get:
@@ -414,6 +420,12 @@ models:
       Qmje15033: [12, 22]
     fetched: '2026-09-14'
   copies:
+  - source: bordodynov-qspice
+    name: Qmje15033
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/KT-Cordell models.txt
+      sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
   - source: kicad-spice-library
     name: mje15033
     get:
@@ -462,6 +474,12 @@ models:
       Qmje15033: [883, 883]
     fetched: '2026-09-21'
   copies:
+  - source: bordodynov-qspice
+    name: Qmje15033
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
   - source: groupsio-ltspice
     name: Qmje15033
     get:
@@ -508,17 +526,77 @@ models:
       url: http://ltwiki.org/files/LargeCollection.zip
       member: LargeCollection/LTspiceIV/lib/cmp/standard.bjt
       sha256: e9e508d6c38a6b2c760214e5e7c5c1f0c0d5a5f980e8e36920ec09571ae3407b
-- source: kicad-spice-library
+- source: bordodynov-qspice
   name: MJE15033c
   def: model
   type: PNP
   verbatim: true
   get:
-    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
-    sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
     lines:
-      MJE15033c: [1355, 1355]
-    fetched: '2026-09-21'
+      MJE15033c: [532, 532]
+    fetched: '2026-09-29'
+  copies:
+  - source: kicad-spice-library
+    name: MJE15033c
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+      sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+- source: bordodynov-qspice
+  name: MJE15033_C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      MJE15033_C: [453, 453]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: MJE15033_C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/KT-Cordell models.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
+    lines:
+      MJE15033_C: [88, 88]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: MJE15033_A
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      MJE15033_A: [454, 454]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: MJE15033_A
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/KT-Cordell models.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
+    lines:
+      MJE15033_A: [89, 89]
+    fetched: '2026-09-29'
 - source: groupsio-ltspice
   name: MJE15033
   def: model

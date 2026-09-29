@@ -324,6 +324,12 @@ models:
   symbol: 12AY7_bordodynov-2.asy
   note: pins from names
   copies:
+  - source: bordodynov-qspice
+    name: 12AY7
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/new_triodes.txt
+      sha256: 4c621c85eb3b9d3dd97622ff9d25c1c1dcf93bc76e9dc887a946205326f08da2
   - source: ltwiki
     name: 12AY7
     get:
@@ -396,6 +402,12 @@ models:
       12AY7: [119, 132]
     fetched: '2026-09-21'
   copies:
+  - source: bordodynov-qspice
+    name: 12AY7
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Triode_Ayumi.txt
+      sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
   - source: ltwiki
     name: 12AY7
     get:
@@ -408,6 +420,33 @@ models:
       url: https://robrobinette.com/images/Guitar/Spice_Analysis/5E3_Spice_Model_by_Carl_Gigun.zip
       member: 5E3.txt
       sha256: 2a9499b011c74994e61275ad3ee8eca55a40d420c45e3b01a65688c180b059c8
+- source: bordodynov
+  name: '6072'
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Triode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+    lines:
+      '6072': [801, 814]
+    fetched: '2026-09-21'
+  note: found under the alias 6072
+  copies:
+  - source: bordodynov-qspice
+    name: '6072'
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Triode_Ayumi.txt
+      sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+  - source: ltwiki
+    name: '6072'
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Triode_Ayumi.lib
+      sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
 - source: bordodynov
   name: '6072'
   def: subckt
@@ -434,27 +473,6 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: lib/sub/Koren_Tubes.lib
       sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
-- source: bordodynov
-  name: '6072'
-  def: subckt
-  type: SUBCKT
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sub/Triode_Ayumi.lib
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
-    lines:
-      '6072': [801, 814]
-    fetched: '2026-09-21'
-  note: found under the alias 6072
-  copies:
-  - source: ltwiki
-    name: '6072'
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/Triode_Ayumi.lib
-      sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
 datasheet:
   url: https://frank.pocnet.net/sheets/049/1/12AY7.pdf
   maker: RCA

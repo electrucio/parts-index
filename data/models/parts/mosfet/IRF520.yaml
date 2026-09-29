@@ -138,6 +138,12 @@ models:
       IRF520: [1049, 1049]
     fetched: '2026-09-14'
   copies:
+  - source: bordodynov-qspice
+    name: IRF520
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: groupsio-ltspice
     name: IRF520
     get:
@@ -394,6 +400,25 @@ models:
     lines:
       XIRF520: [95, 116]
     fetched: '2026-09-14'
+- source: bordodynov-qspice
+  name: IRF520
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/MOS/IRF520.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 0c9f1cd23e50955924b6db24041ed7693117e94b364e55e4ef245e8ba0ba4296
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: IRF520
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/MOS/IRF520.qsym
+      sha256: 0c9f1cd23e50955924b6db24041ed7693117e94b364e55e4ef245e8ba0ba4296
 - source: ltwiki
   name: IRF520
   def: model

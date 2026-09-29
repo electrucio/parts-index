@@ -130,6 +130,41 @@ models:
       url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
       member: standard.bjt
       sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
+- source: bordodynov-qspice
+  name: AC127
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/AC125 Spice model.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 3fd7ab0bebbffdc4111d9ef6de01cb54e20e5730303d7de36ef6fde33cef16e9
+    lines:
+      AC127: [39, 49]
+    fetched: '2026-09-29'
+  copies:
+  - source: diystompboxes
+    name: AC127
+    get:
+      url: https://www.diystompboxes.com/smfforum/index.php?topic=78932.0
+      sha256: adfe930a1b749513833791af4df2b5ab8ec72624fc9ba936383bb5550ee23f3e
+- source: bordodynov-qspice
+  name: AC127
+  def: model
+  type: NPN
+  deps:
+  - '2'
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/npnmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
+    lines:
+      '2': [332, 332]
+      AC127: [147, 147]
+    fetched: '2026-09-29'
 - source: groups-io
   name: AC127
   def: model
@@ -186,17 +221,6 @@ models:
     sha256: 079edce0e0582e8f252f5232975b03ec0e556d6bf0159883595474551bf9aebc
     lines:
       AC127: [37, 38]
-    fetched: '2026-09-20'
-- source: diystompboxes
-  name: AC127
-  def: model
-  type: NPN
-  verbatim: true
-  get:
-    url: https://www.diystompboxes.com/smfforum/index.php?topic=78932.0
-    sha256: adfe930a1b749513833791af4df2b5ab8ec72624fc9ba936383bb5550ee23f3e
-    lines:
-      AC127: [68, 78]
     fetched: '2026-09-20'
 - source: diystompboxes
   name: AC127_XP

@@ -126,6 +126,18 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: cmp/Original/standard.mos.bak
       sha256: d30805b23aaf457e097873e816e38a1015e93c9d4b0de9c748365e5a2feb1cf7
+  - source: bordodynov-qspice
+    name: IRF9640__
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
+  - source: bordodynov-qspice
+    name: IRF9640
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: kicad-spice-library
     name: IRF9640__
     get:
@@ -224,6 +236,12 @@ models:
     not_measurable: 2
     typical_rows: 3
   copies:
+  - source: bordodynov-qspice
+    name: IRF9640_
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: groupsio-ltspice
     name: IRF9640_
     get:
@@ -278,6 +296,12 @@ models:
     not_measurable: 2
     typical_rows: 3
   copies:
+  - source: bordodynov-qspice
+    name: IRF9640h
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: kicad-spice-library
     name: IRF9640h
     get:
@@ -392,6 +416,25 @@ models:
     lines:
       XIRF9640: [190, 211]
     fetched: '2026-09-14'
+- source: bordodynov-qspice
+  name: IRF9640h
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/MOS/IRF9640h.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: e6c8f4db54b531e1a94c57dd5c7f7ffd6119e54a6b6d1dc75b3ea9afed910cb6
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: IRF9640h
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/MOS/IRF9640h.qsym
+      sha256: e6c8f4db54b531e1a94c57dd5c7f7ffd6119e54a6b6d1dc75b3ea9afed910cb6
 - source: ltwiki
   name: IRF9640
   def: model

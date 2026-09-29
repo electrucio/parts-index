@@ -127,6 +127,25 @@ models:
       url: http://ltwiki.org/files/LargeCollection.zip
       member: LargeCollection/LTspiceIV/lib/sub/Lm386.sub
       sha256: 48e0a60d0773e7a12faee30c43916269f53f1dad16d077e6e0053c2a6911d8d2
+- source: bordodynov-qspice
+  name: LM386EE
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/OPAMP_R/LM386EE.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: a9f098dbd1cb670cbae3a300730e224dfa53f527a5964926aa443c63a68ab30c
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: LM386EE
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/OPAMP_R/LM386EE.qsym
+      sha256: a9f098dbd1cb670cbae3a300730e224dfa53f527a5964926aa443c63a68ab30c
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/lm386.pdf
   maker: Texas Instruments (National Semiconductor)

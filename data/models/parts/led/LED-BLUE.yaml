@@ -34,6 +34,12 @@ models:
     get:
       url: https://www.cordellaudio.com/book/Cordell-Models.txt
       sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
+  - source: bordodynov-qspice
+    name: BLUE
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Cordell-Models.txt
+      sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
   - source: cordell
     name: BLUE
     get:
@@ -232,6 +238,19 @@ models:
     not_measurable: 0
     typical_rows: 3
   note: found under the alias DLED3
+  copies:
+  - source: bordodynov-qspice
+    name: LED-BLUE
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Library/LED-Blue.qsym
+      sha256: bcd787f9ebca23ff3f74cf32872a17c28ed9951071b58d97750c76aa5de46e9e
+  - source: bordodynov-qspice
+    name: LED-BLUE
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/LED-Blue.qsym
+      sha256: bcd787f9ebca23ff3f74cf32872a17c28ed9951071b58d97750c76aa5de46e9e
 - source: bordodynov
   name: LedBLUE
   def: model
@@ -315,6 +334,12 @@ models:
     typical_rows: 3
   note: found under the alias BLUE
   copies:
+  - source: bordodynov-qspice
+    name: BLUE
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: groupsio-ltspice
     name: BLUE
     get:
@@ -338,6 +363,19 @@ models:
       url: http://bordodynov.ltwiki.org/cmp.zip
       member: cmp/standard.dio
       sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+- source: bordodynov-qspice
+  name: LedBLUE
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/dio.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
+    lines:
+      LedBLUE: [125, 125]
+    fetched: '2026-09-29'
 datasheet:
   url: https://docs.broadcom.com/doc/AV02-3140EN
   maker: Broadcom

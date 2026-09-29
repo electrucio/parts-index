@@ -388,6 +388,38 @@ models:
       member: LargeCollection/LTspiceIV/lib/sym/EXTRA/AudioOpamp/TI/LM318.301
       sha256: 02dd5131a3412c4fb8c68e511e9905f273b33019706466f12de9ea22550de0b1
 - source: bordodynov
+  name: LM318TI_SN
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/OpAmp_Nazar_Shtybel.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 4781654faf3d2ec54bf5acd80471ac9d119fb98d495698f460aa8839ee45e05d
+    lines:
+      LM318TI_SN: [1783, 1905]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov-qspice
+    name: LM318TI_SN
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Library/Opamp/LM318TI_SN.qsym
+      sha256: c63250df2ae9a37344a5b90da8e74ea33b613b60ce39d725a17a268852192263
+  - source: bordodynov-qspice
+    name: LM318TI_SN
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/Opamp/LM318TI_SN.qsym
+      sha256: c63250df2ae9a37344a5b90da8e74ea33b613b60ce39d725a17a268852192263
+  - source: ltwiki
+    name: LM318TI_SN
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/OpAmp_Nazar_Shtybel.lib
+      sha256: 4781654faf3d2ec54bf5acd80471ac9d119fb98d495698f460aa8839ee45e05d
+- source: bordodynov
   name: LM318NS_SN
   def: subckt
   type: SUBCKT
@@ -403,26 +435,6 @@ models:
   copies:
   - source: ltwiki
     name: LM318NS_SN
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/OpAmp_Nazar_Shtybel.lib
-      sha256: 4781654faf3d2ec54bf5acd80471ac9d119fb98d495698f460aa8839ee45e05d
-- source: bordodynov
-  name: LM318TI_SN
-  def: subckt
-  type: SUBCKT
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sub/OpAmp_Nazar_Shtybel.lib
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: 4781654faf3d2ec54bf5acd80471ac9d119fb98d495698f460aa8839ee45e05d
-    lines:
-      LM318TI_SN: [1783, 1905]
-    fetched: '2026-09-21'
-  copies:
-  - source: ltwiki
-    name: LM318TI_SN
     get:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: lib/sub/OpAmp_Nazar_Shtybel.lib

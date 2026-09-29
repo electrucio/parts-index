@@ -189,6 +189,52 @@ models:
       TLC555_COMP3INPNORSD: [82392, 82414]
       TLC555_RWELLD: [82367, 82371]
     fetched: '2026-09-21'
+- source: bordodynov-qspice
+  name: TLC555
+  def: subckt
+  type: SUBCKT
+  deps:
+  - DZ_18V
+  - D_Z18V
+  - IBIAS
+  - IIMIRRN
+  - IIMIRRP
+  - IMIRRP
+  - MDSWN
+  - MDSWP
+  - MSWN
+  - COMP2INPNORSD
+  - COMP3INPNORSD
+  - RR1SFF
+  - TLC55X_NMOSD_HV
+  - TLC55X_NMOS_HV
+  - TLC55X_NMOSD_HV_L1
+  - TLC55X_NMOS_HV_L1
+  - TLC55X_NMOSD_MV
+  - TLC55X_NMOS_MV
+  - TLC55X_PMOSD_HV
+  - TLC55X_PMOS_HV
+  - TLC55X_PMOSD_LV
+  - TLC55X_PMOS_LV
+  - TLC55X_PMOSD_MV
+  - TLC55X_PMOS_MV
+  - TLC55X_RWELLD
+  - TLC55X_RWELL
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/Timers/TLC555.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 060d62763be68590df63e1aa0bed2b9a78442122cc1a566b7ab853040e5f135e
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: TLC555
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/Timers/TLC555.qsym
+      sha256: 060d62763be68590df63e1aa0bed2b9a78442122cc1a566b7ab853040e5f135e
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/tlc555.pdf
   maker: Texas Instruments

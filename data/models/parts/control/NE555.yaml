@@ -245,6 +245,56 @@ models:
       url: http://ltwiki.org/files/LargeCollection.zip
       member: LargeCollection/LTspiceIV/lib/sub/NE555.sub
       sha256: ec1f7b7ad7fed806a334512159956b77cdff15b698158d3cf23dc62ff506f74e
+- source: bordodynov-qspice
+  name: NE555
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/NE555.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 625a3053e2f676398652539dc92073f66ce4efd7bbe25560a64c34c9d55e5709
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: NE555
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/NE555.qsym
+      sha256: 625a3053e2f676398652539dc92073f66ce4efd7bbe25560a64c34c9d55e5709
+- source: bordodynov-qspice
+  name: NE555
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/Timers/NE555.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 6e2f99a1327bad35197d6cc46bc6d4765dbf6a78870ac63f44d9f2db5e62ebdd
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: NE555
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/Timers/NE555.qsym
+      sha256: 6e2f99a1327bad35197d6cc46bc6d4765dbf6a78870ac63f44d9f2db5e62ebdd
+- source: bordodynov-qspice
+  name: NE555
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Behavioral/analog/NE555.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: e02a26ad307624241432f71f6597b4311d1e925debbc8765df5352ac621ebd32
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/ne555.pdf
   maker: Texas Instruments

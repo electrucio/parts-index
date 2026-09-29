@@ -156,17 +156,25 @@ models:
     lines:
       QBC183BP: [152, 154]
     fetched: '2026-09-14'
-- source: diyaudio
+- source: bordodynov-qspice
   name: BC183C
   def: model
   type: NPN
   verbatim: true
   get:
-    url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
-    sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Cabirio-BJTmodels.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: a8397ba50980c5bd73b844e361c9e1071abfaa7024baef57e0c6e3cb631aa876
     lines:
-      BC183C: [139, 146]
-    fetched: '2026-09-20'
+      BC183C: [126, 133]
+    fetched: '2026-09-29'
+  copies:
+  - source: diyaudio
+    name: BC183C
+    get:
+      url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
+      sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
 - source: groupsio-ltspice
   name: BC183BP
   def: model

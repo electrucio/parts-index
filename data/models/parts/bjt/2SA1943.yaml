@@ -53,6 +53,12 @@ models:
     not_measurable: 0
     typical_rows: 2
   copies:
+  - source: bordodynov-qspice
+    name: 2SA1943_k
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
   - source: groupsio-ltspice
     name: 2SA1943_k
     get:
@@ -228,12 +234,12 @@ models:
     not_measurable: 0
     typical_rows: 2
   copies:
-  - source: ltwiki
+  - source: bordodynov-qspice
     name: 2SA1943
     get:
-      url: http://bordodynov.ltwiki.org/example.zip
-      member: examples/Bordodynov/Mixer/standard.bjt
-      sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
   - source: groupsio-ltspice
     name: 2SA1943
     get:
@@ -250,6 +256,12 @@ models:
     get:
       url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/Transistor/BJT/BJT.lib
       sha256: 1f07e6e6b38c9b5d8d19dbccfd3c29741281ead66a7b48cc40eb82e9684580eb
+  - source: ltwiki
+    name: 2SA1943
+    get:
+      url: http://bordodynov.ltwiki.org/example.zip
+      member: examples/Bordodynov/Mixer/standard.bjt
+      sha256: d7a7fb8e61b6e55d353a44642cf90b60ec052fe5068c09f2cf58af81c8877df6
   - source: ltwiki
     name: 2SA1943
     get:
@@ -275,6 +287,39 @@ models:
       nmos: [161508, 161508]
     fetched: '2026-09-21'
   note: found under the alias FJL4215
+- source: bordodynov-qspice
+  name: 2SA1943OTU
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      2SA1943OTU: [326, 326]
+    fetched: '2026-09-29'
+  copies:
+  - source: bordodynov-qspice
+    name: FJL4215
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+- source: bordodynov-qspice
+  name: 2SA1943_k
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/KT-Cordell models.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
+    lines:
+      2SA1943_k: [111, 111]
+    fetched: '2026-09-29'
 - source: ltwiki
   name: 2SA1943OTU
   def: model

@@ -134,6 +134,12 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: sub/Valves.Lib
       sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: bordodynov-qspice
+    name: 6V6GTA
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Valves.txt
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
   - source: kicad-spice-library
     name: 6V6GTA
     get:
@@ -195,6 +201,12 @@ models:
     get:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: bordodynov-qspice
+    name: 6V6
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Valves.txt
       sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
   - source: kicad-spice-library
     name: 6V6
@@ -429,6 +441,12 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: sub/Valves.Lib
       sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: bordodynov-qspice
+    name: 6V6GT_RY
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Valves.txt
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
   - source: kicad-spice-library
     name: 6V6GT_RY
     get:
@@ -488,6 +506,12 @@ models:
     get:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: sub/Valves.Lib
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
+  - source: bordodynov-qspice
+    name: 6V6GTR_RY
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Valves.txt
       sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
   - source: kicad-spice-library
     name: 6V6GTR_RY
@@ -570,6 +594,12 @@ models:
     fetched: '2026-09-21'
   note: found under the alias 6V6
   copies:
+  - source: bordodynov-qspice
+    name: 6V6
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Pentode_Ayumi.txt
+      sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
   - source: ltwiki
     name: 6V6
     get:
@@ -582,6 +612,33 @@ models:
       url: https://robrobinette.com/images/Guitar/Spice_Analysis/5E3_Spice_Model_by_Carl_Gigun.zip
       member: 5E3.txt
       sha256: 2a9499b011c74994e61275ad3ee8eca55a40d420c45e3b01a65688c180b059c8
+- source: bordodynov
+  name: 6V6T
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/Triode_Ayumi.lib
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+    lines:
+      6V6T: [2781, 2794]
+    fetched: '2026-09-21'
+  note: found under the alias 6V6
+  copies:
+  - source: bordodynov-qspice
+    name: 6V6T
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Triode_Ayumi.txt
+      sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+  - source: ltwiki
+    name: 6V6T
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/Triode_Ayumi.lib
+      sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
 - source: bordodynov
   name: 6V6
   def: subckt
@@ -654,27 +711,6 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: lib/sub/Koren_Tubes.lib
       sha256: d3fd4b44593a5d88a9dda818f9feb3439538f8816c990c5efa100ae0942257a7
-- source: bordodynov
-  name: 6V6T
-  def: subckt
-  type: SUBCKT
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sub/Triode_Ayumi.lib
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
-    lines:
-      6V6T: [2781, 2794]
-    fetched: '2026-09-21'
-  note: found under the alias 6V6
-  copies:
-  - source: ltwiki
-    name: 6V6T
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/Triode_Ayumi.lib
-      sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
 - source: bordodynov
   name: 6V6
   def: subckt

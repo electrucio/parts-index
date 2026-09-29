@@ -224,6 +224,12 @@ models:
     not_measurable: 0
     typical_rows: 0
   copies:
+  - source: bordodynov-qspice
+    name: MJE253C
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Cordell-Models.txt
+      sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
   - source: cordell
     name: MJE253C
     get:
@@ -382,6 +388,13 @@ models:
     lines:
       MJE253: [128, 131]
     fetched: '2026-09-21'
+  copies:
+  - source: bordodynov-qspice
+    name: MJE253
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/bjtpwr.txt
+      sha256: f669b76a9269ad7cdf214a7ce81a85e86ffcaca55ff93502dad839b018b33fd2
 - source: microcap12
   name: MJE253
   def: model
@@ -395,6 +408,76 @@ models:
     lines:
       MJE253: [3524, 3531]
     fetched: '2026-09-21'
+- source: bordodynov-qspice
+  name: MJE253
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Cabirio-BJTmodels.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: a8397ba50980c5bd73b844e361c9e1071abfaa7024baef57e0c6e3cb631aa876
+    lines:
+      MJE253: [472, 479]
+    fetched: '2026-09-29'
+  copies:
+  - source: bordodynov-qspice
+    name: MJE253
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+  - source: diyaudio
+    name: MJE253
+    get:
+      url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
+      sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
+- source: bordodynov-qspice
+  name: MJE253c
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      MJE253c: [530, 530]
+    fetched: '2026-09-29'
+  copies:
+  - source: kicad-spice-library
+    name: MJE253c
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
+      sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
+- source: bordodynov-qspice
+  name: MJE253_C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      MJE253_C: [455, 455]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: MJE253_C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/KT-Cordell models.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
+    lines:
+      MJE253_C: [91, 91]
+    fetched: '2026-09-29'
 - source: kicad-spice-library
   name: MJE253_C
   def: model
@@ -413,28 +496,6 @@ models:
       url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
       member: standard.bjt
       sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
-- source: kicad-spice-library
-  name: MJE253c
-  def: model
-  type: PNP
-  verbatim: true
-  get:
-    url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/Bordodynovs%20Electronics%20Lib/cmp/standard.bjt
-    sha256: bf3a32a2e58b4d9f4075a1685ce203d74868e2a3fd8a043e72c0944f1dcc6528
-    lines:
-      MJE253c: [1351, 1351]
-    fetched: '2026-09-21'
-- source: diyaudio
-  name: MJE253
-  def: model
-  type: PNP
-  verbatim: true
-  get:
-    url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
-    sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
-    lines:
-      MJE253: [485, 492]
-    fetched: '2026-09-20'
 - source: groupsio-ltspice
   name: MJE253
   def: model

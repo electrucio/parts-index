@@ -36,6 +36,12 @@ models:
     get:
       url: https://www.cordellaudio.com/book/Cordell-Models.txt
       sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
+  - source: bordodynov-qspice
+    name: mjl21193C
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Cordell-Models.txt
+      sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
   - source: cordell
     name: mjl21193C
     get:
@@ -303,6 +309,12 @@ models:
     not_measurable: 0
     typical_rows: 0
   copies:
+  - source: bordodynov-qspice
+    name: mjl21193
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
   - source: groupsio-ltspice
     name: mjl21193
     get:
@@ -353,6 +365,12 @@ models:
     not_measurable: 0
     typical_rows: 0
   copies:
+  - source: bordodynov-qspice
+    name: mjl21193C
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
   - source: kicad-spice-library
     name: mjl21193C
     get:
@@ -444,6 +462,32 @@ models:
     get:
       url: https://www.onsemi.com/download/models/sp3/mjl21193.sp3
       sha256: af4f6af15f9b75a6d1c2c1c9e18b6b2c393e34ccded5a1670e3550ba85f9e552
+- source: bordodynov-qspice
+  name: MJl21193_C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      MJl21193_C: [448, 448]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: MJl21193_C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/KT-Cordell models.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
+    lines:
+      MJl21193_C: [76, 76]
+    fetched: '2026-09-29'
 - source: groupsio-ltspice
   name: MJL21193
   def: model

@@ -273,6 +273,27 @@ models:
     get:
       url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/TICOMP.LIB
       sha256: d4980b8365b4590602ff9cca722294b2ec0125e2ef169e5a6a66dab2a6411001
+- source: bordodynov-qspice
+  name: LM311
+  def: subckt
+  type: SUBCKT
+  deps:
+  - LM111
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/COMP/LM311.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: aaee4fbf04a0ff33c43a05b461835b509e54afe2378353e4391215aa0b84e5b5
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: LM311
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/COMP/LM311.qsym
+      sha256: aaee4fbf04a0ff33c43a05b461835b509e54afe2378353e4391215aa0b84e5b5
 - source: kicad-spice-library
   name: LM311
   def: subckt

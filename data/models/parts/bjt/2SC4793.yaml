@@ -28,6 +28,12 @@ models:
     not_measurable: 0
     typical_rows: 2
   copies:
+  - source: bordodynov-qspice
+    name: 2SC4793
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/npnmy.txt
+      sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
   - source: groupsio-ltspice
     name: 2SC4793
     get:
@@ -190,6 +196,32 @@ models:
     fail: 2
     not_measurable: 0
     typical_rows: 2
+- source: bordodynov-qspice
+  name: 2SC4793_A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/npnmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
+    lines:
+      2SC4793_A: [709, 709]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: 2SC4793_A
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/KT-Cordell models.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
+    lines:
+      2SC4793_A: [167, 167]
+    fetched: '2026-09-29'
 - source: ltwiki
   name: Q2SC4793
   def: model

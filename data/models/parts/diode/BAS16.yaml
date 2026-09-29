@@ -141,6 +141,12 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: cmp/Standard/standard.dio
       sha256: f2458802fa6c40912b3a09421d9e56386828f30ecee452b9c5688d586fc79571
+  - source: bordodynov-qspice
+    name: BAS16HM
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: kicad-spice-library
     name: BAS16HM
     get:
@@ -517,6 +523,13 @@ models:
     sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
     lines:
       BAS16HY: [165, 165]
+  copies:
+  - source: bordodynov-qspice
+    name: BAS16HY
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Diode.txt
+      sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
 - source: duncanamps
   name: DBAS16
   def: model
@@ -542,6 +555,12 @@ models:
       BAS16HY: [2244, 2244]
     fetched: '2026-09-21'
   copies:
+  - source: bordodynov-qspice
+    name: BAS16HY
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: ltwiki
     name: BAS16HY
     get:

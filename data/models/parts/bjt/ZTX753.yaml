@@ -175,17 +175,38 @@ models:
     lines:
       PNP: [2, 2]
       ZTX753: [777, 781]
-- source: diyaudio
+  copies:
+  - source: bordodynov-qspice
+    name: ZTX753
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
+- source: bordodynov-qspice
   name: ZTX753
   def: model
   type: PNP
   verbatim: true
   get:
-    url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
-    sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Cabirio-BJTmodels.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: a8397ba50980c5bd73b844e361c9e1071abfaa7024baef57e0c6e3cb631aa876
     lines:
-      ZTX753: [315, 322]
-    fetched: '2026-09-20'
+      ZTX753: [302, 309]
+    fetched: '2026-09-29'
+  copies:
+  - source: bordodynov-qspice
+    name: ZTX753
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+  - source: diyaudio
+    name: ZTX753
+    get:
+      url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
+      sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
 datasheet:
   url: https://www.diodes.com/datasheet/download/ZTX753.pdf
   maker: diodes (zetex)

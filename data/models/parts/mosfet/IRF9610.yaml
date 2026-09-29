@@ -27,6 +27,12 @@ models:
     not_measurable: 2
     typical_rows: 3
   copies:
+  - source: bordodynov-qspice
+    name: IRF9610
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: groupsio-ltspice
     name: IRF9610
     get:
@@ -81,6 +87,12 @@ models:
     not_measurable: 3
     typical_rows: 3
   copies:
+  - source: bordodynov-qspice
+    name: IRF9610h
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: ltwiki
     name: IRF9610h
     get:
@@ -221,6 +233,25 @@ models:
     lines:
       XIRF9610: [115, 136]
     fetched: '2026-09-14'
+- source: bordodynov-qspice
+  name: IRF9610h
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/MOS/IRF9610h.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: fa7920171d06339b436a55e5b3491db7c5b7f84b633357db8387b21e73674ca2
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: IRF9610h
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/MOS/IRF9610h.qsym
+      sha256: fa7920171d06339b436a55e5b3491db7c5b7f84b633357db8387b21e73674ca2
 - source: ltwiki
   name: IRF9610
   def: model

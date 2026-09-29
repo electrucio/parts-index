@@ -146,17 +146,45 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 3
-- source: diyaudio
+  copies:
+  - source: bordodynov-qspice
+    name: 2SA970_
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+- source: bordodynov-qspice
   name: 2SA970
   def: model
   type: PNP
   verbatim: true
   get:
-    url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
-    sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
     lines:
-      2SA970: [119, 127]
-    fetched: '2026-09-20'
+      2SA970: [740, 740]
+    fetched: '2026-09-29'
+  copies:
+  - source: diyaudio
+    name: 2SA970
+    get:
+      url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
+      sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
+- source: bordodynov-qspice
+  name: 2SA970
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Cabirio-BJTmodels.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: a8397ba50980c5bd73b844e361c9e1071abfaa7024baef57e0c6e3cb631aa876
+    lines:
+      2SA970: [106, 114]
+    fetched: '2026-09-29'
 datasheet:
   url: http://www.vakits.com/sites/default/files/2SA970.pdf
   maker: toshiba

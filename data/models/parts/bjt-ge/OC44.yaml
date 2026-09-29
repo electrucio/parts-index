@@ -47,6 +47,12 @@ models:
     not_measurable: 0
     typical_rows: 0
   copies:
+  - source: bordodynov-qspice
+    name: OC44
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
   - source: kicad-spice-library
     name: OC44
     get:
@@ -64,17 +70,25 @@ models:
       url: http://bordodynov.ltwiki.org/cmp.zip
       member: cmp/standard.bjt
       sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
-- source: diystompboxes
+- source: bordodynov-qspice
   name: OC44
   def: model
   type: PNP
   verbatim: true
   get:
-    url: https://www.diystompboxes.com/smfforum/index.php?topic=78932.0
-    sha256: adfe930a1b749513833791af4df2b5ab8ec72624fc9ba936383bb5550ee23f3e
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/AC125 Spice model.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 3fd7ab0bebbffdc4111d9ef6de01cb54e20e5730303d7de36ef6fde33cef16e9
     lines:
-      OC44: [119, 129]
-    fetched: '2026-09-20'
+      OC44: [92, 102]
+    fetched: '2026-09-29'
+  copies:
+  - source: diystompboxes
+    name: OC44
+    get:
+      url: https://www.diystompboxes.com/smfforum/index.php?topic=78932.0
+      sha256: adfe930a1b749513833791af4df2b5ab8ec72624fc9ba936383bb5550ee23f3e
 datasheet:
   url: https://frank.pocnet.net/other/Mullard/Mullard_Volume4PartIII_transistors_1968-11.pdf
   maker: mullard

@@ -172,29 +172,29 @@ models:
       member: LIBRARY/On_Semi.lib
       sha256: 408bd5bdc24784f72cee7e62e070f1ed6a26f8a689ddfd605a0ecf88f61b0d86
 - source: diodes-inc
-  name: MMBT3906FA
+  name: MMBT3906LP
   def: model
   type: PNP
   verbatim: true
   get:
-    url: https://www.diodes.com/spice/download/3000/MMBT3906FA.spice.txt
-    sha256: c717fb9a39114a6ba0ddf110d2bdb889a8f78a47719a19d3b8928b9c860a158a
+    url: https://www.diodes.com/spice/download/2963/MMBT3906LP.spice.txt
+    sha256: c3d4ec694db34aea9d3ab1dc9b7c5925bcd04006c835ebaf36a4ec869005a15d
     lines:
-      MMBT3906FA: [24, 24]
+      MMBT3906LP: [24, 24]
     fetched: '2026-09-19'
   copies:
   - source: diodes-inc
-    name: MMBT3906FA
+    name: MMBT3906LP
     get:
       url: https://www.diodes.com/productcollection/spicemodels/8429/collection.spice.txt
       sha256: 25759a6cbafe23350b32480fe33bf874370db0e87a747168f643ea8b1031ac30
   - source: diodes-inc
-    name: MMBT3906LP
+    name: MMBT3906FA
     get:
-      url: https://www.diodes.com/spice/download/2963/MMBT3906LP.spice.txt
-      sha256: c3d4ec694db34aea9d3ab1dc9b7c5925bcd04006c835ebaf36a4ec869005a15d
+      url: https://www.diodes.com/spice/download/3000/MMBT3906FA.spice.txt
+      sha256: c717fb9a39114a6ba0ddf110d2bdb889a8f78a47719a19d3b8928b9c860a158a
   - source: diodes-inc
-    name: MMBT3906LP
+    name: MMBT3906FA
     get:
       url: https://www.diodes.com/productcollection/spicemodels/8429/collection.spice.txt
       sha256: 25759a6cbafe23350b32480fe33bf874370db0e87a747168f643ea8b1031ac30
@@ -212,7 +212,7 @@ models:
       MMBT3906T: [910, 914]
     fetched: '2026-09-21'
 - source: qspice
-  name: MMBT3906FA
+  name: MMBT3906LP
   def: model
   type: PNP
   deps:
@@ -223,11 +223,23 @@ models:
     file: PNP.txt
     sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
     lines:
-      MMBT3906FA: [524, 527]
+      MMBT3906LP: [354, 357]
       PNP: [2, 2]
   copies:
-  - source: qspice
+  - source: bordodynov-qspice
     name: MMBT3906LP
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
+  - source: bordodynov-qspice
+    name: MMBT3906FA
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
+  - source: qspice
+    name: MMBT3906FA
     get:
       installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
       file: PNP.txt
@@ -246,6 +258,13 @@ models:
     lines:
       MMBT3906: [348, 352]
       PNP: [2, 2]
+  copies:
+  - source: bordodynov-qspice
+    name: MMBT3906
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
 - source: qspice
   name: MMBT3906T
   def: model
@@ -260,6 +279,13 @@ models:
     lines:
       MMBT3906T: [359, 363]
       PNP: [2, 2]
+  copies:
+  - source: bordodynov-qspice
+    name: MMBT3906T
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
 - source: duncanamps
   name: QMMBT3906
   def: model
@@ -271,6 +297,19 @@ models:
     lines:
       QMMBT3906: [493, 495]
     fetched: '2026-09-14'
+- source: bordodynov-qspice
+  name: MMBT3906
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      MMBT3906: [408, 408]
+    fetched: '2026-09-29'
 - source: groupsio-ltspice
   name: MMBT3906
   def: model

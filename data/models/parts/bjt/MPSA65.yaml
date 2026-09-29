@@ -1,0 +1,24 @@
+part: MPSA65
+kind: bjt
+priority: 2
+group: listed
+models:
+- source: bordodynov-qspice
+  name: MPSA65
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/MPSA65.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: fda03736f60aa97ee58881c7f0e9d08a55b20092bb3c9d81834db54ec84a07d0
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: MPSA65
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/MPSA65.qsym
+      sha256: fda03736f60aa97ee58881c7f0e9d08a55b20092bb3c9d81834db54ec84a07d0

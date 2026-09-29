@@ -28,6 +28,12 @@ models:
     not_measurable: 0
     typical_rows: 2
   copies:
+  - source: bordodynov-qspice
+    name: 2SA1837
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
   - source: groupsio-ltspice
     name: 2SA1837
     get:
@@ -107,6 +113,12 @@ models:
     not_measurable: 0
     typical_rows: 2
   copies:
+  - source: bordodynov-qspice
+    name: 2SA1837_A
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/KT-Cordell models.txt
+      sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
   - source: groupsio-ltspice
     name: 2SA1837_A
     get:
@@ -196,6 +208,19 @@ models:
     fail: 3
     not_measurable: 0
     typical_rows: 2
+- source: bordodynov-qspice
+  name: 2SA1837_A
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      2SA1837_A: [463, 463]
+    fetched: '2026-09-29'
 - source: groupsio-ltspice
   name: 2SA1837
   def: model

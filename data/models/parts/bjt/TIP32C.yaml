@@ -181,6 +181,26 @@ models:
     lines:
       TIP32C: [37, 40]
     fetched: '2026-09-21'
+  copies:
+  - source: bordodynov-qspice
+    name: TIP32C
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/bjtpwr.txt
+      sha256: f669b76a9269ad7cdf214a7ce81a85e86ffcaca55ff93502dad839b018b33fd2
+- source: bordodynov-qspice
+  name: TIP32C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      TIP32C: [223, 223]
+    fetched: '2026-09-29'
 - source: ltwiki
   name: TIP32C
   def: model

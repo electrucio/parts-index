@@ -27,6 +27,12 @@ models:
     not_measurable: 0
     typical_rows: 2
   copies:
+  - source: bordodynov-qspice
+    name: KSC2690
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/npnmy.txt
+      sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
   - source: groupsio-ltspice
     name: KSC2690
     get:
@@ -94,6 +100,12 @@ models:
     not_measurable: 0
     typical_rows: 2
   copies:
+  - source: bordodynov-qspice
+    name: KSC2690A_k
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/KT-Cordell models.txt
+      sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
   - source: groupsio-ltspice
     name: KSC2690A_k
     get:
@@ -123,17 +135,38 @@ models:
       url: http://bordodynov.ltwiki.org/cmp.zip
       member: cmp/standard.bjt
       sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
-- source: diyaudio
+- source: bordodynov-qspice
   name: KSC2690
   def: model
   type: NPN
   verbatim: true
   get:
-    url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
-    sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Cabirio-BJTmodels.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: a8397ba50980c5bd73b844e361c9e1071abfaa7024baef57e0c6e3cb631aa876
     lines:
-      KSC2690: [438, 445]
-    fetched: '2026-09-20'
+      KSC2690: [425, 432]
+    fetched: '2026-09-29'
+  copies:
+  - source: diyaudio
+    name: KSC2690
+    get:
+      url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
+      sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
+- source: bordodynov-qspice
+  name: KSC2690A_k
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/npnmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
+    lines:
+      KSC2690A_k: [710, 710]
+    fetched: '2026-09-29'
 - source: groupsio-ltspice
   name: KSC2690
   def: model

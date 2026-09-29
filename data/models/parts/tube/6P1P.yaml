@@ -86,6 +86,19 @@ models:
       url: http://ltwiki.org/files/LargeCollection.zip
       member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Analisis/MonteCarlo/Monte carlo toolbox_3/vmc.lib
       sha256: f0ee14467ffa5948bd912d29adf4c51edd958dab020fd1685a3eb6bc338a8f18
+- source: bordodynov-qspice
+  name: 6P1P_T
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Tube_Rus.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b7af640e5dd145164f5410eefeb0cf61af8bc0131abcc348bdbed4d70c791785
+    lines:
+      6P1P_T: [1648, 1662]
+    fetched: '2026-09-29'
 datasheet:
   url: https://frank.pocnet.net/sheets/113/6/6P1P.pdf
   maker: Soviet (bilingual receiving-tube handbook)

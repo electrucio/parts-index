@@ -91,6 +91,12 @@ models:
     get:
       url: https://www.cordellaudio.com/book/Cordell-Models.txt
       sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
+  - source: bordodynov-qspice
+    name: RED
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Cordell-Models.txt
+      sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
   - source: cordell
     name: RED
     get:
@@ -289,6 +295,19 @@ models:
     not_measurable: 0
     typical_rows: 5
   note: found under the alias DLED1
+  copies:
+  - source: bordodynov-qspice
+    name: LED-RED
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Library/LED-Red.qsym
+      sha256: c33010b41a1f33b45688dc0bc674ce4ce74702189d2504cc466db51d1dc4403e
+  - source: bordodynov-qspice
+    name: LED-RED
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/LED-Red.qsym
+      sha256: c33010b41a1f33b45688dc0bc674ce4ce74702189d2504cc466db51d1dc4403e
 - source: bordodynov
   name: LedRed
   def: model
@@ -384,6 +403,12 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: cmp/Original/standard.dio
       sha256: d642ab3308ad8af4b0a1cb884dade229d936190ce5706a8c6233c3d57984a067
+  - source: bordodynov-qspice
+    name: QTLP690C
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: groupsio-ltspice
     name: QTLP690C
     get:
@@ -467,6 +492,12 @@ models:
     fetched: '2026-09-21'
   note: found under the alias RED
   copies:
+  - source: bordodynov-qspice
+    name: RED
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: groupsio-ltspice
     name: RED
     get:
@@ -486,6 +517,72 @@ models:
       sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
   - source: ltwiki
     name: RED
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+- source: bordodynov
+  name: L128-RED1003500000
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      L128-RED1003500000: [2547, 2547]
+    fetched: '2026-09-21'
+  note: found under the alias L128-RED1003500000
+  copies:
+  - source: bordodynov-qspice
+    name: L128-RED1003500000
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
+  - source: ltwiki
+    name: L128-RED1003500000
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: L128-RED1003500000
+    get:
+      url: http://bordodynov.ltwiki.org/cmp.zip
+      member: cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+- source: bordodynov
+  name: L1C1-RED1000000000
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: cmp/standard.dio
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    lines:
+      L1C1-RED1000000000: [2561, 2561]
+    fetched: '2026-09-21'
+  note: found under the alias L1C1-RED1000000000
+  copies:
+  - source: bordodynov-qspice
+    name: L1C1-RED1000000000
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
+  - source: ltwiki
+    name: L1C1-RED1000000000
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/cmp/standard.dio
+      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+  - source: ltwiki
+    name: L1C1-RED1000000000
     get:
       url: http://bordodynov.ltwiki.org/cmp.zip
       member: cmp/standard.dio
@@ -519,60 +616,20 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: lib/sub/LMR36015FB_AB.lib
       sha256: 6ed4a0860a09ea9c094b45e8856e67cc03a98352407a26a7b74e9693329ebc48
-- source: bordodynov
-  name: L128-RED1003500000
+- source: bordodynov-qspice
+  name: LedRed
   def: model
   type: D
   verbatim: true
   get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: cmp/standard.dio
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/dio.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
     lines:
-      L128-RED1003500000: [2547, 2547]
-    fetched: '2026-09-21'
-  note: found under the alias L128-RED1003500000
-  copies:
-  - source: ltwiki
-    name: L128-RED1003500000
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/cmp/standard.dio
-      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
-  - source: ltwiki
-    name: L128-RED1003500000
-    get:
-      url: http://bordodynov.ltwiki.org/cmp.zip
-      member: cmp/standard.dio
-      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
-- source: bordodynov
-  name: L1C1-RED1000000000
-  def: model
-  type: D
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: cmp/standard.dio
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
-    lines:
-      L1C1-RED1000000000: [2561, 2561]
-    fetched: '2026-09-21'
-  note: found under the alias L1C1-RED1000000000
-  copies:
-  - source: ltwiki
-    name: L1C1-RED1000000000
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/cmp/standard.dio
-      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
-  - source: ltwiki
-    name: L1C1-RED1000000000
-    get:
-      url: http://bordodynov.ltwiki.org/cmp.zip
-      member: cmp/standard.dio
-      sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+      LedRed: [123, 123]
+    fetched: '2026-09-29'
+  note: found under the alias LedRed
 - source: ltwiki
   name: QTLP690C
   def: model

@@ -148,6 +148,12 @@ models:
     not_measurable: 2
     typical_rows: 3
   copies:
+  - source: bordodynov-qspice
+    name: IRF610h
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: kicad-spice-library
     name: IRF610h
     get:
@@ -288,6 +294,13 @@ models:
     sha256: 7e57e30fa48c9cf43578457aa48aaa511c0c6a6a998a334fae970c469e3be74c
     lines:
       IRF610: [45, 45]
+  copies:
+  - source: bordodynov-qspice
+    name: IRF610
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/NMOS.txt
+      sha256: 7e57e30fa48c9cf43578457aa48aaa511c0c6a6a998a334fae970c469e3be74c
 - source: duncanamps
   name: XIRF610
   def: subckt

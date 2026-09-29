@@ -283,6 +283,13 @@ models:
     sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
     lines:
       1N4007: [8, 8]
+  copies:
+  - source: bordodynov-qspice
+    name: 1N4007
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Diode.txt
+      sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
 - source: bordodynov
   name: D1N4007
   def: model
@@ -297,6 +304,12 @@ models:
       D1N4007: [159, 159]
     fetched: '2026-09-21'
   copies:
+  - source: bordodynov-qspice
+    name: D1N4007
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: ltwiki
     name: D1N4007
     get:
@@ -323,6 +336,12 @@ models:
       1N4007GP: [152, 152]
     fetched: '2026-09-21'
   copies:
+  - source: bordodynov-qspice
+    name: 1N4007GP
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: ltwiki
     name: 1N4007GP
     get:
@@ -335,6 +354,19 @@ models:
       url: http://bordodynov.ltwiki.org/cmp.zip
       member: cmp/standard.dio
       sha256: ebaef11cadc640725a8fa067c98d29df4bc88d246cbcce9f3db6b32778dce455
+- source: bordodynov-qspice
+  name: 1N4007
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/dio.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
+    lines:
+      1N4007: [151, 151]
+    fetched: '2026-09-29'
 - source: ltwiki
   name: 1N4007G-D
   def: subckt

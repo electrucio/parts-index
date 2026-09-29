@@ -27,6 +27,12 @@ models:
     not_measurable: 0
     typical_rows: 1
   copies:
+  - source: bordodynov-qspice
+    name: BC327S
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
   - source: groupsio-ltspice
     name: BC327S
     get:
@@ -94,6 +100,12 @@ models:
     not_measurable: 0
     typical_rows: 1
   copies:
+  - source: bordodynov-qspice
+    name: BC327
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/KT-Cordell models.txt
+      sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
   - source: groupsio-ltspice
     name: BC327
     get:
@@ -144,6 +156,12 @@ models:
     not_measurable: 0
     typical_rows: 1
   copies:
+  - source: bordodynov-qspice
+    name: bc327_
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
   - source: kicad-spice-library
     name: bc327_
     get:
@@ -284,17 +302,6 @@ models:
       url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Infineon/Other/BJT/S_afbjt.lib
       sha256: 55d3abf17fd13cdfeff5c57e966f88d85d90157d6caaf1ce3f72977d57494470
 - source: spice-model-cd
-  name: Qbc327
-  def: model
-  type: PNP
-  verbatim: true
-  get:
-    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/General_Semi/Small_Signal/BJT/bc327.lib
-    sha256: 8b25257694995a1cebf28067dbe23595a661f722f77920dff4eacf6c131b0c99
-    lines:
-      Qbc327: [16, 26]
-    fetched: '2026-09-21'
-- source: spice-model-cd
   name: BC327
   def: model
   type: PNP
@@ -304,6 +311,24 @@ models:
     sha256: bc06e66b73b3f9efd1d6681dcf3667599ed3205c8775c71f528f6c3cb22af447
     lines:
       BC327: [80, 83]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov-qspice
+    name: BC327
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/bipolar.txt
+      sha256: 39488a5d05bc9e8639ef14d46055456cb298d497e88eaa170113e153ab076333
+- source: spice-model-cd
+  name: Qbc327
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/General_Semi/Small_Signal/BJT/bc327.lib
+    sha256: 8b25257694995a1cebf28067dbe23595a661f722f77920dff4eacf6c131b0c99
+    lines:
+      Qbc327: [16, 26]
     fetched: '2026-09-21'
 - source: spice-model-cd
   name: BC327C/SIE
@@ -361,6 +386,19 @@ models:
     lines:
       BC327A: [143, 146]
     fetched: '2026-09-21'
+- source: bordodynov-qspice
+  name: BC327
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      BC327: [479, 479]
+    fetched: '2026-09-29'
 - source: groupsio-ltspice
   name: BC327S
   def: model

@@ -166,6 +166,12 @@ models:
   symbol: 7591_bordodynov.asy
   note: pins from inline comment
   copies:
+  - source: bordodynov-qspice
+    name: 7591DB
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Valves.txt
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
   - source: kicad-spice-library
     name: 7591DB
     get:
@@ -226,6 +232,12 @@ models:
     typical_rows: 0
   symbol: 7591_bordodynov-2.asy
   copies:
+  - source: bordodynov-qspice
+    name: 7591Pent
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Valves.txt
+      sha256: 0a4df8714e35f8707b864b5499f5ef6392b6f1e98a348d2018d6f6f2ed8996b9
   - source: kicad-spice-library
     name: 7591Pent
     get:
@@ -331,6 +343,12 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: sub/Triode_Ayumi.lib
       sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
+  - source: bordodynov-qspice
+    name: 7591T
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Triode_Ayumi.txt
+      sha256: bcef1eaffe6e778c1dd19bebb8ab13ceee8d75b92551f231ece2c096d5188b97
 - source: ltwiki
   name: '7591'
   def: subckt
@@ -364,6 +382,12 @@ models:
     get:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: sub/Pentode_Ayumi.lib
+      sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
+  - source: bordodynov-qspice
+    name: '7591'
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Pentode_Ayumi.txt
       sha256: 8acef6e1165504fd0c6c30c1838524db64ad274cb74053f3ed9c78e408c8acd3
 - source: robrobinette
   name: 7591A

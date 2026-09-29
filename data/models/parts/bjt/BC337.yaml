@@ -95,6 +95,12 @@ models:
     not_measurable: 0
     typical_rows: 1
   copies:
+  - source: bordodynov-qspice
+    name: BC337
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/KT-Cordell models.txt
+      sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
   - source: groupsio-ltspice
     name: BC337
     get:
@@ -338,17 +344,6 @@ models:
       url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Infineon/Other/BJT/S_afbjt.lib
       sha256: 55d3abf17fd13cdfeff5c57e966f88d85d90157d6caaf1ce3f72977d57494470
 - source: spice-model-cd
-  name: Qbc337
-  def: model
-  type: NPN
-  verbatim: true
-  get:
-    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/General_Semi/Small_Signal/BJT/bc337.lib
-    sha256: cfb2044ff9f845738fbd3654119ed00c11364356f4826532df73893250f855a3
-    lines:
-      Qbc337: [16, 26]
-    fetched: '2026-09-21'
-- source: spice-model-cd
   name: BC337
   def: model
   type: NPN
@@ -358,6 +353,24 @@ models:
     sha256: bc06e66b73b3f9efd1d6681dcf3667599ed3205c8775c71f528f6c3cb22af447
     lines:
       BC337: [59, 62]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov-qspice
+    name: BC337
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/bipolar.txt
+      sha256: 39488a5d05bc9e8639ef14d46055456cb298d497e88eaa170113e153ab076333
+- source: spice-model-cd
+  name: Qbc337
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/General_Semi/Small_Signal/BJT/bc337.lib
+    sha256: cfb2044ff9f845738fbd3654119ed00c11364356f4826532df73893250f855a3
+    lines:
+      Qbc337: [16, 26]
     fetched: '2026-09-21'
 - source: spice-model-cd
   name: BC337C/SIE
@@ -445,6 +458,32 @@ models:
     lines:
       QBC337AP: [182, 185]
     fetched: '2026-09-14'
+- source: bordodynov-qspice
+  name: BC337S
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/npnmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
+    lines:
+      BC337S: [211, 211]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: BC337
+  def: model
+  type: NPN
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/npnmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
+    lines:
+      BC337: [730, 730]
+    fetched: '2026-09-29'
 - source: groupsio-ltspice
   name: BC337
   def: model

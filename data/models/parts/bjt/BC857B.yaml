@@ -103,6 +103,12 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: cmp/Original/standard.bjt.bak
       sha256: 02dfc96080b266ed8e131add4e00c0ab131be1a0f7e7757439dc95130a80e641
+  - source: bordodynov-qspice
+    name: BC857B
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/KT-Cordell models.txt
+      sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
   - source: kicad-spice-library
     name: BC857B
     get:
@@ -183,28 +189,6 @@ models:
       member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/BC857B.PRM
       sha256: a6029f1c378be263fe5da7caa2e093c4d6626d17dfd7cb99610b6d60ba8168b1
   - source: kicad-spice-library
-    name: BC857BT
-    get:
-      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
-      sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
-  - source: ltwiki
-    name: QBC857BT
-    get:
-      url: http://ltwiki.org/files/LargeCollection.zip
-      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/BC857BT.PRM
-      sha256: 50946323d70f47c85cbae8da11d98dc7f64a60f17baab70bb3b092522be62bb6
-  - source: microcap12
-    name: BC857BT
-    get:
-      url: http://www.spectrum-soft.com/download/mc12cd.zip
-      member: LIBRARY/ph_bjt.lib
-      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
-  - source: spice-model-cd
-    name: QBC857BT
-    get:
-      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BC857BT.lib
-      sha256: 50946323d70f47c85cbae8da11d98dc7f64a60f17baab70bb3b092522be62bb6
-  - source: kicad-spice-library
     name: BC857BW
     get:
       url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
@@ -226,6 +210,28 @@ models:
     get:
       url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BC857BW.lib
       sha256: 20490ebaaf208071f169c490c8905a96fd225364b8441f5c64550730d9e7ca94
+  - source: kicad-spice-library
+    name: BC857BT
+    get:
+      url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/ph_bjt.lib
+      sha256: 0ba411b70d0c3cd6a3bca6e65a4f891a06c54024014c249905f41fd5f080d435
+  - source: ltwiki
+    name: QBC857BT
+    get:
+      url: http://ltwiki.org/files/LargeCollection.zip
+      member: LargeCollection/LTspiceIV/lib/sym/EXTRA/Philips/BJT/BC857BT.PRM
+      sha256: 50946323d70f47c85cbae8da11d98dc7f64a60f17baab70bb3b092522be62bb6
+  - source: microcap12
+    name: BC857BT
+    get:
+      url: http://www.spectrum-soft.com/download/mc12cd.zip
+      member: LIBRARY/ph_bjt.lib
+      sha256: f5ba7440eb7625ff848cdb45ad55ee36f8ac094aafccb2351359ed12c0382bbb
+  - source: spice-model-cd
+    name: QBC857BT
+    get:
+      url: https://ltwiki.org/files/LTspiceIV/Vendor%20List/Philips/Philips_Spice/BC857BT.lib
+      sha256: 50946323d70f47c85cbae8da11d98dc7f64a60f17baab70bb3b092522be62bb6
   - source: kicad-spice-library
     name: QBC857B/PLP
     get:
@@ -285,6 +291,19 @@ models:
       BC857B: [368, 372]
     fetched: '2026-09-21'
 - source: microcap12
+  name: BC857BLP
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: http://www.spectrum-soft.com/download/mc12cd.zip
+    member: LIBRARY/DiodesInc_BJT.lib
+    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
+    sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
+    lines:
+      BC857BLP: [620, 624]
+    fetched: '2026-09-21'
+- source: microcap12
   name: BC857BM
   def: subckt
   type: SUBCKT
@@ -310,19 +329,6 @@ models:
     lines:
       BC857BL: [2197, 2200]
     fetched: '2026-09-21'
-- source: microcap12
-  name: BC857BLP
-  def: model
-  type: PNP
-  verbatim: true
-  get:
-    url: http://www.spectrum-soft.com/download/mc12cd.zip
-    member: LIBRARY/DiodesInc_BJT.lib
-    archive_sha256: 9810886f0b900e25131285c332be341629c6fafe460ef4371ecf3c24e6688c80
-    sha256: ac818db38211ec4c269bfe0d996ed3f05dcdcf6317d97f887ab018ffd5a50a70
-    lines:
-      BC857BLP: [620, 624]
-    fetched: '2026-09-21'
 - source: qspice
   name: BC857B
   def: model
@@ -338,6 +344,18 @@ models:
       BC857B: [143, 147]
       PNP: [2, 2]
   copies:
+  - source: bordodynov-qspice
+    name: BC857B
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
+  - source: bordodynov-qspice
+    name: BC857BW
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
   - source: qspice
     name: BC857BW
     get:
@@ -358,20 +376,13 @@ models:
     lines:
       BC857BS: [25, 29]
       PNP: [2, 2]
-- source: qspice
-  name: BC857BFA
-  def: model
-  type: PNP
-  deps:
-  - PNP
-  verbatim: true
-  get:
-    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
-    file: PNP.txt
-    sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
-    lines:
-      BC857BFA: [520, 522]
-      PNP: [2, 2]
+  copies:
+  - source: bordodynov-qspice
+    name: BC857BS
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
 - source: qspice
   name: BC857BV
   def: model
@@ -386,6 +397,13 @@ models:
     lines:
       BC857BV: [31, 36]
       PNP: [2, 2]
+  copies:
+  - source: bordodynov-qspice
+    name: BC857BV
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
 - source: qspice
   name: BC857BLP
   def: model
@@ -400,6 +418,34 @@ models:
     lines:
       BC857BLP: [149, 153]
       PNP: [2, 2]
+  copies:
+  - source: bordodynov-qspice
+    name: BC857BLP
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
+- source: qspice
+  name: BC857BFA
+  def: model
+  type: PNP
+  deps:
+  - PNP
+  verbatim: true
+  get:
+    installed_with: QSPICE (Qorvo), build Sep 13 2026 09:34:10
+    file: PNP.txt
+    sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
+    lines:
+      BC857BFA: [520, 522]
+      PNP: [2, 2]
+  copies:
+  - source: bordodynov-qspice
+    name: BC857BFA
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
 - source: bordodynov
   name: BC857B_DI
   def: model
@@ -414,6 +460,12 @@ models:
       BC857B_DI: [1363, 1363]
     fetched: '2026-09-21'
   copies:
+  - source: bordodynov-qspice
+    name: BC857B_DI
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
   - source: groupsio-ltspice
     name: BC857B_DI
     get:
@@ -513,6 +565,19 @@ models:
       url: http://bordodynov.ltwiki.org/cmp.zip
       member: cmp/standard.bjt
       sha256: ae4030f8738fc2dc5146be87cd5ad98cd9cb043209c91421579b7436e21b6ce3
+- source: bordodynov-qspice
+  name: BC857B
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      BC857B: [249, 249]
+    fetched: '2026-09-29'
 - source: ltwiki
   name: BC857B
   def: model

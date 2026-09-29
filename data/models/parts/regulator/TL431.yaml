@@ -848,6 +848,44 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: lib/sub/TL431AB.sub
       sha256: 0da45cac8097f90545e998869e6d05e58ae2db28f2938dab4c12340eb98b60bb
+- source: bordodynov-qspice
+  name: TL431
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/TL431.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 8d41258301f2f5aa8bf87003a6c3112f735330f87b50d7c8940833bd3b9b6f98
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: TL431
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/TL431.qsym
+      sha256: 8d41258301f2f5aa8bf87003a6c3112f735330f87b50d7c8940833bd3b9b6f98
+- source: bordodynov-qspice
+  name: TL431AB
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/TL431AB.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: c633048a5ca725d18f25605515089c9aa1ab96feb100460be356559674e179a6
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: TL431AB
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/TL431AB.qsym
+      sha256: c633048a5ca725d18f25605515089c9aa1ab96feb100460be356559674e179a6
 - source: ltwiki
   name: TL431
   def: subckt

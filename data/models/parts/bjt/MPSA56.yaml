@@ -295,6 +295,47 @@ models:
     lines:
       QMPSA56: [585, 588]
     fetched: '2026-09-14'
+- source: bordodynov-qspice
+  name: MPSA56
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Cabirio-BJTmodels.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: a8397ba50980c5bd73b844e361c9e1071abfaa7024baef57e0c6e3cb631aa876
+    lines:
+      MPSA56: [235, 242]
+    fetched: '2026-09-29'
+  copies:
+  - source: bordodynov-qspice
+    name: MPSA56
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+  - source: diyaudio
+    name: MPSA56
+    get:
+      url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
+      sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
+- source: bordodynov-qspice
+  name: MPSA56/NS
+  def: model
+  type: PNP
+  deps:
+  - MPSA56
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      MPSA56: [745, 745]
+      MPSA56/NS: [339, 339]
+    fetched: '2026-09-29'
 - source: kicad-spice-library
   name: MPSA56
   def: model
@@ -306,17 +347,6 @@ models:
     lines:
       MPSA56: [1693, 1705]
     fetched: '2026-09-14'
-- source: diyaudio
-  name: MPSA56
-  def: model
-  type: PNP
-  verbatim: true
-  get:
-    url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
-    sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
-    lines:
-      MPSA56: [248, 255]
-    fetched: '2026-09-20'
 - source: groupsio-ltspice
   name: MPSA56
   def: model

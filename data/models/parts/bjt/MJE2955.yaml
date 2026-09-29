@@ -77,6 +77,12 @@ models:
       mje2955t: [793, 793]
     fetched: '2026-09-14'
   copies:
+  - source: bordodynov-qspice
+    name: mje2955t
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
   - source: groupsio-ltspice
     name: mje2955t
     get:
@@ -165,6 +171,12 @@ models:
     fetched: '2026-09-14'
     note: git clone --depth 1, commit a868895
   copies:
+  - source: bordodynov-qspice
+    name: MJE2955_
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
   - source: groupsio-ltspice
     name: MJE2955_
     get:
@@ -225,6 +237,19 @@ models:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
       member: LIBRARY/on_bjt.lib
       sha256: 51c53cfb504901a1c84e2f9aa0919a027394b4728375fdecf34d9e727c84da77
+- source: bordodynov-qspice
+  name: MJE2955
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      MJE2955: [217, 217]
+    fetched: '2026-09-29'
 - source: ltwiki
   name: MJE2955
   def: model

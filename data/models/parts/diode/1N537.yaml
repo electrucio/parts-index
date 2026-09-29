@@ -74,6 +74,12 @@ models:
   note: 'STAND-IN: model of 1N4002, not of 1N537; equivalence declared in catalog/wanted.yaml (see its
     note)'
   copies:
+  - source: bordodynov-qspice
+    name: 1N4002
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: ltwiki
     name: 1N4002
     get:
@@ -109,6 +115,12 @@ models:
   note: 'STAND-IN: model of D1N4002, not of 1N537; equivalence declared in catalog/wanted.yaml (see its
     note)'
   copies:
+  - source: bordodynov-qspice
+    name: D1N4002
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: ltwiki
     name: D1N4002
     get:
@@ -269,6 +281,13 @@ models:
     lines:
       1N4002: [13, 13]
   note: 'STAND-IN: model of 1N4002, not of 1N537; the equivalence is declared in data/models/wanted.yaml'
+  copies:
+  - source: bordodynov-qspice
+    name: 1N4002
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Diode.txt
+      sha256: c3c9d8e591bc91f8e43b33c520c48b1ec3726737c561205b08a901f6b1315367
 - source: kicad-spice-library
   name: D1N4002
   def: model

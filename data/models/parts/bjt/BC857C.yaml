@@ -181,6 +181,18 @@ models:
       BC857C: [167, 171]
       PNP: [2, 2]
   copies:
+  - source: bordodynov-qspice
+    name: BC857C
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
+  - source: bordodynov-qspice
+    name: BC857CW
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
   - source: qspice
     name: BC857CW
     get:
@@ -201,6 +213,13 @@ models:
     lines:
       BC857CT: [173, 177]
       PNP: [2, 2]
+  copies:
+  - source: bordodynov-qspice
+    name: BC857CT
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
 - source: bordodynov
   name: BC857C
   def: model
@@ -233,6 +252,12 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: cmp/Original/standard.bjt.bak
       sha256: 02dfc96080b266ed8e131add4e00c0ab131be1a0f7e7757439dc95130a80e641
+  - source: bordodynov-qspice
+    name: BC857C
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/KT-Cordell models.txt
+      sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
   - source: kicad-spice-library
     name: BC857C
     get:
@@ -292,6 +317,12 @@ models:
       BC857C_DI: [1364, 1364]
     fetched: '2026-09-21'
   copies:
+  - source: bordodynov-qspice
+    name: BC857C_DI
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
   - source: groupsio-ltspice
     name: BC857C_DI
     get:
@@ -333,6 +364,19 @@ models:
       url: http://ltwiki.org/files/LargeCollection.zip
       member: LargeCollection/LTspiceIV/examples/LtSpicePlus/Discretos/Bjt/ComparingModels/MyBC857x.lib
       sha256: d025dc636b8a620f0cdaecbcef96e00ccf150c2db1a60a892e2e91e5869daeff
+- source: bordodynov-qspice
+  name: BC857C
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      BC857C: [250, 250]
+    fetched: '2026-09-29'
 - source: ltwiki
   name: BC857C
   def: model

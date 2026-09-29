@@ -204,6 +204,18 @@ models:
     not_measurable: 2
     typical_rows: 3
   copies:
+  - source: bordodynov-qspice
+    name: IRF640_
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
+  - source: bordodynov-qspice
+    name: IRF640
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: groupsio-ltspice
     name: IRF640
     get:
@@ -363,6 +375,12 @@ models:
     not_measurable: 2
     typical_rows: 3
   copies:
+  - source: bordodynov-qspice
+    name: IRF640h
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: kicad-spice-library
     name: IRF640h
     get:
@@ -465,6 +483,13 @@ models:
     sha256: 7e57e30fa48c9cf43578457aa48aaa511c0c6a6a998a334fae970c469e3be74c
     lines:
       IRF640: [46, 46]
+  copies:
+  - source: bordodynov-qspice
+    name: IRF640
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/NMOS.txt
+      sha256: 7e57e30fa48c9cf43578457aa48aaa511c0c6a6a998a334fae970c469e3be74c
 - source: duncanamps
   name: XIRF640
   def: subckt
@@ -476,6 +501,25 @@ models:
     lines:
       XIRF640: [320, 341]
     fetched: '2026-09-14'
+- source: bordodynov-qspice
+  name: IRF640h
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/MOS/IRF640h.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 570810f52746cf01e08718369026960ea0bd94b9a25a8b7f16c7d00820863fb3
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: IRF640h
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/MOS/IRF640h.qsym
+      sha256: 570810f52746cf01e08718369026960ea0bd94b9a25a8b7f16c7d00820863fb3
 - source: ltwiki
   name: IRF640
   def: model

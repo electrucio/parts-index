@@ -34,6 +34,12 @@ models:
     get:
       url: https://www.cordellaudio.com/book/Cordell-Models.txt
       sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
+  - source: bordodynov-qspice
+    name: GREEN
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Cordell-Models.txt
+      sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
   - source: cordell
     name: GREEN
     get:
@@ -234,6 +240,12 @@ models:
     typical_rows: 6
   note: found under the alias GREEN
   copies:
+  - source: bordodynov-qspice
+    name: GREEN
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: groupsio-ltspice
     name: GREEN
     get:
@@ -347,6 +359,26 @@ models:
     fail: 0
     not_measurable: 0
     typical_rows: 6
+- source: bordodynov-qspice
+  name: LedGreen
+  def: model
+  type: D
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/dio.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
+    lines:
+      LedGreen: [124, 124]
+    fetched: '2026-09-29'
+  copies:
+  - source: bordodynov-qspice
+    name: LedGreen
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Library/LedGreen.qsym
+      sha256: 9a5ac544d96c149c7f73895ced1adfef00c0433c78292bca9f378ba28a6667ec
 datasheet:
   url: https://www.vishay.com/docs/83012/tlhg540.pdf
   maker: Vishay

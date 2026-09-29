@@ -116,3 +116,22 @@ models:
       4N27: [3, 11]
     fetched: '2026-09-14'
   note: 'found under the alias 4N27; same code also in: kicad-spice-library, ltwiki'
+- source: bordodynov-qspice
+  name: 4N25
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/Opto/4N25.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: cf6a24460c4b70e568dbb17f78e5f03cd0061632915b259e5e5c185e92451836
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: 4N25
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/Opto/4N25.qsym
+      sha256: cf6a24460c4b70e568dbb17f78e5f03cd0061632915b259e5e5c185e92451836

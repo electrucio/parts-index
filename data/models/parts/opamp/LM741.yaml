@@ -42,6 +42,18 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: sub/LM741.lib
       sha256: b962f54f7bf406ddad42e00df533e886a04847d18173b38eec521070b62f662c
+  - source: bordodynov-qspice
+    name: LM741
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Library/Opamp/LM741.qsym
+      sha256: 4d5895cd13a12259efbd5fe7b01d295584d4e315dd677d65b0c4cf98493d8ab9
+  - source: bordodynov-qspice
+    name: LM741
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/Opamp/LM741.qsym
+      sha256: 4d5895cd13a12259efbd5fe7b01d295584d4e315dd677d65b0c4cf98493d8ab9
   - source: kicad-spice-library
     name: LM741
     get:
@@ -468,6 +480,38 @@ models:
     fetched: '2026-09-21'
   note: found under the alias uA741
 - source: bordodynov
+  name: lm741_r
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: http://bordodynov.ltwiki.org/lib.zip
+    member: sub/lm741_r.txt
+    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
+    sha256: 875c13d3b4bcf300bfbabbda7d3f8b3fe16aab90093bed33a2e949513153bd97
+    lines:
+      lm741_r: [1, 36]
+    fetched: '2026-09-21'
+  copies:
+  - source: bordodynov-qspice
+    name: lm741_r
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Library/OPAMP_R/LM741_R.qsym
+      sha256: 5198007d1d4f7645df6e8f0643877675390910ea76a4868f116a09286882075a
+  - source: bordodynov-qspice
+    name: lm741_r
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/OPAMP_R/LM741_R.qsym
+      sha256: 5198007d1d4f7645df6e8f0643877675390910ea76a4868f116a09286882075a
+  - source: ltwiki
+    name: lm741_r
+    get:
+      url: http://bordodynov.ltwiki.org/lib.zip
+      member: lib/sub/lm741_r.txt
+      sha256: 875c13d3b4bcf300bfbabbda7d3f8b3fe16aab90093bed33a2e949513153bd97
+- source: bordodynov
   name: LM741_NSC
   def: subckt
   type: SUBCKT
@@ -501,26 +545,6 @@ models:
       url: http://ltwiki.org/files/LargeCollection.zip
       member: LargeCollection/LTspiceIV/lib/sub/OpAmp_NSC.lib
       sha256: 640cf42a735c898a54951becb5657cb42ecbfd75453e22e5d739958213f9cf2c
-- source: bordodynov
-  name: lm741_r
-  def: subckt
-  type: SUBCKT
-  verbatim: true
-  get:
-    url: http://bordodynov.ltwiki.org/lib.zip
-    member: sub/lm741_r.txt
-    archive_sha256: dfaae06ebeaf2a37b0a493f60067728f0f1bb80ac0f8b1f5f7a27d4250a6ea9b
-    sha256: 875c13d3b4bcf300bfbabbda7d3f8b3fe16aab90093bed33a2e949513153bd97
-    lines:
-      lm741_r: [1, 36]
-    fetched: '2026-09-21'
-  copies:
-  - source: ltwiki
-    name: lm741_r
-    get:
-      url: http://bordodynov.ltwiki.org/lib.zip
-      member: lib/sub/lm741_r.txt
-      sha256: 875c13d3b4bcf300bfbabbda7d3f8b3fe16aab90093bed33a2e949513153bd97
 - source: ltwiki
   name: LM741
   def: subckt

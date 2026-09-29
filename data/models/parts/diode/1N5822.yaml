@@ -78,6 +78,12 @@ models:
     not_measurable: 0
     typical_rows: 4
   copies:
+  - source: bordodynov-qspice
+    name: 1N5822
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/dio.txt
+      sha256: d527fc87b258835509bb494c1963fb62b33f48441a5207db91261e3975932b4b
   - source: groupsio-ltspice
     name: 1N5822
     get:
@@ -378,6 +384,13 @@ models:
     sha256: 77d471af2ae9494b08252dd53e648f3cafcfb17d1844579217cf4886f41604b2
     lines:
       1N5822: [24, 24]
+  copies:
+  - source: bordodynov-qspice
+    name: 1N5822
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Schottky.txt
+      sha256: 77d471af2ae9494b08252dd53e648f3cafcfb17d1844579217cf4886f41604b2
 - source: kicad-spice-library
   name: 1N5822
   def: subckt

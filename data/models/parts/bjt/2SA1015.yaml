@@ -199,6 +199,26 @@ models:
     fail: 1
     not_measurable: 0
     typical_rows: 0
+- source: bordodynov-qspice
+  name: 2SA1015
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      2SA1015: [317, 317]
+    fetched: '2026-09-29'
+  copies:
+  - source: bordodynov-qspice
+    name: Q2SA1015
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pnpmy.txt
+      sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
 - source: ltwiki
   name: Q2sa1015
   def: model

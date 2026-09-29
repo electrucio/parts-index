@@ -223,6 +223,12 @@ models:
     not_measurable: 1
     typical_rows: 3
   copies:
+  - source: bordodynov-qspice
+    name: IRF540N
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/pmosmy.txt
+      sha256: d946ea6f14e33b1d0726cee97544057fdc87871409431261b26a52e310be2f2e
   - source: groupsio-ltspice
     name: IRF540N
     get:
@@ -359,6 +365,25 @@ models:
     lines:
       irf540ns_AM: [5024, 5083]
     fetched: '2026-09-21'
+- source: bordodynov-qspice
+  name: IRF540N
+  def: model
+  type: VDMOS
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/MOS/IRF540N.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 9647d084bad4588cba47db24cd50a8e9d1901ab1eee3269da22995a95117d287
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: IRF540N
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/MOS/IRF540N.qsym
+      sha256: 9647d084bad4588cba47db24cd50a8e9d1901ab1eee3269da22995a95117d287
 datasheet:
   url: https://www.infineon.com/assets/row/public/documents/24/49/infineon-irf540n-datasheet-en.pdf
   maker: Infineon (International Rectifier)

@@ -189,6 +189,38 @@ models:
       url: https://groups.io/g/LTspice/files/z_yahoo/Lib/cmp/Standard.zip
       member: standard.bjt
       sha256: 84136a15d4231a7bcba0fc0b871f152550583f31e82c2cd063b03527ac872d40
+- source: bordodynov-qspice
+  name: AC128
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/AC125 Spice model.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 3fd7ab0bebbffdc4111d9ef6de01cb54e20e5730303d7de36ef6fde33cef16e9
+    lines:
+      AC128: [56, 66]
+    fetched: '2026-09-29'
+  copies:
+  - source: diystompboxes
+    name: AC128
+    get:
+      url: https://www.diystompboxes.com/smfforum/index.php?topic=78932.0
+      sha256: adfe930a1b749513833791af4df2b5ab8ec72624fc9ba936383bb5550ee23f3e
+- source: bordodynov-qspice
+  name: AC128
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      AC128: [103, 103]
+    fetched: '2026-09-29'
 - source: diystompboxes
   name: AC128
   def: model
@@ -274,17 +306,6 @@ models:
     get:
       url: https://www.diyaudio.com/community/attachments/lin-1956-amplifier-and-germanium-models-zip.1642963/
       sha256: 13115647726b2cef332c9af2fcad7a417d900e8d66d0c34f2c4992bdde82cbd0
-- source: diystompboxes
-  name: AC128
-  def: model
-  type: PNP
-  verbatim: true
-  get:
-    url: https://www.diystompboxes.com/smfforum/index.php?topic=78932.0
-    sha256: adfe930a1b749513833791af4df2b5ab8ec72624fc9ba936383bb5550ee23f3e
-    lines:
-      AC128: [85, 95]
-    fetched: '2026-09-20'
 datasheet:
   url: https://www.worldradiohistory.com/Archive-Catalogs/Suppliers/MNO/Mullard-Technical-Handbook-Book1-Part1-1974-695-pages.pdf
   maker: mullard

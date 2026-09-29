@@ -319,6 +319,18 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: sub/OpAmp_Nazar_Shtybel.lib
       sha256: 4781654faf3d2ec54bf5acd80471ac9d119fb98d495698f460aa8839ee45e05d
+  - source: bordodynov-qspice
+    name: TL071_SN
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Library/Opamp/TL071_sn.qsym
+      sha256: f87c41356588896801bfcf3de7bcb011b195f9b57ca161babba56d267a3266cd
+  - source: bordodynov-qspice
+    name: TL071_SN
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/Opamp/TL071_sn.qsym
+      sha256: f87c41356588896801bfcf3de7bcb011b195f9b57ca161babba56d267a3266cd
 - source: microcap12
   name: TL071_MC
   def: subckt
@@ -338,6 +350,25 @@ models:
     get:
       url: https://raw.githubusercontent.com/kicad-spice-library/KiCad-Spice-Library/a8688952bcaab19f567bc4db237b60bde03ef310/Models/uncategorized/spice_complete/m_opamp.lib
       sha256: bfbf4e51462367a37800fa5c0f5a2b3190a30da3e6321416caa3e14b91ff274a
+- source: bordodynov-qspice
+  name: TL071-R
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/OPAMP_R/TL071-R.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: ae8d68630f58d7163d1aece99f83052ba9f7cf7dffdea8d58785e77300415149
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: TL071-R
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/OPAMP_R/TL071-R.qsym
+      sha256: ae8d68630f58d7163d1aece99f83052ba9f7cf7dffdea8d58785e77300415149
 - source: kicad-spice-library
   name: TL071S
   def: subckt

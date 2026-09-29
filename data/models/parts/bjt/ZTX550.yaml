@@ -242,6 +242,13 @@ models:
     lines:
       PNP: [2, 2]
       ZTX550: [395, 398]
+  copies:
+  - source: bordodynov-qspice
+    name: ZTX550
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/PNP.txt
+      sha256: 8f0cc4316d5b11b4d3baa0b84bbacd1b34ed8b7bbbe7eb263ac09ff09e70652c
 - source: duncanamps
   name: QZTX550
   def: model
@@ -253,6 +260,32 @@ models:
     lines:
       QZTX550: [698, 700]
     fetched: '2026-09-14'
+- source: bordodynov-qspice
+  name: ZTX550
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      ZTX550: [371, 371]
+    fetched: '2026-09-29'
+- source: bordodynov-qspice
+  name: ZTX550
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/KT-Cordell models.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: d5673436d486b73461b3ac8f70a4f439351ea4518bb3ba4acc7677caa5292434
+    lines:
+      ZTX550: [174, 174]
+    fetched: '2026-09-29'
 - source: groupsio-ltspice
   name: ZTX550
   def: model

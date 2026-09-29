@@ -800,6 +800,25 @@ models:
       url: http://bordodynov.ltwiki.org/lib.zip
       member: lib/sub/LM324LV.cir
       sha256: 495c0f46b9ab0fd8dce13dba69ad0deef3101e42b8667134217f178981fadd04
+- source: bordodynov-qspice
+  name: LM324
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/OPAMP_R/LM324.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 3d4eb088a2576cfc22cfb7f784b1babd83d539a32dbdb0f233d18a987e879715
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: LM324
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/OPAMP_R/LM324.qsym
+      sha256: 3d4eb088a2576cfc22cfb7f784b1babd83d539a32dbdb0f233d18a987e879715
 - source: ltwiki
   name: LM324
   def: subckt

@@ -141,6 +141,19 @@ models:
     get:
       url: https://www.onsemi.com/download/models/lib/mjl4302a.rev0.lib
       sha256: dd24998ada9ef4699d94cb03cd13c8fc7511a9cbf5c07029ecc9919ceb418a37
+- source: bordodynov-qspice
+  name: mjL4302a
+  def: model
+  type: PNP
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/pnpmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: b62e8b7433504cb43360ea2f1d2b7665caf5e965d849252e9a45745cd13c6824
+    lines:
+      mjL4302a: [412, 412]
+    fetched: '2026-09-29'
 datasheet:
   url: https://www.onsemi.com/pdf/datasheet/mjl4281a-d.pdf
   maker: onsemi

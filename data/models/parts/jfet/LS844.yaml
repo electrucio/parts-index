@@ -73,6 +73,12 @@ models:
     get:
       url: https://www.cordellaudio.com/book/Cordell-Models.txt
       sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
+  - source: bordodynov-qspice
+    name: LS844C
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/Cordell-Models.txt
+      sha256: efe0150bcf2c835b10fe8c7b84cbb59e3e3f5bd4cf4fe974f8284e96dafda573
   - source: cordell
     name: LS844C
     get:
@@ -317,6 +323,13 @@ models:
     sha256: 1eecb317d294dfd7730c4f9070b7f3da9fc4938412714089b87d1948f46fc741
     lines:
       LS844: [159, 159]
+  copies:
+  - source: bordodynov-qspice
+    name: LS844
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/NJF.txt
+      sha256: 1eecb317d294dfd7730c4f9070b7f3da9fc4938412714089b87d1948f46fc741
 datasheet:
   url: https://www.linearsystems.com/_files/ugd/7e8069_af7c9fb7f03c4b5d9006d837ab0e39e7.pdf
   maker: Linear Integrated Systems

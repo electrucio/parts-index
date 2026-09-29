@@ -224,6 +224,25 @@ models:
       url: http://www.spectrum-soft.com/download/mc12cd.zip
       member: LIBRARY/mc.lib
       sha256: 9e6a5b46e8405605b3f004924fa5b2852f67b9470fe1c5bec2c8e144400f2abe
+- source: bordodynov-qspice
+  name: MCP6001
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/Opamp/MCP6001.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 635a6f7b677b5a0365364e055e470ad0165599463b3a5cbf98414c6f6c817b35
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: MCP6001
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/Opamp/MCP6001.qsym
+      sha256: 635a6f7b677b5a0365364e055e470ad0165599463b3a5cbf98414c6f6c817b35
 - source: ltwiki
   name: MCP6001
   def: subckt

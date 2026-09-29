@@ -210,6 +210,25 @@ models:
       url: http://ltwiki.org/files/LargeCollection.zip
       member: LargeCollection/LTspiceIV/examples/Robertugo/Modelos/tl494/Final/tl494.sub
       sha256: d0a3d13497f8dcfbd13c857472d08da6601367abc6565265ee6cb699e8693219
+- source: bordodynov-qspice
+  name: TL494
+  def: subckt
+  type: SUBCKT
+  verbatim: true
+  get:
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Library/SWReg/TL494.qsym
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: bb5c34aff33a34b72cb5326c11dc2f2a4153a07cdb250ff3fe6698443af14ad0
+    fetched: '2026-09-29'
+    note: the model is inside the QSPICE symbol, in its «library file» field
+  copies:
+  - source: bordodynov-qspice
+    name: TL494
+    get:
+      url: https://disk.yandex.ru/d/UEodTEDFRfihLA
+      member: Library/SWReg/TL494.qsym
+      sha256: bb5c34aff33a34b72cb5326c11dc2f2a4153a07cdb250ff3fe6698443af14ad0
 datasheet:
   url: https://www.ti.com/lit/ds/symlink/tl494.pdf
   maker: Texas Instruments

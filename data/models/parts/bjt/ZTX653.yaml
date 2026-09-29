@@ -35,6 +35,12 @@ models:
     get:
       url: https://www.diodes.com/spice/download/2660/ZTX653.spice.txt
       sha256: 845596f88538bf28a6afcce426774b7389cee717ba6427f833a0b0d479b53660
+  - source: bordodynov-qspice
+    name: ZTX653
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/npnmy.txt
+      sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
   - source: diodes-inc
     name: ZTX653
     get:
@@ -166,17 +172,32 @@ models:
     sha256: 02e7f34086291154c4ad5a23bd7be80641cec3ccd61609bfc623a1231183224b
     lines:
       ZTX653: [813, 817]
-- source: diyaudio
+  copies:
+  - source: bordodynov-qspice
+    name: ZTX653
+    get:
+      url: https://disk.yandex.ru/d/71M79VuY5sOWew
+      member: QSPICE/NPN.txt
+      sha256: 02e7f34086291154c4ad5a23bd7be80641cec3ccd61609bfc623a1231183224b
+- source: bordodynov-qspice
   name: ZTX653
   def: model
   type: NPN
   verbatim: true
   get:
-    url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
-    sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/Cabirio-BJTmodels.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: a8397ba50980c5bd73b844e361c9e1071abfaa7024baef57e0c6e3cb631aa876
     lines:
-      ZTX653: [306, 313]
-    fetched: '2026-09-20'
+      ZTX653: [293, 300]
+    fetched: '2026-09-29'
+  copies:
+  - source: diyaudio
+    name: ZTX653
+    get:
+      url: https://www.diyaudio.com/community/attachments/cabirio-bjtmodels-txt.1435021/
+      sha256: 81cfae0119349f05ef5b6bb9e8d1c7bdd43589abc3499c93eb8eb12b5778f59e
 - source: groupsio-ltspice
   name: ZTX653
   def: model

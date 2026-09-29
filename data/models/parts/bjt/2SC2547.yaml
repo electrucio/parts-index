@@ -3,14 +3,22 @@ kind: bjt
 priority: 3
 group: small_signal_npn
 models:
-- source: diyaudio
+- source: bordodynov-qspice
   name: 2SC2547
   def: model
   type: NPN
   verbatim: true
   get:
-    url: https://www.diyaudio.com/community/threads/2sc2547_2sa1085-spice-models.71785/post-4667589
-    sha256: dc511e2dbe1d3d649bc38994882dc3b2c62739d40dfa2fdf5d8052e00475ddf2
+    url: https://disk.yandex.ru/d/71M79VuY5sOWew
+    member: QSPICE/npnmy.txt
+    archive_sha256: 6189e3b1aa8c8728289c3f259982466b852aced242a6482f8080235f06a8c1ca
+    sha256: 228d5c44f98b63f1b053f3c14436f781a0e42078ef0b724b3344d4487a8f1892
     lines:
-      2SC2547: [31, 34]
-    fetched: '2026-09-20'
+      2SC2547: [1100, 1103]
+    fetched: '2026-09-29'
+  copies:
+  - source: diyaudio
+    name: 2SC2547
+    get:
+      url: https://www.diyaudio.com/community/threads/2sc2547_2sa1085-spice-models.71785/post-4667589
+      sha256: dc511e2dbe1d3d649bc38994882dc3b2c62739d40dfa2fdf5d8052e00475ddf2

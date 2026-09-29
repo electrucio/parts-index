@@ -130,3 +130,15 @@ def test_every_file_a_url_stands_for_is_credited_to_it(monkeypatch):
     monkeypatch.setattr(ix, "yields", lambda s: [])
     assert ix.credit("acme", ["raw/a.lib", "raw/b.lib"], {"https://forum/thread"}) == {
         "raw/a.lib": "https://forum/thread", "raw/b.lib": "https://forum/thread"}
+
+
+def test_a_qspice_symbol_is_read_for_the_netlist_it_carries(tmp_path):
+    """Bordodynov's QSPICE library keeps each model inside its symbol, line breaks written as \\n."""
+    body = (b"\xff\xd8\xff\xdb\xabsymbol 1n3715\n  \xabtype: X\xbb\n  \xablibrary file: |.subckt 1N3715 1 2\\n"
+            b"d1 1 2 DF\\n.model DF d (N=3.217 IS=4.716e-6)\\n.ends 1n3715\xbb\n  \xabshorted pins: false\xbb\n")
+    f = tmp_path / "1n3715.qsym"
+    f.write_bytes(body)
+    got = ix.scan_file(f, "sources/bordodynov-qspice/extracted/Library/1n3715.qsym", "bordodynov-qspice")
+    assert [(r["name"], r["kind"], r["parent"]) for r in got] == [("1N3715", "subckt", None), ("DF", "model", "1N3715")]
+    f.write_bytes(b"\xabsymbol X\n  \xablibrary file: NPN.txt\xbb\n")
+    assert ix.scan_file(f, "x.qsym", "s") == []
