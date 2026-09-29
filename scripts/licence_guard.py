@@ -4,7 +4,7 @@
 Used by the pre-commit hook (``--staged``) and by CI (``--all``). Standard library only.
 
 Blocks:
-  * anything under the private trees
+  * anything under the private trees, and the site's built output (where the data-sheet crops live)
   * documents and archives (PDF, zip, sqlite ...): the project publishes links, not files
   * files over 1 MB
   * SPICE model text outside the places where redistribution is known to be allowed
@@ -24,6 +24,9 @@ MAX_BYTES = 1_000_000
 MAX_BYTES_DATA = 50_000_000         # ledgers and exports under data/ are plain CSV: audiocircuit alone is 25 MB, GitHub warns at 50
 
 PRIVATE_DIRS = ("private_web_spice_models/", "private_material/")
+# What `make web` builds from data/, and the data-sheet crops made beside it: published only by the Pages
+# workflow (the crops as a release asset it downloads), never through git — CLAUDE.md rule 1.
+BUILT_DIRS = ("web/public/data/", "web/dist/")
 BLOCKED_SUFFIXES = {
     ".pdf", ".djvu", ".zip", ".tgz", ".gz", ".7z", ".rar", ".sqlite", ".sqlite3", ".db",
     ".xlsx", ".xls", ".msi", ".exe", ".dmg",
@@ -89,6 +92,8 @@ def check(path: str) -> list[str]:
     suffix = p.suffix.lower()
     if path.startswith(PRIVATE_DIRS):
         return [f"{path}: is under a private tree (never committed)"]
+    if path.startswith(BUILT_DIRS):
+        return [f"{path}: is built output (the site's data and the data-sheet crops), never committed"]
     if suffix in BLOCKED_SUFFIXES and not path.startswith(SUFFIX_EXCEPTIONS):
         problems.append(f"{path}: {suffix} files are not published; store a URL + sha256 instead")
     if suffix in SAVED_PAGE_SUFFIXES and not path.startswith(SAVED_PAGE_ALLOWED_PREFIXES):

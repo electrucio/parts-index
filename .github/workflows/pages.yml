@@ -7,6 +7,11 @@
 # are many and the site is rebuilt at milestones. The Pages site itself was created once, by an
 # administrator, with `gh api -X POST repos/electrucio/parts-index/pages -f build_type=workflow`: the
 # workflow's token may deploy to it but may not create it (done 2026-09-26).
+#
+# The data-sheet crops (CLAUDE.md rule 1: a table row or a graph, beside our reading of it) are made from
+# the PDFs on the maintainer's machine, which the runner never has. They travel as one release asset,
+# `crops.tar` on the release `datasheet-crops`, and are unpacked into the built site; without the asset
+# the site is built all the same, with page links instead of crops. Deleting the asset withdraws them.
 name: pages
 
 on:
@@ -37,6 +42,15 @@ jobs:
       - run: uv sync
       - run: cd web && npm ci --no-fund --no-audit
       - run: make web
+      - name: data-sheet crops, if published
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release download datasheet-crops --repo "$GITHUB_REPOSITORY" --pattern crops.tar --dir "$RUNNER_TEMP"; then
+            mkdir -p web/dist/data && tar -xf "$RUNNER_TEMP/crops.tar" -C web/dist/data
+          else
+            echo "no crops asset: the site shows page links instead"
+          fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

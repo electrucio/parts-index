@@ -59,7 +59,12 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
 
 1. **Links, not copies.** Never commit third-party documents, PDFs, scans, OCR text or manufacturer model
    text. Publish URL + sha256 + metadata. Model files go in `data/models/files/<source>/` only when the
-   source licence is on the allow-list, together with its LICENSE file.
+   source licence is on the allow-list, together with its LICENSE file. **One exception, the
+   maintainer's decision (2026-09-29): a data sheet may be quoted by small crops** — one table row or one
+   graph — shown beside our transcription or simulation of it, with maker, document, revision, page and a
+   link to the manufacturer's PDF; never whole pages or documents. Crops never enter git: they are made on
+   the maintainer's machine and published as a release asset the site's build downloads, so deleting the
+   asset withdraws them.
 2. **Forbidding redistribution does not forbid indexing.** Every model is indexed and linked to its source.
    For non-redistributable sources publish measured results, not a dump of the `.model` parameters.
 3. **Never bypass** a CAPTCHA, login, paywall, click-through licence or bot challenge. Respect

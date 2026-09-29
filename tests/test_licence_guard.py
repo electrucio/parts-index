@@ -64,3 +64,14 @@ def test_an_attachment_named_like_a_key_is_not_one_and_a_key_still_is():
     rx = dict(guard.CONTENT_PATTERNS)["API-key shaped string"]
     assert not rx.search("sk-" + "sallenkey-butt-1280-revb-sch-png")
     assert rx.search("sk-" + "proj-Ab3dEf6hIj9kLm2nOp5qRs8tUv")
+
+
+def test_built_output_and_the_data_sheet_crops_are_never_committed():
+    """Crops of data sheets are published only as a release asset (CLAUDE.md rule 1), never in git history."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("guard", GUARD)
+    guard = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(guard)
+    assert guard.check("web/public/data/crops/2N3904_onsemi/r3.webp")
+    assert guard.check("web/dist/data/part/2N3904.json")
+    assert not guard.check("web/src/parts.tsx")
