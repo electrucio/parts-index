@@ -1,0 +1,206 @@
+# Reference readings of data-sheet figures: what each graph plots and under which conditions, read off
+# the page images by Claude on 2026-09-29 — not yet looked at by a person. The companion of golden.yaml:
+# golden.yaml holds the tables' rows, this the figures; a vision model's readings will be measured
+# against both.
+#
+# figure: n (as printed), caption, page, and either
+#   kind: circuit      a test circuit; `rows` names the table rows it is the fixture of
+#   kind: graph        axes x/y: [quantity, unit, scale (lin|log), min, max]; series: one per curve, with
+#                      its label as printed, its line style and the conditions that differ between curves;
+#                      `fixed`: the conditions every curve shares; `bench`: the bench that draws the same
+#                      graph for a model, or none (and why)
+# Temperatures are the junction's (TJ) where the sheet says so; SPICE's .temp is the device temperature,
+# which is the junction's for a card without a thermal network.
+
+docs:
+- doc: 2N3904_onsemi
+  figures:
+  - {n: 1, caption: "Delay and Rise Time Equivalent Test Circuit", page: 3, kind: circuit, rows: [td, tr]}
+  - {n: 2, caption: "Storage and Fall Time Equivalent Test Circuit", page: 3, kind: circuit, rows: [ts, tf]}
+  - n: 3
+    caption: "Capacitance"
+    page: 4
+    kind: graph
+    x: [reverse bias voltage, V, log, 0.1, 40]
+    y: [capacitance, pF, log, 1.0, 10]
+    fixed: {f: 1.0e6, TJ: 25}
+    series:
+    - {label: Cibo, style: solid, cond: {junction: EB, VR: [0.1, 6.0]}}
+    - {label: Cobo, style: solid, cond: {junction: CB, VR: [0.1, 40]}}
+    bench: bjt-capacitance
+  - n: 4
+    caption: "Charge Data"
+    page: 4
+    kind: graph
+    x: [collector current, mA, log, 1.0, 200]
+    y: [charge Q, pC, log, 50, 5000]
+    fixed: {VCC: 40, IC/IB: 10}
+    series:
+    - {label: "QT, TJ = 25 °C", style: solid}
+    - {label: "QT, TJ = 125 °C", style: dashed}
+    - {label: QA, style: solid}
+    bench: none — the sheet does not give the circuit its charges are measured in
+  - n: 5
+    caption: "Turn-On Time"
+    page: 4
+    kind: graph
+    x: [collector current, mA, log, 1.0, 200]
+    y: [time, ns, log, 5, 500]
+    fixed: {IC/IB: 10}
+    series:
+    - {label: "tr @ VCC = 3.0 V", style: solid}
+    - {label: "tr @ 15 V", style: solid}
+    - {label: "tr @ 40 V", style: solid}
+    - {label: "td @ VOB = 0 V", style: solid}
+    - {label: "td @ 2.0 V", style: solid}
+    bench: none yet — a switching fixture per collector current, which the sheet does not draw
+  - n: 6
+    caption: "Rise Time"
+    page: 4
+    kind: graph
+    x: [collector current, mA, log, 1.0, 200]
+    y: [rise time tr, ns, log, 5, 500]
+    fixed: {VCC: 40, IC/IB: 10}
+    series:
+    - {label: "TJ = 25 °C", style: solid}
+    - {label: "TJ = 125 °C", style: dashed}
+    bench: none yet — a switching fixture per collector current, which the sheet does not draw
+  - n: 7
+    caption: "Storage Time"
+    page: 4
+    kind: graph
+    x: [collector current, mA, log, 1.0, 200]
+    y: ["storage time t's = ts - tf/8", ns, log, 5, 500]
+    fixed: {IB1: IB2}
+    series:
+    - {label: "IC/IB = 10, TJ = 25 °C", style: solid}
+    - {label: "IC/IB = 10, TJ = 125 °C", style: dashed}
+    - {label: "IC/IB = 20, TJ = 25 °C", style: solid}
+    - {label: "IC/IB = 20, TJ = 125 °C", style: dashed}
+    bench: none yet — a switching fixture per collector current, which the sheet does not draw
+  - n: 8
+    caption: "Fall Time"
+    page: 4
+    kind: graph
+    x: [collector current, mA, log, 1.0, 200]
+    y: [fall time tf, ns, log, 5, 500]
+    fixed: {VCC: 40, IB1: IB2}
+    series:
+    - {label: "IC/IB = 10, TJ = 25 °C", style: solid}
+    - {label: "IC/IB = 10, TJ = 125 °C", style: dashed}
+    - {label: "IC/IB = 20, TJ = 25 °C", style: solid}
+    - {label: "IC/IB = 20, TJ = 125 °C", style: dashed}
+    bench: none yet — a switching fixture per collector current, which the sheet does not draw
+  - n: 9
+    caption: "Noise Figure Variations: frequency"
+    page: 5
+    kind: graph
+    x: [frequency, kHz, log, 0.1, 100]
+    y: [noise figure NF, dB, lin, 0, 12]
+    fixed: {VCE: 5.0, TA: 25, bandwidth: 1.0 Hz}
+    series:
+    - {label: "RS = 200 Ω, IC = 1.0 mA", style: solid, cond: {RS: 200, IC: 1.0e-3}}
+    - {label: "RS = 200 Ω, IC = 0.5 mA", style: solid, cond: {RS: 200, IC: 0.5e-3}}
+    - {label: "RS = 1.0 k, IC = 50 µA", style: solid, cond: {RS: 1000, IC: 50.0e-6}}
+    - {label: "RS = 500 Ω, IC = 100 µA", style: solid, cond: {RS: 500, IC: 100.0e-6}}
+    bench: bjt-nf-frequency
+  - n: 10
+    caption: "Noise Figure Variations: source resistance"
+    page: 5
+    kind: graph
+    x: [source resistance RS, kΩ, log, 0.1, 100]
+    y: [noise figure NF, dB, lin, 0, 14]
+    fixed: {VCE: 5.0, TA: 25, f: 1000, bandwidth: 1.0 Hz}
+    series:
+    - {label: "IC = 1.0 mA", style: solid, cond: {IC: 1.0e-3}}
+    - {label: "IC = 0.5 mA", style: solid, cond: {IC: 0.5e-3}}
+    - {label: "IC = 50 µA", style: solid, cond: {IC: 50.0e-6}}
+    - {label: "IC = 100 µA", style: solid, cond: {IC: 100.0e-6}}
+    bench: bjt-nf-source
+  - n: 11
+    caption: "Current Gain"
+    page: 5
+    kind: graph
+    x: [collector current, mA, log, 0.1, 10]
+    y: [small-signal current gain hfe, "", log, 30, 300]
+    fixed: {VCE: 10, f: 1000, TA: 25}
+    series: [{label: hfe, style: solid}]
+    bench: bjt-hparams
+  - n: 12
+    caption: "Output Admittance"
+    page: 5
+    kind: graph
+    x: [collector current, mA, log, 0.1, 10]
+    y: [output admittance hoe, µmhos, log, 1, 100]
+    fixed: {VCE: 10, f: 1000, TA: 25}
+    series: [{label: hoe, style: solid}]
+    bench: bjt-hparams
+  - n: 13
+    caption: "Input Impedance"
+    page: 5
+    kind: graph
+    x: [collector current, mA, log, 0.1, 10]
+    y: [input impedance hie, kΩ, log, 0.2, 20]
+    fixed: {VCE: 10, f: 1000, TA: 25}
+    series: [{label: hie, style: solid}]
+    bench: bjt-hparams
+  - n: 14
+    caption: "Voltage Feedback Ratio"
+    page: 5
+    kind: graph
+    x: [collector current, mA, log, 0.1, 10]
+    y: [voltage feedback ratio hre, "X 10-4", log, 0.5, 10]
+    fixed: {VCE: 10, f: 1000, TA: 25}
+    series: [{label: hre, style: solid}]
+    bench: bjt-hparams
+  - n: 15
+    caption: "DC Current Gain"
+    page: 6
+    kind: graph
+    x: [collector current, mA, log, 0.1, 200]
+    y: [DC current gain hFE (normalised), "", log, 0.1, 2.0]
+    fixed: {VCE: 1.0}
+    normalised: "to hFE at IC = 10 mA, TJ = 25 °C (where the sheet's 25 °C curve reads 1.0)"
+    series:
+    - {label: "TJ = +125 °C", style: solid, cond: {TJ: 125}}
+    - {label: "+25 °C", style: solid, cond: {TJ: 25}}
+    - {label: "-55 °C", style: solid, cond: {TJ: -55}}
+    bench: bjt-hfe
+  - n: 16
+    caption: "Collector Saturation Region"
+    page: 6
+    kind: graph
+    x: [base current IB, mA, log, 0.01, 10]
+    y: [collector-emitter voltage VCE, V, lin, 0, 1.0]
+    fixed: {TJ: 25}
+    series:
+    - {label: "IC = 1.0 mA", style: solid, cond: {IC: 1.0e-3}}
+    - {label: "10 mA", style: solid, cond: {IC: 10.0e-3}}
+    - {label: "30 mA", style: solid, cond: {IC: 30.0e-3}}
+    - {label: "100 mA", style: solid, cond: {IC: 100.0e-3}}
+    bench: bjt-saturation
+  - n: 17
+    caption: "“ON” Voltages"
+    page: 6
+    kind: graph
+    x: [collector current, mA, log, 1.0, 200]
+    y: [voltage, V, lin, 0, 1.2]
+    fixed: {TJ: 25}
+    series:
+    - {label: "VBE(sat) @ IC/IB = 10", style: solid, cond: {quantity: vbesat, ratio: 10}}
+    - {label: "VBE @ VCE = 1.0 V", style: solid, cond: {quantity: vbe, VCE: 1.0}}
+    - {label: "VCE(sat) @ IC/IB = 10", style: solid, cond: {quantity: vcesat, ratio: 10}}
+    bench: bjt-on-voltages
+  - n: 18
+    caption: "Temperature Coefficients"
+    page: 6
+    kind: graph
+    x: [collector current, mA, lin, 0, 200]
+    y: [coefficient, mV/°C, lin, -2.0, 1.0]
+    fixed: {ratio: 10}
+    series:
+    - {label: "θVC for VCE(sat), +25 °C to +125 °C", style: solid, cond: {quantity: vcesat, T: [25, 125]}}
+    - {label: "θVC for VCE(sat), -55 °C to +25 °C", style: solid, cond: {quantity: vcesat, T: [-55, 25]}}
+    - {label: "θVB for VBE(sat), -55 °C to +25 °C", style: solid, cond: {quantity: vbesat, T: [-55, 25]}}
+    - {label: "θVB for VBE(sat), +25 °C to +125 °C", style: solid, cond: {quantity: vbesat, T: [25, 125]}}
+    bench: bjt-tempco

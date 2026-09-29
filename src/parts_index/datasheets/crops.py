@@ -2,8 +2,9 @@
 
     pidx datasheets crops [--force]
 
-For every published row (`pidx datasheets rows`) the box on its page it was read from, rendered from the
-PDF at 200 dpi as WebP into `config.web_crops()/<doc>/r<row>.webp`. They are quotations (CLAUDE.md
+For every published row (`pidx datasheets rows`) the box on its page it was read from, and for every
+published figure (`pidx datasheets figures`) its box, rendered from the PDF at 200 dpi as WebP into
+`config.web_crops()/<doc>/r<row>.webp` and `f<n>.webp`. They are quotations (CLAUDE.md
 rule 1): one row at a time, shown with the sheet's maker, title, page and link. They are made on the
 maintainer's machine, where the PDFs are, and never committed; `make crops-publish` packs them into the
 release asset the Pages workflow unpacks into the site.
@@ -18,6 +19,7 @@ import sys
 from collections import Counter
 
 from parts_index.core.config import (
+    datasheet_figures,
     datasheet_store,
     datasheet_values,
     datasheet_values_index,
@@ -64,6 +66,17 @@ def run(force: bool = False) -> Counter:
                     c["kept"] += 1
                     continue
                 data = crop(doc[int(r["page"]) - 1], json.loads(r["box"]))
+                target.write_bytes(data)
+                c["made"] += 1
+                c["bytes"] += len(data)
+        figs = datasheet_figures(sh["doc"])
+        if figs.exists():
+            for f in json.loads(figs.read_text(encoding="utf-8"))["figures"]:
+                target = out / f"f{f['n']}.webp"
+                if not f.get("box") or (target.exists() and not force):
+                    c["kept"] += bool(f.get("box"))
+                    continue
+                data = crop(doc[f["page"] - 1], f["box"])
                 target.write_bytes(data)
                 c["made"] += 1
                 c["bytes"] += len(data)

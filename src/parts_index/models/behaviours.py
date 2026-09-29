@@ -31,8 +31,8 @@ GROUPS = {
 # leakage.
 SYMBOLS: dict[str, dict[str, str]] = {
     "bjt": {
-        "hFE": "dc", "vbe": "dc", "vcesat": "dc", "vbesat": "dc",
-        "icbo": "leakage", "iebo": "leakage",
+        "hFE": "dc", "vbe": "dc", "vcesat": "dc", "vbesat": "dc", "hie": "dc", "hre": "dc", "hoe": "dc",
+        "icbo": "leakage", "iebo": "leakage", "icex": "leakage", "ibl": "leakage",
         "ft": "frequency", "cob": "capacitance", "cib": "capacitance",
         "nf": "noise", "en": "noise",
         "td": "switching", "tr": "switching", "ts": "switching", "tf": "switching",

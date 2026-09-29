@@ -11,7 +11,7 @@ WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
 
 .DEFAULT_GOAL := help
-.PHONY: vlm-image vlm-models vlm-serve vlm-stop sheets-pages sheets-extract sheets-evaluate sheets-crosscheck sim-vendor sim-qspice-capture sim-images sim-bjt sim-sample sim-batch datasheets-register datasheets-links datasheets-harvest datasheets-catalogue datasheets-databooks datasheets-rows datasheets-crops crops-publish web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-reconcile models-match models-found models-promote models-cards models-claims bench-run bench-publish datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
+.PHONY: vlm-image vlm-models vlm-serve vlm-stop sheets-pages sheets-extract sheets-evaluate sheets-crosscheck sim-vendor sim-qspice-capture sim-images sim-bjt sim-sample sim-batch datasheets-register datasheets-links datasheets-harvest datasheets-catalogue datasheets-databooks datasheets-rows datasheets-figures datasheets-crops crops-publish web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-reconcile models-match models-found models-promote models-cards models-claims bench-run bench-publish datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -214,7 +214,10 @@ datasheets-databooks:  ## (maintainer) the pages of old databooks on archive.org
 datasheets-rows:  ## (maintainer) publish the reference sheets' rows, each located on its page, into data/datasheets/values/
 	$(RUN) pidx datasheets rows
 
-datasheets-crops:  ## (maintainer) crop each published row from its PDF into web/public/data/crops (never committed)
+datasheets-figures:  ## (maintainer) publish the reference sheets' figures — box on the page, axes, series — into data/datasheets/figures/
+	$(RUN) pidx datasheets figures
+
+datasheets-crops:  ## (maintainer) crop each published row and figure from its PDF into web/public/data/crops (never committed)
 	$(RUN) pidx datasheets crops
 
 crops-publish:  ## (maintainer) upload the crops as the release asset the Pages workflow unpacks (CLAUDE.md rule 1)

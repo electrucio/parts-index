@@ -43,6 +43,8 @@ CHECKED = {
 NEEDS: dict[str, dict[str, tuple[str, ...]]] = {
     "gummel-poon": {
         "cob": ("CJC",), "cib": ("CJE",), "ft": ("TF", "CJE", "CJC"),
+        # the output admittance and the voltage feedback ratio are the Early effect seen at 1 kHz
+        "hoe": ("VAF",), "hre": ("VAF",),
         "td": ("TF", "TR", "CJE", "CJC"), "tr": ("TF", "TR", "CJE", "CJC"),
         "ts": ("TF", "TR", "CJE", "CJC"), "tf": ("TF", "TR", "CJE", "CJC"),
         "vbrceo": (), "vbrcbo": (), "vbrebo": (),

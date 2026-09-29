@@ -56,6 +56,7 @@ SYN = {
     "rdson": "rdson", "vgsth": "vgsth", "qg": "qg", "qgs": "qgs", "qgd": "qgd", "vsd": "vsd",
     "rg": "rg", "igssf": "igssf", "igssr": "igssr", "vdson": "vdson", "idon": "idon",
     "td": "td", "tr": "tr", "ts": "ts", "tf": "tf",
+    "hie": "hie", "hre": "hre", "hoe": "hoe", "ibl": "ibl", "icex": "icex",
 }
 COND = re.compile(r"([A-Za-z][A-Za-z0-9_()\[\]/]*)\s*[=≥≤<>]\s*([-+]?\d+(?:\.\d+)?)\s*([a-zA-Z/%]*)")
 TEMPERATURES = ("TA", "TJ", "TC", "TAMB")
@@ -73,8 +74,10 @@ def unit_factor(unit) -> float | None:
     """SI factor of a printed unit: 'mAdc' -> 1e-3, 'kohm' -> 1e3, 'umhos' -> 1e-6, '' -> 1."""
     u = clean(unit or "").strip().replace(" ", "")
     u = re.sub(r"dc$", "", u)
-    if u in ("", "-", "dB", "%", "X10-4"):
+    if u in ("", "-", "dB", "%"):
         return 1.0
+    if u.upper() in ("X10-4", "×10-4"):
+        return 1e-4                                     # hre, printed in units of 10^-4
     for base in BASES:
         if u.endswith(base):
             pre = u[: -len(base)]

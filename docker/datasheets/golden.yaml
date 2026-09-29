@@ -36,6 +36,15 @@ docs:
   - [NF, "IC=100uA, VCE=5.0V, RS=1.0kohm, f=1.0kHz", null, null, 5.0, dB]
   - [ts, "VCC=3.0V, IC=10mA, IB1=IB2=1.0mA", null, null, 200, ns]
   - [tf, "VCC=3.0V, IC=10mA, IB1=IB2=1.0mA", null, null, 50, ns]
+  # the rest of the table, read 2026-09-29 for the part page's benches (after the extraction experiment,
+  # whose results count the 19 rows above)
+  - [IBL, "VCE=30V, VEB=3.0V", null, null, 50, nAdc]
+  - [ICEX, "VCE=30V, VEB=3.0V", null, null, 50, nAdc]
+  - [hie, "IC=1.0mA, VCE=10V, f=1.0kHz", 1.0, null, 10, "k Ω"]
+  - [hre, "IC=1.0mA, VCE=10V, f=1.0kHz", 0.5, null, 8.0, "X 10-4"]
+  - [hoe, "IC=1.0mA, VCE=10V, f=1.0kHz", 1.0, null, 40, umhos]
+  - [td, "VCC=3.0V, VBE=0.5V, IC=10mA, IB1=1.0mA", null, null, 35, ns]
+  - [tr, "VCC=3.0V, VBE=0.5V, IC=10mA, IB1=1.0mA", null, null, 35, ns]
 
 - doc: 2N3906_onsemi
   pdf: bjt/2N3906_onsemi.pdf

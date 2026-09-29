@@ -221,6 +221,17 @@ def datasheet_values(doc: str) -> Path:
     return PUBLIC_DATA / "datasheets" / "values" / f"{doc}.csv"
 
 
+def datasheet_figures(doc: str) -> Path:
+    """One data sheet's figures: where each is on its page, and what it plots — axes, scales, series,
+    conditions, and the bench that draws the same graph for a model."""
+    return PUBLIC_DATA / "datasheets" / "figures" / f"{doc}.json"
+
+
+def datasheet_figure_reference() -> Path:
+    """The hand-read reference of data-sheet figures, the companion of `datasheet_reference`."""
+    return REPO_ROOT / "docker" / "datasheets" / "figures.yaml"
+
+
 def datasheet_reference() -> Path:
     """The hand-read reference rows of 20 data sheets (docker/datasheets/README.md, "The reference set")."""
     return REPO_ROOT / "docker" / "datasheets" / "golden.yaml"
@@ -617,6 +628,8 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("datasheet_values_index", "public", ()),
     ("datasheet_values", "public", ("2N3904_onsemi",)),
     ("datasheet_reference", "public", ()),
+    ("datasheet_figures", "public", ("2N3904_onsemi",)),
+    ("datasheet_figure_reference", "public", ()),
     ("verification", "public", ("bjt", "2N3904")),
     ("verification_state", "public", ()),
     ("known_parts", "public", ()),
