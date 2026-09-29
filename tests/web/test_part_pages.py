@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import csv
+from pathlib import Path
 
 import pytest
 
@@ -9,6 +10,7 @@ from parts_index.core import config
 from parts_index.web import parts as P
 
 SOURCES = ["esp", "el34world"]
+REPO = Path(__file__).resolve().parents[2]
 
 
 @pytest.fixture
@@ -187,7 +189,7 @@ def test_a_part_filed_under_two_kinds_is_reported_rather_than_hidden(data):
 def test_a_part_answers_to_every_device_it_could_be(data):
     """A JEDEC number cannot be told apart by its pattern: 2N3904 is a transistor, 2N5457 a JFET.
     Guessing one would hide the other, and the menu is a way of finding things."""
-    at = {k: i for i, (k, _) in enumerate(P.DEVICES)}
+    at = {k: i for i, (k, _, _) in enumerate(P.MENU)}
     bits = P.device_bits(P.KIND_MAP["bjt/jfet/mosfet"])
     for d in ("bjt", "jfet", "mosfet"):
         assert bits & (1 << at[d]), d
@@ -207,7 +209,8 @@ def test_the_menu_ships_whole_so_a_bit_always_means_the_same_device(data):
     idx = P.index()
     recipes, _ = P.model_recipes()
     rows, menu = P.search_index(idx, recipes)
-    assert [d["key"] for d in menu] == [k for k, _ in P.DEVICES]
+    assert [d["key"] for d in menu] == [k for k, _, _ in P.MENU]
+    assert len(menu) <= 32                  # the browser tests a row's bits as a 32-bit integer
     at = {d["key"]: i for i, d in enumerate(menu)}
     assert dict((r[0], r[4]) for r in rows)["TL072"] & (1 << at["opamp"])
 
@@ -386,3 +389,27 @@ def test_a_family_narrows_the_devices_a_part_could_be():
     assert P.narrowed(("bjt", "jfet", "mosfet"), "jfet") == ("jfet",)
     assert P.narrowed(("bjt",), "jfet") == ("bjt",)           # nothing shared: the part's own kind stands
     assert P.narrowed(("bjt",), "") == ("bjt",)
+
+
+def test_a_transistor_is_filed_by_polarity_only_when_every_source_agrees(data):
+    """2SC1815's name says NPN and nothing says otherwise. 2SA1295's name says PNP and a catalogue title
+    says NPN: it stays a silicon BJT, and its page shows both sources rather than picking one."""
+    import shutil
+    shutil.copytree(REPO / "data" / "parts" / "schemes", config.naming_schemes())     # the JIS letters
+    idx = P.index()
+    for part in ("2SC1815", "2SA1295", "BC109"):
+        idx["uses"][part] = [(0, {"doc": "0"})]
+    cat = dict.fromkeys(P.CATALOGUE_FIELDS, "")
+    idx["catalogued"]["2SA1295"] = [[{**cat, "maker": "sanken", "title": "Silicon NPN transistor",
+                                      "page": "https://x.example/2sa1295"}[k] for k in P.CATALOGUE_FIELDS]]
+    rows, menu = P.search_index(idx, {})
+    at = {d["key"]: i for i, d in enumerate(menu)}
+    bits = {r[0]: r[4] for r in rows}
+    assert bits["2SC1815"] & (1 << at["bjt-npn"]) and bits["2SC1815"] & (1 << at["bjt"])
+    assert not bits["2SC1815"] & (1 << at["bjt-pnp"])
+    assert bits["2SA1295"] & (1 << at["bjt"])
+    assert not bits["2SA1295"] & ((1 << at["bjt-npn"]) | (1 << at["bjt-pnp"]))
+    assert not bits["BC109"] & ((1 << at["bjt-npn"]) | (1 << at["bjt-pnp"]))     # nothing says which
+    assert {d["key"]: d.get("parent") for d in menu}["bjt-npn"] == "bjt"
+    claims = P.about("2SA1295", idx, None)["polarity"]
+    assert sorted(c[:3] for c in claims) == [["NPN", "catalogue", "sanken"], ["PNP", "name", "jis-c7012"]]

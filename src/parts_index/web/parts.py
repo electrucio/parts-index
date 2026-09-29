@@ -57,7 +57,7 @@ from parts_index.core.config import (
     schematics_uses,
     wanted_parts,
 )
-from parts_index.core.parts import catalogue, schemes
+from parts_index.core.parts import catalogue, polarity, schemes
 from parts_index.core.parts.extractor import base_part, canonical, family_of
 from parts_index.web import checks
 
@@ -106,6 +106,28 @@ DEVICES: list[tuple[str, str]] = [
     ("opto", "Optocouplers"),
     ("control", "Control and utility"),
     ("passive", "Passives and hardware"),
+]
+
+# Which way round a transistor is, as an entry of its own under each of the four: (device, polarity, key,
+# label). A part is filed under one only when every source that says which agrees (`core.parts.polarity`);
+# one nothing settles stays under its device alone, which is why the device keeps its own entry.
+POLAR_DEVICES: list[tuple[str, str, str, str]] = [
+    ("bjt", "NPN", "bjt-npn", "NPN silicon BJT"),
+    ("bjt", "PNP", "bjt-pnp", "PNP silicon BJT"),
+    ("bjt-ge", "NPN", "bjt-ge-npn", "NPN germanium BJT"),
+    ("bjt-ge", "PNP", "bjt-ge-pnp", "PNP germanium BJT"),
+    ("jfet", "N-channel", "jfet-n", "N-channel JFET"),
+    ("jfet", "P-channel", "jfet-p", "P-channel JFET"),
+    ("mosfet", "N-channel", "mosfet-n", "N-channel MOSFET"),
+    ("mosfet", "P-channel", "mosfet-p", "P-channel MOSFET"),
+]
+# The question each device's polarity answers: a bipolar's NPN or PNP, a field-effect transistor's channel.
+DEVICE_CLASS = {"bjt": "bipolar", "bjt-ge": "bipolar", "jfet": "fet", "mosfet": "fet"}
+# The menu as the site shows it, (key, label, parent): each device, then the finer entries under it. A part
+# row carries one bit per entry, and the browser tests them as 32-bit integers, so it can hold 32.
+MENU: list[tuple[str, str, str]] = [
+    entry for key, label in DEVICES
+    for entry in [(key, label, ""), *((k, lab, key) for parent, _, k, lab in POLAR_DEVICES if parent == key)]
 ]
 
 # What each kind the data actually carries means in that vocabulary. A part number whose family cannot
@@ -271,6 +293,7 @@ def index() -> dict:
            "dictionary": dictionary_kinds()}
     idx["listed_by"], idx["listings"] = census_listings()
     idx["modelled"] = modelled_devices()
+    idx["modelled_polarity"] = modelled_polarity()
     idx["catalogued"] = catalogued()
     idx["sheets"] = archive_sheets()
     idx["harvested"] = harvested_sheets()
@@ -319,6 +342,49 @@ def modelled_devices() -> dict[str, tuple[str, ...]]:
 def devices_of(part: str, kind: str, idx: dict) -> tuple[str, ...]:
     """The devices a part answers to: from its kind, or failing that from what a model library says."""
     return KIND_MAP.get(kind, ()) or idx.get("modelled", {}).get(part, ())
+
+
+def modelled_polarity() -> dict[str, list[list[str]]]:
+    """Which way round each transistor is, by the device type the model libraries define it as, with the
+    link the census row gives: [polarity, library census, link]."""
+    reg = yaml.safe_load(census_registry().read_text(encoding="utf-8")) if census_registry().exists() else {}
+    out: dict[str, list[list[str]]] = defaultdict(list)
+    for src, e in (reg or {}).items():
+        if (e or {}).get("kind") != "model library":
+            continue
+        for r in rows(parts_census(src)):
+            for value in (r.get("polarity") or "").split():
+                out[r["part"]].append([value, src, r["url"]])
+    return out
+
+
+def polarity_claims(part: str, devices: tuple[str, ...], named, idx: dict) -> list[list[str]]:
+    """Everything that says which way round this part is: [polarity, basis, who, link].
+
+    The letters of its name under the scheme that read them; the device type the model libraries settle
+    on; the words of a manufacturer's catalogue, its category or its data sheet's title. Only the
+    questions the part's devices ask are answered: a TI title that says "N-channel MOSFET gate driver"
+    says nothing about the driver.
+    """
+    asked = {DEVICE_CLASS[d] for d in devices if d in DEVICE_CLASS}
+    out: list[list[str]] = []
+    if named and named.polarity:
+        out.append([named.polarity, "name", named.scheme, ""])
+    for value, src, url in idx.get("modelled_polarity", {}).get(part, ()):
+        out.append([value, "model", src, url])
+    for r in idx.get("catalogued", {}).get(part, ()):
+        c = dict(zip(CATALOGUE_FIELDS, r))
+        value = polarity.in_words(" ".join((c["category"], c["title"], c["name"])))
+        if value:
+            out.append([value, "catalogue", c["maker"], c["page"] or c["url"]])
+    return [c for c in out if polarity.CLASS[c[0]] in asked]
+
+
+def polar(devices: tuple[str, ...], claims: list[list[str]]) -> tuple[str, ...]:
+    """The devices, and the finer entry under each whose polarity every source that says agrees on."""
+    said = polarity.settled(claims)
+    return devices + tuple(k for parent, pol, k, _ in POLAR_DEVICES
+                           if parent in devices and said.get(DEVICE_CLASS[parent]) == pol)
 
 
 CATALOGUE_FIELDS = ("source", "maker", "category", "status", "title", "revision", "url", "page", "checked", "name")
@@ -602,6 +668,9 @@ def about(part: str, idx: dict, recipe: dict | None) -> dict:
     fid, basis = catalogue.family_of(part, devices, d.families if d else None)
     if fid:
         out["family"] = [fid, basis]
+    claims = polarity_claims(part, narrowed(devices, fid), d, idx)
+    if claims:
+        out["polarity"] = claims
     doc = catalogue.documented().get(part)
     if doc:
         out["documented"] = {"note": doc["note"], "refs": doc["refs"].split(), "status": doc["status"]}
@@ -858,12 +927,12 @@ def narrowed(devices: tuple[str, ...], family: str) -> tuple[str, ...]:
 
 
 def device_bits(devices: tuple[str, ...]) -> int:
-    """Which of `DEVICES` these are, as a bit per device.
+    """Which entries of `MENU` these are, as a bit per entry.
 
-    One number instead of a list of words: twenty-two devices fit in an integer, and a part row is read
-    fifteen thousand times.
+    One number instead of a list of words: thirty entries fit in an integer, and a part row is read
+    fifty thousand times.
     """
-    at = {k: i for i, (k, _) in enumerate(DEVICES)}
+    at = {k: i for i, (k, _, _) in enumerate(MENU)}
     bits = 0
     for d in devices:
         bits |= 1 << at[d]
@@ -890,10 +959,11 @@ def search_index(idx: dict, recipes: dict) -> tuple[list[list], list[dict]]:
         named = schemes.decode(part, devs, idx.get("known"))
         fid, _ = catalogue.family_of(part, devs, named.families if named else None)
         devs = narrowed(devs, fid)
+        devs = polar(devs, polarity_claims(part, devs, named, idx))
         if devs not in cache:
             cache[devs] = device_bits(devs)
         bits = cache[devs]
-        for i, (key, _) in enumerate(DEVICES):
+        for i, (key, _, _) in enumerate(MENU):
             if bits & (1 << i):
                 tally[key] += 1
         out.append([part, docs, uses, len(recipes.get(part, {}).get("models") or []), bits,
@@ -901,5 +971,6 @@ def search_index(idx: dict, recipes: dict) -> tuple[list[list], list[dict]]:
     # Every device ships, even the ones nothing answers to, because the bit a part carries is its
     # position here. Dropping the empty ones would renumber the rest, and a filter would quietly select
     # the wrong device — which is what the fixture caught. The site hides an entry with nothing in it.
-    menu = [{"key": k, "label": label, "n": tally[k]} for k, label in DEVICES]
+    menu = [{"key": k, "label": label, "n": tally[k], **({"parent": parent} if parent else {})}
+            for k, label, parent in MENU]
     return out, menu

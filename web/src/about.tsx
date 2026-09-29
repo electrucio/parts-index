@@ -12,7 +12,7 @@ import { useEffect, useMemo, useState } from 'preact/hooks'
 
 import { follow, loadCatalogue, loadIndex } from './data'
 import { Fold } from './fold'
-import type { Catalogue, Family, PartIndex, PartPage, PartRow } from './types'
+import type { About, Catalogue, Family, PartIndex, PartPage, PartRow } from './types'
 
 const nf = (v: number) => v.toLocaleString('en-GB')
 export const partHref = (p: string) => `?part=${encodeURIComponent(p)}`
@@ -148,6 +148,45 @@ export function PartName({ part, page }: { part: string; page: PartPage | null }
   )
 }
 
+/** The question each polarity answers: a bipolar transistor's NPN or PNP, a field-effect one's channel. */
+const QUESTION: Record<string, string> = { NPN: 'bipolar', PNP: 'bipolar', 'N-channel': 'fet', 'P-channel': 'fet' }
+
+/**
+ * Which way round the part is, once each: or null when two sources answer the same question differently,
+ * which is also when the parts list files it under neither. NPN and N-channel answer different questions.
+ */
+export function polarityOf(claims: NonNullable<About['polarity']>): string[] | null {
+  const said = new Map<string, Set<string>>()
+  for (const [value] of claims) {
+    const q = QUESTION[value] ?? value
+    said.set(q, (said.get(q) ?? new Set()).add(value))
+  }
+  const values = [...said.values()]
+  return values.some((v) => v.size > 1) ? null : values.flatMap((v) => [...v])
+}
+
+function Polarity({ claims, cat }: { claims: NonNullable<About['polarity']>; cat: Catalogue }) {
+  const settled = polarityOf(claims)
+  return (
+    <>
+      {settled ? <b>{settled.join(' · ')}</b> : <b>The sources disagree</b>}
+      {claims.map(([value, basis, who, url], i) => (
+        <div key={i} class="muted small">
+          {!settled && <>{value}, </>}
+          {basis === 'name' ? (
+            <>from the letters of its name, under <A href={`?scheme=${who}`}>{cat.schemes[who]?.label ?? who}</A></>
+          ) : basis === 'model' ? (
+            <>from the device type the SPICE model libraries define it as{url && <> · <a href={url} target="_blank" rel="noopener">one source</a></>}</>
+          ) : (
+            <>from {who ? <><MakerName id={who} cat={cat} />'s</> : 'a'} catalogue{url && <> · <a href={url} target="_blank" rel="noopener">the entry</a></>}</>
+          )}
+        </div>
+      ))}
+      {!settled && <div class="muted small">So the parts list files it under neither.</div>}
+    </>
+  )
+}
+
 function Facts({ page, cat, sources }: { page: PartPage; cat: Catalogue; sources: string[] }) {
   const a = page.about
   if (!a) return null
@@ -177,6 +216,7 @@ function Facts({ page, cat, sources }: { page: PartPage; cat: Catalogue; sources
       </>
     )])
   }
+  if (a.polarity?.length) rows.push(['Polarity', <Polarity claims={a.polarity} cat={cat} />])
   if (a.maker) {
     const [id, related] = a.maker
     const sheet = page.models?.datasheet

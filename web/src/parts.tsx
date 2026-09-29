@@ -35,10 +35,13 @@ const PAGE = 300
 
 /**
  * What kind of part a row is: the entries of the device menu it answers to, the same ones the filter
- * uses — every one it could be, so a D model nothing narrows says "Diodes / Germanium diodes".
+ * uses — every one it could be, so a D model nothing narrows says "Diodes / Germanium diodes". A finer
+ * entry says its device too, so a BC547 is an "NPN silicon BJT" and not also a "Silicon BJT".
  */
 export function typeOf(r: PartRow, menu: DeviceKind[]): string {
-  return menu.filter((_, i) => (r[4] & (1 << i)) !== 0).map((d) => d.label).join(' / ')
+  const on = menu.filter((_, i) => (r[4] & (1 << i)) !== 0)
+  const finer = new Set(on.map((d) => d.parent).filter(Boolean))
+  return on.filter((d) => !finer.has(d.key)).map((d) => d.label).join(' / ')
 }
 
 const COUNT: Record<Exclude<Sort, 'name'>, (r: PartRow) => number> = {
@@ -602,7 +605,8 @@ export function Browser({ part, onPick }: { part: string | null; onPick: (p: str
         >
           <option value="">Every kind of device</option>
           {(index?.deviceKinds ?? []).map((d) => (
-            d.n > 0 ? <option key={d.key} value={d.key}>{d.label} ({n(d.n)})</option> : null
+            // a finer entry is indented under its device; an em space survives where a space would not
+            d.n > 0 ? <option key={d.key} value={d.key}>{d.parent ? '\u2003' : ''}{d.label} ({n(d.n)})</option> : null
           ))}
         </select>
         <p class="count">

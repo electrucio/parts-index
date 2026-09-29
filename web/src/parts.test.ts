@@ -187,6 +187,21 @@ describe('the kind of part in the list', () => {
     expect(typeOf(['BC108', 1, 1, 0, BJT, 0], MENU)).toBe('Silicon BJT')
   })
 
+  it('is the finer entry when a source says which way round it is, and not its device as well', () => {
+    // the finer entry sits under its device, as the built menu has it
+    const menu: DeviceKind[] = [
+      { key: 'bjt', label: 'Silicon BJT', n: 2 },
+      { key: 'bjt-npn', label: 'NPN silicon BJT', n: 1, parent: 'bjt' },
+      { key: 'jfet', label: 'JFET', n: 1 },
+    ]
+    const [SI, NPN, J] = [1 << 0, 1 << 1, 1 << 2]
+    expect(typeOf(['BC547', 1, 1, 0, SI | NPN, 0], menu)).toBe('NPN silicon BJT')
+    expect(typeOf(['2N3904', 1, 1, 0, SI | NPN | J, -1], menu)).toBe('NPN silicon BJT / JFET')
+    expect(typeOf(['BC109', 1, 1, 0, SI, 0], menu)).toBe('Silicon BJT')
+    expect(ofDevice([['BC547', 1, 1, 0, SI | NPN, 0], ['BC109', 1, 1, 0, SI, 0]], 'bjt-npn', menu)
+      .map((r) => r[0])).toEqual(['BC547'])
+  })
+
   it('is every entry it could be when nothing narrows it', () => {
     expect(typeOf(['2N3055', 1, 1, 0, BJT | JFET, -1], MENU)).toBe('Silicon BJT / JFET')
     expect(typeOf(['X1', 1, 1, 0, 0, -1], MENU)).toBe('')
