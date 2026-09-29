@@ -553,6 +553,7 @@ hifisonix:
     allow: '^/(articles|projects)/'
     deny: '(?i)/uploads/.*(price-list|specifications|specs-only|product_information|user-instructions|drilling|pcb-dimensions|-wiring|board-layout|-layout\.|copper|overlay|silk-screen|single-sided|record-reviews|review-of-|on-bullshit|einstein|saturn-guidance|the-economy|upc1237|lm308a|psmn4r3|_en\.pdf)'
     max: 300
+    complete: true
   notes: 'One engineer''s working library of analogue audio, and one of the densest sources in this
     registry. 151 PDFs on 2026-09-26, of two kinds. His own designs — Ovation 250, SC-1 and Symphony, the
     e-Amp, the sx, nx, nx2, kx and kx2 amplifiers, the ax-Amp, the X-Altra preamplifiers, HPA-1, the
@@ -578,7 +579,19 @@ hifisonix:
     layers, wiring diagrams, user instructions, specification sheets, four data sheets (uPC1237, LM308A,
     PSMN4R3) which belong to the census and not here, the Pioneer receiver''s user manual as against its
     schematic — and On Bullshit, Einstein''s path to relativity, the Saturn guidance system and a piece
-    on the economy, which are his reading and not his circuits.'
+    on the economy, which are his reading and not his circuits.
+
+    Crawled to the end on 2026-09-29: 97 PDFs, 217 figures (152 JPEG, 53 PNG, 9 BMP, 3 GIF), 357 pages
+    walked. Of the 135 PDFs the walked pages link, 16 are denied and 25 live on other hosts — makers''
+    data sheets, Cordell, Leach, First Watt, Linear Audio — which are not his. Of his own, two are dead
+    links: the kx of December 2020, and a kx2 whose file is held under its later name,
+    kx2-Amplifier-November-2022.pdf. Two more, OPEX-1 and AFEC V3.0, are linked through the address of an
+    old server, 178.62.51.182, which the crawl does not take for his host; they were fetched by hand from
+    www.hifisonix.com under the same path.
+
+    The first full walk spent 143 of its 300 pages on ?currency=GBP, the shop''s currency switcher on
+    every page, which is why `currency=` is now in the crawl''s NEVER. The nine BMPs are the e-Amp of
+    2011 — circuit diagram, the three compensation schemes, protection, SOA, the thermal sensor.'
 hobbyist_specials:
   kind: magazine
   title: Hobbyist specials
