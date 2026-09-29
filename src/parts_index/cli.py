@@ -61,6 +61,14 @@ def main(argv: list[str] | None = None) -> int:
     mr.add_argument("--limit", type=int, default=0)
     mr.add_argument("--dry", action="store_true")
 
+    bch = sub.add_parser("bench", help="each part's models held against its data sheet").add_subparsers(
+        dest="bench_cmd", required=True)
+    brn = bch.add_parser("run", help="simulate every recipe model at its data sheet's rows, in the pinned images")
+    brn.add_argument("--engine", default="qspice", choices=("qspice", "ngspice", "ltspice"))
+    brn.add_argument("--part", help="only one part")
+    brn.add_argument("--workers", type=int, default=8)
+    bch.add_parser("publish", help="publish what the bench measured, with everything needed to repeat it")
+
     sch = sub.add_parser("schematics", help="the schematic index").add_subparsers(
         dest="sch_cmd", required=True)
     sd = sch.add_parser("download", help="fetch a source whose URLs are already listed")
@@ -263,6 +271,15 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "models" and args.mod_cmd == "found":
         from parts_index.models import found as model_found
         return model_found.main([])
+
+    if args.cmd == "bench" and args.bench_cmd == "run":
+        from parts_index.bench import run as bench_run
+        argv2 = ["--engine", args.engine, "--workers", str(args.workers)] + (["--part", args.part] if args.part else [])
+        return bench_run.main(argv2)
+
+    if args.cmd == "bench" and args.bench_cmd == "publish":
+        from parts_index.bench import publish as bench_publish
+        return bench_publish.main([])
 
     if args.cmd == "models" and args.mod_cmd == "claims":
         from parts_index.models import claims as model_claims

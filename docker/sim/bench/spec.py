@@ -32,17 +32,23 @@ def _n(x):
 
 
 class Runner:
+    """Writes each netlist beside the card (`model.lib`, which the netlist includes and never contains) and
+    keeps the text of every netlist it ran: they are our own work, published so a reader can run them."""
+
     def __init__(self, workdir, card):
         self.dir = Path(workdir)
         self.dir.mkdir(parents=True, exist_ok=True)
         (self.dir / "model.lib").write_text(card + "\n")
         self.k = 0
+        self.netlists = []
 
     def run(self, body):
         self.k += 1
         net = self.dir / f"r{self.k}.cir"
         head = engines.header(ENGINE)
-        net.write_text(f"* spec {self.k}\n.include \"model.lib\"\n{head}\n.options reltol=1e-4\n.temp 25\n{body}\n.end\n")
+        text = f"* spec {self.k}\n.include \"model.lib\"\n{head}\n.options reltol=1e-4\n.temp 25\n{body}\n.end\n"
+        net.write_text(text)
+        self.netlists.append(text)
         cost = engines.run(net, ENGINE, timeout=120)
         if not cost["raw"]:
             raise RuntimeError("no waveform: " + (net.with_suffix('.out').read_text(errors='replace')[-300:]))
@@ -286,6 +292,7 @@ def verdict(row, val):
 def main():
     jobs = json.loads(Path(sys.argv[1]).read_text())
     results = []
+    version = engines.version()
     for n, job in enumerate(jobs):
         r = Runner(Path("/tmp/spec") / f"j{n}", job["card"])
         try:
@@ -296,7 +303,8 @@ def main():
         for row in job["rows"]:
             val = vals.get(row["id"])
             rows.append({"id": row["id"], "sym": row["sym"], "value": val, "verdict": verdict(row, val)})
-        results.append({"part": job["part"], "model_id": job["model_id"], "engine": ENGINE, "rows": rows})
+        results.append({"part": job["part"], "model_id": job["model_id"], "engine": ENGINE, "version": version,
+                        "rows": rows, "netlists": r.netlists})
     Path(sys.argv[2]).write_text(json.dumps(results, indent=1, default=str))
 
 

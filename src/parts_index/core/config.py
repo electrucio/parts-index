@@ -528,6 +528,19 @@ def simulators() -> Path:
     return material_root() / "simulators"
 
 
+def sim_bench() -> Path:
+    """The bench's code as the simulator images run it (docker/sim/bench, mounted read-only)."""
+    return REPO_ROOT / "docker" / "sim" / "bench"
+
+
+def bench_runs(name: str | None = None) -> Path:
+    """The bench's runs against data sheets (`pidx bench run`): the jobs — each with its card — and what
+    each simulator returned, with the netlists it ran. Private because the jobs carry the cards;
+    `pidx bench publish` publishes everything else."""
+    d = simulators() / "bench"
+    return d / name if name else d
+
+
 def simulator_vendor() -> Path:
     """What the simulator images are built from, each checked against docker/sim/sha256/: ngspice's
     tarball, LTspice's MSI and the captured QSPICE program folder. Never published, and the images built
@@ -660,6 +673,8 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("datasheet_store", "private", ()),
     ("simulators", "private", ()),
     ("simulator_vendor", "private", ()),
+    ("bench_runs", "private", ()),
+    ("sim_bench", "public", ()),
     ("staging", "private", ()),
     ("legacy", "private", ()),
     ("llm_cache", "private", ()),

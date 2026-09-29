@@ -11,7 +11,7 @@ WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
 
 .DEFAULT_GOAL := help
-.PHONY: vlm-image vlm-models vlm-serve vlm-stop sheets-pages sheets-extract sheets-evaluate sheets-crosscheck sim-vendor sim-qspice-capture sim-images sim-bjt sim-sample sim-batch datasheets-register datasheets-links datasheets-harvest datasheets-catalogue datasheets-databooks datasheets-rows datasheets-crops crops-publish web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-reconcile models-match models-found models-promote models-cards models-claims datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
+.PHONY: vlm-image vlm-models vlm-serve vlm-stop sheets-pages sheets-extract sheets-evaluate sheets-crosscheck sim-vendor sim-qspice-capture sim-images sim-bjt sim-sample sim-batch datasheets-register datasheets-links datasheets-harvest datasheets-catalogue datasheets-databooks datasheets-rows datasheets-crops crops-publish web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-reconcile models-match models-found models-promote models-cards models-claims bench-run bench-publish datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -83,6 +83,12 @@ models-cards:  ## (maintainer) what each recipe model's card lacks, into data/ve
 
 models-claims:  ## (maintainer) what each recipe model's author declares, into data/verification/ (after promote)
 	$(RUN) pidx models claims
+
+bench-run:  ## (maintainer) simulate every recipe model at its data sheet's rows in the pinned images; [ENGINE=qspice] [PART=2N3904]
+	$(RUN) pidx bench run --engine $(or $(ENGINE),qspice) $(if $(PART),--part $(PART))
+
+bench-publish:  ## (maintainer) publish what the bench measured, with the netlists and versions to repeat it
+	$(RUN) pidx bench publish
 
 # --- simulators -------------------------------------------------------------------------------
 # QSPICE (the default engine), ngspice (the open cross-check) and LTspice (the compatibility check), in
