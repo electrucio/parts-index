@@ -59,7 +59,13 @@ def data(tmp_path, monkeypatch):
         "models:\n"
         "- source: ti\n  name: TL072\n  def: subckt\n  verbatim: true\n  symbol: TL072_ti.asy\n"
         "  get: {url: 'https://ti.example/tl072.lib', sha256: aa, lines: {TL072: [1, 9]}}\n"
-        "  verification: {score: 1.0, pass: 6, marginal: 0, fail: 0}\n",
+        "  verification: {score: 1.0, pass: 6, marginal: 0, fail: 0}\n"
+        "- source: ltwiki\n  name: TL082\n  def: subckt\n  verbatim: true\n"
+        "  note: 'STAND-IN: model of TL082, not of TL072; the equivalence is declared in data/models/wanted.yaml'\n"
+        "  get: {url: 'https://lt.example/tl082.lib'}\n"
+        "- source: kicad\n  name: TL07x\n  def: subckt\n  verbatim: true\n"
+        "  note: 'found under the alias TL07x; pins from names'\n"
+        "  get: {url: 'https://k.example/tl07x.lib'}\n",
         encoding="utf-8")
     return root
 
@@ -86,7 +92,21 @@ def test_the_recipe_is_trimmed_to_what_the_page_shows_and_carries_no_model_text(
     assert m["source"] == "ti" and m["symbol"] == "TL072_ti.asy"
     assert m["get"]["url"] == "https://ti.example/tl072.lib"
     assert "lines" not in m["get"] and "sha256" not in m["get"]   # the page does not need them
-    assert m["score"] == 1.0 and m["rows"] == [6, 0, 0]
+    # The old bench's scores stay in the recipe and off the page.
+    assert "score" not in m and "rows" not in m
+    assert "preferred" not in page["models"] and "why" not in page["models"]
+
+
+def test_a_stand_in_or_an_alias_is_said_beside_the_model():
+    """A stand-in is a model of another part: the page must say so without the reader opening anything."""
+    stand_in, alias = P.trim_models({"models": [
+        {"source": "a", "name": "PC817", "def": "subckt", "get": {},
+         "note": "STAND-IN: model of PC817, not of EL357N; equivalence declared in catalog/wanted.yaml"},
+        {"source": "b", "name": "OPA161x", "def": "subckt", "get": {},
+         "note": "found under the alias OPA161x; pins from names"},
+    ]})["models"]
+    assert stand_in["standin"] == "PC817" and "alias" not in stand_in
+    assert alias["alias"] == "OPA161x" and "standin" not in alias
 
 
 def test_the_source_names_are_not_repeated_in_every_part_file(data):
@@ -100,7 +120,7 @@ def test_the_search_index_holds_every_part_from_either_side(data):
     recipes, _ = P.model_recipes()
     rows, menu = P.search_index(idx, recipes)
     assert [r[0] for r in rows] == ["12AX7", "TL072"]
-    assert dict((r[0], r[3]) for r in rows)["TL072"] == 1     # one model candidate
+    assert dict((r[0], r[3]) for r in rows)["TL072"] == 3     # three model candidates
     at = {d["key"]: i for i, d in enumerate(menu)}
     assert dict((r[0], r[4]) for r in rows)["TL072"] & (1 << at["opamp"])   # from its recipe
     assert dict((r[0], r[4]) for r in rows)["12AX7"] & (1 << at["tube"])    # from the dictionary

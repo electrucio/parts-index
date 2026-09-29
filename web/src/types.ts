@@ -60,9 +60,10 @@ export interface PartModel {
   get: { url?: string; member?: string; installed_with?: string; file?: string; how?: string }
   /** The same model in other sources, each with its own link. */
   copies?: { source: string; name: string; url?: string; member?: string; installed_with?: string }[]
-  score?: number
-  /** pass, marginal, fail — the datasheet rows this model was judged against. */
-  rows?: [number, number, number]
+  /** A model of another part, filed for this one: the part it models. */
+  standin?: string
+  /** The name the model was found under, when it is not the part's own. */
+  alias?: string
 }
 
 /** What one page's use of the part was read as: a circuit, a technique, a table, an advert, a part
@@ -97,8 +98,6 @@ export interface PartPage {
   n: { documents: number; shown: number; copies: number; repos?: number }
   models?: {
     kind: string
-    preferred: string
-    why: string
     models: PartModel[]
     datasheet?: { url: string; maker?: string; doc?: string; date?: string }
   }

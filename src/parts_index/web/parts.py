@@ -141,6 +141,11 @@ MODEL_LIBRARY_KINDS: dict[str, tuple[str, ...]] = {
     "jfet": ("jfet",), "mosfet": ("mosfet",),
 }
 MODEL_KEYS = ("source", "name", "def", "type", "pins", "verbatim", "changes", "symbol")
+# The two notes `models promote` writes when a model was found under a name other than the part's own, in
+# the curation's wording and in promote.match_note's. The page shows them beside the model, because a
+# stand-in is a model of another part.
+STAND_IN = re.compile(r"STAND-IN: model of ([^,;]+), not of ")
+ALIAS = re.compile(r"found under the alias ([^;,]+)")
 
 
 def rows(path):
@@ -693,9 +698,12 @@ def model_recipes() -> tuple[dict[str, dict], list[str]]:
 
 
 def trim_models(doc: dict) -> dict:
-    """The recipe as the page shows it: what each model is, how good it was, and where to get it."""
-    out = {"kind": doc.get("kind", ""), "preferred": doc.get("preferred", ""),
-           "why": doc.get("preferred_why", ""), "models": []}
+    """The recipe as the page shows it: what each model is, whose model it is, and where to get it.
+
+    The old scores (`verification`, `preferred`, `preferred_why`) stay in the recipe and off the page: they
+    came from a bench whose datasheet agreement was never measured properly.
+    """
+    out = {"kind": doc.get("kind", ""), "models": []}
     for m in doc.get("models") or []:
         e = {k: m[k] for k in MODEL_KEYS if m.get(k) not in (None, "", [])}
         get = m.get("get") or {}
@@ -707,10 +715,11 @@ def trim_models(doc: dict) -> dict:
             e["copies"] = [{"source": c["source"], "name": c["name"],
                             **{k: (c.get("get") or {})[k] for k in ("url", "member", "installed_with")
                                if (c.get("get") or {}).get(k)}} for c in m["copies"]]
-        v = m.get("verification") or {}
-        if v.get("score") is not None:
-            e["score"] = v["score"]
-            e["rows"] = [v.get("pass", 0), v.get("marginal", 0), v.get("fail", 0)]
+        note = m.get("note") or ""
+        if (x := STAND_IN.search(note)):
+            e["standin"] = x.group(1).strip()
+        elif (x := ALIAS.search(note)):
+            e["alias"] = x.group(1).strip()
         out["models"].append(e)
     if doc.get("datasheet"):
         out["datasheet"] = doc["datasheet"]

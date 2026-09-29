@@ -146,7 +146,11 @@ function Models({ page }: { page: PartPage }) {
               <Fragment key={i}>
                 <tr>
                   <td>{mo.source}</td>
-                  <td><code>{mo.name}</code></td>
+                  <td>
+                    <code>{mo.name}</code>
+                    {mo.standin && <> <span class="chip">model of {mo.standin}</span></>}
+                    {mo.alias && <> <span class="chip">listed as {mo.alias}</span></>}
+                  </td>
                   <td>{mo.type || mo.def}</td>
                   <td>
                     {mo.verbatim
