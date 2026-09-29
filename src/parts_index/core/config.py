@@ -210,8 +210,14 @@ def datasheets_state(source: str) -> Path:
 
 
 def verification(kind: str, part: str) -> Path:
-    """Measured results row by row against the datasheet."""
+    """One part's models held against its data sheet: what each card lacks, what each model's author
+    declares, and what the bench measured at each of the sheet's rows."""
     return PUBLIC_DATA / "verification" / kind / f"{part}.json"
+
+
+def verification_state() -> Path:
+    """The ledger of that work: one row per part, and one per data sheet read."""
+    return PUBLIC_DATA / "verification" / "state.csv"
 
 
 # --- public: the part dictionary and the repository itself ------------------------------------------
@@ -559,6 +565,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("datasheet_pages", "public", ("archive_databooks",)),
     ("datasheets_state", "public", ("ti_products",)),
     ("verification", "public", ("bjt", "2N3904")),
+    ("verification_state", "public", ()),
     ("known_parts", "public", ()),
     ("wanted_parts", "public", ()),
     ("rejected_tokens", "public", ()),

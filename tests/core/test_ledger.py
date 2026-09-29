@@ -76,3 +76,21 @@ def test_file_is_sorted_and_stable(tmp_path):
     again.save()
     assert again.path.read_text() == first
     assert not list(led.path.parent.glob("*.tmp"))
+
+
+def test_a_verification_stage_is_redone_when_what_it_read_changed(tmp_path):
+    """A part's cards stage reads the recipe's model files: a new file means new work, same version or not."""
+    from parts_index.core.ledger import VERIFY_FIELDS, VERIFY_STAGES, VERIFY_VERSIONED
+    def open_():
+        return Ledger(tmp_path / "state.csv", stages=VERIFY_STAGES, fields=VERIFY_FIELDS,
+                      versioned=VERIFY_VERSIONED)
+    led = open_()
+    assert not led.fresh("bjt/2N3904", "cards", "cards-1", "d1")
+    led.stamp("bjt/2N3904", "cards", version="cards-1", cards_in="d1")
+    led.save()
+    again = open_()
+    assert again.fresh("bjt/2N3904", "cards", "cards-1", "d1")
+    assert not again.fresh("bjt/2N3904", "cards", "cards-1", "d2")      # an input changed
+    assert not again.fresh("bjt/2N3904", "cards", "cards-2", "d1")      # the stage changed
+    assert not again.fresh("bjt/2N3904", "claims", "claims-1", "d1")    # another stage, not yet run
+

@@ -60,6 +60,15 @@ MODEL_FIELDS = (
 )
 
 
+# pillar 3: one part's models held against its data sheet (key `<kind>/<part>`), or one data sheet read
+# (key `sheet:<doc>`). The stages do not feed each other in a line as a download feeds its OCR: each reads
+# its own inputs — the recipe's model files, the sheet's pages, the bench's results — so each keeps a
+# fingerprint of them in `<stage>_in`, and is fresh while its version and that fingerprint are unchanged.
+VERIFY_STAGES = ("cards", "claims", "rows", "figures", "bench")
+VERIFY_VERSIONED = VERIFY_STAGES
+VERIFY_FIELDS = ("key", *(f"{s}_{x}" for s in VERIFY_STAGES for x in ("in", "at", "v")), "skip_reason")
+
+
 def today() -> str:
     return date.today().isoformat()
 
@@ -103,6 +112,12 @@ class Ledger:
         if stage in self.versioned and version is not None and r[f"{stage}_v"] != version:
             return False
         return True
+
+    def fresh(self, key, stage, version: str, digest: str) -> bool:
+        """Done at this version from exactly these inputs: for stages that keep a fingerprint of what they
+        read (`<stage>_in`), where a changed input, not only a new version, means the work is redone."""
+        r = self.rows.get(key)
+        return self.done(key, stage, version) and r is not None and (r["skip_reason"] != "" or r[f"{stage}_in"] == digest)
 
     def pending(self, stage, version: str | None = None) -> list[str]:
         """Keys whose earlier stages are done and this one is not."""
