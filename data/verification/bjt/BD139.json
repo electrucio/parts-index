@@ -9,7 +9,7 @@
    "ngspice": {
     "bench": {
      "clean": true,
-     "commit": "b99a31a961810037336defb2325d6a05e0ae78b3"
+     "commit": "a29a78f6778242ac2d279dc90f098a7980f81a8a"
     },
     "command": "docker run --rm --tmpfs /tmp/spec -v docker/sim/bench:/sim/bench:ro -v <jobs>:/io parts-index-ngspice python3 /sim/bench/spec.py /io/jobs.json /io/results.json",
     "image": "sha256:78f0c2ecea5f63807ffd42bc66ad30a5d07a37b1d4febd8a8fbb31d664dbf35c",
@@ -19,7 +19,7 @@
    "qspice": {
     "bench": {
      "clean": true,
-     "commit": "b99a31a961810037336defb2325d6a05e0ae78b3"
+     "commit": "a29a78f6778242ac2d279dc90f098a7980f81a8a"
     },
     "command": "docker run --rm --tmpfs /tmp/spec -v docker/sim/bench:/sim/bench:ro -v <jobs>:/io parts-index-qspice python3 /sim/bench/spec.py /io/jobs.json /io/results.json",
     "image": "sha256:b4766ddc1e7f7cc55c294c32d235615a4ba93f9114e66ecf180dd68524cf1039",

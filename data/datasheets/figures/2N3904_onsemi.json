@@ -12,6 +12,19 @@
     "td",
     "tr"
    ],
+   "fixture": {
+    "VCC": 3.0,
+    "RC": 275,
+    "RB": 10000,
+    "CS": 4e-12,
+    "levels": [
+     -0.5,
+     10.9,
+     -0.5
+    ],
+    "hold": 3e-07,
+    "edge": 1e-09
+   },
    "box": [
     188.8,
     391.4,
@@ -28,6 +41,20 @@
     "ts",
     "tf"
    ],
+   "fixture": {
+    "VCC": 3.0,
+    "RC": 275,
+    "RB": 10000,
+    "CS": 4e-12,
+    "levels": [
+     0,
+     10.9,
+     -9.1
+    ],
+    "hold": 1e-05,
+    "edge": 1e-09,
+    "clamp": "base"
+   },
    "box": [
     173.7,
     566.8,
@@ -55,7 +82,7 @@
     10
    ],
    "fixed": {
-    "f": "1.0e6",
+    "f": 1000000.0,
     "TJ": 25
    },
    "series": [
@@ -629,6 +656,10 @@
     "VCE": 1.0
    },
    "normalised": "to hFE at IC = 10 mA, TJ = 25 °C (where the sheet's 25 °C curve reads 1.0)",
+   "normalise": {
+    "series": "+25 °C",
+    "x": 0.01
+   },
    "series": [
     {
      "label": "TJ = +125 °C",
