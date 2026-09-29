@@ -230,6 +230,23 @@ def test_an_impossible_url_already_in_the_queue_is_dropped_not_asked_for(site, m
     assert C.frontier(again) == []          # and it never comes back to the queue
 
 
+def test_a_page_queued_before_a_rule_refused_it_is_dropped_not_walked(site, monkeypatch):
+    """hifisonix's first full walk spent 143 of its 300 pages on ?currency=GBP; the queue it left holds more."""
+    led = Ledger(config.schematics_state("tubecad"))
+    for url in ("https://tc.example/2024/aikido.html?currency=GBP", "https://tc.example/articles/index.html"):
+        led.row(url)["role"] = "page"
+    led.save()
+
+    server = serve(monkeypatch)
+    C.crawl("tubecad", log=lambda *a: None)
+
+    assert not [u for u in server.asked if "currency" in u or "/articles/index" in u]
+    again = Ledger(config.schematics_state("tubecad"))
+    assert again.get("https://tc.example/2024/aikido.html?currency=GBP")["skip_reason"] == "not followed"
+    assert again.get("https://tc.example/articles/index.html")["skip_reason"] == "not followed"
+    assert C.frontier(again) == []
+
+
 def test_one_page_spelled_two_ways_is_walked_once_and_both_rows_say_so(site, monkeypatch):
     """qrp-labs links itself over http and answers over https: 297 pages looked owed for ever."""
     led = Ledger(config.schematics_state("tubecad"))

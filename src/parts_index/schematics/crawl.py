@@ -47,7 +47,7 @@ MODULE = "parts_index.schematics.crawl"
 # The machinery of a site rather than its content, and archives we do not open.
 NEVER = re.compile(r"(?i)/(tag|tags|category|categories|author|feed|comments?|wp-json|wp-admin|wp-login|cart|"
                    r"checkout|account|login|search|forum|forums|phpbb|viewtopic|share|print)(/|$|\?)|"
-                   r"[?&](replytocom|share|print|lang|sort|filter|add-to-cart)=|"
+                   r"[?&](replytocom|share|print|lang|sort|filter|add-to-cart|currency)=|"
                    r"\.(zip|exe|rar|7z|mp3|mp4|avi|mov|wav|iso|hex|bin|tar|gz)$")
 IMAGE_EXT = re.compile(r"\.(gif|png|jpe?g|tiff?|bmp|webp)(\?|$)", re.I)
 # Stricter than the download stage's: a crawler meets every ornament a site owns, not just a blog post's.
@@ -139,6 +139,12 @@ def resolved(base: str, href: str) -> str:
     return "" if unusable(url) else url
 
 
+def tail_of(url: str) -> str:
+    """The path and query of a URL, which is what `allow` and `deny` are written against."""
+    p = urlparse(url)
+    return p.path + (f"?{p.query}" if p.query else "")
+
+
 def same_page(url: str) -> str:
     """/audio/alpha10 and /audio/alpha10/ are one page, so a crawl visits it once."""
     return re.sub(r"^https?://(www\.)?", "", url).rstrip("/")
@@ -206,6 +212,11 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
     led = Ledger(schematics_state(source))
     job = Downloader(source, cfg, led, delay=delay, min_image=MIN_IMAGE, log=log)
     waiting = frontier(led)
+    # A page an earlier run queued before a rule said not to follow it. hifisonix's shop puts a currency
+    # switcher on every page, and 143 of the 300 pages its first full walk fetched were ?currency=GBP.
+    for url in [u for u in waiting if NEVER.search(u) or (deny and deny.search(tail_of(u)))]:
+        led.skip(url, "not followed")
+        waiting.remove(url)
     # A site whose archive is not walkable but whose sitemap is complete. hifisonix has 86 articles and
     # its /articles/ index shows nine of them, the rest behind JavaScript that a crawler does not run;
     # the sitemap names all 86. So the sitemap seeds the frontier and the crawl does what it always does.
@@ -266,15 +277,14 @@ def crawl(source: str, *, budget: int | None = None, delay: float = http.DELAY, 
                 p = urlparse(u)
                 if p.scheme not in ("http", "https") or p.netloc not in hosts or NEVER.search(u):
                     continue
-                tail = p.path + (f"?{p.query}" if p.query else "")
-                if deny and deny.search(tail):
+                if deny and deny.search(tail_of(u)):
                     continue
                 if p.path.lower().endswith(".pdf"):
                     job.item(u, "linked")
                 elif IMAGE_EXT.search(p.path):
                     if figures and figure(p.path):
                         job.item(u, "figure")             # the full-size image behind a thumbnail
-                elif allow.search(tail) and len(p.query) < 80:
+                elif allow.search(tail_of(u)) and len(p.query) < 80:
                     enqueue(u)
 
             for attrs in page.images if figures else []:
