@@ -40,6 +40,7 @@ from parts_index.core.config import (
     spice_definitions,
 )
 from parts_index.core.ledger import CENSUS_FIELDS, CENSUS_STAGES, CENSUS_VERSIONED, Ledger
+from parts_index.core.parts import polarity
 
 READ_VERSION = "census_read-1"
 FIELDS = ("part", "kind", "source", "url")
@@ -50,6 +51,7 @@ class Entry:
     part: str        # the type number as the list writes it
     kind: str        # tube, bjt, jfet, diode, opamp ... the vocabulary of known_parts.csv
     url: str         # the public page that vouches for it
+    polarity: str = ""   # NPN, PNP, N-channel, P-channel, when the list says which (`core.parts.polarity`)
 
 
 # --- frank.pocnet.net: Frank Philipse's electron tube data sheets ------------------------------------
@@ -146,9 +148,12 @@ def spice_definitions_entries(entry: dict) -> list[Entry]:
             names = [name]
             if DEVICE_LETTER.match(name) and family_of(name[1:]):
                 names.append(name[1:])
+            pol = polarity.SPICE.get(d.get("type") or "")
             for n in names:
-                r = found.setdefault(n, {"kinds": set(), "stem": False, "url": ""})
+                r = found.setdefault(n, {"kinds": set(), "stem": False, "url": "", "votes": {}})
                 r["kinds"].add(DEVICE_KIND.get(d.get("type") or "", ""))
+                if pol:
+                    r["votes"].setdefault(pol, set()).add(source)
                 r["stem"] = r["stem"] or norm(stem) == norm(n)
                 r["url"] = r["url"] or urls.get((source, file_name.lower())) or homes.get(source, "")
     out = []
@@ -157,7 +162,7 @@ def spice_definitions_entries(entry: dict) -> list[Entry]:
         if not (kinds or r["stem"] or family_of(name)):
             continue
         out.append(Entry(name, sorted(kinds)[0] if len(kinds) == 1 else ("ic" if not kinds else "semiconductor"),
-                         r["url"]))
+                         r["url"], " ".join(polarity.by_libraries(r["votes"]))))
     return out
 
 
@@ -293,11 +298,14 @@ def build(only: list[str] | None = None, *, fetch: bool = True, limit: int = 0,
     for source, entries in by_source.items():
         out = parts_census(source)
         out.parent.mkdir(parents=True, exist_ok=True)
+        # Only a list that says which way round its transistors are gets the column for it.
+        fields = FIELDS + ("polarity",) if any(e.polarity for e in entries) else FIELDS
         with open(out, "w", newline="", encoding="utf-8") as f:
-            w = csv.DictWriter(f, fieldnames=FIELDS, lineterminator="\n")
+            w = csv.DictWriter(f, fieldnames=fields, lineterminator="\n")
             w.writeheader()
             for e in entries:
-                w.writerow({"part": e.part, "kind": e.kind, "source": source, "url": e.url})
+                row = {"part": e.part, "kind": e.kind, "source": source, "url": e.url, "polarity": e.polarity}
+                w.writerow({k: row[k] for k in fields})
     counts["total rows"] = len(rows) + sum(1 for r in load_rows() if r["source"] not in by_source)
     counts["distinct parts"] = len({p for p, _ in rows})
     return counts

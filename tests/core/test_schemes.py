@@ -122,3 +122,12 @@ def test_the_letters_of_a_name_can_narrow_its_family(part, kind, family):
 def test_a_name_never_moves_a_part_out_of_the_family_its_kind_gives():
     # A 1N number read as "a diode" filed as a zener stays a zener: the name is less precise, not contrary.
     assert catalogue.family_of("1N5231", KIND_MAP["zener"], ["diode"]) == ("zener", "kind")
+
+
+@pytest.mark.parametrize("part,kind,said", [
+    ("2SC1815GR", "bjt", "NPN"), ("2SD669A", "bjt", "NPN"), ("2SA1015", "bjt", "PNP"),
+    ("2SB56", "bjt-ge", "PNP"), ("2SK170", "jfet/mosfet", "N-channel"), ("2SJ74", "jfet/mosfet", "P-channel"),
+    ("1S1588", "diode", ""), ("BC548B", "bjt", ""),
+])
+def test_a_japanese_name_says_which_way_round_the_transistor_is(part, kind, said):
+    assert schemes.decode(part, KIND_MAP[kind], KNOWN).polarity == said

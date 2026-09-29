@@ -14,7 +14,8 @@ yet, so this list can be trusted as an inventory. `pidx --help` and `pidx paths`
   `llm` (the two ways to ask a model — paid at OpenAI, or the local server — with one cache over both),
   and `parts/` (the part-number extractor, single source of truth; `catalogue` and `schemes`, what a part
   is — its family, the organisation behind it, how it relates to others, and what the letters of its name
-  say under the standard that assigned them). **(todo)** `table`.
+  say under the standard that assigned them; `polarity`, NPN or PNP, N- or P-channel, only when the
+  sources that say agree). **(todo)** `table`.
 - `src/parts_index/schematics/` pillar 1: `download` (the sources whose URLs are already listed),
   `summarise` (one line per published use, saying what that part does on that page), `export` (the
   index into `data/`) and `titles`. **(todo)** crawl → ocr → index → linkcheck.

@@ -31,6 +31,7 @@ from pathlib import Path
 import yaml
 
 from parts_index.core.config import naming_schemes
+from parts_index.core.parts import polarity
 
 
 @dataclass
@@ -49,6 +50,8 @@ class Decoding:
     refs: list[str] = field(default_factory=list)
     # The families the letters imply, one per letter that implies any; what they share is the part's.
     families: list[str] = field(default_factory=list)
+    # Which way round the letters say a transistor is — 2SC is NPN, 2SK N-channel — or "".
+    polarity: str = ""
 
     def as_dict(self) -> dict:
         return {"scheme": self.scheme, "label": self.label,
@@ -149,7 +152,7 @@ def read_with(scheme: dict, part: str, known: Known | None = None) -> Decoding |
             devs = _devices_of(known, part[:m.start(g)])
             if devs is not None and not set(devs) & applies:
                 continue
-        segments, ok, implied = [], True, []
+        segments, ok, implied, pol = [], True, [], ""
         for name, value in sorted(((k, v) for k, v in m.groupdict().items() if v is not None),
                                   key=lambda kv: m.start(kv[0])):
             spec = fields.get(name) or {}
@@ -160,6 +163,7 @@ def read_with(scheme: dict, part: str, known: Known | None = None) -> Decoding |
                 ok = False
                 break
             segments.append(Segment(value, spec.get("label", name), meaning))
+            pol = (spec.get("polarity") or {}).get(value, pol)
             fams = spec.get("families") or {}
             if fams:
                 if value in fams:
@@ -171,7 +175,7 @@ def read_with(scheme: dict, part: str, known: Known | None = None) -> Decoding |
                     implied.append("")
         if ok and segments:
             return Decoding(scheme["id"], scheme.get("label", scheme["id"]), segments,
-                            list(scheme.get("caveats") or ()), list(scheme.get("refs") or ()), implied)
+                            list(scheme.get("caveats") or ()), list(scheme.get("refs") or ()), implied, pol)
     return None
 
 
@@ -202,6 +206,11 @@ def check(references: set[str], families: set[str] | None = None) -> list[str]:
             for v, fid in (spec.get("families") or {}).items():
                 if families is not None and fid not in families:
                     out.append(f"scheme {sid}: {fname} {v!r} implies family {fid}, which does not exist")
+            for v, pol in (spec.get("polarity") or {}).items():
+                if pol not in polarity.VALUES:
+                    out.append(f"scheme {sid}: {fname} {v!r} says polarity {pol}, which is none of {polarity.VALUES}")
+                if v not in (spec.get("values") or {}):
+                    out.append(f"scheme {sid}: {fname} {v!r} has a polarity but no meaning")
         for r in s.get("refs") or ():
             if r not in references:
                 out.append(f"scheme {sid}: reference {r} is not in references.csv")

@@ -63,3 +63,22 @@ def test_every_row_carries_the_page_that_vouches_for_it():
     if not rows:
         return                                              # no census built here
     assert not [r for r in rows if not r["url"].startswith("http")]
+
+
+def test_a_model_library_says_npn_or_pnp_when_its_libraries_agree(monkeypatch, tmp_path):
+    """2N4403 is PNP in three libraries and NPN in one, which is outvoted; 2N1132 is split and says
+    nothing; a sub-circuit says nothing about what is inside it."""
+    import json
+    f = tmp_path / "index.jsonl"
+    defs = [("2N4403", "PNP", s) for s in ("onsemi", "bordodynov", "ltwiki")] + [("2N4403", "NPN", "groupsio")]
+    defs += [("2N1132", "PNP", "a"), ("2N1132", "NPN", "b"), ("Q2N5457", "NJF", "a"), ("IRF540", "SUBCKT", "a")]
+    f.write_text("".join(json.dumps({"name": n, "type": t, "source": s, "parent": None, "file": "x/y.lib"}) + "\n"
+                         for n, t, s in defs), encoding="utf-8")
+    monkeypatch.setattr(census, "spice_definitions", lambda: f)
+    monkeypatch.setattr(census, "_model_file_urls", lambda: {})
+    monkeypatch.setattr(census, "_source_homes", lambda: {s: f"https://{s}.example/" for _, _, s in defs})
+    got = {e.part: e.polarity for e in census.spice_definitions_entries({})}
+    assert got["2N4403"] == "PNP"
+    assert got["2N1132"] == ""
+    assert got["2N5457"] == "N-channel"                         # LTspice's Q prefix taken off
+    assert got.get("IRF540", "") == ""
