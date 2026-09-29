@@ -209,6 +209,23 @@ def datasheets_state(source: str) -> Path:
     return PUBLIC_DATA / "datasheets" / "state" / f"{source}.csv"
 
 
+def datasheet_values_index() -> Path:
+    """The data sheets whose characteristics rows are published: each with its link, checksum, maker,
+    title, and who read the rows, how and when."""
+    return PUBLIC_DATA / "datasheets" / "values.csv"
+
+
+def datasheet_values(doc: str) -> Path:
+    """One data sheet's rows as printed — symbol, conditions, min, typ, max, unit — with the page and the
+    box on it where each was read, so the crop beside it on the site can be checked against the PDF."""
+    return PUBLIC_DATA / "datasheets" / "values" / f"{doc}.csv"
+
+
+def datasheet_reference() -> Path:
+    """The hand-read reference rows of 20 data sheets (docker/datasheets/README.md, "The reference set")."""
+    return REPO_ROOT / "docker" / "datasheets" / "golden.yaml"
+
+
 def verification(kind: str, part: str) -> Path:
     """One part's models held against its data sheet: what each card lacks, what each model's author
     declares, and what the bench measured at each of the sheet's rows."""
@@ -493,6 +510,12 @@ def datasheets(kind: str | None = None) -> Path:
     return d / kind if kind else d
 
 
+def datasheet_store() -> Path:
+    """The data sheets the reference set and the experiments read, with `manifest.json` giving each
+    file's URL, checksum, maker and title."""
+    return datasheets("vendor")
+
+
 def simulators() -> Path:
     """The simulation stage's private side: the vendor store below, and the runs (docker/sim/README.md)."""
     return material_root() / "simulators"
@@ -571,6 +594,9 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("datasheet_catalogue", "public", ("diotec_products",)),
     ("datasheet_pages", "public", ("archive_databooks",)),
     ("datasheets_state", "public", ("ti_products",)),
+    ("datasheet_values_index", "public", ()),
+    ("datasheet_values", "public", ("2N3904_onsemi",)),
+    ("datasheet_reference", "public", ()),
     ("verification", "public", ("bjt", "2N3904")),
     ("verification_state", "public", ()),
     ("known_parts", "public", ()),
@@ -623,6 +649,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("spice_found", "private", ()),
     ("spice_recipe_locations", "private", ()),
     ("datasheets", "private", ()),
+    ("datasheet_store", "private", ()),
     ("simulators", "private", ()),
     ("simulator_vendor", "private", ()),
     ("staging", "private", ()),

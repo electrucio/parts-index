@@ -161,6 +161,7 @@ def main(argv: list[str] | None = None) -> int:
 
     dsh = sub.add_parser("datasheets", help="what manufacturers' catalogues say about the parts").add_subparsers(
         dest="dsh_cmd", required=True)
+    dsh.add_parser("rows", help="publish the characteristics rows of the reference sheets, each located on its page")
     dsr = dsh.add_parser("register", help="read category, status and data sheet of each indexed part")
     dsr.add_argument("--source", action="append", help="only these sources (repeatable)")
     dsr.add_argument("--limit", type=int, default=0, help="at most this many pages asked for, per source")
@@ -419,6 +420,10 @@ def main(argv: list[str] | None = None) -> int:
         from parts_index.datasheets import catalogues
         argv2 = [x for pair in (("--source", s) for s in args.source or []) for x in pair]
         return catalogues.main(argv2 + (["--refresh"] if args.refresh else []))
+
+    if args.cmd == "datasheets" and args.dsh_cmd == "rows":
+        from parts_index.datasheets import rows as sheet_rows
+        return sheet_rows.main([])
 
     if args.cmd == "datasheets" and args.dsh_cmd == "databooks":
         from parts_index.datasheets import databooks

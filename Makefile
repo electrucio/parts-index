@@ -11,7 +11,7 @@ WEB_HOST ?= 0.0.0.0
 WEB_PORT ?= 8026
 
 .DEFAULT_GOAL := help
-.PHONY: vlm-image vlm-models vlm-serve vlm-stop sheets-pages sheets-extract sheets-evaluate sheets-crosscheck sim-vendor sim-qspice-capture sim-images sim-bjt sim-sample sim-batch datasheets-register datasheets-links datasheets-harvest datasheets-catalogue datasheets-databooks web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-reconcile models-match models-found models-promote models-cards models-claims datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
+.PHONY: vlm-image vlm-models vlm-serve vlm-stop sheets-pages sheets-extract sheets-evaluate sheets-crosscheck sim-vendor sim-qspice-capture sim-images sim-bjt sim-sample sim-batch datasheets-register datasheets-links datasheets-harvest datasheets-catalogue datasheets-databooks datasheets-rows web-deploy ocr-image help setup test test-web lint guard check status status-write paths toragi-report models-index models-missing models-recover models-verify models-reconcile models-match models-found models-promote models-cards models-claims datasets-repos schematics-summarise schematics-summarise-bg schematics-preview schematics-export backup migrate-datasets migrate-wanted migrate clean web web-data web-deps serve
 
 help:  ## show this list
 	@echo "parts-index — make <target>"
@@ -204,6 +204,9 @@ datasheets-catalogue:  ## (maintainer) read a maker's whole product list: each k
 
 datasheets-databooks:  ## (maintainer) the pages of old databooks on archive.org that head a known part; [LIMIT=N] [LIST=1] [REREAD=1]
 	uv run pidx datasheets databooks $(if $(LIMIT),--limit $(LIMIT)) $(if $(LIST),--list-only) $(if $(REREAD),--reread)
+
+datasheets-rows:  ## (maintainer) publish the reference sheets' rows, each located on its page, into data/datasheets/values/
+	$(RUN) pidx datasheets rows
 
 toragi-report:  ## (maintainer) トランジスタ技術: coverage by year and by issue, from the lists and ledgers
 	$(RUN) pidx schematics toragi
