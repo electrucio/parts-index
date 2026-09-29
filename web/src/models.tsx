@@ -103,11 +103,21 @@ function Checks({ block, cols, part }: { block: ChecksBlock; cols: (readonly [Pa
       <div class="tablewrap">
         <table class="chk">
           <thead>
+            {sheet && (
+              <tr class="grp">
+                <th colSpan={5} class="grp sheet">
+                  <span class="grp-label">From the data sheet <span class="grp-sub">— read from the PDF, as printed</span></span>
+                </th>
+                <th colSpan={cols.length} class="grp sim first-m">
+                  <span class="grp-label">Simulated with SPICE <span class="grp-sub">— each model as published, {primary} at 25 °C, at the row's conditions</span></span>
+                </th>
+              </tr>
+            )}
             <tr>
               {sheet
-                ? <><th class="stick">Quantity</th><th class="num">Min</th><th class="num">Typ</th><th class="num">Max</th><th>Unit</th></>
+                ? <><th class="stick">Quantity</th><th class="num sv">Min</th><th class="num sv">Typ</th><th class="num sv">Max</th><th class="sv">Unit</th></>
                 : <th class="stick" colSpan={5} />}
-              {cols.map(([mo, i]) => <th key={i} class="mcol" title={`${mo.source} · ${mo.name}`}><span class="muted">{mo.source}</span><br />{mo.name}</th>)}
+              {cols.map(([mo, i], k) => <th key={i} class={`mcol${k === 0 ? ' first-m' : ''}`} title={`${mo.source} · ${mo.name}`}><span class="muted">{mo.source}</span><br />{mo.name}</th>)}
             </tr>
           </thead>
           <tbody>
@@ -118,10 +128,10 @@ function Checks({ block, cols, part }: { block: ChecksBlock; cols: (readonly [Pa
                     <b>{r[2]}</b>{r[8] && <span class="muted"> {r[8]}</span>} <span class="muted small">{r[3]}</span>
                     {r[9] && <div class="faint small">{r[9]}</div>}
                   </td>
-                  <td class="num">{r[4]}</td><td class="num">{r[5]}</td><td class="num">{r[6]}</td><td>{r[7]}</td>
-                  {cols.map(([mo, i]) => {
+                  <td class="num sv">{r[4]}</td><td class="num sv">{r[5]}</td><td class="num sv">{r[6]}</td><td class="sv">{r[7]}</td>
+                  {cols.map(([mo, i], k) => {
                     const c = mo.chk?.cells?.[String(r[0])] ?? (['none'] as Cell)
-                    return <td key={i} class={`num cc c-${c[0]}`} title={cellTitle(c, r)}>{cellText(c)}</td>
+                    return <td key={i} class={`num cc c-${c[0]}${k === 0 ? ' first-m' : ''}`} title={cellTitle(c, r)}>{cellText(c)}</td>
                   })}
                 </tr>
                 {open === r[0] && (
@@ -161,13 +171,16 @@ function Facts({ cols, block, how, setHow }: {
     return (
       <tr class="fact">
         <td class="stick" colSpan={5}><span class="muted small">{label}</span></td>
-        {cells.map((c, k) => <td key={k} class="small">{c}</td>)}
+        {cells.map((c, k) => <td key={k} class={`small${k === 0 ? ' first-m' : ''}`}>{c}</td>)}
       </tr>
     )
   }
   const list = (xs: string[] | undefined, labels: Record<string, string>) => (xs ?? []).map((x) => labels[x] ?? x).join(', ')
   return (
     <>
+      <tr class="grp-row">
+        <th colSpan={5 + cols.length} class="grp facts"><span class="grp-label">About each model <span class="grp-sub">— from its card, its author's notes and the runs</span></span></th>
+      </tr>
       {row('runs in', (mo) => mo.chk?.runs
         ? Object.entries(mo.chk.runs).map(([e, s]) => `${e} ${s === 'ok' ? '✓' : '✗'}`).join(' ')
           + (mo.chk.differs?.length ? ` · ngspice differs on ${mo.chk.differs.length}` : '')

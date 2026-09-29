@@ -211,6 +211,16 @@ table.chk tr.crop .cropbox { position: sticky; left: 0; width: fit-content; max-
 table.chk tr.crop img { display: block; max-width: 100%; background: #fff; margin-bottom: 4px; }
 table.chk tr.fact td { border-bottom-color: transparent; color: var(--muted); font-size: 0.74rem; }
 .faint { color: var(--faint); }
+/* Which values were read from the sheet and which were simulated: a band over each group, the sheet's
+   columns faintly lit, and a rule between the two. The band's words stay in view while the models scroll. */
+table.chk th.grp { font: 600 1.02rem var(--display); letter-spacing: 0.02em; text-transform: none; padding: 7px 10px; }
+table.chk th.grp.sheet { color: var(--ink); background: #221a1b; }
+table.chk th.grp.sim { color: var(--accent-ink); background: var(--accent-soft); }
+table.chk th.grp.facts { color: var(--muted); background: var(--sunken); font-size: 0.92rem; }
+table.chk .grp-label { position: sticky; left: 10px; white-space: nowrap; }
+table.chk .grp-sub { font: 400 0.8rem var(--body); color: var(--muted); }
+table.chk .sv { background: rgb(255 255 255 / 0.035); }
+table.chk .first-m { border-left: 2px solid var(--accent); }
 .how { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 14px; }
 .how h4 { margin: 0; font-family: var(--display); font-size: 1.05rem; }
 pre.netlist { background: var(--sunken); padding: 8px 10px; overflow-x: auto; font-size: 0.74rem; margin: 4px 0; }
