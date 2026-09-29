@@ -37,6 +37,7 @@ from parts_index.core.config import (
     spice_curated,
     spice_found,
     spice_models_root,
+    spice_recipe_locations,
 )
 from parts_index.models import found as F
 from parts_index.models.fetch import archive_for, source_files
@@ -49,7 +50,7 @@ class Flow(list):
 yaml.SafeDumper.add_representer(
     Flow, lambda d, data: d.represent_sequence("tag:yaml.org,2002:seq", data, flow_style=True))
 
-VERSION = "promote_models-2"
+VERSION = "promote_models-3"   # 3: every model carries its identity, `hash`
 # `preferred_why` was written for the maintainer and ends by naming the tool that decided. That file is
 # not published, so the sentence keeps its reasoning and loses the reference.
 TOOL_REF = re.compile(r"\s*\((?:tools/)?[\w/]+\.py\)\s*$")
@@ -316,9 +317,20 @@ def match_note(part: str, how: str) -> str:
     return ""
 
 
+def with_hash(model: dict, h: str) -> dict:
+    """The model with its identity right after its name and shape, where a reader of the YAML looks."""
+    out: dict = {}
+    for k, v in model.items():
+        if k != "hash":
+            out[k] = v
+        if k == "def":
+            out["hash"] = h
+    return out
+
+
 def uncurated(part: str, m: dict) -> dict:
     """A model the catalogue holds for this part and the curation never judged."""
-    out: dict = {"source": m["source"], "name": m["name"], "def": m["def"]}
+    out: dict = {"source": m["source"], "name": m["name"], "def": m["def"], "hash": m["hash"]}
     if m.get("type"):
         out["type"] = m["type"]
     if m.get("deps"):
@@ -339,23 +351,30 @@ def uncurated(part: str, m: dict) -> dict:
     return out
 
 
-def join_found(doc: dict, data: dict, entry: dict, files: F.Files) -> int:
+def join_found(doc: dict, data: dict, entry: dict, files: F.Files, where: list[str] | None = None) -> int:
     """Add to a recipe what the catalogue holds beyond its curated models. Returns how many were added.
+
+    `where`, when given, receives the file each of the recipe's models was read from, in the recipe's
+    order: the private side of the same list (`spice_recipe_locations`).
 
     A curated model the catalogue also holds elsewhere gains those copies, each with its own link — the
     file a collection copied is often the vendor's original, and it is the one a reader should be sent to.
     A model no curated one matches is appended, unjudged: the page shows it as not measured.
     """
     hashes = {}
+    where = [] if where is None else where
     for i, c in enumerate(data.get("candidates") or []):
         h = curated_hash(c, files)
+        where.append((c.get("provenance") or {}).get("file") or "")
         if h:
             hashes.setdefault(h, i)
+            doc["models"][i] = with_hash(doc["models"][i], h)
     added = 0
     for m in entry.get("models") or []:
         i = hashes.get(m["hash"])
         if i is None:
             doc["models"].append(uncurated(doc["part"], m))
+            where.append(m["provenance"].get("file") or "")
             added += 1
             continue
         own = (data["candidates"][i].get("provenance") or {}).get("file")
@@ -384,8 +403,12 @@ def promote(only: str | None = None, dry: bool = False) -> dict:
               "symbols": 0, "orphan_symbols": 0, "unknown_sources": 0, "uncurated_parts": 0,
               "uncurated_models": 0, "with_copies": 0}
     unknown: set[str] = set()
+    locations: dict[str, list[dict]] = {}
 
-    def publish(doc: dict, part_dir: Path | None) -> None:
+    def publish(doc: dict, part_dir: Path | None, where: list[str]) -> None:
+        # Where each model was read from goes to the private side: the file names the private tree.
+        locations[f"{doc['kind']}/{doc['part']}"] = [
+            {"hash": m.get("hash", ""), "file": f, "name": m["name"]} for m, f in zip(doc["models"], where)]
         kept = {m["symbol"] for m in doc["models"] if m.get("symbol")}
         counts["symbols"] += len(kept)
         if part_dir is not None:
@@ -416,8 +439,9 @@ def promote(only: str | None = None, dry: bool = False) -> dict:
         if not doc["part"] or not doc["kind"]:
             continue
         curated.add(doc["part"].upper())
-        counts["uncurated_models"] += join_found(doc, data, found.get(doc["part"]) or {}, files)
-        publish(doc, p.parent)
+        where: list[str] = []
+        counts["uncurated_models"] += join_found(doc, data, found.get(doc["part"]) or {}, files, where)
+        publish(doc, p.parent, where)
     # Parts the curation never reached, with every model the catalogue holds for them. Found entries are
     # keyed by the name the wanted list gives, which the curation may have spelt in another case.
     for part, entry in sorted(found.items()):
@@ -431,7 +455,10 @@ def promote(only: str | None = None, dry: bool = False) -> dict:
         doc["models"] = [uncurated(part, m) for m in entry["models"]]
         counts["uncurated_parts"] += 1
         counts["uncurated_models"] += len(doc["models"])
-        publish(doc, None)
+        publish(doc, None, [m["provenance"].get("file") or "" for m in entry["models"]])
+    if not dry and not only:
+        spice_recipe_locations().write_text(json.dumps(locations, indent=0, sort_keys=True) + "\n",
+                                            encoding="utf-8")
     kinds = change_kinds(root)
     counts["change_kinds"] = len(kinds)
     if kinds and not dry:

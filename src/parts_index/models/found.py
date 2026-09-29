@@ -222,6 +222,32 @@ class Files:
             self.cache[file] = (blocks(text), spans(text), hashlib.sha256(raw).hexdigest())
         return self.cache[file]
 
+    def at(self, file: str, line: int) -> tuple | None:
+        """(kind, name, text) of the definition that starts at this line (1-based), or None.
+
+        `get` keeps the last definition of a name, as a simulator reading the file would; a card chosen by
+        its place — the index names every definition by file and line — may be an earlier one of the same
+        name, and is read here from its own lines. The file is read again rather than kept: this is asked
+        rarely, and keeping every file's text would double what a `found` run holds in memory."""
+        text = model_text((self.root / file).read_bytes(), file)
+        lines = text.splitlines()
+        for kind, nm, a, b in _scan(text):
+            if a == line:
+                return kind, nm, "\n".join(lines[a - 1:b])
+        return None
+
+
+def hash_at(files: Files, file: str, line: int) -> str | None:
+    """The identity (`code_hash`) of the definition starting at one line of a file, with everything it
+    references: how a result measured on a card chosen by its place is joined to a recipe's model."""
+    block = files.at(file, line)
+    if block is None:
+        return None
+    defs = dict(files.get(file)[0])
+    defs[block[1].lower()] = block
+    chain = closure(defs, block[1])
+    return code_hash(chain) if chain else None
+
 
 # --- where a file came from --------------------------------------------------------------------------
 def provenance(root: Path, file: str, source: str, sha256: str) -> dict:

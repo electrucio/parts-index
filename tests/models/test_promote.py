@@ -153,8 +153,14 @@ def test_a_curated_model_gains_its_copies_and_the_rest_are_added_unjudged(tmp_pa
     other = found_model("onsemi", "Qmj15001", "sources/onsemi/raw/mj15001.lib",
                         "https://www.onsemi.com/download/models/lib/mj15001.lib")
     other["hash"] = "different"
-    assert P.join_found(doc, data, {"models": [same, other]}, files) == 1
+    where: list[str] = []
+    assert P.join_found(doc, data, {"models": [same, other]}, files, where) == 1
     first, added = doc["models"]
+    # every model carries its identity, and where it was read from goes only to the private side
+    assert first["hash"] == same["hash"] and added["hash"] == "different"
+    assert list(first)[:4] == ["source", "name", "def", "hash"]
+    assert where == ["sources/bordodynov/raw/standard.bjt", "sources/onsemi/raw/mj15001.lib"]
+    assert not any("sources/" in str(v) for m in doc["models"] for k, v in m.items() if k != "copies")
     # the curated copy is not listed as a copy of itself, and the note no longer repeats the list
     assert [(c["source"], c["get"]["url"]) for c in first["copies"]] == [("spice-model-cd", motorola), ("ltwiki", "y")]
     assert "note" not in first

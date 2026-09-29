@@ -480,6 +480,13 @@ def spice_found() -> Path:
     return material_root() / "model_found.json"
 
 
+def spice_recipe_locations() -> Path:
+    """Where each published recipe model was read from: `<kind>/<part>` to the model's identity (`hash`),
+    file and name. Written by `models promote`, the only step that knows both; read by the steps that
+    look inside a recipe's models (their cards, their authors' headers) and by the bench's publisher."""
+    return material_root() / "model_locations.json"
+
+
 def datasheets(kind: str | None = None) -> Path:
     """Vendor PDFs, kept until the simulation and datasheet-reading work is done."""
     d = material_root() / "datasheets"
@@ -614,6 +621,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("spice_definitions", "private", ()),
     ("spice_matches", "private", ()),
     ("spice_found", "private", ()),
+    ("spice_recipe_locations", "private", ()),
     ("datasheets", "private", ()),
     ("simulators", "private", ()),
     ("simulator_vendor", "private", ()),

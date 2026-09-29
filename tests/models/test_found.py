@@ -159,3 +159,16 @@ def test_an_archive_unpacked_at_its_root_gives_the_member_its_full_path(tmp_path
                 {"microcap12": {"files": [{"url": url, "path": None, "sha256": "cd" * 32, "unpacked_to": "extracted"}]}})
     prov = F.provenance(root, "sources/microcap12/extracted/LIBRARY/mpbjt.lib", "microcap12", "ef" * 32)
     assert (prov["url"], prov["member"], prov["archive"]["sha256"]) == (url, "LIBRARY/mpbjt.lib", "cd" * 32)
+
+
+def test_a_card_chosen_by_its_line_keeps_its_own_identity_when_a_later_one_shares_its_name(tmp_path):
+    """A simulator (and `blocks`) keep the last of two definitions with one name; the bench measured each by
+    its line, and each result must join the model it was measured on."""
+    root = tree(tmp_path, {"sources/acme/raw/twice.lib":
+                           ".model Q2N3904 NPN(IS=1E-14 BF=300)\n.model Q2N3904 NPN(IS=1E-14 BF=200)\n"})
+    files = F.Files(root)
+    first, second = F.hash_at(files, "sources/acme/raw/twice.lib", 1), F.hash_at(files, "sources/acme/raw/twice.lib", 2)
+    assert first and second and first != second
+    assert second == F.code_hash(F.closure(files.get("sources/acme/raw/twice.lib")[0], "Q2N3904"))
+    assert F.hash_at(files, "sources/acme/raw/twice.lib", 3) is None     # no definition starts there
+

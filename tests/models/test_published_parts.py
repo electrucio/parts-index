@@ -66,6 +66,16 @@ def test_the_preferred_model_is_one_of_the_models_offered():
     assert not bad, bad[:10]
 
 
+@pytest.mark.skipif(not PARTS, reason="no promoted parts yet")
+def test_a_models_identity_is_its_code_hash():
+    """`hash` is what bench results are joined on. Two models of one part can share it — the old curation
+    kept two copies of the same code as two candidates in 409 recipes — and a result measured on that code
+    is then the result of both. A curated model whose file is not in the catalogue has none."""
+    bad = [p.name for p in PARTS
+           if any(not re.fullmatch(r"[0-9a-f]{40}", m["hash"]) for m in load(p)["models"] if "hash" in m)]
+    assert not bad, bad[:10]
+
+
 SYMBOLS = sorted(model_symbol("*", "*", "*.asy").parent.parent.parent.glob("*/*/*.asy"))
 
 
