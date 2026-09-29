@@ -352,6 +352,13 @@ def web_data() -> Path:
     return web_dir() / "public" / "data"
 
 
+def web_crops() -> Path:
+    """The data-sheet crops the site shows beside a transcribed row or a simulated graph (CLAUDE.md
+    rule 1): made by `pidx datasheets crops` from the private PDFs, never committed, published as the
+    release asset the Pages workflow unpacks here."""
+    return web_data() / "crops"
+
+
 def web_dist() -> Path:
     """Build output of `make web`: the site itself, git-ignored."""
     return web_dir() / "dist"
@@ -621,6 +628,7 @@ LOCATIONS: tuple[tuple[str, str, tuple], ...] = (
     ("status_md", "public", ()),
     ("web_dir", "public", ()),
     ("web_data", "built", ()),
+    ("web_crops", "built", ()),
     ("web_dist", "built", ()),
     ("tests_fixtures", "public", ()),
     ("ocr_root", "private", ()),
