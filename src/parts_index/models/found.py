@@ -55,7 +55,11 @@ EXCLUDE = ["sources/ayumi/extracted/simetrix/**", "sources/ayumi/extracted/linux
            # edited during a delivery (a collection with AC127 added, another enlarged): published
            # nowhere, so no link can lead to them
            "sources/groupsio-ltspice/raw/standard_collections_RAW_no_curado/standard.with_AC127.bjt",
-           "sources/groupsio-ltspice/raw/standard_collections_RAW_no_curado/standard_PB_enlarged.bjt"]
+           "sources/groupsio-ltspice/raw/standard_collections_RAW_no_curado/standard_PB_enlarged.bjt",
+           # Bordodynov's example schematics: the models in them are copies of his library, other
+           # people's teaching models and test cards named whatever the exercise needed (N_50N, Test,
+           # 2N3904P) — read for the benches and circuits around them, never as a part's model
+           "sources/bordodynov/extracted/example/**"]
 ARCHIVE_EXT = (".zip", ".7z", ".tgz", ".gz", ".rar", ".msi", ".tar")
 
 

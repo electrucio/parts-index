@@ -172,3 +172,8 @@ def test_a_card_chosen_by_its_line_keeps_its_own_identity_when_a_later_one_share
     assert second == F.code_hash(F.closure(files.get("sources/acme/raw/twice.lib")[0], "Q2N3904"))
     assert F.hash_at(files, "sources/acme/raw/twice.lib", 3) is None     # no definition starts there
 
+
+def test_a_model_inside_an_example_schematic_folder_is_never_a_candidate():
+    assert F.excluded("sources/bordodynov/extracted/example/examples/Bordodynov/bjt/2SC2099/2SC2099.sub")
+    assert not F.excluded("sources/bordodynov/extracted/lib/cmp/standard.bjt")
+
