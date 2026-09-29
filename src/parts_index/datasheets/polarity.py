@@ -21,6 +21,7 @@ import re
 import sys
 from collections import Counter
 from pathlib import Path
+from urllib.parse import urlparse
 
 from parts_index.core import http
 from parts_index.core.config import datasheet_polarity, datasheets_state
@@ -35,6 +36,7 @@ FIELDS = ("key", "part", "url", "claimed", "http", "sha256", "fetch_at", "polari
 READ_VERSION = "1"
 TABLE = ("part", "polarity", "url", "words", "sha256", "checked")
 MAX_BYTES = 40 << 20
+PACE = (0, 429, 500, 502, 503, 504)
 TAG = re.compile(r"<(script|style)\b.*?</\1\s*>|<[^>]+>", re.S | re.I)
 
 
@@ -64,20 +66,38 @@ def candidates(files: list[Path]) -> list[dict]:
     return out
 
 
-def run(files: list[Path], say=print) -> Counter:
+def say(line: str) -> None:
+    print(line, flush=True)
+
+
+def run(files: list[Path], say=say) -> Counter:
     led = Ledger(datasheets_state("polarity"), stages=STAGES, fields=FIELDS, versioned=VERSIONED)
     pages: dict[str, tuple[http.Response, str]] = {}
+    later: set[str] = set()             # hosts that asked us to slow down: not asked again this run
     n = Counter()
-    for c in candidates(files):
+    for i, c in enumerate(candidates(files)):
+        if i and i % 25 == 0:
+            led.save()                                  # a run of hundreds of pages loses nothing it read
         part, url, claimed = c["part"], c["url"], c["polarity"]
         key = f"{url} {part}"
         if led.done(key, "read", version=READ_VERSION):
             n["already read"] += 1
             continue
+        host = urlparse(url).netloc
+        if host in later:
+            n["come back later"] += 1
+            continue
         if url not in pages:
-            r = http.get(url, ua=PROJECT_UA, max_bytes=MAX_BYTES, retries=2)
+            r = http.get(url, ua=PROJECT_UA, max_bytes=MAX_BYTES, retries=1)
             pages[url] = (r, page_text(r) if r.ok else "")
         r, text = pages[url]
+        if r.status in PACE:
+            # Too fast, or the server is down: not a refusal (CLAUDE.md, rule 3). Nothing is stamped, so
+            # the next run asks again, and nothing more is asked of this host in this one.
+            later.add(host)
+            n["come back later"] += 1
+            say(f"  {host}: {r.status}, left for a later run")
+            continue
         if not r.ok:
             led.skip(key, (r.why or f"http {r.status}")[:60], part=part, url=url, claimed=claimed, http=r.status)
             n["page not read"] += 1
