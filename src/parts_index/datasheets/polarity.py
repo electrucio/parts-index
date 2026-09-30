@@ -38,6 +38,9 @@ TABLE = ("part", "polarity", "url", "words", "sha256", "checked")
 MAX_BYTES = 40 << 20
 PACE = (0, 429, 500, 502, 503, 504)
 TAG = re.compile(r"<(script|style)\b.*?</\1\s*>|<[^>]+>", re.S | re.I)
+# A forum post is somebody saying so, not a source with the standing to: a search that lands on one has
+# not found the part's polarity. (Rule 3 indexes a forum's attachments, never its conversation.)
+FORUM = re.compile(r"(?i)//(?:[^/]*\.)?(?:forum|groupdiy|diystompboxes)|/(?:forums?|community|threads?|goto/post)/")
 
 
 def page_text(r: http.Response) -> str:
@@ -60,7 +63,8 @@ def candidates(files: list[Path]) -> list[dict]:
             except ValueError:
                 continue
             key = (c.get("part", ""), c.get("url", ""))
-            if c.get("polarity") in polarity.CLASS and key[1].startswith("http") and key not in seen:
+            if c.get("polarity") in polarity.CLASS and key[1].startswith("http") and not FORUM.search(key[1]) \
+                    and key not in seen:
                 seen.add(key)
                 out.append(c)
     return out
@@ -116,7 +120,8 @@ def write(led: Ledger) -> None:
     """The published table: every part a page was read to say, with the page."""
     rows = sorted(({"part": r["part"], "polarity": r["polarity"], "url": r["url"], "words": r["words"],
                     "sha256": r["sha256"], "checked": r["read_at"]}
-                   for r in led.rows.values() if r.get("polarity")), key=lambda r: (r["part"], r["url"]))
+                   for r in led.rows.values() if r.get("polarity") and not FORUM.search(r["url"])),
+                  key=lambda r: (r["part"], r["url"]))
     out = datasheet_polarity()
     out.parent.mkdir(parents=True, exist_ok=True)
     with open(out, "w", newline="", encoding="utf-8") as f:

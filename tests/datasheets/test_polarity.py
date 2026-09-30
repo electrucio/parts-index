@@ -42,3 +42,12 @@ def test_a_page_is_published_only_when_it_says_it_and_a_slow_host_waits(tmp_path
     asked.clear()
     D.run([found], say=lambda _: None)
     assert asked == ["https://slow.example/ac127.html"]
+
+
+def test_a_forum_post_is_not_a_source():
+    for url in ("https://forum.pedalpcb.com/goto/post?id=153573", "https://www.diyaudio.com/community/threads/x.1/",
+                "https://groupdiy.com/threads/cross-reference.123/", "https://www.diystompboxes.com/smfforum/index.php"):
+        assert D.FORUM.search(url), url
+    for url in ("https://www.onsemi.com/pdf/datasheet/bc546-d.pdf", "https://www.littlediode.com/components/AF101.html",
+                "https://www.radiolocman.com/datasheet/data.html?di=1"):
+        assert not D.FORUM.search(url), url
