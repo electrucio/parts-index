@@ -17,6 +17,7 @@ import { DATA, loadIndex, reloadIndex } from './data'
 import { Fold } from './fold'
 import { forViewer } from './links'
 import { ModelChecks } from './models'
+import { Report } from './report'
 import type { DeviceKind, PageUse, PartIndex, PartPage, PartRow, UseKind } from './types'
 export const n = (v: number) => v.toLocaleString('en-GB')
 
@@ -481,6 +482,7 @@ export function Detail({ part, sources, kinds, stamp, onStale }: {
       <div class="ptitle">
         <PartName part={part} page={page} />
         {page?.models?.kind && <span class="chip">{page.models.kind}</span>}
+        <Report key={part} part={part} />
       </div>
       {error && <p class="muted">Nothing is published for {part} yet.</p>}
       {!error && !page && <p class="muted">Loading…</p>}

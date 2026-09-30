@@ -4,6 +4,7 @@ import { useEffect, useState } from 'preact/hooks'
 import { FamilyPage, MakerPage, SchemePage } from './about'
 import { DATA } from './data'
 import { Browser } from './parts'
+import { Report } from './report'
 import './style.css'
 import type { Manifest } from './types'
 
@@ -77,7 +78,7 @@ function App() {
 
       <footer class="wrap muted small" style={{ paddingBlock: '24px 48px' }}>
         Built from the committed dataset. This project stores links, never documents.{' '}
-        <a href="https://github.com/electrucio/parts-index">Source</a>.
+        <a href="https://github.com/electrucio/parts-index">Source</a>. <Report />
       </footer>
     </>
   )

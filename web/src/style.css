@@ -244,3 +244,36 @@ ul.figkey { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-w
 ul.figkey .swatch { display: inline-block; width: 14px; height: 3px; margin-right: 5px; vertical-align: middle; }
 @media (max-width: 760px) { .figgrid { grid-template-columns: 1fr; } .figpair { grid-template-columns: 1fr; } }
 .offscale { color: var(--off); }
+
+/* Report a problem (report.tsx): a small button beside the part's name, and a dialog over the page. */
+/* The button sits at the end of the name's line, and only the name keeps clear of it: what the name
+   says runs the full width beneath, which on a phone is most of what there is. */
+.ptitle { position: relative; }
+.ptitle h1 { padding-right: 104px; }
+.report-btn { position: absolute; top: 8px; right: 0; display: inline-flex; gap: 6px; align-items: center;
+  font: 600 0.82rem var(--body); padding: 4px 11px; border-radius: 999px; border: 1px solid var(--rule);
+  background: var(--surface); color: var(--muted); cursor: pointer; }
+.report-btn:hover { border-color: var(--accent); color: var(--accent-ink); }
+button.linkish { all: unset; cursor: pointer; color: var(--faint);
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+button.linkish:hover { color: var(--link); }
+button.linkish:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+dialog.report { padding: 0; width: min(560px, calc(100vw - 32px)); border: 1px solid var(--rule); border-radius: 8px;
+  background: var(--surface); color: var(--ink); box-shadow: 0 16px 48px rgb(0 0 0 / 0.6); }
+dialog.report::backdrop { background: rgb(6 4 4 / 0.7); backdrop-filter: blur(2px); }
+dialog.report .panel-in { padding: 18px 20px 16px; display: flex; flex-direction: column; gap: 12px; }
+dialog.report h3 .pn { color: var(--accent-ink); }
+dialog.report p { margin: 0; }
+dialog.report form { display: flex; flex-direction: column; gap: 10px; }
+dialog.report textarea { font: inherit; font-size: 0.95rem; padding: 8px 10px; min-height: 8em; resize: vertical;
+  border: 1px solid var(--rule); border-radius: 4px; background: var(--sunken); color: var(--ink); }
+dialog.report textarea:focus { outline: none; border-color: var(--accent); }
+dialog.report textarea::placeholder { color: var(--faint); }
+dialog.report .row { display: flex; gap: 16px; align-items: center; }
+dialog.report .row > span { flex: 1; }
+dialog.report .linkish { font-size: 0.9rem; }
+button.send { font: 600 0.95rem var(--display); letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 18px;
+  border: 0; border-radius: 4px; background: var(--accent); color: var(--ground); cursor: pointer; }
+button.send:hover { background: var(--accent-ink); }
+button.send:disabled { opacity: 0.4; cursor: default; }
+dialog.report .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
